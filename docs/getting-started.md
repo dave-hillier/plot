@@ -13,7 +13,7 @@ import * as d3 from "d3";
 
 # Getting started
 
-Observable Plot supports a variety of environments.
+Observable Plot supports a variety of environments, including a first-class [React component API](#plot-in-react) for building charts with declarative JSX.
 
 ## Try Plot online
 
@@ -113,7 +113,13 @@ pnpm add @observablehq/plot
 
 :::
 
-You can then load Plot into your app as:
+You can then load Plot into your app. For **React**, import from `@observablehq/plot/react`:
+
+```js
+import {Plot, Dot, Line, BarY, AxisX, AxisY} from "@observablehq/plot/react";
+```
+
+For the **imperative API** (vanilla JS or non-React frameworks), import from the main entry point:
 
 ```js
 import * as Plot from "@observablehq/plot";
@@ -134,7 +140,7 @@ Plot includes TypeScript declarations with extensive documentation. We highly re
 
 ## Plot in React
 
-Plot provides a native React component API via `@observablehq/plot/react`. Instead of imperatively building SVG with D3 selections, you define charts declaratively with JSX.
+Plot provides a first-class React component API via `@observablehq/plot/react`. Instead of imperatively building SVG with D3 selections, you define charts declaratively with JSX that integrates natively with React's rendering model, state management, and component lifecycle.
 
 ### Basic usage
 
@@ -142,7 +148,7 @@ Import the `Plot` root component and mark components, then compose them as JSX:
 
 :::code-group
 ```jsx [App.jsx]
-import {Plot, Dot} from "@observablehq/plot/react";
+import {Plot, Dot, AxisX, AxisY} from "@observablehq/plot/react";
 import penguins from "./penguins.json";
 
 export default function App() {
@@ -151,6 +157,8 @@ export default function App() {
       <h1>Penguins</h1>
       <Plot width={640} height={400}>
         <Dot data={penguins} x="culmen_length_mm" y="culmen_depth_mm" fill="species" />
+        <AxisX />
+        <AxisY />
       </Plot>
     </div>
   );
@@ -158,7 +166,7 @@ export default function App() {
 ```
 :::
 
-The `<Plot>` component handles scale inference, axis generation, and layout automatically. Pass scale options as props on `<Plot>`, and channel mappings as props on mark components.
+The `<Plot>` component handles scale inference, axis generation, and layout automatically. Pass scale options as props on `<Plot>`, and channel mappings as props on mark components. Every mark available in the imperative API has a corresponding React component: `<Dot>`, `<Line>`, `<BarX>`, `<BarY>`, `<Area>`, `<Rect>`, `<Text>`, `<Rule>`, `<Tick>`, and [many more](./api.md).
 
 ### With transforms
 
@@ -327,7 +335,7 @@ export default function LegacyApp({data}) {
 ```
 :::
 
-The declarative React component API is preferred because it integrates naturally with React's state management, avoids manual DOM manipulation, and supports server-side rendering.
+The declarative React component API is preferred for most applications because it integrates naturally with React's state management, avoids manual DOM manipulation, and updates automatically when your data or props change. The imperative approach generates a detached SVG element and requires manual cleanup, so it is best reserved for integrating with existing imperative Plot code.
 
 ## Plot in Vue
 

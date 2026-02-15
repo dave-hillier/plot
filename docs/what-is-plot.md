@@ -43,6 +43,8 @@ function computeTreeWidth(paths) {
 
 **Observable Plot** is a free, open-source, JavaScript library for visualizing tabular data, focused on accelerating exploratory data analysis. It has a concise, memorable, yet expressive interface, featuring [scales](./features/scales.md) and [layered marks](./features/marks.md) in the *grammar of graphics* style popularized by [Leland Wilkinson](https://en.wikipedia.org/wiki/Leland_Wilkinson) and [Hadley Wickham](https://en.wikipedia.org/wiki/Hadley_Wickham) and inspired by the earlier ideas of [Jacques Bertin](https://en.wikipedia.org/wiki/Jacques_Bertin). And there are [plenty of examples](https://observablehq.com/@observablehq/plot-gallery) to learn from and copy-paste.
 
+Plot offers two APIs: a concise **imperative API** for vanilla JavaScript environments and a **declarative React component API** for building charts with JSX. Both APIs share the same powerful core — D3 scales, transforms, projections, and mark types — so you get the same expressive visualizations regardless of which API you choose. See the [getting started guide](./getting-started.md) for details on both approaches.
+
 In the spirit of *show don’t tell*, here’s a scatterplot of body measurements of athletes from the [2016 Summer Olympics](https://flother.is/2017/olympic-games-data/).
 
 :::plot defer https://observablehq.com/@observablehq/plot-olympians-scatterplot

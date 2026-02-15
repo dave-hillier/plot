@@ -15,31 +15,41 @@
 
 ---
 
-## About This Fork: React Port
+## React Component API
 
-This fork is a **React port** of Observable Plot. The original library renders charts imperatively using D3 selections to build SVG elements. This port converts that approach into idiomatic React components with a declarative JSX API, so that Observable Plot can be used natively in React applications.
+Observable Plot provides a **first-class React component API** alongside its imperative API. Use declarative JSX components to build charts natively in React applications:
 
-### Why port to React?
+```jsx
+import {Plot, Dot, Line, AxisX, AxisY} from "@observablehq/plot/react";
 
-- **Native React integration** — Use Plot as composable React components (`<Plot>`, `<Dot>`, `<Line>`, etc.) instead of imperatively appending SVG nodes to the DOM.
+function Chart({data}) {
+  return (
+    <Plot width={640} height={400}>
+      <Dot data={data} x="weight" y="height" stroke="species" />
+      <AxisX />
+      <AxisY />
+    </Plot>
+  );
+}
+```
+
+### Why use the React API?
+
+- **Native React integration** — Use Plot as composable React components (`<Plot>`, `<Dot>`, `<Line>`, etc.) that render directly into the React tree.
 - **Declarative API** — Define charts with JSX, making them easier to read, compose, and maintain alongside other React code.
 - **React ecosystem compatibility** — Works with React state, context, hooks, Suspense, and server-side rendering out of the box.
-- **Observable Framework support** — Enables integration with Observable Framework's React-based dashboard and documentation system.
+- **No manual DOM management** — Unlike the imperative API, there's no need for refs, effects, or manual cleanup.
 
-### What changes?
+### Two APIs, one core
 
-| Original (Imperative) | This Port (React/Declarative) |
+| Imperative API | React Component API |
 |---|---|
+| `import * as Plot from "@observablehq/plot"` | `import {Plot, Dot} from "@observablehq/plot/react"` |
 | `Plot.plot({ marks: [Plot.dot(data, {x, y})] })` | `<Plot><Dot data={data} x="x" y="y" /></Plot>` |
-| D3 selections build the DOM | JSX renders SVG elements |
 | Returns a detached SVG element | Renders directly into the React tree |
-| Mutable internal state | React Context + hooks |
+| Manual DOM insertion required | No refs or effects needed |
 
-### What stays the same?
-
-The core computation — D3 scales, shape generators, geo projections, data transforms (bin, stack, group, etc.), and channel/scale inference — is shared between both APIs via a common `core/` module. Both the original imperative API and the React API coexist as separate exports.
-
-See [PLAN.md](./PLAN.md) for the full implementation plan.
+The core computation — D3 scales, shape generators, geo projections, data transforms (bin, stack, group, etc.), and channel/scale inference — is shared between both APIs. Both the imperative API and the React API coexist as separate exports from the same package.
 
 ### React examples
 

@@ -108,7 +108,19 @@ Plot’s transforms can do powerful things, including [normalizing series](./tra
 
 ## Plot is composable
 
-Simple components gain power through composition, such as layering multiple [marks](./features/marks.md) into a single plot. Plot makes it easy to define custom composite marks, such as this one comprising a rule, area, and line:
+Simple components gain power through composition, such as layering multiple [marks](./features/marks.md) into a single plot. In React, this composability is especially natural — each mark is a JSX component that you nest inside `<Plot>`:
+
+```jsx
+import {Plot, RuleY, AreaY, LineY} from "@observablehq/plot/react";
+
+<Plot>
+  <RuleY data={[0]} />
+  <AreaY data={aapl} x="Date" y="Close" fill="blue" fillOpacity={0.1} />
+  <LineY data={aapl} x="Date" y="Close" stroke="blue" />
+</Plot>
+```
+
+With the imperative API, you can similarly define custom composite marks:
 
 ```js
 function arealineY(data, {color, fillOpacity = 0.1, ...options} = {}) {

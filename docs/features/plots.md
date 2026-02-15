@@ -46,7 +46,7 @@ Plot.plot({
 :::
 
 :::tip
-The returned plot element is detached; it must be inserted into the page to be visible. For help, see the [getting started guide](../getting-started.md).
+With the imperative API, the returned plot element is detached; it must be inserted into the page to be visible. With the [React component API](../getting-started.md#plot-in-react), plots render directly into the React tree — no manual DOM insertion needed. For help, see the [getting started guide](../getting-started.md).
 :::
 
 ## Marks option
