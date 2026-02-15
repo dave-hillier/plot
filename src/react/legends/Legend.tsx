@@ -40,7 +40,7 @@ export function Legend({
   width: widthProp,
   height: heightProp = 33,
   marginTop = 5,
-  marginRight = 0,
+  marginRight: _marginRight = 0,
   marginBottom = 16,
   marginLeft = 0,
   className

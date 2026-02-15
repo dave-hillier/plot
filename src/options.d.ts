@@ -67,3 +67,23 @@ export function range(data: any): number[];
 
 /** Resolves a number interval specification. */
 export function numberInterval(interval: any): any;
+
+/** Returns true if the value is a valid CSS color string. */
+export function isColor(value: any): boolean;
+
+/** Returns true if the value is null, undefined, or the string "none". */
+export function isNoneish(value: any): boolean;
+
+/**
+ * Given a value, returns a [channel, constant] tuple where one is undefined.
+ * If the value is a CSS color string, it is treated as a constant; otherwise
+ * it is treated as a channel (field name or accessor).
+ */
+export function maybeColorChannel(value: any, defaultValue?: any): [any, any];
+
+/**
+ * Given a value, returns a [channel, constant] tuple where one is undefined.
+ * If the value is a number, it is treated as a constant; otherwise it is
+ * treated as a channel (field name or accessor).
+ */
+export function maybeNumberChannel(value: any, defaultValue?: any): [any, any];
