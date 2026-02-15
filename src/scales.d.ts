@@ -673,3 +673,17 @@ export interface Scale extends ScaleOptions {
  * ```
  */
 export function scale(options?: {[name in ScaleName]?: ScaleOptions}): Scale;
+
+// --- Internal functions used by React layer ---
+
+/** Creates scale descriptors from channel-by-scale mappings and plot options. */
+export function createScales(channelsByScale: Map<string, any[]>, options: any): any;
+
+/** Converts scale descriptors into callable scale functions. */
+export function createScaleFunctions(scaleDescriptors: any): any;
+
+/** Automatically sets scale ranges based on dimensions. */
+export function autoScaleRange(scaleDescriptors: any, dimensions: any): void;
+
+/** Computes the inner (facet cell) dimensions from scale descriptors and outer dimensions. */
+export function innerDimensions(scaleDescriptors: any, dimensions: any): any;

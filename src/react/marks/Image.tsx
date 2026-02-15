@@ -1,4 +1,3 @@
-// @ts-nocheck — React components importing from untyped JS modules
 import React, {useMemo} from "react";
 import {useMark} from "../useMark.js";
 import {
@@ -146,7 +145,7 @@ export function Image({
               height={h}
               preserveAspectRatio={preserveAspectRatio}
               clipPath={clipId ? `url(#${clipId})` : undefined}
-              crossOrigin={crossOrigin}
+              crossOrigin={crossOrigin as "anonymous" | "use-credentials" | "" | undefined}
               {...directStyleProps(markOptions)}
               {...channelStyleProps(i, values)}
               onClick={onClick ? (e) => onClick(e, data?.[i]) : undefined}

@@ -254,3 +254,11 @@ export type ChannelStates = {[key in ChannelName]?: {value: any[]; scale: ScaleN
 
 /** Possibly-scaled values for each channel. */
 export type ChannelValues = {[key in ChannelName]?: any[]} & {channels: ChannelStates};
+
+// --- Internal functions used by React layer ---
+
+/** Creates a channel from data and a channel specification. */
+export function createChannel(data: any, spec: any): any;
+
+/** Infers the appropriate scale for a channel based on its name and definition. */
+export function inferChannelScale(name: string, channel: any): any;

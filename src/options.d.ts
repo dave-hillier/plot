@@ -47,3 +47,23 @@ export const identity: ChannelTransform;
  * data; often used as a default for mark shorthand.
  */
 export const indexOf: ChannelTransform;
+
+// --- Internal functions used by React layer ---
+
+/** Returns true if the value is a scale options object (not a channel value). */
+export function isScaleOptions(value: any): boolean;
+
+/** Coerces the data to an array, or returns null if the data is nullish. */
+export function dataify(data: any): any[] | null;
+
+/** Maps an array of values through a function. */
+export function map(values: any[], fn: (v: any) => any): any[];
+
+/** Returns a transform function for the given interval, if any. */
+export function maybeIntervalTransform(interval: any, type: any): ((v: any) => any) | undefined;
+
+/** Returns the zero-based index array [0, 1, 2, …, data.length - 1] for the given data. */
+export function range(data: any): number[];
+
+/** Resolves a number interval specification. */
+export function numberInterval(interval: any): any;

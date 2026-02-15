@@ -1,4 +1,3 @@
-// @ts-nocheck — React components importing from untyped JS modules
 import React, {useMemo, useRef, useEffect} from "react";
 import {useMark} from "../useMark.js";
 import {indirectStyleProps} from "../styles.js";

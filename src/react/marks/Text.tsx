@@ -1,4 +1,3 @@
-// @ts-nocheck — React components importing from untyped JS modules
 import React, {useMemo} from "react";
 import {useMark} from "../useMark.js";
 import {
@@ -140,7 +139,7 @@ export function Text({
   };
 
   return (
-    <g {...groupProps}>
+    <g {...groupProps as any}>
       {index.map((i) => {
         const tx = X ? X[i] : anchorX;
         const ty = Y ? Y[i] : anchorY;

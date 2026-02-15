@@ -1,4 +1,3 @@
-// @ts-nocheck — React components importing from untyped JS modules
 import React, {
   useCallback,
   useContext,
@@ -8,16 +7,32 @@ import React, {
   type ReactNode,
   type PointerEvent as ReactPointerEvent
 } from "react";
-import {createChannel, inferChannelScale} from "../channel.js";
-import {formatDefault} from "../format.js";
-import {createDimensions} from "../dimensions.js";
-import {createFacets, recreateFacets, facetExclude, facetGroups, facetFilter, facetTranslator} from "../facet.js";
-import {isScaleOptions, dataify, map, maybeIntervalTransform, range} from "../options.js";
-import {createProjection, getGeometryChannels, hasProjection} from "../projection.js";
-import {createScales, createScaleFunctions, autoScaleRange} from "../scales.js";
-import {innerDimensions} from "../scales.js";
-import {registry as scaleRegistry} from "../scales/index.js";
-import {maybeClassName} from "../style.js";
+import {
+  createChannel,
+  inferChannelScale,
+  formatDefault,
+  createDimensions,
+  createFacets,
+  recreateFacets,
+  facetExclude,
+  facetGroups,
+  facetFilter,
+  isScaleOptions,
+  dataify,
+  map,
+  maybeIntervalTransform,
+  range,
+  createProjection,
+  getGeometryChannels,
+  hasProjection,
+  createScales,
+  createScaleFunctions,
+  autoScaleRange,
+  innerDimensions,
+  scaleRegistry,
+  maybeClassName
+} from "../core/index.js";
+import {facetTranslator} from "../facet.js";
 import {PlotContext, FacetContext} from "./PlotContext.js";
 import type {MarkRegistration, MarkState, FacetInfo, PlotContextValue, PointerState} from "./PlotContext.js";
 

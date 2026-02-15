@@ -42,3 +42,8 @@ export function formatWeekday(locale?: string, format?: "long" | "short" | "narr
  * @param date a date to format
  */
 export function formatIsoDate(date: Date): string;
+
+// --- Internal functions used by React layer ---
+
+/** Formats a value using a default representation (number, date, or string). */
+export function formatDefault(value: any): string;

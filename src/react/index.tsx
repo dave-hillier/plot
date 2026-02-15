@@ -1,4 +1,3 @@
-// @ts-nocheck — React components importing from untyped JS modules
 // replot/react — React component API for Replot
 //
 // Usage:

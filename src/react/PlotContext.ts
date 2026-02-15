@@ -72,7 +72,7 @@ export interface PlotContextValue {
 
   // Render phase (populated after scale computation)
   scales: Record<string, any> | null;
-  scaleFunctions: Record<string, (v: any) => any> | null;
+  scaleFunctions: Record<string, any> | null;
   dimensions: Dimensions | null;
   projection: any | null;
   className: string;
@@ -98,7 +98,7 @@ const defaultContext: PlotContextValue = {
   scaleFunctions: null,
   dimensions: null,
   projection: null,
-  className: "plot-d6a7b5",
+  className: "replot-d6a7b5",
   facets: undefined,
   facetTranslate: null,
   getMarkState: () => undefined,

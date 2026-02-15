@@ -167,3 +167,8 @@ export type SortOrder =
  * ```
  */
 export function sort<T>(order: SortOrder, options?: T): Transformed<T>;
+
+// --- Internal functions used by React layer ---
+
+/** Composes a basic transform with the given options. */
+export function basic<T>(options: T, transform?: TransformFunction): Transformed<T>;
