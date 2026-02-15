@@ -1,10 +1,9 @@
-// @ts-nocheck — React components importing from untyped JS modules
 import React, {useMemo} from "react";
 import {useMark} from "../useMark.js";
 import {usePlotContext} from "../PlotContext.js";
 import {findNearest} from "./usePointer.js";
 import type {ChannelSpec} from "../PlotContext.js";
-import {formatDefault} from "../../format.js";
+import {formatDefault} from "../../core/index.js";
 
 export interface TipProps {
   data?: any;

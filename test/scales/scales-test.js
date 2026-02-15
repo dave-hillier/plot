@@ -1,4 +1,4 @@
-import * as Plot from "@observablehq/plot";
+import * as Plot from "replot";
 import * as d3 from "d3";
 import assert from "../assert.js";
 import it from "../jsdom.js";

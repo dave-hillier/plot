@@ -1,4 +1,3 @@
-// @ts-nocheck — React components importing from untyped JS modules
 import React, {useMemo} from "react";
 import {contourDensity, geoPath} from "d3";
 import {useMark} from "../useMark.js";
@@ -113,13 +112,13 @@ export function Density({
   // Compute density contours
   const contours = useMemo(() => {
     if (!X || !Y || !index.length) return [];
-    const density = contourDensity()
-      .x((i: number) => X[i])
-      .y((i: number) => Y[i])
+    const density = contourDensity<number>()
+      .x((i) => X[i])
+      .y((i) => Y[i])
       .size([width, height])
       .bandwidth(bandwidth);
 
-    if (W) density.weight((i: number) => W[i]);
+    if (W) density.weight((i) => W[i]);
     if (typeof thresholds === "number") density.thresholds(thresholds);
     else if (Array.isArray(thresholds)) density.thresholds(thresholds);
 

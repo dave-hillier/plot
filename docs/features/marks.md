@@ -1,6 +1,6 @@
 <script setup>
 
-import * as Plot from "@observablehq/plot";
+import * as Plot from "replot";
 import * as d3 from "d3";
 import * as htl from "htl";
 import {computed, ref, shallowRef, onMounted} from "vue";

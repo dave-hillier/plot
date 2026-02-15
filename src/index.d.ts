@@ -39,7 +39,7 @@ export * from "./marks/tip.js";
 export * from "./marks/tree.js";
 export * from "./marks/vector.js";
 export * from "./marks/waffle.js";
-export * from "./options.js";
+export {valueof, column, identity, indexOf} from "./options.js";
 export * from "./plot.js";
 export * from "./projection.js";
 export * from "./reducer.js";

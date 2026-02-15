@@ -1,4 +1,4 @@
-import * as Plot from "@observablehq/plot";
+import * as Plot from "replot";
 
 async function kitten({
   x = (d, i) => i % 5,

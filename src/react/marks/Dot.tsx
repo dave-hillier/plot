@@ -1,4 +1,3 @@
-// @ts-nocheck — React components importing from untyped JS modules
 import React, {useMemo} from "react";
 import {pathRound as path, symbolCircle} from "d3";
 import {useMark} from "../useMark.js";

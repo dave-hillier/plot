@@ -1,26 +1,15 @@
-# Observable Plot
+# Replot
 
-[<img src="https://observablehq.com/plot/plot.svg" width="320" alt="The Observable Plot logo, spelling out the letters P-L-O-T in pastel shapes.">](https://observablehq.com/plot/)
-
-[**Observable Plot**](https://observablehq.com/plot/) is a free, [open-source](./LICENSE), JavaScript library for visualizing tabular data, focused on accelerating exploratory data analysis. It has a concise, memorable, yet expressive API, featuring [scales](https://observablehq.com/plot/features/scales) and [layered marks](https://observablehq.com/plot/features/marks) in the *grammar of graphics* style.
-
-<a href="https://observablehq.observablehq.cloud/oss-analytics/@observablehq/plot">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://observablehq.observablehq.cloud/oss-analytics/@observablehq/plot/downloads-dark.svg">
-    <img alt="Daily downloads of Observable Plot" src="https://observablehq.observablehq.cloud/oss-analytics/@observablehq/plot/downloads.svg">
-  </picture>
-</a>
-
-<sub>Daily downloads of Observable Plot · [oss-analytics](https://observablehq.observablehq.cloud/oss-analytics/)</sub>
+**Replot** is a React component library for exploratory data visualization, based on [Observable Plot](https://observablehq.com/plot/). It provides a declarative JSX API featuring [scales](https://observablehq.com/plot/features/scales) and [layered marks](https://observablehq.com/plot/features/marks) in the *grammar of graphics* style.
 
 ---
 
 ## React Component API
 
-Observable Plot provides a **first-class React component API** alongside its imperative API. Use declarative JSX components to build charts natively in React applications:
+Use declarative JSX components to build charts natively in React applications:
 
 ```jsx
-import {Plot, Dot, Line, AxisX, AxisY} from "@observablehq/plot/react";
+import {Plot, Dot, Line, AxisX, AxisY} from "replot/react";
 
 function Chart({data}) {
   return (
@@ -33,30 +22,31 @@ function Chart({data}) {
 }
 ```
 
-### Why use the React API?
+### Why Replot?
 
-- **Native React integration** — Use Plot as composable React components (`<Plot>`, `<Dot>`, `<Line>`, etc.) that render directly into the React tree.
+- **Native React integration** — Use composable React components (`<Plot>`, `<Dot>`, `<Line>`, etc.) that render directly into the React tree.
 - **Declarative API** — Define charts with JSX, making them easier to read, compose, and maintain alongside other React code.
 - **React ecosystem compatibility** — Works with React state, context, hooks, Suspense, and server-side rendering out of the box.
-- **No manual DOM management** — Unlike the imperative API, there's no need for refs, effects, or manual cleanup.
+- **No manual DOM management** — No need for refs, effects, or manual cleanup.
+- **Built on Observable Plot** — All the power of Observable Plot's scales, transforms, and mark system.
 
-### Two APIs, one core
+### API overview
 
-| Imperative API | React Component API |
+| Imperative API (Observable Plot) | React Component API (Replot) |
 |---|---|
-| `import * as Plot from "@observablehq/plot"` | `import {Plot, Dot} from "@observablehq/plot/react"` |
+| `import * as Plot from "replot"` | `import {Plot, Dot} from "replot/react"` |
 | `Plot.plot({ marks: [Plot.dot(data, {x, y})] })` | `<Plot><Dot data={data} x="x" y="y" /></Plot>` |
 | Returns a detached SVG element | Renders directly into the React tree |
 | Manual DOM insertion required | No refs or effects needed |
 
-The core computation — D3 scales, shape generators, geo projections, data transforms (bin, stack, group, etc.), and channel/scale inference — is shared between both APIs. Both the imperative API and the React API coexist as separate exports from the same package.
+The core computation — D3 scales, shape generators, geo projections, data transforms (bin, stack, group, etc.), and channel/scale inference — is shared between both APIs.
 
-### React examples
+### Examples
 
 **Scatterplot with color encoding:**
 
 ```jsx
-import {Plot, Dot} from "@observablehq/plot/react";
+import {Plot, Dot} from "replot/react";
 
 function Scatterplot({data}) {
   return (
@@ -70,7 +60,7 @@ function Scatterplot({data}) {
 **Histogram with binning:**
 
 ```jsx
-import {Plot, BarY, RuleY, binX} from "@observablehq/plot/react";
+import {Plot, BarY, RuleY, binX} from "replot/react";
 
 function Histogram({data}) {
   return (
@@ -85,7 +75,7 @@ function Histogram({data}) {
 **Line chart with grid and custom scales:**
 
 ```jsx
-import {Plot, Line} from "@observablehq/plot/react";
+import {Plot, Line} from "replot/react";
 
 function LineChart({data}) {
   return (
@@ -99,7 +89,7 @@ function LineChart({data}) {
 **Faceted dot plot (small multiples):**
 
 ```jsx
-import {Plot, Dot} from "@observablehq/plot/react";
+import {Plot, Dot} from "replot/react";
 
 function FacetedPlot({data}) {
   return (
@@ -113,7 +103,7 @@ function FacetedPlot({data}) {
 **Stacked area chart:**
 
 ```jsx
-import {Plot, AreaY, stackY} from "@observablehq/plot/react";
+import {Plot, AreaY, stackY} from "replot/react";
 
 function StackedArea({data}) {
   return (
@@ -127,7 +117,7 @@ function StackedArea({data}) {
 **Interactive chart with tooltips:**
 
 ```jsx
-import {Plot, Dot} from "@observablehq/plot/react";
+import {Plot, Dot} from "replot/react";
 
 function InteractiveChart({data}) {
   return (
@@ -140,22 +130,32 @@ function InteractiveChart({data}) {
 
 ---
 
-## Documentation 📚
+## Getting started
 
-https://observablehq.com/plot/
+```bash
+npm install replot
+```
 
-## Examples 🖼️
+Then import the React API:
 
-https://observablehq.com/@observablehq/plot-gallery
+```js
+import {Plot, Dot, Line, BarY, AxisX, AxisY} from "replot/react";
+```
 
-## Releases 🚀
+Or the imperative API:
 
-See our [CHANGELOG](https://github.com/observablehq/plot/blob/main/CHANGELOG.md) and summary [release notes](https://github.com/observablehq/plot/releases).
+```js
+import * as Plot from "replot";
+```
 
-## Getting help 🏠
+## Based on Observable Plot
 
-See our [community guide](https://observablehq.com/plot/community).
+Replot is a fork of [Observable Plot](https://observablehq.com/plot/), ported to provide a first-class React component API. See the [Observable Plot documentation](https://observablehq.com/plot/) for full details on scales, marks, transforms, and projections.
 
-## Contributing 🙏
+## Contributing
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md).
+
+## License
+
+[ISC](./LICENSE)

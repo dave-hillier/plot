@@ -1,4 +1,4 @@
-# Observable Plot - Changelog [2023]
+# Replot - Changelog [2023]
 
 Year: [Current (2025)](./CHANGELOG.md) · [2024](./CHANGELOG-2024.md) · **2023** · [2022](./CHANGELOG-2022.md) · [2021](./CHANGELOG-2021.md)
 
@@ -16,10 +16,10 @@ We reduced the specificity of selectors in the generated stylesheets to 0, allow
 
 To better support dark mode, we’ve made a breaking change to default styles: the background color is now `unset` (transparent) instead of `white`. Additionally, marks that expect to use the same color as the background (for instance, the tip mark) now use the CSS custom property `--plot-background` instead of `white`.
 
-As since [version 0.6.6](#066), you can override Plot’s styles via the `plot-d6a7b5` class. For example, the following stylesheet applies a dark background and white foreground:
+As since [version 0.6.6](#066), you can override Plot’s styles via the `replot-d6a7b5` class. For example, the following stylesheet applies a dark background and white foreground:
 
 ```css
-svg.plot-d6a7b5 {
+svg.replot-d6a7b5 {
   --plot-background: #333;
   background: var(--plot-background);
   color: white;
@@ -204,7 +204,7 @@ Plot.plot({
 })
 ```
 
-When a chart has a title, subtitle, caption, or legend, Plot automatically wraps the chart’s SVG element with an HTML figure element. The new **figure** plot option, if true, wraps the chart in a figure even if it doesn’t have these other elements; likewise, if false, Plot ignores these other elements and returns a bare SVG element. The figure element now has an associated class (`plot-d6a7b5-figure`).
+When a chart has a title, subtitle, caption, or legend, Plot automatically wraps the chart’s SVG element with an HTML figure element. The new **figure** plot option, if true, wraps the chart in a figure even if it doesn’t have these other elements; likewise, if false, Plot ignores these other elements and returns a bare SVG element. The figure element now has an associated class (`replot-d6a7b5-figure`).
 
 The new **clip** plot option determines the default clipping behavior if the [**clip** mark option](https://observablehq.com/plot/features/marks#mark-options) is not specified; set it to true to enable clipping. This option does not affect axis, grid, and frame marks, whose **clip** option defaults to false.
 
@@ -525,7 +525,7 @@ Facet scale domains are now imputed correctly when the **sort** mark option is u
 
 The [Plot.indexOf](https://observablehq.com/plot/features/transforms#indexOf) channel transform, used internally by some mark shorthand, is now exported.
 
-Plot has a few improvements for server-side rendering. Plot now assumes a high pixel density display when headless. The default class name for plots is now deterministically generated (`plot-d6a7b5`) rather than randomly generated; this makes it easier to apply overrides to Plot’s default styles with an external stylesheet. (The default class name will change if Plot’s default styles change in a future release.) The **className** plot option is now inherited by a plot’s legends, if any. The density mark now respects the Plot’s **document** option, and the **caption** option now uses a duck test instead of testing against the global Node.
+Plot has a few improvements for server-side rendering. Plot now assumes a high pixel density display when headless. The default class name for plots is now deterministically generated (`replot-d6a7b5`) rather than randomly generated; this makes it easier to apply overrides to Plot’s default styles with an external stylesheet. (The default class name will change if Plot’s default styles change in a future release.) The **className** plot option is now inherited by a plot’s legends, if any. The density mark now respects the Plot’s **document** option, and the **caption** option now uses a duck test instead of testing against the global Node.
 
 ## 0.6.5
 

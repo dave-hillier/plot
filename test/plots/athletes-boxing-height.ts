@@ -1,4 +1,4 @@
-import * as Plot from "@observablehq/plot";
+import * as Plot from "replot";
 import * as d3 from "d3";
 
 // Country code to continent; coverage limited to sport=boxing.

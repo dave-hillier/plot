@@ -1,6 +1,6 @@
 <script setup>
 
-import * as Plot from "@observablehq/plot";
+import * as Plot from "replot";
 import * as d3 from "d3";
 import * as topojson from "topojson-client";
 import {computed, ref, shallowRef, onMounted} from "vue";
@@ -224,8 +224,8 @@ This uses the [**interval** scale option](./scales.md#scale-transforms) to bin t
 
 To learn more about mapping with Plot, see our hands-on tutorials:
 
-* [Build your first map with Observable Plot](https://observablehq.com/@observablehq/build-your-first-map-with-observable-plot)
-* [Build your first choropleth map with Observable Plot](https://observablehq.com/@observablehq/build-your-first-choropleth-map-with-observable-plot)
+* [Build your first map with Replot](https://observablehq.com/@observablehq/build-your-first-map-with-observable-plot)
+* [Build your first choropleth map with Replot](https://observablehq.com/@observablehq/build-your-first-choropleth-map-with-observable-plot)
 
 ## Projection options
 

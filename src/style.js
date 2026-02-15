@@ -437,7 +437,7 @@ const validClassName =
 export function maybeClassName(name) {
   // The default should be changed whenever the default styles are changed, so
   // as to avoid conflict when multiple versions of Plot are on the page.
-  if (name === undefined) return "plot-d6a7b5";
+  if (name === undefined) return "replot-d6a7b5";
   name = `${name}`;
   if (!validClassName.test(name)) throw new Error(`invalid class name: ${name}`);
   return name;

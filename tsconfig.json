@@ -7,8 +7,8 @@
     "baseUrl": "./src",
     "jsx": "react-jsx",
     "paths": {
-      "@observablehq/plot": ["index"],
-      "@observablehq/plot/react": ["react/index"],
+      "replot": ["index"],
+      "replot/react": ["react/index"],
       "react": ["../node_modules/@types/react"],
       "react/jsx-runtime": ["../node_modules/@types/react/jsx-runtime"],
       "react-dom": ["../node_modules/@types/react-dom"],

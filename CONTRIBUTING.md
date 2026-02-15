@@ -1,12 +1,12 @@
-# Observable Plot - Contributing
+# Replot - Contributing
 
-Observable Plot is open source and released under the [ISC license](./LICENSE). You are welcome to [send us pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests) to contribute bug fixes or new features. We also invite you to participate in [issues](https://github.com/observablehq/plot/issues) and [discussions](https://github.com/observablehq/plot/discussions). We use issues to track and diagnose bugs, as well as to debate and design enhancements to Plot. Discussions are intended for you to ask for help using Plot, or to share something cool you’ve built with Plot. You can also ask for help on the [Observable Forum](https://talk.observablehq.com) and the [Observable community Slack](https://observablehq.com/slack/join).
+Replot is open source and released under the [ISC license](./LICENSE). You are welcome to [send us pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests) to contribute bug fixes or new features. We also invite you to participate in [issues](https://github.com/observablehq/plot/issues) and [discussions](https://github.com/observablehq/plot/discussions). We use issues to track and diagnose bugs, as well as to debate and design enhancements to Plot. Discussions are intended for you to ask for help using Plot, or to share something cool you’ve built with Plot. You can also ask for help on the [Observable Forum](https://talk.observablehq.com) and the [Observable community Slack](https://observablehq.com/slack/join).
 
 We request that you abide by our [code of conduct](https://observablehq.com/@observablehq/code-of-conduct) when contributing and participating in discussions.
 
 ## Development
 
-To contribute to Observable Plot, you’ll need a local development environment to make and test changes to Plot’s source code. To get started, follow GitHub’s tutorial on [forking (and cloning) a repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo). Once you’ve cloned your fork of the Plot repository, open a terminal and `cd` in your forked repository. Then run Yarn to install dependencies:
+To contribute to Replot, you’ll need a local development environment to make and test changes to Plot’s source code. To get started, follow GitHub’s tutorial on [forking (and cloning) a repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo). Once you’ve cloned your fork of the Plot repository, open a terminal and `cd` in your forked repository. Then run Yarn to install dependencies:
 
 ```bash
 yarn
@@ -73,7 +73,7 @@ yarn run mocha --conditions=mocha --parallel --watch test/marks/bar-test.js
 Snapshot tests live in `test/plots` and are registered in [`test/plots/index.ts`](./test/plots/index.ts); see [`test/plots/aapl-bollinger.ts`](./test/plots/aapl-bollinger.ts) for example. Unlike unit tests which only test individual methods, snapshot tests actually visualize data—they’re more representative of how we expect people will use Plot. Snapshot tests can also serve as examples of how to use the Plot API, though note that some of the examples intentionally test edge case of the API and may not embody best practices. Each snapshot test defines a plot by exporting a default async function. For example, here’s a line chart using BLS unemployment data:
 
 ```ts
-import * as Plot from "@observablehq/plot";
+import * as Plot from "replot";
 import * as d3 from "d3";
 
 export async function lineUnemployment() {

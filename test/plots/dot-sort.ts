@@ -1,4 +1,4 @@
-import * as Plot from "@observablehq/plot";
+import * as Plot from "replot";
 import {html} from "htl";
 
 export async function dotSort() {

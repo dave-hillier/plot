@@ -1,4 +1,4 @@
-import * as Plot from "@observablehq/plot";
+import * as Plot from "replot";
 
 export async function zeroNegativeY() {
   return Plot.lineY([-0.25, -0.15, -0.05]).plot({y: {zero: true}});

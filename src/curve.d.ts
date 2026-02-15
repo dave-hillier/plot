@@ -112,3 +112,8 @@ export interface CurveAutoOptions {
    */
   tension?: number;
 }
+
+// --- Internal functions used by React layer ---
+
+/** Resolves a curve specification (name, function, or "auto") to a D3 curve factory. */
+export function maybeCurveAuto(curve?: Curve | "auto", tension?: number): CurveFunction;

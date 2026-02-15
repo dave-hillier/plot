@@ -1,6 +1,6 @@
 <script setup>
 
-import * as Plot from "@observablehq/plot";
+import * as Plot from "replot";
 import * as d3 from "d3";
 import {computed, onMounted, shallowRef} from "vue";
 import {useData} from "vitepress";
@@ -41,7 +41,7 @@ function computeTreeWidth(paths) {
 
 # What is Plot?
 
-**Observable Plot** is a free, open-source, JavaScript library for visualizing tabular data, focused on accelerating exploratory data analysis. It has a concise, memorable, yet expressive interface, featuring [scales](./features/scales.md) and [layered marks](./features/marks.md) in the *grammar of graphics* style popularized by [Leland Wilkinson](https://en.wikipedia.org/wiki/Leland_Wilkinson) and [Hadley Wickham](https://en.wikipedia.org/wiki/Hadley_Wickham) and inspired by the earlier ideas of [Jacques Bertin](https://en.wikipedia.org/wiki/Jacques_Bertin). And there are [plenty of examples](https://observablehq.com/@observablehq/plot-gallery) to learn from and copy-paste.
+**Replot** is a free, open-source, JavaScript library for visualizing tabular data, focused on accelerating exploratory data analysis. It has a concise, memorable, yet expressive interface, featuring [scales](./features/scales.md) and [layered marks](./features/marks.md) in the *grammar of graphics* style popularized by [Leland Wilkinson](https://en.wikipedia.org/wiki/Leland_Wilkinson) and [Hadley Wickham](https://en.wikipedia.org/wiki/Hadley_Wickham) and inspired by the earlier ideas of [Jacques Bertin](https://en.wikipedia.org/wiki/Jacques_Bertin). And there are [plenty of examples](https://observablehq.com/@observablehq/plot-gallery) to learn from and copy-paste.
 
 Plot offers two APIs: a concise **imperative API** for vanilla JavaScript environments and a **declarative React component API** for building charts with JSX. Both APIs share the same powerful core — D3 scales, transforms, projections, and mark types — so you get the same expressive visualizations regardless of which API you choose. See the [getting started guide](./getting-started.md) for details on both approaches.
 

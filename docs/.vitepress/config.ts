@@ -14,7 +14,7 @@ export default defineConfig({
   vite: {
     resolve: {
       alias: [
-        {find: "@observablehq/plot", replacement: path.resolve("./src/index.js")},
+        {find: "replot", replacement: path.resolve("./src/index.js")},
         {find: /^.*\/VPFooter\.vue$/, replacement: fileURLToPath(new URL("./theme/CustomFooter.vue", import.meta.url))}
       ]
     },

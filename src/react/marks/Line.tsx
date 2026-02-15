@@ -1,11 +1,9 @@
-// @ts-nocheck — React components importing from untyped JS modules
 import React, {useMemo} from "react";
 import {line as shapeLine, group, curveLinear} from "d3";
 import {useMark} from "../useMark.js";
 import {indirectStyleProps, directStyleProps, groupChannelStyleProps, computeTransform} from "../styles.js";
-import {maybeCurveAuto} from "../../curve.js";
+import {maybeCurveAuto, defined} from "../../core/index.js";
 import type {ChannelSpec} from "../PlotContext.js";
-import {defined} from "../../defined.js";
 
 const defaults = {
   ariaLabel: "line",

@@ -1,7 +1,6 @@
-// @ts-nocheck — React components importing from untyped JS modules
 import React, {useId} from "react";
 import {usePlotContext} from "../PlotContext.js";
-import {formatDefault} from "../../format.js";
+import {formatDefault} from "../../core/index.js";
 
 export interface LegendProps {
   scale?: "color" | "opacity" | "symbol" | "r";

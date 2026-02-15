@@ -1,7 +1,6 @@
-// @ts-nocheck — React components importing from untyped JS modules
 import React from "react";
 import {usePlotContext} from "../PlotContext.js";
-import {formatDefault} from "../../format.js";
+import {formatDefault} from "../../core/index.js";
 
 export interface AxisProps {
   anchor?: "top" | "bottom" | "left" | "right";

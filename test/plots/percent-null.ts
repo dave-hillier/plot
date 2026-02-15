@@ -1,4 +1,4 @@
-import * as Plot from "@observablehq/plot";
+import * as Plot from "replot";
 
 export async function percentNull() {
   const time = [1, 2, 3, 4, 5];

@@ -1,7 +1,7 @@
 {
-  "name": "@observablehq/plot",
-  "description": "A JavaScript library for exploratory data visualization.",
-  "version": "0.6.17",
+  "name": "replot",
+  "description": "A React component library for exploratory data visualization, based on Observable Plot.",
+  "version": "0.1.0",
   "author": {
     "name": "Observable, Inc.",
     "url": "https://observablehq.com"
@@ -25,7 +25,7 @@
   "types": "src/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/observablehq/plot.git"
+    "url": "https://github.com/dave-hillier/plot.git"
   },
   "files": [
     "dist/**/*.js",
@@ -107,8 +107,12 @@
     "react-dom": "^18.0.0 || ^19.0.0"
   },
   "peerDependenciesMeta": {
-    "react": { "optional": true },
-    "react-dom": { "optional": true }
+    "react": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
+    }
   },
   "engines": {
     "node": ">=12"

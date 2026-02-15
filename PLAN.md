@@ -1,8 +1,8 @@
-# Observable Plot → React Port: Implementation Plan
+# Replot: Implementation Plan (Replot → React Port)
 
 ## 1. Analysis Summary
 
-Observable Plot is a ~81-file JavaScript library implementing a grammar-of-graphics
+Replot is a ~81-file JavaScript library implementing a grammar-of-graphics
 visualization system. It renders SVG imperatively via D3 selections.
 
 ### Core architectural challenges for React:
@@ -32,7 +32,7 @@ visualization system. It renders SVG imperatively via D3 selections.
 ### 2.1 Basic Usage
 
 ```jsx
-import { Plot, Dot, Line, BarY, AxisX, AxisY } from "@observablehq/plot";
+import { Plot, Dot, Line, BarY, AxisX, AxisY } from "replot";
 
 function Chart({ data }) {
   return (
@@ -48,8 +48,8 @@ function Chart({ data }) {
 ### 2.2 With Transforms
 
 ```jsx
-import { Plot, BarY, AxisX, AxisY } from "@observablehq/plot";
-import { binX } from "@observablehq/plot/transforms";
+import { Plot, BarY, AxisX, AxisY } from "replot";
+import { binX } from "replot/transforms";
 
 function Histogram({ data }) {
   return (
@@ -145,7 +145,7 @@ function Histogram({ data }) {
 
 ## 4. Internal Architecture: The Two-Phase Render
 
-The fundamental challenge is that Observable Plot's pipeline is **sequential and
+The fundamental challenge is that Replot's pipeline is **sequential and
 interdependent**: scales depend on all marks' channels, and marks depend on
 computed scales. In React, children can't easily communicate upward before
 rendering.
@@ -304,8 +304,8 @@ src/
 
 - Add React 18+, TypeScript, and JSX support to the build
 - Create `src/react/` and `src/core/` directory structure
-- Configure dual exports: `@observablehq/plot` (legacy) and
-  `@observablehq/plot/react`
+- Configure dual exports: `replot` (legacy) and
+  `replot/react`
 
 ### Step 2: Extract Pure Core Logic
 
@@ -599,11 +599,11 @@ The React version will be a **separate export** so both APIs coexist:
 
 ```js
 // Existing imperative API (unchanged)
-import * as Plot from "@observablehq/plot";
+import * as Plot from "replot";
 const svg = Plot.plot({ marks: [Plot.dot(data, { x: "a", y: "b" })] });
 
 // New React API
-import { Plot, Dot } from "@observablehq/plot/react";
+import { Plot, Dot } from "replot/react";
 <Plot><Dot data={data} x="a" y="b" /></Plot>
 ```
 

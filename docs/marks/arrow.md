@@ -1,6 +1,6 @@
 <script setup>
 
-import * as Plot from "@observablehq/plot";
+import * as Plot from "replot";
 import * as d3 from "d3";
 import metros from "../data/metros.ts";
 import miserables from "../data/miserables.ts";

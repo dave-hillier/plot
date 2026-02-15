@@ -24,3 +24,8 @@ export interface Dimensions {
     marginLeft: number;
   };
 }
+
+// --- Internal functions used by React layer ---
+
+/** Computes the plot dimensions from scale descriptors, marks, and options. */
+export function createDimensions(scaleDescriptors: any, marks: any[], options: any): Dimensions;

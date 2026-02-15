@@ -6,7 +6,7 @@ export default defineConfig({
   publicDir: path.resolve("./test"),
   resolve: {
     alias: {
-      "@observablehq/plot": path.resolve("./src/index.js")
+      "replot": path.resolve("./src/index.js")
     }
   },
   server: {

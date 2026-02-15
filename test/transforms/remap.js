@@ -1,4 +1,4 @@
-import {initializer} from "@observablehq/plot";
+import {initializer} from "replot";
 
 export function remap(outputs = {}, options) {
   return initializer(options, (data, facets, channels, scales) => {

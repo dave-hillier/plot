@@ -1,8 +1,7 @@
-// @ts-nocheck — React components importing from untyped JS modules
-// @observablehq/plot/react — React component API for Observable Plot
+// replot/react — React component API for Replot
 //
 // Usage:
-//   import { Plot, Dot, Line, BarY, AxisX, AxisY } from "@observablehq/plot/react";
+//   import { Plot, Dot, Line, BarY, AxisX, AxisY } from "replot/react";
 //
 //   function Chart({ data }) {
 //     return (

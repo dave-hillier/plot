@@ -1,4 +1,4 @@
-import * as Plot from "@observablehq/plot";
+import * as Plot from "replot";
 import {range} from "d3";
 
 export async function groupMarker() {

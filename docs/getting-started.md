@@ -6,18 +6,18 @@ next:
 
 <script setup>
 
-import * as Plot from "@observablehq/plot";
+import * as Plot from "replot";
 import * as d3 from "d3";
 
 </script>
 
 # Getting started
 
-Observable Plot supports a variety of environments, including a first-class [React component API](#plot-in-react) for building charts with declarative JSX.
+Replot supports a variety of environments, including a first-class [React component API](#plot-in-react) for building charts with declarative JSX.
 
 ## Try Plot online
 
-The fastest way to get started (and get help) with Observable Plot is on [Observable](https://observablehq.com)! Plot is available by default in notebooks as part of Observable’s standard library. To use Plot, simply return the generated plot from a cell like so:
+The fastest way to get started (and get help) with Replot is on [Observable](https://observablehq.com)! Plot is available by default in notebooks as part of Observable’s standard library. To use Plot, simply return the generated plot from a cell like so:
 
 :::plot https://observablehq.com/@observablehq/plot-normal-histogram
 ```js
@@ -46,7 +46,7 @@ In vanilla HTML, you can load Plot from a CDN such as jsDelivr or you can downlo
 <div id="myplot"></div>
 <script type="module">
 
-import * as Plot from "https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6/+esm";
+import * as Plot from "https://cdn.jsdelivr.net/npm/replot@0.6/+esm";
 
 const plot = Plot.rectY({length: 10000}, Plot.binX({y: "count"}, {x: Math.random})).plot();
 const div = document.querySelector("#myplot");
@@ -59,7 +59,7 @@ div.append(plot);
 <!DOCTYPE html>
 <div id="myplot"></div>
 <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
-<script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6"></script>
+<script src="https://cdn.jsdelivr.net/npm/replot@0.6"></script>
 <script type="module">
 
 const plot = Plot.rectY({length: 10000}, Plot.binX({y: "count"}, {x: Math.random})).plot();
@@ -100,35 +100,35 @@ If you’re developing a web application using Node, you can install Plot via ya
 :::code-group
 
 ```bash [yarn]
-yarn add @observablehq/plot
+yarn add replot
 ```
 
 ```bash [npm]
-npm install @observablehq/plot
+npm install replot
 ```
 
 ```bash [pnpm]
-pnpm add @observablehq/plot
+pnpm add replot
 ```
 
 :::
 
-You can then load Plot into your app. For **React**, import from `@observablehq/plot/react`:
+You can then load Plot into your app. For **React**, import from `replot/react`:
 
 ```js
-import {Plot, Dot, Line, BarY, AxisX, AxisY} from "@observablehq/plot/react";
+import {Plot, Dot, Line, BarY, AxisX, AxisY} from "replot/react";
 ```
 
 For the **imperative API** (vanilla JS or non-React frameworks), import from the main entry point:
 
 ```js
-import * as Plot from "@observablehq/plot";
+import * as Plot from "replot";
 ```
 
 You can instead import specific symbols if you prefer:
 
 ```js
-import {barY, groupX} from "@observablehq/plot";
+import {barY, groupX} from "replot";
 ```
 
 Plot includes TypeScript declarations with extensive documentation. We highly recommend using an editor with enhanced code completion such as Visual Studio Code or Observable.
@@ -140,7 +140,7 @@ Plot includes TypeScript declarations with extensive documentation. We highly re
 
 ## Plot in React
 
-Plot provides a first-class React component API via `@observablehq/plot/react`. Instead of imperatively building SVG with D3 selections, you define charts declaratively with JSX that integrates natively with React's rendering model, state management, and component lifecycle.
+Plot provides a first-class React component API via `replot/react`. Instead of imperatively building SVG with D3 selections, you define charts declaratively with JSX that integrates natively with React's rendering model, state management, and component lifecycle.
 
 ### Basic usage
 
@@ -148,7 +148,7 @@ Import the `Plot` root component and mark components, then compose them as JSX:
 
 :::code-group
 ```jsx [App.jsx]
-import {Plot, Dot, AxisX, AxisY} from "@observablehq/plot/react";
+import {Plot, Dot, AxisX, AxisY} from "replot/react";
 import penguins from "./penguins.json";
 
 export default function App() {
@@ -174,7 +174,7 @@ Transforms like `binX`, `groupX`, and `stackY` are pure functions that return pr
 
 :::code-group
 ```jsx [Histogram.jsx]
-import {Plot, BarY, RuleY, binX} from "@observablehq/plot/react";
+import {Plot, BarY, RuleY, binX} from "replot/react";
 
 export default function Histogram({data}) {
   return (
@@ -193,7 +193,7 @@ Configure scales by passing options directly to `<Plot>`:
 
 :::code-group
 ```jsx [TemperatureChart.jsx]
-import {Plot, Dot, RuleY} from "@observablehq/plot/react";
+import {Plot, Dot, RuleY} from "replot/react";
 
 export default function TemperatureChart({data}) {
   return (
@@ -212,7 +212,7 @@ Use the `fx` or `fy` props on mark components to create small multiples:
 
 :::code-group
 ```jsx [FacetedChart.jsx]
-import {Plot, Dot} from "@observablehq/plot/react";
+import {Plot, Dot} from "replot/react";
 
 export default function FacetedChart({data}) {
   return (
@@ -230,7 +230,7 @@ Add interactive tooltips with the `tip` prop on any mark, or use the `<Tip>` com
 
 :::code-group
 ```jsx [InteractiveChart.jsx]
-import {Plot, Dot} from "@observablehq/plot/react";
+import {Plot, Dot} from "replot/react";
 
 export default function InteractiveChart({data}) {
   return (
@@ -248,7 +248,7 @@ Use the `<Legend>` component to add a legend for any scale:
 
 :::code-group
 ```jsx [LegendChart.jsx]
-import {Plot, Dot, Legend} from "@observablehq/plot/react";
+import {Plot, Dot, Legend} from "replot/react";
 
 export default function LegendChart({data}) {
   return (
@@ -266,7 +266,7 @@ Use the `title`, `subtitle`, and `caption` props on `<Plot>` to wrap the chart i
 
 :::code-group
 ```jsx [FigureChart.jsx]
-import {Plot, Line} from "@observablehq/plot/react";
+import {Plot, Line} from "replot/react";
 
 export default function FigureChart({data}) {
   return (
@@ -284,7 +284,7 @@ Combine React's `useState` and `useEffect` with Plot components:
 
 :::code-group
 ```jsx [AsyncChart.jsx]
-import {Plot, Dot, RuleY} from "@observablehq/plot/react";
+import {Plot, Dot, RuleY} from "replot/react";
 import * as d3 from "d3";
 import {useEffect, useState} from "react";
 
@@ -313,7 +313,7 @@ If you prefer the imperative API, you can still use `Plot.plot()` with `useRef` 
 
 :::code-group
 ```jsx [LegacyApp.jsx]
-import * as Plot from "@observablehq/plot";
+import * as Plot from "replot";
 import {useEffect, useRef} from "react";
 
 export default function LegacyApp({data}) {
@@ -345,7 +345,7 @@ For server-side rendering (SSR), use the [**document** plot option](./features/p
 
 :::code-group
 ```js [PlotFigure.js]
-import * as Plot from "@observablehq/plot";
+import * as Plot from "replot";
 import {h} from "vue";
 
 export default {
@@ -371,7 +371,7 @@ Then, to use:
 :::code-group
 ```vue [App.vue]
 <script setup>
-import * as Plot from "@observablehq/plot";
+import * as Plot from "replot";
 import PlotFigure from "./components/PlotFigure.js";
 import penguins from "./assets/penguins.json";
 </script>
@@ -394,7 +394,7 @@ See our [Plot + Vue CodeSandbox](https://codesandbox.io/p/sandbox/plot-vue-jlgg2
 For client-side rendering, use a [render function](https://vuejs.org/guide/extras/render-function.html) with a [mounted](https://vuejs.org/api/options-lifecycle.html#mounted) lifecycle directive. After the component mounts, render the plot and then insert it into the page.
 
 ```js
-import * as Plot from "@observablehq/plot";
+import * as Plot from "replot";
 import {h, withDirectives} from "vue";
 
 export default {
@@ -423,7 +423,7 @@ Here’s an example of client-side rendering in Svelte. For server-side renderin
 :::code-group
 ```svelte [App.svelte]
 <script lang="ts">
-  import * as Plot from '@observablehq/plot';
+  import * as Plot from 'replot';
   import * as d3 from 'd3';
 
   let div: HTMLElement | undefined = $state();
@@ -452,7 +452,7 @@ You can use Plot to server-side render SVG or PNG in Node.js. Use [JSDOM](https:
 
 ```js
 import {readFile} from "node:fs/promises";
-import * as Plot from "@observablehq/plot";
+import * as Plot from "replot";
 import * as d3 from "d3";
 import {JSDOM} from "jsdom";
 

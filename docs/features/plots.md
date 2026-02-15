@@ -6,7 +6,7 @@ prev:
 
 <script setup>
 
-import * as Plot from "@observablehq/plot";
+import * as Plot from "replot";
 import * as d3 from "d3";
 import * as htl from "htl";
 import {computed, ref, shallowRef, onMounted} from "vue";
@@ -32,7 +32,7 @@ onMounted(() => {
 
 # Plots
 
-To render a **plot** in Observable Plot, call [plot](#plot) (typically as `Plot.plot`), passing in the desired *options*. This function returns an SVG or HTML figure element.
+To render a **plot** in Replot, call [plot](#plot) (typically as `Plot.plot`), passing in the desired *options*. This function returns an SVG or HTML figure element.
 
 :::plot https://observablehq.com/@observablehq/plot-hello-world
 ```js
