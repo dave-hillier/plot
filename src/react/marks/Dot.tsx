@@ -6,7 +6,9 @@ import {
   directStyleProps,
   channelStyleProps,
   computeTransform,
-  computeFrameAnchor
+  computeFrameAnchor,
+  isColorChannel,
+  isColorValue
 } from "../styles.js";
 import type {ChannelSpec} from "../PlotContext.js";
 
@@ -88,10 +90,10 @@ export function Dot({
       ...(isRChannel ? {r: {value: r, scale: "r", optional: true}} : {}),
       ...(isRotateChannel ? {rotate: {value: rotate, optional: true}} : {}),
       ...(isSymbolChannel ? {symbol: {value: symbol, scale: "auto", optional: true}} : {}),
-      ...(typeof fill === "string" && fill !== "none" && fill !== "currentColor" && !/^#|^rgb|^hsl/.test(fill)
+      ...(isColorChannel(fill)
         ? {fill: {value: fill, scale: "auto", optional: true}}
         : {}),
-      ...(typeof stroke === "string" && stroke !== "none" && stroke !== "currentColor" && !/^#|^rgb|^hsl/.test(stroke)
+      ...(isColorChannel(stroke)
         ? {stroke: {value: stroke, scale: "auto", optional: true}}
         : {}),
       ...(typeof fillOpacity === "string" || typeof fillOpacity === "function"
@@ -132,11 +134,11 @@ export function Dot({
       dx,
       dy,
       fill:
-        typeof fill === "string" && (fill === "none" || fill === "currentColor" || /^#|^rgb|^hsl/.test(fill))
+        typeof fill === "string" && isColorValue(fill)
           ? fill
           : defaults.fill,
       stroke:
-        typeof stroke === "string" && (stroke === "none" || stroke === "currentColor" || /^#|^rgb|^hsl/.test(stroke))
+        typeof stroke === "string" && isColorValue(stroke)
           ? stroke
           : defaults.stroke,
       strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,

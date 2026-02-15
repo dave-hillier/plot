@@ -1,6 +1,6 @@
 import React, {useMemo, useRef, useEffect} from "react";
 import {useMark} from "../useMark.js";
-import {indirectStyleProps} from "../styles.js";
+import {indirectStyleProps, isColorChannel, isColorValue} from "../styles.js";
 import type {ChannelSpec} from "../PlotContext.js";
 
 const defaults = {
@@ -56,7 +56,7 @@ export function Raster({
 }: RasterProps) {
   const channels: Record<string, ChannelSpec> = useMemo(
     () => ({
-      ...(typeof fill === "string" && fill !== "none" && fill !== "currentColor" && !/^#|^rgb|^hsl/.test(fill)
+      ...(isColorChannel(fill)
         ? {fill: {value: fill, scale: "auto", optional: true}}
         : {}),
       ...(x != null ? {x: {value: x, scale: "x", optional: true}} : {}),
@@ -70,7 +70,7 @@ export function Raster({
       ...defaults,
       ...restOptions,
       fill:
-        typeof fill === "string" && (fill === "none" || fill === "currentColor" || /^#|^rgb|^hsl/.test(fill))
+        typeof fill === "string" && isColorValue(fill)
           ? fill
           : undefined,
       dx,

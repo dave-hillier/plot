@@ -1,7 +1,7 @@
 import React, {useMemo} from "react";
 import {Delaunay} from "d3";
 import {useMark} from "../useMark.js";
-import {indirectStyleProps, directStyleProps, channelStyleProps, computeTransform} from "../styles.js";
+import {indirectStyleProps, directStyleProps, channelStyleProps, computeTransform, isColorChannel, isColorValue} from "../styles.js";
 import type {ChannelSpec} from "../PlotContext.js";
 
 // --- DelaunayLink ---
@@ -52,7 +52,7 @@ export function DelaunayLink({
       x: {value: x, scale: "x"},
       y: {value: y, scale: "y"},
       ...(z != null ? {z: {value: z, optional: true}} : {}),
-      ...(typeof stroke === "string" && stroke !== "none" && stroke !== "currentColor" && !/^#|^rgb|^hsl/.test(stroke)
+      ...(isColorChannel(stroke)
         ? {stroke: {value: stroke, scale: "auto", optional: true}}
         : {}),
       ...(typeof opacity === "string" || typeof opacity === "function"
@@ -67,7 +67,7 @@ export function DelaunayLink({
       ...linkDefaults,
       ...restOptions,
       stroke:
-        typeof stroke === "string" && (stroke === "none" || stroke === "currentColor" || /^#|^rgb|^hsl/.test(stroke))
+        typeof stroke === "string" && isColorValue(stroke)
           ? stroke
           : linkDefaults.stroke,
       strokeWidth: typeof strokeWidth === "number" ? strokeWidth : linkDefaults.strokeWidth,
@@ -278,7 +278,7 @@ export function Voronoi({
     () => ({
       x: {value: x, scale: "x"},
       y: {value: y, scale: "y"},
-      ...(typeof fill === "string" && fill !== "none" && fill !== "currentColor" && !/^#|^rgb|^hsl/.test(fill)
+      ...(isColorChannel(fill)
         ? {fill: {value: fill, scale: "auto", optional: true}}
         : {}),
       ...(typeof opacity === "string" || typeof opacity === "function"
@@ -293,7 +293,7 @@ export function Voronoi({
     () => ({
       ariaLabel: "voronoi",
       fill:
-        typeof fill === "string" && (fill === "none" || fill === "currentColor" || /^#|^rgb|^hsl/.test(fill))
+        typeof fill === "string" && isColorValue(fill)
           ? fill
           : "none",
       stroke: typeof stroke === "string" ? stroke : "currentColor",

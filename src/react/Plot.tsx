@@ -1,6 +1,7 @@
 import React, {
   useCallback,
   useContext,
+  useId,
   useMemo,
   useRef,
   useState,
@@ -30,7 +31,8 @@ import {
   autoScaleRange,
   innerDimensions,
   scaleRegistry,
-  maybeClassName
+  maybeClassName,
+  defined
 } from "../core/index.js";
 import {facetTranslator} from "../facet.js";
 import {PlotContext, FacetContext} from "./PlotContext.js";
@@ -88,6 +90,9 @@ export interface PlotProps {
   // Axes/grid (top-level defaults)
   axis?: any;
   grid?: any;
+
+  // Clipping
+  clip?: boolean | "frame" | null;
 
   // Figure wrapping
   title?: string;
@@ -287,6 +292,24 @@ export function Plot({
     // Create projection
     const projection = createProjection(plotOptions, subdimensions);
 
+    // Initializer phase: run after scales are created, before final value computation.
+    // Initializers can derive new channels that depend on scale information (e.g., dodge).
+    for (const [markId, state] of markStates) {
+      const reg = marksRef.current.get(markId);
+      if (!reg?.initializer) continue;
+      const markDims = reg.facet === "super" ? dimensions : subdimensions;
+      const update = reg.initializer(state.data, state.facets, state.channels, scaleFunctions, markDims, {});
+      if (update.data !== undefined) state.data = update.data;
+      if (update.facets !== undefined) state.facets = update.facets;
+      if (update.channels !== undefined) {
+        const {fx: _fx, fy: _fy, ...newChannels} = update.channels;
+        for (const ch of Object.values(newChannels) as any[]) {
+          if (ch.scale != null) inferChannelScale(Object.keys(newChannels).find((k) => newChannels[k] === ch)!, ch);
+        }
+        Object.assign(state.channels, newChannels);
+      }
+    }
+
     // Compute scaled values for each mark
     const computedMarkStates = new Map<string, MarkState>();
     for (const [markId, state] of markStates) {
@@ -338,9 +361,37 @@ export function Plot({
         }
       }
 
+      // Apply channel filters (remove indices where channel values are undefined/NaN).
+      // This mirrors Mark.filter() in mark.js.
+      for (const name in channels) {
+        const {filter: channelFilter = defined} = channels[name];
+        if (channelFilter !== null) {
+          const value = values[name];
+          if (value) index = index.filter((i) => channelFilter(value[i]));
+        }
+      }
+
+      // Apply sort/filter for faceted indices too
+      const allFacets = facetState?.facetsIndex ?? markFacets;
+      let filteredFacets = allFacets;
+      if (allFacets) {
+        filteredFacets = allFacets.map((facetIndex: number[]) => {
+          if (!facetIndex) return facetIndex;
+          let fi = facetIndex;
+          for (const name in channels) {
+            const {filter: channelFilter = defined} = channels[name];
+            if (channelFilter !== null) {
+              const value = values[name];
+              if (value) fi = fi.filter((i) => channelFilter(value[i]));
+            }
+          }
+          return fi;
+        });
+      }
+
       computedMarkStates.set(markId, {
         data,
-        facets: facetState?.facetsIndex ?? markFacets,
+        facets: filteredFacets,
         channels,
         values,
         index
@@ -390,6 +441,9 @@ export function Plot({
     setPointer({x: null, y: null, active: false});
   }, []);
 
+  // Generate a stable clip path ID for frame clipping
+  const clipPathId = useId();
+
   // Build context value
   const contextValue = useMemo<PlotContextValue>(
     () => ({
@@ -400,13 +454,14 @@ export function Plot({
       dimensions: computed?.dimensions ?? null,
       projection: computed?.projection ?? null,
       className,
+      clipPathId,
       facets: computed?.facets,
       facetTranslate: computed?.facetTranslateFn ?? null,
       getMarkState: (id: string) => computed?.markStates?.get(id),
       pointer,
       dispatchValue: onValue
     }),
-    [registerMark, unregisterMark, computed, className, onValue, pointer]
+    [registerMark, unregisterMark, computed, className, clipPathId, onValue, pointer]
   );
 
   const {width, height} = computed?.dimensions ?? {width: widthProp, height: heightProp ?? 400};
@@ -470,6 +525,18 @@ export function Plot({
 :where(.${className} tspan) {
   white-space: pre;
 }`}</style>
+        {computed?.dimensions && (
+          <defs>
+            <clipPath id={clipPathId}>
+              <rect
+                x={computed.dimensions.marginLeft}
+                y={computed.dimensions.marginTop}
+                width={computed.dimensions.width - computed.dimensions.marginLeft - computed.dimensions.marginRight}
+                height={computed.dimensions.height - computed.dimensions.marginTop - computed.dimensions.marginBottom}
+              />
+            </clipPath>
+          </defs>
+        )}
         {computed?.facets ? (
           // Faceted rendering: render children once per facet
           <>

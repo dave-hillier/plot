@@ -1,6 +1,6 @@
 import React, {useMemo} from "react";
 import {useMark} from "../useMark.js";
-import {indirectStyleProps, computeTransform} from "../styles.js";
+import {indirectStyleProps, computeTransform, isColorChannel, isColorValue} from "../styles.js";
 import type {ChannelSpec} from "../PlotContext.js";
 
 const defaults = {
@@ -69,7 +69,7 @@ export function LinearRegressionY({
       x: {value: x, scale: "x"},
       y: {value: y, scale: "y"},
       ...(z != null ? {z: {value: z, optional: true}} : {}),
-      ...(typeof stroke === "string" && stroke !== "none" && stroke !== "currentColor" && !/^#|^rgb|^hsl/.test(stroke)
+      ...(isColorChannel(stroke)
         ? {stroke: {value: stroke, scale: "auto", optional: true}}
         : {})
     }),
@@ -83,7 +83,7 @@ export function LinearRegressionY({
       fill: typeof fill === "string" ? fill : defaults.fill,
       fillOpacity,
       stroke:
-        typeof stroke === "string" && (stroke === "none" || stroke === "currentColor" || /^#|^rgb|^hsl/.test(stroke))
+        typeof stroke === "string" && isColorValue(stroke)
           ? stroke
           : defaults.stroke,
       strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
@@ -148,7 +148,7 @@ export function LinearRegressionX({
       x: {value: x, scale: "x"},
       y: {value: y, scale: "y"},
       ...(z != null ? {z: {value: z, optional: true}} : {}),
-      ...(typeof stroke === "string" && stroke !== "none" && stroke !== "currentColor" && !/^#|^rgb|^hsl/.test(stroke)
+      ...(isColorChannel(stroke)
         ? {stroke: {value: stroke, scale: "auto", optional: true}}
         : {})
     }),
@@ -162,7 +162,7 @@ export function LinearRegressionX({
       fill: typeof fill === "string" ? fill : defaults.fill,
       fillOpacity,
       stroke:
-        typeof stroke === "string" && (stroke === "none" || stroke === "currentColor" || /^#|^rgb|^hsl/.test(stroke))
+        typeof stroke === "string" && isColorValue(stroke)
           ? stroke
           : defaults.stroke,
       strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,

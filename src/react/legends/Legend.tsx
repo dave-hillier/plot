@@ -28,7 +28,9 @@ const symbolPaths: Record<string, string> = {
   wye: "M0.58,0.33L0.58,3.5H-0.58V0.33L-2.83,1.63L-3.41,0.62L-1.16,-0.68L-3.41,-1.99L-2.83,-3L-0.58,-1.69V-3.5H0.58V-1.69L2.83,-3L3.41,-1.99L1.16,-0.68L3.41,0.62L2.83,1.63Z"
 };
 
-// Legend component supporting color swatches, continuous ramps, symbol legends, and opacity legends.
+// Legend component supporting color swatches, continuous ramps, symbol legends,
+// and opacity legends. Renders pure SVG (<g> elements) so it is valid inside
+// <Plot>'s <svg> tree. Place inside <Plot> as a child, or wrap in your own <svg>.
 export function Legend({
   scale: scaleName = "color",
   label: labelProp,
@@ -54,39 +56,32 @@ export function Legend({
   const labelText = labelProp ?? scaleLabel;
   const format = tickFormatFn ?? formatDefault;
 
-  // Symbol legend
+  // Symbol legend (discrete symbols rendered as pure SVG)
   if (scaleName === "symbol") {
+    const itemWidth = 60;
+    const labelOffset = labelText ? 14 : 0;
+
     return (
-      <div
-        className={className}
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          alignItems: "center",
-          gap: "8px",
-          fontSize: "10px",
-          fontFamily: "system-ui, sans-serif",
-          marginBottom: "8px"
-        }}
-      >
-        {labelText && <span style={{fontWeight: "bold", marginRight: "4px"}}>{`${labelText}`}</span>}
+      <g className={className} aria-label="symbol-legend" fontSize={10} fontFamily="system-ui, sans-serif">
+        {labelText && (
+          <text fontWeight="bold" dy="0.71em" fill="currentColor">{`${labelText}`}</text>
+        )}
         {domain?.map((d: any, i: number) => {
           const symbolName = range ? range[i % range.length] : "circle";
-          const path = symbolPaths[symbolName] ?? symbolPaths.circle;
+          const pathD = symbolPaths[symbolName] ?? symbolPaths.circle;
+          const x = i * itemWidth;
           return (
-            <span key={i} style={{display: "inline-flex", alignItems: "center", gap: "3px"}}>
-              <svg width={tickSize} height={tickSize} viewBox="-5 -5 10 10">
-                <path d={path} fill="currentColor" />
-              </svg>
-              <span>{`${format(d)}`}</span>
-            </span>
+            <g key={i} transform={`translate(${x},${labelOffset})`}>
+              <path d={pathD} transform={`translate(${tickSize / 2},${tickSize / 2})`} fill="currentColor" />
+              <text x={tickSize + 3} y={tickSize / 2} dy="0.32em" fill="currentColor">{`${format(d)}`}</text>
+            </g>
           );
         })}
-      </div>
+      </g>
     );
   }
 
-  // Opacity legend
+  // Opacity legend (continuous ramp)
   if (scaleName === "opacity") {
     const rampWidth = widthProp ?? 240;
     const rampHeight = heightProp - marginTop - marginBottom;
@@ -97,78 +92,73 @@ export function Legend({
         ? Array.from({length: n}, (_, i) => domain[0] + (i / (n - 1)) * (domain[domain.length - 1] - domain[0]))
         : domain ?? [];
 
+    const labelOffset = labelText ? 14 : 0;
+
     return (
-      <div className={className} style={{marginBottom: "8px"}}>
+      <g className={className} aria-label="opacity-legend">
         {labelText && (
-          <div
-            style={{fontSize: "10px", fontFamily: "system-ui, sans-serif", marginBottom: "2px"}}
-          >{`${labelText}`}</div>
+          <text fontSize={10} fontFamily="system-ui, sans-serif" dy="0.71em" fill="currentColor">{`${labelText}`}</text>
         )}
-        <svg width={rampWidth + marginLeft + marginRight} height={heightProp + marginTop + marginBottom}>
-          <defs>
-            <linearGradient id={gradientId}>
-              {Array.from({length: 10}, (_, i) => {
-                const t = i / 9;
-                const value = domain[0] + t * (domain[domain.length - 1] - domain[0]);
-                const opacity = opacityScale ? opacityScale(value) : t;
-                return <stop key={i} offset={`${t * 100}%`} stopColor="currentColor" stopOpacity={opacity} />;
-              })}
-            </linearGradient>
-          </defs>
-          <rect x={marginLeft} y={marginTop} width={rampWidth} height={rampHeight} fill={`url(#${gradientId})`} />
-          <g transform={`translate(0,${heightProp - marginBottom})`} fontSize={10} fontFamily="system-ui, sans-serif">
-            {ticks.map((d: any, i: number) => {
-              const x = marginLeft + (i / (ticks.length - 1)) * rampWidth;
-              return (
-                <text
-                  key={i}
-                  x={x}
-                  textAnchor={i === 0 ? "start" : i === ticks.length - 1 ? "end" : "middle"}
-                  dy="0.71em"
-                  fill="currentColor"
-                >
-                  {`${format(d)}`}
-                </text>
-              );
+        <defs>
+          <linearGradient id={gradientId}>
+            {Array.from({length: 10}, (_, i) => {
+              const t = i / 9;
+              const value = domain[0] + t * (domain[domain.length - 1] - domain[0]);
+              const opacity = opacityScale ? opacityScale(value) : t;
+              return <stop key={i} offset={`${t * 100}%`} stopColor="currentColor" stopOpacity={opacity} />;
             })}
-          </g>
-        </svg>
-      </div>
+          </linearGradient>
+        </defs>
+        <rect x={marginLeft} y={marginTop + labelOffset} width={rampWidth} height={rampHeight} fill={`url(#${gradientId})`} />
+        <g
+          transform={`translate(0,${heightProp - marginBottom + labelOffset})`}
+          fontSize={10}
+          fontFamily="system-ui, sans-serif"
+        >
+          {ticks.map((d: any, i: number) => {
+            const x = marginLeft + (i / (ticks.length - 1)) * rampWidth;
+            return (
+              <text
+                key={i}
+                x={x}
+                textAnchor={i === 0 ? "start" : i === ticks.length - 1 ? "end" : "middle"}
+                dy="0.71em"
+                fill="currentColor"
+              >
+                {`${format(d)}`}
+              </text>
+            );
+          })}
+        </g>
+      </g>
     );
   }
 
-  // Discrete legend (swatches) for ordinal/categorical or small domains
+  // Discrete legend (color swatches) for ordinal/categorical or small domains
   if (type === "ordinal" || type === "categorical" || (domain?.length <= 10 && !isContinuousType(type))) {
+    const itemWidth = 60;
+    const labelOffset = labelText ? 14 : 0;
+
     return (
-      <div
-        className={className}
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          alignItems: "center",
-          gap: "8px",
-          fontSize: "10px",
-          fontFamily: "system-ui, sans-serif",
-          marginBottom: "8px"
-        }}
-      >
-        {labelText && <span style={{fontWeight: "bold", marginRight: "4px"}}>{`${labelText}`}</span>}
+      <g className={className} aria-label="color-legend" fontSize={10} fontFamily="system-ui, sans-serif">
+        {labelText && (
+          <text fontWeight="bold" dy="0.71em" fill="currentColor">{`${labelText}`}</text>
+        )}
         {domain?.map((d: any, i: number) => {
           const color = range ? range[i % range.length] : scaleInfo.apply?.(d);
+          const x = i * itemWidth;
           return (
-            <span key={i} style={{display: "inline-flex", alignItems: "center", gap: "3px"}}>
-              <svg width={tickSize} height={tickSize}>
-                <rect width={tickSize} height={tickSize} fill={color} />
-              </svg>
-              <span>{`${format(d)}`}</span>
-            </span>
+            <g key={i} transform={`translate(${x},${labelOffset})`}>
+              <rect width={tickSize} height={tickSize} fill={color} />
+              <text x={tickSize + 3} y={tickSize / 2} dy="0.32em" fill="currentColor">{`${format(d)}`}</text>
+            </g>
           );
         })}
-      </div>
+      </g>
     );
   }
 
-  // Continuous legend (color ramp) with proper tick labels
+  // Continuous legend (color ramp) with tick labels
   const rampWidth = widthProp ?? 240;
   const rampHeight = heightProp - marginTop - marginBottom;
   const n = tickCount ?? 5;
@@ -177,46 +167,50 @@ export function Legend({
       ? Array.from({length: n}, (_, i) => domain[0] + (i / (n - 1)) * (domain[domain.length - 1] - domain[0]))
       : domain ?? [];
 
+  const labelOffset = labelText ? 14 : 0;
+
   return (
-    <div className={className} style={{marginBottom: "8px"}}>
+    <g className={className} aria-label="color-legend">
       {labelText && (
-        <div style={{fontSize: "10px", fontFamily: "system-ui, sans-serif", marginBottom: "2px"}}>{`${labelText}`}</div>
+        <text fontSize={10} fontFamily="system-ui, sans-serif" dy="0.71em" fill="currentColor">{`${labelText}`}</text>
       )}
-      <svg width={rampWidth + marginLeft + marginRight} height={heightProp + marginTop + marginBottom}>
-        <defs>
-          <linearGradient id={gradientId}>
-            {domain &&
-              domain.length >= 2 &&
-              Array.from({length: 10}, (_, i) => {
-                const t = i / 9;
-                const value = domain[0] + t * (domain[domain.length - 1] - domain[0]);
-                const color = scaleInfo.apply?.(value) ?? "#ccc";
-                return <stop key={i} offset={`${t * 100}%`} stopColor={color} />;
-              })}
-          </linearGradient>
-        </defs>
-        <rect x={marginLeft} y={marginTop} width={rampWidth} height={rampHeight} fill={`url(#${gradientId})`} />
-        <g transform={`translate(0,${heightProp - marginBottom})`} fontSize={10} fontFamily="system-ui, sans-serif">
-          {ticks.map((d: any, i: number) => {
-            const x = marginLeft + (i / (ticks.length - 1)) * rampWidth;
-            return (
-              <g key={i}>
-                <line x1={x} x2={x} y1={0} y2={4} stroke="currentColor" />
-                <text
-                  x={x}
-                  textAnchor={i === 0 ? "start" : i === ticks.length - 1 ? "end" : "middle"}
-                  dy="0.71em"
-                  y={6}
-                  fill="currentColor"
-                >
-                  {`${format(d)}`}
-                </text>
-              </g>
-            );
-          })}
-        </g>
-      </svg>
-    </div>
+      <defs>
+        <linearGradient id={gradientId}>
+          {domain &&
+            domain.length >= 2 &&
+            Array.from({length: 10}, (_, i) => {
+              const t = i / 9;
+              const value = domain[0] + t * (domain[domain.length - 1] - domain[0]);
+              const color = scaleInfo.apply?.(value) ?? "#ccc";
+              return <stop key={i} offset={`${t * 100}%`} stopColor={color} />;
+            })}
+        </linearGradient>
+      </defs>
+      <rect x={marginLeft} y={marginTop + labelOffset} width={rampWidth} height={rampHeight} fill={`url(#${gradientId})`} />
+      <g
+        transform={`translate(0,${heightProp - marginBottom + labelOffset})`}
+        fontSize={10}
+        fontFamily="system-ui, sans-serif"
+      >
+        {ticks.map((d: any, i: number) => {
+          const x = marginLeft + (i / (ticks.length - 1)) * rampWidth;
+          return (
+            <g key={i}>
+              <line x1={x} x2={x} y1={0} y2={4} stroke="currentColor" />
+              <text
+                x={x}
+                textAnchor={i === 0 ? "start" : i === ticks.length - 1 ? "end" : "middle"}
+                dy="0.71em"
+                y={6}
+                fill="currentColor"
+              >
+                {`${format(d)}`}
+              </text>
+            </g>
+          );
+        })}
+      </g>
+    </g>
   );
 }
 

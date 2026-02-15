@@ -1,6 +1,6 @@
 import React, {useMemo} from "react";
 import {useMark} from "../useMark.js";
-import {indirectStyleProps, directStyleProps, channelStyleProps, computeTransform} from "../styles.js";
+import {indirectStyleProps, directStyleProps, channelStyleProps, computeTransform, isColorChannel, isColorValue} from "../styles.js";
 import type {ChannelSpec} from "../PlotContext.js";
 
 const defaults = {
@@ -76,10 +76,10 @@ export function BarX({
       x1: {value: x1, scale: "x"},
       x2: {value: x2, scale: "x"},
       y: {value: y, scale: "y", type: "band", optional: true},
-      ...(typeof fill === "string" && fill !== "none" && fill !== "currentColor" && !/^#|^rgb|^hsl/.test(fill)
+      ...(isColorChannel(fill)
         ? {fill: {value: fill, scale: "auto", optional: true}}
         : {}),
-      ...(typeof stroke === "string" && stroke !== "none" && stroke !== "currentColor" && !/^#|^rgb|^hsl/.test(stroke)
+      ...(isColorChannel(stroke)
         ? {stroke: {value: stroke, scale: "auto", optional: true}}
         : {}),
       ...(typeof fillOpacity === "string" || typeof fillOpacity === "function"
@@ -102,7 +102,7 @@ export function BarX({
       ...defaults,
       ...restOptions,
       fill:
-        typeof fill === "string" && (fill === "none" || fill === "currentColor" || /^#|^rgb|^hsl/.test(fill))
+        typeof fill === "string" && isColorValue(fill)
           ? fill
           : "currentColor",
       stroke: typeof stroke === "string" ? stroke : undefined,
@@ -211,10 +211,10 @@ export function BarY({
       y1: {value: y1, scale: "y"},
       y2: {value: y2, scale: "y"},
       x: {value: x, scale: "x", type: "band", optional: true},
-      ...(typeof fill === "string" && fill !== "none" && fill !== "currentColor" && !/^#|^rgb|^hsl/.test(fill)
+      ...(isColorChannel(fill)
         ? {fill: {value: fill, scale: "auto", optional: true}}
         : {}),
-      ...(typeof stroke === "string" && stroke !== "none" && stroke !== "currentColor" && !/^#|^rgb|^hsl/.test(stroke)
+      ...(isColorChannel(stroke)
         ? {stroke: {value: stroke, scale: "auto", optional: true}}
         : {}),
       ...(typeof fillOpacity === "string" || typeof fillOpacity === "function"
@@ -237,7 +237,7 @@ export function BarY({
       ...defaults,
       ...restOptions,
       fill:
-        typeof fill === "string" && (fill === "none" || fill === "currentColor" || /^#|^rgb|^hsl/.test(fill))
+        typeof fill === "string" && isColorValue(fill)
           ? fill
           : "currentColor",
       stroke: typeof stroke === "string" ? stroke : undefined,

@@ -891,7 +891,10 @@ describe("React API parity with imperative API", () => {
       "stackY1",
       "stackY2",
       "treeNode",
-      "treeLink"
+      "treeLink",
+      "pointer",
+      "pointerX",
+      "pointerY"
     ];
 
     for (const name of transforms) {
@@ -920,7 +923,10 @@ describe("React API parity with imperative API", () => {
       "scale",
       "legend",
       "timeInterval",
-      "utcInterval"
+      "utcInterval",
+      "bollinger",
+      "auto",
+      "autoSpec"
     ];
 
     for (const name of utilities) {
@@ -930,6 +936,43 @@ describe("React API parity with imperative API", () => {
         `Utility ${name} should be the same function reference in both modules`
       );
     }
+  });
+});
+
+// --- Color detection helpers ---
+
+describe("isColorChannel and isColorValue", () => {
+  it("exports isColorChannel and isColorValue from styles", async () => {
+    const {isColorChannel, isColorValue} = await import("../src/react/styles.js");
+    assert.strictEqual(typeof isColorChannel, "function");
+    assert.strictEqual(typeof isColorValue, "function");
+  });
+
+  it("treats CSS named colors as color values, not channels", async () => {
+    const {isColorChannel, isColorValue} = await import("../src/react/styles.js");
+    // Named CSS colors should be treated as literal color values
+    assert.ok(isColorValue("red"));
+    assert.ok(isColorValue("steelblue"));
+    assert.ok(isColorValue("tomato"));
+    assert.ok(isColorValue("currentColor"));
+    assert.ok(isColorValue("none"));
+    assert.ok(!isColorChannel("red"));
+    assert.ok(!isColorChannel("steelblue"));
+  });
+
+  it("treats hex and rgb as color values", async () => {
+    const {isColorValue} = await import("../src/react/styles.js");
+    assert.ok(isColorValue("#ff0000"));
+    assert.ok(isColorValue("#f00"));
+    assert.ok(isColorValue("rgb(255,0,0)"));
+    assert.ok(isColorValue("hsl(0,100%,50%)"));
+  });
+
+  it("treats field names as channels", async () => {
+    const {isColorChannel} = await import("../src/react/styles.js");
+    assert.ok(isColorChannel("species"));
+    assert.ok(isColorChannel("category"));
+    assert.ok(isColorChannel("type"));
   });
 });
 
