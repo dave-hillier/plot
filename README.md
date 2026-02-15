@@ -13,6 +13,36 @@
 
 <sub>Daily downloads of Observable Plot · [oss-analytics](https://observablehq.observablehq.cloud/oss-analytics/)</sub>
 
+---
+
+## About This Fork: React Port
+
+This fork is a **React port** of Observable Plot. The original library renders charts imperatively using D3 selections to build SVG elements. This port converts that approach into idiomatic React components with a declarative JSX API, so that Observable Plot can be used natively in React applications.
+
+### Why port to React?
+
+- **Native React integration** — Use Plot as composable React components (`<Plot>`, `<Dot>`, `<Line>`, etc.) instead of imperatively appending SVG nodes to the DOM.
+- **Declarative API** — Define charts with JSX, making them easier to read, compose, and maintain alongside other React code.
+- **React ecosystem compatibility** — Works with React state, context, hooks, Suspense, and server-side rendering out of the box.
+- **Observable Framework support** — Enables integration with Observable Framework's React-based dashboard and documentation system.
+
+### What changes?
+
+| Original (Imperative) | This Port (React/Declarative) |
+|---|---|
+| `Plot.plot({ marks: [Plot.dot(data, {x, y})] })` | `<Plot><Dot data={data} x="x" y="y" /></Plot>` |
+| D3 selections build the DOM | JSX renders SVG elements |
+| Returns a detached SVG element | Renders directly into the React tree |
+| Mutable internal state | React Context + hooks |
+
+### What stays the same?
+
+The core computation — D3 scales, shape generators, geo projections, data transforms (bin, stack, group, etc.), and channel/scale inference — is shared between both APIs via a common `core/` module. Both the original imperative API and the React API coexist as separate exports.
+
+See [PLAN.md](./PLAN.md) for the full implementation plan.
+
+---
+
 ## Documentation 📚
 
 https://observablehq.com/plot/
