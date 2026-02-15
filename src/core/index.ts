@@ -20,6 +20,10 @@ export {createFacets, recreateFacets, facetExclude, facetGroups, facetFilter} fr
 // Data and scale option utilities
 export {
   isScaleOptions,
+  isColor,
+  isNoneish,
+  maybeColorChannel,
+  maybeNumberChannel,
   dataify,
   map,
   maybeIntervalTransform,

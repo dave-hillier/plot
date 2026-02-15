@@ -1,4 +1,22 @@
+import {isColor} from "../core/index.js";
 import type {Dimensions} from "./PlotContext.js";
+
+// Returns true if the given value should be treated as a literal color
+// (constant style) rather than a data field name (channel). Uses the same
+// comprehensive CSS color detection as the imperative API.
+export function isColorValue(value: any): boolean {
+  if (typeof value !== "string") return false;
+  return value === "none" || value === "currentColor" || isColor(value);
+}
+
+// Returns true if the given value should be treated as a channel (data field name
+// or accessor function), not a literal color constant.
+export function isColorChannel(value: any): boolean {
+  if (value == null) return false;
+  if (typeof value === "function" || Array.isArray(value)) return true;
+  if (typeof value === "string") return !isColorValue(value);
+  return false;
+}
 
 // Converts the mark's "indirect" (group-level) styles into a props object
 // for the outer <g> element, mirroring applyIndirectStyles from style.js.

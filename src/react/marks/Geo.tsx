@@ -2,7 +2,7 @@ import React, {useMemo} from "react";
 import {geoPath, geoGraticule10} from "d3";
 import {useMark} from "../useMark.js";
 import {usePlotContext} from "../PlotContext.js";
-import {indirectStyleProps, directStyleProps, channelStyleProps, computeTransform} from "../styles.js";
+import {indirectStyleProps, directStyleProps, channelStyleProps, computeTransform, isColorChannel, isColorValue} from "../styles.js";
 import type {ChannelSpec} from "../PlotContext.js";
 
 const defaults = {
@@ -53,10 +53,10 @@ export function Geo({
       ...(r != null && (typeof r === "string" || typeof r === "function" || Array.isArray(r))
         ? {r: {value: r, scale: "r", optional: true}}
         : {}),
-      ...(typeof fill === "string" && fill !== "none" && fill !== "currentColor" && !/^#|^rgb|^hsl/.test(fill)
+      ...(isColorChannel(fill)
         ? {fill: {value: fill, scale: "auto", optional: true}}
         : {}),
-      ...(typeof stroke === "string" && stroke !== "none" && stroke !== "currentColor" && !/^#|^rgb|^hsl/.test(stroke)
+      ...(isColorChannel(stroke)
         ? {stroke: {value: stroke, scale: "auto", optional: true}}
         : {}),
       ...(typeof opacity === "string" || typeof opacity === "function"
@@ -72,11 +72,11 @@ export function Geo({
       ...defaults,
       ...restOptions,
       fill:
-        typeof fill === "string" && (fill === "none" || fill === "currentColor" || /^#|^rgb|^hsl/.test(fill))
+        typeof fill === "string" && isColorValue(fill)
           ? fill
           : defaults.fill,
       stroke:
-        typeof stroke === "string" && (stroke === "none" || stroke === "currentColor" || /^#|^rgb|^hsl/.test(stroke))
+        typeof stroke === "string" && isColorValue(stroke)
           ? stroke
           : defaults.stroke,
       strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,

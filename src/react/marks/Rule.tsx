@@ -1,6 +1,6 @@
 import React, {useMemo} from "react";
 import {useMark} from "../useMark.js";
-import {indirectStyleProps, directStyleProps, channelStyleProps, computeTransform} from "../styles.js";
+import {indirectStyleProps, directStyleProps, channelStyleProps, computeTransform, isColorChannel, isColorValue} from "../styles.js";
 import type {ChannelSpec} from "../PlotContext.js";
 
 const defaults = {
@@ -53,7 +53,7 @@ export function RuleX({
       x: {value: x, scale: "x"},
       ...(y1 != null ? {y1: {value: y1, scale: "y", optional: true}} : {}),
       ...(y2 != null ? {y2: {value: y2, scale: "y", optional: true}} : {}),
-      ...(typeof stroke === "string" && stroke !== "none" && stroke !== "currentColor" && !/^#|^rgb|^hsl/.test(stroke)
+      ...(isColorChannel(stroke)
         ? {stroke: {value: stroke, scale: "auto", optional: true}}
         : {}),
       ...(typeof strokeOpacity === "string" || typeof strokeOpacity === "function"
@@ -72,7 +72,7 @@ export function RuleX({
       ...defaults,
       ...restOptions,
       stroke:
-        typeof stroke === "string" && (stroke === "none" || stroke === "currentColor" || /^#|^rgb|^hsl/.test(stroke))
+        typeof stroke === "string" && isColorValue(stroke)
           ? stroke
           : defaults.stroke,
       strokeWidth: typeof strokeWidth === "number" ? strokeWidth : undefined,
@@ -150,7 +150,7 @@ export function RuleY({
       y: {value: y, scale: "y"},
       ...(x1 != null ? {x1: {value: x1, scale: "x", optional: true}} : {}),
       ...(x2 != null ? {x2: {value: x2, scale: "x", optional: true}} : {}),
-      ...(typeof stroke === "string" && stroke !== "none" && stroke !== "currentColor" && !/^#|^rgb|^hsl/.test(stroke)
+      ...(isColorChannel(stroke)
         ? {stroke: {value: stroke, scale: "auto", optional: true}}
         : {}),
       ...(typeof strokeOpacity === "string" || typeof strokeOpacity === "function"
@@ -169,7 +169,7 @@ export function RuleY({
       ...defaults,
       ...restOptions,
       stroke:
-        typeof stroke === "string" && (stroke === "none" || stroke === "currentColor" || /^#|^rgb|^hsl/.test(stroke))
+        typeof stroke === "string" && isColorValue(stroke)
           ? stroke
           : defaults.stroke,
       strokeWidth: typeof strokeWidth === "number" ? strokeWidth : undefined,

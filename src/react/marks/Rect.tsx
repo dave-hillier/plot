@@ -1,6 +1,6 @@
 import React, {useMemo} from "react";
 import {useMark} from "../useMark.js";
-import {indirectStyleProps, directStyleProps, channelStyleProps} from "../styles.js";
+import {indirectStyleProps, directStyleProps, channelStyleProps, isColorChannel, isColorValue} from "../styles.js";
 import type {ChannelSpec} from "../PlotContext.js";
 
 const defaults = {
@@ -74,10 +74,10 @@ export function Rect({
       x2: {value: x2, scale: "x", optional: true},
       y1: {value: y1, scale: "y", optional: true},
       y2: {value: y2, scale: "y", optional: true},
-      ...(typeof fill === "string" && fill !== "none" && fill !== "currentColor" && !/^#|^rgb|^hsl/.test(fill)
+      ...(isColorChannel(fill)
         ? {fill: {value: fill, scale: "auto", optional: true}}
         : {}),
-      ...(typeof stroke === "string" && stroke !== "none" && stroke !== "currentColor" && !/^#|^rgb|^hsl/.test(stroke)
+      ...(isColorChannel(stroke)
         ? {stroke: {value: stroke, scale: "auto", optional: true}}
         : {}),
       ...(typeof fillOpacity === "string" || typeof fillOpacity === "function"
@@ -97,7 +97,7 @@ export function Rect({
       ...defaults,
       ...restOptions,
       fill:
-        typeof fill === "string" && (fill === "none" || fill === "currentColor" || /^#|^rgb|^hsl/.test(fill))
+        typeof fill === "string" && isColorValue(fill)
           ? fill
           : "currentColor",
       stroke: typeof stroke === "string" ? stroke : undefined,

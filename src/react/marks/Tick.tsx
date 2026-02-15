@@ -1,6 +1,6 @@
 import React, {useMemo} from "react";
 import {useMark} from "../useMark.js";
-import {indirectStyleProps, directStyleProps, channelStyleProps, computeTransform} from "../styles.js";
+import {indirectStyleProps, directStyleProps, channelStyleProps, computeTransform, isColorChannel, isColorValue} from "../styles.js";
 import type {ChannelSpec} from "../PlotContext.js";
 
 const defaults = {
@@ -55,7 +55,7 @@ export function TickX({
     () => ({
       x: {value: x, scale: "x"},
       y: {value: y, scale: "y", type: "band", optional: true},
-      ...(typeof stroke === "string" && stroke !== "none" && stroke !== "currentColor" && !/^#|^rgb|^hsl/.test(stroke)
+      ...(isColorChannel(stroke)
         ? {stroke: {value: stroke, scale: "auto", optional: true}}
         : {}),
       ...(typeof opacity === "string" || typeof opacity === "function"
@@ -71,7 +71,7 @@ export function TickX({
       ...defaults,
       ...restOptions,
       stroke:
-        typeof stroke === "string" && (stroke === "none" || stroke === "currentColor" || /^#|^rgb|^hsl/.test(stroke))
+        typeof stroke === "string" && isColorValue(stroke)
           ? stroke
           : defaults.stroke,
       strokeWidth: typeof strokeWidth === "number" ? strokeWidth : undefined,
@@ -148,7 +148,7 @@ export function TickY({
     () => ({
       y: {value: y, scale: "y"},
       x: {value: x, scale: "x", type: "band", optional: true},
-      ...(typeof stroke === "string" && stroke !== "none" && stroke !== "currentColor" && !/^#|^rgb|^hsl/.test(stroke)
+      ...(isColorChannel(stroke)
         ? {stroke: {value: stroke, scale: "auto", optional: true}}
         : {}),
       ...(typeof opacity === "string" || typeof opacity === "function"
@@ -164,7 +164,7 @@ export function TickY({
       ...defaults,
       ...restOptions,
       stroke:
-        typeof stroke === "string" && (stroke === "none" || stroke === "currentColor" || /^#|^rgb|^hsl/.test(stroke))
+        typeof stroke === "string" && isColorValue(stroke)
           ? stroke
           : defaults.stroke,
       strokeWidth: typeof strokeWidth === "number" ? strokeWidth : undefined,

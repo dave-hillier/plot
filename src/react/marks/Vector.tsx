@@ -5,7 +5,9 @@ import {
   directStyleProps,
   channelStyleProps,
   computeTransform,
-  computeFrameAnchor
+  computeFrameAnchor,
+  isColorChannel,
+  isColorValue
 } from "../styles.js";
 import type {ChannelSpec} from "../PlotContext.js";
 
@@ -71,7 +73,7 @@ export function Vector({
       y: {value: y, scale: "y", optional: true},
       ...(isLengthChannel ? {length: {value: lengthProp, scale: "length", optional: true}} : {}),
       ...(isRotateChannel ? {rotate: {value: rotateProp, optional: true}} : {}),
-      ...(typeof stroke === "string" && stroke !== "none" && stroke !== "currentColor" && !/^#|^rgb|^hsl/.test(stroke)
+      ...(isColorChannel(stroke)
         ? {stroke: {value: stroke, scale: "auto", optional: true}}
         : {}),
       ...(typeof opacity === "string" || typeof opacity === "function"
@@ -87,7 +89,7 @@ export function Vector({
       ...defaults,
       ...restOptions,
       stroke:
-        typeof stroke === "string" && (stroke === "none" || stroke === "currentColor" || /^#|^rgb|^hsl/.test(stroke))
+        typeof stroke === "string" && isColorValue(stroke)
           ? stroke
           : defaults.stroke,
       strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,

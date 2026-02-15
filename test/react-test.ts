@@ -15,6 +15,7 @@ import {Text, TextX, TextY} from "../src/react/marks/Text.js";
 import {Frame} from "../src/react/marks/Frame.js";
 import {TickX, TickY} from "../src/react/marks/Tick.js";
 import {AxisX, AxisY, GridX, GridY} from "../src/react/marks/Axis.js";
+import {BoxX, BoxY} from "../src/react/marks/Box.js";
 import {Vector, VectorX, VectorY, Spike} from "../src/react/marks/Vector.js";
 import {
   indirectStyleProps,
@@ -890,7 +891,10 @@ describe("React API parity with imperative API", () => {
       "stackY1",
       "stackY2",
       "treeNode",
-      "treeLink"
+      "treeLink",
+      "pointer",
+      "pointerX",
+      "pointerY"
     ];
 
     for (const name of transforms) {
@@ -919,7 +923,10 @@ describe("React API parity with imperative API", () => {
       "scale",
       "legend",
       "timeInterval",
-      "utcInterval"
+      "utcInterval",
+      "bollinger",
+      "auto",
+      "autoSpec"
     ];
 
     for (const name of utilities) {
@@ -929,5 +936,115 @@ describe("React API parity with imperative API", () => {
         `Utility ${name} should be the same function reference in both modules`
       );
     }
+  });
+});
+
+// --- Color detection helpers ---
+
+describe("isColorChannel and isColorValue", () => {
+  it("exports isColorChannel and isColorValue from styles", async () => {
+    const {isColorChannel, isColorValue} = await import("../src/react/styles.js");
+    assert.strictEqual(typeof isColorChannel, "function");
+    assert.strictEqual(typeof isColorValue, "function");
+  });
+
+  it("treats CSS named colors as color values, not channels", async () => {
+    const {isColorChannel, isColorValue} = await import("../src/react/styles.js");
+    // Named CSS colors should be treated as literal color values
+    assert.ok(isColorValue("red"));
+    assert.ok(isColorValue("steelblue"));
+    assert.ok(isColorValue("tomato"));
+    assert.ok(isColorValue("currentColor"));
+    assert.ok(isColorValue("none"));
+    assert.ok(!isColorChannel("red"));
+    assert.ok(!isColorChannel("steelblue"));
+  });
+
+  it("treats hex and rgb as color values", async () => {
+    const {isColorValue} = await import("../src/react/styles.js");
+    assert.ok(isColorValue("#ff0000"));
+    assert.ok(isColorValue("#f00"));
+    assert.ok(isColorValue("rgb(255,0,0)"));
+    assert.ok(isColorValue("hsl(0,100%,50%)"));
+  });
+
+  it("treats field names as channels", async () => {
+    const {isColorChannel} = await import("../src/react/styles.js");
+    assert.ok(isColorChannel("species"));
+    assert.ok(isColorChannel("category"));
+    assert.ok(isColorChannel("type"));
+  });
+});
+
+// --- BoxX/BoxY statistical computation tests ---
+
+describe("BoxY computes quartile statistics", () => {
+  it("renders without errors (SSR shell)", () => {
+    const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((v) => ({x: "a", y: v}));
+    const html = renderToStaticMarkup(
+      React.createElement(Plot, {width: 200, height: 200}, React.createElement(BoxY, {data, x: "x", y: "y"}))
+    );
+    assert.ok(html.includes("<svg"));
+  });
+
+  it("renders without a grouping variable", () => {
+    const data = [1, 2, 3, 4, 5, 100].map((v) => ({y: v}));
+    const html = renderToStaticMarkup(
+      React.createElement(Plot, {width: 200, height: 200}, React.createElement(BoxY, {data, y: "y"}))
+    );
+    assert.ok(html.includes("<svg"));
+  });
+
+  it("is a function component", () => {
+    assert.strictEqual(typeof BoxY, "function");
+    assert.strictEqual(typeof BoxX, "function");
+  });
+});
+
+describe("BoxX computes quartile statistics", () => {
+  it("renders without errors (SSR shell)", () => {
+    const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((v) => ({x: v, y: "a"}));
+    const html = renderToStaticMarkup(
+      React.createElement(Plot, {width: 200, height: 200}, React.createElement(BoxX, {data, x: "x", y: "y"}))
+    );
+    assert.ok(html.includes("<svg"));
+  });
+});
+
+// --- Implicit axis detection (minification-safe) ---
+
+describe("Implicit axis detection", () => {
+  it("renders implicit axes when no explicit axes provided", () => {
+    const data = [{x: 1, y: 2}];
+    const html = renderToStaticMarkup(
+      React.createElement(Plot, {width: 200, height: 200}, React.createElement(Dot, {data, x: "x", y: "y"}))
+    );
+    assert.ok(html.includes("<svg"));
+  });
+
+  it("renders with explicit AxisX without errors", () => {
+    const data = [{x: 1, y: 2}];
+    const html = renderToStaticMarkup(
+      React.createElement(
+        Plot,
+        {width: 200, height: 200},
+        React.createElement(Dot, {data, x: "x", y: "y"}),
+        React.createElement(AxisX, {label: "custom"})
+      )
+    );
+    assert.ok(html.includes("<svg"));
+  });
+
+  it("detects explicit GridX as an x-axis", () => {
+    const data = [{x: 1, y: 2}];
+    const html = renderToStaticMarkup(
+      React.createElement(
+        Plot,
+        {width: 200, height: 200},
+        React.createElement(Dot, {data, x: "x", y: "y"}),
+        React.createElement(GridX)
+      )
+    );
+    assert.ok(html.includes("<svg"));
   });
 });

@@ -5,7 +5,9 @@ import {
   directStyleProps,
   channelStyleProps,
   computeTransform,
-  computeFrameAnchor
+  computeFrameAnchor,
+  isColorChannel,
+  isColorValue
 } from "../styles.js";
 import type {ChannelSpec} from "../PlotContext.js";
 
@@ -79,7 +81,7 @@ export function Text({
       x: {value: x, scale: "x", optional: true},
       y: {value: y, scale: "y", optional: true},
       text: {value: text ?? (x == null && y == null ? (d: any) => d : undefined), optional: true, filter: null},
-      ...(typeof fill === "string" && fill !== "none" && fill !== "currentColor" && !/^#|^rgb|^hsl/.test(fill)
+      ...(isColorChannel(fill)
         ? {fill: {value: fill, scale: "auto", optional: true}}
         : {}),
       ...(typeof opacity === "string" || typeof opacity === "function"
@@ -96,7 +98,7 @@ export function Text({
       ...defaults,
       ...restOptions,
       fill:
-        typeof fill === "string" && (fill === "none" || fill === "currentColor" || /^#|^rgb|^hsl/.test(fill))
+        typeof fill === "string" && isColorValue(fill)
           ? fill
           : defaults.fill,
       stroke: typeof stroke === "string" ? stroke : undefined,

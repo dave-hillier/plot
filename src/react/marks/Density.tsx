@@ -1,7 +1,7 @@
 import React, {useMemo} from "react";
 import {contourDensity, geoPath} from "d3";
 import {useMark} from "../useMark.js";
-import {indirectStyleProps, directStyleProps} from "../styles.js";
+import {indirectStyleProps, directStyleProps, isColorChannel, isColorValue} from "../styles.js";
 import type {ChannelSpec} from "../PlotContext.js";
 
 const defaults = {
@@ -56,17 +56,11 @@ export function Density({
       x: {value: x, scale: "x"},
       y: {value: y, scale: "y"},
       ...(weight != null ? {weight: {value: weight, optional: true}} : {}),
-      ...(typeof fill === "string" &&
-      fill !== "none" &&
-      fill !== "currentColor" &&
-      !/^#|^rgb|^hsl/.test(fill) &&
+      ...(isColorChannel(fill) &&
       fill !== "density"
         ? {fill: {value: fill, scale: "auto", optional: true}}
         : {}),
-      ...(typeof stroke === "string" &&
-      stroke !== "none" &&
-      stroke !== "currentColor" &&
-      !/^#|^rgb|^hsl/.test(stroke) &&
+      ...(isColorChannel(stroke) &&
       stroke !== "density"
         ? {stroke: {value: stroke, scale: "auto", optional: true}}
         : {}),
@@ -86,12 +80,12 @@ export function Density({
       ...restOptions,
       fill: useDensityFill
         ? "currentColor"
-        : typeof fill === "string" && (fill === "none" || fill === "currentColor" || /^#|^rgb|^hsl/.test(fill))
+        : typeof fill === "string" && isColorValue(fill)
         ? fill
         : defaults.fill,
       stroke: useDensityStroke
         ? "none"
-        : typeof stroke === "string" && (stroke === "none" || stroke === "currentColor" || /^#|^rgb|^hsl/.test(stroke))
+        : typeof stroke === "string" && isColorValue(stroke)
         ? stroke
         : defaults.stroke,
       strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,

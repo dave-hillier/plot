@@ -1,6 +1,6 @@
 import React, {useMemo} from "react";
 import {useMark} from "../useMark.js";
-import {indirectStyleProps, directStyleProps, channelStyleProps, computeTransform} from "../styles.js";
+import {indirectStyleProps, directStyleProps, channelStyleProps, computeTransform, isColorChannel, isColorValue} from "../styles.js";
 import type {ChannelSpec} from "../PlotContext.js";
 
 const defaults = {
@@ -59,7 +59,7 @@ export function Link({
       y1: {value: y1, scale: "y"},
       x2: {value: x2, scale: "x"},
       y2: {value: y2, scale: "y"},
-      ...(typeof stroke === "string" && stroke !== "none" && stroke !== "currentColor" && !/^#|^rgb|^hsl/.test(stroke)
+      ...(isColorChannel(stroke)
         ? {stroke: {value: stroke, scale: "auto", optional: true}}
         : {}),
       ...(typeof opacity === "string" || typeof opacity === "function"
@@ -75,7 +75,7 @@ export function Link({
       ...defaults,
       ...restOptions,
       stroke:
-        typeof stroke === "string" && (stroke === "none" || stroke === "currentColor" || /^#|^rgb|^hsl/.test(stroke))
+        typeof stroke === "string" && isColorValue(stroke)
           ? stroke
           : defaults.stroke,
       strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,

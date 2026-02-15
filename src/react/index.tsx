@@ -158,6 +158,11 @@ export {window, windowX, windowY} from "../transforms/window.js";
 export {select, selectFirst, selectLast, selectMaxX, selectMaxY, selectMinX, selectMinY} from "../transforms/select.js";
 export {stackX, stackX1, stackX2, stackY, stackY1, stackY2} from "../transforms/stack.js";
 export {treeNode, treeLink} from "../transforms/tree.js";
+export {pointer, pointerX, pointerY} from "../interactions/pointer.js";
+
+// Re-export mark-related utilities (pure functions, shared with imperative API)
+export {bollinger} from "../marks/bollinger.js";
+export {auto, autoSpec} from "../marks/auto.js";
 
 // Re-export data utilities
 export {valueof, column, identity, indexOf, numberInterval} from "../options.js";

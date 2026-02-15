@@ -77,6 +77,9 @@ export interface PlotContextValue {
   projection: any | null;
   className: string;
 
+  // Clip path for frame clipping (marks with clip="frame" reference this)
+  clipPathId: string | null;
+
   // Facet state
   facets: FacetInfo[] | undefined;
   facetTranslate: ((f: FacetInfo) => {tx: number; ty: number}) | null;
@@ -99,6 +102,7 @@ const defaultContext: PlotContextValue = {
   dimensions: null,
   projection: null,
   className: "replot-d6a7b5",
+  clipPathId: null,
   facets: undefined,
   facetTranslate: null,
   getMarkState: () => undefined,
