@@ -15,6 +15,7 @@ import {Text, TextX, TextY} from "../src/react/marks/Text.js";
 import {Frame} from "../src/react/marks/Frame.js";
 import {TickX, TickY} from "../src/react/marks/Tick.js";
 import {AxisX, AxisY, GridX, GridY} from "../src/react/marks/Axis.js";
+import {BoxX, BoxY} from "../src/react/marks/Box.js";
 import {Vector, VectorX, VectorY, Spike} from "../src/react/marks/Vector.js";
 import {
   indirectStyleProps,
@@ -929,5 +930,78 @@ describe("React API parity with imperative API", () => {
         `Utility ${name} should be the same function reference in both modules`
       );
     }
+  });
+});
+
+// --- BoxX/BoxY statistical computation tests ---
+
+describe("BoxY computes quartile statistics", () => {
+  it("renders without errors (SSR shell)", () => {
+    const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((v) => ({x: "a", y: v}));
+    const html = renderToStaticMarkup(
+      React.createElement(Plot, {width: 200, height: 200}, React.createElement(BoxY, {data, x: "x", y: "y"}))
+    );
+    assert.ok(html.includes("<svg"));
+  });
+
+  it("renders without a grouping variable", () => {
+    const data = [1, 2, 3, 4, 5, 100].map((v) => ({y: v}));
+    const html = renderToStaticMarkup(
+      React.createElement(Plot, {width: 200, height: 200}, React.createElement(BoxY, {data, y: "y"}))
+    );
+    assert.ok(html.includes("<svg"));
+  });
+
+  it("is a function component", () => {
+    assert.strictEqual(typeof BoxY, "function");
+    assert.strictEqual(typeof BoxX, "function");
+  });
+});
+
+describe("BoxX computes quartile statistics", () => {
+  it("renders without errors (SSR shell)", () => {
+    const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((v) => ({x: v, y: "a"}));
+    const html = renderToStaticMarkup(
+      React.createElement(Plot, {width: 200, height: 200}, React.createElement(BoxX, {data, x: "x", y: "y"}))
+    );
+    assert.ok(html.includes("<svg"));
+  });
+});
+
+// --- Implicit axis detection (minification-safe) ---
+
+describe("Implicit axis detection", () => {
+  it("renders implicit axes when no explicit axes provided", () => {
+    const data = [{x: 1, y: 2}];
+    const html = renderToStaticMarkup(
+      React.createElement(Plot, {width: 200, height: 200}, React.createElement(Dot, {data, x: "x", y: "y"}))
+    );
+    assert.ok(html.includes("<svg"));
+  });
+
+  it("renders with explicit AxisX without errors", () => {
+    const data = [{x: 1, y: 2}];
+    const html = renderToStaticMarkup(
+      React.createElement(
+        Plot,
+        {width: 200, height: 200},
+        React.createElement(Dot, {data, x: "x", y: "y"}),
+        React.createElement(AxisX, {label: "custom"})
+      )
+    );
+    assert.ok(html.includes("<svg"));
+  });
+
+  it("detects explicit GridX as an x-axis", () => {
+    const data = [{x: 1, y: 2}];
+    const html = renderToStaticMarkup(
+      React.createElement(
+        Plot,
+        {width: 200, height: 200},
+        React.createElement(Dot, {data, x: "x", y: "y"}),
+        React.createElement(GridX)
+      )
+    );
+    assert.ok(html.includes("<svg"));
   });
 });

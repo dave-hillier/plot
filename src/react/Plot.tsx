@@ -35,6 +35,7 @@ import {
 import {facetTranslator} from "../facet.js";
 import {PlotContext, FacetContext} from "./PlotContext.js";
 import type {MarkRegistration, MarkState, FacetInfo, PlotContextValue, PointerState} from "./PlotContext.js";
+import {AxisX as AxisXMark, AxisY as AxisYMark, GridX as GridXMark, GridY as GridYMark} from "./marks/Axis.js";
 
 export interface PlotProps {
   // Dimensions
@@ -413,15 +414,16 @@ export function Plot({
   // Determine if figure wrapping is needed
   const useFigure = figureProp ?? (title != null || subtitle != null || caption != null);
 
-  // Check whether children already include explicit axis components
+  // Check whether children already include explicit axis components.
+  // Compare by function reference (not .name) so this survives minification.
   const hasExplicitAxes = useMemo(() => {
     let hasX = false,
       hasY = false;
     React.Children.forEach(children, (child) => {
       if (!React.isValidElement(child)) return;
-      const name = typeof child.type === "function" ? child.type.name : "";
-      if (name === "AxisX" || name === "GridX") hasX = true;
-      if (name === "AxisY" || name === "GridY") hasY = true;
+      const {type} = child;
+      if (type === AxisXMark || type === GridXMark) hasX = true;
+      if (type === AxisYMark || type === GridYMark) hasY = true;
     });
     return {hasX, hasY};
   }, [children]);
