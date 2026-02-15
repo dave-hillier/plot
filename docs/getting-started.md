@@ -134,76 +134,188 @@ Plot includes TypeScript declarations with extensive documentation. We highly re
 
 ## Plot in React
 
-We recommend two approaches for Plot in React depending on your needs.
+Plot provides a native React component API via `@observablehq/plot/react`. Instead of imperatively building SVG with D3 selections, you define charts declaratively with JSX.
 
-The first is to server-side render (SSR) plots. This minimizes distracting reflow on page load, improving the user experience. For this approach, use the [**document** plot option](./features/plots.md) to tell Plot to render with React’s virtual DOM. For example, here is a PlotFigure component:
+### Basic usage
 
-:::code-group
-```js [PlotFigure.js]
-import * as Plot from "@observablehq/plot";
-import {createElement as h} from "react";
-
-export default function PlotFigure({options}) {
-  return Plot.plot({...options, document: new Document()}).toHyperScript();
-}
-```
-:::
-
-:::info
-For brevity, the virtual `Document` implementation is not shown. You’ll find it linked below.
-:::
-
-Then, to use:
+Import the `Plot` root component and mark components, then compose them as JSX:
 
 :::code-group
 ```jsx [App.jsx]
-import * as Plot from "@observablehq/plot";
-import PlotFigure from "./PlotFigure.js";
+import {Plot, Dot} from "@observablehq/plot/react";
 import penguins from "./penguins.json";
 
 export default function App() {
   return (
     <div>
       <h1>Penguins</h1>
-      <PlotFigure
-        options={{
-          marks: [
-            Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm"})
-          ]
-        }}
-      />
+      <Plot width={640} height={400}>
+        <Dot data={penguins} x="culmen_length_mm" y="culmen_depth_mm" fill="species" />
+      </Plot>
     </div>
   );
 }
 ```
 :::
 
-See our [Plot + React CodeSandbox](https://codesandbox.io/s/plot-react-f1jetw?file=/src/App.js) for details.
+The `<Plot>` component handles scale inference, axis generation, and layout automatically. Pass scale options as props on `<Plot>`, and channel mappings as props on mark components.
 
-Server-side rendering is only practical for simple plots of small data; complex plots, such as geographic maps or charts with thousands of elements, are better rendered on the client because the serialized SVG is large. For this second approach, use [useRef](https://react.dev/reference/react/useRef) to get a reference to a DOM element, and then [useEffect](https://react.dev/reference/react/useEffect) to generate and insert your plot.
+### With transforms
+
+Transforms like `binX`, `groupX`, and `stackY` are pure functions that return props you can spread onto mark components:
 
 :::code-group
-```jsx [App.jsx]
-import * as Plot from "@observablehq/plot";
-import * as d3 from "d3";
-import {useEffect, useRef, useState} from "react";
+```jsx [Histogram.jsx]
+import {Plot, BarY, RuleY, binX} from "@observablehq/plot/react";
 
-export default function App() {
-  const containerRef = useRef();
+export default function Histogram({data}) {
+  return (
+    <Plot>
+      <BarY data={data} {...binX({y: "count"}, {x: "value", fill: "steelblue"})} />
+      <RuleY data={[0]} />
+    </Plot>
+  );
+}
+```
+:::
+
+### With scale options
+
+Configure scales by passing options directly to `<Plot>`:
+
+:::code-group
+```jsx [TemperatureChart.jsx]
+import {Plot, Dot, RuleY} from "@observablehq/plot/react";
+
+export default function TemperatureChart({data}) {
+  return (
+    <Plot y={{grid: true}} color={{scheme: "burd"}}>
+      <RuleY data={[0]} />
+      <Dot data={data} x="Date" y="Anomaly" stroke="Anomaly" />
+    </Plot>
+  );
+}
+```
+:::
+
+### With facets
+
+Use the `fx` or `fy` props on mark components to create small multiples:
+
+:::code-group
+```jsx [FacetedChart.jsx]
+import {Plot, Dot} from "@observablehq/plot/react";
+
+export default function FacetedChart({data}) {
+  return (
+    <Plot>
+      <Dot data={data} x="culmen_length_mm" y="culmen_depth_mm" fx="species" />
+    </Plot>
+  );
+}
+```
+:::
+
+### With tooltips
+
+Add interactive tooltips with the `tip` prop on any mark, or use the `<Tip>` component for more control:
+
+:::code-group
+```jsx [InteractiveChart.jsx]
+import {Plot, Dot} from "@observablehq/plot/react";
+
+export default function InteractiveChart({data}) {
+  return (
+    <Plot>
+      <Dot data={data} x="weight" y="height" fill="species" tip />
+    </Plot>
+  );
+}
+```
+:::
+
+### With legends
+
+Use the `<Legend>` component to add a legend for any scale:
+
+:::code-group
+```jsx [LegendChart.jsx]
+import {Plot, Dot, Legend} from "@observablehq/plot/react";
+
+export default function LegendChart({data}) {
+  return (
+    <Plot color={{legend: true}}>
+      <Dot data={data} x="weight" y="height" fill="species" />
+    </Plot>
+  );
+}
+```
+:::
+
+### Figure wrapping
+
+Use the `title`, `subtitle`, and `caption` props on `<Plot>` to wrap the chart in a `<figure>` element:
+
+:::code-group
+```jsx [FigureChart.jsx]
+import {Plot, Line} from "@observablehq/plot/react";
+
+export default function FigureChart({data}) {
+  return (
+    <Plot title="Temperature over time" subtitle="Global average" caption="Source: NASA">
+      <Line data={data} x="date" y="temperature" />
+    </Plot>
+  );
+}
+```
+:::
+
+### Async data loading
+
+Combine React's `useState` and `useEffect` with Plot components:
+
+:::code-group
+```jsx [AsyncChart.jsx]
+import {Plot, Dot, RuleY} from "@observablehq/plot/react";
+import * as d3 from "d3";
+import {useEffect, useState} from "react";
+
+export default function AsyncChart() {
   const [data, setData] = useState();
 
   useEffect(() => {
     d3.csv("/gistemp.csv", d3.autoType).then(setData);
   }, []);
 
+  if (!data) return <p>Loading…</p>;
+
+  return (
+    <Plot y={{grid: true}} color={{scheme: "burd"}}>
+      <RuleY data={[0]} />
+      <Dot data={data} x="Date" y="Anomaly" stroke="Anomaly" />
+    </Plot>
+  );
+}
+```
+:::
+
+### Imperative approach (legacy)
+
+If you prefer the imperative API, you can still use `Plot.plot()` with `useRef` and `useEffect`:
+
+:::code-group
+```jsx [LegacyApp.jsx]
+import * as Plot from "@observablehq/plot";
+import {useEffect, useRef} from "react";
+
+export default function LegacyApp({data}) {
+  const containerRef = useRef();
+
   useEffect(() => {
-    if (data === undefined) return;
     const plot = Plot.plot({
       y: {grid: true},
-      color: {scheme: "burd"},
       marks: [
-        Plot.ruleY([0]),
-        Plot.dot(data, {x: "Date", y: "Anomaly", stroke: "Anomaly"})
+        Plot.dot(data, {x: "x", y: "y"})
       ]
     });
     containerRef.current.append(plot);
@@ -215,7 +327,7 @@ export default function App() {
 ```
 :::
 
-This example also demonstrates asynchronously loading CSV data with [useState](https://react.dev/reference/react/useState). If you want to update your plot, say because your data has changed, simply throw away the old plot using [*element*.remove](https://developer.mozilla.org/en-US/docs/Web/API/Element/remove) and then replace it with a new one. That’s done above in the useEffect’s cleanup function.
+The declarative React component API is preferred because it integrates naturally with React's state management, avoids manual DOM manipulation, and supports server-side rendering.
 
 ## Plot in Vue
 

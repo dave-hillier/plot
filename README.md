@@ -41,6 +41,93 @@ The core computation — D3 scales, shape generators, geo projections, data tran
 
 See [PLAN.md](./PLAN.md) for the full implementation plan.
 
+### React examples
+
+**Scatterplot with color encoding:**
+
+```jsx
+import {Plot, Dot} from "@observablehq/plot/react";
+
+function Scatterplot({data}) {
+  return (
+    <Plot width={640} height={400} color={{scheme: "category10"}}>
+      <Dot data={data} x="weight" y="height" fill="species" />
+    </Plot>
+  );
+}
+```
+
+**Histogram with binning:**
+
+```jsx
+import {Plot, BarY, RuleY, binX} from "@observablehq/plot/react";
+
+function Histogram({data}) {
+  return (
+    <Plot>
+      <BarY data={data} {...binX({y: "count"}, {x: "value"})} />
+      <RuleY data={[0]} />
+    </Plot>
+  );
+}
+```
+
+**Line chart with grid and custom scales:**
+
+```jsx
+import {Plot, Line} from "@observablehq/plot/react";
+
+function LineChart({data}) {
+  return (
+    <Plot y={{grid: true}} color={{scheme: "warm"}}>
+      <Line data={data} x="date" y="temperature" stroke="city" />
+    </Plot>
+  );
+}
+```
+
+**Faceted dot plot (small multiples):**
+
+```jsx
+import {Plot, Dot} from "@observablehq/plot/react";
+
+function FacetedPlot({data}) {
+  return (
+    <Plot>
+      <Dot data={data} x="x" y="y" fx="category" fill="group" />
+    </Plot>
+  );
+}
+```
+
+**Stacked area chart:**
+
+```jsx
+import {Plot, AreaY, stackY} from "@observablehq/plot/react";
+
+function StackedArea({data}) {
+  return (
+    <Plot>
+      <AreaY data={data} x="date" y="value" fill="category" {...stackY()} />
+    </Plot>
+  );
+}
+```
+
+**Interactive chart with tooltips:**
+
+```jsx
+import {Plot, Dot} from "@observablehq/plot/react";
+
+function InteractiveChart({data}) {
+  return (
+    <Plot>
+      <Dot data={data} x="x" y="y" fill="species" tip />
+    </Plot>
+  );
+}
+```
+
 ---
 
 ## Documentation 📚
