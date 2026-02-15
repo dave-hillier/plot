@@ -1,6 +1,6 @@
 <script setup>
 
-import * as Plot from "@observablehq/plot";
+import * as Plot from "replot";
 import * as d3 from "d3";
 import aapl from "./data/aapl.ts";
 import penguins from "./data/penguins.ts";
@@ -17,7 +17,7 @@ function arealineY(data, {color, fillOpacity = 0.1, ...options} = {}) {
 
 # Why Plot?
 
-**Observable Plot** is for exploratory data visualization. It’s for finding insights quickly. Its API, while expressive and configurable, optimizes for conciseness and memorability. We want the time to first chart to be as fast as possible.
+**Replot** is for exploratory data visualization. It’s for finding insights quickly. Its API, while expressive and configurable, optimizes for conciseness and memorability. We want the time to first chart to be as fast as possible.
 
 And the speed doesn’t stop there: Plot helps you quickly pivot and refine your views of data. Our hope with Plot is that you’ll spend less time reading the docs, searching for code to copy-paste, and debugging — and more time asking questions of data.
 
@@ -111,7 +111,7 @@ Plot’s transforms can do powerful things, including [normalizing series](./tra
 Simple components gain power through composition, such as layering multiple [marks](./features/marks.md) into a single plot. In React, this composability is especially natural — each mark is a JSX component that you nest inside `<Plot>`:
 
 ```jsx
-import {Plot, RuleY, AreaY, LineY} from "@observablehq/plot/react";
+import {Plot, RuleY, AreaY, LineY} from "replot/react";
 
 <Plot>
   <RuleY data={[0]} />

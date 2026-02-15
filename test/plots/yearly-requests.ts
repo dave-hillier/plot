@@ -1,4 +1,4 @@
-import * as Plot from "@observablehq/plot";
+import * as Plot from "replot";
 
 const requests = [
   [new Date("2002-01-01"), 9],

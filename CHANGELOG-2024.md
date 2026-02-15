@@ -1,4 +1,4 @@
-# Observable Plot - Changelog [2024]
+# Replot - Changelog [2024]
 
 Year: [Current (2025)](./CHANGELOG.md) · **2024** · [2023](./CHANGELOG-2023.md) · [2022](./CHANGELOG-2022.md) · [2021](./CHANGELOG-2021.md)
 

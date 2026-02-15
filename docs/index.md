@@ -9,7 +9,7 @@ head:
       href: https://observablehq.com/plot/
   - - meta
     - name: title
-      content: Observable Plot
+      content: Replot
   - - meta
     - name: description
       content: The JavaScript library for exploratory data visualization
@@ -30,7 +30,7 @@ head:
       content: Observable
   - - meta
     - property: og:title
-      content: Observable Plot
+      content: Replot
   - - meta
     - property: og:type
       content: article
@@ -39,12 +39,12 @@ head:
       content: https://observablehq.com/plot/
 
 hero:
-  name: "Observable Plot"
+  name: "Replot"
   text: "The JavaScript library for exploratory data visualization"
   tagline: "Create expressive charts with concise code"
   image:
     src: /plot.svg
-    alt: Observable Plot
+    alt: Replot
   actions:
     - theme: brand
       text: Get started

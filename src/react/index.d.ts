@@ -1,2 +1,2 @@
-// Type declarations for @observablehq/plot/react
+// Type declarations for replot/react
 export * from "./index.js";

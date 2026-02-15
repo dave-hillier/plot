@@ -74,7 +74,7 @@ function normalizeHtml(html) {
 }
 
 function reindexStyle(root) {
-  const uid = "plot-d6a7b5"; // see defaultClassName
+  const uid = "replot-d6a7b5"; // see defaultClassName
   for (const style of root.querySelectorAll("style")) {
     const parent = style.parentNode;
     for (const child of [parent, ...parent.querySelectorAll("[class]")]) {

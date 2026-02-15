@@ -1,4 +1,4 @@
-import * as Plot from "@observablehq/plot";
+import * as Plot from "replot";
 
 export async function markerRuleX() {
   return Plot.ruleX([1, 2, 3], {marker: "arrow-reverse", inset: 3}).plot();

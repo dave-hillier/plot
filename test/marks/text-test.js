@@ -1,4 +1,4 @@
-import * as Plot from "@observablehq/plot";
+import * as Plot from "replot";
 import {clipEnd, clipMiddle, clipStart, defaultWidth, readCharacter} from "../../src/marks/text.js";
 import assert from "assert";
 

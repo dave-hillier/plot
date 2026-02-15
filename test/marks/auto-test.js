@@ -1,4 +1,4 @@
-import * as Plot from "@observablehq/plot";
+import * as Plot from "replot";
 import assert from "assert";
 
 it("Plot.autoSpec makes a histogram from a quantitative dimension", () => {

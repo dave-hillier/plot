@@ -1,4 +1,4 @@
-import * as Plot from "@observablehq/plot";
+import * as Plot from "replot";
 import * as d3 from "d3";
 
 const random = () => d3.randomNormal.source(d3.randomLcg(42))();

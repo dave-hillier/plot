@@ -1,4 +1,4 @@
-import * as Plot from "@observablehq/plot";
+import * as Plot from "replot";
 
 export async function symbolSetFill() {
   return Plot.dotX(["circle", "cross", "diamond", "square", "star", "triangle", "wye"], {

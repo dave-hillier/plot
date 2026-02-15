@@ -1,4 +1,4 @@
-import * as Plot from "@observablehq/plot";
+import * as Plot from "replot";
 
 export function opacityLegend() {
   return Plot.legend({opacity: {domain: [0, 10], label: "Quantitative"}});

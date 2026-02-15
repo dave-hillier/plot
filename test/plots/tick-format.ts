@@ -1,4 +1,4 @@
-import * as Plot from "@observablehq/plot";
+import * as Plot from "replot";
 
 export async function tickFormatEmptyDomain() {
   return Plot.plot({y: {tickFormat: "%W"}, marks: [Plot.barX([]), Plot.frame()]});

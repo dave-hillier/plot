@@ -1,4 +1,4 @@
-import * as Plot from "@observablehq/plot";
+import * as Plot from "replot";
 
 export async function interpolateBarycentric4() {
   const I = [0, 1, 2, 3];

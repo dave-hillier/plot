@@ -1,4 +1,4 @@
-import * as Plot from "@observablehq/plot";
+import * as Plot from "replot";
 
 export async function geoLink() {
   const xy = {x1: [-122.4194], y1: [37.7749], x2: [2.3522], y2: [48.8566]};

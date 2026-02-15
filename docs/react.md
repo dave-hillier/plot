@@ -1,11 +1,11 @@
 # React examples
 
-Observable Plot provides a native React component API. Instead of the imperative `Plot.plot()` function, you compose charts declaratively with JSX using the `<Plot>` root component and mark components like `<Dot>`, `<Line>`, `<BarY>`, and others.
+Replot provides a native React component API. Instead of the imperative `Plot.plot()` function, you compose charts declaratively with JSX using the `<Plot>` root component and mark components like `<Dot>`, `<Line>`, `<BarY>`, and others.
 
-All components are imported from `@observablehq/plot/react`. Transforms such as `binX`, `groupX`, and `stackY` are re-exported from the same entry point.
+All components are imported from `replot/react`. Transforms such as `binX`, `groupX`, and `stackY` are re-exported from the same entry point.
 
 ```jsx
-import {Plot, Dot, Line, BarY, binX} from "@observablehq/plot/react";
+import {Plot, Dot, Line, BarY, binX} from "replot/react";
 ```
 
 ## Scatterplot
@@ -435,7 +435,7 @@ Plot.plot({
 React components work naturally with React state and hooks:
 
 ```jsx
-import {Plot, Dot} from "@observablehq/plot/react";
+import {Plot, Dot} from "replot/react";
 import {useState} from "react";
 
 function FilterableChart({data}) {

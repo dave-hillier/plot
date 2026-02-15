@@ -1,5 +1,5 @@
 import * as d3 from "d3";
-import * as Plot from "@observablehq/plot";
+import * as Plot from "replot";
 
 export function colorLegendCategorical() {
   return Plot.legend({color: {domain: "ABCDEFGHIJ"}});

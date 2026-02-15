@@ -1,4 +1,4 @@
-import * as Plot from "@observablehq/plot";
+import * as Plot from "replot";
 
 export function symbolLegendBasic() {
   return Plot.legend({symbol: {domain: "ABCDEF"}});

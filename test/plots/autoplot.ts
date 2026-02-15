@@ -1,4 +1,4 @@
-import * as Plot from "@observablehq/plot";
+import * as Plot from "replot";
 import * as d3 from "d3";
 
 // Tanner's bug https://github.com/observablehq/plot/issues/1365
