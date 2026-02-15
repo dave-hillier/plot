@@ -72,14 +72,13 @@ features:
   - title: Projections
     details: "Plot supports GeoJSON and D3’s spherical projection system for geographic maps."
     link: /features/projections
+  - title: React components
+    details: "Use Plot natively in React with declarative JSX components like <Plot>, <Dot>, and <Line> — no refs or effects needed."
+    link: /getting-started#plot-in-react
   - title: Built with D3
-    details: "Plot is built by the same team as D3. If you know some D3, you’ll be right at home with Plot."
+    details: "Plot is built by the same team as D3. If you know some D3, you'll be right at home with Plot."
     link: https://d3js.org
     linkText: Visit D3
-  - title: Plot without code
-    details: With Observable’s chart cell, quickly create plots with a GUI, then eject to code to customize.
-    link: https://observablehq.com/@observablehq/chart-cell
-    linkText: Try chart cell
   - title: Built by Observable
     details: Plot is developed by Observable, the platform for collaborative data analysis.
     link: https://observablehq.com

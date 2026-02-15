@@ -54,7 +54,11 @@ onMounted(() => {
 If you aren’t yet up and running with Plot, please read our [getting started guide](../getting-started.md) first. Tinkering with the code below will give a better sense of how Plot works.
 :::
 
-Plot doesn’t have chart types; instead, you construct charts by layering **marks**.
+Plot doesn't have chart types; instead, you construct charts by layering **marks**.
+
+:::tip
+Every mark is available both as an imperative function (e.g., `Plot.dot(data, options)`) and as a [React component](../getting-started.md#plot-in-react) (e.g., `<Dot data={data} x="x" y="y" />`). The examples on this page use the imperative API, but all the same options and behaviors apply to the React components.
+:::
 
 ## Marks are geometric shapes
 
