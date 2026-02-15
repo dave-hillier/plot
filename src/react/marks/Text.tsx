@@ -139,7 +139,7 @@ export function Text({
   };
 
   return (
-    <g {...groupProps as any}>
+    <g {...(groupProps as any)}>
       {index.map((i) => {
         const tx = X ? X[i] : anchorX;
         const ty = Y ? Y[i] : anchorY;

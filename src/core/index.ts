@@ -18,7 +18,17 @@ export {createDimensions} from "../dimensions.js";
 export {createFacets, recreateFacets, facetExclude, facetGroups, facetFilter} from "../facet.js";
 
 // Data and scale option utilities
-export {isScaleOptions, dataify, map, maybeIntervalTransform, range, valueof, column, identity, indexOf} from "../options.js";
+export {
+  isScaleOptions,
+  dataify,
+  map,
+  maybeIntervalTransform,
+  range,
+  valueof,
+  column,
+  identity,
+  indexOf
+} from "../options.js";
 
 // Projection creation
 export {createProjection, getGeometryChannels, hasProjection} from "../projection.js";
@@ -27,7 +37,16 @@ export {createProjection, getGeometryChannels, hasProjection} from "../projectio
 export {createScales, createScaleFunctions, autoScaleRange, innerDimensions} from "../scales.js";
 
 // Scale registry (symbolic constants)
-export {registry as scaleRegistry, position, color, radius, length, opacity, symbol, projection} from "../scales/index.js";
+export {
+  registry as scaleRegistry,
+  position,
+  color,
+  radius,
+  length,
+  opacity,
+  symbol,
+  projection
+} from "../scales/index.js";
 
 // Style utilities (pure subset)
 export {maybeClassName} from "../style.js";

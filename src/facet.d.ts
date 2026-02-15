@@ -15,10 +15,7 @@ export function createFacets(channelsByScale: Map<string, any[]>, options: any):
 /**
  * Filters and reorders facets to match the current fx/fy scale domains.
  */
-export function recreateFacets(
-  facets: FacetDescriptor[],
-  domains: {x?: any[]; y?: any[]}
-): FacetDescriptor[];
+export function recreateFacets(facets: FacetDescriptor[], domains: {x?: any[]; y?: any[]}): FacetDescriptor[];
 
 /**
  * Groups data indices by facet values (fx and/or fy channels).
@@ -47,7 +44,7 @@ export function facetExclude(index: number[][]): number[][];
 /**
  * Resolves a facet anchor name to a function, or null if the anchor is null.
  */
-export function maybeFacetAnchor(facetAnchor: string | null | undefined): Function | null;
+export function maybeFacetAnchor(facetAnchor: string | null | undefined): ((...args: any[]) => any) | null;
 
 /**
  * Filters facet indices using a mark's channel groups.
