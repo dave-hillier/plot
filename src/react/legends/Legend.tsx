@@ -40,7 +40,7 @@ export function Legend({
   width: widthProp,
   height: heightProp = 33,
   marginTop = 5,
-  marginRight = 0,
+  marginRight: _marginRight = 0,
   marginBottom = 16,
   marginLeft = 0,
   className
@@ -63,9 +63,7 @@ export function Legend({
 
     return (
       <g className={className} aria-label="symbol-legend" fontSize={10} fontFamily="system-ui, sans-serif">
-        {labelText && (
-          <text fontWeight="bold" dy="0.71em" fill="currentColor">{`${labelText}`}</text>
-        )}
+        {labelText && <text fontWeight="bold" dy="0.71em" fill="currentColor">{`${labelText}`}</text>}
         {domain?.map((d: any, i: number) => {
           const symbolName = range ? range[i % range.length] : "circle";
           const pathD = symbolPaths[symbolName] ?? symbolPaths.circle;
@@ -109,7 +107,13 @@ export function Legend({
             })}
           </linearGradient>
         </defs>
-        <rect x={marginLeft} y={marginTop + labelOffset} width={rampWidth} height={rampHeight} fill={`url(#${gradientId})`} />
+        <rect
+          x={marginLeft}
+          y={marginTop + labelOffset}
+          width={rampWidth}
+          height={rampHeight}
+          fill={`url(#${gradientId})`}
+        />
         <g
           transform={`translate(0,${heightProp - marginBottom + labelOffset})`}
           fontSize={10}
@@ -141,9 +145,7 @@ export function Legend({
 
     return (
       <g className={className} aria-label="color-legend" fontSize={10} fontFamily="system-ui, sans-serif">
-        {labelText && (
-          <text fontWeight="bold" dy="0.71em" fill="currentColor">{`${labelText}`}</text>
-        )}
+        {labelText && <text fontWeight="bold" dy="0.71em" fill="currentColor">{`${labelText}`}</text>}
         {domain?.map((d: any, i: number) => {
           const color = range ? range[i % range.length] : scaleInfo.apply?.(d);
           const x = i * itemWidth;
@@ -186,7 +188,13 @@ export function Legend({
             })}
         </linearGradient>
       </defs>
-      <rect x={marginLeft} y={marginTop + labelOffset} width={rampWidth} height={rampHeight} fill={`url(#${gradientId})`} />
+      <rect
+        x={marginLeft}
+        y={marginTop + labelOffset}
+        width={rampWidth}
+        height={rampHeight}
+        fill={`url(#${gradientId})`}
+      />
       <g
         transform={`translate(0,${heightProp - marginBottom + labelOffset})`}
         fontSize={10}

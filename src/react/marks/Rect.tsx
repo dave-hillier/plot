@@ -74,12 +74,8 @@ export function Rect({
       x2: {value: x2, scale: "x", optional: true},
       y1: {value: y1, scale: "y", optional: true},
       y2: {value: y2, scale: "y", optional: true},
-      ...(isColorChannel(fill)
-        ? {fill: {value: fill, scale: "auto", optional: true}}
-        : {}),
-      ...(isColorChannel(stroke)
-        ? {stroke: {value: stroke, scale: "auto", optional: true}}
-        : {}),
+      ...(isColorChannel(fill) ? {fill: {value: fill, scale: "auto", optional: true}} : {}),
+      ...(isColorChannel(stroke) ? {stroke: {value: stroke, scale: "auto", optional: true}} : {}),
       ...(typeof fillOpacity === "string" || typeof fillOpacity === "function"
         ? {fillOpacity: {value: fillOpacity, scale: "auto", optional: true}}
         : {}),
@@ -96,10 +92,7 @@ export function Rect({
     () => ({
       ...defaults,
       ...restOptions,
-      fill:
-        typeof fill === "string" && isColorValue(fill)
-          ? fill
-          : "currentColor",
+      fill: typeof fill === "string" && isColorValue(fill) ? fill : "currentColor",
       stroke: typeof stroke === "string" ? stroke : undefined,
       dx,
       dy,

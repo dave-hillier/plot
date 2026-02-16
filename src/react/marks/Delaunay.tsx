@@ -1,7 +1,14 @@
 import React, {useMemo} from "react";
 import {Delaunay} from "d3";
 import {useMark} from "../useMark.js";
-import {indirectStyleProps, directStyleProps, channelStyleProps, computeTransform, isColorChannel, isColorValue} from "../styles.js";
+import {
+  indirectStyleProps,
+  directStyleProps,
+  channelStyleProps,
+  computeTransform,
+  isColorChannel,
+  isColorValue
+} from "../styles.js";
 import type {ChannelSpec} from "../PlotContext.js";
 
 // --- DelaunayLink ---
@@ -52,9 +59,7 @@ export function DelaunayLink({
       x: {value: x, scale: "x"},
       y: {value: y, scale: "y"},
       ...(z != null ? {z: {value: z, optional: true}} : {}),
-      ...(isColorChannel(stroke)
-        ? {stroke: {value: stroke, scale: "auto", optional: true}}
-        : {}),
+      ...(isColorChannel(stroke) ? {stroke: {value: stroke, scale: "auto", optional: true}} : {}),
       ...(typeof opacity === "string" || typeof opacity === "function"
         ? {opacity: {value: opacity, scale: "auto", optional: true}}
         : {})
@@ -66,10 +71,7 @@ export function DelaunayLink({
     () => ({
       ...linkDefaults,
       ...restOptions,
-      stroke:
-        typeof stroke === "string" && isColorValue(stroke)
-          ? stroke
-          : linkDefaults.stroke,
+      stroke: typeof stroke === "string" && isColorValue(stroke) ? stroke : linkDefaults.stroke,
       strokeWidth: typeof strokeWidth === "number" ? strokeWidth : linkDefaults.strokeWidth,
       dx,
       dy,
@@ -278,9 +280,7 @@ export function Voronoi({
     () => ({
       x: {value: x, scale: "x"},
       y: {value: y, scale: "y"},
-      ...(isColorChannel(fill)
-        ? {fill: {value: fill, scale: "auto", optional: true}}
-        : {}),
+      ...(isColorChannel(fill) ? {fill: {value: fill, scale: "auto", optional: true}} : {}),
       ...(typeof opacity === "string" || typeof opacity === "function"
         ? {opacity: {value: opacity, scale: "auto", optional: true}}
         : {}),
@@ -292,10 +292,7 @@ export function Voronoi({
   const markOptions = useMemo(
     () => ({
       ariaLabel: "voronoi",
-      fill:
-        typeof fill === "string" && isColorValue(fill)
-          ? fill
-          : "none",
+      fill: typeof fill === "string" && isColorValue(fill) ? fill : "none",
       stroke: typeof stroke === "string" ? stroke : "currentColor",
       strokeWidth: typeof strokeWidth === "number" ? strokeWidth : 1,
       ...restOptions,

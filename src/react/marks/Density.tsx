@@ -56,12 +56,8 @@ export function Density({
       x: {value: x, scale: "x"},
       y: {value: y, scale: "y"},
       ...(weight != null ? {weight: {value: weight, optional: true}} : {}),
-      ...(isColorChannel(fill) &&
-      fill !== "density"
-        ? {fill: {value: fill, scale: "auto", optional: true}}
-        : {}),
-      ...(isColorChannel(stroke) &&
-      stroke !== "density"
+      ...(isColorChannel(fill) && fill !== "density" ? {fill: {value: fill, scale: "auto", optional: true}} : {}),
+      ...(isColorChannel(stroke) && stroke !== "density"
         ? {stroke: {value: stroke, scale: "auto", optional: true}}
         : {}),
       ...(typeof opacity === "string" || typeof opacity === "function"
@@ -78,16 +74,8 @@ export function Density({
     () => ({
       ...defaults,
       ...restOptions,
-      fill: useDensityFill
-        ? "currentColor"
-        : typeof fill === "string" && isColorValue(fill)
-        ? fill
-        : defaults.fill,
-      stroke: useDensityStroke
-        ? "none"
-        : typeof stroke === "string" && isColorValue(stroke)
-        ? stroke
-        : defaults.stroke,
+      fill: useDensityFill ? "currentColor" : typeof fill === "string" && isColorValue(fill) ? fill : defaults.fill,
+      stroke: useDensityStroke ? "none" : typeof stroke === "string" && isColorValue(stroke) ? stroke : defaults.stroke,
       strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
       dx,
       dy,

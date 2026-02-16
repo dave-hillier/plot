@@ -90,12 +90,8 @@ export function Dot({
       ...(isRChannel ? {r: {value: r, scale: "r", optional: true}} : {}),
       ...(isRotateChannel ? {rotate: {value: rotate, optional: true}} : {}),
       ...(isSymbolChannel ? {symbol: {value: symbol, scale: "auto", optional: true}} : {}),
-      ...(isColorChannel(fill)
-        ? {fill: {value: fill, scale: "auto", optional: true}}
-        : {}),
-      ...(isColorChannel(stroke)
-        ? {stroke: {value: stroke, scale: "auto", optional: true}}
-        : {}),
+      ...(isColorChannel(fill) ? {fill: {value: fill, scale: "auto", optional: true}} : {}),
+      ...(isColorChannel(stroke) ? {stroke: {value: stroke, scale: "auto", optional: true}} : {}),
       ...(typeof fillOpacity === "string" || typeof fillOpacity === "function"
         ? {fillOpacity: {value: fillOpacity, scale: "auto", optional: true}}
         : {}),
@@ -133,14 +129,8 @@ export function Dot({
       ...restOptions,
       dx,
       dy,
-      fill:
-        typeof fill === "string" && isColorValue(fill)
-          ? fill
-          : defaults.fill,
-      stroke:
-        typeof stroke === "string" && isColorValue(stroke)
-          ? stroke
-          : defaults.stroke,
+      fill: typeof fill === "string" && isColorValue(fill) ? fill : defaults.fill,
+      stroke: typeof stroke === "string" && isColorValue(stroke) ? stroke : defaults.stroke,
       strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
       className,
       frameAnchor

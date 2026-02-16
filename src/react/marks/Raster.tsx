@@ -56,9 +56,7 @@ export function Raster({
 }: RasterProps) {
   const channels: Record<string, ChannelSpec> = useMemo(
     () => ({
-      ...(isColorChannel(fill)
-        ? {fill: {value: fill, scale: "auto", optional: true}}
-        : {}),
+      ...(isColorChannel(fill) ? {fill: {value: fill, scale: "auto", optional: true}} : {}),
       ...(x != null ? {x: {value: x, scale: "x", optional: true}} : {}),
       ...(y != null ? {y: {value: y, scale: "y", optional: true}} : {})
     }),
@@ -69,10 +67,7 @@ export function Raster({
     () => ({
       ...defaults,
       ...restOptions,
-      fill:
-        typeof fill === "string" && isColorValue(fill)
-          ? fill
-          : undefined,
+      fill: typeof fill === "string" && isColorValue(fill) ? fill : undefined,
       dx,
       dy,
       className

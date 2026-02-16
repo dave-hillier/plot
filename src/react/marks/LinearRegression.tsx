@@ -69,9 +69,7 @@ export function LinearRegressionY({
       x: {value: x, scale: "x"},
       y: {value: y, scale: "y"},
       ...(z != null ? {z: {value: z, optional: true}} : {}),
-      ...(isColorChannel(stroke)
-        ? {stroke: {value: stroke, scale: "auto", optional: true}}
-        : {})
+      ...(isColorChannel(stroke) ? {stroke: {value: stroke, scale: "auto", optional: true}} : {})
     }),
     [x, y, z, stroke]
   );
@@ -82,10 +80,7 @@ export function LinearRegressionY({
       ...restOptions,
       fill: typeof fill === "string" ? fill : defaults.fill,
       fillOpacity,
-      stroke:
-        typeof stroke === "string" && isColorValue(stroke)
-          ? stroke
-          : defaults.stroke,
+      stroke: typeof stroke === "string" && isColorValue(stroke) ? stroke : defaults.stroke,
       strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
       className
     }),
@@ -148,9 +143,7 @@ export function LinearRegressionX({
       x: {value: x, scale: "x"},
       y: {value: y, scale: "y"},
       ...(z != null ? {z: {value: z, optional: true}} : {}),
-      ...(isColorChannel(stroke)
-        ? {stroke: {value: stroke, scale: "auto", optional: true}}
-        : {})
+      ...(isColorChannel(stroke) ? {stroke: {value: stroke, scale: "auto", optional: true}} : {})
     }),
     [x, y, z, stroke]
   );
@@ -161,10 +154,7 @@ export function LinearRegressionX({
       ...restOptions,
       fill: typeof fill === "string" ? fill : defaults.fill,
       fillOpacity,
-      stroke:
-        typeof stroke === "string" && isColorValue(stroke)
-          ? stroke
-          : defaults.stroke,
+      stroke: typeof stroke === "string" && isColorValue(stroke) ? stroke : defaults.stroke,
       strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
       className
     }),

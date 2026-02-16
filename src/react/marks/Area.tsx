@@ -1,7 +1,14 @@
 import React, {useMemo} from "react";
 import {area as shapeArea, group} from "d3";
 import {useMark} from "../useMark.js";
-import {indirectStyleProps, directStyleProps, groupChannelStyleProps, computeTransform, isColorChannel, isColorValue} from "../styles.js";
+import {
+  indirectStyleProps,
+  directStyleProps,
+  groupChannelStyleProps,
+  computeTransform,
+  isColorChannel,
+  isColorValue
+} from "../styles.js";
 import {maybeCurveAuto, defined} from "../../core/index.js";
 import type {ChannelSpec} from "../PlotContext.js";
 
@@ -69,12 +76,8 @@ export function Area({
       y1: {value: y1, scale: "y"},
       y2: {value: y2, scale: "y", optional: true},
       ...(maybeZ != null ? {z: {value: maybeZ, optional: true}} : {}),
-      ...(isColorChannel(fill)
-        ? {fill: {value: fill, scale: "auto", optional: true}}
-        : {}),
-      ...(isColorChannel(stroke)
-        ? {stroke: {value: stroke, scale: "auto", optional: true}}
-        : {}),
+      ...(isColorChannel(fill) ? {fill: {value: fill, scale: "auto", optional: true}} : {}),
+      ...(isColorChannel(stroke) ? {stroke: {value: stroke, scale: "auto", optional: true}} : {}),
       ...(typeof opacity === "string" || typeof opacity === "function"
         ? {opacity: {value: opacity, scale: "auto", optional: true}}
         : {}),
@@ -89,10 +92,7 @@ export function Area({
     () => ({
       ...defaults,
       ...restOptions,
-      fill:
-        typeof fill === "string" && isColorValue(fill)
-          ? fill
-          : defaults.fill,
+      fill: typeof fill === "string" && isColorValue(fill) ? fill : defaults.fill,
       stroke: typeof stroke === "string" ? stroke : defaults.stroke,
       strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
       dx,
