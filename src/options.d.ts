@@ -23,7 +23,7 @@ export function valueof<T extends ArrayishConstructor>(data: Data | null, value:
  * *setColumn*. If *setColumn* is not called, then the channel transform returns
  * undefined.
  *
- * If a *source* is specified, then *column*.label exposes the given *source*’s
+ * If a *source* is specified, then *column*.label exposes the given *source*'s
  * label, if any: if *source* is a string as when representing a named field of
  * data, then *column*.label is *source*; otherwise *column*.label propagates
  * *source*.label. This allows derived columns to propagate a human-readable

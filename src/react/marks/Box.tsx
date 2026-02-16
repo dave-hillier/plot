@@ -67,9 +67,7 @@ export function BoxX({
     const outliers: any[] = [];
 
     for (const [key, items] of grouped) {
-      const values = (items as any[])
-        .map((d, i) => getX(d, i))
-        .filter((v: any) => v != null && isFinite(v));
+      const values = (items as any[]).map((d, i) => getX(d, i)).filter((v: any) => v != null && isFinite(v));
       if (values.length === 0) continue;
       const stats = boxStats(values);
       summaries.push({
@@ -98,15 +96,7 @@ export function BoxX({
   return (
     <>
       <RuleY data={summaries} y={yProp} x1="_lo" x2="_hi" stroke={stroke} strokeOpacity={strokeOpacity} {...rest} />
-      <BarX
-        data={summaries}
-        y={yProp}
-        x1="_q1"
-        x2="_q3"
-        fill={fill}
-        fillOpacity={fillOpacity}
-        {...rest}
-      />
+      <BarX data={summaries} y={yProp} x1="_q1" x2="_q3" fill={fill} fillOpacity={fillOpacity} {...rest} />
       <TickX
         data={summaries}
         y={yProp}
@@ -149,9 +139,7 @@ export function BoxY({
     const outliers: any[] = [];
 
     for (const [key, items] of grouped) {
-      const values = (items as any[])
-        .map((d, i) => getY(d, i))
-        .filter((v: any) => v != null && isFinite(v));
+      const values = (items as any[]).map((d, i) => getY(d, i)).filter((v: any) => v != null && isFinite(v));
       if (values.length === 0) continue;
       const stats = boxStats(values);
       summaries.push({
@@ -180,15 +168,7 @@ export function BoxY({
   return (
     <>
       <RuleX data={summaries} x={xProp} y1="_lo" y2="_hi" stroke={stroke} strokeOpacity={strokeOpacity} {...rest} />
-      <BarY
-        data={summaries}
-        x={xProp}
-        y1="_q1"
-        y2="_q3"
-        fill={fill}
-        fillOpacity={fillOpacity}
-        {...rest}
-      />
+      <BarY data={summaries} x={xProp} y1="_q1" y2="_q3" fill={fill} fillOpacity={fillOpacity} {...rest} />
       <TickY
         data={summaries}
         x={xProp}

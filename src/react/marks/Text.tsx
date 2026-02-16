@@ -81,9 +81,7 @@ export function Text({
       x: {value: x, scale: "x", optional: true},
       y: {value: y, scale: "y", optional: true},
       text: {value: text ?? (x == null && y == null ? (d: any) => d : undefined), optional: true, filter: null},
-      ...(isColorChannel(fill)
-        ? {fill: {value: fill, scale: "auto", optional: true}}
-        : {}),
+      ...(isColorChannel(fill) ? {fill: {value: fill, scale: "auto", optional: true}} : {}),
       ...(typeof opacity === "string" || typeof opacity === "function"
         ? {opacity: {value: opacity, scale: "auto", optional: true}}
         : {}),
@@ -97,10 +95,7 @@ export function Text({
     () => ({
       ...defaults,
       ...restOptions,
-      fill:
-        typeof fill === "string" && isColorValue(fill)
-          ? fill
-          : defaults.fill,
+      fill: typeof fill === "string" && isColorValue(fill) ? fill : defaults.fill,
       stroke: typeof stroke === "string" ? stroke : undefined,
       strokeWidth: typeof strokeWidth === "number" ? strokeWidth : undefined,
       dx,

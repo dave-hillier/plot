@@ -73,9 +73,7 @@ export function Vector({
       y: {value: y, scale: "y", optional: true},
       ...(isLengthChannel ? {length: {value: lengthProp, scale: "length", optional: true}} : {}),
       ...(isRotateChannel ? {rotate: {value: rotateProp, optional: true}} : {}),
-      ...(isColorChannel(stroke)
-        ? {stroke: {value: stroke, scale: "auto", optional: true}}
-        : {}),
+      ...(isColorChannel(stroke) ? {stroke: {value: stroke, scale: "auto", optional: true}} : {}),
       ...(typeof opacity === "string" || typeof opacity === "function"
         ? {opacity: {value: opacity, scale: "auto", optional: true}}
         : {}),
@@ -88,10 +86,7 @@ export function Vector({
     () => ({
       ...defaults,
       ...restOptions,
-      stroke:
-        typeof stroke === "string" && isColorValue(stroke)
-          ? stroke
-          : defaults.stroke,
+      stroke: typeof stroke === "string" && isColorValue(stroke) ? stroke : defaults.stroke,
       strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
       dx,
       dy,

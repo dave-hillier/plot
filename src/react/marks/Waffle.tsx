@@ -67,9 +67,7 @@ export function WaffleY({
       y1: {value: y1, scale: "y"},
       y2: {value: y2, scale: "y"},
       x: {value: x, scale: "x", type: "band", optional: true},
-      ...(isColorChannel(fill)
-        ? {fill: {value: fill, scale: "auto", optional: true}}
-        : {}),
+      ...(isColorChannel(fill) ? {fill: {value: fill, scale: "auto", optional: true}} : {}),
       ...(typeof opacity === "string" || typeof opacity === "function"
         ? {opacity: {value: opacity, scale: "auto", optional: true}}
         : {}),
@@ -82,10 +80,7 @@ export function WaffleY({
     () => ({
       ...defaults,
       ...restOptions,
-      fill:
-        typeof fill === "string" && isColorValue(fill)
-          ? fill
-          : "currentColor",
+      fill: typeof fill === "string" && isColorValue(fill) ? fill : "currentColor",
       stroke: typeof stroke === "string" ? stroke : undefined,
       dx,
       dy,
@@ -179,9 +174,7 @@ export function WaffleX({
       x1: {value: x1, scale: "x"},
       x2: {value: x2, scale: "x"},
       y: {value: y, scale: "y", type: "band", optional: true},
-      ...(isColorChannel(fill)
-        ? {fill: {value: fill, scale: "auto", optional: true}}
-        : {}),
+      ...(isColorChannel(fill) ? {fill: {value: fill, scale: "auto", optional: true}} : {}),
       ...(typeof opacity === "string" || typeof opacity === "function"
         ? {opacity: {value: opacity, scale: "auto", optional: true}}
         : {}),
@@ -194,10 +187,7 @@ export function WaffleX({
     () => ({
       ...defaults,
       ...restOptions,
-      fill:
-        typeof fill === "string" && isColorValue(fill)
-          ? fill
-          : "currentColor",
+      fill: typeof fill === "string" && isColorValue(fill) ? fill : "currentColor",
       stroke: typeof stroke === "string" ? stroke : undefined,
       dx,
       dy,

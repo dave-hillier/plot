@@ -133,7 +133,14 @@ export function DifferenceY({
         clipPath={`url(#${negativeClipId})`}
         aria-label="negative difference"
       />
-      <path d={line2Path} fill="none" stroke={stroke} strokeWidth={strokeWidth} strokeOpacity={strokeOpacity} strokeDasharray="2,2" />
+      <path
+        d={line2Path}
+        fill="none"
+        stroke={stroke}
+        strokeWidth={strokeWidth}
+        strokeOpacity={strokeOpacity}
+        strokeDasharray="2,2"
+      />
       <path d={line1Path} fill="none" stroke={stroke} strokeWidth={strokeWidth} strokeOpacity={strokeOpacity} />
     </g>
   );
@@ -251,7 +258,14 @@ export function DifferenceX({
         clipPath={`url(#${negativeClipId})`}
         aria-label="negative difference"
       />
-      <path d={line2Path} fill="none" stroke={stroke} strokeWidth={strokeWidth} strokeOpacity={strokeOpacity} strokeDasharray="2,2" />
+      <path
+        d={line2Path}
+        fill="none"
+        stroke={stroke}
+        strokeWidth={strokeWidth}
+        strokeOpacity={strokeOpacity}
+        strokeDasharray="2,2"
+      />
       <path d={line1Path} fill="none" stroke={stroke} strokeWidth={strokeWidth} strokeOpacity={strokeOpacity} />
     </g>
   );

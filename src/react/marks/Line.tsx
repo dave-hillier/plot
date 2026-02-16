@@ -1,7 +1,14 @@
 import React, {useMemo} from "react";
 import {line as shapeLine, group, curveLinear} from "d3";
 import {useMark} from "../useMark.js";
-import {indirectStyleProps, directStyleProps, groupChannelStyleProps, computeTransform, isColorChannel, isColorValue} from "../styles.js";
+import {
+  indirectStyleProps,
+  directStyleProps,
+  groupChannelStyleProps,
+  computeTransform,
+  isColorChannel,
+  isColorValue
+} from "../styles.js";
 import {maybeCurveAuto, defined} from "../../core/index.js";
 import type {ChannelSpec} from "../PlotContext.js";
 
@@ -67,12 +74,8 @@ export function Line({
       x: {value: x, scale: "x"},
       y: {value: y, scale: "y"},
       ...(maybeZ != null ? {z: {value: maybeZ, optional: true}} : {}),
-      ...(isColorChannel(fill)
-        ? {fill: {value: fill, scale: "auto", optional: true}}
-        : {}),
-      ...(isColorChannel(stroke)
-        ? {stroke: {value: stroke, scale: "auto", optional: true}}
-        : {}),
+      ...(isColorChannel(fill) ? {fill: {value: fill, scale: "auto", optional: true}} : {}),
+      ...(isColorChannel(stroke) ? {stroke: {value: stroke, scale: "auto", optional: true}} : {}),
       ...(typeof strokeOpacity === "string" || typeof strokeOpacity === "function"
         ? {strokeOpacity: {value: strokeOpacity, scale: "auto", optional: true}}
         : {}),
@@ -92,14 +95,8 @@ export function Line({
       ...restOptions,
       dx,
       dy,
-      fill:
-        typeof fill === "string" && isColorValue(fill)
-          ? fill
-          : defaults.fill,
-      stroke:
-        typeof stroke === "string" && isColorValue(stroke)
-          ? stroke
-          : defaults.stroke,
+      fill: typeof fill === "string" && isColorValue(fill) ? fill : defaults.fill,
+      stroke: typeof stroke === "string" && isColorValue(stroke) ? stroke : defaults.stroke,
       strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
       className
     }),

@@ -71,9 +71,7 @@ export function Contour({
       ...(value != null ? {value: {value, optional: true}} : {}),
       ...(x != null ? {x: {value: x, scale: "x", optional: true}} : {}),
       ...(y != null ? {y: {value: y, scale: "y", optional: true}} : {}),
-      ...(isColorChannel(fill)
-        ? {fill: {value: fill, scale: "auto", optional: true}}
-        : {}),
+      ...(isColorChannel(fill) ? {fill: {value: fill, scale: "auto", optional: true}} : {}),
       ...(typeof opacity === "string" || typeof opacity === "function"
         ? {opacity: {value: opacity, scale: "auto", optional: true}}
         : {})
@@ -85,14 +83,8 @@ export function Contour({
     () => ({
       ...defaults,
       ...restOptions,
-      fill:
-        typeof fill === "string" && isColorValue(fill)
-          ? fill
-          : defaults.fill,
-      stroke:
-        typeof stroke === "string" && isColorValue(stroke)
-          ? stroke
-          : defaults.stroke,
+      fill: typeof fill === "string" && isColorValue(fill) ? fill : defaults.fill,
+      stroke: typeof stroke === "string" && isColorValue(stroke) ? stroke : defaults.stroke,
       strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
       dx,
       dy,
