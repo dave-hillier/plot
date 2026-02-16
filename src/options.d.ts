@@ -23,7 +23,7 @@ export function valueof<T extends ArrayishConstructor>(data: Data | null, value:
  * *setColumn*. If *setColumn* is not called, then the channel transform returns
  * undefined.
  *
- * If a *source* is specified, then *column*.label exposes the given *source*’s
+ * If a *source* is specified, then *column*.label exposes the given *source*'s
  * label, if any: if *source* is a string as when representing a named field of
  * data, then *column*.label is *source*; otherwise *column*.label propagates
  * *source*.label. This allows derived columns to propagate a human-readable
@@ -68,14 +68,22 @@ export function range(data: any): number[];
 /** Resolves a number interval specification. */
 export function numberInterval(interval: any): any;
 
-/** Returns true if the value is a CSS color string (hex, named, rgb, hsl, etc.). */
+/** Returns true if the value is a valid CSS color string. */
 export function isColor(value: any): boolean;
 
 /** Returns true if the value is null, undefined, or the string "none". */
 export function isNoneish(value: any): boolean;
 
-/** Resolves a value as either a constant color or a channel definition. Returns [channel, color]. */
+/**
+ * Given a value, returns a [channel, constant] tuple where one is undefined.
+ * If the value is a CSS color string, it is treated as a constant; otherwise
+ * it is treated as a channel (field name or accessor).
+ */
 export function maybeColorChannel(value: any, defaultValue?: any): [any, any];
 
-/** Resolves a value as either a constant number or a channel definition. Returns [channel, number]. */
+/**
+ * Given a value, returns a [channel, constant] tuple where one is undefined.
+ * If the value is a number, it is treated as a constant; otherwise it is
+ * treated as a channel (field name or accessor).
+ */
 export function maybeNumberChannel(value: any, defaultValue?: any): [any, any];

@@ -37,7 +37,17 @@ import {
 import {facetTranslator} from "../facet.js";
 import {PlotContext, FacetContext} from "./PlotContext.js";
 import type {MarkRegistration, MarkState, FacetInfo, PlotContextValue, PointerState} from "./PlotContext.js";
-import {AxisX as AxisXMark, AxisY as AxisYMark, GridX as GridXMark, GridY as GridYMark} from "./marks/Axis.js";
+import {
+  AxisX as AxisXMark,
+  AxisY as AxisYMark,
+  GridX as GridXMark,
+  GridY as GridYMark,
+  AxisFx as AxisFxMark,
+  AxisFy as AxisFyMark,
+  GridFx as GridFxMark,
+  GridFy as GridFyMark
+} from "./marks/Axis.js";
+import {Tip} from "./interactions/Tip.js";
 
 export interface PlotProps {
   // Dimensions
@@ -469,32 +479,99 @@ export function Plot({
   // Determine if figure wrapping is needed
   const useFigure = figureProp ?? (title != null || subtitle != null || caption != null);
 
-  // Check whether children already include explicit axis components.
+  // Check whether children already include explicit axis/tip components.
   // Compare by function reference (not .name) so this survives minification.
-  const hasExplicitAxes = useMemo(() => {
+  const hasExplicitComponents = useMemo(() => {
     let hasX = false,
-      hasY = false;
+      hasY = false,
+      hasFx = false,
+      hasFy = false,
+      hasTip = false;
+    const tippedMarks: Array<{data: any; x: any; y: any; tip: any; key: any}> = [];
     React.Children.forEach(children, (child) => {
       if (!React.isValidElement(child)) return;
-      const {type} = child;
+      const {type, props, key} = child;
       if (type === AxisXMark || type === GridXMark) hasX = true;
       if (type === AxisYMark || type === GridYMark) hasY = true;
+      if (type === AxisFxMark || type === GridFxMark) hasFx = true;
+      if (type === AxisFyMark || type === GridFyMark) hasFy = true;
+      if (type === Tip) hasTip = true;
+      // Collect marks with tip prop for implicit tip inference
+      if ((props as any)?.tip) {
+        tippedMarks.push({
+          data: (props as any).data,
+          x: (props as any).x,
+          y: (props as any).y,
+          tip: (props as any).tip,
+          key
+        });
+      }
     });
-    return {hasX, hasY};
+    return {hasX, hasY, hasFx, hasFy, hasTip, tippedMarks};
   }, [children]);
 
   // Render implicit axes when the corresponding scale exists and no explicit axis is provided
   const implicitAxes = useMemo(() => {
     if (!computed?.scaleFunctions) return null;
     const axes: ReactNode[] = [];
-    if (!hasExplicitAxes.hasX && computed.scaleFunctions.x) {
+    if (!hasExplicitComponents.hasX && computed.scaleFunctions.x) {
       axes.push(<ImplicitAxisX key="__implicit-axis-x" />);
     }
-    if (!hasExplicitAxes.hasY && computed.scaleFunctions.y) {
+    if (!hasExplicitComponents.hasY && computed.scaleFunctions.y) {
       axes.push(<ImplicitAxisY key="__implicit-axis-y" />);
     }
+    if (!hasExplicitComponents.hasFx && computed.scaleFunctions.fx) {
+      axes.push(<ImplicitAxisFx key="__implicit-axis-fx" />);
+    }
+    if (!hasExplicitComponents.hasFy && computed.scaleFunctions.fy) {
+      axes.push(<ImplicitAxisFy key="__implicit-axis-fy" />);
+    }
     return axes.length > 0 ? axes : null;
-  }, [computed?.scaleFunctions, hasExplicitAxes]);
+  }, [computed?.scaleFunctions, hasExplicitComponents]);
+
+  // Render implicit tips for marks with tip={true} or tip={options}
+  const implicitTips = useMemo(() => {
+    if (hasExplicitComponents.hasTip || hasExplicitComponents.tippedMarks.length === 0) return null;
+    return hasExplicitComponents.tippedMarks.map((mark, i) => {
+      const tipOptions =
+        mark.tip === true ? {} : typeof mark.tip === "string" ? {pointer: mark.tip} : mark.tip;
+      return (
+        <Tip
+          key={`__implicit-tip-${mark.key ?? i}`}
+          data={mark.data}
+          x={mark.x}
+          y={mark.y}
+          pointer={tipOptions.pointer}
+          preferredAnchor={tipOptions.preferredAnchor}
+          {...tipOptions}
+        />
+      );
+    });
+  }, [hasExplicitComponents]);
+
+  // Collect warnings from scale computation
+  const warnings = useMemo(() => {
+    if (!computed) return [];
+    const w: string[] = [];
+    // Check for data/facet mismatches
+    for (const [, reg] of marksRef.current) {
+      if (reg.facet === "auto" && options.facet?.data != null && reg.data != null && reg.data !== options.facet.data) {
+        const facetData = dataify(options.facet.data);
+        const markData = dataify(reg.data);
+        if (facetData && markData && facetData.length > 0 && facetData.length === markData.length) {
+          w.push(
+            `Warning: the ${reg.ariaLabel ?? "mark"} mark appears to use faceted data, but isn't faceted. ` +
+              `The mark data has the same length as the facet data and the mark facet option is "auto", but the ` +
+              `mark data and facet data are distinct. If this mark should be faceted, set the mark facet option ` +
+              `to true; otherwise, suppress this warning by setting the mark facet option to false.`
+          );
+        }
+      }
+    }
+    // Log warnings to console (matching original Observable Plot behavior)
+    for (const msg of w) console.warn(msg);
+    return w;
+  }, [computed, options.facet]);
 
   const svg = (
     <PlotContext.Provider value={contextValue}>
@@ -538,8 +615,10 @@ export function Plot({
           </defs>
         )}
         {computed?.facets ? (
-          // Faceted rendering: render children once per facet
+          // Faceted rendering: render children once per facet, with
+          // facet axes (fx/fy) rendered outside the facet groups
           <>
+            {implicitAxes}
             {computed.facets.map((facet, fi) => {
               if (facet.empty) return null;
               // Compute the translation for this facet cell
@@ -549,19 +628,32 @@ export function Plot({
               return (
                 <FacetContext.Provider key={fi} value={{facetIndex: fi, fx: facet.x, fy: facet.y, fi}}>
                   <g transform={`translate(${tx},${ty})`}>
-                    {implicitAxes}
                     {children}
                   </g>
                 </FacetContext.Provider>
               );
             })}
+            {implicitTips}
           </>
         ) : (
           // Non-faceted rendering
           <>
             {implicitAxes}
             {children}
+            {implicitTips}
           </>
+        )}
+        {warnings.length > 0 && (
+          <text
+            x={width}
+            y={20}
+            dy="-1em"
+            textAnchor="end"
+            fontFamily="initial"
+          >
+            {"\u26a0\ufe0f"}
+            <title>{`${warnings.length} warning${warnings.length === 1 ? "" : "s"}. Please check the console.`}</title>
+          </text>
         )}
       </svg>
     </PlotContext.Provider>
@@ -669,6 +761,95 @@ function ImplicitAxisY() {
           fontSize={12}
           fontVariant="normal"
         >{`↑ ${scaleLabel}`}</text>
+      )}
+    </g>
+  );
+}
+
+function ImplicitAxisFx() {
+  const {scaleFunctions, scales, dimensions} = useContext(PlotContext);
+  if (!scaleFunctions?.fx || !dimensions) return null;
+  const fxScale = scaleFunctions.fx;
+  const {width, marginTop, marginLeft, marginRight} = dimensions;
+  const y = marginTop;
+  const domain = fxScale.domain ? fxScale.domain() : [];
+  const tickFormat = formatDefault;
+  const bw = fxScale.bandwidth ? fxScale.bandwidth() / 2 : 0;
+  const scaleLabel = (scales?.fx as any)?.label;
+  return (
+    <g
+      aria-label="fx-axis"
+      transform={`translate(0,${y})`}
+      fill="none"
+      fontSize={10}
+      fontVariant="tabular-nums"
+      textAnchor="middle"
+    >
+      {domain.map((d: any, i: number) => {
+        const x = fxScale(d);
+        if (x == null || !isFinite(x)) return null;
+        return (
+          <g key={i} transform={`translate(${x + bw},0)`}>
+            <line y2={-6} stroke="currentColor" />
+            <text y={-9} fill="currentColor">
+              {tickFormat(d)}
+            </text>
+          </g>
+        );
+      })}
+      {scaleLabel != null && (
+        <text
+          x={(marginLeft + width - marginRight) / 2}
+          y={-28}
+          fill="currentColor"
+          textAnchor="middle"
+          fontSize={12}
+          fontVariant="normal"
+        >{`${scaleLabel} \u2192`}</text>
+      )}
+    </g>
+  );
+}
+
+function ImplicitAxisFy() {
+  const {scaleFunctions, scales, dimensions} = useContext(PlotContext);
+  if (!scaleFunctions?.fy || !dimensions) return null;
+  const fyScale = scaleFunctions.fy;
+  const {width, height, marginTop, marginBottom, marginRight} = dimensions;
+  const x = width - marginRight;
+  const domain = fyScale.domain ? fyScale.domain() : [];
+  const tickFormat = formatDefault;
+  const bw = fyScale.bandwidth ? fyScale.bandwidth() / 2 : 0;
+  const scaleLabel = (scales?.fy as any)?.label;
+  return (
+    <g
+      aria-label="fy-axis"
+      transform={`translate(${x},0)`}
+      fill="none"
+      fontSize={10}
+      fontVariant="tabular-nums"
+      textAnchor="start"
+    >
+      {domain.map((d: any, i: number) => {
+        const y = fyScale(d);
+        if (y == null || !isFinite(y)) return null;
+        return (
+          <g key={i} transform={`translate(0,${y + bw})`}>
+            <line x2={6} stroke="currentColor" />
+            <text x={9} dy="0.32em" fill="currentColor">
+              {tickFormat(d)}
+            </text>
+          </g>
+        );
+      })}
+      {scaleLabel != null && (
+        <text
+          transform={`translate(${45},${marginTop}) rotate(-90)`}
+          fill="currentColor"
+          textAnchor="end"
+          fontSize={12}
+          fontVariant="normal"
+        >{`\u2191 ${scaleLabel}`}</text>
       )}
     </g>
   );
