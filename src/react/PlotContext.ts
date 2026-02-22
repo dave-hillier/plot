@@ -16,6 +16,7 @@ export interface MarkRegistration {
   id: string;
   data: any;
   channels: Record<string, ChannelSpec>;
+  channelStamp?: string;
   options: Record<string, any>;
   transform?: any;
   initializer?: any;

@@ -67,6 +67,7 @@ export function useMark(options: UseMarkOptions): UseMarkResult {
     id,
     data,
     channels,
+    channelStamp: stamp,
     options,
     transform,
     initializer,

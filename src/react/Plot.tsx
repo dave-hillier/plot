@@ -135,7 +135,7 @@ export function Plot({
   // useLayoutEffect below, which runs after all children have rendered.
   const registerMark = useCallback((registration: MarkRegistration) => {
     const prev = marksRef.current.get(registration.id);
-    if (!prev || prev.data !== registration.data || prev.channels !== registration.channels) {
+    if (!prev || prev.data !== registration.data || prev.channelStamp !== registration.channelStamp) {
       marksRef.current.set(registration.id, registration);
       pendingUpdateRef.current = true;
     }
