@@ -1,10 +1,8 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, DotX} from "../../src/react/index.js";
 
 export async function logDegenerate() {
-  return Plot.plot({
-    x: {
-      type: "log"
-    },
-    marks: [Plot.dotX([0, 0.1, 1, 2, 10])]
-  });
+  return React.createElement(Plot, {x: {type: "log"}},
+    React.createElement(DotX, {data: [0, 0.1, 1, 2, 10]})
+  );
 }

@@ -3,13 +3,45 @@ import {createCanvas, loadImage} from "canvas";
 import {max, mean, quantile} from "d3";
 import * as path from "path";
 import beautify from "js-beautify";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import {act} from "react";
 import assert from "./assert.js";
 import it from "./jsdom.js";
 import * as plots from "./plots/index.ts"; // TODO index.js
 
+// Detect if a value is a React element
+function isReactElement(value) {
+  return value != null && typeof value === "object" && (value.$$typeof != null || (value.type != null && value.props != null));
+}
+
+// Render a React element to a DOM node using ReactDOM with act() for two-phase rendering
+async function renderReactElement(element) {
+  const container = document.createElement("div");
+  document.body.appendChild(container);
+  let reactRoot;
+  await act(async () => {
+    reactRoot = ReactDOM.createRoot(container);
+    reactRoot.render(element);
+  });
+  // Allow additional renders for the two-phase pattern (registration → scale computation → mark rendering)
+  await act(async () => {});
+  await act(async () => {});
+  const result = container.firstElementChild;
+  await act(async () => {
+    reactRoot.unmount();
+  });
+  document.body.removeChild(container);
+  return result;
+}
+
 for (const [name, plot] of Object.entries(plots)) {
   it(`plot ${name}`, async () => {
-    const root = await (name.startsWith("warn") ? assert.warnsAsync : assert.doesNotWarnAsync)(plot);
+    let root = await (name.startsWith("warn") ? assert.warnsAsync : assert.doesNotWarnAsync)(plot);
+    // If the plot function returned a React element, render it to DOM
+    if (isReactElement(root)) {
+      root = await renderReactElement(root);
+    }
     const ext = root.tagName === "svg" ? "svg" : "html";
     for (const svg of root.tagName === "svg" ? [root] : root.querySelectorAll("svg")) {
       svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns", "http://www.w3.org/2000/svg");

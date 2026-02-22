@@ -1,4 +1,4 @@
-import {AreaY, Dot, LineY, Plot, Rect, RectX, RectY, RuleX, RuleY, bin, binX, binY} from "replot/react";
+import {AreaY, Dot, LineY, Plot, Rect, RectX, RectY, RuleX, RuleY, bin, binX, binY, scale} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import olympians from "../data/olympians.ts";
@@ -25,10 +25,9 @@ The binX transform takes **x** as input and outputs **x1** and **x2** representi
 
 While the binX transform is often used to generate **y**, it can output any channel. Below, the **fill** channel represents count per bin, resulting in a one-dimensional heatmap.
 
-{/* TODO: manually convert */}
-{/* Plot
-  .rect(olympians, Plot.binX({fill: "count"}, {x: "weight"}))
-  .plot({color: {scheme: "turbo"}}) */}
+<Plot color={{scheme: "turbo"}}>
+  <Rect data={olympians} {...binX({fill: "count"}, {x: "weight"})} />
+</Plot>
 
 You can partition bins using **z**. If **z** is undefined, it defaults to **fill** or **stroke**, if any. In conjunction with the rectY mark’s implicit [stackY transform](./stack.md), this will produce a stacked histogram.
 
@@ -63,10 +62,9 @@ As you might guess, the binY transform with the rectX mark produces a histogram 
 
 You can produce a two-dimensional heatmap with bin transform and a rect mark by generating a **fill** output channel. Below, color encodes the number of athletes in each bin (of similar height and weight).
 
-{/* TODO: manually convert */}
-{/* Plot
-  .rect(olympians, Plot.bin({fill: "count"}, {x: "weight", y: "height"}))
-  .plot({color: {scheme: "turbo"}}) */}
+<Plot color={{scheme: "turbo"}}>
+  <Rect data={olympians} {...bin({fill: "count"}, {x: "weight", y: "height"})} />
+</Plot>
 
 The bin transform also outputs **x** and **y** channels representing bin centers. These can be used to place a [dot mark](../marks/dot.md) whose size again represents the number of athletes in each bin.
 

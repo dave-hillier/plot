@@ -1,29 +1,26 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, DotX, indexOf} from "../../src/react/index.js";
 
 export async function symbolSetFill() {
-  return Plot.dotX(["circle", "cross", "diamond", "square", "star", "triangle", "wye"], {
-    fill: "currentColor",
-    symbol: Plot.indexOf
-  }).plot();
+  return React.createElement(Plot, {},
+    React.createElement(DotX, {data: ["circle", "cross", "diamond", "square", "star", "triangle", "wye"], fill: "currentColor", symbol: indexOf})
+  );
 }
 
 export async function symbolSetStroke() {
-  return Plot.dotX(["circle", "cross", "diamond", "square", "star", "triangle", "wye"], {
-    stroke: "currentColor",
-    symbol: Plot.indexOf
-  }).plot();
+  return React.createElement(Plot, {},
+    React.createElement(DotX, {data: ["circle", "cross", "diamond", "square", "star", "triangle", "wye"], stroke: "currentColor", symbol: indexOf})
+  );
 }
 
 export async function symbolSetFillColor() {
-  return Plot.dotX(["circle", "cross", "diamond", "square", "star", "triangle", "wye"], {
-    fill: Plot.indexOf,
-    symbol: Plot.indexOf
-  }).plot({symbol: {legend: true}});
+  return React.createElement(Plot, {symbol: {legend: true}},
+    React.createElement(DotX, {data: ["circle", "cross", "diamond", "square", "star", "triangle", "wye"], fill: indexOf, symbol: indexOf})
+  );
 }
 
 export async function symbolSetStrokeColor() {
-  return Plot.dotX(["circle", "cross", "diamond", "square", "star", "triangle", "wye"], {
-    stroke: Plot.indexOf,
-    symbol: Plot.indexOf
-  }).plot({symbol: {legend: true}});
+  return React.createElement(Plot, {symbol: {legend: true}},
+    React.createElement(DotX, {data: ["circle", "cross", "diamond", "square", "star", "triangle", "wye"], stroke: indexOf, symbol: indexOf})
+  );
 }

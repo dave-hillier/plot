@@ -1,4 +1,4 @@
-import {AreaY, BarX, BarY, Dot, Plot, RectY, RuleX, RuleY, TextX, groupZ, stackX, stackY, stackY2} from "replot/react";
+import {AreaY, BarX, BarY, Dot, Plot, RectY, RuleX, RuleY, TextX, groupZ, stackX, stackY, stackY2, scale} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import alphabet from "../data/alphabet.ts";
@@ -18,28 +18,33 @@ export const setOrder = () => {};
 export const offset = null;
 export const setOffset = () => {};
 
-{/*
-// TODO: manually convert: const scheme = Plot.scale({color: {type: "categorical"}}).range;
-// TODO: manually convert: function Likert(responses) {
-// TODO: manually convert: const map = new Map(responses);
-// TODO: manually convert: return {
-// TODO: manually convert: order: Array.from(map.keys()),
-// TODO: manually convert: offset(I, X1, X2, Z) {
-// TODO: manually convert: for (const stacks of I) {
-// TODO: manually convert: for (const stack of stacks) {
-// TODO: manually convert: const k = d3.sum(stack, (i) => (X2[i] - X1[i]) * (1 - map.get(Z[i]))) / 2;
-// TODO: manually convert: for (const i of stack) {
-// TODO: manually convert: X1[i] -= k;
-// TODO: manually convert: X2[i] -= k;
-// TODO: manually convert: };
-// TODO: manually convert: const likert = Likert([
-// TODO: manually convert: ["Strongly Disagree", -1],
-// TODO: manually convert: ["Disagree", -1],
-// TODO: manually convert: ["Neutral", 0],
-// TODO: manually convert: ["Agree", 1],
-// TODO: manually convert: ["Strongly Agree", 1]
-// TODO: manually convert: ]);
-*/}
+export const scheme = scale({color: {type: "categorical"}}).range;
+
+export function Likert(responses) {
+  const map = new Map(responses);
+  return {
+    order: Array.from(map.keys()),
+    offset(I, X1, X2, Z) {
+      for (const stacks of I) {
+        for (const stack of stacks) {
+          const k = d3.sum(stack, (i) => (X2[i] - X1[i]) * (1 - map.get(Z[i]))) / 2;
+          for (const i of stack) {
+            X1[i] -= k;
+            X2[i] -= k;
+          }
+        }
+      }
+    }
+  };
+}
+
+export const likert = Likert([
+  ["Strongly Disagree", -1],
+  ["Disagree", -1],
+  ["Neutral", 0],
+  ["Agree", 1],
+  ["Strongly Agree", 1]
+]);
 
 # Stack transform
 

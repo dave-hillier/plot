@@ -5,16 +5,6 @@ import olympians from "../data/olympians.ts";
 import gistemp from "../data/gistemp.ts";
 import penguins from "../data/penguins.ts";
 
-{/*
-// TODO: manually convert: const olympians = shallowRef([
-
-// TODO: manually convert: {weight: 170, height: 2.21, sex: "male"}
-
-// TODO: manually convert: const gistemp = shallowRef([
-
-// TODO: manually convert: {Date: new Date("2016-12-01"), Anomaly: 1.35}
-
-*/}
 
 # Legends <VersionBadge version="0.3.0" />
 
@@ -46,7 +36,7 @@ Plot does not yet generate legends for the *r* (radius) scale or the *length* sc
 
 If the **legend** [scale option](./scales.md#scale-options) is true, the default legend will be produced for the scale; otherwise, the meaning of the **legend** option depends on the scale: for quantitative color scales, it defaults to *ramp* but may be set to *swatches* for a discrete scale (most commonly for *threshold* color scales); for *ordinal* *color* scales and *symbol* scales, only the *swatches* value is supported. If the **legend* scale option is undefined, it will be inherited from the top-level **legend** plot option. <VersionBadge pr="2249" />
 
-{/* TODO Describe the color and opacity options. */}
+The **color** legend supports quantitative, ordinal, and categorical scales. For quantitative scales, a gradient ramp is displayed; for ordinal and categorical scales, swatches are shown. The **opacity** legend shows an opacity ramp for quantitative opacity scales.
 
 Categorical and ordinal color legends are rendered as swatches, unless the **legend** option is set to *ramp*. The swatches can be configured with the following options:
 
@@ -93,7 +83,7 @@ Renders a standalone legend for the scale defined by the given *options* object,
 
 For example, here is a *ramp* legend of a *linear* *color* scale with the default domain of [0, 1] and default scheme *turbo*:
 
-{/* TODO: PlotRender - manually convert: color: {type: "linear"}, defer method="legend" */}
+<Plot color={{type: "linear", legend: true}} />
 
 ```js
 Plot.legend({color: {type: "linear"}})
@@ -101,7 +91,7 @@ Plot.legend({color: {type: "linear"}})
 
 The *options* object may also include any additional legend options described in the previous section. For example, to make the above legend slightly wider:
 
-{/* TODO: PlotRender - manually convert: width: 320, color: {type: "linear"}, defer method="legend" */}
+<Plot width={320} color={{type: "linear", legend: true}} />
 
 ```js
 Plot.legend({width: 320, color: {type: "linear"}})

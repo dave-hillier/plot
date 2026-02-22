@@ -1,20 +1,27 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, LineY, mapY} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 const random = () => d3.randomNormal.source(d3.randomLcg(42))();
 
 export async function randomWalk() {
-  return Plot.lineY({length: 500}, Plot.mapY("cumsum", {y: random()})).plot();
+  return React.createElement(Plot, {},
+    React.createElement(LineY, {data: {length: 500}, ...mapY("cumsum", {y: random()})})
+  );
 }
 
 export async function randomWalkCustomMap1() {
   const cumsum = (I: number[], V: number[]) => ((sum) => Float64Array.from(I, (i) => (sum += V[i])))(0);
-  return Plot.lineY({length: 500}, Plot.mapY(cumsum, {y: random()})).plot();
+  return React.createElement(Plot, {},
+    React.createElement(LineY, {data: {length: 500}, ...mapY(cumsum, {y: random()})})
+  );
 }
 
 export async function randomWalkCustomMap2() {
   const cumsum = (V: number[]) => ((sum) => Float64Array.from(V, (v) => (sum += v)))(0);
-  return Plot.lineY({length: 500}, Plot.mapY(cumsum, {y: random()})).plot();
+  return React.createElement(Plot, {},
+    React.createElement(LineY, {data: {length: 500}, ...mapY(cumsum, {y: random()})})
+  );
 }
 
 export async function randomWalkCustomMap3() {
@@ -26,5 +33,7 @@ export async function randomWalkCustomMap3() {
       }
     }
   };
-  return Plot.lineY({length: 500}, Plot.mapY(cumsum, {y: random()})).plot();
+  return React.createElement(Plot, {},
+    React.createElement(LineY, {data: {length: 500}, ...mapY(cumsum, {y: random()})})
+  );
 }

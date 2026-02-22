@@ -1,4 +1,5 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, BarY} from "../../src/react/index.js";
 
 const requests = [
   [new Date("2002-01-01"), 9],
@@ -16,17 +17,19 @@ const requests = [
 ];
 
 export async function yearlyRequests() {
-  return Plot.plot({
-    label: null,
-    x: {interval: 1, tickFormat: ""}, // TODO https://github.com/observablehq/plot/issues/768
-    marks: [Plot.barY(requests, {x: ([date]) => date.getUTCFullYear(), y: "1"})]
-  });
+  return React.createElement(Plot, {
+      label: null,
+      x: {interval: 1, tickFormat: ""} // TODO https://github.com/observablehq/plot/issues/768
+    },
+    React.createElement(BarY, {data: requests, x: ([date]) => date.getUTCFullYear(), y: "1"})
+  );
 }
 
 export async function yearlyRequestsDate() {
-  return Plot.plot({
-    label: null,
-    x: {interval: "year"},
-    marks: [Plot.barY(requests, {x: "0", y: "1"})]
-  });
+  return React.createElement(Plot, {
+      label: null,
+      x: {interval: "year"}
+    },
+    React.createElement(BarY, {data: requests, x: "0", y: "1"})
+  );
 }

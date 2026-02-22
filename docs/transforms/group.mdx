@@ -1,11 +1,9 @@
-import {BarX, BarY, Cell, Dot, Link, Plot, RuleX, RuleY, Text, filter, group, groupX, groupY, stackX} from "replot/react";
+import {BarX, BarY, Cell, Dot, Link, Plot, RuleX, RuleY, Text, filter, group, groupX, groupY, groupZ, stackX, scale} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import olympians from "../data/olympians.ts";
 
-{/*
-// TODO: manually convert: const scheme = Plot.scale({color: {type: "categorical"}}).range;
-*/}
+export const scheme = scale({color: {type: "categorical"}}).range;
 
 # Group transform
 
@@ -139,16 +137,16 @@ To group solely on **z** (or **fill** or **stroke**), use [groupZ](#groupZ). The
 <Plot height={100} x={{percent: true}}>
   <BarX data={olympians} {...stackX(
         {order: "x", reverse: true},
-        Plot.groupZ(
+        groupZ(
           {x: "proportion"},
           {z: "sport", fillOpacity: 0.2, inset: 0.5}
         )
       )} />
   <Text data={olympians} {...filter(
         (D) => D.length > 200,
-        Plot.stackX(
+        stackX(
           {order: "x", reverse: true},
-          Plot.groupZ(
+          groupZ(
             {x: "proportion", text: "first"},
             {z: "sport", text: "sport", rotate: 90}
           )

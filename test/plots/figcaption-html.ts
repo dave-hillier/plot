@@ -1,20 +1,23 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, BarY, RuleY} from "../../src/react/index.js";
 import * as d3 from "d3";
 import {html} from "htl";
 
 export async function figcaptionHtml() {
   const alphabet = await d3.csv<any>("data/alphabet.csv", d3.autoType);
-  return Plot.plot({
-    caption: html`Figure 1. The relative frequency of letters in the English language. Data:
-      <i>Cryptographical Mathematics</i>`,
-    x: {
-      label: null
+  return React.createElement(Plot, {
+      caption: html`Figure 1. The relative frequency of letters in the English language. Data:
+        <i>Cryptographical Mathematics</i>`,
+      x: {
+        label: null
+      },
+      y: {
+        label: "Frequency (%)",
+        transform: (y) => y * 100,
+        grid: true
+      }
     },
-    y: {
-      label: "Frequency (%)",
-      transform: (y) => y * 100,
-      grid: true
-    },
-    marks: [Plot.barY(alphabet, {x: "letter", y: "frequency"}), Plot.ruleY([0])]
-  });
+    React.createElement(BarY, {data: alphabet, x: "letter", y: "frequency"}),
+    React.createElement(RuleY, {data: [0]})
+  );
 }

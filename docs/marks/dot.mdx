@@ -1,4 +1,4 @@
-import {Dot, Geo, Plot, RuleX, RuleY, Text, bin, geoCentroid, groupY, selectMinX, stackY2} from "replot/react";
+import {Dot, DotX, Geo, Plot, RuleX, RuleY, Text, bin, geoCentroid, groupY, identity, normalizeX, selectMinX, stackY2} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import * as topojson from "topojson-client";
@@ -16,19 +16,10 @@ export const statemesh = [];
 export const sorted = true;
 export const setSorted = () => {};
 
-{/*
-// TODO: manually convert: const xy = Plot.normalizeX({basis: "sum", z: "state", x: "population", y: "state"});
-// TODO: manually convert: Promise.all([
-// TODO: manually convert: d3.json("../data/us-counties-10m.json"),
-// TODO: manually convert: d3.csv("../data/us-county-population.csv")
-// TODO: manually convert: ]).then(([_us, _population]) => {
-// TODO: manually convert: const map = new Map(_population.map((d) => [d.state + d.county, +d.population]));
-// TODO: manually convert: _us.objects.counties.geometries.forEach((g) => (g.properties.population = map.get(g.id)));
-// TODO: manually convert: us.value = _us;
-// TODO: manually convert: d3.csv("../data/us-population-state-age.csv", d3.autoType).then((data) => {
-// TODO: manually convert: const ages = data.columns.slice(1); // convert wide data to tidy data
-// TODO: manually convert: stateage.value = Object.assign(ages.flatMap((age) => data.map((d) => ({state: d.name, age, population: d[age]}))), {ages});
-*/}
+export const xy = normalizeX("sum", {x: "population", y: "state", z: "state"});
+
+{/* Data: counties/statemesh are loaded from us-counties-10m.json with population merged from us-county-population.csv.
+   stateage is loaded from us-population-state-age.csv, pivoted to tidy format with {state, age, population} and an .ages property. */}
 
 # Dot mark
 
@@ -123,29 +114,15 @@ To improve accessibility, particularly for readers with color vision deficiency,
 
 Plot uses the following default symbols for filled dots:
 
-{/* TODO: manually convert */}
-{/* Plot.dotX([
-  "circle",
-  "cross",
-  "diamond",
-  "square",
-  "star",
-  "triangle",
-  "wye"
-], {fill: "currentColor", symbol: Plot.identity}).plot() */}
+<Plot>
+  <DotX data={["circle", "cross", "diamond", "square", "star", "triangle", "wye"]} fill="currentColor" symbol={identity} />
+</Plot>
 
 There is a separate set of default symbols for stroked dots:
 
-{/* TODO: manually convert */}
-{/* Plot.dotX([
-  "circle",
-  "plus",
-  "times",
-  "triangle2",
-  "asterisk",
-  "square2",
-  "diamond2",
-], {stroke: "currentColor", symbol: Plot.identity}).plot() */}
+<Plot>
+  <DotX data={["circle", "plus", "times", "triangle2", "asterisk", "square2", "diamond2"]} stroke="currentColor" symbol={identity} />
+</Plot>
 
 
 The stroked symbols are based on [Heman Robinson’s research](https://www.tandfonline.com/doi/abs/10.1080/10618600.2019.1637746). There is also a *hexagon* symbol; it is primarily intended for the [hexbin transform](../transforms/hexbin.md). You can even specify a D3 or custom symbol type as an object that implements the [*symbol*.draw(*context*, *size*)](https://d3js.org/d3-shape/symbol#symbolType_draw) method.

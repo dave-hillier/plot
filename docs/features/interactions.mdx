@@ -3,12 +3,6 @@ import * as d3 from "d3";
 import {useEffect} from "react";
 import olympians from "../data/olympians.ts";
 
-{/*
-// TODO: manually convert: const olympians = shallowRef([
-
-// TODO: manually convert: {weight: 170, height: 2.21, sex: "male"}
-
-*/}
 
 # Interactions
 
@@ -20,14 +14,9 @@ When looking at a scatterplot, the reader may wonder, *what abstract values does
 
 The [pointer transform](../interactions/pointer.md) can provide an answer: it dynamically [filters](../transforms/filter.md) a mark such that only the data closest to the pointer (such as the mouse) is rendered. The pointer transform is often paired with the [tip mark](../marks/tip.md) for interactive tooltips, revealing exact values as the pointer moves over the plot. The tip can show additional fields not otherwise visible, such as the *name* and *sport* of Olympic athletes below.
 
-{/* TODO: manually convert */}
-{/* Plot.dot(olympians, {
-  x: "weight",
-  y: "height",
-  stroke: "sex",
-  channels: {name: "name", sport: "sport"},
-  tip: true
-}).plot() */}
+<Plot>
+  <Dot data={olympians} x="weight" y="height" stroke="sex" channels={{name: "name", sport: "sport"}} tip />
+</Plot>
 
 The [crosshair mark](../interactions/crosshair.md) uses the pointer transform internally to display a [rule](../marks/rule.md) and a [text](../marks/text.md) showing the **x** (horizontal↔︎ position) and **y** (vertical↕︎ position) value of the nearest data.
 

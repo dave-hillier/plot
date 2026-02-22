@@ -1,5 +1,8 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, RuleX, dodgeY} from "../../src/react/index.js";
 
 export async function dodgeRule() {
-  return Plot.ruleX([1, 2, 3], Plot.dodgeY()).plot();
+  return React.createElement(Plot, {},
+    React.createElement(RuleX, {data: [1, 2, 3], ...dodgeY()})
+  );
 }

@@ -1,10 +1,13 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, BarY, RuleY} from "../../src/react/index.js";
 
 export async function ordinalBar() {
-  return Plot.plot({
-    y: {
-      grid: true
+  return React.createElement(Plot, {
+      y: {
+        grid: true
+      }
     },
-    marks: [Plot.barY("ABCDEF"), Plot.ruleY([0])]
-  });
+    React.createElement(BarY, {data: "ABCDEF"}),
+    React.createElement(RuleY, {data: [0]})
+  );
 }

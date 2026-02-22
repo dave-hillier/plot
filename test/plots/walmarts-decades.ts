@@ -1,4 +1,5 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, Geo, Raster} from "../../src/react/index.js";
 import * as d3 from "d3";
 import {mesh} from "topojson-client";
 
@@ -15,28 +16,29 @@ export async function walmartsDecades() {
   const decade = (d) => Math.floor(d.date.getUTCFullYear() / 10) * 10;
   const coordinate = (d) => [d.longitude, d.latitude];
   const decades = d3.sort(new Set(walmarts.map(decade)));
-  return Plot.plot({
-    width: 960,
-    height: 150,
-    marginLeft: 0,
-    marginRight: 0,
-    projection: "albers-usa",
-    fx: {tickFormat: (d) => `${d}’s`, padding: 0},
-    facet: {data: decades, x: decades},
-    marks: [
-      Plot.geo(statemesh, {strokeOpacity: 0.25}),
-      Plot.geo(decades, {
-        geometry: (y) => ({type: "MultiPoint", coordinates: walmarts.filter((d) => decade(d) < y).map(coordinate)}),
-        fill: "black",
-        r: 1
-      }),
-      Plot.geo(decades, {
-        geometry: (y) => ({type: "MultiPoint", coordinates: walmarts.filter((d) => decade(d) === y).map(coordinate)}),
-        fill: "red",
-        r: 1
-      })
-    ]
-  });
+  return React.createElement(Plot, {
+      width: 960,
+      height: 150,
+      marginLeft: 0,
+      marginRight: 0,
+      projection: "albers-usa",
+      fx: {tickFormat: (d) => `${d}'s`, padding: 0},
+      facet: {data: decades, x: decades}
+    },
+    React.createElement(Geo, {data: statemesh, strokeOpacity: 0.25}),
+    React.createElement(Geo, {
+      data: decades,
+      geometry: (y) => ({type: "MultiPoint", coordinates: walmarts.filter((d) => decade(d) < y).map(coordinate)}),
+      fill: "black",
+      r: 1
+    }),
+    React.createElement(Geo, {
+      data: decades,
+      geometry: (y) => ({type: "MultiPoint", coordinates: walmarts.filter((d) => decade(d) === y).map(coordinate)}),
+      fill: "red",
+      r: 1
+    })
+  );
 }
 
 export async function walmartsAdditions() {
@@ -49,20 +51,20 @@ export async function walmartsAdditions() {
       })
     )
   ]);
-  return Plot.plot({
-    width: 200,
-    projection: "albers-usa",
-    fy: {interval: "5 years", axis: "right", tickFormat: "%Y—", reverse: true},
-    marks: [
-      Plot.geo(statemesh, {strokeOpacity: 0.25}),
-      Plot.raster(walmarts, {
-        pixelSize: 1.5,
-        imageRendering: "pixelated",
-        fy: "date",
-        x: "longitude",
-        y: "latitude",
-        fill: "date"
-      })
-    ]
-  });
+  return React.createElement(Plot, {
+      width: 200,
+      projection: "albers-usa",
+      fy: {interval: "5 years", axis: "right", tickFormat: "%Y—", reverse: true}
+    },
+    React.createElement(Geo, {data: statemesh, strokeOpacity: 0.25}),
+    React.createElement(Raster, {
+      data: walmarts,
+      pixelSize: 1.5,
+      imageRendering: "pixelated",
+      fy: "date",
+      x: "longitude",
+      y: "latitude",
+      fill: "date"
+    })
+  );
 }

@@ -1,4 +1,5 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, Density, Dot, Geo} from "../../src/react/index.js";
 import * as d3 from "d3";
 import {mesh} from "topojson-client";
 
@@ -12,17 +13,16 @@ export async function walmartsDensity() {
       })
     )
   ]);
-  return Plot.plot({
-    width: 960,
-    height: 600,
-    projection: "albers-usa",
-    color: {
-      scheme: "blues"
+  return React.createElement(Plot, {
+      width: 960,
+      height: 600,
+      projection: "albers-usa",
+      color: {
+        scheme: "blues"
+      }
     },
-    marks: [
-      Plot.density(walmarts, {x: "longitude", y: "latitude", bandwidth: 12, fill: "density"}),
-      Plot.dot(walmarts, {x: "longitude", y: "latitude", r: 1, fill: "currentColor"}),
-      Plot.geo(statemesh, {strokeOpacity: 0.3})
-    ]
-  });
+    React.createElement(Density, {data: walmarts, x: "longitude", y: "latitude", bandwidth: 12, fill: "density"}),
+    React.createElement(Dot, {data: walmarts, x: "longitude", y: "latitude", r: 1, fill: "currentColor"}),
+    React.createElement(Geo, {data: statemesh, strokeOpacity: 0.3})
+  );
 }

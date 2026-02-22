@@ -1,27 +1,28 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, VectorX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function caltrainDirection() {
   const caltrain = await d3.csv<any>("data/caltrain.csv");
-  return Plot.plot({
-    x: {
-      tickFormat: "%I %p"
+  return React.createElement(Plot, {
+      x: {
+        tickFormat: "%I %p"
+      },
+      color: {
+        domain: "NLB",
+        range: ["currentColor", "peru", "brown"]
+      },
+      facet: {
+        data: caltrain,
+        label: null,
+        y: "type"
+      }
     },
-    color: {
-      domain: "NLB",
-      range: ["currentColor", "peru", "brown"]
-    },
-    facet: {
+    React.createElement(VectorX, {
       data: caltrain,
-      label: null,
-      y: "type"
-    },
-    marks: [
-      Plot.vectorX(caltrain, {
-        x: (d) => new Date(Date.UTC(2000, 0, 1, d.hours, d.minutes)),
-        stroke: "type",
-        rotate: (d) => (d.orientation === "N" ? 0 : 180)
-      })
-    ]
-  });
+      x: (d) => new Date(Date.UTC(2000, 0, 1, d.hours, d.minutes)),
+      stroke: "type",
+      rotate: (d) => (d.orientation === "N" ? 0 : 180)
+    })
+  );
 }

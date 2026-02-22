@@ -1,13 +1,12 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, Dot, LinearRegressionY} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function linearRegressionMtcars() {
   const mtcars = await d3.csv<any>("data/mtcars.csv", d3.autoType);
-  return Plot.plot({
-    marks: [
-      Plot.dot(mtcars, {x: "wt", y: "hp", r: 2}),
-      Plot.linearRegressionY(mtcars, {x: "wt", y: "hp", stroke: null, ci: 0.8}),
-      Plot.linearRegressionY(mtcars, {x: "wt", y: "hp"})
-    ]
-  });
+  return React.createElement(Plot, {},
+    React.createElement(Dot, {data: mtcars, x: "wt", y: "hp", r: 2}),
+    React.createElement(LinearRegressionY, {data: mtcars, x: "wt", y: "hp", stroke: null, ci: 0.8}),
+    React.createElement(LinearRegressionY, {data: mtcars, x: "wt", y: "hp"})
+  );
 }

@@ -1,4 +1,5 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, Cell, CellX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function shorthandCell() {
@@ -17,9 +18,13 @@ export async function shorthandCell() {
     ["Mia", "Jacob"],
     ["Emma", "Jacob"]
   ];
-  return Plot.cell(matrix).plot();
+  return React.createElement(Plot, {},
+    React.createElement(Cell, {data: matrix})
+  );
 }
 
 export async function shorthandCellCategorical() {
-  return Plot.cellX(d3.range(10)).plot({color: {scheme: "Tableau10"}});
+  return React.createElement(Plot, {color: {scheme: "Tableau10"}},
+    React.createElement(CellX, {data: d3.range(10)})
+  );
 }

@@ -1,12 +1,14 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, Frame} from "../../src/react/index.js";
 
 export async function emptyX() {
-  return Plot.plot({
-    grid: true,
-    x: {
-      domain: [0, 1],
-      axis: null
+  return React.createElement(Plot, {
+      grid: true,
+      x: {
+        domain: [0, 1],
+        axis: null
+      }
     },
-    marks: [Plot.frame()]
-  });
+    React.createElement(Frame, {})
+  );
 }

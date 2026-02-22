@@ -1,4 +1,5 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, Line} from "../../src/react/index.js";
 
 export async function yearlyRequestsLine() {
   const requests = [
@@ -15,16 +16,17 @@ export async function yearlyRequestsLine() {
     [2012, 9],
     [2019, 20]
   ];
-  return Plot.plot({
-    label: null,
-    x: {
-      interval: 1,
-      tickFormat: "", // TODO https://github.com/observablehq/plot/issues/768
-      inset: 20
+  return React.createElement(Plot, {
+      label: null,
+      x: {
+        interval: 1,
+        tickFormat: "", // TODO https://github.com/observablehq/plot/issues/768
+        inset: 20
+      },
+      y: {
+        zero: true
+      }
     },
-    y: {
-      zero: true
-    },
-    marks: [Plot.line(requests)]
-  });
+    React.createElement(Line, {data: requests})
+  );
 }

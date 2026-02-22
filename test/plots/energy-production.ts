@@ -1,4 +1,5 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, RectY, RuleY} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 // This dataset is hierarchical:
@@ -17,7 +18,7 @@ import * as d3 from "d3";
 //     ├ Solar Energy Production
 //     └ Wind Energy Production
 //
-// We don’t want to double-count by stacking a series that is already
+// We don't want to double-count by stacking a series that is already
 // represented by another series!
 const types = new Map([
   ["Total Fossil Fuels Production", "Fossil fuels"],
@@ -28,23 +29,22 @@ const types = new Map([
 export async function energyProduction() {
   const energy = (await d3.csv<any>("data/energy-production.csv"))
     .filter((d) => d.YYYYMM.slice(-2) === "13") // only take annual data
-    .filter((d) => types.has(d.Description)) // don’t double-count categories
+    .filter((d) => types.has(d.Description)) // don't double-count categories
     .map((d) => ({...d, Year: +d.YYYYMM.slice(0, 4), Value: +d.Value}));
-  return Plot.plot({
-    x: {
-      tickFormat: "d",
-      label: null
+  return React.createElement(Plot, {
+      x: {
+        tickFormat: "d",
+        label: null
+      },
+      y: {
+        label: "Annual production (quads)"
+      },
+      color: {
+        tickFormat: (t) => types.get(t),
+        legend: true
+      }
     },
-    y: {
-      label: "Annual production (quads)"
-    },
-    color: {
-      tickFormat: (t) => types.get(t),
-      legend: true
-    },
-    marks: [
-      Plot.rectY(energy, {x: "Year", interval: 1, y: "Value", fill: "Description", sort: {color: "height"}}),
-      Plot.ruleY([0])
-    ]
-  });
+    React.createElement(RectY, {data: energy, x: "Year", interval: 1, y: "Value", fill: "Description", sort: {color: "height"}}),
+    React.createElement(RuleY, {data: [0]})
+  );
 }

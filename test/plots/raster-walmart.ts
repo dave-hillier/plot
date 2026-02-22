@@ -1,4 +1,5 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, Raster, Geo} from "../../src/react/index.js";
 import * as d3 from "d3";
 import {feature, mesh} from "topojson-client";
 
@@ -9,11 +10,13 @@ async function rasterWalmart(options) {
       .json<any>("data/us-counties-10m.json")
       .then((us) => [feature(us, us.objects.nation.geometries[0]), mesh(us, us.objects.states, (a, b) => a !== b)])
   ]);
-  return Plot.plot({
-    projection: "albers",
-    color: {scheme: "spectral"},
-    marks: [Plot.raster(walmarts, {x: "longitude", y: "latitude", ...options, clip: outline}), Plot.geo(statemesh)]
-  });
+  return React.createElement(Plot, {
+      projection: "albers",
+      color: {scheme: "spectral"}
+    },
+    React.createElement(Raster, {data: walmarts, x: "longitude", y: "latitude", ...options, clip: outline}),
+    React.createElement(Geo, {data: statemesh})
+  );
 }
 
 export async function rasterWalmartBarycentric() {

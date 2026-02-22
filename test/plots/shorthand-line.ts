@@ -1,4 +1,5 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, Line} from "../../src/react/index.js";
 
 export async function shorthandLine() {
   const timeSeries = [
@@ -43,5 +44,7 @@ export async function shorthandLine() {
     [new Date("2018-02-27"), 179.100006],
     [new Date("2018-02-28"), 179.259995]
   ];
-  return Plot.line(timeSeries).plot();
+  return React.createElement(Plot, {},
+    React.createElement(Line, {data: timeSeries})
+  );
 }

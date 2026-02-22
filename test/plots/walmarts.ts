@@ -1,4 +1,5 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, Geo, Dot, hexbin} from "../../src/react/index.js";
 import * as d3 from "d3";
 import {mesh} from "topojson-client";
 
@@ -12,27 +13,26 @@ export async function walmarts() {
       })
     )
   ]);
-  return Plot.plot({
-    width: 960,
-    height: 600,
-    projection: "albers-usa",
-    color: {
-      legend: true,
-      label: "First year opened",
-      scheme: "spectral"
+  return React.createElement(Plot, {
+      width: 960,
+      height: 600,
+      projection: "albers-usa",
+      color: {
+        legend: true,
+        label: "First year opened",
+        scheme: "spectral"
+      },
+      r: {
+        range: [0, 20]
+      }
     },
-    r: {
-      range: [0, 20]
-    },
-    marks: [
-      Plot.geo(statemesh, {strokeOpacity: 0.25}),
-      Plot.dot(
-        walmarts,
-        Plot.hexbin(
-          {r: "count", fill: "min", title: "min"},
-          {x: "longitude", y: "latitude", fill: "date", stroke: "white", title: "date"}
-        )
+    React.createElement(Geo, {data: statemesh, strokeOpacity: 0.25}),
+    React.createElement(Dot, {
+      data: walmarts,
+      ...hexbin(
+        {r: "count", fill: "min", title: "min"},
+        {x: "longitude", y: "latitude", fill: "date", stroke: "white", title: "date"}
       )
-    ]
-  });
+    })
+  );
 }

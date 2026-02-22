@@ -1,11 +1,15 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, Tip, RuleX} from "../../src/react/index.js";
 
 function tip(
-  data: Plot.Data,
-  {x = 0, frameAnchor = "bottom", anchor = "bottom", ...tipOptions}: Plot.TipOptions = {},
-  {height = 90, ...plotOptions}: Plot.PlotOptions = {}
+  data: any,
+  {x = 0, frameAnchor = "bottom", anchor = "bottom", ...tipOptions}: any = {},
+  {height = 90, marks = [], ...plotOptions}: any = {}
 ) {
-  return Plot.tip(data, {x, frameAnchor, anchor, ...tipOptions}).plot({height, ...plotOptions});
+  return React.createElement(Plot, {height, ...plotOptions},
+    ...marks,
+    React.createElement(Tip, {data, x, frameAnchor, anchor, ...tipOptions})
+  );
 }
 
 export async function tipFormatChannels() {
@@ -17,7 +21,7 @@ export async function tipFormatFacet() {
 }
 
 export async function tipFormatFacetFalse() {
-  return tip({length: 1}, {facet: false}, {marks: [Plot.ruleX({length: 2}, {fx: ["a", "b"]})], height: 110});
+  return tip({length: 1}, {facet: false}, {marks: [React.createElement(RuleX, {data: {length: 2}, fx: ["a", "b"]})], height: 110});
 }
 
 export async function tipFormatFacetFormat() {

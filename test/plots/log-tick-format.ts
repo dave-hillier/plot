@@ -1,9 +1,10 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, formatNumber} from "../../src/react/index.js";
 
 export async function logTickFormatFunction() {
-  return Plot.plot({x: {type: "log", domain: [1, 4200], tickFormat: Plot.formatNumber()}});
+  return React.createElement(Plot, {x: {type: "log", domain: [1, 4200], tickFormat: formatNumber()}});
 }
 
 export async function logTickFormatFunctionSv() {
-  return Plot.plot({x: {type: "log", domain: [1, 4200], tickFormat: Plot.formatNumber("sv-SE")}});
+  return React.createElement(Plot, {x: {type: "log", domain: [1, 4200], tickFormat: formatNumber("sv-SE")}});
 }

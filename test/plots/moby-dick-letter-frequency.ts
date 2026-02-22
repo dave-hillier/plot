@@ -1,21 +1,21 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, BarY, RuleY, groupX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function mobyDickLetterFrequency() {
   const mobydick = await d3.text("data/moby-dick-chapter-1.txt");
   const letters = [...mobydick].filter((c) => /[a-z]/i.test(c)).map((c) => c.toUpperCase());
-  return Plot.plot({
-    y: {grid: true},
-    marks: [Plot.barY(letters, Plot.groupX({y: "count"})), Plot.ruleY([0])]
-  });
+  return React.createElement(Plot, {y: {grid: true}},
+    React.createElement(BarY, {data: letters, ...groupX({y: "count"})}),
+    React.createElement(RuleY, {data: [0]})
+  );
 }
 
 export async function mobyDickLetterFrequencyFillX() {
   const mobydick = await d3.text("data/moby-dick-chapter-1.txt");
   const letters = [...mobydick].filter((c) => /[a-z]/i.test(c)).map((c) => c.toUpperCase());
-  return Plot.plot({
-    y: {grid: true},
-    color: {scheme: "spectral"},
-    marks: [Plot.barY(letters, Plot.groupX({y: "count", fill: "x"})), Plot.ruleY([0])]
-  });
+  return React.createElement(Plot, {y: {grid: true}, color: {scheme: "spectral"}},
+    React.createElement(BarY, {data: letters, ...groupX({y: "count", fill: "x"})}),
+    React.createElement(RuleY, {data: [0]})
+  );
 }

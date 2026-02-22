@@ -15,5 +15,5 @@
       "react-dom/*": ["../node_modules/@types/react-dom/*"]
     }
   },
-  "include": ["src/**/*.d.ts", "src/**/*.js", "src/**/*.ts", "src/**/*.tsx", "test/**/*.js", "test/**/*.ts"]
+  "include": ["src/**/*.d.ts", "src/**/*.js", "src/**/*.ts", "src/**/*.tsx", "test/**/*.js", "test/**/*.ts", "test/**/*.tsx"]
 }

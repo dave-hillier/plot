@@ -1,44 +1,44 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, Line, Dot, groupX, binY} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function carsMpg() {
   const data = await d3.csv<any>("data/cars.csv", d3.autoType);
-  return Plot.plot({
-    x: {
-      type: "point"
+  return React.createElement(Plot, {
+      x: {
+        type: "point"
+      },
+      y: {
+        grid: true,
+        zero: true
+      },
+      color: {
+        type: "ordinal"
+      }
     },
-    y: {
-      grid: true,
-      zero: true
-    },
-    color: {
-      type: "ordinal"
-    },
-    marks: [
-      Plot.line(
-        data,
-        Plot.groupX(
-          {y: "mean", sort: "x"},
-          {
-            x: "year",
-            y: "economy (mpg)",
-            stroke: "cylinders",
-            curve: "basis"
-          }
-        )
-      ),
-      Plot.dot(
-        data,
-        Plot.binY(
-          {r: "count"},
-          {
-            x: "year",
-            y: "economy (mpg)",
-            stroke: "cylinders",
-            thresholds: 20
-          }
-        )
+    React.createElement(Line, {
+      data,
+      ...groupX(
+        {y: "mean", sort: "x"},
+        {
+          x: "year",
+          y: "economy (mpg)",
+          stroke: "cylinders",
+          curve: "basis"
+        }
       )
-    ]
-  });
+    }),
+    React.createElement(Dot, {
+      data,
+      ...binY(
+        {r: "count"},
+        {
+          x: "year",
+          y: "economy (mpg)",
+          stroke: "cylinders",
+          thresholds: 20
+        }
+      )
+    })
+  );
 }

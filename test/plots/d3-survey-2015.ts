@@ -1,4 +1,5 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, BarX, RuleX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 // TODO consolidate bars into Other category
@@ -21,31 +22,31 @@ export function chooseMany(responses, y, title) {
 }
 
 function bars(groups, title) {
-  return Plot.plot({
-    marginLeft: 300,
-    width: 960,
-    height: groups.length * 20 + 50,
-    x: {
-      grid: true,
-      axis: "top",
-      domain: [0, 100],
-      label: "Frequency (%)",
-      transform: (x) => x * 100
+  return React.createElement(Plot, {
+      marginLeft: 300,
+      width: 960,
+      height: groups.length * 20 + 50,
+      x: {
+        grid: true,
+        axis: "top",
+        domain: [0, 100],
+        label: "Frequency (%)",
+        transform: (x) => x * 100
+      },
+      y: {
+        padding: 0,
+        label: title,
+        labelAnchor: "top"
+      }
     },
-    y: {
-      padding: 0,
-      label: title,
-      labelAnchor: "top"
-    },
-    marks: [
-      Plot.barX(groups, {
-        x: ([, value]) => value,
-        y: ([key]) => key,
-        fill: "steelblue",
-        insetTop: 1,
-        sort: {y: "-x"}
-      }),
-      Plot.ruleX([0])
-    ]
-  });
+    React.createElement(BarX, {
+      data: groups,
+      x: ([, value]) => value,
+      y: ([key]) => key,
+      fill: "steelblue",
+      insetTop: 1,
+      sort: {y: "-x"}
+    }),
+    React.createElement(RuleX, {data: [0]})
+  );
 }

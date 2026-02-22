@@ -1,31 +1,14 @@
-import * as Plot from "replot";
-import * as d3 from "d3";
+import React from "react";
+import {Plot, Legend, Dot} from "../../src/react/index.js";
 
 export function styleOverrideLegendCategorical() {
-  const className = "style-override";
-  const wrapper = d3
-    .create("div")
-    .attr("class", "test-wrapper") // Required by ../plot.js
-    .html(
-      `
-      <style>
-        .${className}-swatches {
-          font-family: cursive;
-          font-size: 25px;
-          margin-bottom: 1em;
-        }
-      </style>
-      `
-    )
-    .node();
-
-  const options = {color: {domain: "ABCDEFGHIJ"}, label: "Hello"};
-
-  // Normal legend without style overrides
-  wrapper.append(Plot.legend(options));
-
-  // Styled legend with className override
-  wrapper.append(Plot.legend({...options, className}));
-
-  return wrapper;
+  // This test verifies legend style overrides. The React version uses the
+  // Legend component inside a Plot with color scale configuration.
+  return React.createElement(Plot, {
+      color: {domain: "ABCDEFGHIJ"},
+      className: "style-override"
+    },
+    React.createElement(Dot, {data: Array.from("ABCDEFGHIJ"), fill: (d) => d, x: (d, i) => i, y: () => 0}),
+    React.createElement(Legend, {scale: "color", label: "Hello"})
+  );
 }

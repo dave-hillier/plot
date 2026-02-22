@@ -1,4 +1,5 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, BarX, RuleX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function ballotStatusRace() {
@@ -13,7 +14,7 @@ export async function ballotStatusRace() {
   // votes = votes.filter(d => races.includes(d.race));
 
   // Normalize the ballot status (accepted/pending/rejected). This is a fairly
-  // long list because we don’t want to misinterpret an unknown status.
+  // long list because we don't want to misinterpret an unknown status.
   const statuses = new Map([
     ["ACCEPTED - CURED", "ACCEPTED"],
     ["PENDING CURE", "PENDING"],
@@ -52,40 +53,40 @@ export async function ballotStatusRace() {
     });
   });
 
-  return Plot.plot({
-    x: {
-      grid: true,
-      label: "Frequency (%)"
+  return React.createElement(Plot, {
+      x: {
+        grid: true,
+        label: "Frequency (%)"
+      },
+      y: {
+        domain: ["ACCEPTED", "REJECTED", "PENDING"],
+        axis: null
+      },
+      fy: {
+        label: null
+      },
+      color: {
+        domain: ["ACCEPTED", "REJECTED", "PENDING"],
+        range: ["currentColor", "brown", "gray"]
+      },
+      facet: {
+        data: rollup,
+        y: "race",
+        marginLeft: 210
+      }
     },
-    y: {
-      domain: ["ACCEPTED", "REJECTED", "PENDING"],
-      axis: null
-    },
-    fy: {
-      label: null
-    },
-    color: {
-      domain: ["ACCEPTED", "REJECTED", "PENDING"],
-      range: ["currentColor", "brown", "gray"]
-    },
-    facet: {
+    React.createElement(BarX, {
       data: rollup,
-      y: "race",
-      marginLeft: 210
-    },
-    marks: [
-      Plot.barX(rollup, {
-        x: "percent",
-        y: "status",
-        fill: "status",
-        title: (d) => `${d.percent.toFixed(1)}%`,
-        sort: {
-          fy: "data",
-          reduce: (data) => data.find((d) => d.status === "ACCEPTED").percent,
-          order: "descending"
-        }
-      }),
-      Plot.ruleX([0])
-    ]
-  });
+      x: "percent",
+      y: "status",
+      fill: "status",
+      title: (d) => `${d.percent.toFixed(1)}%`,
+      sort: {
+        fy: "data",
+        reduce: (data) => data.find((d) => d.status === "ACCEPTED").percent,
+        order: "descending"
+      }
+    }),
+    React.createElement(RuleX, {data: [0]})
+  );
 }

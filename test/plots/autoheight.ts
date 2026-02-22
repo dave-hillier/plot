@@ -1,5 +1,8 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, RectY} from "../../src/react/index.js";
 
 export async function autoHeightEmpty() {
-  return Plot.rectY([], {x: "date", y: "visitors", fy: "path"}).plot();
+  return React.createElement(Plot, {},
+    React.createElement(RectY, {data: [], x: "date", y: "visitors", fy: "path"})
+  );
 }

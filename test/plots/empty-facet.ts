@@ -1,13 +1,15 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, BarY} from "../../src/react/index.js";
 
 export async function emptyFacet() {
   const data = [
     {PERIOD: 1, VALUE: 3, TYPE: "c"},
     {PERIOD: 2, VALUE: 4, TYPE: "c"}
   ];
-  return Plot.plot({
-    facet: {data, x: "TYPE"},
-    fx: {domain: ["a", "b"]},
-    marks: [Plot.barY(data, {x: "PERIOD", y: "VALUE"})]
-  });
+  return React.createElement(Plot, {
+      facet: {data, x: "TYPE"},
+      fx: {domain: ["a", "b"]}
+    },
+    React.createElement(BarY, {data, x: "PERIOD", y: "VALUE"})
+  );
 }

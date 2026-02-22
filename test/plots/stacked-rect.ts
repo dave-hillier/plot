@@ -1,20 +1,18 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, RectX} from "../../src/react/index.js";
 
 export async function stackedRect() {
-  return Plot.plot({
-    x: {
-      tickFormat: "%"
+  return React.createElement(Plot, {
+      x: {
+        tickFormat: "%"
+      }
     },
-    marks: [
-      Plot.rectX(
-        {length: 20},
-        {
-          x: (d, i) => i,
-          fill: (d, i) => i,
-          insetLeft: 1,
-          offset: "normalize"
-        }
-      )
-    ]
-  });
+    React.createElement(RectX, {
+      data: {length: 20},
+      x: (d, i) => i,
+      fill: (d, i) => i,
+      insetLeft: 1,
+      offset: "normalize"
+    })
+  );
 }

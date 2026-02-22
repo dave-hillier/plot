@@ -1,13 +1,12 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, BarX, TextX, RuleX, stackX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function wealthBritainBar() {
   const data = await d3.csv<any>("data/wealth-britain.csv", d3.autoType);
-  return Plot.plot({
-    marks: [
-      Plot.barX(data, Plot.stackX({x: "wealth", fill: "age"})),
-      Plot.textX(data, Plot.stackX({x: "wealth", text: "age"})),
-      Plot.ruleX([0, 100])
-    ]
-  });
+  return React.createElement(Plot, {},
+    React.createElement(BarX, {data, ...stackX({x: "wealth", fill: "age"})}),
+    React.createElement(TextX, {data, ...stackX({x: "wealth", text: "age"})}),
+    React.createElement(RuleX, {data: [0, 100]})
+  );
 }

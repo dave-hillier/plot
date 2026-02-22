@@ -1,7 +1,8 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, RectY, groupX} from "../../src/react/index.js";
 
 export async function groupedRects() {
-  return Plot.plot({
-    marks: [Plot.rectY({length: 10}, Plot.groupX({y: "count"}, {x: (d, i) => "ABCDEFGHIJ"[i]}))]
-  });
+  return React.createElement(Plot, {},
+    React.createElement(RectY, {data: {length: 10}, ...groupX({y: "count"}, {x: (d, i) => "ABCDEFGHIJ"[i]})})
+  );
 }

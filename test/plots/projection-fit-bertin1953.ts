@@ -1,4 +1,5 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, Frame, Geo} from "../../src/react/index.js";
 import * as d3 from "d3";
 import {geoBertin1953} from "d3-geo-projection";
 import {merge} from "topojson-client";
@@ -9,14 +10,16 @@ export async function projectionFitBertin1953() {
     world,
     world.objects.countries.geometries.filter((d) => d.properties.name !== "Antarctica")
   );
-  return Plot.plot({
-    width: 960,
-    height: 302,
-    marginRight: 44,
-    marginLeft: 0,
-    facet: {data: [1, 2], x: ["a", "b"]},
-    projection: {type: geoBertin1953, domain: land},
-    marks: [Plot.frame({stroke: "red"}), Plot.geo(land, {fill: "currentColor"})],
-    style: "border: solid 1px blue"
-  });
+  return React.createElement(Plot, {
+      width: 960,
+      height: 302,
+      marginRight: 44,
+      marginLeft: 0,
+      facet: {data: [1, 2], x: ["a", "b"]},
+      projection: {type: geoBertin1953, domain: land},
+      style: "border: solid 1px blue"
+    },
+    React.createElement(Frame, {stroke: "red"}),
+    React.createElement(Geo, {data: land, fill: "currentColor"})
+  );
 }

@@ -1,4 +1,5 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, BarX, DotX, TextX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 const times = [
@@ -24,26 +25,25 @@ const events = [
 ].map((d) => ({text: d.text, date: d3.isoParse(d.date)}));
 
 export async function polylinear() {
-  return Plot.plot({
-    height: 90,
-    grid: true,
-    x: {
-      type: "utc",
-      domain: times,
-      ticks: "day",
-      tickFormat: "%d",
-      label: "date"
+  return React.createElement(Plot, {
+      height: 90,
+      grid: true,
+      x: {
+        type: "utc",
+        domain: times,
+        ticks: "day",
+        tickFormat: "%d",
+        label: "date"
+      },
+      color: {
+        type: "linear",
+        domain: d3.reverse(times), // …and a decreasing domain
+        reverse: true, // unit tests both reverse…
+        scheme: "cool"
+      }
     },
-    color: {
-      type: "linear",
-      domain: d3.reverse(times), // …and a decreasing domain
-      reverse: true, // unit tests both reverse…
-      scheme: "cool"
-    },
-    marks: [
-      Plot.barX(d3.utcDays(...(d3.extent(times) as [Date, Date])), {interval: "day", fill: (d) => d}),
-      Plot.dotX(events, {x: "date", fill: "white"}),
-      Plot.textX(events, {x: "date", text: "text", dx: -5, dy: -10, fill: "white", textAnchor: "start"})
-    ]
-  });
+    React.createElement(BarX, {data: d3.utcDays(...(d3.extent(times) as [Date, Date])), interval: "day", fill: (d) => d}),
+    React.createElement(DotX, {data: events, x: "date", fill: "white"}),
+    React.createElement(TextX, {data: events, x: "date", text: "text", dx: -5, dy: -10, fill: "white", textAnchor: "start"})
+  );
 }

@@ -1,4 +1,5 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, Line, Dot} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function curves() {
@@ -7,20 +8,19 @@ export async function curves() {
     const r = 1 + 2 * random();
     return [r * Math.cos(t * 2 * Math.PI), r * Math.sin(t * 2 * Math.PI)];
   });
-  return Plot.plot({
-    width: 500,
-    axis: null,
-    aspectRatio: true,
-    inset: 10,
-    marks: [
-      d3
-        .ticks(0, 1, 4)
-        .map((tension) => [
-          Plot.line(values, {curve: "bundle", tension, stroke: "red", mixBlendMode: "multiply"}),
-          Plot.line(values, {curve: "cardinal-closed", tension, stroke: "green", mixBlendMode: "multiply"}),
-          Plot.line(values, {curve: "catmull-rom-closed", tension, stroke: "blue", mixBlendMode: "multiply"})
-        ]),
-      Plot.dot(values, {stroke: "white", fill: "black"})
-    ]
-  });
+  return React.createElement(Plot, {
+      width: 500,
+      axis: null,
+      aspectRatio: true,
+      inset: 10
+    },
+    ...d3
+      .ticks(0, 1, 4)
+      .flatMap((tension) => [
+        React.createElement(Line, {data: values, curve: "bundle", tension, stroke: "red", mixBlendMode: "multiply"}),
+        React.createElement(Line, {data: values, curve: "cardinal-closed", tension, stroke: "green", mixBlendMode: "multiply"}),
+        React.createElement(Line, {data: values, curve: "catmull-rom-closed", tension, stroke: "blue", mixBlendMode: "multiply"})
+      ]),
+    React.createElement(Dot, {data: values, stroke: "white", fill: "black"})
+  );
 }

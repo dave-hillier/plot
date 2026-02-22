@@ -1,14 +1,13 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, Raster, Dot} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 async function rasterPenguins(options) {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
-  return Plot.plot({
-    marks: [
-      Plot.raster(penguins, {x: "body_mass_g", y: "flipper_length_mm", fill: "island", ...options}),
-      Plot.dot(penguins, {x: "body_mass_g", y: "flipper_length_mm", fill: "island", stroke: "white"})
-    ]
-  });
+  return React.createElement(Plot, {},
+    React.createElement(Raster, {data: penguins, x: "body_mass_g", y: "flipper_length_mm", fill: "island", ...options}),
+    React.createElement(Dot, {data: penguins, x: "body_mass_g", y: "flipper_length_mm", fill: "island", stroke: "white"})
+  );
 }
 
 export async function rasterPenguinsBarycentric() {

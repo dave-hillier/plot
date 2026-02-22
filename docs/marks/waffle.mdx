@@ -3,24 +3,16 @@ import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import olympians from "../data/olympians.ts";
 
-export const survey = [];
+export const survey = [
+  {question: "don't go out after dark", yes: 96},
+  {question: "do no activities other than school", yes: 89},
+  {question: "engage in political discussion and social movements, including online", yes: 10},
+  {question: "would like to do activities but are prevented by safety concerns", yes: 73}
+];
 export const unit = "1";
 export const setUnit = () => {};
 export const apples = 3;
 export const setApples = () => {};
-
-{/*
-// TODO: manually convert: const olympians = shallowRef([
-
-// TODO: manually convert: {weight: 170, height: 2.21, sex: "male"}
-
-// TODO: manually convert: const survey = [
-
-
-
-// TODO: manually convert: {question: "would like to do activities but are prevented by safety concerns", yes: 73}
-
-*/}
 
 # Waffle mark <VersionBadge version="0.6.16" pr="2040" />
 

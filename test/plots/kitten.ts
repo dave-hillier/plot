@@ -1,19 +1,22 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, Image, dodgeY} from "../../src/react/index.js";
+import type {ImageProps} from "../../src/react/index.js";
 
 async function kitten({
   x = (d, i) => i % 5,
   y = (d, i) => Math.floor(i / 5),
   src = (d, i) => `https://placekitten.com/${100 + 2 * i}/${100 + 2 * i}`,
   ...options
-}: Plot.ImageOptions = {}) {
-  return Plot.plot({
-    inset: 60,
-    width: 520,
-    height: 520,
-    axis: null,
-    r: {range: [10, 60]},
-    marks: [Plot.image({length: 25}, {x, y, src, ...options})]
-  });
+}: Partial<ImageProps> = {}) {
+  return React.createElement(Plot, {
+      inset: 60,
+      width: 520,
+      height: 520,
+      axis: null,
+      r: {range: [10, 60]}
+    },
+    React.createElement(Image, {data: {length: 25}, x, y, src, ...options})
+  );
 }
 
 export async function kittenConstant() {
@@ -33,7 +36,7 @@ export async function kittenVariable() {
 }
 
 export async function kittenVariableDodge() {
-  return kitten(Plot.dodgeY({r: (d, i) => i}));
+  return kitten(dodgeY({r: (d, i) => i}));
 }
 
 export async function kittenVariableRotate() {

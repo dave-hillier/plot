@@ -1,32 +1,43 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, CellX, identity} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export function colorPiecewiseLinearDomain() {
-  return Plot.cellX(d3.range(11), {fill: Plot.identity}).plot({
-    color: {legend: true, type: "linear", domain: [0, 10, 20], range: ["red", "blue"]}
-  });
+  return React.createElement(Plot, {
+      color: {legend: true, type: "linear", domain: [0, 10, 20], range: ["red", "blue"]}
+    },
+    React.createElement(CellX, {data: d3.range(11), fill: identity})
+  );
 }
 
 export function colorPiecewiseLinearDomainReverse() {
-  return Plot.cellX(d3.range(11), {fill: Plot.identity}).plot({
-    color: {legend: true, type: "linear", domain: [0, 10, 20], reverse: true, range: ["red", "blue"]}
-  });
+  return React.createElement(Plot, {
+      color: {legend: true, type: "linear", domain: [0, 10, 20], reverse: true, range: ["red", "blue"]}
+    },
+    React.createElement(CellX, {data: d3.range(11), fill: identity})
+  );
 }
 
 export function colorPiecewiseLinearRange() {
-  return Plot.cellX(d3.range(11), {fill: Plot.identity}).plot({
-    color: {legend: true, type: "linear", domain: [0, 10], range: ["red", "blue", "green"]}
-  });
+  return React.createElement(Plot, {
+      color: {legend: true, type: "linear", domain: [0, 10], range: ["red", "blue", "green"]}
+    },
+    React.createElement(CellX, {data: d3.range(11), fill: identity})
+  );
 }
 
 export function colorPiecewiseLinearRangeHcl() {
-  return Plot.cellX(d3.range(11), {fill: Plot.identity}).plot({
-    color: {legend: true, type: "linear", domain: [0, 10], range: ["red", "blue", "green"], interpolate: "hcl"}
-  });
+  return React.createElement(Plot, {
+      color: {legend: true, type: "linear", domain: [0, 10], range: ["red", "blue", "green"], interpolate: "hcl"}
+    },
+    React.createElement(CellX, {data: d3.range(11), fill: identity})
+  );
 }
 
 export function colorPiecewiseLinearRangeReverse() {
-  return Plot.cellX(d3.range(11), {fill: Plot.identity}).plot({
-    color: {legend: true, type: "linear", domain: [0, 10], reverse: true, range: ["red", "blue", "green"]}
-  });
+  return React.createElement(Plot, {
+      color: {legend: true, type: "linear", domain: [0, 10], reverse: true, range: ["red", "blue", "green"]}
+    },
+    React.createElement(CellX, {data: d3.range(11), fill: identity})
+  );
 }

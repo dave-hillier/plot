@@ -1,4 +1,5 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, TreeMark, Link, Dot, Text, treeLink, treeNode} from "../../src/react/index.js";
 
 export async function greekGods() {
   const gods = `Chaos Gaia Mountains
@@ -9,14 +10,15 @@ Chaos Erebus
 Chaos Tartarus`
     .split("\n")
     .map((d) => d.replace(/\s+/g, "/"));
-  return Plot.plot({
-    axis: null,
-    insetLeft: 35,
-    insetTop: 20,
-    insetBottom: 20,
-    insetRight: 120,
-    marks: [Plot.tree(gods)]
-  });
+  return React.createElement(Plot, {
+      axis: null,
+      insetLeft: 35,
+      insetTop: 20,
+      insetBottom: 20,
+      insetRight: 120
+    },
+    React.createElement(TreeMark, {data: gods})
+  );
 }
 
 export async function greekGodsTip() {
@@ -28,14 +30,15 @@ Chaos Erebus
 Chaos Tartarus`
     .split("\n")
     .map((d) => d.replace(/\s+/g, "/"));
-  return Plot.plot({
-    axis: null,
-    insetLeft: 35,
-    insetTop: 20,
-    insetBottom: 20,
-    insetRight: 120,
-    marks: [Plot.tree(gods, {tip: true})]
-  });
+  return React.createElement(Plot, {
+      axis: null,
+      insetLeft: 35,
+      insetTop: 20,
+      insetBottom: 20,
+      insetRight: 120
+    },
+    React.createElement(TreeMark, {data: gods, tip: true})
+  );
 }
 
 export async function greekGodsExplicit() {
@@ -45,16 +48,15 @@ Chaos Gaia Uranus
 Chaos Eros
 Chaos Erebus
 Chaos Tartarus`.split("\n");
-  return Plot.plot({
-    axis: null,
-    insetLeft: 10,
-    insetTop: 20,
-    insetBottom: 20,
-    insetRight: 120,
-    marks: [
-      Plot.link(gods, Plot.treeLink({stroke: "node:internal", delimiter: " "})),
-      Plot.dot(gods, Plot.treeNode({fill: "node:internal", delimiter: " "})),
-      Plot.text(gods, Plot.treeNode({text: "node:name", stroke: "white", fill: "currentColor", dx: 6, delimiter: " "}))
-    ]
-  });
+  return React.createElement(Plot, {
+      axis: null,
+      insetLeft: 10,
+      insetTop: 20,
+      insetBottom: 20,
+      insetRight: 120
+    },
+    React.createElement(Link, {data: gods, ...treeLink({stroke: "node:internal", delimiter: " "})}),
+    React.createElement(Dot, {data: gods, ...treeNode({fill: "node:internal", delimiter: " "})}),
+    React.createElement(Text, {data: gods, ...treeNode({text: "node:name", stroke: "white", fill: "currentColor", dx: 6, delimiter: " "})})
+  );
 }

@@ -1,12 +1,14 @@
+import React from "react";
 import * as d3 from "d3";
-import * as Plot from "replot";
+import {Plot, CellX, legend} from "../../src/react/index.js";
+import {plot as imperativePlot, dot as imperativeDot} from "replot";
 
 export function colorLegendCategorical() {
-  return Plot.legend({color: {domain: "ABCDEFGHIJ"}});
+  return legend({color: {domain: "ABCDEFGHIJ"}});
 }
 
 export function colorLegendCategoricalColumns() {
-  return Plot.legend({
+  return legend({
     color: {
       domain: [
         "Wholesale and Retail Trade",
@@ -27,49 +29,50 @@ export function colorLegendCategoricalColumns() {
 }
 
 export function colorLegendCategoricalScheme() {
-  return Plot.legend({color: {domain: "ABCDEFGHIJ", scheme: "category10"}});
+  return legend({color: {domain: "ABCDEFGHIJ", scheme: "category10"}});
 }
 
 export function colorLegendCategoricalReverse() {
-  return Plot.legend({color: {domain: "ABCDEFGHIJ", reverse: true}});
+  return legend({color: {domain: "ABCDEFGHIJ", reverse: true}});
 }
 
 export function colorLegendDomainUnary() {
-  return Plot.legend({color: {domain: [0]}});
+  return legend({color: {domain: [0]}});
 }
 
 export function colorLegendDomainEmpty() {
-  return Plot.legend({color: {domain: []}});
+  return legend({color: {domain: []}});
 }
 
 export function colorLegendLinearDomainUnary() {
-  return Plot.legend({color: {type: "linear", domain: [0]}});
+  return legend({color: {type: "linear", domain: [0]}});
 }
 
 export function colorLegendLinearDomainEmpty() {
-  return Plot.legend({color: {type: "linear", domain: []}});
+  return legend({color: {type: "linear", domain: []}});
 }
 
 export function colorLegendOrdinal() {
-  return Plot.legend({color: {type: "ordinal", domain: "ABCDEFGHIJ"}});
+  return legend({color: {type: "ordinal", domain: "ABCDEFGHIJ"}});
 }
 
 export function colorLegendOrdinalRamp() {
-  return Plot.legend({color: {type: "ordinal", domain: "ABCDEFGHIJ"}, legend: "ramp"});
+  return legend({color: {type: "ordinal", domain: "ABCDEFGHIJ"}, legend: "ramp"});
 }
 
 export function colorLegendOrdinalRampInline() {
-  return Plot.plot({
-    legend: "ramp",
-    color: {type: "ordinal", domain: "ABCDEFGHIJ"},
-    marks: [Plot.cellX("ABCDEFGHIJ")]
-  });
+  return React.createElement(Plot, {
+      legend: "ramp",
+      color: {type: "ordinal", domain: "ABCDEFGHIJ"}
+    },
+    React.createElement(CellX, {data: "ABCDEFGHIJ"})
+  );
 }
 
 export function colorLegendOrdinalRampTickSize() {
-  return Plot.legend({
+  return legend({
     color: {
-      domain: ["<20", "20-29", "30-39", "40-49", "50-59", "60-69", "≥70"],
+      domain: ["<20", "20-29", "30-39", "40-49", "50-59", "60-69", "\u226570"],
       scheme: "Spectral",
       label: "Age (years)"
     },
@@ -79,87 +82,87 @@ export function colorLegendOrdinalRampTickSize() {
 }
 
 export function colorLegendOrdinalReverseRamp() {
-  return Plot.legend({color: {type: "ordinal", domain: "ABCDEFGHIJ", reverse: true}, legend: "ramp"});
+  return legend({color: {type: "ordinal", domain: "ABCDEFGHIJ", reverse: true}, legend: "ramp"});
 }
 
 export function colorLegendOrdinalScheme() {
-  return Plot.legend({color: {type: "ordinal", domain: "ABCDEFGHIJ", scheme: "rainbow"}});
+  return legend({color: {type: "ordinal", domain: "ABCDEFGHIJ", scheme: "rainbow"}});
 }
 
 export function colorLegendOrdinalSchemeRamp() {
-  return Plot.legend({color: {type: "ordinal", domain: "ABCDEFGHIJ", scheme: "rainbow"}, legend: "ramp"});
+  return legend({color: {type: "ordinal", domain: "ABCDEFGHIJ", scheme: "rainbow"}, legend: "ramp"});
 }
 
 export function colorLegendOrdinalTicks() {
-  return Plot.legend({color: {type: "categorical", domain: [0, 1, 2, 3, 4], ticks: [0, 1, 4]}, legend: "ramp"});
+  return legend({color: {type: "categorical", domain: [0, 1, 2, 3, 4], ticks: [0, 1, 4]}, legend: "ramp"});
 }
 
 export function colorLegendOrdinalTickFormat() {
-  return Plot.legend({color: {type: "ordinal", domain: [1, 2, 3, 4, 5], tickFormat: ".1f"}});
+  return legend({color: {type: "ordinal", domain: [1, 2, 3, 4, 5], tickFormat: ".1f"}});
 }
 
 export function colorLegendOrdinalTickFormatFunction() {
-  return Plot.legend({color: {type: "ordinal", domain: [1, 2, 3, 4, 5], tickFormat: (d) => d.toFixed(1)}});
+  return legend({color: {type: "ordinal", domain: [1, 2, 3, 4, 5], tickFormat: (d) => d.toFixed(1)}});
 }
 
 export function colorLegendQuantitative() {
-  return Plot.legend({color: {domain: [0, 10]}});
+  return legend({color: {domain: [0, 10]}});
 }
 
 export function colorLegendQuantitativeScheme() {
-  return Plot.legend({color: {scheme: "blues", domain: [0, 1]}});
+  return legend({color: {scheme: "blues", domain: [0, 1]}});
 }
 
 export function colorLegendLinear() {
-  return Plot.legend({color: {type: "linear", domain: [0, 10]}});
+  return legend({color: {type: "linear", domain: [0, 10]}});
 }
 
 export function colorLegendLinearNoTicks() {
-  return Plot.legend({color: {type: "linear", tickFormat: null, domain: [0, 10]}});
+  return legend({color: {type: "linear", tickFormat: null, domain: [0, 10]}});
 }
 
 export function colorLegendLinearTruncatedScheme() {
-  return Plot.legend({color: {scheme: "rainbow", domain: [0, 1], range: [0.5, 1]}});
+  return legend({color: {scheme: "rainbow", domain: [0, 1], range: [0.5, 1]}});
 }
 
 export function colorLegendSqrt() {
-  return Plot.legend({color: {type: "sqrt", domain: [0, 10]}});
+  return legend({color: {type: "sqrt", domain: [0, 10]}});
 }
 
 export function colorLegendSqrtPiecewise() {
-  return Plot.legend({color: {type: "sqrt", domain: [-100, 0, 100], range: ["blue", "white", "red"]}});
+  return legend({color: {type: "sqrt", domain: [-100, 0, 100], range: ["blue", "white", "red"]}});
 }
 
 export function colorLegendInterpolate() {
-  return Plot.legend({color: {domain: [0, 10], range: ["steelblue", "orange"], interpolate: "hcl"}});
+  return legend({color: {domain: [0, 10], range: ["steelblue", "orange"], interpolate: "hcl"}});
 }
 
 export function colorLegendInterpolateSqrt() {
-  return Plot.legend({color: {type: "sqrt", domain: [0, 10]}});
+  return legend({color: {type: "sqrt", domain: [0, 10]}});
 }
 
 export function colorLegendLog() {
-  return Plot.legend({color: {type: "log", domain: [1, 10]}});
+  return legend({color: {type: "log", domain: [1, 10]}});
 }
 
 export function colorLegendLogTicks() {
-  return Plot.legend({color: {type: "log", domain: [1, 10], ticks: 10}});
+  return legend({color: {type: "log", domain: [1, 10], ticks: 10}});
 }
 
 export function colorLegendLabelScale() {
-  return Plot.legend({color: {type: "linear", domain: [0, 10], label: "Scale"}});
+  return legend({color: {type: "linear", domain: [0, 10], label: "Scale"}});
 }
 
 export function colorLegendLabelLegend() {
-  return Plot.legend({color: {type: "linear", domain: [0, 10]}, label: "Legend"});
+  return legend({color: {type: "linear", domain: [0, 10]}, label: "Legend"});
 }
 
 export function colorLegendLabelBoth() {
-  return Plot.legend({color: {type: "linear", domain: [0, 10], label: "Scale"}, label: "Legend"});
+  return legend({color: {type: "linear", domain: [0, 10], label: "Scale"}, label: "Legend"});
 }
 
 export function colorLegendMargins() {
-  return Plot.legend({
+  return legend({
     color: {
       type: "sqrt",
       domain: [0, 10],
@@ -172,7 +175,7 @@ export function colorLegendMargins() {
 }
 
 export function colorLegendThreshold() {
-  return Plot.legend({
+  return legend({
     color: {
       type: "threshold",
       scheme: "viridis",
@@ -183,7 +186,7 @@ export function colorLegendThreshold() {
 }
 
 export function colorLegendThresholdTickSize() {
-  return Plot.legend({
+  return legend({
     color: {
       type: "threshold",
       domain: [2.5, 3.1, 3.5, 3.9, 6, 7, 8, 9.5],
@@ -196,7 +199,7 @@ export function colorLegendThresholdTickSize() {
 
 // Quantile scales are implicitly converted to threshold scales.
 export function colorLegendQuantile() {
-  return Plot.legend({
+  return legend({
     color: {
       type: "quantile",
       scheme: "inferno",
@@ -209,7 +212,7 @@ export function colorLegendQuantile() {
 }
 
 export function colorLegendQuantileImplicit() {
-  return Plot.plot({
+  return imperativePlot({
     color: {
       type: "quantile",
       scheme: "inferno",
@@ -217,12 +220,12 @@ export function colorLegendQuantileImplicit() {
       label: "Inferno",
       tickFormat: ",d"
     },
-    marks: [Plot.dot(d3.range(100), {fill: (i) => i ** 2})]
+    marks: [imperativeDot(d3.range(100), {fill: (i) => i ** 2})]
   }).legend("color");
 }
 
 export function colorLegendQuantileSwatches() {
-  return Plot.legend({
+  return legend({
     legend: "swatches",
     color: {
       type: "quantile",
@@ -237,7 +240,7 @@ export function colorLegendQuantileSwatches() {
 
 // Quantize scales are implicitly converted to threshold scales.
 export function colorLegendQuantize() {
-  return Plot.legend({
+  return legend({
     color: {
       type: "quantize",
       domain: [1, 144],
@@ -248,7 +251,7 @@ export function colorLegendQuantize() {
 }
 
 export function colorLegendQuantizeDescending() {
-  return Plot.legend({
+  return legend({
     color: {
       type: "quantize",
       domain: [144, 1],
@@ -258,7 +261,7 @@ export function colorLegendQuantizeDescending() {
 }
 
 export function colorLegendQuantizeDescendingReversed() {
-  return Plot.legend({
+  return legend({
     color: {
       type: "quantize",
       domain: [10, 0.1],
@@ -269,7 +272,7 @@ export function colorLegendQuantizeDescendingReversed() {
 }
 
 export function colorLegendQuantizeRange() {
-  return Plot.legend({
+  return legend({
     color: {
       type: "quantize",
       domain: [1, 144],
@@ -280,7 +283,7 @@ export function colorLegendQuantizeRange() {
 }
 
 export function colorLegendQuantizeReverse() {
-  return Plot.legend({
+  return legend({
     color: {
       type: "quantize",
       domain: [-49.99, 91.61],
@@ -291,10 +294,10 @@ export function colorLegendQuantizeReverse() {
 }
 
 export function colorLegendImplicitLabel() {
-  return Plot.plot({
+  return imperativePlot({
     color: {scheme: "viridis"},
     marks: [
-      Plot.dot(
+      imperativeDot(
         d3.range(100).map((i) => ({thing: i})),
         {fill: "thing"}
       )
@@ -303,7 +306,7 @@ export function colorLegendImplicitLabel() {
 }
 
 export function colorLegendDiverging() {
-  return Plot.legend({
+  return legend({
     color: {
       domain: [-0.1, 0.1],
       scheme: "PiYG",
@@ -314,7 +317,7 @@ export function colorLegendDiverging() {
 }
 
 export function colorLegendDivergingPivot() {
-  return Plot.legend({
+  return legend({
     color: {
       domain: [1, 4],
       pivot: 3,
@@ -324,7 +327,7 @@ export function colorLegendDivergingPivot() {
 }
 
 export function colorLegendDivergingPivotAsymmetric() {
-  return Plot.legend({
+  return legend({
     color: {
       symmetric: false,
       domain: [1, 4],
@@ -335,7 +338,7 @@ export function colorLegendDivergingPivotAsymmetric() {
 }
 
 export function colorLegendDivergingSqrt() {
-  return Plot.legend({
+  return legend({
     color: {
       type: "diverging-sqrt",
       domain: [-0.1, 0.1],
@@ -401,11 +404,11 @@ export function colorSchemesOrdinal() {
     "sinebow"
   ] as const) {
     div.append(
-      Plot.legend({color: {type: "ordinal", scheme, domain: [scheme]}}),
-      Plot.legend({color: {type: "ordinal", scheme, domain: [scheme, ...`1`]}}),
-      Plot.legend({color: {type: "ordinal", scheme, domain: [scheme, ...`123`]}}),
-      Plot.legend({color: {type: "ordinal", scheme, domain: [scheme, ...`12345678`]}}),
-      Plot.legend({color: {type: "ordinal", scheme, domain: [scheme, ...`1234567890ABCD`]}})
+      legend({color: {type: "ordinal", scheme, domain: [scheme]}}),
+      legend({color: {type: "ordinal", scheme, domain: [scheme, ...`1`]}}),
+      legend({color: {type: "ordinal", scheme, domain: [scheme, ...`123`]}}),
+      legend({color: {type: "ordinal", scheme, domain: [scheme, ...`12345678`]}}),
+      legend({color: {type: "ordinal", scheme, domain: [scheme, ...`1234567890ABCD`]}})
     );
   }
   return div;
@@ -455,19 +458,19 @@ export function colorSchemesQuantitative() {
     "rainbow",
     "sinebow"
   ] as const) {
-    div.append(Plot.legend({color: {type: "linear", scheme}, label: scheme, ticks: 0, tickSize: 0, marginBottom: 10}));
+    div.append(legend({color: {type: "linear", scheme}, label: scheme, ticks: 0, tickSize: 0, marginBottom: 10}));
   }
   return div;
 }
 
 export async function colorLegendOpacity() {
-  return Plot.legend({color: {domain: ["Dream", "Torgersen", "Biscoe"]}, opacity: 0.5});
+  return legend({color: {domain: ["Dream", "Torgersen", "Biscoe"]}, opacity: 0.5});
 }
 
 export async function colorLegendOpacityRamp() {
-  return Plot.legend({color: {domain: [0, 1000]}, opacity: 0.5});
+  return legend({color: {domain: [0, 1000]}, opacity: 0.5});
 }
 
 export function colorLegendOpacityOrdinalRamp() {
-  return Plot.legend({color: {type: "ordinal", domain: "ABCDEFGHIJ"}, legend: "ramp", opacity: 0.5});
+  return legend({color: {type: "ordinal", domain: "ABCDEFGHIJ"}, legend: "ramp", opacity: 0.5});
 }

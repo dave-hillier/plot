@@ -1,16 +1,7 @@
-import {BarX, BoxX, Dot, Frame, Plot, RuleX, groupY} from "replot/react";
+import {AreaY, BarX, BoxX, Dot, Frame, LineY, Plot, RuleX, RuleY, groupY} from "replot/react";
 import * as d3 from "d3";
 import aapl from "./data/aapl.ts";
 import penguins from "./data/penguins.ts";
-
-{/*
-// TODO: manually convert: function arealineY(data, {color, fillOpacity = 0.1, ...options} = {}) {
-// TODO: manually convert: return Plot.marks(
-// TODO: manually convert: Plot.ruleY([0]),
-// TODO: manually convert: Plot.areaY(data, {fill: color, fillOpacity, ...options}),
-// TODO: manually convert: Plot.lineY(data, {stroke: color, ...options})
-// TODO: manually convert: );
-*/}
 
 # Why Plot?
 
@@ -93,7 +84,9 @@ function arealineY(data, {color, fillOpacity = 0.1, ...options} = {}) {
 You can use this composite mark like any built-in mark:
 
 <Plot>
-  {/* TODO: arealineY(aapl, {x: "Date", y: "Close", color: "blue"}) */}
+  <RuleY data={[0]} />
+  <AreaY data={aapl} x="Date" y="Close" fill="blue" fillOpacity={0.1} />
+  <LineY data={aapl} x="Date" y="Close" stroke="blue" />
 </Plot>
 
 Plot uses this technique internally: the [axis mark](./marks/axis.md) and [box mark](./marks/box.md) are both composite marks.

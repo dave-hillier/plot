@@ -1,13 +1,16 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, TickX, valueof} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 async function penguinNA(tickFormat: (x: number) => any = undefined) {
   const sample = await d3.csv<any>("data/penguins.csv", d3.autoType);
-  const V = Plot.valueof(sample, "body_mass_g");
+  const V = valueof(sample, "body_mass_g");
   const [min, max] = d3.extent(V);
-  return Plot.tickX(sample, {x: V, stroke: (d) => (d.body_mass_g ? "black" : "red")}).plot({
-    x: {unknown: 10, ticks: [NaN, ...d3.ticks(min, max, 7)], tickFormat}
-  });
+  return React.createElement(Plot, {
+      x: {unknown: 10, ticks: [NaN, ...d3.ticks(min, max, 7)], tickFormat}
+    },
+    React.createElement(TickX, {data: sample, x: V, stroke: (d) => (d.body_mass_g ? "black" : "red")})
+  );
 }
 
 export async function penguinNA1() {

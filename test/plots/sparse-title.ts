@@ -1,46 +1,47 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, Dot, Tip, pointer} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function sparseTitle() {
   const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
-  return Plot.plot({
-    grid: true,
-    marks: [
-      Plot.dot(olympians, {
-        x: "weight",
-        y: "height",
-        fy: "sex",
-        sort: (d) => !!d.info,
-        fill: (d) => (d.info ? "currentColor" : "#aaa"),
-        stroke: "white",
-        strokeWidth: 0.25,
-        title: (d) => (d.info ? [(d.name, d.info)].join("\n\n") : undefined)
-      })
-    ]
-  });
+  return React.createElement(Plot, {
+      grid: true
+    },
+    React.createElement(Dot, {
+      data: olympians,
+      x: "weight",
+      y: "height",
+      fy: "sex",
+      sort: (d) => !!d.info,
+      fill: (d) => (d.info ? "currentColor" : "#aaa"),
+      stroke: "white",
+      strokeWidth: 0.25,
+      title: (d) => (d.info ? [(d.name, d.info)].join("\n\n") : undefined)
+    })
+  );
 }
 
 export async function sparseTitleTip() {
   const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
-  return Plot.plot({
-    grid: true,
-    marks: [
-      Plot.dot(olympians, {
+  return React.createElement(Plot, {
+      grid: true
+    },
+    React.createElement(Dot, {
+      data: olympians,
+      x: "weight",
+      y: "height",
+      fy: "sex",
+      sort: (d) => !!d.info,
+      stroke: (d) => (d.info ? "currentColor" : "#aaa")
+    }),
+    React.createElement(Tip, {
+      data: olympians,
+      ...pointer({
         x: "weight",
         y: "height",
         fy: "sex",
-        sort: (d) => !!d.info,
-        stroke: (d) => (d.info ? "currentColor" : "#aaa")
-      }),
-      Plot.tip(
-        olympians,
-        Plot.pointer({
-          x: "weight",
-          y: "height",
-          fy: "sex",
-          title: (d) => (d.info ? [(d.name, d.info)].join("\n\n") : undefined)
-        })
-      )
-    ]
-  });
+        title: (d) => (d.info ? [(d.name, d.info)].join("\n\n") : undefined)
+      })
+    })
+  );
 }
