@@ -1,4 +1,4 @@
-import React, {useMemo} from "react";
+import React from "react";
 import {Delaunay} from "d3";
 import {useMark} from "../useMark.js";
 import {indirectStyleProps, directStyleProps, channelStyleProps, computeTransform, isColorChannel, isColorValue} from "../styles.js";
@@ -47,36 +47,30 @@ export function DelaunayLink({
   className,
   ...restOptions
 }: DelaunayProps) {
-  const channels: Record<string, ChannelSpec> = useMemo(
-    () => ({
-      x: {value: x, scale: "x"},
-      y: {value: y, scale: "y"},
-      ...(z != null ? {z: {value: z, optional: true}} : {}),
-      ...(isColorChannel(stroke)
-        ? {stroke: {value: stroke, scale: "auto", optional: true}}
-        : {}),
-      ...(typeof opacity === "string" || typeof opacity === "function"
-        ? {opacity: {value: opacity, scale: "auto", optional: true}}
-        : {})
-    }),
-    [x, y, z, stroke, opacity]
-  );
+  const channels: Record<string, ChannelSpec> = {
+    x: {value: x, scale: "x"},
+    y: {value: y, scale: "y"},
+    ...(z != null ? {z: {value: z, optional: true}} : {}),
+    ...(isColorChannel(stroke)
+      ? {stroke: {value: stroke, scale: "auto", optional: true}}
+      : {}),
+    ...(typeof opacity === "string" || typeof opacity === "function"
+      ? {opacity: {value: opacity, scale: "auto", optional: true}}
+      : {})
+  };
 
-  const markOptions = useMemo(
-    () => ({
-      ...linkDefaults,
-      ...restOptions,
-      stroke:
-        typeof stroke === "string" && isColorValue(stroke)
-          ? stroke
-          : linkDefaults.stroke,
-      strokeWidth: typeof strokeWidth === "number" ? strokeWidth : linkDefaults.strokeWidth,
-      dx,
-      dy,
-      className
-    }),
-    [stroke, strokeWidth, dx, dy, className, restOptions]
-  );
+  const markOptions = {
+    ...linkDefaults,
+    ...restOptions,
+    stroke:
+      typeof stroke === "string" && isColorValue(stroke)
+        ? stroke
+        : linkDefaults.stroke,
+    strokeWidth: typeof strokeWidth === "number" ? strokeWidth : linkDefaults.strokeWidth,
+    dx,
+    dy,
+    className
+  };
 
   const {values, index, scales, dimensions} = useMark({
     data,
@@ -86,13 +80,12 @@ export function DelaunayLink({
     ...markOptions
   });
 
-  if (!values || !index || !dimensions) return null;
-
-  const {x: X, y: Y} = values;
+  const X = values?.x;
+  const Y = values?.y;
 
   // Compute Delaunay triangulation
-  const edges = useMemo(() => {
-    if (!X || !Y || !index.length) return [];
+  const edges = (() => {
+    if (!X || !Y || !index?.length) return [];
     const points = index.map((i) => [X[i], Y[i]] as [number, number]);
     const delaunay = Delaunay.from(points);
     const result: Array<{i1: number; i2: number}> = [];
@@ -103,7 +96,9 @@ export function DelaunayLink({
       result.push({i1: index[triangles[j]], i2: index[triangles[k >= 0 ? k : j]]});
     }
     return result;
-  }, [X, Y, index]);
+  })();
+
+  if (!values || !index || !dimensions) return null;
 
   const transform = computeTransform({dx, dy}, scales ?? {});
   const groupProps = {
@@ -135,42 +130,37 @@ export function DelaunayMesh({
   className,
   ...restOptions
 }: DelaunayProps) {
-  const channels: Record<string, ChannelSpec> = useMemo(
-    () => ({
-      x: {value: x, scale: "x"},
-      y: {value: y, scale: "y"}
-    }),
-    [x, y]
-  );
+  const channels: Record<string, ChannelSpec> = {
+    x: {value: x, scale: "x"},
+    y: {value: y, scale: "y"}
+  };
 
-  const markOptions = useMemo(
-    () => ({
-      ariaLabel: "delaunay-mesh",
-      fill,
-      stroke: typeof stroke === "string" ? stroke : "currentColor",
-      strokeWidth: typeof strokeWidth === "number" ? strokeWidth : 1,
-      ...restOptions,
-      dx,
-      dy,
-      className
-    }),
-    [fill, stroke, strokeWidth, dx, dy, className, restOptions]
-  );
+  const markOptions = {
+    ariaLabel: "delaunay-mesh",
+    fill,
+    stroke: typeof stroke === "string" ? stroke : "currentColor",
+    strokeWidth: typeof strokeWidth === "number" ? strokeWidth : 1,
+    ...restOptions,
+    dx,
+    dy,
+    className
+  };
 
   const {values, index, scales, dimensions} = useMark({data, channels, ...markOptions});
 
-  if (!values || !index || !dimensions) return null;
+  const X = values?.x;
+  const Y = values?.y;
 
-  const {x: X, y: Y} = values;
-
-  const meshPath = useMemo(() => {
-    if (!X || !Y || !index.length) return "";
+  const meshPath = (() => {
+    if (!X || !Y || !index?.length) return "";
     const points = index.map((i) => [X[i], Y[i]] as [number, number]);
     const delaunay = Delaunay.from(points);
     const context = new Path2DContext();
     delaunay.render(context);
     return context.toString();
-  }, [X, Y, index]);
+  })();
+
+  if (!values || !index || !dimensions) return null;
 
   const transform = computeTransform({dx, dy}, scales ?? {});
 
@@ -203,42 +193,37 @@ export function Hull({
   className,
   ...restOptions
 }: DelaunayProps) {
-  const channels: Record<string, ChannelSpec> = useMemo(
-    () => ({
-      x: {value: x, scale: "x"},
-      y: {value: y, scale: "y"}
-    }),
-    [x, y]
-  );
+  const channels: Record<string, ChannelSpec> = {
+    x: {value: x, scale: "x"},
+    y: {value: y, scale: "y"}
+  };
 
-  const markOptions = useMemo(
-    () => ({
-      ariaLabel: "hull",
-      fill,
-      stroke: typeof stroke === "string" ? stroke : "currentColor",
-      strokeWidth: typeof strokeWidth === "number" ? strokeWidth : 1.5,
-      ...restOptions,
-      dx,
-      dy,
-      className
-    }),
-    [fill, stroke, strokeWidth, dx, dy, className, restOptions]
-  );
+  const markOptions = {
+    ariaLabel: "hull",
+    fill,
+    stroke: typeof stroke === "string" ? stroke : "currentColor",
+    strokeWidth: typeof strokeWidth === "number" ? strokeWidth : 1.5,
+    ...restOptions,
+    dx,
+    dy,
+    className
+  };
 
   const {values, index, scales, dimensions} = useMark({data, channels, ...markOptions});
 
-  if (!values || !index || !dimensions) return null;
+  const X = values?.x;
+  const Y = values?.y;
 
-  const {x: X, y: Y} = values;
-
-  const hullPath = useMemo(() => {
-    if (!X || !Y || !index.length) return "";
+  const hullPath = (() => {
+    if (!X || !Y || !index?.length) return "";
     const points = index.map((i) => [X[i], Y[i]] as [number, number]);
     const delaunay = Delaunay.from(points);
     const context = new Path2DContext();
     delaunay.renderHull(context);
     return context.toString();
-  }, [X, Y, index]);
+  })();
+
+  if (!values || !index || !dimensions) return null;
 
   const transform = computeTransform({dx, dy}, scales ?? {});
 
@@ -274,47 +259,45 @@ export function Voronoi({
   className,
   ...restOptions
 }: DelaunayProps) {
-  const channels: Record<string, ChannelSpec> = useMemo(
-    () => ({
-      x: {value: x, scale: "x"},
-      y: {value: y, scale: "y"},
-      ...(isColorChannel(fill)
-        ? {fill: {value: fill, scale: "auto", optional: true}}
-        : {}),
-      ...(typeof opacity === "string" || typeof opacity === "function"
-        ? {opacity: {value: opacity, scale: "auto", optional: true}}
-        : {}),
-      ...(title != null ? {title: {value: title, optional: true, filter: null}} : {})
-    }),
-    [x, y, fill, opacity, title]
-  );
+  const channels: Record<string, ChannelSpec> = {
+    x: {value: x, scale: "x"},
+    y: {value: y, scale: "y"},
+    ...(isColorChannel(fill)
+      ? {fill: {value: fill, scale: "auto", optional: true}}
+      : {}),
+    ...(typeof opacity === "string" || typeof opacity === "function"
+      ? {opacity: {value: opacity, scale: "auto", optional: true}}
+      : {}),
+    ...(title != null ? {title: {value: title, optional: true, filter: null}} : {})
+  };
 
-  const markOptions = useMemo(
-    () => ({
-      ariaLabel: "voronoi",
-      fill:
-        typeof fill === "string" && isColorValue(fill)
-          ? fill
-          : "none",
-      stroke: typeof stroke === "string" ? stroke : "currentColor",
-      strokeWidth: typeof strokeWidth === "number" ? strokeWidth : 1,
-      ...restOptions,
-      dx,
-      dy,
-      className
-    }),
-    [fill, stroke, strokeWidth, dx, dy, className, restOptions]
-  );
+  const markOptions = {
+    ariaLabel: "voronoi",
+    fill:
+      typeof fill === "string" && isColorValue(fill)
+        ? fill
+        : "none",
+    stroke: typeof stroke === "string" ? stroke : "currentColor",
+    strokeWidth: typeof strokeWidth === "number" ? strokeWidth : 1,
+    ...restOptions,
+    dx,
+    dy,
+    className
+  };
 
   const {values, index, scales, dimensions} = useMark({data, channels, tip, ...markOptions});
 
-  if (!values || !index || !dimensions) return null;
+  const X = values?.x;
+  const Y = values?.y;
+  const marginLeft = dimensions?.marginLeft ?? 0;
+  const marginTop = dimensions?.marginTop ?? 0;
+  const width = dimensions?.width ?? 0;
+  const height = dimensions?.height ?? 0;
+  const marginRight = dimensions?.marginRight ?? 0;
+  const marginBottom = dimensions?.marginBottom ?? 0;
 
-  const {x: X, y: Y} = values;
-  const {marginLeft, marginTop, width, height, marginRight, marginBottom} = dimensions;
-
-  const cellPaths = useMemo(() => {
-    if (!X || !Y || !index.length) return [];
+  const cellPaths = (() => {
+    if (!X || !Y || !index?.length) return [];
     const points = index.map((i) => [X[i], Y[i]] as [number, number]);
     const delaunay = Delaunay.from(points);
     const voronoi = delaunay.voronoi([marginLeft, marginTop, width - marginRight, height - marginBottom]);
@@ -323,7 +306,9 @@ export function Voronoi({
       voronoi.renderCell(j, context);
       return context.toString();
     });
-  }, [X, Y, index, marginLeft, marginTop, width, height, marginRight, marginBottom]);
+  })();
+
+  if (!values || !index || !dimensions) return null;
 
   const transform = computeTransform({dx, dy}, scales ?? {});
   const groupProps = {
@@ -357,44 +342,44 @@ export function VoronoiMesh({
   className,
   ...restOptions
 }: DelaunayProps) {
-  const channels: Record<string, ChannelSpec> = useMemo(
-    () => ({
-      x: {value: x, scale: "x"},
-      y: {value: y, scale: "y"}
-    }),
-    [x, y]
-  );
+  const channels: Record<string, ChannelSpec> = {
+    x: {value: x, scale: "x"},
+    y: {value: y, scale: "y"}
+  };
 
-  const markOptions = useMemo(
-    () => ({
-      ariaLabel: "voronoi-mesh",
-      fill,
-      stroke: typeof stroke === "string" ? stroke : "currentColor",
-      strokeWidth: typeof strokeWidth === "number" ? strokeWidth : 1,
-      ...restOptions,
-      dx,
-      dy,
-      className
-    }),
-    [fill, stroke, strokeWidth, dx, dy, className, restOptions]
-  );
+  const markOptions = {
+    ariaLabel: "voronoi-mesh",
+    fill,
+    stroke: typeof stroke === "string" ? stroke : "currentColor",
+    strokeWidth: typeof strokeWidth === "number" ? strokeWidth : 1,
+    ...restOptions,
+    dx,
+    dy,
+    className
+  };
 
   const {values, index, scales, dimensions} = useMark({data, channels, ...markOptions});
 
-  if (!values || !index || !dimensions) return null;
+  const X = values?.x;
+  const Y = values?.y;
+  const marginLeft = dimensions?.marginLeft ?? 0;
+  const marginTop = dimensions?.marginTop ?? 0;
+  const width = dimensions?.width ?? 0;
+  const height = dimensions?.height ?? 0;
+  const marginRight = dimensions?.marginRight ?? 0;
+  const marginBottom = dimensions?.marginBottom ?? 0;
 
-  const {x: X, y: Y} = values;
-  const {marginLeft, marginTop, width, height, marginRight, marginBottom} = dimensions;
-
-  const meshPath = useMemo(() => {
-    if (!X || !Y || !index.length) return "";
+  const meshPath = (() => {
+    if (!X || !Y || !index?.length) return "";
     const points = index.map((i) => [X[i], Y[i]] as [number, number]);
     const delaunay = Delaunay.from(points);
     const voronoi = delaunay.voronoi([marginLeft, marginTop, width - marginRight, height - marginBottom]);
     const context = new Path2DContext();
     voronoi.render(context);
     return context.toString();
-  }, [X, Y, index, marginLeft, marginTop, width, height, marginRight, marginBottom]);
+  })();
+
+  if (!values || !index || !dimensions) return null;
 
   const transform = computeTransform({dx, dy}, scales ?? {});
 

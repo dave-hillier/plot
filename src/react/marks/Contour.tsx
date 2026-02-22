@@ -1,4 +1,4 @@
-import React, {useMemo} from "react";
+import React from "react";
 import {contours as d3Contours, geoPath} from "d3";
 import {useMark} from "../useMark.js";
 import {indirectStyleProps, directStyleProps, isColorChannel, isColorValue} from "../styles.js";
@@ -66,51 +66,49 @@ export function Contour({
   className,
   ...restOptions
 }: ContourProps) {
-  const channels: Record<string, ChannelSpec> = useMemo(
-    () => ({
-      ...(value != null ? {value: {value, optional: true}} : {}),
-      ...(x != null ? {x: {value: x, scale: "x", optional: true}} : {}),
-      ...(y != null ? {y: {value: y, scale: "y", optional: true}} : {}),
-      ...(isColorChannel(fill)
-        ? {fill: {value: fill, scale: "auto", optional: true}}
-        : {}),
-      ...(typeof opacity === "string" || typeof opacity === "function"
-        ? {opacity: {value: opacity, scale: "auto", optional: true}}
-        : {})
-    }),
-    [value, x, y, fill, opacity]
-  );
+  const channels: Record<string, ChannelSpec> = {
+    ...(value != null ? {value: {value, optional: true}} : {}),
+    ...(x != null ? {x: {value: x, scale: "x", optional: true}} : {}),
+    ...(y != null ? {y: {value: y, scale: "y", optional: true}} : {}),
+    ...(isColorChannel(fill)
+      ? {fill: {value: fill, scale: "auto", optional: true}}
+      : {}),
+    ...(typeof opacity === "string" || typeof opacity === "function"
+      ? {opacity: {value: opacity, scale: "auto", optional: true}}
+      : {})
+  };
 
-  const markOptions = useMemo(
-    () => ({
-      ...defaults,
-      ...restOptions,
-      fill:
-        typeof fill === "string" && isColorValue(fill)
-          ? fill
-          : defaults.fill,
-      stroke:
-        typeof stroke === "string" && isColorValue(stroke)
-          ? stroke
-          : defaults.stroke,
-      strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
-      dx,
-      dy,
-      className
-    }),
-    [fill, stroke, strokeWidth, dx, dy, className, restOptions]
-  );
+  const markOptions = {
+    ...defaults,
+    ...restOptions,
+    fill:
+      typeof fill === "string" && isColorValue(fill)
+        ? fill
+        : defaults.fill,
+    stroke:
+      typeof stroke === "string" && isColorValue(stroke)
+        ? stroke
+        : defaults.stroke,
+    strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
+    dx,
+    dy,
+    className
+  };
 
   const {values, index, dimensions} = useMark({data, channels, ariaLabel: defaults.ariaLabel, tip, ...markOptions});
 
-  if (!values || !index || !dimensions) return null;
-
-  const {value: V} = values;
-  const {width: plotWidth, height: plotHeight, marginLeft, marginTop, marginRight, marginBottom} = dimensions;
+  const V = values?.value;
+  const plotWidth = dimensions?.width ?? 0;
+  const plotHeight = dimensions?.height ?? 0;
+  const marginLeft = dimensions?.marginLeft ?? 0;
+  const marginTop = dimensions?.marginTop ?? 0;
+  const marginRight = dimensions?.marginRight ?? 0;
+  const marginBottom = dimensions?.marginBottom ?? 0;
 
   // Compute contours from gridded data
-  const contourPaths = useMemo(() => {
+  const contourPaths = (() => {
     if (!V && !data) return [];
+    if (!index?.length && !data) return [];
 
     const w = gridWidth ?? Math.ceil((plotWidth - marginLeft - marginRight) / pixelSize);
     const h = gridHeight ?? Math.ceil((plotHeight - marginTop - marginBottom) / pixelSize);
@@ -164,22 +162,9 @@ export function Contour({
     });
 
     return result.map((c: any) => ({d: path(c), value: c.value}));
-  }, [
-    V,
-    data,
-    index,
-    gridWidth,
-    gridHeight,
-    plotWidth,
-    plotHeight,
-    marginLeft,
-    marginTop,
-    marginRight,
-    marginBottom,
-    pixelSize,
-    thresholds,
-    smooth
-  ]);
+  })();
+
+  if (!values || !index || !dimensions) return null;
 
   const groupProps = indirectStyleProps(markOptions, dimensions);
 

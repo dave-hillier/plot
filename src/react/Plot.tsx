@@ -2,7 +2,6 @@ import React, {
   useCallback,
   useContext,
   useId,
-  useMemo,
   useRef,
   useState,
   type ReactNode,
@@ -129,11 +128,11 @@ export function Plot({
   const [registrationVersion, setRegistrationVersion] = useState(0);
   const pendingUpdateRef = useRef(false);
 
-  const className = useMemo(() => maybeClassName(classNameProp), [classNameProp]);
+  const className = maybeClassName(classNameProp);
 
   // registerMark writes to the ref only (no setState). This is safe to call
-  // during render (via useMemo in child marks). The pending flag is flushed
-  // by the useLayoutEffect below, which runs after all children have rendered.
+  // during render (from child marks). The pending flag is flushed by the
+  // useLayoutEffect below, which runs after all children have rendered.
   const registerMark = useCallback((registration: MarkRegistration) => {
     const prev = marksRef.current.get(registration.id);
     if (!prev || prev.data !== registration.data || prev.channels !== registration.channels) {
@@ -160,7 +159,7 @@ export function Plot({
 
   // Compute scales, dimensions, and mark states from all registrations.
   // This is the React equivalent of the monolithic plot() function.
-  const computed = useMemo(() => {
+  const computed = (() => {
     const marks = Array.from(marksRef.current.values());
     if (marks.length === 0) return null;
 
@@ -431,7 +430,7 @@ export function Plot({
       markStates: computedMarkStates,
       exposedScales: scaleFunctions.scales
     };
-  }, [registrationVersion, widthProp, heightProp, options]);
+  })();
 
   // Pointer state for interactive marks
   const svgRef = useRef<SVGSVGElement>(null);
@@ -457,24 +456,21 @@ export function Plot({
   const clipPathId = useId();
 
   // Build context value
-  const contextValue = useMemo<PlotContextValue>(
-    () => ({
-      registerMark,
-      unregisterMark,
-      scales: computed?.exposedScales ?? null,
-      scaleFunctions: computed?.scaleFunctions ?? null,
-      dimensions: computed?.dimensions ?? null,
-      projection: computed?.projection ?? null,
-      className,
-      clipPathId,
-      facets: computed?.facets,
-      facetTranslate: computed?.facetTranslateFn ?? null,
-      getMarkState: (id: string) => computed?.markStates?.get(id),
-      pointer,
-      dispatchValue: onValue
-    }),
-    [registerMark, unregisterMark, computed, className, clipPathId, onValue, pointer]
-  );
+  const contextValue: PlotContextValue = {
+    registerMark,
+    unregisterMark,
+    scales: computed?.exposedScales ?? null,
+    scaleFunctions: computed?.scaleFunctions ?? null,
+    dimensions: computed?.dimensions ?? null,
+    projection: computed?.projection ?? null,
+    className,
+    clipPathId,
+    facets: computed?.facets,
+    facetTranslate: computed?.facetTranslateFn ?? null,
+    getMarkState: (id: string) => computed?.markStates?.get(id),
+    pointer,
+    dispatchValue: onValue
+  };
 
   const {width, height} = computed?.dimensions ?? {width: widthProp, height: heightProp ?? 400};
 
@@ -483,7 +479,7 @@ export function Plot({
 
   // Check whether children already include explicit axis components.
   // Compare by function reference (not .name) so this survives minification.
-  const hasExplicitAxes = useMemo(() => {
+  const hasExplicitAxes = (() => {
     let hasX = false,
       hasY = false;
     React.Children.forEach(children, (child) => {
@@ -493,10 +489,10 @@ export function Plot({
       if (type === AxisYMark || type === GridYMark) hasY = true;
     });
     return {hasX, hasY};
-  }, [children]);
+  })();
 
   // Render implicit axes when the corresponding scale exists and no explicit axis is provided
-  const implicitAxes = useMemo(() => {
+  const implicitAxes = (() => {
     if (!computed?.scaleFunctions) return null;
     const axes: ReactNode[] = [];
     if (!hasExplicitAxes.hasX && computed.scaleFunctions.x) {
@@ -506,7 +502,7 @@ export function Plot({
       axes.push(<ImplicitAxisY key="__implicit-axis-y" />);
     }
     return axes.length > 0 ? axes : null;
-  }, [computed?.scaleFunctions, hasExplicitAxes]);
+  })();
 
   const svg = (
     <PlotContext.Provider value={contextValue}>

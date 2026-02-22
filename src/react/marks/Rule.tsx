@@ -1,4 +1,4 @@
-import React, {useMemo} from "react";
+import React from "react";
 import {useMark} from "../useMark.js";
 import {indirectStyleProps, directStyleProps, channelStyleProps, computeTransform, isColorChannel, isColorValue} from "../styles.js";
 import type {ChannelSpec} from "../PlotContext.js";
@@ -52,41 +52,35 @@ export function RuleX({
 }: RuleProps) {
   // Default x to identity (data as value), matching Plot.ruleX([0]) behavior
   const resolvedX = x ?? identity;
-  const channels: Record<string, ChannelSpec> = useMemo(
-    () => ({
-      x: {value: resolvedX, scale: "x"},
-      ...(y1 != null ? {y1: {value: y1, scale: "y", optional: true}} : {}),
-      ...(y2 != null ? {y2: {value: y2, scale: "y", optional: true}} : {}),
-      ...(isColorChannel(stroke)
-        ? {stroke: {value: stroke, scale: "auto", optional: true}}
-        : {}),
-      ...(typeof strokeOpacity === "string" || typeof strokeOpacity === "function"
-        ? {strokeOpacity: {value: strokeOpacity, scale: "auto", optional: true}}
-        : {}),
-      ...(typeof opacity === "string" || typeof opacity === "function"
-        ? {opacity: {value: opacity, scale: "auto", optional: true}}
-        : {}),
-      ...(title != null ? {title: {value: title, optional: true, filter: null}} : {})
-    }),
-    [resolvedX, y1, y2, stroke, strokeOpacity, opacity, title]
-  );
+  const channels: Record<string, ChannelSpec> = {
+    x: {value: resolvedX, scale: "x"},
+    ...(y1 != null ? {y1: {value: y1, scale: "y", optional: true}} : {}),
+    ...(y2 != null ? {y2: {value: y2, scale: "y", optional: true}} : {}),
+    ...(isColorChannel(stroke)
+      ? {stroke: {value: stroke, scale: "auto", optional: true}}
+      : {}),
+    ...(typeof strokeOpacity === "string" || typeof strokeOpacity === "function"
+      ? {strokeOpacity: {value: strokeOpacity, scale: "auto", optional: true}}
+      : {}),
+    ...(typeof opacity === "string" || typeof opacity === "function"
+      ? {opacity: {value: opacity, scale: "auto", optional: true}}
+      : {}),
+    ...(title != null ? {title: {value: title, optional: true, filter: null}} : {})
+  };
 
-  const markOptions = useMemo(
-    () => ({
-      ...defaults,
-      ...restOptions,
-      stroke:
-        typeof stroke === "string" && isColorValue(stroke)
-          ? stroke
-          : defaults.stroke,
-      strokeWidth: typeof strokeWidth === "number" ? strokeWidth : undefined,
-      strokeDasharray,
-      dx,
-      dy,
-      className
-    }),
-    [stroke, strokeWidth, strokeDasharray, dx, dy, className, restOptions]
-  );
+  const markOptions = {
+    ...defaults,
+    ...restOptions,
+    stroke:
+      typeof stroke === "string" && isColorValue(stroke)
+        ? stroke
+        : defaults.stroke,
+    strokeWidth: typeof strokeWidth === "number" ? strokeWidth : undefined,
+    strokeDasharray,
+    dx,
+    dy,
+    className
+  };
 
   const {values, index, scales, dimensions} = useMark({
     data,
@@ -151,41 +145,35 @@ export function RuleY({
 }: RuleProps) {
   // Default y to identity (data as value), matching Plot.ruleY([0]) behavior
   const resolvedY = y ?? identity;
-  const channels: Record<string, ChannelSpec> = useMemo(
-    () => ({
-      y: {value: resolvedY, scale: "y"},
-      ...(x1 != null ? {x1: {value: x1, scale: "x", optional: true}} : {}),
-      ...(x2 != null ? {x2: {value: x2, scale: "x", optional: true}} : {}),
-      ...(isColorChannel(stroke)
-        ? {stroke: {value: stroke, scale: "auto", optional: true}}
-        : {}),
-      ...(typeof strokeOpacity === "string" || typeof strokeOpacity === "function"
-        ? {strokeOpacity: {value: strokeOpacity, scale: "auto", optional: true}}
-        : {}),
-      ...(typeof opacity === "string" || typeof opacity === "function"
-        ? {opacity: {value: opacity, scale: "auto", optional: true}}
-        : {}),
-      ...(title != null ? {title: {value: title, optional: true, filter: null}} : {})
-    }),
-    [resolvedY, x1, x2, stroke, strokeOpacity, opacity, title]
-  );
+  const channels: Record<string, ChannelSpec> = {
+    y: {value: resolvedY, scale: "y"},
+    ...(x1 != null ? {x1: {value: x1, scale: "x", optional: true}} : {}),
+    ...(x2 != null ? {x2: {value: x2, scale: "x", optional: true}} : {}),
+    ...(isColorChannel(stroke)
+      ? {stroke: {value: stroke, scale: "auto", optional: true}}
+      : {}),
+    ...(typeof strokeOpacity === "string" || typeof strokeOpacity === "function"
+      ? {strokeOpacity: {value: strokeOpacity, scale: "auto", optional: true}}
+      : {}),
+    ...(typeof opacity === "string" || typeof opacity === "function"
+      ? {opacity: {value: opacity, scale: "auto", optional: true}}
+      : {}),
+    ...(title != null ? {title: {value: title, optional: true, filter: null}} : {})
+  };
 
-  const markOptions = useMemo(
-    () => ({
-      ...defaults,
-      ...restOptions,
-      stroke:
-        typeof stroke === "string" && isColorValue(stroke)
-          ? stroke
-          : defaults.stroke,
-      strokeWidth: typeof strokeWidth === "number" ? strokeWidth : undefined,
-      strokeDasharray,
-      dx,
-      dy,
-      className
-    }),
-    [stroke, strokeWidth, strokeDasharray, dx, dy, className, restOptions]
-  );
+  const markOptions = {
+    ...defaults,
+    ...restOptions,
+    stroke:
+      typeof stroke === "string" && isColorValue(stroke)
+        ? stroke
+        : defaults.stroke,
+    strokeWidth: typeof strokeWidth === "number" ? strokeWidth : undefined,
+    strokeDasharray,
+    dx,
+    dy,
+    className
+  };
 
   const {values, index, scales, dimensions} = useMark({
     data,

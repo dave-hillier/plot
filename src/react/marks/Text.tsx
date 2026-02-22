@@ -1,4 +1,4 @@
-import React, {useMemo} from "react";
+import React from "react";
 import {useMark} from "../useMark.js";
 import {
   indirectStyleProps,
@@ -76,40 +76,34 @@ export function Text({
   onClick,
   ...restOptions
 }: TextProps) {
-  const channels: Record<string, ChannelSpec> = useMemo(
-    () => ({
-      x: {value: x, scale: "x", optional: true},
-      y: {value: y, scale: "y", optional: true},
-      text: {value: text ?? (x == null && y == null ? (d: any) => d : undefined), optional: true, filter: null},
-      ...(isColorChannel(fill)
-        ? {fill: {value: fill, scale: "auto", optional: true}}
-        : {}),
-      ...(typeof opacity === "string" || typeof opacity === "function"
-        ? {opacity: {value: opacity, scale: "auto", optional: true}}
-        : {}),
-      ...(title != null ? {title: {value: title, optional: true, filter: null}} : {}),
-      ...(href != null ? {href: {value: href, optional: true, filter: null}} : {})
-    }),
-    [x, y, text, fill, opacity, title, href]
-  );
+  const channels: Record<string, ChannelSpec> = {
+    x: {value: x, scale: "x", optional: true},
+    y: {value: y, scale: "y", optional: true},
+    text: {value: text ?? (x == null && y == null ? (d: any) => d : undefined), optional: true, filter: null},
+    ...(isColorChannel(fill)
+      ? {fill: {value: fill, scale: "auto", optional: true}}
+      : {}),
+    ...(typeof opacity === "string" || typeof opacity === "function"
+      ? {opacity: {value: opacity, scale: "auto", optional: true}}
+      : {}),
+    ...(title != null ? {title: {value: title, optional: true, filter: null}} : {}),
+    ...(href != null ? {href: {value: href, optional: true, filter: null}} : {})
+  };
 
-  const markOptions = useMemo(
-    () => ({
-      ...defaults,
-      ...restOptions,
-      fill:
-        typeof fill === "string" && isColorValue(fill)
-          ? fill
-          : defaults.fill,
-      stroke: typeof stroke === "string" ? stroke : undefined,
-      strokeWidth: typeof strokeWidth === "number" ? strokeWidth : undefined,
-      dx,
-      dy,
-      className,
-      frameAnchor
-    }),
-    [fill, stroke, strokeWidth, dx, dy, className, frameAnchor, restOptions]
-  );
+  const markOptions = {
+    ...defaults,
+    ...restOptions,
+    fill:
+      typeof fill === "string" && isColorValue(fill)
+        ? fill
+        : defaults.fill,
+    stroke: typeof stroke === "string" ? stroke : undefined,
+    strokeWidth: typeof strokeWidth === "number" ? strokeWidth : undefined,
+    dx,
+    dy,
+    className,
+    frameAnchor
+  };
 
   const {values, index, scales, dimensions} = useMark({
     data,

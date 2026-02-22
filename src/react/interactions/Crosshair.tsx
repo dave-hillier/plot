@@ -1,4 +1,4 @@
-import React, {useMemo} from "react";
+import React from "react";
 import {usePlotContext} from "../PlotContext.js";
 import {useMark} from "../useMark.js";
 import {findNearest} from "./usePointer.js";
@@ -29,13 +29,10 @@ export function CrosshairX({
 }: CrosshairProps) {
   const {pointer, dimensions} = usePlotContext();
 
-  const channels: Record<string, ChannelSpec> = useMemo(
-    () => ({
-      x: {value: x, scale: "x", optional: true},
-      y: {value: y, scale: "y", optional: true}
-    }),
-    [x, y]
-  );
+  const channels: Record<string, ChannelSpec> = {
+    x: {value: x, scale: "x", optional: true},
+    y: {value: y, scale: "y", optional: true}
+  };
 
   const {values, index} = useMark({
     data,
@@ -83,13 +80,10 @@ export function CrosshairY({
 }: CrosshairProps) {
   const {pointer, dimensions} = usePlotContext();
 
-  const channels: Record<string, ChannelSpec> = useMemo(
-    () => ({
-      x: {value: x, scale: "x", optional: true},
-      y: {value: y, scale: "y", optional: true}
-    }),
-    [x, y]
-  );
+  const channels: Record<string, ChannelSpec> = {
+    x: {value: x, scale: "x", optional: true},
+    y: {value: y, scale: "y", optional: true}
+  };
 
   const {values, index} = useMark({
     data,
@@ -138,13 +132,10 @@ export function Crosshair({
 }: CrosshairProps) {
   const {pointer, dimensions} = usePlotContext();
 
-  const channels: Record<string, ChannelSpec> = useMemo(
-    () => ({
-      x: {value: x, scale: "x", optional: true},
-      y: {value: y, scale: "y", optional: true}
-    }),
-    [x, y]
-  );
+  const channels: Record<string, ChannelSpec> = {
+    x: {value: x, scale: "x", optional: true},
+    y: {value: y, scale: "y", optional: true}
+  };
 
   const {values, index} = useMark({
     data,

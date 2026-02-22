@@ -1,4 +1,4 @@
-import React, {useMemo, useRef, useEffect} from "react";
+import React, {useRef, useEffect} from "react";
 import {useMark} from "../useMark.js";
 import {indirectStyleProps, isColorChannel, isColorValue} from "../styles.js";
 import type {ChannelSpec} from "../PlotContext.js";
@@ -54,31 +54,25 @@ export function Raster({
   className,
   ...restOptions
 }: RasterProps) {
-  const channels: Record<string, ChannelSpec> = useMemo(
-    () => ({
-      ...(isColorChannel(fill)
-        ? {fill: {value: fill, scale: "auto", optional: true}}
-        : {}),
-      ...(x != null ? {x: {value: x, scale: "x", optional: true}} : {}),
-      ...(y != null ? {y: {value: y, scale: "y", optional: true}} : {})
-    }),
-    [fill, x, y]
-  );
+  const channels: Record<string, ChannelSpec> = {
+    ...(isColorChannel(fill)
+      ? {fill: {value: fill, scale: "auto", optional: true}}
+      : {}),
+    ...(x != null ? {x: {value: x, scale: "x", optional: true}} : {}),
+    ...(y != null ? {y: {value: y, scale: "y", optional: true}} : {})
+  };
 
-  const markOptions = useMemo(
-    () => ({
-      ...defaults,
-      ...restOptions,
-      fill:
-        typeof fill === "string" && isColorValue(fill)
-          ? fill
-          : undefined,
-      dx,
-      dy,
-      className
-    }),
-    [fill, dx, dy, className, restOptions]
-  );
+  const markOptions = {
+    ...defaults,
+    ...restOptions,
+    fill:
+      typeof fill === "string" && isColorValue(fill)
+        ? fill
+        : undefined,
+    dx,
+    dy,
+    className
+  };
 
   const {values, index, dimensions} = useMark({data, channels, ariaLabel: defaults.ariaLabel, tip, ...markOptions});
 

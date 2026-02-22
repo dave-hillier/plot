@@ -1,4 +1,4 @@
-import React, {useMemo} from "react";
+import React from "react";
 import {useMark} from "../useMark.js";
 import {indirectStyleProps, directStyleProps, channelStyleProps, isColorChannel, isColorValue} from "../styles.js";
 import type {ChannelSpec} from "../PlotContext.js";
@@ -68,45 +68,39 @@ export function Rect({
   onPointerLeave,
   ...restOptions
 }: RectProps) {
-  const channels: Record<string, ChannelSpec> = useMemo(
-    () => ({
-      x1: {value: x1, scale: "x", optional: true},
-      x2: {value: x2, scale: "x", optional: true},
-      y1: {value: y1, scale: "y", optional: true},
-      y2: {value: y2, scale: "y", optional: true},
-      ...(isColorChannel(fill)
-        ? {fill: {value: fill, scale: "auto", optional: true}}
-        : {}),
-      ...(isColorChannel(stroke)
-        ? {stroke: {value: stroke, scale: "auto", optional: true}}
-        : {}),
-      ...(typeof fillOpacity === "string" || typeof fillOpacity === "function"
-        ? {fillOpacity: {value: fillOpacity, scale: "auto", optional: true}}
-        : {}),
-      ...(typeof opacity === "string" || typeof opacity === "function"
-        ? {opacity: {value: opacity, scale: "auto", optional: true}}
-        : {}),
-      ...(title != null ? {title: {value: title, optional: true, filter: null}} : {}),
-      ...(href != null ? {href: {value: href, optional: true, filter: null}} : {})
-    }),
-    [x1, x2, y1, y2, fill, stroke, fillOpacity, opacity, title, href]
-  );
+  const channels: Record<string, ChannelSpec> = {
+    x1: {value: x1, scale: "x", optional: true},
+    x2: {value: x2, scale: "x", optional: true},
+    y1: {value: y1, scale: "y", optional: true},
+    y2: {value: y2, scale: "y", optional: true},
+    ...(isColorChannel(fill)
+      ? {fill: {value: fill, scale: "auto", optional: true}}
+      : {}),
+    ...(isColorChannel(stroke)
+      ? {stroke: {value: stroke, scale: "auto", optional: true}}
+      : {}),
+    ...(typeof fillOpacity === "string" || typeof fillOpacity === "function"
+      ? {fillOpacity: {value: fillOpacity, scale: "auto", optional: true}}
+      : {}),
+    ...(typeof opacity === "string" || typeof opacity === "function"
+      ? {opacity: {value: opacity, scale: "auto", optional: true}}
+      : {}),
+    ...(title != null ? {title: {value: title, optional: true, filter: null}} : {}),
+    ...(href != null ? {href: {value: href, optional: true, filter: null}} : {})
+  };
 
-  const markOptions = useMemo(
-    () => ({
-      ...defaults,
-      ...restOptions,
-      fill:
-        typeof fill === "string" && isColorValue(fill)
-          ? fill
-          : "currentColor",
-      stroke: typeof stroke === "string" ? stroke : undefined,
-      dx,
-      dy,
-      className
-    }),
-    [fill, stroke, dx, dy, className, restOptions]
-  );
+  const markOptions = {
+    ...defaults,
+    ...restOptions,
+    fill:
+      typeof fill === "string" && isColorValue(fill)
+        ? fill
+        : "currentColor",
+    stroke: typeof stroke === "string" ? stroke : undefined,
+    dx,
+    dy,
+    className
+  };
 
   const {values, index, scales, dimensions} = useMark({
     data,

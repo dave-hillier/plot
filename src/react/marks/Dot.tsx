@@ -1,4 +1,4 @@
-import React, {useMemo} from "react";
+import React from "react";
 import {pathRound as path, symbolCircle} from "d3";
 import {useMark} from "../useMark.js";
 import {
@@ -83,70 +83,48 @@ export function Dot({
       typeof symbol === "function" ||
       Array.isArray(symbol));
 
-  const channels: Record<string, ChannelSpec> = useMemo(
-    () => ({
-      x: {value: x, scale: "x", optional: true},
-      y: {value: y, scale: "y", optional: true},
-      ...(isRChannel ? {r: {value: r, scale: "r", optional: true}} : {}),
-      ...(isRotateChannel ? {rotate: {value: rotate, optional: true}} : {}),
-      ...(isSymbolChannel ? {symbol: {value: symbol, scale: "auto", optional: true}} : {}),
-      ...(isColorChannel(fill)
-        ? {fill: {value: fill, scale: "auto", optional: true}}
-        : {}),
-      ...(isColorChannel(stroke)
-        ? {stroke: {value: stroke, scale: "auto", optional: true}}
-        : {}),
-      ...(typeof fillOpacity === "string" || typeof fillOpacity === "function"
-        ? {fillOpacity: {value: fillOpacity, scale: "auto", optional: true}}
-        : {}),
-      ...(typeof strokeOpacity === "string" || typeof strokeOpacity === "function"
-        ? {strokeOpacity: {value: strokeOpacity, scale: "auto", optional: true}}
-        : {}),
-      ...(typeof opacity === "string" || typeof opacity === "function"
-        ? {opacity: {value: opacity, scale: "auto", optional: true}}
-        : {}),
-      ...(title != null ? {title: {value: title, optional: true, filter: null}} : {}),
-      ...(href != null ? {href: {value: href, optional: true, filter: null}} : {})
-    }),
-    [
-      x,
-      y,
-      r,
-      rotate,
-      symbol,
-      fill,
-      stroke,
-      fillOpacity,
-      strokeOpacity,
-      opacity,
-      title,
-      href,
-      isRChannel,
-      isRotateChannel,
-      isSymbolChannel
-    ]
-  );
+  const channels: Record<string, ChannelSpec> = {
+    x: {value: x, scale: "x", optional: true},
+    y: {value: y, scale: "y", optional: true},
+    ...(isRChannel ? {r: {value: r, scale: "r", optional: true}} : {}),
+    ...(isRotateChannel ? {rotate: {value: rotate, optional: true}} : {}),
+    ...(isSymbolChannel ? {symbol: {value: symbol, scale: "auto", optional: true}} : {}),
+    ...(isColorChannel(fill)
+      ? {fill: {value: fill, scale: "auto", optional: true}}
+      : {}),
+    ...(isColorChannel(stroke)
+      ? {stroke: {value: stroke, scale: "auto", optional: true}}
+      : {}),
+    ...(typeof fillOpacity === "string" || typeof fillOpacity === "function"
+      ? {fillOpacity: {value: fillOpacity, scale: "auto", optional: true}}
+      : {}),
+    ...(typeof strokeOpacity === "string" || typeof strokeOpacity === "function"
+      ? {strokeOpacity: {value: strokeOpacity, scale: "auto", optional: true}}
+      : {}),
+    ...(typeof opacity === "string" || typeof opacity === "function"
+      ? {opacity: {value: opacity, scale: "auto", optional: true}}
+      : {}),
+    ...(title != null ? {title: {value: title, optional: true, filter: null}} : {}),
+    ...(href != null ? {href: {value: href, optional: true, filter: null}} : {})
+  };
 
-  const markOptions = useMemo(
-    () => ({
-      ...defaults,
-      ...restOptions,
-      dx,
-      dy,
-      fill:
-        typeof fill === "string" && isColorValue(fill)
-          ? fill
-          : defaults.fill,
-      stroke:
-        typeof stroke === "string" && isColorValue(stroke)
-          ? stroke
-          : defaults.stroke,
-      strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
-      className,
-      frameAnchor
-    }),
-    [fill, stroke, strokeWidth, dx, dy, className, frameAnchor, restOptions]
-  );
+  const markOptions = {
+    ...defaults,
+    ...restOptions,
+    dx,
+    dy,
+    fill:
+      typeof fill === "string" && isColorValue(fill)
+        ? fill
+        : defaults.fill,
+    stroke:
+      typeof stroke === "string" && isColorValue(stroke)
+        ? stroke
+        : defaults.stroke,
+    strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
+    className,
+    frameAnchor
+  };
 
   const {values, index, scales, dimensions} = useMark({
     data,

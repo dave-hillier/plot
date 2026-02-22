@@ -1,4 +1,4 @@
-import React, {useMemo} from "react";
+import React from "react";
 import {line as shapeLine, group, curveLinear} from "d3";
 import {useMark} from "../useMark.js";
 import {indirectStyleProps, directStyleProps, groupChannelStyleProps, computeTransform, isColorChannel, isColorValue} from "../styles.js";
@@ -62,49 +62,43 @@ export function Line({
     (typeof fill === "string" && !/^#|^rgb|^hsl|^none|^currentColor/.test(fill) ? fill : undefined) ??
     (typeof stroke === "string" && !/^#|^rgb|^hsl|^none|^currentColor/.test(stroke) ? stroke : undefined);
 
-  const channels: Record<string, ChannelSpec> = useMemo(
-    () => ({
-      x: {value: x, scale: "x"},
-      y: {value: y, scale: "y"},
-      ...(maybeZ != null ? {z: {value: maybeZ, optional: true}} : {}),
-      ...(isColorChannel(fill)
-        ? {fill: {value: fill, scale: "auto", optional: true}}
-        : {}),
-      ...(isColorChannel(stroke)
-        ? {stroke: {value: stroke, scale: "auto", optional: true}}
-        : {}),
-      ...(typeof strokeOpacity === "string" || typeof strokeOpacity === "function"
-        ? {strokeOpacity: {value: strokeOpacity, scale: "auto", optional: true}}
-        : {}),
-      ...(typeof opacity === "string" || typeof opacity === "function"
-        ? {opacity: {value: opacity, scale: "auto", optional: true}}
-        : {}),
-      ...(title != null ? {title: {value: title, optional: true, filter: null}} : {})
-    }),
-    [x, y, maybeZ, fill, stroke, strokeOpacity, opacity, title]
-  );
+  const channels: Record<string, ChannelSpec> = {
+    x: {value: x, scale: "x"},
+    y: {value: y, scale: "y"},
+    ...(maybeZ != null ? {z: {value: maybeZ, optional: true}} : {}),
+    ...(isColorChannel(fill)
+      ? {fill: {value: fill, scale: "auto", optional: true}}
+      : {}),
+    ...(isColorChannel(stroke)
+      ? {stroke: {value: stroke, scale: "auto", optional: true}}
+      : {}),
+    ...(typeof strokeOpacity === "string" || typeof strokeOpacity === "function"
+      ? {strokeOpacity: {value: strokeOpacity, scale: "auto", optional: true}}
+      : {}),
+    ...(typeof opacity === "string" || typeof opacity === "function"
+      ? {opacity: {value: opacity, scale: "auto", optional: true}}
+      : {}),
+    ...(title != null ? {title: {value: title, optional: true, filter: null}} : {})
+  };
 
-  const curveValue = useMemo(() => maybeCurveAuto(curveProp, tension), [curveProp, tension]);
+  const curveValue = maybeCurveAuto(curveProp, tension);
 
-  const markOptions = useMemo(
-    () => ({
-      ...defaults,
-      ...restOptions,
-      dx,
-      dy,
-      fill:
-        typeof fill === "string" && isColorValue(fill)
-          ? fill
-          : defaults.fill,
-      stroke:
-        typeof stroke === "string" && isColorValue(stroke)
-          ? stroke
-          : defaults.stroke,
-      strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
-      className
-    }),
-    [fill, stroke, strokeWidth, dx, dy, className, restOptions]
-  );
+  const markOptions = {
+    ...defaults,
+    ...restOptions,
+    dx,
+    dy,
+    fill:
+      typeof fill === "string" && isColorValue(fill)
+        ? fill
+        : defaults.fill,
+    stroke:
+      typeof stroke === "string" && isColorValue(stroke)
+        ? stroke
+        : defaults.stroke,
+    strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
+    className
+  };
 
   const {values, index, scales, dimensions} = useMark({
     data,
@@ -119,14 +113,14 @@ export function Line({
   const {x: X, y: Y, z: Z} = values;
 
   // Group the index by z channel (if present), similar to groupIndex in style.js
-  const groups = useMemo(() => {
+  const groups = (() => {
     if (!index || !X || !Y) return [];
     if (Z) {
       const grouped = group(index, (i: number) => Z[i]);
       return Array.from(grouped.values());
     }
     return [index];
-  }, [index, X, Y, Z]);
+  })();
 
   if (customRender) {
     return <>{customRender(groups, scales, values, dimensions)}</>;

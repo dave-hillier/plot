@@ -1,4 +1,4 @@
-import React, {useMemo} from "react";
+import React from "react";
 import {geoPath, geoGraticule10} from "d3";
 import {useMark} from "../useMark.js";
 import {usePlotContext} from "../PlotContext.js";
@@ -47,45 +47,39 @@ export function Geo({
 }: GeoProps) {
   const {projection} = usePlotContext();
 
-  const channels: Record<string, ChannelSpec> = useMemo(
-    () => ({
-      geometry: {value: geometry ?? ((d: any) => d), scale: "projection", optional: true},
-      ...(r != null && (typeof r === "string" || typeof r === "function" || Array.isArray(r))
-        ? {r: {value: r, scale: "r", optional: true}}
-        : {}),
-      ...(isColorChannel(fill)
-        ? {fill: {value: fill, scale: "auto", optional: true}}
-        : {}),
-      ...(isColorChannel(stroke)
-        ? {stroke: {value: stroke, scale: "auto", optional: true}}
-        : {}),
-      ...(typeof opacity === "string" || typeof opacity === "function"
-        ? {opacity: {value: opacity, scale: "auto", optional: true}}
-        : {}),
-      ...(title != null ? {title: {value: title, optional: true, filter: null}} : {})
-    }),
-    [geometry, r, fill, stroke, opacity, title]
-  );
+  const channels: Record<string, ChannelSpec> = {
+    geometry: {value: geometry ?? ((d: any) => d), scale: "projection", optional: true},
+    ...(r != null && (typeof r === "string" || typeof r === "function" || Array.isArray(r))
+      ? {r: {value: r, scale: "r", optional: true}}
+      : {}),
+    ...(isColorChannel(fill)
+      ? {fill: {value: fill, scale: "auto", optional: true}}
+      : {}),
+    ...(isColorChannel(stroke)
+      ? {stroke: {value: stroke, scale: "auto", optional: true}}
+      : {}),
+    ...(typeof opacity === "string" || typeof opacity === "function"
+      ? {opacity: {value: opacity, scale: "auto", optional: true}}
+      : {}),
+    ...(title != null ? {title: {value: title, optional: true, filter: null}} : {})
+  };
 
-  const markOptions = useMemo(
-    () => ({
-      ...defaults,
-      ...restOptions,
-      fill:
-        typeof fill === "string" && isColorValue(fill)
-          ? fill
-          : defaults.fill,
-      stroke:
-        typeof stroke === "string" && isColorValue(stroke)
-          ? stroke
-          : defaults.stroke,
-      strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
-      dx,
-      dy,
-      className
-    }),
-    [fill, stroke, strokeWidth, dx, dy, className, restOptions]
-  );
+  const markOptions = {
+    ...defaults,
+    ...restOptions,
+    fill:
+      typeof fill === "string" && isColorValue(fill)
+        ? fill
+        : defaults.fill,
+    stroke:
+      typeof stroke === "string" && isColorValue(stroke)
+        ? stroke
+        : defaults.stroke,
+    strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
+    dx,
+    dy,
+    className
+  };
 
   const {values, index, scales, dimensions} = useMark({
     data,
@@ -154,9 +148,7 @@ export function Graticule({
   className,
   ...restOptions
 }: Partial<GeoProps>) {
-  const graticuleData = useMemo(() => {
-    return [{type: "MultiLineString", coordinates: geoGraticule10().coordinates}];
-  }, []);
+  const graticuleData = [{type: "MultiLineString", coordinates: geoGraticule10().coordinates}];
 
   return (
     <Geo

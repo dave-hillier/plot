@@ -1,4 +1,4 @@
-import React, {useMemo} from "react";
+import React from "react";
 import {useMark} from "../useMark.js";
 import {usePlotContext} from "../PlotContext.js";
 import {findNearest} from "./usePointer.js";
@@ -49,14 +49,11 @@ export function Tip({
 }: TipProps) {
   const {pointer: pointerState, dimensions} = usePlotContext();
 
-  const channels: Record<string, ChannelSpec> = useMemo(
-    () => ({
-      x: {value: x, scale: "x", optional: true},
-      y: {value: y, scale: "y", optional: true},
-      ...(titleProp != null ? {title: {value: titleProp, optional: true, filter: null}} : {})
-    }),
-    [x, y, titleProp]
-  );
+  const channels: Record<string, ChannelSpec> = {
+    x: {value: x, scale: "x", optional: true},
+    y: {value: y, scale: "y", optional: true},
+    ...(titleProp != null ? {title: {value: titleProp, optional: true, filter: null}} : {})
+  };
 
   const {values, index} = useMark({
     data,

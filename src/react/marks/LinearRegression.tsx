@@ -1,4 +1,4 @@
-import React, {useMemo} from "react";
+import React from "react";
 import {useMark} from "../useMark.js";
 import {indirectStyleProps, computeTransform, isColorChannel, isColorValue} from "../styles.js";
 import type {ChannelSpec} from "../PlotContext.js";
@@ -64,33 +64,27 @@ export function LinearRegressionY({
   className,
   ...restOptions
 }: LinearRegressionProps) {
-  const channels: Record<string, ChannelSpec> = useMemo(
-    () => ({
-      x: {value: x, scale: "x"},
-      y: {value: y, scale: "y"},
-      ...(z != null ? {z: {value: z, optional: true}} : {}),
-      ...(isColorChannel(stroke)
-        ? {stroke: {value: stroke, scale: "auto", optional: true}}
-        : {})
-    }),
-    [x, y, z, stroke]
-  );
+  const channels: Record<string, ChannelSpec> = {
+    x: {value: x, scale: "x"},
+    y: {value: y, scale: "y"},
+    ...(z != null ? {z: {value: z, optional: true}} : {}),
+    ...(isColorChannel(stroke)
+      ? {stroke: {value: stroke, scale: "auto", optional: true}}
+      : {})
+  };
 
-  const markOptions = useMemo(
-    () => ({
-      ...defaults,
-      ...restOptions,
-      fill: typeof fill === "string" ? fill : defaults.fill,
-      fillOpacity,
-      stroke:
-        typeof stroke === "string" && isColorValue(stroke)
-          ? stroke
-          : defaults.stroke,
-      strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
-      className
-    }),
-    [fill, fillOpacity, stroke, strokeWidth, className, restOptions]
-  );
+  const markOptions = {
+    ...defaults,
+    ...restOptions,
+    fill: typeof fill === "string" ? fill : defaults.fill,
+    fillOpacity,
+    stroke:
+      typeof stroke === "string" && isColorValue(stroke)
+        ? stroke
+        : defaults.stroke,
+    strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
+    className
+  };
 
   const {values, index, scales, dimensions} = useMark({data, channels, ariaLabel: defaults.ariaLabel, ...markOptions});
 
@@ -99,7 +93,7 @@ export function LinearRegressionY({
   const {x: X, y: Y} = values;
   const {marginLeft, width, marginRight} = dimensions;
 
-  const reg = useMemo(() => linearRegression(X, Y, index), [X, Y, index]);
+  const reg = linearRegression(X, Y, index);
   if (!reg) return null;
 
   const x1 = marginLeft;
@@ -143,33 +137,27 @@ export function LinearRegressionX({
   className,
   ...restOptions
 }: LinearRegressionProps) {
-  const channels: Record<string, ChannelSpec> = useMemo(
-    () => ({
-      x: {value: x, scale: "x"},
-      y: {value: y, scale: "y"},
-      ...(z != null ? {z: {value: z, optional: true}} : {}),
-      ...(isColorChannel(stroke)
-        ? {stroke: {value: stroke, scale: "auto", optional: true}}
-        : {})
-    }),
-    [x, y, z, stroke]
-  );
+  const channels: Record<string, ChannelSpec> = {
+    x: {value: x, scale: "x"},
+    y: {value: y, scale: "y"},
+    ...(z != null ? {z: {value: z, optional: true}} : {}),
+    ...(isColorChannel(stroke)
+      ? {stroke: {value: stroke, scale: "auto", optional: true}}
+      : {})
+  };
 
-  const markOptions = useMemo(
-    () => ({
-      ...defaults,
-      ...restOptions,
-      fill: typeof fill === "string" ? fill : defaults.fill,
-      fillOpacity,
-      stroke:
-        typeof stroke === "string" && isColorValue(stroke)
-          ? stroke
-          : defaults.stroke,
-      strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
-      className
-    }),
-    [fill, fillOpacity, stroke, strokeWidth, className, restOptions]
-  );
+  const markOptions = {
+    ...defaults,
+    ...restOptions,
+    fill: typeof fill === "string" ? fill : defaults.fill,
+    fillOpacity,
+    stroke:
+      typeof stroke === "string" && isColorValue(stroke)
+        ? stroke
+        : defaults.stroke,
+    strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
+    className
+  };
 
   const {values, index, scales, dimensions} = useMark({data, channels, ariaLabel: defaults.ariaLabel, ...markOptions});
 
@@ -179,7 +167,7 @@ export function LinearRegressionX({
   const {marginTop, height, marginBottom} = dimensions;
 
   // LinearRegressionX: regress x on y (horizontal regression)
-  const reg = useMemo(() => linearRegression(Y, X, index), [X, Y, index]);
+  const reg = linearRegression(Y, X, index);
   if (!reg) return null;
 
   const y1 = marginTop;

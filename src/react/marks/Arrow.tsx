@@ -1,4 +1,4 @@
-import React, {useMemo} from "react";
+import React from "react";
 import {useMark} from "../useMark.js";
 import {indirectStyleProps, directStyleProps, channelStyleProps, computeTransform, isColorChannel, isColorValue} from "../styles.js";
 import type {ChannelSpec} from "../PlotContext.js";
@@ -64,38 +64,32 @@ export function Arrow({
   onClick,
   ...restOptions
 }: ArrowProps) {
-  const channels: Record<string, ChannelSpec> = useMemo(
-    () => ({
-      x1: {value: x1, scale: "x"},
-      y1: {value: y1, scale: "y"},
-      x2: {value: x2, scale: "x"},
-      y2: {value: y2, scale: "y"},
-      ...(isColorChannel(stroke)
-        ? {stroke: {value: stroke, scale: "auto", optional: true}}
-        : {}),
-      ...(typeof opacity === "string" || typeof opacity === "function"
-        ? {opacity: {value: opacity, scale: "auto", optional: true}}
-        : {}),
-      ...(title != null ? {title: {value: title, optional: true, filter: null}} : {})
-    }),
-    [x1, y1, x2, y2, stroke, opacity, title]
-  );
+  const channels: Record<string, ChannelSpec> = {
+    x1: {value: x1, scale: "x"},
+    y1: {value: y1, scale: "y"},
+    x2: {value: x2, scale: "x"},
+    y2: {value: y2, scale: "y"},
+    ...(isColorChannel(stroke)
+      ? {stroke: {value: stroke, scale: "auto", optional: true}}
+      : {}),
+    ...(typeof opacity === "string" || typeof opacity === "function"
+      ? {opacity: {value: opacity, scale: "auto", optional: true}}
+      : {}),
+    ...(title != null ? {title: {value: title, optional: true, filter: null}} : {})
+  };
 
-  const markOptions = useMemo(
-    () => ({
-      ...defaults,
-      ...restOptions,
-      stroke:
-        typeof stroke === "string" && isColorValue(stroke)
-          ? stroke
-          : defaults.stroke,
-      strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
-      dx,
-      dy,
-      className
-    }),
-    [stroke, strokeWidth, dx, dy, className, restOptions]
-  );
+  const markOptions = {
+    ...defaults,
+    ...restOptions,
+    stroke:
+      typeof stroke === "string" && isColorValue(stroke)
+        ? stroke
+        : defaults.stroke,
+    strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
+    dx,
+    dy,
+    className
+  };
 
   const {values, index, scales, dimensions} = useMark({
     data,

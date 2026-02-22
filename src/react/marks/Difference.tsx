@@ -1,4 +1,4 @@
-import React, {useId, useMemo} from "react";
+import React, {useId} from "react";
 import {useMark} from "../useMark.js";
 import type {ChannelSpec} from "../PlotContext.js";
 
@@ -63,19 +63,13 @@ export function DifferenceY({
   const effectiveY1 = y1 ?? (y !== undefined && y2 === undefined ? y : y1);
   const effectiveY2 = y2 ?? y;
 
-  const channels: Record<string, ChannelSpec> = useMemo(
-    () => ({
-      x: {value: x, scale: "x"},
-      y1: {value: effectiveY1 ?? 0, scale: "y"},
-      y2: {value: effectiveY2, scale: "y"}
-    }),
-    [x, effectiveY1, effectiveY2]
-  );
+  const channels: Record<string, ChannelSpec> = {
+    x: {value: x, scale: "x"},
+    y1: {value: effectiveY1 ?? 0, scale: "y"},
+    y2: {value: effectiveY2, scale: "y"}
+  };
 
-  const markOptions = useMemo(
-    () => ({ariaLabel: "difference", fill: "none", stroke: "none", className, ...rest}),
-    [className, rest]
-  );
+  const markOptions = {ariaLabel: "difference", fill: "none", stroke: "none", className, ...rest};
 
   const {values, index, dimensions} = useMark({data, channels, ...markOptions});
 
@@ -163,19 +157,13 @@ export function DifferenceX({
   const effectiveX1 = x1 ?? (x !== undefined && x2 === undefined ? x : x1);
   const effectiveX2 = x2 ?? x;
 
-  const channels: Record<string, ChannelSpec> = useMemo(
-    () => ({
-      y: {value: y, scale: "y"},
-      x1: {value: effectiveX1 ?? 0, scale: "x"},
-      x2: {value: effectiveX2, scale: "x"}
-    }),
-    [y, effectiveX1, effectiveX2]
-  );
+  const channels: Record<string, ChannelSpec> = {
+    y: {value: y, scale: "y"},
+    x1: {value: effectiveX1 ?? 0, scale: "x"},
+    x2: {value: effectiveX2, scale: "x"}
+  };
 
-  const markOptions = useMemo(
-    () => ({ariaLabel: "difference", fill: "none", stroke: "none", className, ...rest}),
-    [className, rest]
-  );
+  const markOptions = {ariaLabel: "difference", fill: "none", stroke: "none", className, ...rest};
 
   const {values, index, dimensions} = useMark({data, channels, ...markOptions});
 

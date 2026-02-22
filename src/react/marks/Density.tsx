@@ -1,4 +1,4 @@
-import React, {useMemo} from "react";
+import React from "react";
 import {contourDensity, geoPath} from "d3";
 import {useMark} from "../useMark.js";
 import {indirectStyleProps, directStyleProps, isColorChannel, isColorValue} from "../styles.js";
@@ -51,61 +51,56 @@ export function Density({
   className,
   ...restOptions
 }: DensityProps) {
-  const channels: Record<string, ChannelSpec> = useMemo(
-    () => ({
-      x: {value: x, scale: "x"},
-      y: {value: y, scale: "y"},
-      ...(weight != null ? {weight: {value: weight, optional: true}} : {}),
-      ...(isColorChannel(fill) &&
-      fill !== "density"
-        ? {fill: {value: fill, scale: "auto", optional: true}}
-        : {}),
-      ...(isColorChannel(stroke) &&
-      stroke !== "density"
-        ? {stroke: {value: stroke, scale: "auto", optional: true}}
-        : {}),
-      ...(typeof opacity === "string" || typeof opacity === "function"
-        ? {opacity: {value: opacity, scale: "auto", optional: true}}
-        : {})
-    }),
-    [x, y, weight, fill, stroke, opacity]
-  );
+  const channels: Record<string, ChannelSpec> = {
+    x: {value: x, scale: "x"},
+    y: {value: y, scale: "y"},
+    ...(weight != null ? {weight: {value: weight, optional: true}} : {}),
+    ...(isColorChannel(fill) &&
+    fill !== "density"
+      ? {fill: {value: fill, scale: "auto", optional: true}}
+      : {}),
+    ...(isColorChannel(stroke) &&
+    stroke !== "density"
+      ? {stroke: {value: stroke, scale: "auto", optional: true}}
+      : {}),
+    ...(typeof opacity === "string" || typeof opacity === "function"
+      ? {opacity: {value: opacity, scale: "auto", optional: true}}
+      : {})
+  };
 
   const useDensityFill = fill === "density";
   const useDensityStroke = stroke === "density";
 
-  const markOptions = useMemo(
-    () => ({
-      ...defaults,
-      ...restOptions,
-      fill: useDensityFill
-        ? "currentColor"
-        : typeof fill === "string" && isColorValue(fill)
-        ? fill
-        : defaults.fill,
-      stroke: useDensityStroke
-        ? "none"
-        : typeof stroke === "string" && isColorValue(stroke)
-        ? stroke
-        : defaults.stroke,
-      strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
-      dx,
-      dy,
-      className
-    }),
-    [fill, stroke, strokeWidth, dx, dy, className, useDensityFill, useDensityStroke, restOptions]
-  );
+  const markOptions = {
+    ...defaults,
+    ...restOptions,
+    fill: useDensityFill
+      ? "currentColor"
+      : typeof fill === "string" && isColorValue(fill)
+      ? fill
+      : defaults.fill,
+    stroke: useDensityStroke
+      ? "none"
+      : typeof stroke === "string" && isColorValue(stroke)
+      ? stroke
+      : defaults.stroke,
+    strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
+    dx,
+    dy,
+    className
+  };
 
   const {values, index, dimensions} = useMark({data, channels, ariaLabel: defaults.ariaLabel, tip, ...markOptions});
 
-  if (!values || !index || !dimensions) return null;
-
-  const {x: X, y: Y, weight: W} = values;
-  const {width, height} = dimensions;
+  const X = values?.x;
+  const Y = values?.y;
+  const W = values?.weight;
+  const width = dimensions?.width ?? 0;
+  const height = dimensions?.height ?? 0;
 
   // Compute density contours
-  const contours = useMemo(() => {
-    if (!X || !Y || !index.length) return [];
+  let contours: any[] = [];
+  if (X && Y && index?.length) {
     const density = contourDensity<number>()
       .x((i) => X[i])
       .y((i) => Y[i])
@@ -116,8 +111,10 @@ export function Density({
     if (typeof thresholds === "number") density.thresholds(thresholds);
     else if (Array.isArray(thresholds)) density.thresholds(thresholds);
 
-    return density(index);
-  }, [X, Y, W, index, width, height, bandwidth, thresholds]);
+    contours = density(index);
+  }
+
+  if (!values || !index || !dimensions) return null;
 
   const path = geoPath();
   const groupProps = indirectStyleProps(markOptions, dimensions);

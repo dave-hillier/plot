@@ -1,4 +1,4 @@
-import React, {useMemo} from "react";
+import React from "react";
 import {useMark} from "../useMark.js";
 import {
   indirectStyleProps,
@@ -69,32 +69,26 @@ export function Image({
   const isHeightChannel =
     typeof heightProp === "string" || typeof heightProp === "function" || Array.isArray(heightProp);
 
-  const channels: Record<string, ChannelSpec> = useMemo(
-    () => ({
-      x: {value: x, scale: "x", optional: true},
-      y: {value: y, scale: "y", optional: true},
-      ...(isSrcChannel ? {src: {value: src, optional: true}} : {}),
-      ...(isWidthChannel ? {width: {value: widthProp, optional: true}} : {}),
-      ...(isHeightChannel ? {height: {value: heightProp, optional: true}} : {}),
-      ...(typeof opacity === "string" || typeof opacity === "function"
-        ? {opacity: {value: opacity, scale: "auto", optional: true}}
-        : {}),
-      ...(title != null ? {title: {value: title, optional: true, filter: null}} : {})
-    }),
-    [x, y, src, widthProp, heightProp, opacity, title, isSrcChannel, isWidthChannel, isHeightChannel]
-  );
+  const channels: Record<string, ChannelSpec> = {
+    x: {value: x, scale: "x", optional: true},
+    y: {value: y, scale: "y", optional: true},
+    ...(isSrcChannel ? {src: {value: src, optional: true}} : {}),
+    ...(isWidthChannel ? {width: {value: widthProp, optional: true}} : {}),
+    ...(isHeightChannel ? {height: {value: heightProp, optional: true}} : {}),
+    ...(typeof opacity === "string" || typeof opacity === "function"
+      ? {opacity: {value: opacity, scale: "auto", optional: true}}
+      : {}),
+    ...(title != null ? {title: {value: title, optional: true, filter: null}} : {})
+  };
 
-  const markOptions = useMemo(
-    () => ({
-      ...defaults,
-      ...restOptions,
-      dx,
-      dy,
-      className,
-      frameAnchor
-    }),
-    [dx, dy, className, frameAnchor, restOptions]
-  );
+  const markOptions = {
+    ...defaults,
+    ...restOptions,
+    dx,
+    dy,
+    className,
+    frameAnchor
+  };
 
   const {values, index, scales, dimensions} = useMark({
     data,

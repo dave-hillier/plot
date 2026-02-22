@@ -19,7 +19,8 @@ export default defineConfig({
     alias: {
       "replot/react": path.resolve(__dirname, "../src/react/index.tsx"),
       replot: path.resolve(__dirname, "../src/index.js")
-    }
+    },
+    dedupe: ["react", "react-dom"]
   },
   optimizeDeps: {
     exclude: ["fsevents"]

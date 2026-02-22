@@ -1,4 +1,4 @@
-import React, {useMemo} from "react";
+import React from "react";
 import {useMark} from "../useMark.js";
 import {indirectStyleProps, directStyleProps, channelStyleProps, isColorChannel, isColorValue} from "../styles.js";
 import type {ChannelSpec} from "../PlotContext.js";
@@ -62,37 +62,31 @@ export function WaffleY({
   onClick,
   ...restOptions
 }: WaffleProps) {
-  const channels: Record<string, ChannelSpec> = useMemo(
-    () => ({
-      y1: {value: y1, scale: "y"},
-      y2: {value: y2, scale: "y"},
-      x: {value: x, scale: "x", type: "band", optional: true},
-      ...(isColorChannel(fill)
-        ? {fill: {value: fill, scale: "auto", optional: true}}
-        : {}),
-      ...(typeof opacity === "string" || typeof opacity === "function"
-        ? {opacity: {value: opacity, scale: "auto", optional: true}}
-        : {}),
-      ...(title != null ? {title: {value: title, optional: true, filter: null}} : {})
-    }),
-    [x, y1, y2, fill, opacity, title]
-  );
+  const channels: Record<string, ChannelSpec> = {
+    y1: {value: y1, scale: "y"},
+    y2: {value: y2, scale: "y"},
+    x: {value: x, scale: "x", type: "band", optional: true},
+    ...(isColorChannel(fill)
+      ? {fill: {value: fill, scale: "auto", optional: true}}
+      : {}),
+    ...(typeof opacity === "string" || typeof opacity === "function"
+      ? {opacity: {value: opacity, scale: "auto", optional: true}}
+      : {}),
+    ...(title != null ? {title: {value: title, optional: true, filter: null}} : {})
+  };
 
-  const markOptions = useMemo(
-    () => ({
-      ...defaults,
-      ...restOptions,
-      fill:
-        typeof fill === "string" && isColorValue(fill)
-          ? fill
-          : "currentColor",
-      stroke: typeof stroke === "string" ? stroke : undefined,
-      dx,
-      dy,
-      className
-    }),
-    [fill, stroke, dx, dy, className, restOptions]
-  );
+  const markOptions = {
+    ...defaults,
+    ...restOptions,
+    fill:
+      typeof fill === "string" && isColorValue(fill)
+        ? fill
+        : "currentColor",
+    stroke: typeof stroke === "string" ? stroke : undefined,
+    dx,
+    dy,
+    className
+  };
 
   const {values, index, scales, dimensions} = useMark({data, channels, ariaLabel: "waffle", tip, ...markOptions});
 
@@ -174,37 +168,31 @@ export function WaffleX({
   onClick,
   ...restOptions
 }: WaffleProps) {
-  const channels: Record<string, ChannelSpec> = useMemo(
-    () => ({
-      x1: {value: x1, scale: "x"},
-      x2: {value: x2, scale: "x"},
-      y: {value: y, scale: "y", type: "band", optional: true},
-      ...(isColorChannel(fill)
-        ? {fill: {value: fill, scale: "auto", optional: true}}
-        : {}),
-      ...(typeof opacity === "string" || typeof opacity === "function"
-        ? {opacity: {value: opacity, scale: "auto", optional: true}}
-        : {}),
-      ...(title != null ? {title: {value: title, optional: true, filter: null}} : {})
-    }),
-    [x1, x2, y, fill, opacity, title]
-  );
+  const channels: Record<string, ChannelSpec> = {
+    x1: {value: x1, scale: "x"},
+    x2: {value: x2, scale: "x"},
+    y: {value: y, scale: "y", type: "band", optional: true},
+    ...(isColorChannel(fill)
+      ? {fill: {value: fill, scale: "auto", optional: true}}
+      : {}),
+    ...(typeof opacity === "string" || typeof opacity === "function"
+      ? {opacity: {value: opacity, scale: "auto", optional: true}}
+      : {}),
+    ...(title != null ? {title: {value: title, optional: true, filter: null}} : {})
+  };
 
-  const markOptions = useMemo(
-    () => ({
-      ...defaults,
-      ...restOptions,
-      fill:
-        typeof fill === "string" && isColorValue(fill)
-          ? fill
-          : "currentColor",
-      stroke: typeof stroke === "string" ? stroke : undefined,
-      dx,
-      dy,
-      className
-    }),
-    [fill, stroke, dx, dy, className, restOptions]
-  );
+  const markOptions = {
+    ...defaults,
+    ...restOptions,
+    fill:
+      typeof fill === "string" && isColorValue(fill)
+        ? fill
+        : "currentColor",
+    stroke: typeof stroke === "string" ? stroke : undefined,
+    dx,
+    dy,
+    className
+  };
 
   const {values, index, scales, dimensions} = useMark({data, channels, ariaLabel: "waffle", tip, ...markOptions});
 

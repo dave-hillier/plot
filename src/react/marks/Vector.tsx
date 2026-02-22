@@ -1,4 +1,4 @@
-import React, {useMemo} from "react";
+import React from "react";
 import {useMark} from "../useMark.js";
 import {
   indirectStyleProps,
@@ -67,39 +67,33 @@ export function Vector({
     rotateProp != null &&
     (typeof rotateProp === "string" || typeof rotateProp === "function" || Array.isArray(rotateProp));
 
-  const channels: Record<string, ChannelSpec> = useMemo(
-    () => ({
-      x: {value: x, scale: "x", optional: true},
-      y: {value: y, scale: "y", optional: true},
-      ...(isLengthChannel ? {length: {value: lengthProp, scale: "length", optional: true}} : {}),
-      ...(isRotateChannel ? {rotate: {value: rotateProp, optional: true}} : {}),
-      ...(isColorChannel(stroke)
-        ? {stroke: {value: stroke, scale: "auto", optional: true}}
-        : {}),
-      ...(typeof opacity === "string" || typeof opacity === "function"
-        ? {opacity: {value: opacity, scale: "auto", optional: true}}
-        : {}),
-      ...(title != null ? {title: {value: title, optional: true, filter: null}} : {})
-    }),
-    [x, y, lengthProp, rotateProp, stroke, opacity, title, isLengthChannel, isRotateChannel]
-  );
+  const channels: Record<string, ChannelSpec> = {
+    x: {value: x, scale: "x", optional: true},
+    y: {value: y, scale: "y", optional: true},
+    ...(isLengthChannel ? {length: {value: lengthProp, scale: "length", optional: true}} : {}),
+    ...(isRotateChannel ? {rotate: {value: rotateProp, optional: true}} : {}),
+    ...(isColorChannel(stroke)
+      ? {stroke: {value: stroke, scale: "auto", optional: true}}
+      : {}),
+    ...(typeof opacity === "string" || typeof opacity === "function"
+      ? {opacity: {value: opacity, scale: "auto", optional: true}}
+      : {}),
+    ...(title != null ? {title: {value: title, optional: true, filter: null}} : {})
+  };
 
-  const markOptions = useMemo(
-    () => ({
-      ...defaults,
-      ...restOptions,
-      stroke:
-        typeof stroke === "string" && isColorValue(stroke)
-          ? stroke
-          : defaults.stroke,
-      strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
-      dx,
-      dy,
-      className,
-      frameAnchor
-    }),
-    [stroke, strokeWidth, dx, dy, className, frameAnchor, restOptions]
-  );
+  const markOptions = {
+    ...defaults,
+    ...restOptions,
+    stroke:
+      typeof stroke === "string" && isColorValue(stroke)
+        ? stroke
+        : defaults.stroke,
+    strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
+    dx,
+    dy,
+    className,
+    frameAnchor
+  };
 
   const {values, index, scales, dimensions} = useMark({
     data,

@@ -1,4 +1,4 @@
-import {useId, useEffect, useMemo} from "react";
+import {useId, useEffect} from "react";
 import {usePlotContext, useFacetContext} from "./PlotContext.js";
 import type {ChannelSpec, MarkState} from "./PlotContext.js";
 
@@ -63,22 +63,19 @@ export function useMark(options: UseMarkOptions): UseMarkResult {
   // registerMark only writes to a ref (no setState), so it's safe to call
   // during render. Plot flushes pending updates via useLayoutEffect after
   // all children have rendered.
-  useMemo(() => {
-    registerMark({
-      id,
-      data,
-      channels,
-      options,
-      transform,
-      initializer,
-      facet: facet === true ? "include" : facet === false ? null : (facet as string) ?? "auto",
-      fx,
-      fy,
-      sort,
-      ariaLabel
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id, data, stamp, transform, initializer, facet, fx, fy, sort, ariaLabel, registerMark]);
+  registerMark({
+    id,
+    data,
+    channels,
+    options,
+    transform,
+    initializer,
+    facet: facet === true ? "include" : facet === false ? null : (facet as string) ?? "auto",
+    fx,
+    fy,
+    sort,
+    ariaLabel
+  });
 
   // Unregister on unmount.
   useEffect(() => {

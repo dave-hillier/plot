@@ -1,4 +1,4 @@
-import React, {useMemo} from "react";
+import React from "react";
 import {quantile, min, max, group} from "d3";
 import {BarX, BarY} from "./Bar.js";
 import {RuleX, RuleY} from "./Rule.js";
@@ -56,11 +56,11 @@ export function BoxX({
   r = 2,
   ...rest
 }: BoxProps) {
-  const getX = useMemo(() => toAccessor(x ?? ((d: any) => d)), [x]);
-  const getY = useMemo(() => toAccessor(y), [y]);
+  const getX = toAccessor(x ?? ((d: any) => d));
+  const getY = toAccessor(y);
 
-  const {summaries, outliers} = useMemo(() => {
-    if (!data) return {summaries: [], outliers: []};
+  const {summaries, outliers} = (() => {
+    if (!data) return {summaries: [] as any[], outliers: [] as any[]};
     const grouped =
       y != null ? group(data, (d: any, i: number) => getY(d, i)) : new Map([["__all__", Array.from(data)]]);
     const summaries: any[] = [];
@@ -89,7 +89,7 @@ export function BoxX({
       }
     }
     return {summaries, outliers};
-  }, [data, getX, getY, y]);
+  })();
 
   if (summaries.length === 0) return null;
 
@@ -138,11 +138,11 @@ export function BoxY({
   r = 2,
   ...rest
 }: BoxProps) {
-  const getX = useMemo(() => toAccessor(x), [x]);
-  const getY = useMemo(() => toAccessor(y ?? ((d: any) => d)), [y]);
+  const getX = toAccessor(x);
+  const getY = toAccessor(y ?? ((d: any) => d));
 
-  const {summaries, outliers} = useMemo(() => {
-    if (!data) return {summaries: [], outliers: []};
+  const {summaries, outliers} = (() => {
+    if (!data) return {summaries: [] as any[], outliers: [] as any[]};
     const grouped =
       x != null ? group(data, (d: any, i: number) => getX(d, i)) : new Map([["__all__", Array.from(data)]]);
     const summaries: any[] = [];
@@ -171,7 +171,7 @@ export function BoxY({
       }
     }
     return {summaries, outliers};
-  }, [data, getX, getY, x]);
+  })();
 
   if (summaries.length === 0) return null;
 

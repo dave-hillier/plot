@@ -1,4 +1,4 @@
-import React, {useMemo} from "react";
+import React from "react";
 import {area as shapeArea, group} from "d3";
 import {useMark} from "../useMark.js";
 import {indirectStyleProps, directStyleProps, groupChannelStyleProps, computeTransform, isColorChannel, isColorValue} from "../styles.js";
@@ -62,45 +62,39 @@ export function Area({
 }: AreaProps) {
   const maybeZ = z ?? (typeof fill === "string" && !/^#|^rgb|^hsl|^none|^currentColor/.test(fill) ? fill : undefined);
 
-  const channels: Record<string, ChannelSpec> = useMemo(
-    () => ({
-      x1: {value: x1, scale: "x"},
-      x2: {value: x2, scale: "x", optional: true},
-      y1: {value: y1, scale: "y"},
-      y2: {value: y2, scale: "y", optional: true},
-      ...(maybeZ != null ? {z: {value: maybeZ, optional: true}} : {}),
-      ...(isColorChannel(fill)
-        ? {fill: {value: fill, scale: "auto", optional: true}}
-        : {}),
-      ...(isColorChannel(stroke)
-        ? {stroke: {value: stroke, scale: "auto", optional: true}}
-        : {}),
-      ...(typeof opacity === "string" || typeof opacity === "function"
-        ? {opacity: {value: opacity, scale: "auto", optional: true}}
-        : {}),
-      ...(title != null ? {title: {value: title, optional: true, filter: null}} : {})
-    }),
-    [x1, x2, y1, y2, maybeZ, fill, stroke, opacity, title]
-  );
+  const channels: Record<string, ChannelSpec> = {
+    x1: {value: x1, scale: "x"},
+    x2: {value: x2, scale: "x", optional: true},
+    y1: {value: y1, scale: "y"},
+    y2: {value: y2, scale: "y", optional: true},
+    ...(maybeZ != null ? {z: {value: maybeZ, optional: true}} : {}),
+    ...(isColorChannel(fill)
+      ? {fill: {value: fill, scale: "auto", optional: true}}
+      : {}),
+    ...(isColorChannel(stroke)
+      ? {stroke: {value: stroke, scale: "auto", optional: true}}
+      : {}),
+    ...(typeof opacity === "string" || typeof opacity === "function"
+      ? {opacity: {value: opacity, scale: "auto", optional: true}}
+      : {}),
+    ...(title != null ? {title: {value: title, optional: true, filter: null}} : {})
+  };
 
-  const curveValue = useMemo(() => maybeCurveAuto(curveProp, tension), [curveProp, tension]);
+  const curveValue = maybeCurveAuto(curveProp, tension);
 
-  const markOptions = useMemo(
-    () => ({
-      ...defaults,
-      ...restOptions,
-      fill:
-        typeof fill === "string" && isColorValue(fill)
-          ? fill
-          : defaults.fill,
-      stroke: typeof stroke === "string" ? stroke : defaults.stroke,
-      strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
-      dx,
-      dy,
-      className
-    }),
-    [fill, stroke, strokeWidth, dx, dy, className, restOptions]
-  );
+  const markOptions = {
+    ...defaults,
+    ...restOptions,
+    fill:
+      typeof fill === "string" && isColorValue(fill)
+        ? fill
+        : defaults.fill,
+    stroke: typeof stroke === "string" ? stroke : defaults.stroke,
+    strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
+    dx,
+    dy,
+    className
+  };
 
   const {values, index, scales, dimensions} = useMark({
     data,
@@ -115,14 +109,14 @@ export function Area({
   const {x1: X1, x2: X2, y1: Y1, y2: Y2, z: Z} = values;
 
   // Group by z channel
-  const groups = useMemo(() => {
+  const groups = (() => {
     if (!index || !X1 || !Y1) return [];
     if (Z) {
       const grouped = group(index, (i: number) => Z[i]);
       return Array.from(grouped.values());
     }
     return [index];
-  }, [index, X1, Y1, Z]);
+  })();
 
   const areaGen = shapeArea<number>()
     .curve(curveValue)
