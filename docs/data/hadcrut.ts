@@ -1,3 +1,7 @@
-import {data} from "./hadcrut.data";
+import raw from "../public/data/hadcrut-annual.txt?raw";
 
-export default data.map(([year, anomaly]) => ({year: +year, anomaly: +anomaly}));
+export default raw
+  .trim()
+  .split(/\n/g)
+  .map((line) => line.split(/\s+/g))
+  .map(([year, anomaly]) => ({year: +year, anomaly: +anomaly}));

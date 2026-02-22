@@ -127,24 +127,36 @@ export function Plot({
   // without copying the map on every registration.
   const marksRef = useRef<Map<string, MarkRegistration>>(new Map());
   const [registrationVersion, setRegistrationVersion] = useState(0);
+  const pendingUpdateRef = useRef(false);
 
   const className = useMemo(() => maybeClassName(classNameProp), [classNameProp]);
 
+  // registerMark writes to the ref only (no setState). This is safe to call
+  // during render (via useMemo in child marks). The pending flag is flushed
+  // by the useLayoutEffect below, which runs after all children have rendered.
   const registerMark = useCallback((registration: MarkRegistration) => {
     const prev = marksRef.current.get(registration.id);
-    // Only update if the registration actually changed
     if (!prev || prev.data !== registration.data || prev.channels !== registration.channels) {
       marksRef.current.set(registration.id, registration);
-      // Defer the state update to batch multiple registrations
-      setRegistrationVersion((v) => v + 1);
+      pendingUpdateRef.current = true;
     }
   }, []);
 
   const unregisterMark = useCallback((id: string) => {
     if (marksRef.current.delete(id)) {
-      setRegistrationVersion((v) => v + 1);
+      pendingUpdateRef.current = true;
     }
   }, []);
+
+  // Flush pending registration changes after all children have registered.
+  // useLayoutEffect fires child-first then parent, so by the time this runs
+  // all child marks have written their registrations to the ref.
+  React.useLayoutEffect(() => {
+    if (pendingUpdateRef.current) {
+      pendingUpdateRef.current = false;
+      setRegistrationVersion((v) => v + 1);
+    }
+  });
 
   // Compute scales, dimensions, and mark states from all registrations.
   // This is the React equivalent of the monolithic plot() function.

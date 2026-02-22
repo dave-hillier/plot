@@ -1,0 +1,124 @@
+import {Geo, Plot, Spike, Vector, centroid, geoCentroid} from "replot/react";
+import * as d3 from "d3";
+import {useState, useEffect} from "react";
+import * as topojson from "topojson-client";
+import walmarts from "../data/walmarts.ts";
+import {poisson} from "../components/poisson.js";
+import {octave, perlin2} from "../components/perlin.js";
+
+export const counties = [];
+export const nation = [];
+export const statemesh = [];
+export const wind = [];
+export const noise = octave(perlin2, 2);
+
+# Vector mark <VersionBadge version="0.4.0" />
+
+
+See also the [arrow mark](./arrow.md), which draws arrows between two points.
+The **vector mark** draws little arrows, typically positioned in **x** and **y** quantitative dimensions, with an optional magnitude (**length**) and direction (**rotate**), as in a vector field. For example, the chart below, based on a [LitVis example](https://github.com/gicentre/litvis/blob/main/examples/windVectors.md), shows wind speed and direction for a section of western Europe.
+
+<Plot inset={10} aspectRatio={1} color={{label: "Speed (m/s)", zero: true, legend: true}}>
+  <Vector data={wind} x="longitude" y="latitude" rotate={({u, v}) => Math.atan2(u, v) * 180 / Math.PI} length={({u, v}) => Math.hypot(u, v)} stroke={({u, v}) => Math.hypot(u, v)} />
+</Plot>
+
+
+Regarding this data, [Remote Sensing Systems](https://www.remss.com/measurements/ccmp/) says: *“Standard U and V coordinates apply, meaning the positive U is to the right and positive V is above the axis. U and V are relative to true north. CCMP winds are expressed using the oceanographic convention, meaning a wind blowing toward the Northeast has a positive U component and a positive V component… Longitude is given in degrees East from 0.125 to 359.875 and latitude is given in degrees North with negative values representing southern locations.”*
+Vectors can be used with Plot’s [projection system](../features/projections.md). The map below shows the margin by which the winner of the US presidential election of 2020 won the vote in each county. The arrow’s length encodes the difference in votes, and the orientation and color show who won (<svg width={12} height={12} viewBox="-11 -11 12 12" style={{display: "inline-block"}}><path d="M0,0l-10,-6m1,3.28l-1,-3.28l3.28,-1" stroke="var(--vp-c-blue)" strokeWidth="1.5"></path></svg> for the Democratic candidate, and <svg width={12} height={12} viewBox="0 -11 12 12" style={{display: "inline-block"}}><path d="M0,0l10,-6m-1,3.28l1,-3.28l-3.28,-1" stroke="var(--vp-c-red)" strokeWidth="1.5"></path></svg> for the Republican candidate).
+
+<Plot projection="albers-usa" length={{type: "sqrt", transform: Math.abs}}>
+  <Geo data={statemesh} strokeWidth={0.5} />
+  <Geo data={nation} />
+  <Vector data={counties} {...centroid({
+        anchor: "start",
+        length: (d) => d.properties.margin2020 * d.properties.votes,
+        stroke: (d) => d.properties.margin2020 > 0 ? "red" : "blue",
+        rotate: (d) => d.properties.margin2020 > 0 ? 60 : -60
+      })} />
+</Plot>
+
+The **shape** option <VersionBadge version="0.6.2" /> controls the vector’s appearance, while the **anchor** option positions the vector relative to its anchor point specified in **x** and **y**. The [spike constructor](#spike) setS the **shape** to *spike* and the **anchor** to *start*. For example, this can be used to produce a [spike map](https:
+
+<Plot width={688} projection="albers-usa" length={{range: [0, 200]}}>
+  <Geo data={statemesh} strokeOpacity={0.5} />
+  <Geo data={nation} />
+  <Spike data={counties} {...geoCentroid({length: (d) => d.properties.population, stroke: "green"})} />
+</Plot>
+
+You can even implement a custom **shape** by supplying an object with a **draw** method. This method takes a *context* for drawing paths and the *length* of the vector. See the [moon phase calendar](https://observablehq.com/@observablehq/plot-phases-of-the-moon) for an example.
+
+Lastly, here is an example showing a Perlin noise field, just because it’s pretty:
+
+<Plot inset={6} width={1024} aspectRatio={1} axis={null}>
+  <Vector data={poisson([0, 0, 2, 2], 4000)} length={([x, y]) => (noise(x + 2, y) + 0.5) * 24} rotate={([x, y]) => noise(x, y) * 360} />
+</Plot>
+
+This example uses a noise(*x*, *y*) function defined as:
+
+```js
+noise = octave(perlin2, 2)
+```
+
+See Mike Bostock’s [Perlin Noise](https://observablehq.com/@mbostock/perlin-noise) and [Poisson Disk Sampling](https://observablehq.com/@mbostock/poisson-disk-sampling) notebooks for source code.
+
+## Vector options
+
+In addition to the [standard mark options](../features/marks.md#mark-options), the following optional channels are supported:
+
+* **x** - the horizontal position; bound to the *x* scale
+* **y** - the vertical position; bound to the *y* scale
+* **length** - the length in pixels; bound to the *length* scale; defaults to 12
+* **rotate** - the rotation angle in degrees clockwise; defaults to 0
+
+If either of the **x** or **y** channels are not specified, the corresponding position is controlled by the **frameAnchor** option.
+
+The following constant options are also supported:
+
+* **shape** - the shape of the vector; defaults to *arrow*
+* **r** - a radius in pixels; defaults to 3.5
+* **anchor** - one of *start*, *middle*, or *end*; defaults to *middle*
+* **frameAnchor** - how to position the vector within the frame; defaults to *middle*
+
+The **shape** option controls the visual appearance (path geometry) of the vector and supports the following values:
+
+* *arrow* (default) - an arrow with head size proportional to its length
+* *spike* - an isosceles triangle with open base
+* any object with a **draw** method; it receives a *context*, *length*, and *radius*
+
+If the **anchor** is *start*, the arrow will start at the given *xy* position and point in the direction given by the rotation angle. If the **anchor** is *end*, the arrow will maintain the same orientation, but be positioned such that it ends in the given *xy* position. If the **anchor** is *middle*, the arrow will be likewise be positioned such that its midpoint intersects the given *xy* position.
+
+If the **x** channel is not specified, vectors will be horizontally centered in the plot (or facet). Likewise if the **y** channel is not specified, vectors will be vertically centered in the plot (or facet). Typically either *x*, *y*, or both are specified.
+
+The **rotate** and **length** options can be specified as either channels or constants. When specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel. The length defaults to 12 pixels, and the rotate defaults to 0 degrees (pointing up↑). Vectors with a negative length will be drawn inverted. Positive angles proceed clockwise from noon.
+
+The **stroke** defaults to *currentColor*. The **strokeWidth** defaults to 1.5, and the **strokeLinecap** defaults to *round*.
+
+Vectors are drawn in input order, with the last data drawn on top. If sorting is needed, say to mitigate overplotting by drawing the smallest vectors on top, consider a [sort transform](../transforms/sort.md).
+
+## vector(*data*, *options*)
+```js
+Plot.vector(wind, {x: "longitude", y: "latitude", length: "speed", rotate: "direction"})
+```
+
+Returns a new vector with the given *data* and *options*. If neither the **x** nor **y** options are specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
+
+## vectorX(*data*, *options*)
+```js
+Plot.vectorX(cars.map((d) => d["economy (mpg)"]))
+```
+
+Equivalent to [vector](#vector) except that if the **x** option is not specified, it defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
+
+## vectorY(*data*, *options*)
+```js
+Plot.vectorY(cars.map((d) => d["economy (mpg)"]))
+```
+
+Equivalent to [vector](#vector) except that if the **y** option is not specified, it defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
+
+## spike(*data*, *options*) <VersionBadge version="0.6.2" />
+```js
+Plot.spike(counties, Plot.geoCentroid({length: (d) => d.properties.population}))
+```
+
+Equivalent to [vector](#vector) except that the **shape** defaults to *spike*, the **stroke** defaults to *currentColor*, the **strokeWidth** defaults to 1, the **fill** defaults to **stroke**, the **fillOpacity** defaults to 0.3, and the **anchor** defaults to *start*.

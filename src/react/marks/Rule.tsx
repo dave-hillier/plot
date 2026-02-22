@@ -9,6 +9,8 @@ const defaults = {
   stroke: "currentColor"
 };
 
+const identity = (d: any) => d;
+
 export interface RuleProps {
   data?: any;
   x?: any;
@@ -48,9 +50,11 @@ export function RuleX({
   className,
   ...restOptions
 }: RuleProps) {
+  // Default x to identity (data as value), matching Plot.ruleX([0]) behavior
+  const resolvedX = x ?? identity;
   const channels: Record<string, ChannelSpec> = useMemo(
     () => ({
-      x: {value: x, scale: "x"},
+      x: {value: resolvedX, scale: "x"},
       ...(y1 != null ? {y1: {value: y1, scale: "y", optional: true}} : {}),
       ...(y2 != null ? {y2: {value: y2, scale: "y", optional: true}} : {}),
       ...(isColorChannel(stroke)
@@ -64,7 +68,7 @@ export function RuleX({
         : {}),
       ...(title != null ? {title: {value: title, optional: true, filter: null}} : {})
     }),
-    [x, y1, y2, stroke, strokeOpacity, opacity, title]
+    [resolvedX, y1, y2, stroke, strokeOpacity, opacity, title]
   );
 
   const markOptions = useMemo(
@@ -145,9 +149,11 @@ export function RuleY({
   className,
   ...restOptions
 }: RuleProps) {
+  // Default y to identity (data as value), matching Plot.ruleY([0]) behavior
+  const resolvedY = y ?? identity;
   const channels: Record<string, ChannelSpec> = useMemo(
     () => ({
-      y: {value: y, scale: "y"},
+      y: {value: resolvedY, scale: "y"},
       ...(x1 != null ? {x1: {value: x1, scale: "x", optional: true}} : {}),
       ...(x2 != null ? {x2: {value: x2, scale: "x", optional: true}} : {}),
       ...(isColorChannel(stroke)
@@ -161,7 +167,7 @@ export function RuleY({
         : {}),
       ...(title != null ? {title: {value: title, optional: true, filter: null}} : {})
     }),
-    [y, x1, x2, stroke, strokeOpacity, opacity, title]
+    [resolvedY, x1, x2, stroke, strokeOpacity, opacity, title]
   );
 
   const markOptions = useMemo(

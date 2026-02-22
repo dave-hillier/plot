@@ -1,0 +1,77 @@
+import {Density, Dot, Frame, Plot} from "replot/react";
+import * as d3 from "d3";
+import {useState, useEffect} from "react";
+import penguins from "../data/penguins.ts";
+import faithful from "../data/faithful.ts";
+
+export const framed = true;
+export const setFramed = () => {};
+
+# Frame mark
+
+The **frame mark** draws a rectangle around the plot area.
+
+<Plot x={{domain: [0, 1], grid: true}}>
+  <Frame />
+</Plot>
+
+Frames are most commonly used in conjunction with facets to provide better separation (Gestalt grouping) of faceted marks. Without a frame, it can be hard to tell where one facet ends and the next begins.
+
+<p>
+  <label className="label-input">
+    Show frame:
+    <input type="checkbox" checked={framed} onChange={(e) => setFramed(e.target.checked)} />
+  </label>
+</p>
+
+<Plot grid inset={10}>
+  {/* TODO: framed ? Plot.frame() : null */}
+  <Dot data={penguins} x="culmen_length_mm" y="culmen_depth_mm" fill="#eee" />
+  <Dot data={penguins} x="culmen_length_mm" y="culmen_depth_mm" fx="species" />
+</Plot>
+
+Unlike most marks, a frame never takes *data*; the first argument to [frame](#frame) is the *options* object. (For data-driven rectangles, see the [rect mark](./rect.md).)
+
+<Plot x={{domain: [0, 1], grid: true}}>
+  <Frame stroke="red" />
+</Plot>
+
+While options are often specified in literal values, such as <span style={{borderBottom: "solid 2px var(--vp-c-red)"}}>*red*</span> above, the standard [mark channels](../features/marks.md#mark-options) such as **fill** and **stroke** can also be specified as abstract values. For example, in the density heatmap below comparing the delay between eruptions of the Old Faithful geyser (*waiting*) in *x*→ and the duration of the eruption (*eruptions*) in *y*↑, both in minutes, we fill the frame with <span style={{borderBottom: "solid 2px #23171b"}}>black</span> representing zero density.
+
+<Plot inset={30}>
+  <Frame fill={0} />
+  <Density data={faithful} x="waiting" y="eruptions" fill="density" />
+</Plot>
+
+
+This is equivalent to a [rect](./rect.md): `Plot.rect({length: 1}, {fill: 0})`.
+You can also place a frame on a specific facet using the **fx** or **fy** option. Below, a frame emphasizes the *Gentoo* facet, say to draw attention to how much bigger they are. 🐧
+
+<Plot marginLeft={80} inset={10}>
+  <Frame fy="Gentoo" />
+  <Dot data={penguins} x="body_mass_g" fy="species" />
+</Plot>
+
+
+Or: `Plot.rect({length: 1}, {fy: ["Gentoo"], stroke: "currentColor"})`.
+The **anchor** option <VersionBadge version="0.6.3" />, if specified to a value of *left*, *right*, *top* or *bottom*, draws only that side of the frame. In that case, the **fill** and **rx**, **ry** options are ignored.
+
+<Plot x={{
+    domain: [0, 1],
+    grid: true
+  }}>
+  <Frame stroke="red" anchor="bottom" />
+</Plot>
+
+## Frame options
+
+The frame mark supports the [standard mark options](../features/marks.md#mark-options), including [insetS](../features/marks.md#insetS) and [rounded corners](../features/marks.md#rounded-corners). It does not accept any data. The default **stroke** is *currentColor*, and the default **fill** is *none*.
+
+If the **anchor** option is specified as one of *left*, *right*, *top*, or *bottom*, that side is rendered as a single line (and the **fill**, **fillOpacity**, **rx**, and **ry** options are ignored).
+
+## frame(*options*)
+```js
+Plot.frame({stroke: "red"})
+```
+
+Returns a new frame mark with the specified *options*.

@@ -1,3 +1,3 @@
-import {data} from "./us-counties-10m.data";
+import raw from "../public/data/us-counties-10m.json?raw";
 
-export default data;
+export default JSON.parse(raw);

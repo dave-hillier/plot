@@ -1,4 +1,4 @@
-import {data} from "./civilizations.data";
-import {autoType} from "d3";
+import {csvParse, autoType} from "d3";
+import raw from "../public/data/civilizations.csv?raw";
 
-export default data.map(({...d}) => autoType(d));
+export default csvParse(raw).map((d) => ({...d, ...autoType(d)}));

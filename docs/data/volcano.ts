@@ -1,3 +1,3 @@
-import {data} from "./volcano.data";
+import raw from "../public/data/volcano.json?raw";
 
-export default data;
+export default JSON.parse(raw);

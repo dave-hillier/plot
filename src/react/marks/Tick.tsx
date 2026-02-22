@@ -9,6 +9,8 @@ const defaults = {
   stroke: "currentColor"
 };
 
+const identity = (d: any) => d;
+
 export interface TickProps {
   data?: any;
   x?: any;
@@ -51,9 +53,10 @@ export function TickX({
   onClick,
   ...restOptions
 }: TickProps) {
+  const resolvedX = x ?? identity;
   const channels: Record<string, ChannelSpec> = useMemo(
     () => ({
-      x: {value: x, scale: "x"},
+      x: {value: resolvedX, scale: "x"},
       y: {value: y, scale: "y", type: "band", optional: true},
       ...(isColorChannel(stroke)
         ? {stroke: {value: stroke, scale: "auto", optional: true}}
@@ -63,7 +66,7 @@ export function TickX({
         : {}),
       ...(title != null ? {title: {value: title, optional: true, filter: null}} : {})
     }),
-    [x, y, stroke, opacity, title]
+    [resolvedX, y, stroke, opacity, title]
   );
 
   const markOptions = useMemo(
@@ -144,9 +147,10 @@ export function TickY({
   onClick,
   ...restOptions
 }: TickProps) {
+  const resolvedY = y ?? identity;
   const channels: Record<string, ChannelSpec> = useMemo(
     () => ({
-      y: {value: y, scale: "y"},
+      y: {value: resolvedY, scale: "y"},
       x: {value: x, scale: "x", type: "band", optional: true},
       ...(isColorChannel(stroke)
         ? {stroke: {value: stroke, scale: "auto", optional: true}}
@@ -156,7 +160,7 @@ export function TickY({
         : {}),
       ...(title != null ? {title: {value: title, optional: true, filter: null}} : {})
     }),
-    [x, y, stroke, opacity, title]
+    [x, resolvedY, stroke, opacity, title]
   );
 
   const markOptions = useMemo(

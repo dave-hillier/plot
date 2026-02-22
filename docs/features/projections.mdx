@@ -1,0 +1,192 @@
+import {Dot, Frame, Geo, Graticule, Plot, Sphere} from "replot/react";
+import * as d3 from "d3";
+import {useState, useEffect} from "react";
+import * as topojson from "topojson-client";
+import walmarts from "../data/walmarts.ts";
+
+export const earthquakes = [];
+export const land = [];
+export const nation = [];
+export const statemesh = [];
+export const circle = null;
+export const westport = [];
+export const longitude = 0;
+export const setLongitude = () => {};
+export const radius = 30;
+export const setRadius = () => {};
+export const projection = "albers-usa";
+export const setProjection = () => {};
+
+# Projections <VersionBadge version="0.6.1" />
+
+A **projection** maps abstract coordinates in *x* and *y* to pixel positions on screen. Most often, abstract coordinates are spherical (degrees longitude and latitude), as when rendering a geographic map. For example, below we show earthquakes in the last seven days with a magnitude of 2.5 or higher as reported by the [USGS](https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php). Use the slider to adjust the *orthographic* projection’s center of longitude.
+
+<p>
+  <label className="label-input">
+    Longitude:
+    <input type="range" value={longitude} onChange={(e) => setLongitude(Number(e.target.value))} min="-180" max="180" step="1" />
+    <span style={{fontVariantNumeric: "tabular-nums"}}>{longitude}°</span>
+  </label>
+</p>
+
+<Plot projection={{type: "orthographic", rotate: [-longitude, -30]}} r={{transform: (d) => Math.pow(10, d)}}>
+  <Geo data={land} fill="currentColor" fillOpacity={0.2} />
+  <Sphere />
+  <Dot data={earthquakes} x="longitude" y="latitude" r="magnitude" stroke="red" fill="red" fillOpacity={0.2} />
+</Plot>
+
+Above, a [geo mark](../marks/geo.md) draws polygons representing land and a [sphere mark](../marks/geo.md#sphere) draws the outline of the globe. A [dot mark](../marks/dot.md) draws earthquakes as circles sized by magnitude.
+
+The geo mark is “projection aware” so that it can handle all the nuances of projecting spherical polygons to the screen — leaning on [d3-geo](https://d3js.org/d3-geo) to provide [adaptive sampling](https://observablehq.com/@d3/adaptive-sampling) with configurable precision, [antimeridian cutting](https://observablehq.com/@d3/antimeridian-cutting), and clipping. The dot mark is not; instead, Plot applies the projection in place of the *x* and *y* scales. Hence, projections work with any mark that consumes continuous **x** and **y** channels — as well as marks that use **x1** & **y1** and **x2** & **y2**. Each mark implementation decides whether to handle projections specially or to treat the projection as any other position scale. (For example, the [line mark](../marks/line.md) is projection-aware to draw geodesics.)
+
+
+Marks that require *band* scales (bars, cells, and ticks) cannot be used with projections. Likewise one-dimensional marks such as rules cannot be used, though see [#1164](https://github.com/observablehq/plot/issues/1164).
+Plot provides a variety of built-in projections. And as above, all world projections can be rotated to show a different aspect.
+
+<p>
+  <label className="label-input">
+    Projection:
+    <select value={projection} onChange={(e) => setProjection(e.target.value)}>
+      {/* <option>albers-usa</option> */}
+      {/* <option>albers</option> */}
+      <option>azimuthal-equal-area</option>
+      <option>azimuthal-equidistant</option>
+      {/* <option>conic-conformal</option> */}
+      <option>conic-equal-area</option>
+      <option>conic-equidistant</option>
+      <option>equal-earth</option>
+      <option>equirectangular</option>
+      <option>gnomonic</option>
+      {/* <option>identity</option> */}
+      {/* <option>reflect-y</option> */}
+      <option>mercator</option>
+      <option>orthographic</option>
+      <option>stereographic</option>
+      <option>transverse-mercator</option>
+    </select>
+  </label>
+</p>
+
+<Plot projection={projection}>
+  <Graticule />
+  <Geo data={land} fill="currentColor" />
+  <Sphere />
+</Plot>
+
+Why so many? Each projection has its strengths and weaknesses:
+
+- _conformal_ projections preserve angles and local shape,
+- _equal-area_ projections preserve area (use these for choropleths),
+- _equidistant_ projections preserve distance from one (or two) points,
+- _azimuthal_ projections expand radially from a central feature,
+- _cylindrical_ projections have symmetry around the axis of rotation,
+- the _stereographic_ projection preserves circles, and
+- the _gnomonic_ projection displays all great circles as straight lines!
+
+No single projection is best at everything. It is impossible, for example, for a projection to be both conformal and equal-area.
+
+In addition to world projections, Plot provides the U.S.-centric *albers-usa* conic equal-area projection with an inset of Alaska and Hawaii. (Note that the scale for Alaska is diminished: it is projected at 0.35× its true relative area.)
+
+<Plot projection="albers-usa">
+  <Geo data={nation} />
+  <Geo data={statemesh} strokeOpacity={0.2} />
+</Plot>
+
+
+Use the *albers-usa* projection for U.S.-centric choropleth maps.
+For maps that focus on a specific region, use the **domain** option to zoom in. This object should be a GeoJSON object. For example, you can use [d3.geoCircle](https://d3js.org/d3-geo/shape#geoCircle) to generate a circle of a given radius centered at a given longitude and latitude. You can also use the **inset** options for a bit of padding around the **domain**.
+
+<p>
+  <label className="label-input">
+    Radius:
+    <input type="range" value={radius} onChange={(e) => setRadius(Number(e.target.value))} min="10" max="50" step="0.1" />
+    <span style={{fontVariantNumeric: "tabular-nums"}}>{radius.toFixed(1)}°</span>
+  </label>
+</p>
+
+<Plot projection={{
+    type: "azimuthal-equidistant",
+    rotate: [-9, -34],
+    domain: circle,
+    inset: 10
+  }}>
+  <Graticule />
+  <Geo data={land} fill="currentColor" fillOpacity={0.3} />
+  <Geo data={circle} stroke="red" strokeWidth={2} />
+  <Frame />
+</Plot>
+
+While this notebook mostly details spherical projections, you can use the *identity* projection to display planar geometry. For example, below we draw a schematic of the second floor of the [Westport House](https://en.wikipedia.org/wiki/Westport_House) in Dundee, Ireland.
+
+<Plot projection={{type: "identity", domain: westport}}>
+  <Geo data={westport} />
+</Plot>
+
+
+There’s also a *reflect-y* projection in case *y* points up↑, which is often the case with [projected reference systems](https://en.wikipedia.org/wiki/Projected_coordinate_system).
+Naturally, Plot’s projection system is compatible with its [faceting system](./facets.md). Below, a comic strip of sorts shows the locations of Walmart store openings in past decades.
+
+<Plot marginLeft={0} marginRight={0} projection="albers" fx={{
+    interval: "10 years",
+    tickFormat: (d) => `${d.getUTCFullYear()}’s`,
+    label: null
+  }}>
+  <Geo data={statemesh} strokeOpacity={0.1} />
+  <Geo data={nation} />
+  <Dot data={walmarts} fx="date" x="longitude" y="latitude" r={1} fill="currentColor" />
+</Plot>
+
+
+This uses the [**interval** scale option](./scales.md#scale-transforms) to bin temporal data into facets by decade.
+To learn more about mapping with Plot, see our hands-on tutorials:
+
+* [Build your first map with Replot](https://observablehq.com/@observablehq/build-your-first-map-with-observable-plot)
+* [Build your first choropleth map with Replot](https://observablehq.com/@observablehq/build-your-first-choropleth-map-with-observable-plot)
+
+## Projection options
+
+The **projection** [plot option](./plots.md) applies a two-dimensional (often geographic) projection in place of **x** and **y** scales. It is typically used in conjunction with a [geo mark](../marks/geo.md) to produce a map, but can be used with any mark that supports **x** and **y** channels, such as [dot](../marks/dot.md), [text](../marks/text.md), [arrow](../marks/arrow.md), and [rect](../marks/rect.md). For marks that use **x1**, **y1**, **x2**, and **y2** channels, the two projected points are ⟨*x1*, *y1*⟩ and ⟨*x2*, *y2*⟩; otherwise, the projected point is ⟨*x*, *y*⟩.
+
+The following built-in named projections are supported:
+
+* *equirectangular* - the equirectangular, or *plate carrée*, projection
+* *orthographic* - the orthographic projection
+* *stereographic* - the stereographic projection
+* *mercator* - the Mercator projection
+* *equal-earth* - the [Equal Earth projection](https://en.wikipedia.org/wiki/Equal_Earth_projection) by Šavrič *et al.*
+* *azimuthal-equal-area* - the azimuthal equal-area projection
+* *azimuthal-equidistant* - the azimuthal equidistant projection
+* *conic-conformal* - the conic conformal projection
+* *conic-equal-area* - the conic equal-area projection
+* *conic-equidistant* - the conic equidistant projection
+* *gnomonic* - the gnomonic projection
+* *transverse-mercator* - the transverse Mercator projection
+* *albers* - the Albers’ conic equal-area projection
+* *albers-usa* - a composite Albers conic equal-area projection suitable for the United States
+* *identity* - the identity projection for planar geometry
+* *reflect-y* - like the identity projection, but *y* points up
+* null (default) - the null projection for pre-projected geometry in screen coordinates
+
+In addition to these named projections, the **projection** option may be specified as a [D3 projection](https://d3js.org/d3-geo/projection), or any custom projection that implements [*projection*.stream](https://d3js.org/d3-geo/stream), or a function that receives a configuration object (\{*width*, *height*, ...*options*\}) and returns such a projection. In the last case, the width and height represent the frame dimensions minus any insetS.
+
+If the **projection** option is specified as an object, the following additional projection options are supported:
+
+* **type** - one of the projection names above
+* **parallels** - the [standard parallels](https://d3js.org/d3-geo/conic#conic_parallels) (for conic projections only)
+* **precision** - the [sampling threshold](https://d3js.org/d3-geo/projection#projection_precision)
+* **rotate** - a two- or three- element array of Euler angles to rotate the sphere
+* **domain** - a GeoJSON object to fit in the center of the (inset) frame
+* **inset** - inset by the given amount in pixels when fitting to the frame (default zero)
+* **insetLeft** - inset from the left edge of the frame (defaults to inset)
+* **insetRight** - inset from the right edge of the frame (defaults to inset)
+* **insetTop** - inset from the top edge of the frame (defaults to inset)
+* **insetBottom** - inset from the bottom edge of the frame (defaults to inset)
+* **clip** - the projection clipping method
+
+The following projection clipping methods are supported for **clip**:
+
+* *frame* or true (default) - clip to the extent of the frame (including margins but not insetS)
+* a number - clip to a great circle of the given radius in degrees centered around the origin
+* null or false - do not clip
+
+Whereas the **clip** [mark option](./marks.md#mark-options) is implemented using SVG clipping, the **clip** projection option affects the generated geometry and typically produces smaller SVG output.

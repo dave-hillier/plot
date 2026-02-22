@@ -30,18 +30,39 @@ export interface UseMarkResult {
   facetInfo: import("./PlotContext.js").FacetContextValue | null;
 }
 
+// Compute a stable channel signature that doesn't depend on object identity.
+// This prevents re-registration when wrapper components (e.g., DotX, LineX)
+// recreate identical channel objects with new function references on every render.
+function channelStamp(channels: Record<string, ChannelSpec>): string {
+  return Object.entries(channels)
+    .map(([name, spec]) => {
+      const v = spec.value;
+      const valueType =
+        v == null ? "null" : typeof v === "string" ? `s:${v}` : typeof v;
+      return `${name}:${valueType}:${spec.scale ?? ""}`;
+    })
+    .sort()
+    .join("|");
+}
+
 // The core hook used by all mark components.
 // Handles registration with Plot and provides computed scaled values.
 export function useMark(options: UseMarkOptions): UseMarkResult {
   const id = useId();
-  const {registerMark, unregisterMark, scales, dimensions, getMarkState} = usePlotContext();
+  const {registerMark, unregisterMark, scaleFunctions, dimensions, getMarkState} = usePlotContext();
   const facetInfo = useFacetContext();
 
   const {data, channels, transform, initializer, facet, fx, fy, sort, ariaLabel} = options;
 
+  // Use a stable stamp instead of the channels object reference as a dep.
+  // This avoids infinite re-registration loops when wrapper components like
+  // DotX create new (but equivalent) inline default functions each render.
+  const stamp = channelStamp(channels);
+
   // Register this mark with the Plot component.
-  // We register during render (not in an effect) so that Plot can
-  // synchronously collect all marks before computing scales.
+  // registerMark only writes to a ref (no setState), so it's safe to call
+  // during render. Plot flushes pending updates via useLayoutEffect after
+  // all children have rendered.
   useMemo(() => {
     registerMark({
       id,
@@ -56,7 +77,8 @@ export function useMark(options: UseMarkOptions): UseMarkResult {
       sort,
       ariaLabel
     });
-  }, [id, data, channels, transform, initializer, facet, fx, fy, sort, ariaLabel, registerMark]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id, data, stamp, transform, initializer, facet, fx, fy, sort, ariaLabel, registerMark]);
 
   // Unregister on unmount.
   useEffect(() => {
@@ -64,14 +86,14 @@ export function useMark(options: UseMarkOptions): UseMarkResult {
   }, [id, unregisterMark]);
 
   // If scales haven't been computed yet, we're in the registration phase.
-  if (!scales || !dimensions) {
+  if (!scaleFunctions || !dimensions) {
     return {state: null, values: null, index: null, scales: null, dimensions: null, facetInfo};
   }
 
   // Get the computed state for this mark.
   const state = getMarkState(id);
   if (!state) {
-    return {state: null, values: null, index: null, scales, dimensions, facetInfo};
+    return {state: null, values: null, index: null, scales: scaleFunctions, dimensions, facetInfo};
   }
 
   // Determine the appropriate index based on facet context.
@@ -80,11 +102,13 @@ export function useMark(options: UseMarkOptions): UseMarkResult {
     index = state.facets[facetInfo.facetIndex] ?? [];
   }
 
+  // Return scaleFunctions (actual d3 scales) as `scales` so marks can
+  // call methods like .bandwidth(), .domain(), etc.
   return {
     state,
     values: state.values,
     index,
-    scales,
+    scales: scaleFunctions,
     dimensions,
     facetInfo
   };

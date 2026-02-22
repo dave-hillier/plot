@@ -43,9 +43,9 @@
     "test:tsc": "tsc",
     "prepublishOnly": "rm -rf dist && rollup -c",
     "dev": "vite",
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:dev": "vite --config docs/vite.docs.config.ts",
+    "docs:build": "vite build --config docs/vite.docs.config.ts",
+    "docs:preview": "vite preview --config docs/vite.docs.config.ts"
   },
   "sideEffects": [
     "./src/index.js"
@@ -53,6 +53,8 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
     "@eslint/js": "^9.20.0",
+    "@mdx-js/react": "^3.1.1",
+    "@mdx-js/rollup": "^3.1.1",
     "@observablehq/runtime": "^6.0.0",
     "@observablehq/stdlib": "^5.8.8",
     "@rollup/plugin-commonjs": "^28.0.2",
@@ -60,12 +62,14 @@
     "@rollup/plugin-node-resolve": "^16.0.0",
     "@rollup/plugin-terser": "^0.4.0",
     "@types/d3": "^7.4.0",
+    "@types/mdx": "^2.0.13",
     "@types/mocha": "^10.0.1",
     "@types/node": "^22.13.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@typescript-eslint/eslint-plugin": "^8.24.0",
     "@typescript-eslint/parser": "^8.24.0",
+    "@vitejs/plugin-react": "^5.1.4",
     "apache-arrow": "^19.0.0",
     "c8": "^10.1.3",
     "canvas": "^3.1.0",
@@ -81,13 +85,16 @@
     "prettier": "~3.0.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
+    "remark-frontmatter": "^5.0.0",
+    "remark-gfm": "^4.0.1",
     "rollup": "^4.9.1",
     "topojson-client": "^3.1.0",
     "ts-morph": "^25.0.1",
     "tsx": "^4.7.0",
     "typescript": "^5.0.2",
     "vite": "^6.1.0",
-    "vitepress": "^1.3.1"
+    "vitepress": "^1.3.1",
+    "wouter": "^3.9.0"
   },
   "c8": {
     "all": true,

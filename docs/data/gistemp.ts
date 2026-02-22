@@ -1,4 +1,4 @@
-import {data} from "./gistemp.data";
-import {autoType} from "d3";
+import {csvParse, autoType} from "d3";
+import raw from "../public/data/gistemp.csv?raw";
 
-export default data.map(({...d}) => autoType(d));
+export default csvParse(raw).map((d) => ({...d, ...autoType(d)}));

@@ -1,6 +1,8 @@
-import {data} from "./crimea.data";
-import {autoType} from "d3";
+import {csvParse, autoType} from "d3";
+import raw from "../public/data/crimean-war.csv?raw";
 
-export default data.columns
+const crimea = csvParse(raw);
+
+export default crimea.columns
   .slice(2)
-  .flatMap((cause) => (data.rows as any[]).map(({date, [cause]: deaths}) => autoType({date, cause, deaths})));
+  .flatMap((cause) => crimea.map(({date, [cause]: deaths}) => autoType({date, cause, deaths})));

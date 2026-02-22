@@ -1,4 +1,4 @@
-import {data} from "./faithful.data";
-import {autoType} from "d3";
+import {tsvParse, autoType} from "d3";
+import raw from "../public/data/faithful.tsv?raw";
 
-export default data.map(({...d}) => autoType(d));
+export default tsvParse(raw).map((d) => ({...d, ...autoType(d)}));

@@ -113,6 +113,8 @@ export type {BoxProps} from "./marks/Box.js";
 export {TreeMark, ClusterMark} from "./marks/Tree.js";
 export type {TreeProps} from "./marks/Tree.js";
 
+export {Auto} from "./marks/Auto.js";
+
 export {BollingerX, BollingerY} from "./marks/Bollinger.js";
 export type {BollingerProps} from "./marks/Bollinger.js";
 

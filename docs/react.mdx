@@ -1,0 +1,467 @@
+import penguins from "./data/penguins.ts";
+
+# React examples
+
+Replot provides a native React component API. Instead of the imperative `Plot.plot()` function, you compose charts declaratively with JSX using the `<Plot>` root component and mark components like `<Dot>`, `<Line>`, `<BarY>`, and others.
+
+All components are imported from `replot/react`. Transforms such as `binX`, `groupX`, and `stackY` are re-exported from the same entry point.
+
+```jsx
+import {Plot, Dot, Line, BarY, binX} from "replot/react";
+```
+
+## Scatterplot
+
+A basic scatterplot with the `<Dot>` mark. Map data fields to the `x`, `y`, and `fill` channels.
+
+```jsx [Imperative]
+Plot.plot({
+  width: 640,
+  height: 400,
+  color: {scheme: "category10"},
+  marks: [
+    Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", fill: "species"})
+  ]
+})
+```
+
+```jsx [React]
+<Plot width={640} height={400} color={{scheme: "category10"}}>
+  <Dot data={penguins} x="culmen_length_mm" y="culmen_depth_mm" fill="species" />
+</Plot>
+```
+
+
+## Line chart
+
+A line chart using the `<Line>` mark. When multiple series are present, use the `stroke` channel to distinguish them.
+
+```jsx [Imperative]
+Plot.plot({
+  y: {grid: true},
+  marks: [
+    Plot.line(data, {x: "date", y: "temperature", stroke: "city"})
+  ]
+})
+```
+
+```jsx [React]
+<Plot y={{grid: true}}>
+  <Line data={data} x="date" y="temperature" stroke="city" />
+</Plot>
+```
+
+
+## Area chart
+
+A filled area chart with the `<AreaY>` mark.
+
+```jsx [Imperative]
+Plot.plot({
+  marks: [
+    Plot.areaY(data, {x: "date", y: "value", fill: "steelblue", fillOpacity: 0.5}),
+    Plot.line(data, {x: "date", y: "value", stroke: "steelblue"})
+  ]
+})
+```
+
+```jsx [React]
+<Plot>
+  <AreaY data={data} x="date" y="value" fill="steelblue" fillOpacity={0.5} />
+  <Line data={data} x="date" y="value" stroke="steelblue" />
+</Plot>
+```
+
+
+## Bar chart
+
+A bar chart using the `<BarY>` mark with an ordinal x scale.
+
+```jsx [Imperative]
+Plot.plot({
+  x: {label: "Category"},
+  y: {label: "Count"},
+  marks: [
+    Plot.barY(data, {x: "category", y: "count", fill: "steelblue"})
+  ]
+})
+```
+
+```jsx [React]
+<Plot x={{label: "Category"}} y={{label: "Count"}}>
+  <BarY data={data} x="category" y="count" fill="steelblue" />
+</Plot>
+```
+
+
+## Histogram
+
+A histogram using the `binX` transform with `<BarY>`. Spread the transform result onto the mark component.
+
+```jsx [Imperative]
+Plot.plot({
+  marks: [
+    Plot.barY(data, Plot.binX({y: "count"}, {x: "value", fill: "steelblue"})),
+    Plot.ruleY([0])
+  ]
+})
+```
+
+```jsx [React]
+<Plot>
+  <BarY data={data} {...binX({y: "count"}, {x: "value", fill: "steelblue"})} />
+  <RuleY data={[0]} />
+</Plot>
+```
+
+
+## Grouped bar chart
+
+Use the `groupX` transform to aggregate data by category.
+
+```jsx [Imperative]
+Plot.plot({
+  x: {label: "Category"},
+  y: {label: "Count"},
+  color: {legend: true},
+  marks: [
+    Plot.barY(data, Plot.groupX({y: "count"}, {x: "category", fill: "group"}))
+  ]
+})
+```
+
+```jsx [React]
+<Plot x={{label: "Category"}} y={{label: "Count"}} color={{legend: true}}>
+  <BarY data={data} {...groupX({y: "count"}, {x: "category", fill: "group"})} />
+</Plot>
+```
+
+
+## Stacked area chart
+
+Use the `stackY` transform with `<AreaY>` to create stacked areas.
+
+```jsx [Imperative]
+Plot.plot({
+  marks: [
+    Plot.areaY(data, Plot.stackY({x: "date", y: "value", fill: "category"}))
+  ]
+})
+```
+
+```jsx [React]
+<Plot>
+  <AreaY data={data} x="date" y="value" fill="category" {...stackY()} />
+</Plot>
+```
+
+
+## Dot plot with rule
+
+Combine `<Dot>` marks with `<RuleY>` for reference lines.
+
+```jsx [Imperative]
+Plot.plot({
+  y: {grid: true},
+  color: {scheme: "burd"},
+  marks: [
+    Plot.ruleY([0]),
+    Plot.dot(data, {x: "date", y: "anomaly", stroke: "anomaly"})
+  ]
+})
+```
+
+```jsx [React]
+<Plot y={{grid: true}} color={{scheme: "burd"}}>
+  <RuleY data={[0]} />
+  <Dot data={data} x="date" y="anomaly" stroke="anomaly" />
+</Plot>
+```
+
+
+## Faceted chart (small multiples)
+
+Use the `fx` or `fy` props on marks to split the chart into facets.
+
+```jsx [Imperative]
+Plot.plot({
+  facet: {marginRight: 60},
+  marks: [
+    Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", fx: "species"})
+  ]
+})
+```
+
+```jsx [React]
+<Plot facet={{marginRight: 60}}>
+  <Dot data={penguins} x="culmen_length_mm" y="culmen_depth_mm" fx="species" />
+</Plot>
+```
+
+
+## Tooltips
+
+Add the `tip` prop to any mark to enable tooltips on hover.
+
+```jsx [Imperative]
+Plot.plot({
+  marks: [
+    Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", fill: "species", tip: true})
+  ]
+})
+```
+
+```jsx [React]
+<Plot>
+  <Dot data={penguins} x="culmen_length_mm" y="culmen_depth_mm" fill="species" tip />
+</Plot>
+```
+
+
+## Crosshair
+
+Use the `<Crosshair>` component for guided hover interactions.
+
+```jsx [Imperative]
+Plot.plot({
+  marks: [
+    Plot.line(data, {x: "date", y: "value"}),
+    Plot.crosshair(data, {x: "date", y: "value"})
+  ]
+})
+```
+
+```jsx [React]
+<Plot>
+  <Line data={data} x="date" y="value" />
+  <Crosshair data={data} x="date" y="value" />
+</Plot>
+```
+
+
+## Rule marks
+
+Use `<RuleX>` and `<RuleY>` to draw reference lines.
+
+```jsx [Imperative]
+Plot.plot({
+  marks: [
+    Plot.dot(data, {x: "x", y: "y"}),
+    Plot.ruleX([0]),
+    Plot.ruleY([0])
+  ]
+})
+```
+
+```jsx [React]
+<Plot>
+  <Dot data={data} x="x" y="y" />
+  <RuleX data={[0]} />
+  <RuleY data={[0]} />
+</Plot>
+```
+
+
+## Text labels
+
+Use the `<Text>` mark to add labels to data points.
+
+```jsx [Imperative]
+Plot.plot({
+  marks: [
+    Plot.dot(data, {x: "x", y: "y"}),
+    Plot.text(data, {x: "x", y: "y", text: "label", dy: -8})
+  ]
+})
+```
+
+```jsx [React]
+<Plot>
+  <Dot data={data} x="x" y="y" />
+  <Text data={data} x="x" y="y" text="label" dy={-8} />
+</Plot>
+```
+
+
+## Cell heatmap
+
+Use the `<Cell>` mark for heatmaps.
+
+```jsx [Imperative]
+Plot.plot({
+  color: {scheme: "blues"},
+  marks: [
+    Plot.cell(data, {x: "column", y: "row", fill: "value"})
+  ]
+})
+```
+
+```jsx [React]
+<Plot color={{scheme: "blues"}}>
+  <Cell data={data} x="column" y="row" fill="value" />
+</Plot>
+```
+
+
+## Rect chart
+
+Use the `<Rect>` mark for two-dimensional binning or rectangles.
+
+```jsx [Imperative]
+Plot.plot({
+  color: {scheme: "ylgnbu"},
+  marks: [
+    Plot.rect(data, Plot.bin({fill: "count"}, {x: "x", y: "y"}))
+  ]
+})
+```
+
+```jsx [React]
+<Plot color={{scheme: "ylgnbu"}}>
+  <Rect data={data} {...bin({fill: "count"}, {x: "x", y: "y"})} />
+</Plot>
+```
+
+
+## Tick marks
+
+Use `<TickX>` and `<TickY>` for one-dimensional data.
+
+```jsx [Imperative]
+Plot.plot({
+  marks: [
+    Plot.tickX(data, {x: "value", y: "category"})
+  ]
+})
+```
+
+```jsx [React]
+<Plot>
+  <TickX data={data} x="value" y="category" />
+</Plot>
+```
+
+
+## Box plot
+
+Use `<BoxY>` for box-and-whisker plots.
+
+```jsx [Imperative]
+Plot.plot({
+  marks: [
+    Plot.boxY(data, {x: "category", y: "value"})
+  ]
+})
+```
+
+```jsx [React]
+<Plot>
+  <BoxY data={data} x="category" y="value" />
+</Plot>
+```
+
+
+## Figure wrapping
+
+Use `title`, `subtitle`, and `caption` props to wrap the chart in a `<figure>`.
+
+```jsx [Imperative]
+Plot.plot({
+  title: "Penguin measurements",
+  subtitle: "Palmer Archipelago, Antarctica",
+  caption: "Source: palmerpenguins",
+  marks: [
+    Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm"})
+  ]
+})
+```
+
+```jsx [React]
+<Plot
+  title="Penguin measurements"
+  subtitle="Palmer Archipelago, Antarctica"
+  caption="Source: palmerpenguins"
+>
+  <Dot data={penguins} x="culmen_length_mm" y="culmen_depth_mm" />
+</Plot>
+```
+
+
+## Multiple marks
+
+Compose multiple marks in a single chart by nesting them inside `<Plot>`.
+
+```jsx [Imperative]
+Plot.plot({
+  y: {grid: true},
+  marks: [
+    Plot.areaY(data, {x: "date", y: "value", fill: "#e0e0e0"}),
+    Plot.line(data, {x: "date", y: "value", stroke: "steelblue"}),
+    Plot.dot(data, {x: "date", y: "value", fill: "steelblue"}),
+    Plot.ruleY([0])
+  ]
+})
+```
+
+```jsx [React]
+<Plot y={{grid: true}}>
+  <AreaY data={data} x="date" y="value" fill="#e0e0e0" />
+  <Line data={data} x="date" y="value" stroke="steelblue" />
+  <Dot data={data} x="date" y="value" fill="steelblue" />
+  <RuleY data={[0]} />
+</Plot>
+```
+
+
+## Using with React state
+
+React components work naturally with React state and hooks:
+
+```jsx
+import {Plot, Dot} from "replot/react";
+import {useState} from "react";
+
+function FilterableChart({data}) {
+  const [species, setSpecies] = useState("all");
+  const filtered = species === "all" ? data : data.filter((d) => d.species === species);
+
+  return (
+    <div>
+      <select value={species} onChange={(e) => setSpecies(e.target.value)}>
+        <option value="all">All species</option>
+        <option value="Adelie">Adelie</option>
+        <option value="Chinstrap">Chinstrap</option>
+        <option value="Gentoo">Gentoo</option>
+      </select>
+      <Plot width={640} height={400}>
+        <Dot data={filtered} x="culmen_length_mm" y="culmen_depth_mm" fill="species" />
+      </Plot>
+    </div>
+  );
+}
+```
+
+## Component reference
+
+All mark components accept the same options as their imperative counterparts, passed as JSX props. The main differences:
+
+| Imperative | React | Notes |
+|---|---|---|
+| `Plot.plot({marks: [...]})` | `<Plot>...</Plot>` | Marks are children, scale options are props |
+| `Plot.dot(data, {x, y})` | `<Dot data={data} x="x" y="y" />` | All options become props |
+| `Plot.binX({y: "count"}, opts)` | `{...binX({y: "count"}, opts)}` | Spread transform result as props |
+| `Plot.line(data, {...})` | `<Line data={data} ... />` | Same pattern for all marks |
+
+### Available mark components
+
+**Basic marks:** `Dot`, `DotX`, `DotY`, `Circle`, `Hexagon`, `Line`, `LineX`, `LineY`, `Area`, `AreaX`, `AreaY`, `BarX`, `BarY`, `Rect`, `RectX`, `RectY`, `Cell`, `CellX`, `CellY`, `RuleX`, `RuleY`, `Text`, `TextX`, `TextY`, `TickX`, `TickY`, `Frame`
+
+**Geometric marks:** `Geo`, `Sphere`, `Graticule`, `DelaunayLink`, `DelaunayMesh`, `Hull`, `Voronoi`, `VoronoiMesh`, `Density`, `Contour`, `Raster`, `Hexgrid`
+
+**Composite marks:** `BoxX`, `BoxY`, `TreeMark`, `ClusterMark`, `BollingerX`, `BollingerY`, `DifferenceX`, `DifferenceY`, `LinearRegressionX`, `LinearRegressionY`, `WaffleX`, `WaffleY`
+
+**Axes and grid:** `AxisX`, `AxisY`, `GridX`, `GridY`, `AxisFx`, `AxisFy`, `GridFx`, `GridFy`
+
+**Interactions:** `Tip`, `Crosshair`, `CrosshairX`, `CrosshairY`
+
+**Legends:** `Legend`
