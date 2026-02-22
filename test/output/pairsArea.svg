@@ -13,14 +13,114 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="area" fill="none" stroke-linejoin="round" stroke-linecap="round">
-    <path stroke="rgb(35, 23, 27)" d="M0,103.735L45.643,126.685L45.643,139L0,139Z"></path>
-    <path stroke="rgb(64, 118, 245)" d="M91.286,58.325L136.929,107.898L136.929,139L91.286,139Z"></path>
-    <path stroke="rgb(38, 208, 205)" d="M182.571,86.502L228.214,135.413L228.214,139L182.571,139Z"></path>
-    <path stroke="rgb(95, 252, 115)" d="M273.857,76.493L319.5,122.445L319.5,139L273.857,139Z"></path>
-    <path stroke="rgb(203, 232, 57)" d="M365.143,16.885L410.786,0L410.786,139L365.143,139Z"></path>
-    <path stroke="rgb(255, 155, 33)" d="M456.429,19.765L502.071,69.17L502.071,139L456.429,139Z"></path>
-    <path stroke="rgb(214, 57, 15)" d="M547.714,49.28L593.357,18.612L593.357,139L547.714,139Z"></path>
-    <path stroke="rgb(144, 12, 0)" d="M639,55.643L639,139Z"></path>
+  <defs>
+    <clipPath id="_r_1me_">
+      <rect x="0" y="0" width="639" height="139"></rect>
+    </clipPath>
+  </defs>
+  <g aria-label="x-axis" transform="translate(0,139)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+    <line x1="0" x2="639" stroke="currentColor"></line>
+    <g transform="translate(0,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">0</text>
+    </g>
+    <g transform="translate(45.643,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">1</text>
+    </g>
+    <g transform="translate(91.286,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">2</text>
+    </g>
+    <g transform="translate(136.929,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">3</text>
+    </g>
+    <g transform="translate(182.571,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">4</text>
+    </g>
+    <g transform="translate(228.214,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">5</text>
+    </g>
+    <g transform="translate(273.857,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">6</text>
+    </g>
+    <g transform="translate(319.5,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">7</text>
+    </g>
+    <g transform="translate(365.143,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">8</text>
+    </g>
+    <g transform="translate(410.786,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">9</text>
+    </g>
+    <g transform="translate(456.429,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">10</text>
+    </g>
+    <g transform="translate(502.071,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">11</text>
+    </g>
+    <g transform="translate(547.714,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">12</text>
+    </g>
+    <g transform="translate(593.357,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">13</text>
+    </g>
+    <g transform="translate(639,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">14</text>
+    </g>
+  </g>
+  <g aria-label="y-axis" transform="translate(0,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
+    <line y1="0" y2="139" stroke="currentColor"></line>
+    <g transform="translate(0,128.336)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">0.1</text>
+    </g>
+    <g transform="translate(0,113.991)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">0.2</text>
+    </g>
+    <g transform="translate(0,99.646)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">0.3</text>
+    </g>
+    <g transform="translate(0,85.301)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">0.4</text>
+    </g>
+    <g transform="translate(0,70.956)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">0.5</text>
+    </g>
+    <g transform="translate(0,56.611)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">0.6</text>
+    </g>
+    <g transform="translate(0,42.266)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">0.7</text>
+    </g>
+    <g transform="translate(0,27.921)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">0.8</text>
+    </g>
+    <g transform="translate(0,13.575)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">0.9</text>
+    </g>
+  </g>
+  <g aria-label="area" fill="currentColor" stroke="none" stroke-width="1" stroke-miterlimit="1">
+    <path d="M0,106.482L45.643,130.04L91.286,59.87L136.929,110.756L182.571,88.793L228.214,139L273.857,78.518L319.5,125.688L365.143,17.332L410.786,0L456.429,20.289L502.071,71.002L547.714,50.586L593.357,19.105L639,57.117L639,57.117L593.357,19.105L547.714,50.586L502.071,71.002L456.429,20.289L410.786,0L365.143,17.332L319.5,125.688L273.857,78.518L228.214,139L182.571,88.793L136.929,110.756L91.286,59.87L45.643,130.04L0,106.482Z" stroke="rgb(35, 23, 27)"></path>
   </g>
 </svg>

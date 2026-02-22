@@ -14,26 +14,49 @@ jsdomit.only = (description, run) => {
   return it.only(description, withJsdom(run));
 };
 
+// Globals that React and ReactDOM require beyond basic JSDOM.
+// Do NOT include queueMicrotask or MessageChannel — Node.js provides them
+// natively, and JSDOM's versions cause infinite recursion when assigned to global.
+const REACT_GLOBALS = [
+  "window", "document", "Event", "Node", "NodeList", "HTMLCollection",
+  "HTMLElement", "SVGElement", "MutationObserver", "navigator",
+  "requestAnimationFrame", "cancelAnimationFrame",
+  "CustomEvent", "getComputedStyle"
+];
+
 function withJsdom(run) {
   return async () => {
     const jsdom = new JSDOM("");
-    global.window = jsdom.window;
-    global.document = jsdom.window.document;
-    global.Event = jsdom.window.Event;
-    global.Node = jsdom.window.Node;
-    global.NodeList = jsdom.window.NodeList;
-    global.HTMLCollection = jsdom.window.HTMLCollection;
+    const saved = {};
+    for (const key of REACT_GLOBALS) {
+      saved[key] = global[key];
+      if (key in jsdom.window) {
+        try {
+          global[key] = jsdom.window[key];
+        } catch {
+          // Some properties (e.g. navigator) are read-only on the global object;
+          // override them via Object.defineProperty.
+          Object.defineProperty(global, key, {value: jsdom.window[key], writable: true, configurable: true});
+        }
+      }
+    }
     global.fetch = async (href) => new Response(path.resolve("./test", href));
+    global.IS_REACT_ACT_ENVIRONMENT = true;
     try {
       return await run();
     } finally {
-      delete global.window;
-      delete global.document;
-      delete global.Event;
-      delete global.Node;
-      delete global.NodeList;
-      delete global.HTMLCollection;
+      for (const key of REACT_GLOBALS) {
+        if (saved[key] === undefined) delete global[key];
+        else {
+          try {
+            global[key] = saved[key];
+          } catch {
+            Object.defineProperty(global, key, {value: saved[key], writable: true, configurable: true});
+          }
+        }
+      }
       delete global.fetch;
+      delete global.IS_REACT_ACT_ENVIRONMENT;
     }
   };
 }

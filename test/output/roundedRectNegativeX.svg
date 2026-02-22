@@ -1,0 +1,210 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="640" viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <defs>
+    <clipPath id="_r_26n_">
+      <rect x="0" y="0" width="639" height="639"></rect>
+    </clipPath>
+  </defs>
+  <g aria-label="x-axis" transform="translate(0,639)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+    <line x1="0" x2="639" stroke="currentColor"></line>
+    <g transform="translate(0,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">0</text>
+    </g>
+    <g transform="translate(72.285,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">50</text>
+    </g>
+    <g transform="translate(144.57,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">100</text>
+    </g>
+    <g transform="translate(216.855,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">150</text>
+    </g>
+    <g transform="translate(289.14,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">200</text>
+    </g>
+    <g transform="translate(361.425,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">250</text>
+    </g>
+    <g transform="translate(433.71,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">300</text>
+    </g>
+    <g transform="translate(505.995,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">350</text>
+    </g>
+    <g transform="translate(578.281,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">400</text>
+    </g>
+  </g>
+  <g aria-label="y-axis" transform="translate(0,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
+    <line y1="0" y2="639" stroke="currentColor"></line>
+    <g transform="translate(0,594)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">40</text>
+    </g>
+    <g transform="translate(0,504)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">60</text>
+    </g>
+    <g transform="translate(0,414)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">80</text>
+    </g>
+    <g transform="translate(0,324)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">100</text>
+    </g>
+    <g transform="translate(0,234)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">120</text>
+    </g>
+    <g transform="translate(0,144)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">140</text>
+    </g>
+    <g transform="translate(0,54)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">160</text>
+    </g>
+  </g>
+  <g aria-label="rect" fill="currentColor">
+    <rect x="0" y="595" width="1.446" height="8"></rect>
+    <rect x="0" y="568" width="1.446" height="8"></rect>
+    <rect x="0" y="559" width="2.891" height="8"></rect>
+    <rect x="0" y="550" width="5.783" height="8"></rect>
+    <rect x="0" y="541" width="20.24" height="8"></rect>
+    <rect x="0" y="532" width="39.034" height="8"></rect>
+    <rect x="0" y="523" width="92.525" height="8"></rect>
+    <rect x="0" y="514" width="118.548" height="8"></rect>
+    <rect x="0" y="505" width="173.484" height="8"></rect>
+    <rect x="0" y="496" width="252.998" height="8"></rect>
+    <rect x="0" y="487" width="251.552" height="8"></rect>
+    <rect x="0" y="478" width="383.111" height="8"></rect>
+    <rect x="0" y="469" width="267.455" height="8"></rect>
+    <rect x="0" y="460" width="407.688" height="8"></rect>
+    <rect x="0" y="451" width="523.344" height="8"></rect>
+    <rect x="0" y="442" width="501.658" height="8"></rect>
+    <rect x="0" y="433" width="588.4" height="8"></rect>
+    <rect x="0" y="424" width="439.493" height="8"></rect>
+    <rect x="0" y="415" width="440.939" height="8"></rect>
+    <rect x="0" y="406" width="571.052" height="8"></rect>
+    <rect x="0" y="397" width="430.819" height="8"></rect>
+    <rect x="0" y="388" width="438.048" height="8"></rect>
+    <rect x="0" y="379" width="257.335" height="8"></rect>
+    <rect x="0" y="370" width="276.129" height="8"></rect>
+    <rect x="0" y="361" width="348.414" height="8"></rect>
+    <rect x="0" y="352" width="252.998" height="8"></rect>
+    <rect x="0" y="343" width="255.889" height="8"></rect>
+    <rect x="0" y="334" width="169.147" height="8"></rect>
+    <rect x="0" y="325" width="135.896" height="8"></rect>
+    <rect x="0" y="316" width="179.267" height="8"></rect>
+    <rect x="0" y="307" width="98.308" height="8"></rect>
+    <rect x="0" y="298" width="141.679" height="8"></rect>
+    <rect x="0" y="289" width="46.262" height="8"></rect>
+    <rect x="0" y="280" width="31.805" height="8"></rect>
+    <rect x="0" y="271" width="46.262" height="8"></rect>
+    <rect x="0" y="262" width="18.794" height="8"></rect>
+    <rect x="0" y="253" width="41.925" height="8"></rect>
+    <rect x="0" y="244" width="13.011" height="8"></rect>
+    <rect x="0" y="235" width="17.348" height="8"></rect>
+    <rect x="0" y="226" width="40.48" height="8"></rect>
+    <rect x="0" y="217" width="11.566" height="8"></rect>
+    <rect x="0" y="208" width="39.034" height="8"></rect>
+    <rect x="0" y="199" width="7.229" height="8"></rect>
+    <rect x="0" y="190" width="4.337" height="8"></rect>
+    <rect x="0" y="181" width="36.143" height="8"></rect>
+    <rect x="0" y="172" width="4.337" height="8"></rect>
+    <rect x="0" y="163" width="8.674" height="8"></rect>
+    <rect x="0" y="154" width="5.783" height="8"></rect>
+    <rect x="0" y="145" width="7.229" height="8"></rect>
+    <rect x="0" y="136" width="7.229" height="8"></rect>
+    <rect x="0" y="127" width="2.891" height="8"></rect>
+    <rect x="0" y="118" width="7.229" height="8"></rect>
+    <rect x="0" y="109" width="1.446" height="8"></rect>
+    <rect x="0" y="100" width="4.337" height="8"></rect>
+    <rect x="0" y="82" width="2.891" height="8"></rect>
+    <rect x="0" y="73" width="4.337" height="8"></rect>
+    <rect x="0" y="64" width="2.891" height="8"></rect>
+    <rect x="0" y="55" width="1.446" height="8"></rect>
+    <rect x="0" y="46" width="2.891" height="8"></rect>
+    <rect x="0" y="37" width="1.446" height="8"></rect>
+    <rect x="0" y="28" width="1.446" height="8"></rect>
+    <rect x="0" y="1" width="2.891" height="8"></rect>
+    <rect x="0" y="631" width="1.446" height="8"></rect>
+    <rect x="0" y="622" width="1.446" height="8"></rect>
+    <rect x="0" y="613" width="7.229" height="8"></rect>
+    <rect x="0" y="604" width="5.783" height="8"></rect>
+    <rect x="0" y="595" width="5.783" height="8"></rect>
+    <rect x="0" y="586" width="14.457" height="8"></rect>
+    <rect x="0" y="577" width="49.154" height="8"></rect>
+    <rect x="0" y="568" width="88.188" height="8"></rect>
+    <rect x="0" y="559" width="141.679" height="8"></rect>
+    <rect x="0" y="550" width="268.9" height="8"></rect>
+    <rect x="0" y="541" width="345.523" height="8"></rect>
+    <rect x="0" y="532" width="436.602" height="8"></rect>
+    <rect x="0" y="523" width="503.104" height="8"></rect>
+    <rect x="0" y="514" width="562.378" height="8"></rect>
+    <rect x="0" y="505" width="630.326" height="8"></rect>
+    <rect x="0" y="496" width="585.509" height="8"></rect>
+    <rect x="0" y="487" width="639" height="8"></rect>
+    <rect x="0" y="478" width="540.692" height="8"></rect>
+    <rect x="0" y="469" width="364.317" height="8"></rect>
+    <rect x="0" y="460" width="442.385" height="8"></rect>
+    <rect x="0" y="451" width="374.437" height="8"></rect>
+    <rect x="0" y="442" width="258.781" height="8"></rect>
+    <rect x="0" y="433" width="277.575" height="8"></rect>
+    <rect x="0" y="424" width="137.342" height="8"></rect>
+    <rect x="0" y="415" width="128.667" height="8"></rect>
+    <rect x="0" y="406" width="82.405" height="8"></rect>
+    <rect x="0" y="397" width="59.274" height="8"></rect>
+    <rect x="0" y="388" width="49.154" height="8"></rect>
+    <rect x="0" y="379" width="33.251" height="8"></rect>
+    <rect x="0" y="370" width="26.023" height="8"></rect>
+    <rect x="0" y="361" width="28.914" height="8"></rect>
+    <rect x="0" y="352" width="15.903" height="8"></rect>
+    <rect x="0" y="343" width="30.36" height="8"></rect>
+    <rect x="0" y="334" width="7.229" height="8"></rect>
+    <rect x="0" y="325" width="13.011" height="8"></rect>
+    <rect x="0" y="316" width="17.348" height="8"></rect>
+    <rect x="0" y="307" width="4.337" height="8"></rect>
+    <rect x="0" y="298" width="11.566" height="8"></rect>
+    <rect x="0" y="289" width="1.446" height="8"></rect>
+    <rect x="0" y="280" width="2.891" height="8"></rect>
+    <rect x="0" y="271" width="7.229" height="8"></rect>
+    <rect x="0" y="262" width="1.446" height="8"></rect>
+    <rect x="0" y="253" width="7.229" height="8"></rect>
+    <rect x="0" y="235" width="1.446" height="8"></rect>
+    <rect x="0" y="226" width="7.229" height="8"></rect>
+    <rect x="0" y="217" width="1.446" height="8"></rect>
+    <rect x="0" y="208" width="2.891" height="8"></rect>
+    <rect x="0" y="199" width="4.337" height="8"></rect>
+    <rect x="0" y="190" width="1.446" height="8"></rect>
+    <rect x="0" y="181" width="1.446" height="8"></rect>
+    <rect x="0" y="172" width="1.446" height="8"></rect>
+    <rect x="0" y="154" width="1.446" height="8"></rect>
+    <rect x="0" y="127" width="1.446" height="8"></rect>
+    <rect x="0" y="91" width="2.891" height="8"></rect>
+  </g>
+  <g aria-label="rule" stroke="currentColor">0</g>
+</svg>

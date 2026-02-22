@@ -1,0 +1,79 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="160" viewBox="0 0 640 160" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <defs>
+    <clipPath id="_r_173_">
+      <rect x="0" y="0" width="639" height="159"></rect>
+    </clipPath>
+  </defs>
+  <g aria-label="x-axis" transform="translate(0,159)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+    <line x1="0" x2="639" stroke="currentColor"></line>
+    <g transform="translate(319.5,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">0</text>
+    </g>
+  </g>
+  <g aria-label="y-axis" transform="translate(0,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
+    <line y1="0" y2="159" stroke="currentColor"></line>
+    <g transform="translate(0,4)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">Q1</text>
+    </g>
+    <g transform="translate(0,35)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">Q2</text>
+    </g>
+    <g transform="translate(0,66)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">Q3</text>
+    </g>
+    <g transform="translate(0,97)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">Q4</text>
+    </g>
+    <g transform="translate(0,128)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">Q5</text>
+    </g>
+  </g>
+  <g aria-label="bar" fill="currentColor">
+    <rect x="0" y="4" width="639" height="28"></rect>
+    <rect x="0" y="35" width="639" height="28"></rect>
+    <rect x="0" y="66" width="639" height="28"></rect>
+    <rect x="0" y="97" width="639" height="28"></rect>
+    <rect x="0" y="128" width="639" height="28"></rect>
+    <rect x="0" y="4" width="639" height="28"></rect>
+    <rect x="0" y="35" width="639" height="28"></rect>
+    <rect x="0" y="66" width="639" height="28"></rect>
+    <rect x="0" y="97" width="639" height="28"></rect>
+    <rect x="0" y="128" width="639" height="28"></rect>
+    <rect x="0" y="4" width="639" height="28"></rect>
+    <rect x="0" y="35" width="639" height="28"></rect>
+    <rect x="0" y="66" width="639" height="28"></rect>
+    <rect x="0" y="97" width="639" height="28"></rect>
+    <rect x="0" y="128" width="639" height="28"></rect>
+    <rect x="0" y="4" width="639" height="28"></rect>
+    <rect x="0" y="35" width="639" height="28"></rect>
+    <rect x="0" y="66" width="639" height="28"></rect>
+    <rect x="0" y="97" width="639" height="28"></rect>
+    <rect x="0" y="128" width="639" height="28"></rect>
+    <rect x="0" y="4" width="639" height="28"></rect>
+    <rect x="0" y="35" width="639" height="28"></rect>
+    <rect x="0" y="66" width="639" height="28"></rect>
+    <rect x="0" y="97" width="639" height="28"></rect>
+    <rect x="0" y="128" width="639" height="28"></rect>
+  </g>
+  <g aria-label="rule" stroke="currentColor">0</g>
+</svg>

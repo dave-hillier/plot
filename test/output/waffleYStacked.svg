@@ -1,0 +1,31 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <defs>
+    <clipPath id="_r_365_">
+      <rect x="0" y="0" width="639" height="399"></rect>
+    </clipPath>
+  </defs>
+  <g aria-label="y-axis left" transform="translate(0,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
+    <line y1="0" y2="399" stroke="currentColor" stroke-opacity="1"></line>
+    <g transform="translate(0,204.5)">
+      <line x2="-6" stroke="currentColor" stroke-opacity="1"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">0</text>
+    </g>
+    <text transform="translate(-45,0) rotate(-90)" fill="currentColor" text-anchor="end" font-size="12" font-variant="normal">↑ Frequency (thousands)</text>
+  </g>
+  <g aria-label="waffle" fill="currentColor">00000</g>
+  <g aria-label="rule" stroke="currentColor">0</g>
+</svg>
