@@ -89,12 +89,12 @@ Marks may also be a function which returns an [SVG element](https://developer.mo
 
 And marks may be null or undefined, which produce no output; this is useful for showing marks conditionally (*e.g.*, when a box is checked).
 
-<p>
+<div>
   <label className="label-input">
     Show area:
     <input type="checkbox" checked={area} onChange={(e) => setArea(e.target.checked)} />
   </label>
-</p>
+</div>
 
 <Plot>
   <RuleY data={[0]} />

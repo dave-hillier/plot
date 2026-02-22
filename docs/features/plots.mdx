@@ -104,7 +104,7 @@ The layout options determine the overall size of the plot; all are specified as 
 
 Experiment with the margins by adjusting the sliders below. Note that because the *x* scale is a *band* scale, the **round** option defaults to true, so the bars may jump when you adjust the horizontal margins to snap to crisp edges.
 
-<p>
+<div>
   <label className="label-input" style={{display: "flex"}}>
     <span style={{display: "inline-block", width: "7em"}}>marginTop:</span>
     <input type="range" value={marginTop} onChange={(e) => setMarginTop(Number(e.target.value))} min="0" max="60" step="1" />
@@ -125,7 +125,7 @@ Experiment with the margins by adjusting the sliders below. Note that because th
     <input type="range" value={marginLeft} onChange={(e) => setMarginLeft(Number(e.target.value))} min="0" max="60" step="1" />
     <span style={{fontVariantNumeric: "tabular-nums"}}>{marginLeft}</span>
   </label>
-</p>
+</div>
 
 <Plot marginTop={marginTop} marginRight={marginRight} marginBottom={marginBottom} marginLeft={marginLeft} grid>
   <Frame stroke="var(--vp-c-text-2)" strokeOpacity={0.5} insetTop={-marginTop} insetRight={-marginRight} insetBottom={-marginBottom} insetLeft={-marginLeft} />
@@ -155,12 +155,12 @@ The default **width** is 640. On Observable, the width can be set to the [standa
 Plot does not adjust margins automatically to make room for long tick labels. If your *y* axis labels are too long, you can increase the **marginLeft** to make more room. Also consider using a different **tickFormat** for short labels (*e.g.*, `s` for SI prefix notation), or a scale **transform** (say to convert units to millions or billions).
 The **aspectRatio** option<a id="aspectRatio" href="#aspectRatio" aria-label="Permalink to &quot;aspectRatio&quot;"></a> <VersionBadge version="0.6.4" />, if not null, computes a default **height** such that a variation of one unit in the *x* dimension is represented by the corresponding number of pixels as a variation in the *y* dimension of one unit. The **aspectRatio** option is recommended only when *x* and *y* domains share the same units, such as millimeters. When a position scale is [ordinal](./scales.md#discrete-scales) (*point* or *band*), consecutive domain values are treated as one unit length apart; for example, if both *x* and *y* are ordinal, then an aspect ratio of one produces a square grid.
 
-<p>
+<div>
   <label className="label-input">
     Use fixed aspect ratio:
     <input type="checkbox" checked={fixed} onChange={(e) => setFixed(e.target.checked)} />
   </label>
-</p>
+</div>
 
 <Plot grid inset={10} aspectRatio={fixed ? 1 : undefined} color={{legend: true}}>
   <Frame />

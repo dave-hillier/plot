@@ -178,7 +178,7 @@ A band scale divides space into uniformly-spaced and -sized discrete intervals. 
 
 While *point* and *band* scales appear visually similar when only the grid is visible, the two are not identical — they differ respective to padding. Play with the options below to get a sense of their effect on the scale’s behavior.
 
-<p>
+<div>
   <label className="label-input">
     <span>Padding:</span>
     <input type="range" value={padding} onChange={(e) => setPadding(Number(e.target.value))} min="0" max="1" step="0.01" />
@@ -189,7 +189,7 @@ While *point* and *band* scales appear visually similar when only the grid is vi
     <input type="range" value={align} onChange={(e) => setAlign(Number(e.target.value))} min="0" max="1" step="0.01" />
     <span style={{fontVariantNumeric: "tabular-nums"}}>{align.toFixed(2)}</span>
   </label>
-</p>
+</div>
 
 <Plot grid marginTop={0.5} x={{
     padding,
@@ -215,7 +215,7 @@ Position scales also have a **round** option which forces the scale to snap to i
 
 While position is the most salient (and important) encoding, color matters too! The default quantitative color scale **type** is *linear*, and the default **scheme** is [*turbo*](https://ai.googleblog.com/2019/08/turbo-improved-rainbow-colormap-for.html). A wide variety of sequential, diverging, and cyclical schemes are supported, including ColorBrewer and [*viridis*](http://bids.github.io/colormap/).
 
-<p>
+<div>
   <label className="label-input">
     Color scheme:
     <select value={schemeq} onChange={(e) => setSchemeq(e.target.value)}>
@@ -256,7 +256,7 @@ While position is the most salient (and important) encoding, color matters too! 
       </optgroup>
     </select>
   </label>
-</p>
+</div>
 
 <Plot axis={null} padding={0} color={{
     scheme: schemeq
@@ -266,7 +266,7 @@ While position is the most salient (and important) encoding, color matters too! 
 
 You can implement a custom color scheme by specifying the scale’s **range**, or by passing an **interpolate** function that takes a parameter *t* in [0, 1]. The **interpolate** option can specify a color space such as *rgb*, or a two-argument function that takes a pair of values from the range.
 
-<p>
+<div>
   <label className="label-input">
     Color interpolate:
     <select value={interpolateq} onChange={(e) => setInterpolateq(e.target.value)}>
@@ -278,7 +278,7 @@ You can implement a custom color scheme by specifying the scale’s **range**, o
       <option value="angry-rainbow">(t) => `hsl(${t * 360},100%,50%)`</option>
     </select>
   </label>
-</p>
+</div>
 
 <Plot axis={null} padding={0} color={{
     type: "linear",
@@ -295,7 +295,7 @@ And like position scales, you can apply a *sqrt*, *pow*, *log*, or *symlog* tran
 
 Diverging color scales are intended to show positive and negative values, or more generally values above or below some **pivot** value. Diverging color scales default to the *RdBu* (red–blue) color scheme. The pivot defaults to zero, but you can change it with the **pivot** option, which should ideally be a value near the middle of the domain.
 
-<p>
+<div>
   <label className="label-input">
     Color scheme:
     <select value={schemed} onChange={(e) => setSchemed(e.target.value)}>
@@ -314,7 +314,7 @@ Diverging color scales are intended to show positive and negative values, or mor
       </optgroup>
     </select>
   </label>
-</p>
+</div>
 
 <Plot axis={null} padding={0} color={{
     type: "linear",
@@ -335,7 +335,7 @@ Below we again show observed global surface temperatures. The reversed *BuRd* co
 
 Plot also provides color schemes for discrete data. Use the *categorical* type for categorical (nominal) unordered data, and the *ordinal* type for ordered data.
 
-<p>
+<div>
   <label className="label-input">
     Color scheme:
     <select value={schemeo} onChange={(e) => setSchemeo(e.target.value)}>
@@ -389,7 +389,7 @@ Plot also provides color schemes for discrete data. Use the *categorical* type f
       </optgroup>
     </select>
   </label>
-</p>
+</div>
 
 <Plot color={{
     type: "ordinal",
@@ -404,13 +404,13 @@ Discrete color schemes are intended for data that has only a few unique values. 
 
 But wait, there’s more! 😅 Plot has *opacity*, *r*, *symbol*, and *length* scales, too. For example, the *r* scale **type** defaults to *sqrt* such that when used with the [dot mark](../marks/dot.md), the resulting area is proportional to the **r** channel value. You can adjust the effective dot size by specifying an explicit **range**, as below.
 
-<p>
+<div>
   <label className="label-input">
     Radius:
     <input type="range" value={radius} onChange={(e) => setRadius(Number(e.target.value))} min="1" max="20" step="0.1" />
     <span style={{fontVariantNumeric: "tabular-nums"}}>{radius.toFixed(1)}</span>
   </label>
-</p>
+</div>
 
 <Plot r={{range: [0, radius]}}>
   <Dot data={d3.range(1, 11)} x={identity} r={identity} fill="currentColor" />
@@ -467,12 +467,12 @@ Plot.plot({
 [Mark transforms](./transforms.md) typically consume values *before* they are passed through scales (_e.g._, when binning). In this case the mark transforms will see the values prior to the scale transform as input, and the scale transform will apply to the *output* of the mark transform.
 The **interval** scale option<a id="interval" href="#interval" aria-label="Permalink to &quot;interval&quot;"></a> <VersionBadge version="0.5.1" /> setS an ordinal scale’s **domain** to the start of every interval within the extent of the data. In addition, it implicitly setS the **transform** of the scale to *interval*.floor, rounding values down to the start of each interval. For example, below we generate a time-series bar chart; when an **interval** is specified, missing days are visible.
 
-<p>
+<div>
   <label className="label-input">
     Use interval:
     <input type="checkbox" checked={intervaled} onChange={(e) => setIntervaled(e.target.checked)} />
   </label>
-</p>
+</div>
 
 <Plot marginBottom={80} x={{
     tickRotate: -90,
