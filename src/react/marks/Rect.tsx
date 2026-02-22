@@ -174,14 +174,20 @@ export function CellY(props: RectProps) {
   return <Rect y1={y1} fill={fill} {...rest} />;
 }
 
-// RectX: like Rect, but with y defaulting to index and x2 defaulting to identity
+// RectX: like Rect, but with y defaulting to index and x2 defaulting to identity.
+// Maps x to x2 (with x1=0 baseline) when x1/x2 are not provided, matching maybeZero.
 export function RectX(props: RectProps) {
-  const {y1 = (_d: any, i: number) => i, x2 = (d: any) => d, ...rest} = props;
-  return <Rect y1={y1} x2={x2} {...rest} />;
+  const {y1 = (_d: any, i: number) => i, x, x1, x2, ...rest} = props;
+  const resolvedX1 = x1 ?? (x !== undefined ? 0 : undefined);
+  const resolvedX2 = x2 ?? x ?? ((d: any) => d);
+  return <Rect y1={y1} x1={resolvedX1} x2={resolvedX2} {...rest} />;
 }
 
-// RectY: like Rect, but with x defaulting to index and y2 defaulting to identity
+// RectY: like Rect, but with x defaulting to index and y2 defaulting to identity.
+// Maps y to y2 (with y1=0 baseline) when y1/y2 are not provided, matching maybeZero.
 export function RectY(props: RectProps) {
-  const {x1 = (_d: any, i: number) => i, y2 = (d: any) => d, ...rest} = props;
-  return <Rect x1={x1} y2={y2} {...rest} />;
+  const {x1 = (_d: any, i: number) => i, y, y1, y2, ...rest} = props;
+  const resolvedY1 = y1 ?? (y !== undefined ? 0 : undefined);
+  const resolvedY2 = y2 ?? y ?? ((d: any) => d);
+  return <Rect x1={x1} y1={resolvedY1} y2={resolvedY2} {...rest} />;
 }

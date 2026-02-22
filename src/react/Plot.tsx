@@ -688,9 +688,11 @@ function createChannelFromSpec(data: any, spec: any, name: string) {
   const {value, scale, type, filter, hint, label} = spec;
   if (value == null) return null;
 
-  // Resolve the value: can be a string (field name), function, or array
+  // Resolve the value: can be a lazy column object (with .transform), string (field name), function, or array
   let resolved;
-  if (typeof value === "string") {
+  if (value != null && typeof value === "object" && typeof value.transform === "function") {
+    resolved = value.transform(data);
+  } else if (typeof value === "string") {
     const field = value;
     resolved = data != null ? Array.from(data, (d: any) => d?.[field]) : [];
   } else if (typeof value === "function") {
@@ -705,7 +707,7 @@ function createChannelFromSpec(data: any, spec: any, name: string) {
     scale: scale ?? "auto",
     type,
     value: resolved,
-    label: label ?? (typeof value === "string" ? value : undefined),
+    label: label ?? ((value != null && typeof value === "object" && value.label) || (typeof value === "string" ? value : undefined)),
     filter,
     hint
   };
