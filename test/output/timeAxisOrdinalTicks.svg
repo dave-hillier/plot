@@ -14,7 +14,7 @@
     }
   </style>
   <defs>
-    <clipPath id="_r_2gm_">
+    <clipPath id="plot-rid-1">
       <rect x="0" y="0" width="639" height="59"></rect>
     </clipPath>
   </defs>
@@ -266,66 +266,66 @@
     </g>
   </g>
   <g aria-label="bar" fill="currentColor">
-    <rect x="15" y="0" width="9" height="59"><title>Sun May 12 2013 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="25" y="0" width="9" height="59"><title>Sun Jun 02 2013 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="35" y="0" width="9" height="59"><title>Sun Jun 30 2013 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="45" y="0" width="9" height="59"><title>Wed Jul 31 2013 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="55" y="0" width="9" height="59"><title>Mon Sep 02 2013 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="65" y="0" width="9" height="59"><title>Mon Sep 30 2013 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="75" y="0" width="9" height="59"><title>Thu Oct 31 2013 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="85" y="0" width="9" height="59"><title>Sun Dec 01 2013 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="95" y="0" width="9" height="59"><title>Wed Jan 01 2014 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="105" y="0" width="9" height="59"><title>Sun Feb 02 2014 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="115" y="0" width="9" height="59"><title>Sun Mar 02 2014 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="125" y="0" width="9" height="59"><title>Mon Mar 31 2014 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="135" y="0" width="9" height="59"><title>Wed Apr 30 2014 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="145" y="0" width="9" height="59"><title>Sun Jun 01 2014 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="155" y="0" width="9" height="59"><title>Mon Jun 30 2014 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="165" y="0" width="9" height="59"><title>Thu Jul 31 2014 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="175" y="0" width="9" height="59"><title>Mon Sep 01 2014 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="185" y="0" width="9" height="59"><title>Tue Sep 30 2014 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="195" y="0" width="9" height="59"><title>Sun Nov 02 2014 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="205" y="0" width="9" height="59"><title>Sun Nov 30 2014 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="215" y="0" width="9" height="59"><title>Thu Jan 01 2015 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="225" y="0" width="9" height="59"><title>Sun Feb 01 2015 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="235" y="0" width="9" height="59"><title>Sun Mar 01 2015 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="245" y="0" width="9" height="59"><title>Tue Mar 31 2015 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="255" y="0" width="9" height="59"><title>Thu Apr 30 2015 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="265" y="0" width="9" height="59"><title>Sun May 31 2015 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="275" y="0" width="9" height="59"><title>Tue Jun 30 2015 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="285" y="0" width="9" height="59"><title>Sun Aug 02 2015 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="295" y="0" width="9" height="59"><title>Mon Aug 31 2015 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="305" y="0" width="9" height="59"><title>Wed Sep 30 2015 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="315" y="0" width="9" height="59"><title>Sun Nov 01 2015 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="325" y="0" width="9" height="59"><title>Mon Nov 30 2015 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="335" y="0" width="9" height="59"><title>Sun Jan 03 2016 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="345" y="0" width="9" height="59"><title>Sun Jan 31 2016 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="355" y="0" width="9" height="59"><title>Mon Feb 29 2016 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="365" y="0" width="9" height="59"><title>Thu Mar 31 2016 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="375" y="0" width="9" height="59"><title>Sun May 01 2016 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="385" y="0" width="9" height="59"><title>Tue May 31 2016 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="395" y="0" width="9" height="59"><title>Thu Jun 30 2016 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="405" y="0" width="9" height="59"><title>Sun Jul 31 2016 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="415" y="0" width="9" height="59"><title>Wed Aug 31 2016 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="425" y="0" width="9" height="59"><title>Sun Oct 02 2016 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="435" y="0" width="9" height="59"><title>Mon Oct 31 2016 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="445" y="0" width="9" height="59"><title>Wed Nov 30 2016 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="455" y="0" width="9" height="59"><title>Mon Jan 02 2017 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="465" y="0" width="9" height="59"><title>Tue Jan 31 2017 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="475" y="0" width="9" height="59"><title>Tue Feb 28 2017 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="485" y="0" width="9" height="59"><title>Sun Apr 02 2017 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="495" y="0" width="9" height="59"><title>Sun Apr 30 2017 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="505" y="0" width="9" height="59"><title>Wed May 31 2017 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="515" y="0" width="9" height="59"><title>Sun Jul 02 2017 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="525" y="0" width="9" height="59"><title>Mon Jul 31 2017 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="535" y="0" width="9" height="59"><title>Thu Aug 31 2017 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="545" y="0" width="9" height="59"><title>Sun Oct 01 2017 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="555" y="0" width="9" height="59"><title>Tue Oct 31 2017 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="565" y="0" width="9" height="59"><title>Thu Nov 30 2017 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="575" y="0" width="9" height="59"><title>Mon Jan 01 2018 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="585" y="0" width="9" height="59"><title>Wed Jan 31 2018 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="595" y="0" width="9" height="59"><title>Wed Feb 28 2018 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="605" y="0" width="9" height="59"><title>Sun Apr 01 2018 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="615" y="0" width="9" height="59"><title>Mon Apr 30 2018 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
+    <rect x="15" y="0" width="9" height="59"><title>Mon May 13 2013 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="25" y="0" width="9" height="59"><title>Mon Jun 03 2013 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="35" y="0" width="9" height="59"><title>Mon Jul 01 2013 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="45" y="0" width="9" height="59"><title>Thu Aug 01 2013 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="55" y="0" width="9" height="59"><title>Tue Sep 03 2013 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="65" y="0" width="9" height="59"><title>Tue Oct 01 2013 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="75" y="0" width="9" height="59"><title>Fri Nov 01 2013 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="85" y="0" width="9" height="59"><title>Mon Dec 02 2013 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="95" y="0" width="9" height="59"><title>Thu Jan 02 2014 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="105" y="0" width="9" height="59"><title>Mon Feb 03 2014 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="115" y="0" width="9" height="59"><title>Mon Mar 03 2014 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="125" y="0" width="9" height="59"><title>Tue Apr 01 2014 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="135" y="0" width="9" height="59"><title>Thu May 01 2014 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="145" y="0" width="9" height="59"><title>Mon Jun 02 2014 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="155" y="0" width="9" height="59"><title>Tue Jul 01 2014 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="165" y="0" width="9" height="59"><title>Fri Aug 01 2014 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="175" y="0" width="9" height="59"><title>Tue Sep 02 2014 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="185" y="0" width="9" height="59"><title>Wed Oct 01 2014 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="195" y="0" width="9" height="59"><title>Mon Nov 03 2014 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="205" y="0" width="9" height="59"><title>Mon Dec 01 2014 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="215" y="0" width="9" height="59"><title>Fri Jan 02 2015 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="225" y="0" width="9" height="59"><title>Mon Feb 02 2015 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="235" y="0" width="9" height="59"><title>Mon Mar 02 2015 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="245" y="0" width="9" height="59"><title>Wed Apr 01 2015 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="255" y="0" width="9" height="59"><title>Fri May 01 2015 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="265" y="0" width="9" height="59"><title>Mon Jun 01 2015 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="275" y="0" width="9" height="59"><title>Wed Jul 01 2015 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="285" y="0" width="9" height="59"><title>Mon Aug 03 2015 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="295" y="0" width="9" height="59"><title>Tue Sep 01 2015 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="305" y="0" width="9" height="59"><title>Thu Oct 01 2015 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="315" y="0" width="9" height="59"><title>Mon Nov 02 2015 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="325" y="0" width="9" height="59"><title>Tue Dec 01 2015 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="335" y="0" width="9" height="59"><title>Mon Jan 04 2016 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="345" y="0" width="9" height="59"><title>Mon Feb 01 2016 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="355" y="0" width="9" height="59"><title>Tue Mar 01 2016 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="365" y="0" width="9" height="59"><title>Fri Apr 01 2016 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="375" y="0" width="9" height="59"><title>Mon May 02 2016 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="385" y="0" width="9" height="59"><title>Wed Jun 01 2016 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="395" y="0" width="9" height="59"><title>Fri Jul 01 2016 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="405" y="0" width="9" height="59"><title>Mon Aug 01 2016 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="415" y="0" width="9" height="59"><title>Thu Sep 01 2016 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="425" y="0" width="9" height="59"><title>Mon Oct 03 2016 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="435" y="0" width="9" height="59"><title>Tue Nov 01 2016 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="445" y="0" width="9" height="59"><title>Thu Dec 01 2016 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="455" y="0" width="9" height="59"><title>Tue Jan 03 2017 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="465" y="0" width="9" height="59"><title>Wed Feb 01 2017 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="475" y="0" width="9" height="59"><title>Wed Mar 01 2017 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="485" y="0" width="9" height="59"><title>Mon Apr 03 2017 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="495" y="0" width="9" height="59"><title>Mon May 01 2017 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="505" y="0" width="9" height="59"><title>Thu Jun 01 2017 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="515" y="0" width="9" height="59"><title>Mon Jul 03 2017 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="525" y="0" width="9" height="59"><title>Tue Aug 01 2017 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="535" y="0" width="9" height="59"><title>Fri Sep 01 2017 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="545" y="0" width="9" height="59"><title>Mon Oct 02 2017 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="555" y="0" width="9" height="59"><title>Wed Nov 01 2017 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="565" y="0" width="9" height="59"><title>Fri Dec 01 2017 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="575" y="0" width="9" height="59"><title>Tue Jan 02 2018 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="585" y="0" width="9" height="59"><title>Thu Feb 01 2018 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="595" y="0" width="9" height="59"><title>Thu Mar 01 2018 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="605" y="0" width="9" height="59"><title>Mon Apr 02 2018 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
+    <rect x="615" y="0" width="9" height="59"><title>Tue May 01 2018 00:00:00 GMT+0000 (Coordinated Universal Time)</title></rect>
   </g>
 </svg>

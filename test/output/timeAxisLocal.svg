@@ -14,7 +14,7 @@
     }
   </style>
   <defs>
-    <clipPath id="_r_2ge_">
+    <clipPath id="plot-rid-1">
       <rect x="0" y="0" width="639" height="59"></rect>
     </clipPath>
   </defs>
@@ -22,35 +22,35 @@
     <line x1="0" x2="639" stroke="currentColor"></line>
     <g transform="translate(64.412,0)">
       <line y2="6" stroke="currentColor"></line>
-      <text y="9" dy="0.71em" fill="currentColor">08:30</text>
+      <text y="9" dy="0.71em" fill="currentColor">03:30</text>
     </g>
     <g transform="translate(144.287,0)">
       <line y2="6" stroke="currentColor"></line>
-      <text y="9" dy="0.71em" fill="currentColor">09 AM</text>
+      <text y="9" dy="0.71em" fill="currentColor">04 PM</text>
     </g>
     <g transform="translate(224.162,0)">
       <line y2="6" stroke="currentColor"></line>
-      <text y="9" dy="0.71em" fill="currentColor">09:30</text>
+      <text y="9" dy="0.71em" fill="currentColor">04:30</text>
     </g>
     <g transform="translate(304.037,0)">
       <line y2="6" stroke="currentColor"></line>
-      <text y="9" dy="0.71em" fill="currentColor">10 AM</text>
+      <text y="9" dy="0.71em" fill="currentColor">05 PM</text>
     </g>
     <g transform="translate(383.912,0)">
       <line y2="6" stroke="currentColor"></line>
-      <text y="9" dy="0.71em" fill="currentColor">10:30</text>
+      <text y="9" dy="0.71em" fill="currentColor">05:30</text>
     </g>
     <g transform="translate(463.787,0)">
       <line y2="6" stroke="currentColor"></line>
-      <text y="9" dy="0.71em" fill="currentColor">11 AM</text>
+      <text y="9" dy="0.71em" fill="currentColor">06 PM</text>
     </g>
     <g transform="translate(543.662,0)">
       <line y2="6" stroke="currentColor"></line>
-      <text y="9" dy="0.71em" fill="currentColor">11:30</text>
+      <text y="9" dy="0.71em" fill="currentColor">06:30</text>
     </g>
     <g transform="translate(623.537,0)">
       <line y2="6" stroke="currentColor"></line>
-      <text y="9" dy="0.71em" fill="currentColor">12 PM</text>
+      <text y="9" dy="0.71em" fill="currentColor">07 PM</text>
     </g>
   </g>
   <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5">00000</g>

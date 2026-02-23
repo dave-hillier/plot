@@ -31,7 +31,11 @@ async function renderReactElement(element) {
   await act(async () => {
     reactRoot.unmount();
   });
-  document.body.removeChild(container);
+  try {
+    document.body.removeChild(container);
+  } catch (e) {
+    // Ignore: container may already be removed during React unmount
+  }
   return result;
 }
 
@@ -100,7 +104,7 @@ for (const [name, plot] of Object.entries(plots)) {
 
 function normalizeHtml(html) {
   return beautify.html(
-    html
+    normalizeReactIds(html)
       .replace(/&nbsp;/g, "\xa0") // normalize HTML entities
       .replace(/\d+\.\d{4,}/g, (d) => +(+d).toFixed(3)), // limit numerical precision
     {
@@ -109,6 +113,18 @@ function normalizeHtml(html) {
       indent_inner_html: false
     }
   );
+}
+
+// Normalize React useId()-generated IDs (e.g., :r39f: rendered as _r_39f_ in JSDOM).
+// These change depending on test execution order, so we replace them with sequential stable IDs.
+// The JSDOM format is _r_XXX_ where XXX is a base-32 counter; in browser it's :rXXX:.
+function normalizeReactIds(html) {
+  let index = 0;
+  const map = new Map();
+  return html.replace(/[:_]r[:_][0-9a-z]+[:_]/g, (match) => {
+    if (!map.has(match)) map.set(match, `plot-rid-${++index}`);
+    return map.get(match);
+  });
 }
 
 function reindexStyle(root) {
