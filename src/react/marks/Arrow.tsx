@@ -41,10 +41,12 @@ export interface ArrowProps {
 
 export function Arrow({
   data,
-  x1,
-  y1,
-  x2,
-  y2,
+  x,
+  y,
+  x1: x1Prop,
+  y1: y1Prop,
+  x2: x2Prop,
+  y2: y2Prop,
   stroke,
   strokeWidth,
   strokeOpacity,
@@ -62,13 +64,21 @@ export function Arrow({
   sweep,
   className,
   onClick,
+  channels: extraChannels,
   ...restOptions
 }: ArrowProps) {
+  // Support shorthand: x sets both x1 and x2, y sets both y1 and y2
+  const x1 = x1Prop ?? x;
+  const y1 = y1Prop ?? y;
+  const x2 = x2Prop ?? x;
+  const y2 = y2Prop ?? y;
+
   const channels: Record<string, ChannelSpec> = {
+    ...extraChannels,
     x1: {value: x1, scale: "x"},
     y1: {value: y1, scale: "y"},
-    x2: {value: x2, scale: "x"},
-    y2: {value: y2, scale: "y"},
+    x2: {value: x2, scale: "x", optional: true},
+    y2: {value: y2, scale: "y", optional: true},
     ...(isColorChannel(stroke)
       ? {stroke: {value: stroke, scale: "auto", optional: true}}
       : {}),
@@ -101,7 +111,7 @@ export function Arrow({
 
   if (!values || !index || !dimensions || !scales) return null;
 
-  const {x1: X1, y1: Y1, x2: X2, y2: Y2} = values;
+  const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1} = values as any;
   const halfAngle = (headAngle * Math.PI) / 360;
 
   const transform = computeTransform({dx, dy}, scales);

@@ -37,11 +37,17 @@ async function renderReactElement(element) {
 
 for (const [name, plot] of Object.entries(plots)) {
   it(`plot ${name}`, async () => {
-    let root = await (name.startsWith("warn") ? assert.warnsAsync : assert.doesNotWarnAsync)(plot);
-    // If the plot function returned a React element, render it to DOM
-    if (isReactElement(root)) {
-      root = await renderReactElement(root);
-    }
+    const isWarn = name.startsWith("warn");
+    const assertFn = isWarn ? assert.warnsAsync : assert.doesNotWarnAsync;
+    // For React elements, warnings are emitted during rendering (not during element creation),
+    // so we need to wrap both the plot creation and rendering in the assertion.
+    let root = await assertFn(async () => {
+      let result = await plot();
+      if (isReactElement(result)) {
+        result = await renderReactElement(result);
+      }
+      return result;
+    });
     const ext = root.tagName === "svg" ? "svg" : "html";
     for (const svg of root.tagName === "svg" ? [root] : root.querySelectorAll("svg")) {
       svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns", "http://www.w3.org/2000/svg");

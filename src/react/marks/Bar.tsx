@@ -69,9 +69,11 @@ export function BarX({
   onClick,
   onPointerEnter,
   onPointerLeave,
+  channels: extraChannels,
   ...restOptions
 }: BarProps) {
   const channels: Record<string, ChannelSpec> = {
+    ...extraChannels,
     x1: {value: x1, scale: "x"},
     x2: {value: x2, scale: "x"},
     y: {value: y, scale: "y", type: "band", optional: true},
@@ -198,9 +200,11 @@ export function BarY({
   onClick,
   onPointerEnter,
   onPointerLeave,
+  channels: extraChannels,
   ...restOptions
 }: BarProps) {
   const channels: Record<string, ChannelSpec> = {
+    ...extraChannels,
     y1: {value: y1, scale: "y"},
     y2: {value: y2, scale: "y"},
     x: {value: x, scale: "x", type: "band", optional: true},

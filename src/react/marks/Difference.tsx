@@ -54,6 +54,7 @@ export function DifferenceY({
   strokeWidth = 1,
   strokeOpacity,
   className,
+  channels: extraChannels,
   ...rest
 }: DifferenceProps) {
   const positiveClipId = useId();
@@ -64,6 +65,7 @@ export function DifferenceY({
   const effectiveY2 = y2 ?? y;
 
   const channels: Record<string, ChannelSpec> = {
+    ...extraChannels,
     x: {value: x, scale: "x"},
     y1: {value: effectiveY1 ?? 0, scale: "y"},
     y2: {value: effectiveY2, scale: "y"}
@@ -149,6 +151,7 @@ export function DifferenceX({
   strokeWidth = 1,
   strokeOpacity,
   className,
+  channels: extraChannels,
   ...rest
 }: DifferenceProps) {
   const positiveClipId = useId();
@@ -158,6 +161,7 @@ export function DifferenceX({
   const effectiveX2 = x2 ?? x;
 
   const channels: Record<string, ChannelSpec> = {
+    ...extraChannels,
     y: {value: y, scale: "y"},
     x1: {value: effectiveX1 ?? 0, scale: "x"},
     x2: {value: effectiveX2, scale: "x"}

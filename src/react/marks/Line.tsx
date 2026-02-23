@@ -3,6 +3,7 @@ import {line as shapeLine, group, curveLinear} from "d3";
 import {useMark} from "../useMark.js";
 import {indirectStyleProps, directStyleProps, groupChannelStyleProps, computeTransform, isColorChannel, isColorValue} from "../styles.js";
 import {maybeCurveAuto, defined} from "../../core/index.js";
+import {first, second} from "../../options.js";
 import type {ChannelSpec} from "../PlotContext.js";
 
 const defaults = {
@@ -38,8 +39,8 @@ export interface LineProps {
 
 export function Line({
   data,
-  x,
-  y,
+  x: xProp,
+  y: yProp,
   z,
   fill,
   stroke,
@@ -54,8 +55,13 @@ export function Line({
   dy = 0,
   className,
   render: customRender,
+  channels: extraChannels,
   ...restOptions
 }: LineProps) {
+  // Default x/y for array-of-arrays data (e.g., [[x, y], ...])
+  const x = xProp === undefined && yProp === undefined ? first : xProp;
+  const y = xProp === undefined && yProp === undefined ? second : yProp;
+
   // Determine z channel: defaults to fill or stroke if they're channels
   const maybeZ =
     z ??
@@ -63,6 +69,7 @@ export function Line({
     (typeof stroke === "string" && !/^#|^rgb|^hsl|^none|^currentColor/.test(stroke) ? stroke : undefined);
 
   const channels: Record<string, ChannelSpec> = {
+    ...extraChannels,
     x: {value: x, scale: "x"},
     y: {value: y, scale: "y"},
     ...(maybeZ != null ? {z: {value: maybeZ, optional: true}} : {}),

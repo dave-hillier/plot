@@ -1,0 +1,26 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="640" viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <defs>
+    <clipPath id="_r_32f_">
+      <rect x="1" y="1" width="638" height="638"></rect>
+    </clipPath>
+  </defs>
+  <g aria-label="geo" fill="currentColor" fill-opacity="0.2" stroke="currentColor" stroke-width="1">0</g>
+  <g aria-label="dot" fill="currentColor" stroke="currentColor" stroke-width="1.5">0000000000000000000000000000000000000000000000000</g>
+  <path d="" fill="none" stroke="currentColor" stroke-width="1" aria-label="voronoi-mesh"></path>
+  <g aria-label="voronoi" fill="red" fill-opacity="0.4" stroke="red" stroke-width="1" pointer-events="all">0000000000000000000000000000000000000000000000000</g>
+  <g aria-label="geo" fill="none" stroke="currentColor" stroke-width="2">0</g>
+</svg>

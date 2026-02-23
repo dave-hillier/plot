@@ -1,0 +1,657 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="430" viewBox="0 0 640 430" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <defs>
+    <clipPath id="_r_1p3_">
+      <rect x="0" y="0" width="639" height="429"></rect>
+    </clipPath>
+  </defs>
+  <g transform="translate(1,0)">
+    <g aria-label="x-axis" transform="translate(0,429)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+      <line x1="0" x2="639" stroke="currentColor"></line>
+      <g transform="translate(29.071,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">14</text>
+      </g>
+      <g transform="translate(50.262,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">15</text>
+      </g>
+      <g transform="translate(71.452,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">16</text>
+      </g>
+      <g transform="translate(92.643,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">17</text>
+      </g>
+      <g transform="translate(113.833,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">18</text>
+      </g>
+      <g transform="translate(135.024,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">19</text>
+      </g>
+      <g transform="translate(156.214,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">20</text>
+      </g>
+      <g transform="translate(177.405,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">21</text>
+      </g>
+    </g>
+    <g aria-label="y-axis" transform="translate(0,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
+      <line y1="0" y2="429" stroke="currentColor"></line>
+      <g transform="translate(0,390.742)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">34</text>
+      </g>
+      <g transform="translate(0,360.996)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">36</text>
+      </g>
+      <g transform="translate(0,331.251)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">38</text>
+      </g>
+      <g transform="translate(0,301.505)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">40</text>
+      </g>
+      <g transform="translate(0,271.76)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">42</text>
+      </g>
+      <g transform="translate(0,242.015)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">44</text>
+      </g>
+      <g transform="translate(0,212.269)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">46</text>
+      </g>
+      <g transform="translate(0,182.524)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">48</text>
+      </g>
+      <g transform="translate(0,152.778)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">50</text>
+      </g>
+      <g transform="translate(0,123.033)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">52</text>
+      </g>
+      <g transform="translate(0,93.287)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">54</text>
+      </g>
+      <g transform="translate(0,63.542)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">56</text>
+      </g>
+      <g transform="translate(0,33.796)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">58</text>
+      </g>
+    </g>
+    <rect aria-label="frame" x="0" y="0" width="639" height="429" fill="none" stroke="currentColor" stroke-width="1"></rect>
+    <g aria-label="dot" fill="currentColor" stroke="currentColor" stroke-width="1.5">00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</g>
+    <g aria-label="dot" fill="currentColor" stroke="currentColor" stroke-width="1.5">
+      <circle cx="128.667" cy="314.891" r="1.5"></circle>
+      <circle cx="101.119" cy="308.942" r="1.5"></circle>
+      <circle cx="113.833" cy="297.044" r="1.5"></circle>
+      <circle cx="141.381" cy="350.585" r="1.5"></circle>
+      <circle cx="168.929" cy="311.916" r="1.5"></circle>
+      <circle cx="109.595" cy="317.865" r="1.5"></circle>
+      <circle cx="147.738" cy="313.404" r="1.5"></circle>
+      <circle cx="115.952" cy="389.255" r="1.5"></circle>
+      <circle cx="160.452" cy="271.76" r="1.5"></circle>
+      <circle cx="94.762" cy="334.225" r="1.5"></circle>
+      <circle cx="99" cy="334.225" r="1.5"></circle>
+      <circle cx="105.357" cy="285.145" r="1.5"></circle>
+      <circle cx="181.643" cy="322.327" r="1.5"></circle>
+      <circle cx="179.524" cy="381.818" r="1.5"></circle>
+      <circle cx="109.595" cy="352.073" r="1.5"></circle>
+      <circle cx="135.024" cy="320.84" r="1.5"></circle>
+      <circle cx="171.048" cy="264.324" r="1.5"></circle>
+      <circle cx="122.31" cy="384.793" r="1.5"></circle>
+      <circle cx="188" cy="212.269" r="1.5"></circle>
+      <circle cx="120.19" cy="334.225" r="1.5"></circle>
+      <circle cx="128.667" cy="335.713" r="1.5"></circle>
+      <circle cx="139.262" cy="362.484" r="1.5"></circle>
+      <circle cx="115.952" cy="328.276" r="1.5"></circle>
+      <circle cx="96.881" cy="319.353" r="1.5"></circle>
+      <circle cx="132.905" cy="371.407" r="1.5"></circle>
+      <circle cx="126.548" cy="292.582" r="1.5"></circle>
+      <circle cx="111.714" cy="294.069" r="1.5"></circle>
+      <circle cx="126.548" cy="332.738" r="1.5"></circle>
+      <circle cx="132.905" cy="294.069" r="1.5"></circle>
+      <circle cx="86.286" cy="308.942" r="1.5"></circle>
+      <circle cx="115.952" cy="343.149" r="1.5"></circle>
+      <circle cx="109.595" cy="308.942" r="1.5"></circle>
+      <circle cx="132.905" cy="288.12" r="1.5"></circle>
+      <circle cx="92.643" cy="355.047" r="1.5"></circle>
+      <circle cx="179.524" cy="313.404" r="1.5"></circle>
+      <circle cx="156.214" cy="319.353" r="1.5"></circle>
+      <circle cx="124.429" cy="268.785" r="1.5"></circle>
+      <circle cx="141.381" cy="337.2" r="1.5"></circle>
+      <circle cx="137.143" cy="304.48" r="1.5"></circle>
+      <circle cx="113.833" cy="353.56" r="1.5"></circle>
+      <circle cx="122.31" cy="289.607" r="1.5"></circle>
+      <circle cx="124.429" cy="360.996" r="1.5"></circle>
+      <circle cx="149.857" cy="240.527" r="1.5"></circle>
+      <circle cx="90.524" cy="346.124" r="1.5"></circle>
+      <circle cx="130.786" cy="307.455" r="1.5"></circle>
+      <circle cx="135.024" cy="285.145" r="1.5"></circle>
+      <circle cx="132.905" cy="338.687" r="1.5"></circle>
+      <circle cx="111.714" cy="360.996" r="1.5"></circle>
+      <circle cx="181.643" cy="267.298" r="1.5"></circle>
+      <circle cx="107.476" cy="307.455" r="1.5"></circle>
+      <circle cx="132.905" cy="300.018" r="1.5"></circle>
+      <circle cx="111.714" cy="375.869" r="1.5"></circle>
+      <circle cx="145.619" cy="271.76" r="1.5"></circle>
+      <circle cx="115.952" cy="383.305" r="1.5"></circle>
+      <circle cx="126.548" cy="280.684" r="1.5"></circle>
+      <circle cx="103.238" cy="316.378" r="1.5"></circle>
+      <circle cx="130.786" cy="292.582" r="1.5"></circle>
+      <circle cx="84.167" cy="353.56" r="1.5"></circle>
+      <circle cx="137.143" cy="337.2" r="1.5"></circle>
+      <circle cx="90.524" cy="365.458" r="1.5"></circle>
+      <circle cx="179.524" cy="282.171" r="1.5"></circle>
+      <circle cx="92.643" cy="337.2" r="1.5"></circle>
+      <circle cx="118.071" cy="285.145" r="1.5"></circle>
+      <circle cx="94.762" cy="355.047" r="1.5"></circle>
+      <circle cx="113.833" cy="277.709" r="1.5"></circle>
+      <circle cx="75.69" cy="368.433" r="1.5"></circle>
+      <circle cx="137.143" cy="285.145" r="1.5"></circle>
+      <circle cx="84.167" cy="362.484" r="1.5"></circle>
+      <circle cx="143.5" cy="274.735" r="1.5"></circle>
+      <circle cx="135.024" cy="398.178" r="1.5"></circle>
+      <circle cx="122.31" cy="305.967" r="1.5"></circle>
+      <circle cx="96.881" cy="307.455" r="1.5"></circle>
+      <circle cx="132.905" cy="215.244" r="1.5"></circle>
+      <circle cx="103.238" cy="368.433" r="1.5"></circle>
+      <circle cx="124.429" cy="259.862" r="1.5"></circle>
+      <circle cx="88.405" cy="288.12" r="1.5"></circle>
+      <circle cx="143.5" cy="343.149" r="1.5"></circle>
+      <circle cx="73.571" cy="358.022" r="1.5"></circle>
+      <circle cx="137.143" cy="270.273" r="1.5"></circle>
+      <circle cx="96.881" cy="381.818" r="1.5"></circle>
+      <circle cx="105.357" cy="258.375" r="1.5"></circle>
+      <circle cx="130.786" cy="350.585" r="1.5"></circle>
+      <circle cx="143.5" cy="374.382" r="1.5"></circle>
+      <circle cx="109.595" cy="341.662" r="1.5"></circle>
+      <circle cx="162.571" cy="282.171" r="1.5"></circle>
+      <circle cx="145.619" cy="356.535" r="1.5"></circle>
+      <circle cx="126.548" cy="347.611" r="1.5"></circle>
+      <circle cx="139.262" cy="326.789" r="1.5"></circle>
+      <circle cx="130.786" cy="317.865" r="1.5"></circle>
+      <circle cx="113.833" cy="365.458" r="1.5"></circle>
+      <circle cx="115.952" cy="285.145" r="1.5"></circle>
+      <circle cx="94.762" cy="390.742" r="1.5"></circle>
+      <circle cx="115.952" cy="307.455" r="1.5"></circle>
+      <circle cx="99" cy="358.022" r="1.5"></circle>
+      <circle cx="132.905" cy="289.607" r="1.5"></circle>
+      <circle cx="126.548" cy="329.764" r="1.5"></circle>
+      <circle cx="124.429" cy="297.044" r="1.5"></circle>
+      <circle cx="73.571" cy="404.127" r="1.5"></circle>
+      <circle cx="124.429" cy="253.913" r="1.5"></circle>
+      <circle cx="111.714" cy="375.869" r="1.5"></circle>
+      <circle cx="156.214" cy="286.633" r="1.5"></circle>
+      <circle cx="71.452" cy="335.713" r="1.5"></circle>
+      <circle cx="156.214" cy="334.225" r="1.5"></circle>
+      <circle cx="126.548" cy="332.738" r="1.5"></circle>
+      <circle cx="132.905" cy="305.967" r="1.5"></circle>
+      <circle cx="96.881" cy="322.327" r="1.5"></circle>
+      <circle cx="156.214" cy="328.276" r="1.5"></circle>
+      <circle cx="92.643" cy="329.764" r="1.5"></circle>
+      <circle cx="135.024" cy="253.913" r="1.5"></circle>
+      <circle cx="82.048" cy="329.764" r="1.5"></circle>
+      <circle cx="162.571" cy="218.218" r="1.5"></circle>
+      <circle cx="107.476" cy="305.967" r="1.5"></circle>
+      <circle cx="145.619" cy="268.785" r="1.5"></circle>
+      <circle cx="171.048" cy="307.455" r="1.5"></circle>
+      <circle cx="120.19" cy="261.349" r="1.5"></circle>
+      <circle cx="92.643" cy="322.327" r="1.5"></circle>
+      <circle cx="166.81" cy="341.662" r="1.5"></circle>
+      <circle cx="92.643" cy="365.458" r="1.5"></circle>
+      <circle cx="126.548" cy="285.145" r="1.5"></circle>
+      <circle cx="96.881" cy="358.022" r="1.5"></circle>
+      <circle cx="151.976" cy="335.713" r="1.5"></circle>
+      <circle cx="92.643" cy="298.531" r="1.5"></circle>
+      <circle cx="124.429" cy="280.684" r="1.5"></circle>
+      <circle cx="69.333" cy="372.895" r="1.5"></circle>
+      <circle cx="135.024" cy="292.582" r="1.5"></circle>
+      <circle cx="105.357" cy="319.353" r="1.5"></circle>
+      <circle cx="120.19" cy="279.196" r="1.5"></circle>
+      <circle cx="94.762" cy="316.378" r="1.5"></circle>
+      <circle cx="113.833" cy="240.527" r="1.5"></circle>
+      <circle cx="111.714" cy="323.815" r="1.5"></circle>
+      <circle cx="139.262" cy="255.4" r="1.5"></circle>
+      <circle cx="124.429" cy="349.098" r="1.5"></circle>
+      <circle cx="124.429" cy="338.687" r="1.5"></circle>
+      <circle cx="105.357" cy="329.764" r="1.5"></circle>
+      <circle cx="103.238" cy="285.145" r="1.5"></circle>
+      <circle cx="103.238" cy="366.945" r="1.5"></circle>
+      <circle cx="158.333" cy="298.531" r="1.5"></circle>
+      <circle cx="82.048" cy="346.124" r="1.5"></circle>
+      <circle cx="111.714" cy="305.967" r="1.5"></circle>
+      <circle cx="94.762" cy="298.531" r="1.5"></circle>
+      <circle cx="96.881" cy="292.582" r="1.5"></circle>
+      <circle cx="60.857" cy="419" r="1.5"></circle>
+      <circle cx="92.643" cy="291.095" r="1.5"></circle>
+      <circle cx="88.405" cy="341.662" r="1.5"></circle>
+      <circle cx="128.667" cy="316.378" r="1.5"></circle>
+      <circle cx="126.548" cy="313.404" r="1.5"></circle>
+      <circle cx="122.31" cy="352.073" r="1.5"></circle>
+      <circle cx="109.595" cy="360.996" r="1.5"></circle>
+      <circle cx="115.952" cy="334.225" r="1.5"></circle>
+      <circle cx="94.762" cy="360.996" r="1.5"></circle>
+      <circle cx="124.429" cy="279.196" r="1.5"></circle>
+    </g>
+    <path d="" fill="none" stroke="currentColor" stroke-width="1" aria-label="voronoi-mesh"></path>
+    <g aria-label="voronoi" fill="none" fill-opacity="0.2" stroke="species" stroke-width="1">00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</g>
+  </g>
+  <g transform="translate(221,0)">
+    <g aria-label="x-axis" transform="translate(0,429)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+      <line x1="0" x2="639" stroke="currentColor"></line>
+      <g transform="translate(29.071,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">14</text>
+      </g>
+      <g transform="translate(50.262,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">15</text>
+      </g>
+      <g transform="translate(71.452,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">16</text>
+      </g>
+      <g transform="translate(92.643,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">17</text>
+      </g>
+      <g transform="translate(113.833,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">18</text>
+      </g>
+      <g transform="translate(135.024,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">19</text>
+      </g>
+      <g transform="translate(156.214,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">20</text>
+      </g>
+      <g transform="translate(177.405,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">21</text>
+      </g>
+    </g>
+    <g aria-label="y-axis" transform="translate(0,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
+      <line y1="0" y2="429" stroke="currentColor"></line>
+      <g transform="translate(0,390.742)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">34</text>
+      </g>
+      <g transform="translate(0,360.996)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">36</text>
+      </g>
+      <g transform="translate(0,331.251)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">38</text>
+      </g>
+      <g transform="translate(0,301.505)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">40</text>
+      </g>
+      <g transform="translate(0,271.76)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">42</text>
+      </g>
+      <g transform="translate(0,242.015)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">44</text>
+      </g>
+      <g transform="translate(0,212.269)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">46</text>
+      </g>
+      <g transform="translate(0,182.524)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">48</text>
+      </g>
+      <g transform="translate(0,152.778)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">50</text>
+      </g>
+      <g transform="translate(0,123.033)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">52</text>
+      </g>
+      <g transform="translate(0,93.287)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">54</text>
+      </g>
+      <g transform="translate(0,63.542)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">56</text>
+      </g>
+      <g transform="translate(0,33.796)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">58</text>
+      </g>
+    </g>
+    <rect aria-label="frame" x="0" y="0" width="639" height="429" fill="none" stroke="currentColor" stroke-width="1"></rect>
+    <g aria-label="dot" fill="currentColor" stroke="currentColor" stroke-width="1.5">0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</g>
+    <g aria-label="dot" fill="currentColor" stroke="currentColor" stroke-width="1.5">
+      <circle cx="111.714" cy="204.833" r="1.5"></circle>
+      <circle cx="145.619" cy="152.778" r="1.5"></circle>
+      <circle cx="139.262" cy="133.444" r="1.5"></circle>
+      <circle cx="128.667" cy="221.193" r="1.5"></circle>
+      <circle cx="151.976" cy="112.622" r="1.5"></circle>
+      <circle cx="109.595" cy="224.167" r="1.5"></circle>
+      <circle cx="118.071" cy="210.782" r="1.5"></circle>
+      <circle cx="118.071" cy="133.444" r="1.5"></circle>
+      <circle cx="132.905" cy="212.269" r="1.5"></circle>
+      <circle cx="154.095" cy="133.444" r="1.5"></circle>
+      <circle cx="109.595" cy="203.345" r="1.5"></circle>
+      <circle cx="162.571" cy="127.495" r="1.5"></circle>
+      <circle cx="99" cy="197.396" r="1.5"></circle>
+      <circle cx="115.952" cy="123.033" r="1.5"></circle>
+      <circle cx="94.762" cy="213.756" r="1.5"></circle>
+      <circle cx="147.738" cy="145.342" r="1.5"></circle>
+      <circle cx="156.214" cy="148.316" r="1.5"></circle>
+      <circle cx="109.595" cy="33.796" r="1.5"></circle>
+      <circle cx="126.548" cy="206.32" r="1.5"></circle>
+      <circle cx="118.071" cy="164.676" r="1.5"></circle>
+      <circle cx="99" cy="265.811" r="1.5"></circle>
+      <circle cx="103.238" cy="175.087" r="1.5"></circle>
+      <circle cx="84.167" cy="253.913" r="1.5"></circle>
+      <circle cx="143.5" cy="143.855" r="1.5"></circle>
+      <circle cx="111.714" cy="201.858" r="1.5"></circle>
+      <circle cx="135.024" cy="123.033" r="1.5"></circle>
+      <circle cx="122.31" cy="145.342" r="1.5"></circle>
+      <circle cx="135.024" cy="160.215" r="1.5"></circle>
+      <circle cx="109.595" cy="206.32" r="1.5"></circle>
+      <circle cx="156.214" cy="111.135" r="1.5"></circle>
+      <circle cx="84.167" cy="288.12" r="1.5"></circle>
+      <circle cx="173.167" cy="90.313" r="1.5"></circle>
+      <circle cx="86.286" cy="264.324" r="1.5"></circle>
+      <circle cx="130.786" cy="137.905" r="1.5"></circle>
+      <circle cx="126.548" cy="157.24" r="1.5"></circle>
+      <circle cx="88.405" cy="189.96" r="1.5"></circle>
+      <circle cx="120.19" cy="188.473" r="1.5"></circle>
+      <circle cx="171.048" cy="123.033" r="1.5"></circle>
+      <circle cx="84.167" cy="198.884" r="1.5"></circle>
+      <circle cx="154.095" cy="100.724" r="1.5"></circle>
+      <circle cx="145.619" cy="167.651" r="1.5"></circle>
+      <circle cx="103.238" cy="209.295" r="1.5"></circle>
+      <circle cx="137.143" cy="139.393" r="1.5"></circle>
+      <circle cx="92.643" cy="219.705" r="1.5"></circle>
+      <circle cx="111.714" cy="139.393" r="1.5"></circle>
+      <circle cx="124.429" cy="140.88" r="1.5"></circle>
+      <circle cx="111.714" cy="151.291" r="1.5"></circle>
+      <circle cx="147.738" cy="167.651" r="1.5"></circle>
+      <circle cx="128.667" cy="130.469" r="1.5"></circle>
+      <circle cx="99" cy="155.753" r="1.5"></circle>
+      <circle cx="79.929" cy="181.036" r="1.5"></circle>
+      <circle cx="135.024" cy="131.956" r="1.5"></circle>
+      <circle cx="99" cy="216.731" r="1.5"></circle>
+      <circle cx="149.857" cy="142.367" r="1.5"></circle>
+      <circle cx="99" cy="264.324" r="1.5"></circle>
+      <circle cx="130.786" cy="120.058" r="1.5"></circle>
+      <circle cx="84.167" cy="224.167" r="1.5"></circle>
+      <circle cx="154.095" cy="163.189" r="1.5"></circle>
+      <circle cx="130.786" cy="149.804" r="1.5"></circle>
+      <circle cx="143.5" cy="218.218" r="1.5"></circle>
+      <circle cx="145.619" cy="124.52" r="1.5"></circle>
+      <circle cx="82.048" cy="200.371" r="1.5"></circle>
+      <circle cx="92.643" cy="216.731" r="1.5"></circle>
+      <circle cx="151.976" cy="66.516" r="1.5"></circle>
+      <circle cx="115.952" cy="249.451" r="1.5"></circle>
+      <circle cx="118.071" cy="158.727" r="1.5"></circle>
+      <circle cx="135.024" cy="140.88" r="1.5"></circle>
+      <circle cx="128.667" cy="149.804" r="1.5"></circle>
+    </g>
+    <path d="" fill="none" stroke="currentColor" stroke-width="1" aria-label="voronoi-mesh"></path>
+    <g aria-label="voronoi" fill="none" fill-opacity="0.2" stroke="species" stroke-width="1">0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</g>
+  </g>
+  <g transform="translate(441,0)">
+    <g aria-label="x-axis" transform="translate(0,429)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+      <line x1="0" x2="639" stroke="currentColor"></line>
+      <g transform="translate(29.071,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">14</text>
+      </g>
+      <g transform="translate(50.262,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">15</text>
+      </g>
+      <g transform="translate(71.452,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">16</text>
+      </g>
+      <g transform="translate(92.643,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">17</text>
+      </g>
+      <g transform="translate(113.833,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">18</text>
+      </g>
+      <g transform="translate(135.024,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">19</text>
+      </g>
+      <g transform="translate(156.214,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">20</text>
+      </g>
+      <g transform="translate(177.405,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">21</text>
+      </g>
+    </g>
+    <g aria-label="y-axis" transform="translate(0,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
+      <line y1="0" y2="429" stroke="currentColor"></line>
+      <g transform="translate(0,390.742)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">34</text>
+      </g>
+      <g transform="translate(0,360.996)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">36</text>
+      </g>
+      <g transform="translate(0,331.251)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">38</text>
+      </g>
+      <g transform="translate(0,301.505)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">40</text>
+      </g>
+      <g transform="translate(0,271.76)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">42</text>
+      </g>
+      <g transform="translate(0,242.015)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">44</text>
+      </g>
+      <g transform="translate(0,212.269)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">46</text>
+      </g>
+      <g transform="translate(0,182.524)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">48</text>
+      </g>
+      <g transform="translate(0,152.778)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">50</text>
+      </g>
+      <g transform="translate(0,123.033)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">52</text>
+      </g>
+      <g transform="translate(0,93.287)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">54</text>
+      </g>
+      <g transform="translate(0,63.542)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">56</text>
+      </g>
+      <g transform="translate(0,33.796)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">58</text>
+      </g>
+    </g>
+    <rect aria-label="frame" x="0" y="0" width="639" height="429" fill="none" stroke="currentColor" stroke-width="1"></rect>
+    <g aria-label="dot" fill="currentColor" stroke="currentColor" stroke-width="1.5">000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</g>
+    <g aria-label="dot" fill="currentColor" stroke="currentColor" stroke-width="1.5">
+      <circle cx="12.119" cy="210.782" r="1.5"></circle>
+      <circle cx="77.81" cy="152.778" r="1.5"></circle>
+      <circle cx="31.19" cy="172.113" r="1.5"></circle>
+      <circle cx="54.5" cy="152.778" r="1.5"></circle>
+      <circle cx="39.667" cy="188.473" r="1.5"></circle>
+      <circle cx="18.476" cy="204.833" r="1.5"></circle>
+      <circle cx="41.786" cy="221.193" r="1.5"></circle>
+      <circle cx="56.619" cy="201.858" r="1.5"></circle>
+      <circle cx="16.357" cy="252.425" r="1.5"></circle>
+      <circle cx="58.738" cy="200.371" r="1.5"></circle>
+      <circle cx="22.714" cy="288.12" r="1.5"></circle>
+      <circle cx="73.571" cy="167.651" r="1.5"></circle>
+      <circle cx="22.714" cy="219.705" r="1.5"></circle>
+      <circle cx="41.786" cy="176.575" r="1.5"></circle>
+      <circle cx="41.786" cy="215.244" r="1.5"></circle>
+      <circle cx="65.095" cy="163.189" r="1.5"></circle>
+      <circle cx="18.476" cy="271.76" r="1.5"></circle>
+      <circle cx="54.5" cy="164.676" r="1.5"></circle>
+      <circle cx="39.667" cy="209.295" r="1.5"></circle>
+      <circle cx="52.381" cy="172.113" r="1.5"></circle>
+      <circle cx="35.429" cy="149.804" r="1.5"></circle>
+      <circle cx="39.667" cy="225.655" r="1.5"></circle>
+      <circle cx="39.667" cy="204.833" r="1.5"></circle>
+      <circle cx="67.214" cy="207.807" r="1.5"></circle>
+      <circle cx="10" cy="258.375" r="1.5"></circle>
+      <circle cx="52.381" cy="210.782" r="1.5"></circle>
+      <circle cx="35.429" cy="234.578" r="1.5"></circle>
+      <circle cx="50.262" cy="185.498" r="1.5"></circle>
+      <circle cx="35.429" cy="179.549" r="1.5"></circle>
+      <circle cx="56.619" cy="152.778" r="1.5"></circle>
+      <circle cx="56.619" cy="192.935" r="1.5"></circle>
+      <circle cx="33.31" cy="259.862" r="1.5"></circle>
+      <circle cx="39.667" cy="225.655" r="1.5"></circle>
+      <circle cx="92.643" cy="10" r="1.5"></circle>
+      <circle cx="46.024" cy="166.164" r="1.5"></circle>
+      <circle cx="77.81" cy="176.575" r="1.5"></circle>
+      <circle cx="22.714" cy="262.836" r="1.5"></circle>
+      <circle cx="99" cy="236.065" r="1.5"></circle>
+      <circle cx="20.595" cy="242.015" r="1.5"></circle>
+      <circle cx="65.095" cy="172.113" r="1.5"></circle>
+      <circle cx="22.714" cy="261.349" r="1.5"></circle>
+      <circle cx="71.452" cy="158.727" r="1.5"></circle>
+      <circle cx="22.714" cy="222.68" r="1.5"></circle>
+      <circle cx="50.262" cy="158.727" r="1.5"></circle>
+      <circle cx="69.333" cy="145.342" r="1.5"></circle>
+      <circle cx="26.952" cy="247.964" r="1.5"></circle>
+      <circle cx="26.952" cy="219.705" r="1.5"></circle>
+      <circle cx="69.333" cy="145.342" r="1.5"></circle>
+      <circle cx="14.238" cy="228.629" r="1.5"></circle>
+      <circle cx="67.214" cy="224.167" r="1.5"></circle>
+      <circle cx="33.31" cy="203.345" r="1.5"></circle>
+      <circle cx="31.19" cy="175.087" r="1.5"></circle>
+      <circle cx="37.548" cy="225.655" r="1.5"></circle>
+      <circle cx="50.262" cy="151.291" r="1.5"></circle>
+      <circle cx="37.548" cy="204.833" r="1.5"></circle>
+      <circle cx="58.738" cy="227.142" r="1.5"></circle>
+      <circle cx="26.952" cy="244.989" r="1.5"></circle>
+      <circle cx="50.262" cy="219.705" r="1.5"></circle>
+      <circle cx="39.667" cy="253.913" r="1.5"></circle>
+      <circle cx="56.619" cy="146.829" r="1.5"></circle>
+      <circle cx="24.833" cy="222.68" r="1.5"></circle>
+      <circle cx="48.143" cy="209.295" r="1.5"></circle>
+      <circle cx="26.952" cy="216.731" r="1.5"></circle>
+      <circle cx="65.095" cy="88.825" r="1.5"></circle>
+      <circle cx="33.31" cy="215.244" r="1.5"></circle>
+      <circle cx="88.405" cy="155.753" r="1.5"></circle>
+      <circle cx="37.548" cy="209.295" r="1.5"></circle>
+      <circle cx="75.69" cy="160.215" r="1.5"></circle>
+      <circle cx="33.31" cy="249.451" r="1.5"></circle>
+      <circle cx="50.262" cy="142.367" r="1.5"></circle>
+      <circle cx="50.262" cy="186.985" r="1.5"></circle>
+      <circle cx="62.976" cy="206.32" r="1.5"></circle>
+      <circle cx="62.976" cy="179.549" r="1.5"></circle>
+      <circle cx="46.024" cy="204.833" r="1.5"></circle>
+      <circle cx="50.262" cy="206.32" r="1.5"></circle>
+      <circle cx="71.452" cy="173.6" r="1.5"></circle>
+      <circle cx="33.31" cy="189.96" r="1.5"></circle>
+      <circle cx="77.81" cy="136.418" r="1.5"></circle>
+      <circle cx="24.833" cy="224.167" r="1.5"></circle>
+      <circle cx="79.929" cy="224.167" r="1.5"></circle>
+      <circle cx="39.667" cy="166.164" r="1.5"></circle>
+      <circle cx="62.976" cy="115.596" r="1.5"></circle>
+      <circle cx="41.786" cy="191.447" r="1.5"></circle>
+      <circle cx="69.333" cy="152.778" r="1.5"></circle>
+      <circle cx="24.833" cy="228.629" r="1.5"></circle>
+      <circle cx="99" cy="140.88" r="1.5"></circle>
+      <circle cx="37.548" cy="250.938" r="1.5"></circle>
+      <circle cx="33.31" cy="133.444" r="1.5"></circle>
+      <circle cx="29.071" cy="189.96" r="1.5"></circle>
+      <circle cx="92.643" cy="121.545" r="1.5"></circle>
+      <circle cx="50.262" cy="189.96" r="1.5"></circle>
+      <circle cx="94.762" cy="120.058" r="1.5"></circle>
+      <circle cx="39.667" cy="219.705" r="1.5"></circle>
+      <circle cx="73.571" cy="160.215" r="1.5"></circle>
+      <circle cx="43.905" cy="234.578" r="1.5"></circle>
+      <circle cx="65.095" cy="140.88" r="1.5"></circle>
+      <circle cx="67.214" cy="161.702" r="1.5"></circle>
+      <circle cx="41.786" cy="198.884" r="1.5"></circle>
+      <circle cx="37.548" cy="176.575" r="1.5"></circle>
+      <circle cx="82.048" cy="136.418" r="1.5"></circle>
+      <circle cx="50.262" cy="175.087" r="1.5"></circle>
+      <circle cx="92.643" cy="65.029" r="1.5"></circle>
+      <circle cx="60.857" cy="194.422" r="1.5"></circle>
+      <circle cx="50.262" cy="166.164" r="1.5"></circle>
+      <circle cx="24.833" cy="192.935" r="1.5"></circle>
+      <circle cx="73.571" cy="200.371" r="1.5"></circle>
+      <circle cx="43.905" cy="276.222" r="1.5"></circle>
+      <circle cx="67.214" cy="102.211" r="1.5"></circle>
+      <circle cx="29.071" cy="252.425" r="1.5"></circle>
+      <circle cx="52.381" cy="181.036" r="1.5"></circle>
+      <circle cx="54.5" cy="145.342" r="1.5"></circle>
+      <circle cx="69.333" cy="155.753" r="1.5"></circle>
+      <circle cx="54.5" cy="249.451" r="1.5"></circle>
+      <circle cx="77.81" cy="130.469" r="1.5"></circle>
+      <circle cx="31.19" cy="209.295" r="1.5"></circle>
+      <circle cx="71.452" cy="76.927" r="1.5"></circle>
+      <circle cx="65.095" cy="234.578" r="1.5"></circle>
+      <circle cx="75.69" cy="170.625" r="1.5"></circle>
+      <circle cx="22.714" cy="194.422" r="1.5"></circle>
+      <circle cx="35.429" cy="200.371" r="1.5"></circle>
+      <circle cx="65.095" cy="146.829" r="1.5"></circle>
+      <circle cx="46.024" cy="224.167" r="1.5"></circle>
+      <circle cx="73.571" cy="154.265" r="1.5"></circle>
+    </g>
+    <path d="" fill="none" stroke="currentColor" stroke-width="1" aria-label="voronoi-mesh"></path>
+    <g aria-label="voronoi" fill="none" fill-opacity="0.2" stroke="species" stroke-width="1">000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</g>
+  </g>
+</svg>

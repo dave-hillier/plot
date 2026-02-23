@@ -1,4 +1,4 @@
-<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
     :where(.plot) {
       --plot-background: white;
@@ -14,9 +14,95 @@
     }
   </style>
   <defs>
-    <clipPath id="_r_2ac_">
-      <rect x="0" y="0" width="639" height="59"></rect>
+    <clipPath id="_r_2bc_">
+      <rect x="0" y="0" width="639" height="399"></rect>
     </clipPath>
   </defs>
+  <g aria-label="x-axis" transform="translate(0,399)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+    <line x1="0" x2="639" stroke="currentColor"></line>
+    <g transform="translate(56.053,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">Jan 07</text>
+    </g>
+    <g transform="translate(134.526,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">Jan 14</text>
+    </g>
+    <g transform="translate(213,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">Jan 21</text>
+    </g>
+    <g transform="translate(291.474,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">Jan 28</text>
+    </g>
+    <g transform="translate(369.947,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">Feb 04</text>
+    </g>
+    <g transform="translate(448.421,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">Feb 11</text>
+    </g>
+    <g transform="translate(526.895,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">Feb 18</text>
+    </g>
+    <g transform="translate(605.368,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">Feb 25</text>
+    </g>
+  </g>
+  <g aria-label="y-axis" transform="translate(0,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
+    <line y1="0" y2="399" stroke="currentColor"></line>
+    <g transform="translate(0,379.977)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">156</text>
+    </g>
+    <g transform="translate(0,347.458)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">158</text>
+    </g>
+    <g transform="translate(0,314.94)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">160</text>
+    </g>
+    <g transform="translate(0,282.422)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">162</text>
+    </g>
+    <g transform="translate(0,249.903)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">164</text>
+    </g>
+    <g transform="translate(0,217.385)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">166</text>
+    </g>
+    <g transform="translate(0,184.867)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">168</text>
+    </g>
+    <g transform="translate(0,152.348)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">170</text>
+    </g>
+    <g transform="translate(0,119.83)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">172</text>
+    </g>
+    <g transform="translate(0,87.312)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">174</text>
+    </g>
+    <g transform="translate(0,54.793)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">176</text>
+    </g>
+    <g transform="translate(0,22.275)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">178</text>
+    </g>
+  </g>
   <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5">0000000000000000000000000000000000000000</g>
 </svg>

@@ -14,8 +14,15 @@
     }
   </style>
   <defs>
-    <clipPath id="_r_2j4_">
+    <clipPath id="_r_2k5_">
       <rect x="0" y="0" width="639" height="89"></rect>
     </clipPath>
   </defs>
+  <g aria-label="x-axis" transform="translate(0,89)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+    <line x1="0" x2="639" stroke="currentColor"></line>
+    <g transform="translate(319.5,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">0</text>
+    </g>
+  </g>
 </svg>

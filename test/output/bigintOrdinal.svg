@@ -24,41 +24,45 @@
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">0</text>
     </g>
-    <g transform="translate(71,0)">
+    <g transform="translate(63.9,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">1</text>
     </g>
-    <g transform="translate(142,0)">
+    <g transform="translate(127.8,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2</text>
     </g>
-    <g transform="translate(213,0)">
+    <g transform="translate(191.7,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">3</text>
     </g>
-    <g transform="translate(284,0)">
+    <g transform="translate(255.6,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">4</text>
     </g>
-    <g transform="translate(355,0)">
+    <g transform="translate(319.5,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">5</text>
     </g>
-    <g transform="translate(426,0)">
+    <g transform="translate(383.4,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">6</text>
     </g>
-    <g transform="translate(497,0)">
+    <g transform="translate(447.3,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">7</text>
     </g>
-    <g transform="translate(568,0)">
+    <g transform="translate(511.2,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">8</text>
     </g>
-    <g transform="translate(639,0)">
+    <g transform="translate(575.1,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">9</text>
+    </g>
+    <g transform="translate(639,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">10</text>
     </g>
   </g>
   <g aria-label="rect" fill="currentColor">0000000000</g>

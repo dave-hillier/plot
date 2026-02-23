@@ -51,10 +51,12 @@ export function TickX({
   insetBottom = inset,
   className,
   onClick,
+  channels: extraChannels,
   ...restOptions
 }: TickProps) {
   const resolvedX = x ?? identity;
   const channels: Record<string, ChannelSpec> = {
+    ...extraChannels,
     x: {value: resolvedX, scale: "x"},
     y: {value: y, scale: "y", type: "band", optional: true},
     ...(isColorChannel(stroke)
@@ -139,10 +141,12 @@ export function TickY({
   insetRight = inset,
   className,
   onClick,
+  channels: extraChannels,
   ...restOptions
 }: TickProps) {
   const resolvedY = y ?? identity;
   const channels: Record<string, ChannelSpec> = {
+    ...extraChannels,
     y: {value: resolvedY, scale: "y"},
     x: {value: x, scale: "x", type: "band", optional: true},
     ...(isColorChannel(stroke)

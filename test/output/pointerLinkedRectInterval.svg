@@ -1,0 +1,154 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <defs>
+    <clipPath id="_r_1uu_">
+      <rect x="0" y="0" width="639" height="399"></rect>
+    </clipPath>
+  </defs>
+  <g aria-label="x-axis" transform="translate(0,399)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+    <line x1="0" x2="639" stroke="currentColor"></line>
+    <g transform="translate(26.625,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">0</text>
+    </g>
+    <g transform="translate(79.875,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">1</text>
+    </g>
+    <g transform="translate(133.125,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">2</text>
+    </g>
+    <g transform="translate(186.375,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">3</text>
+    </g>
+    <g transform="translate(239.625,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">4</text>
+    </g>
+    <g transform="translate(292.875,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">5</text>
+    </g>
+    <g transform="translate(346.125,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">6</text>
+    </g>
+    <g transform="translate(399.375,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">7</text>
+    </g>
+    <g transform="translate(452.625,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">8</text>
+    </g>
+    <g transform="translate(505.875,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">9</text>
+    </g>
+    <g transform="translate(559.125,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">10</text>
+    </g>
+    <g transform="translate(612.375,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">11</text>
+    </g>
+  </g>
+  <g aria-label="y-axis" transform="translate(0,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
+    <line y1="0" y2="399" stroke="currentColor"></line>
+    <g transform="translate(0,395.702)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">0</text>
+    </g>
+    <g transform="translate(0,340.744)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">5</text>
+    </g>
+    <g transform="translate(0,285.785)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">10</text>
+    </g>
+    <g transform="translate(0,230.826)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">15</text>
+    </g>
+    <g transform="translate(0,175.868)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">20</text>
+    </g>
+    <g transform="translate(0,120.909)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">25</text>
+    </g>
+    <g transform="translate(0,65.95)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">30</text>
+    </g>
+    <g transform="translate(0,10.992)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">35</text>
+    </g>
+  </g>
+  <g aria-label="rect" fill="currentColor">0000000000000000000000</g>
+  <g aria-label="line" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="1">
+    <path d="M26.625,230.826C44.375,227.797,62.125,224.768,79.875,223.132C97.625,221.497,115.375,221.255,133.125,222.033C150.875,222.811,168.625,224.61,186.375,227.529C204.125,230.448,221.875,234.486,239.625,239.62C257.375,244.753,275.125,250.982,292.875,258.306C310.625,265.629,328.375,274.048,346.125,283.587C363.875,293.125,381.625,303.784,399.375,315.463C417.125,327.142,434.875,339.841,452.625,353.934C470.375,368.027,488.125,383.513,505.875,399" stroke="#4269d0"></path>
+    <path d="M26.625,395.702C44.375,353.851,62.125,311.999,79.875,274.793C97.625,237.587,115.375,205.027,133.125,175.868C150.875,146.708,168.625,120.95,186.375,98.926C204.125,76.901,221.875,58.611,239.625,43.967C257.375,29.322,275.125,18.323,292.875,10.992C310.625,3.66,328.375,-0.004,346.125,0C363.875,0.004,381.625,3.675,399.375,10.992C417.125,18.308,434.875,29.271,452.625,43.967C470.375,58.663,488.125,77.094,505.875,98.926C523.625,120.757,541.375,145.99,559.125,175.868C576.875,205.746,594.625,240.27,612.375,274.793" stroke="#efb118"></path>
+  </g>
+  <g aria-label="arrow" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="1">
+    <g>
+      <path d="M26.625,385.702L26.625,240.826"></path>
+      <path d="M30.625,247.755L26.625,240.826L22.625,247.755" fill="none"></path>
+    </g>
+    <g>
+      <path d="M79.875,264.793L79.875,233.132"></path>
+      <path d="M83.875,240.06L79.875,233.132L75.875,240.06" fill="none"></path>
+    </g>
+    <g>
+      <path d="M133.125,212.033L133.125,185.868"></path>
+      <path d="M137.125,192.796L133.125,185.868L129.125,192.796" fill="none"></path>
+    </g>
+    <g>
+      <path d="M186.375,217.529L186.375,108.926"></path>
+      <path d="M190.375,115.854L186.375,108.926L182.375,115.854" fill="none"></path>
+    </g>
+    <g>
+      <path d="M239.625,229.62L239.625,53.967"></path>
+      <path d="M243.625,60.895L239.625,53.967L235.625,60.895" fill="none"></path>
+    </g>
+    <g>
+      <path d="M292.875,248.306L292.875,20.992"></path>
+      <path d="M296.875,27.92L292.875,20.992L288.875,27.92" fill="none"></path>
+    </g>
+    <g>
+      <path d="M346.125,273.587L346.125,10"></path>
+      <path d="M350.125,16.928L346.125,10L342.125,16.928" fill="none"></path>
+    </g>
+    <g>
+      <path d="M399.375,305.463L399.375,20.992"></path>
+      <path d="M403.375,27.92L399.375,20.992L395.375,27.92" fill="none"></path>
+    </g>
+    <g>
+      <path d="M452.625,343.934L452.625,53.967"></path>
+      <path d="M456.625,60.895L452.625,53.967L448.625,60.895" fill="none"></path>
+    </g>
+    <g>
+      <path d="M505.875,389L505.875,108.926"></path>
+      <path d="M509.875,115.854L505.875,108.926L501.875,115.854" fill="none"></path>
+    </g>
+  </g>
+</svg>

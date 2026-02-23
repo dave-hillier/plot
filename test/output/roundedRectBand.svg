@@ -14,10 +14,57 @@
     }
   </style>
   <defs>
-    <clipPath id="_r_25u_">
+    <clipPath id="_r_26u_">
       <rect x="0" y="0" width="639" height="399"></rect>
     </clipPath>
   </defs>
+  <g aria-label="x-axis" transform="translate(0,399)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+    <line x1="0" x2="639" stroke="currentColor"></line>
+    <g transform="translate(2,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">1.0</text>
+    </g>
+    <g transform="translate(65.5,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">1.2</text>
+    </g>
+    <g transform="translate(129,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">1.4</text>
+    </g>
+    <g transform="translate(192.5,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">1.6</text>
+    </g>
+    <g transform="translate(256,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">1.8</text>
+    </g>
+    <g transform="translate(319.5,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">2.0</text>
+    </g>
+    <g transform="translate(383,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">2.2</text>
+    </g>
+    <g transform="translate(446.5,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">2.4</text>
+    </g>
+    <g transform="translate(510,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">2.6</text>
+    </g>
+    <g transform="translate(573.5,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">2.8</text>
+    </g>
+    <g transform="translate(637,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">3.0</text>
+    </g>
+  </g>
   <g aria-label="y-axis" transform="translate(0,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
     <line y1="0" y2="399" stroke="currentColor"></line>
     <g transform="translate(0,399)">

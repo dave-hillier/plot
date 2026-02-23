@@ -14,40 +14,155 @@
     }
   </style>
   <defs>
-    <clipPath id="_r_2g3_">
+    <clipPath id="_r_2h4_">
       <rect x="100" y="0" width="539" height="399"></rect>
     </clipPath>
   </defs>
   <g transform="translate(127,0)">
+    <g aria-label="y-axis" transform="translate(100,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
+      <line y1="0" y2="399" stroke="currentColor"></line>
+      <g transform="translate(0,11)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">aquatics</text>
+      </g>
+      <g transform="translate(0,25)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">archery</text>
+      </g>
+      <g transform="translate(0,39)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">athletics</text>
+      </g>
+      <g transform="translate(0,53)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">badminton</text>
+      </g>
+      <g transform="translate(0,67)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">basketball</text>
+      </g>
+      <g transform="translate(0,81)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">boxing</text>
+      </g>
+      <g transform="translate(0,95)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">canoe</text>
+      </g>
+      <g transform="translate(0,109)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">cycling</text>
+      </g>
+      <g transform="translate(0,123)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">equestrian</text>
+      </g>
+      <g transform="translate(0,137)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">fencing</text>
+      </g>
+      <g transform="translate(0,151)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">football</text>
+      </g>
+      <g transform="translate(0,165)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">golf</text>
+      </g>
+      <g transform="translate(0,179)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">gymnastics</text>
+      </g>
+      <g transform="translate(0,193)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">handball</text>
+      </g>
+      <g transform="translate(0,207)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">hockey</text>
+      </g>
+      <g transform="translate(0,221)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">judo</text>
+      </g>
+      <g transform="translate(0,235)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">modern pentathlon</text>
+      </g>
+      <g transform="translate(0,249)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">rowing</text>
+      </g>
+      <g transform="translate(0,263)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">rugby sevens</text>
+      </g>
+      <g transform="translate(0,277)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">sailing</text>
+      </g>
+      <g transform="translate(0,291)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">shooting</text>
+      </g>
+      <g transform="translate(0,305)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">table tennis</text>
+      </g>
+      <g transform="translate(0,319)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">taekwondo</text>
+      </g>
+      <g transform="translate(0,333)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">tennis</text>
+      </g>
+      <g transform="translate(0,347)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">triathlon</text>
+      </g>
+      <g transform="translate(0,361)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">volleyball</text>
+      </g>
+      <g transform="translate(0,375)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">weightlifting</text>
+      </g>
+      <g transform="translate(0,389)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">wrestling</text>
+      </g>
+    </g>
     <g aria-label="rect" fill="currentColor">
-      <rect x="100" y="0" width="539" height="399"></rect>
-      <rect x="100" y="0" width="539" height="399"></rect>
-      <rect x="100" y="0" width="539" height="399"></rect>
-      <rect x="100" y="0" width="539" height="399"></rect>
-      <rect x="100" y="0" width="539" height="399"></rect>
-      <rect x="100" y="0" width="539" height="399"></rect>
-      <rect x="100" y="0" width="539" height="399"></rect>
-      <rect x="100" y="0" width="539" height="399"></rect>
-      <rect x="100" y="0" width="539" height="399"></rect>
-      <rect x="100" y="0" width="539" height="399"></rect>
-      <rect x="100" y="0" width="539" height="399"></rect>
-      <rect x="100" y="0" width="539" height="399"></rect>
-      <rect x="100" y="0" width="539" height="399"></rect>
-      <rect x="100" y="0" width="539" height="399"></rect>
-      <rect x="100" y="0" width="539" height="399"></rect>
-      <rect x="100" y="0" width="539" height="399"></rect>
-      <rect x="100" y="0" width="539" height="399"></rect>
-      <rect x="100" y="0" width="539" height="399"></rect>
-      <rect x="100" y="0" width="539" height="399"></rect>
-      <rect x="100" y="0" width="539" height="399"></rect>
-      <rect x="100" y="0" width="539" height="399"></rect>
-      <rect x="100" y="0" width="539" height="399"></rect>
-      <rect x="100" y="0" width="539" height="399"></rect>
-      <rect x="100" y="0" width="539" height="399"></rect>
-      <rect x="100" y="0" width="539" height="399"></rect>
-      <rect x="100" y="0" width="539" height="399"></rect>
-      <rect x="100" y="0" width="539" height="399"></rect>
-      <rect x="100" y="0" width="539" height="399"></rect>
+      <rect x="100" y="39" width="539" height="360"></rect>
+      <rect x="100" y="137" width="539" height="262"></rect>
+      <rect x="100" y="319" width="539" height="80"></rect>
+      <rect x="100" y="109" width="539" height="290"></rect>
+      <rect x="100" y="347" width="539" height="52"></rect>
+      <rect x="100" y="361" width="539" height="38"></rect>
+      <rect x="100" y="11" width="539" height="388"></rect>
+      <rect x="100" y="263" width="539" height="136"></rect>
+      <rect x="100" y="389" width="539" height="10"></rect>
+      <rect x="100" y="151" width="539" height="248"></rect>
+      <rect x="100" y="291" width="539" height="108"></rect>
+      <rect x="100" y="81" width="539" height="318"></rect>
+      <rect x="100" y="123" width="539" height="276"></rect>
+      <rect x="100" y="249" width="539" height="150"></rect>
+      <rect x="100" y="221" width="539" height="178"></rect>
+      <rect x="100" y="193" width="539" height="206"></rect>
+      <rect x="100" y="53" width="539" height="346"></rect>
+      <rect x="100" y="207" width="539" height="192"></rect>
+      <rect x="100" y="235" width="539" height="164"></rect>
+      <rect x="100" y="305" width="539" height="94"></rect>
+      <rect x="100" y="95" width="539" height="304"></rect>
+      <rect x="100" y="67" width="539" height="332"></rect>
+      <rect x="100" y="165" width="539" height="234"></rect>
+      <rect x="100" y="25" width="539" height="374"></rect>
+      <rect x="100" y="375" width="539" height="24"></rect>
+      <rect x="100" y="277" width="539" height="122"></rect>
+      <rect x="100" y="333" width="539" height="66"></rect>
+      <rect x="100" y="179" width="539" height="220"></rect>
     </g>
   </g>
 </svg>

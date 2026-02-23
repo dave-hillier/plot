@@ -20,37 +20,53 @@
   </defs>
   <g aria-label="x-axis" transform="translate(0,399)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
     <line x1="0" x2="639" stroke="currentColor"></line>
-    <g transform="translate(0,0)">
+    <g transform="translate(31.324,0)">
       <line y2="6" stroke="currentColor"></line>
-      <text y="9" dy="0.71em" fill="currentColor">0</text>
+      <text y="9" dy="0.71em" fill="currentColor">1860</text>
     </g>
-    <g transform="translate(90,0)">
+    <g transform="translate(86.575,0)">
       <line y2="6" stroke="currentColor"></line>
-      <text y="9" dy="0.71em" fill="currentColor">10</text>
+      <text y="9" dy="0.71em" fill="currentColor">1870</text>
     </g>
-    <g transform="translate(180,0)">
+    <g transform="translate(141.812,0)">
       <line y2="6" stroke="currentColor"></line>
-      <text y="9" dy="0.71em" fill="currentColor">20</text>
+      <text y="9" dy="0.71em" fill="currentColor">1880</text>
     </g>
-    <g transform="translate(270,0)">
+    <g transform="translate(197.063,0)">
       <line y2="6" stroke="currentColor"></line>
-      <text y="9" dy="0.71em" fill="currentColor">30</text>
+      <text y="9" dy="0.71em" fill="currentColor">1890</text>
     </g>
-    <g transform="translate(360,0)">
+    <g transform="translate(252.3,0)">
       <line y2="6" stroke="currentColor"></line>
-      <text y="9" dy="0.71em" fill="currentColor">40</text>
+      <text y="9" dy="0.71em" fill="currentColor">1900</text>
     </g>
-    <g transform="translate(450,0)">
+    <g transform="translate(307.536,0)">
       <line y2="6" stroke="currentColor"></line>
-      <text y="9" dy="0.71em" fill="currentColor">50</text>
+      <text y="9" dy="0.71em" fill="currentColor">1910</text>
     </g>
-    <g transform="translate(540,0)">
+    <g transform="translate(362.773,0)">
       <line y2="6" stroke="currentColor"></line>
-      <text y="9" dy="0.71em" fill="currentColor">60</text>
+      <text y="9" dy="0.71em" fill="currentColor">1920</text>
     </g>
-    <g transform="translate(630,0)">
+    <g transform="translate(418.024,0)">
       <line y2="6" stroke="currentColor"></line>
-      <text y="9" dy="0.71em" fill="currentColor">70</text>
+      <text y="9" dy="0.71em" fill="currentColor">1930</text>
+    </g>
+    <g transform="translate(473.261,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">1940</text>
+    </g>
+    <g transform="translate(528.512,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">1950</text>
+    </g>
+    <g transform="translate(583.748,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">1960</text>
+    </g>
+    <g transform="translate(639,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">1970</text>
     </g>
   </g>
   <g aria-label="y-axis" transform="translate(0,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">

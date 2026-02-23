@@ -1,0 +1,122 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="500" height="547.81" viewBox="0 0 500 547.81" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <defs>
+    <clipPath id="_r_h1_">
+      <rect x="0" y="0" width="499" height="546.81"></rect>
+    </clipPath>
+  </defs>
+  <g aria-label="x-axis" transform="translate(0,546.81)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+    <line x1="0" x2="499" stroke="currentColor"></line>
+    <g transform="translate(13.699,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">−1.5</text>
+    </g>
+    <g transform="translate(70.196,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">−1.0</text>
+    </g>
+    <g transform="translate(126.693,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">−0.5</text>
+    </g>
+    <g transform="translate(183.191,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">0.0</text>
+    </g>
+    <g transform="translate(239.688,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">0.5</text>
+    </g>
+    <g transform="translate(296.185,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">1.0</text>
+    </g>
+    <g transform="translate(352.683,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">1.5</text>
+    </g>
+    <g transform="translate(409.18,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">2.0</text>
+    </g>
+    <g transform="translate(465.677,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">2.5</text>
+    </g>
+  </g>
+  <g aria-label="y-axis" transform="translate(0,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
+    <line y1="0" y2="546.81" stroke="currentColor"></line>
+    <g transform="translate(0,524.025)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">−2.5</text>
+    </g>
+    <g transform="translate(0,467.528)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">−2.0</text>
+    </g>
+    <g transform="translate(0,411.031)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">−1.5</text>
+    </g>
+    <g transform="translate(0,354.533)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">−1.0</text>
+    </g>
+    <g transform="translate(0,298.036)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">−0.5</text>
+    </g>
+    <g transform="translate(0,241.539)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">0.0</text>
+    </g>
+    <g transform="translate(0,185.041)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">0.5</text>
+    </g>
+    <g transform="translate(0,128.544)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">1.0</text>
+    </g>
+    <g transform="translate(0,72.047)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">1.5</text>
+    </g>
+    <g transform="translate(0,15.549)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">2.0</text>
+    </g>
+  </g>
+  <g aria-label="line" fill="none" stroke="red" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="1"></g>
+  <g aria-label="line" fill="none" stroke="green" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="1"></g>
+  <g aria-label="line" fill="none" stroke="blue" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="1"></g>
+  <g aria-label="line" fill="none" stroke="red" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="1"></g>
+  <g aria-label="line" fill="none" stroke="green" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="1"></g>
+  <g aria-label="line" fill="none" stroke="blue" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="1"></g>
+  <g aria-label="line" fill="none" stroke="red" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="1"></g>
+  <g aria-label="line" fill="none" stroke="green" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="1"></g>
+  <g aria-label="line" fill="none" stroke="blue" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="1"></g>
+  <g aria-label="line" fill="none" stroke="red" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="1"></g>
+  <g aria-label="line" fill="none" stroke="green" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="1"></g>
+  <g aria-label="line" fill="none" stroke="blue" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="1"></g>
+  <g aria-label="line" fill="none" stroke="red" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="1"></g>
+  <g aria-label="line" fill="none" stroke="green" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="1"></g>
+  <g aria-label="line" fill="none" stroke="blue" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="1"></g>
+  <g aria-label="line" fill="none" stroke="red" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="1"></g>
+  <g aria-label="line" fill="none" stroke="green" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="1"></g>
+  <g aria-label="line" fill="none" stroke="blue" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="1"></g>
+  <g aria-label="dot" fill="black" stroke="white" stroke-width="1.5">00000000000</g>
+</svg>

@@ -14,66 +14,192 @@
     }
   </style>
   <defs>
-    <clipPath id="_r_2g1_">
+    <clipPath id="_r_2h2_">
       <rect x="100" y="0" width="539" height="399"></rect>
     </clipPath>
   </defs>
+  <g aria-label="x-axis" transform="translate(0,399)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+    <line x1="100" x2="639" stroke="currentColor"></line>
+    <g transform="translate(235,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">female</text>
+    </g>
+    <g transform="translate(504,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">male</text>
+    </g>
+  </g>
+  <g aria-label="y-axis" transform="translate(100,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
+    <line y1="0" y2="399" stroke="currentColor"></line>
+    <g transform="translate(0,11)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">aquatics</text>
+    </g>
+    <g transform="translate(0,25)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">archery</text>
+    </g>
+    <g transform="translate(0,39)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">athletics</text>
+    </g>
+    <g transform="translate(0,53)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">badminton</text>
+    </g>
+    <g transform="translate(0,67)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">basketball</text>
+    </g>
+    <g transform="translate(0,81)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">boxing</text>
+    </g>
+    <g transform="translate(0,95)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">canoe</text>
+    </g>
+    <g transform="translate(0,109)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">cycling</text>
+    </g>
+    <g transform="translate(0,123)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">equestrian</text>
+    </g>
+    <g transform="translate(0,137)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">fencing</text>
+    </g>
+    <g transform="translate(0,151)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">football</text>
+    </g>
+    <g transform="translate(0,165)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">golf</text>
+    </g>
+    <g transform="translate(0,179)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">gymnastics</text>
+    </g>
+    <g transform="translate(0,193)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">handball</text>
+    </g>
+    <g transform="translate(0,207)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">hockey</text>
+    </g>
+    <g transform="translate(0,221)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">judo</text>
+    </g>
+    <g transform="translate(0,235)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">modern pentathlon</text>
+    </g>
+    <g transform="translate(0,249)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">rowing</text>
+    </g>
+    <g transform="translate(0,263)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">rugby sevens</text>
+    </g>
+    <g transform="translate(0,277)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">sailing</text>
+    </g>
+    <g transform="translate(0,291)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">shooting</text>
+    </g>
+    <g transform="translate(0,305)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">table tennis</text>
+    </g>
+    <g transform="translate(0,319)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">taekwondo</text>
+    </g>
+    <g transform="translate(0,333)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">tennis</text>
+    </g>
+    <g transform="translate(0,347)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">triathlon</text>
+    </g>
+    <g transform="translate(0,361)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">volleyball</text>
+    </g>
+    <g transform="translate(0,375)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">weightlifting</text>
+    </g>
+    <g transform="translate(0,389)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">wrestling</text>
+    </g>
+  </g>
   <g aria-label="rect" fill="currentColor">
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
-    <rect x="100" y="0" width="539" height="399"></rect>
+    <rect x="504" y="39" width="135" height="360"></rect>
+    <rect x="235" y="39" width="404" height="360"></rect>
+    <rect x="235" y="137" width="404" height="262"></rect>
+    <rect x="504" y="137" width="135" height="262"></rect>
+    <rect x="504" y="319" width="135" height="80"></rect>
+    <rect x="235" y="319" width="404" height="80"></rect>
+    <rect x="504" y="109" width="135" height="290"></rect>
+    <rect x="235" y="109" width="404" height="290"></rect>
+    <rect x="504" y="347" width="135" height="52"></rect>
+    <rect x="235" y="347" width="404" height="52"></rect>
+    <rect x="504" y="361" width="135" height="38"></rect>
+    <rect x="235" y="361" width="404" height="38"></rect>
+    <rect x="504" y="11" width="135" height="388"></rect>
+    <rect x="235" y="11" width="404" height="388"></rect>
+    <rect x="235" y="263" width="404" height="136"></rect>
+    <rect x="504" y="263" width="135" height="136"></rect>
+    <rect x="504" y="389" width="135" height="10"></rect>
+    <rect x="235" y="389" width="404" height="10"></rect>
+    <rect x="504" y="151" width="135" height="248"></rect>
+    <rect x="235" y="151" width="404" height="248"></rect>
+    <rect x="504" y="291" width="135" height="108"></rect>
+    <rect x="235" y="291" width="404" height="108"></rect>
+    <rect x="504" y="81" width="135" height="318"></rect>
+    <rect x="235" y="81" width="404" height="318"></rect>
+    <rect x="504" y="123" width="135" height="276"></rect>
+    <rect x="235" y="123" width="404" height="276"></rect>
+    <rect x="504" y="249" width="135" height="150"></rect>
+    <rect x="235" y="249" width="404" height="150"></rect>
+    <rect x="504" y="221" width="135" height="178"></rect>
+    <rect x="235" y="221" width="404" height="178"></rect>
+    <rect x="504" y="193" width="135" height="206"></rect>
+    <rect x="235" y="193" width="404" height="206"></rect>
+    <rect x="504" y="53" width="135" height="346"></rect>
+    <rect x="235" y="53" width="404" height="346"></rect>
+    <rect x="504" y="207" width="135" height="192"></rect>
+    <rect x="235" y="207" width="404" height="192"></rect>
+    <rect x="504" y="235" width="135" height="164"></rect>
+    <rect x="235" y="235" width="404" height="164"></rect>
+    <rect x="504" y="305" width="135" height="94"></rect>
+    <rect x="235" y="305" width="404" height="94"></rect>
+    <rect x="504" y="95" width="135" height="304"></rect>
+    <rect x="235" y="95" width="404" height="304"></rect>
+    <rect x="504" y="67" width="135" height="332"></rect>
+    <rect x="235" y="67" width="404" height="332"></rect>
+    <rect x="504" y="165" width="135" height="234"></rect>
+    <rect x="235" y="165" width="404" height="234"></rect>
+    <rect x="504" y="25" width="135" height="374"></rect>
+    <rect x="235" y="25" width="404" height="374"></rect>
+    <rect x="504" y="375" width="135" height="24"></rect>
+    <rect x="235" y="375" width="404" height="24"></rect>
+    <rect x="235" y="277" width="404" height="122"></rect>
+    <rect x="504" y="277" width="135" height="122"></rect>
+    <rect x="235" y="333" width="404" height="66"></rect>
+    <rect x="504" y="333" width="135" height="66"></rect>
+    <rect x="235" y="179" width="404" height="220"></rect>
+    <rect x="504" y="179" width="135" height="220"></rect>
   </g>
 </svg>

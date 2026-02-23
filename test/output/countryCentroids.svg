@@ -1,0 +1,27 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="640" viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <defs>
+    <clipPath id="_r_fi_">
+      <rect x="0" y="0" width="639" height="639"></rect>
+    </clipPath>
+  </defs>
+  <g aria-label="geo" fill="none" stroke="#ccc" stroke-width="0.5">0</g>
+  <g aria-label="geo" fill="#ddd" stroke="currentColor" stroke-width="1">0</g>
+  <g aria-label="geo" fill="none" stroke="#fff" stroke-width="1">000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</g>
+  <g aria-label="text" fill="red">000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</g>
+  <g aria-label="text" fill="blue">000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</g>
+  <rect aria-label="frame" x="0" y="0" width="639" height="639" fill="none" stroke="currentColor" stroke-width="1"></rect>
+</svg>

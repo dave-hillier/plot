@@ -24,45 +24,45 @@
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">0</text>
     </g>
-    <g transform="translate(59.442,0)">
-      <line y2="6" stroke="currentColor"></line>
-      <text y="9" dy="0.71em" fill="currentColor">20</text>
-    </g>
-    <g transform="translate(118.884,0)">
-      <line y2="6" stroke="currentColor"></line>
-      <text y="9" dy="0.71em" fill="currentColor">40</text>
-    </g>
-    <g transform="translate(178.326,0)">
-      <line y2="6" stroke="currentColor"></line>
-      <text y="9" dy="0.71em" fill="currentColor">60</text>
-    </g>
-    <g transform="translate(237.767,0)">
-      <line y2="6" stroke="currentColor"></line>
-      <text y="9" dy="0.71em" fill="currentColor">80</text>
-    </g>
-    <g transform="translate(297.209,0)">
-      <line y2="6" stroke="currentColor"></line>
-      <text y="9" dy="0.71em" fill="currentColor">100</text>
-    </g>
-    <g transform="translate(356.651,0)">
-      <line y2="6" stroke="currentColor"></line>
-      <text y="9" dy="0.71em" fill="currentColor">120</text>
-    </g>
-    <g transform="translate(416.093,0)">
-      <line y2="6" stroke="currentColor"></line>
-      <text y="9" dy="0.71em" fill="currentColor">140</text>
-    </g>
-    <g transform="translate(475.535,0)">
-      <line y2="6" stroke="currentColor"></line>
-      <text y="9" dy="0.71em" fill="currentColor">160</text>
-    </g>
-    <g transform="translate(534.977,0)">
-      <line y2="6" stroke="currentColor"></line>
-      <text y="9" dy="0.71em" fill="currentColor">180</text>
-    </g>
-    <g transform="translate(594.419,0)">
+    <g transform="translate(63.236,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">200</text>
+    </g>
+    <g transform="translate(126.472,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">400</text>
+    </g>
+    <g transform="translate(189.708,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">600</text>
+    </g>
+    <g transform="translate(252.944,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">800</text>
+    </g>
+    <g transform="translate(316.18,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">1,000</text>
+    </g>
+    <g transform="translate(379.416,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">1,200</text>
+    </g>
+    <g transform="translate(442.652,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">1,400</text>
+    </g>
+    <g transform="translate(505.888,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">1,600</text>
+    </g>
+    <g transform="translate(569.124,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">1,800</text>
+    </g>
+    <g transform="translate(632.36,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">2,000</text>
     </g>
   </g>
   <g aria-label="y-axis" transform="translate(0,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">

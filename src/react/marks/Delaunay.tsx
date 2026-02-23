@@ -45,9 +45,11 @@ export function DelaunayLink({
   dx = 0,
   dy = 0,
   className,
+  channels: extraChannels,
   ...restOptions
 }: DelaunayProps) {
   const channels: Record<string, ChannelSpec> = {
+    ...extraChannels,
     x: {value: x, scale: "x"},
     y: {value: y, scale: "y"},
     ...(z != null ? {z: {value: z, optional: true}} : {}),
@@ -128,9 +130,11 @@ export function DelaunayMesh({
   dx = 0,
   dy = 0,
   className,
+  channels: extraChannels,
   ...restOptions
 }: DelaunayProps) {
   const channels: Record<string, ChannelSpec> = {
+    ...extraChannels,
     x: {value: x, scale: "x"},
     y: {value: y, scale: "y"}
   };
@@ -191,9 +195,11 @@ export function Hull({
   dx = 0,
   dy = 0,
   className,
+  channels: extraChannels,
   ...restOptions
 }: DelaunayProps) {
   const channels: Record<string, ChannelSpec> = {
+    ...extraChannels,
     x: {value: x, scale: "x"},
     y: {value: y, scale: "y"}
   };
@@ -257,9 +263,11 @@ export function Voronoi({
   dx = 0,
   dy = 0,
   className,
+  channels: extraChannels,
   ...restOptions
 }: DelaunayProps) {
   const channels: Record<string, ChannelSpec> = {
+    ...extraChannels,
     x: {value: x, scale: "x"},
     y: {value: y, scale: "y"},
     ...(isColorChannel(fill)
@@ -340,9 +348,11 @@ export function VoronoiMesh({
   dx = 0,
   dy = 0,
   className,
+  channels: extraChannels,
   ...restOptions
 }: DelaunayProps) {
   const channels: Record<string, ChannelSpec> = {
+    ...extraChannels,
     x: {value: x, scale: "x"},
     y: {value: y, scale: "y"}
   };

@@ -64,9 +64,11 @@ export function Contour({
   dx = 0,
   dy = 0,
   className,
+  channels: extraChannels,
   ...restOptions
 }: ContourProps) {
   const channels: Record<string, ChannelSpec> = {
+    ...extraChannels,
     ...(value != null ? {value: {value, optional: true}} : {}),
     ...(x != null ? {x: {value: x, scale: "x", optional: true}} : {}),
     ...(y != null ? {y: {value: y, scale: "y", optional: true}} : {}),
