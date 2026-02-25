@@ -1,5 +1,8 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, RectY, binX} from "../../src/react/index.js";
 
 export async function collapsedHistogram() {
-  return Plot.rectY([1, 1, 1], Plot.binX()).plot();
+  return React.createElement(Plot, {},
+    React.createElement(RectY, {data: [1, 1, 1], ...binX()})
+  );
 }

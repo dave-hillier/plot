@@ -1,4 +1,4 @@
-<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="460" viewBox="0 0 640 460" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="1260" viewBox="0 0 640 1260" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
     :where(.plot) {
       --plot-background: white;
@@ -13,92 +13,841 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,9.5)">
-    <path transform="translate(40,26)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,46)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,66)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,86)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,106)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,126)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,146)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,166)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,186)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,206)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,226)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,246)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,266)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,286)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,306)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,326)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,346)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,366)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,386)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,406)" d="M0,0L-6,0"></path>
+  <defs>
+    <clipPath id="_r_ec_">
+      <rect x="0" y="0" width="639" height="1259"></rect>
+    </clipPath>
+  </defs>
+  <g aria-label="y-axis" transform="translate(0,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
+    <line y1="0" y2="1259" stroke="currentColor"></line>
+    <g transform="translate(0,9)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">AFG</text>
+    </g>
+    <g transform="translate(0,15)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">ALB</text>
+    </g>
+    <g transform="translate(0,21)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">ALG</text>
+    </g>
+    <g transform="translate(0,27)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">AND</text>
+    </g>
+    <g transform="translate(0,33)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">ANG</text>
+    </g>
+    <g transform="translate(0,39)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">ANT</text>
+    </g>
+    <g transform="translate(0,45)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">ARG</text>
+    </g>
+    <g transform="translate(0,51)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">ARM</text>
+    </g>
+    <g transform="translate(0,57)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">ARU</text>
+    </g>
+    <g transform="translate(0,63)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">ASA</text>
+    </g>
+    <g transform="translate(0,69)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">AUS</text>
+    </g>
+    <g transform="translate(0,75)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">AUT</text>
+    </g>
+    <g transform="translate(0,81)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">AZE</text>
+    </g>
+    <g transform="translate(0,87)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">BAH</text>
+    </g>
+    <g transform="translate(0,93)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">BAN</text>
+    </g>
+    <g transform="translate(0,99)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">BAR</text>
+    </g>
+    <g transform="translate(0,105)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">BDI</text>
+    </g>
+    <g transform="translate(0,111)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">BEL</text>
+    </g>
+    <g transform="translate(0,117)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">BEN</text>
+    </g>
+    <g transform="translate(0,123)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">BER</text>
+    </g>
+    <g transform="translate(0,129)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">BHU</text>
+    </g>
+    <g transform="translate(0,135)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">BIH</text>
+    </g>
+    <g transform="translate(0,141)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">BIZ</text>
+    </g>
+    <g transform="translate(0,147)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">BLR</text>
+    </g>
+    <g transform="translate(0,153)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">BOL</text>
+    </g>
+    <g transform="translate(0,159)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">BOT</text>
+    </g>
+    <g transform="translate(0,165)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">BRA</text>
+    </g>
+    <g transform="translate(0,171)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">BRN</text>
+    </g>
+    <g transform="translate(0,177)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">BRU</text>
+    </g>
+    <g transform="translate(0,183)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">BUL</text>
+    </g>
+    <g transform="translate(0,189)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">BUR</text>
+    </g>
+    <g transform="translate(0,195)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">CAF</text>
+    </g>
+    <g transform="translate(0,201)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">CAM</text>
+    </g>
+    <g transform="translate(0,207)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">CAN</text>
+    </g>
+    <g transform="translate(0,213)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">CAY</text>
+    </g>
+    <g transform="translate(0,219)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">CGO</text>
+    </g>
+    <g transform="translate(0,225)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">CHA</text>
+    </g>
+    <g transform="translate(0,231)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">CHI</text>
+    </g>
+    <g transform="translate(0,237)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">CHN</text>
+    </g>
+    <g transform="translate(0,243)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">CIV</text>
+    </g>
+    <g transform="translate(0,249)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">CMR</text>
+    </g>
+    <g transform="translate(0,255)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">COD</text>
+    </g>
+    <g transform="translate(0,261)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">COK</text>
+    </g>
+    <g transform="translate(0,267)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">COL</text>
+    </g>
+    <g transform="translate(0,273)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">COM</text>
+    </g>
+    <g transform="translate(0,279)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">CPV</text>
+    </g>
+    <g transform="translate(0,285)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">CRC</text>
+    </g>
+    <g transform="translate(0,291)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">CRO</text>
+    </g>
+    <g transform="translate(0,297)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">CUB</text>
+    </g>
+    <g transform="translate(0,303)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">CYP</text>
+    </g>
+    <g transform="translate(0,309)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">CZE</text>
+    </g>
+    <g transform="translate(0,315)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">DEN</text>
+    </g>
+    <g transform="translate(0,321)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">DJI</text>
+    </g>
+    <g transform="translate(0,327)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">DMA</text>
+    </g>
+    <g transform="translate(0,333)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">DOM</text>
+    </g>
+    <g transform="translate(0,339)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">ECU</text>
+    </g>
+    <g transform="translate(0,345)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">EGY</text>
+    </g>
+    <g transform="translate(0,351)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">ERI</text>
+    </g>
+    <g transform="translate(0,357)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">ESA</text>
+    </g>
+    <g transform="translate(0,363)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">ESP</text>
+    </g>
+    <g transform="translate(0,369)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">EST</text>
+    </g>
+    <g transform="translate(0,375)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">ETH</text>
+    </g>
+    <g transform="translate(0,381)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">FIJ</text>
+    </g>
+    <g transform="translate(0,387)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">FIN</text>
+    </g>
+    <g transform="translate(0,393)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">FRA</text>
+    </g>
+    <g transform="translate(0,399)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">FSM</text>
+    </g>
+    <g transform="translate(0,405)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">GAB</text>
+    </g>
+    <g transform="translate(0,411)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">GAM</text>
+    </g>
+    <g transform="translate(0,417)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">GBR</text>
+    </g>
+    <g transform="translate(0,423)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">GBS</text>
+    </g>
+    <g transform="translate(0,429)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">GEO</text>
+    </g>
+    <g transform="translate(0,435)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">GEQ</text>
+    </g>
+    <g transform="translate(0,441)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">GER</text>
+    </g>
+    <g transform="translate(0,447)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">GHA</text>
+    </g>
+    <g transform="translate(0,453)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">GRE</text>
+    </g>
+    <g transform="translate(0,459)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">GRN</text>
+    </g>
+    <g transform="translate(0,465)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">GUA</text>
+    </g>
+    <g transform="translate(0,471)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">GUI</text>
+    </g>
+    <g transform="translate(0,477)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">GUM</text>
+    </g>
+    <g transform="translate(0,483)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">GUY</text>
+    </g>
+    <g transform="translate(0,489)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">HAI</text>
+    </g>
+    <g transform="translate(0,495)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">HKG</text>
+    </g>
+    <g transform="translate(0,501)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">HON</text>
+    </g>
+    <g transform="translate(0,507)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">HUN</text>
+    </g>
+    <g transform="translate(0,513)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">INA</text>
+    </g>
+    <g transform="translate(0,519)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">IND</text>
+    </g>
+    <g transform="translate(0,525)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">IOA</text>
+    </g>
+    <g transform="translate(0,531)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">IRI</text>
+    </g>
+    <g transform="translate(0,537)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">IRL</text>
+    </g>
+    <g transform="translate(0,543)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">IRQ</text>
+    </g>
+    <g transform="translate(0,549)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">ISL</text>
+    </g>
+    <g transform="translate(0,555)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">ISR</text>
+    </g>
+    <g transform="translate(0,561)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">ISV</text>
+    </g>
+    <g transform="translate(0,567)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">ITA</text>
+    </g>
+    <g transform="translate(0,573)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">IVB</text>
+    </g>
+    <g transform="translate(0,579)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">JAM</text>
+    </g>
+    <g transform="translate(0,585)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">JOR</text>
+    </g>
+    <g transform="translate(0,591)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">JPN</text>
+    </g>
+    <g transform="translate(0,597)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">KAZ</text>
+    </g>
+    <g transform="translate(0,603)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">KEN</text>
+    </g>
+    <g transform="translate(0,609)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">KGZ</text>
+    </g>
+    <g transform="translate(0,615)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">KIR</text>
+    </g>
+    <g transform="translate(0,621)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">KOR</text>
+    </g>
+    <g transform="translate(0,627)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">KOS</text>
+    </g>
+    <g transform="translate(0,633)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">KSA</text>
+    </g>
+    <g transform="translate(0,639)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">LAO</text>
+    </g>
+    <g transform="translate(0,645)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">LAT</text>
+    </g>
+    <g transform="translate(0,651)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">LBA</text>
+    </g>
+    <g transform="translate(0,657)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">LBR</text>
+    </g>
+    <g transform="translate(0,663)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">LCA</text>
+    </g>
+    <g transform="translate(0,669)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">LES</text>
+    </g>
+    <g transform="translate(0,675)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">LIB</text>
+    </g>
+    <g transform="translate(0,681)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">LIE</text>
+    </g>
+    <g transform="translate(0,687)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">LTU</text>
+    </g>
+    <g transform="translate(0,693)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">LUX</text>
+    </g>
+    <g transform="translate(0,699)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">MAD</text>
+    </g>
+    <g transform="translate(0,705)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">MAR</text>
+    </g>
+    <g transform="translate(0,711)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">MAS</text>
+    </g>
+    <g transform="translate(0,717)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">MAW</text>
+    </g>
+    <g transform="translate(0,723)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">MDA</text>
+    </g>
+    <g transform="translate(0,729)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">MDV</text>
+    </g>
+    <g transform="translate(0,735)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">MEX</text>
+    </g>
+    <g transform="translate(0,741)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">MGL</text>
+    </g>
+    <g transform="translate(0,747)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">MHL</text>
+    </g>
+    <g transform="translate(0,753)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">MKD</text>
+    </g>
+    <g transform="translate(0,759)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">MLI</text>
+    </g>
+    <g transform="translate(0,765)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">MLT</text>
+    </g>
+    <g transform="translate(0,771)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">MNE</text>
+    </g>
+    <g transform="translate(0,777)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">MON</text>
+    </g>
+    <g transform="translate(0,783)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">MOZ</text>
+    </g>
+    <g transform="translate(0,789)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">MRI</text>
+    </g>
+    <g transform="translate(0,795)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">MTN</text>
+    </g>
+    <g transform="translate(0,801)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">MYA</text>
+    </g>
+    <g transform="translate(0,807)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">NAM</text>
+    </g>
+    <g transform="translate(0,813)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">NCA</text>
+    </g>
+    <g transform="translate(0,819)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">NED</text>
+    </g>
+    <g transform="translate(0,825)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">NEP</text>
+    </g>
+    <g transform="translate(0,831)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">NGR</text>
+    </g>
+    <g transform="translate(0,837)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">NIG</text>
+    </g>
+    <g transform="translate(0,843)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">NOR</text>
+    </g>
+    <g transform="translate(0,849)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">NRU</text>
+    </g>
+    <g transform="translate(0,855)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">NZL</text>
+    </g>
+    <g transform="translate(0,861)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">OMA</text>
+    </g>
+    <g transform="translate(0,867)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">PAK</text>
+    </g>
+    <g transform="translate(0,873)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">PAN</text>
+    </g>
+    <g transform="translate(0,879)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">PAR</text>
+    </g>
+    <g transform="translate(0,885)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">PER</text>
+    </g>
+    <g transform="translate(0,891)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">PHI</text>
+    </g>
+    <g transform="translate(0,897)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">PLE</text>
+    </g>
+    <g transform="translate(0,903)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">PLW</text>
+    </g>
+    <g transform="translate(0,909)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">PNG</text>
+    </g>
+    <g transform="translate(0,915)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">POL</text>
+    </g>
+    <g transform="translate(0,921)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">POR</text>
+    </g>
+    <g transform="translate(0,927)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">PRK</text>
+    </g>
+    <g transform="translate(0,933)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">PUR</text>
+    </g>
+    <g transform="translate(0,939)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">QAT</text>
+    </g>
+    <g transform="translate(0,945)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">ROT</text>
+    </g>
+    <g transform="translate(0,951)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">ROU</text>
+    </g>
+    <g transform="translate(0,957)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">RSA</text>
+    </g>
+    <g transform="translate(0,963)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">RUS</text>
+    </g>
+    <g transform="translate(0,969)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">RWA</text>
+    </g>
+    <g transform="translate(0,975)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">SAM</text>
+    </g>
+    <g transform="translate(0,981)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">SEN</text>
+    </g>
+    <g transform="translate(0,987)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">SEY</text>
+    </g>
+    <g transform="translate(0,993)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">SIN</text>
+    </g>
+    <g transform="translate(0,999)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">SKN</text>
+    </g>
+    <g transform="translate(0,1005)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">SLE</text>
+    </g>
+    <g transform="translate(0,1011)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">SLO</text>
+    </g>
+    <g transform="translate(0,1017)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">SMR</text>
+    </g>
+    <g transform="translate(0,1023)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">SOL</text>
+    </g>
+    <g transform="translate(0,1029)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">SOM</text>
+    </g>
+    <g transform="translate(0,1035)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">SRB</text>
+    </g>
+    <g transform="translate(0,1041)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">SRI</text>
+    </g>
+    <g transform="translate(0,1047)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">SSD</text>
+    </g>
+    <g transform="translate(0,1053)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">STP</text>
+    </g>
+    <g transform="translate(0,1059)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">SUD</text>
+    </g>
+    <g transform="translate(0,1065)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">SUI</text>
+    </g>
+    <g transform="translate(0,1071)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">SUR</text>
+    </g>
+    <g transform="translate(0,1077)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">SVK</text>
+    </g>
+    <g transform="translate(0,1083)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">SWE</text>
+    </g>
+    <g transform="translate(0,1089)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">SWZ</text>
+    </g>
+    <g transform="translate(0,1095)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">SYR</text>
+    </g>
+    <g transform="translate(0,1101)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">TAN</text>
+    </g>
+    <g transform="translate(0,1107)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">TGA</text>
+    </g>
+    <g transform="translate(0,1113)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">THA</text>
+    </g>
+    <g transform="translate(0,1119)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">TJK</text>
+    </g>
+    <g transform="translate(0,1125)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">TKM</text>
+    </g>
+    <g transform="translate(0,1131)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">TLS</text>
+    </g>
+    <g transform="translate(0,1137)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">TOG</text>
+    </g>
+    <g transform="translate(0,1143)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">TPE</text>
+    </g>
+    <g transform="translate(0,1149)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">TTO</text>
+    </g>
+    <g transform="translate(0,1155)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">TUN</text>
+    </g>
+    <g transform="translate(0,1161)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">TUR</text>
+    </g>
+    <g transform="translate(0,1167)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">TUV</text>
+    </g>
+    <g transform="translate(0,1173)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">UAE</text>
+    </g>
+    <g transform="translate(0,1179)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">UGA</text>
+    </g>
+    <g transform="translate(0,1185)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">UKR</text>
+    </g>
+    <g transform="translate(0,1191)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">URU</text>
+    </g>
+    <g transform="translate(0,1197)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">USA</text>
+    </g>
+    <g transform="translate(0,1203)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">UZB</text>
+    </g>
+    <g transform="translate(0,1209)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">VAN</text>
+    </g>
+    <g transform="translate(0,1215)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">VEN</text>
+    </g>
+    <g transform="translate(0,1221)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">VIE</text>
+    </g>
+    <g transform="translate(0,1227)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">VIN</text>
+    </g>
+    <g transform="translate(0,1233)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">YEM</text>
+    </g>
+    <g transform="translate(0,1239)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">ZAM</text>
+    </g>
+    <g transform="translate(0,1245)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">ZIM</text>
+    </g>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,9.5)">
-    <text y="0.32em" transform="translate(40,26)">ESP</text>
-    <text y="0.32em" transform="translate(40,46)">KOR</text>
-    <text y="0.32em" transform="translate(40,66)">CAN</text>
-    <text y="0.32em" transform="translate(40,86)">MDA</text>
-    <text y="0.32em" transform="translate(40,106)">NZL</text>
-    <text y="0.32em" transform="translate(40,126)">AUS</text>
-    <text y="0.32em" transform="translate(40,146)">USA</text>
-    <text y="0.32em" transform="translate(40,166)">ETH</text>
-    <text y="0.32em" transform="translate(40,186)">BRN</text>
-    <text y="0.32em" transform="translate(40,206)">IOA</text>
-    <text y="0.32em" transform="translate(40,226)">GBR</text>
-    <text y="0.32em" transform="translate(40,246)">UZB</text>
-    <text y="0.32em" transform="translate(40,266)">RSA</text>
-    <text y="0.32em" transform="translate(40,286)">EGY</text>
-    <text y="0.32em" transform="translate(40,306)">MAR</text>
-    <text y="0.32em" transform="translate(40,326)">QAT</text>
-    <text y="0.32em" transform="translate(40,346)">SUD</text>
-    <text y="0.32em" transform="translate(40,366)">ALG</text>
-    <text y="0.32em" transform="translate(40,386)">DEN</text>
-    <text y="0.32em" transform="translate(40,406)">NED</text>
-  </g>
-  <g aria-label="y-axis label" transform="translate(-36.5,0.5)">
-    <text y="0.71em" transform="translate(40,225) rotate(-90)">nationality</text>
-  </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
-    <path transform="translate(40,430)" d="M0,0L0,6"></path>
-    <path transform="translate(142.29276895943562,430)" d="M0,0L0,6"></path>
-    <path transform="translate(244.58553791887124,430)" d="M0,0L0,6"></path>
-    <path transform="translate(346.8783068783069,430)" d="M0,0L0,6"></path>
-    <path transform="translate(449.1710758377425,430)" d="M0,0L0,6"></path>
-    <path transform="translate(551.463844797178,430)" d="M0,0L0,6"></path>
-  </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
-    <text y="0.71em" transform="translate(40,430)">0</text>
-    <text y="0.71em" transform="translate(142.29276895943562,430)">100</text>
-    <text y="0.71em" transform="translate(244.58553791887124,430)">200</text>
-    <text y="0.71em" transform="translate(346.8783068783069,430)">300</text>
-    <text y="0.71em" transform="translate(449.1710758377425,430)">400</text>
-    <text y="0.71em" transform="translate(551.463844797178,430)">500</text>
-  </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
-    <text transform="translate(620,430)">Frequency →</text>
-  </g>
-  <g aria-label="bar">
-    <rect x="40" width="320.1763668430336" y="26" height="18"></rect>
-    <rect x="40" width="217.88359788359787" y="46" height="18"></rect>
-    <rect x="40" width="328.3597883597884" y="66" height="18"></rect>
-    <rect x="40" width="23.52733686067019" y="86" height="18"></rect>
-    <rect x="40" width="212.7689594356261" y="106" height="18"></rect>
-    <rect x="40" width="440.88183421516754" y="126" height="18"></rect>
-    <rect x="40" width="580" y="146" height="18"></rect>
-    <rect x="40" width="38.871252204585545" y="166" height="18"></rect>
-    <rect x="40" width="34.7795414462081" y="186" height="18"></rect>
-    <rect x="40" width="9.20634920634921" y="206" height="18"></rect>
-    <rect x="40" width="382.5749559082892" y="226" height="18"></rect>
-    <rect x="40" width="71.60493827160494" y="246" height="18"></rect>
-    <rect x="40" width="149.347442680776" y="266" height="18"></rect>
-    <rect x="40" width="124.79717813051147" y="286" height="18"></rect>
-    <rect x="40" width="50.12345679012347" y="306" height="18"></rect>
-    <rect x="40" width="39.8941798941799" y="326" height="18"></rect>
-    <rect x="40" width="6.1375661375661394" y="346" height="18"></rect>
-    <rect x="40" width="69.55908289241623" y="366" height="18"></rect>
-    <rect x="40" width="130.9347442680776" y="386" height="18"></rect>
-    <rect x="40" width="254.70899470899468" y="406" height="18"></rect>
-  </g>
+  <g aria-label="bar" fill="currentColor">000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</g>
 </svg>

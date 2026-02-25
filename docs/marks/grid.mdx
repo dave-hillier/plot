@@ -1,4 +1,4 @@
-import {BarX, GridX, Plot, RuleX} from "replot/react";
+import {BarX, GridX, Plot, RuleX, identity} from "replot/react";
 import * as d3 from "d3";
 import {useState} from "react";
 import alphabet from "../data/alphabet.ts";
@@ -19,7 +19,7 @@ The **grid mark** is a specially-configured [rule](./rule.md) for drawing an axi
 
 <Plot x={{axis: "top", percent: true, grid: !atop}}>
   <BarX data={alphabet} x="frequency" y="letter" sort={{y: "width"}} />
-  {/* TODO: atop ? Plot.gridX({interval: 1, stroke: "var(--vp-c-bg)", strokeOpacity: 0.5}) : null */}
+  {atop ? <GridX interval={1} stroke="var(--vp-c-bg)" strokeOpacity={0.5} /> : null}
   <RuleX data={[0]} />
 </Plot>
 
@@ -32,7 +32,7 @@ The **interval** option above instructs the grid lines to be drawn at unit inter
 The color of the grid lines can be controlled with the **stroke** option (or the alias **color**). While this option is are typically set to a constant color (such as _red_ or the default _currentColor_), it can be specified as a channel to assign colors dynamically based on the associated tick value.
 
 <Plot>
-  <GridX data={d3.range(101)} stroke={Plot.identity} strokeOpacity={1} />
+  <GridX data={d3.range(101)} stroke={identity} strokeOpacity={1} />
 </Plot>
 
 You can set other [stroke options](../features/marks.md#mark-options) to further customize the appearance, say for dashed strokes.

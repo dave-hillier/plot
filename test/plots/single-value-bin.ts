@@ -1,5 +1,8 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, RectY, binX} from "../../src/react/index.js";
 
 export async function singleValueBin() {
-  return Plot.rectY([3], Plot.binX()).plot();
+  return React.createElement(Plot, {},
+    React.createElement(RectY, {data: [3], ...binX()})
+  );
 }

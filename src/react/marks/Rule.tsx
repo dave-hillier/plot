@@ -48,11 +48,13 @@ export function RuleX({
   dx = 0,
   dy = 0,
   className,
+  channels: extraChannels,
   ...restOptions
 }: RuleProps) {
   // Default x to identity (data as value), matching Plot.ruleX([0]) behavior
   const resolvedX = x ?? identity;
   const channels: Record<string, ChannelSpec> = {
+    ...extraChannels,
     x: {value: resolvedX, scale: "x"},
     ...(y1 != null ? {y1: {value: y1, scale: "y", optional: true}} : {}),
     ...(y2 != null ? {y2: {value: y2, scale: "y", optional: true}} : {}),
@@ -141,11 +143,13 @@ export function RuleY({
   dx = 0,
   dy = 0,
   className,
+  channels: extraChannels,
   ...restOptions
 }: RuleProps) {
   // Default y to identity (data as value), matching Plot.ruleY([0]) behavior
   const resolvedY = y ?? identity;
   const channels: Record<string, ChannelSpec> = {
+    ...extraChannels,
     y: {value: resolvedY, scale: "y"},
     ...(x1 != null ? {x1: {value: x1, scale: "x", optional: true}} : {}),
     ...(x2 != null ? {x2: {value: x2, scale: "x", optional: true}} : {}),

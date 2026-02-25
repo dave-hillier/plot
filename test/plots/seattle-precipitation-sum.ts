@@ -1,20 +1,17 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, RectY, TextY, RuleY, map, window as win} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function seattlePrecipitationSum() {
   const weather = (await d3.csv<any>("data/seattle-weather.csv", d3.autoType)).slice(-28);
-  const y = Plot.window({k: 7, strict: true, reduce: "sum", anchor: "end"});
-  const text = Plot.window({k: 7, strict: true, reduce: (V) => Math.round(d3.sum(V)), anchor: "end"});
-  return Plot.plot({
-    x: {domain: d3.extent(weather.slice(6), (d) => d.date)},
-    y: {insetTop: 10},
-    marks: [
-      Plot.rectY(weather, Plot.map({y}, {x: "date", y: "precipitation", interval: "day"})),
-      Plot.textY(
-        weather,
-        Plot.map({y, text}, {x: "date", y: "precipitation", text: "precipitation", interval: "day", dy: -6})
-      ),
-      Plot.ruleY([0])
-    ]
-  });
+  const y = win({k: 7, strict: true, reduce: "sum", anchor: "end"});
+  const text = win({k: 7, strict: true, reduce: (V) => Math.round(d3.sum(V)), anchor: "end"});
+  return React.createElement(Plot, {
+      x: {domain: d3.extent(weather.slice(6), (d) => d.date)},
+      y: {insetTop: 10}
+    },
+    React.createElement(RectY, {data: weather, ...map({y}, {x: "date", y: "precipitation", interval: "day"})}),
+    React.createElement(TextY, {data: weather, ...map({y, text}, {x: "date", y: "precipitation", text: "precipitation", interval: "day", dy: -6})}),
+    React.createElement(RuleY, {data: [0]})
+  );
 }

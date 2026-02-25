@@ -1,0 +1,135 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="432.325" viewBox="0 0 640 432.325" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <defs>
+    <clipPath id="_r_29q_">
+      <rect x="0" y="0" width="639" height="431.325"></rect>
+    </clipPath>
+  </defs>
+  <g aria-label="x-axis" transform="translate(0,431.325)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+    <line x1="0" x2="639" stroke="currentColor"></line>
+    <g transform="translate(0,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">−8</text>
+    </g>
+    <g transform="translate(45.643,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">−6</text>
+    </g>
+    <g transform="translate(91.286,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">−4</text>
+    </g>
+    <g transform="translate(136.929,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">−2</text>
+    </g>
+    <g transform="translate(182.571,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">0</text>
+    </g>
+    <g transform="translate(228.214,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">2</text>
+    </g>
+    <g transform="translate(273.857,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">4</text>
+    </g>
+    <g transform="translate(319.5,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">6</text>
+    </g>
+    <g transform="translate(365.143,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">8</text>
+    </g>
+    <g transform="translate(410.786,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">10</text>
+    </g>
+    <g transform="translate(456.429,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">12</text>
+    </g>
+    <g transform="translate(502.071,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">14</text>
+    </g>
+    <g transform="translate(547.714,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">16</text>
+    </g>
+    <g transform="translate(593.357,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">18</text>
+    </g>
+    <g transform="translate(639,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">20</text>
+    </g>
+  </g>
+  <g aria-label="y-axis" transform="translate(0,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
+    <line y1="0" y2="431.325" stroke="currentColor"></line>
+    <g transform="translate(0,431.325)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">0</text>
+    </g>
+    <g transform="translate(0,385.682)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">2</text>
+    </g>
+    <g transform="translate(0,340.039)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">4</text>
+    </g>
+    <g transform="translate(0,294.396)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">6</text>
+    </g>
+    <g transform="translate(0,248.754)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">8</text>
+    </g>
+    <g transform="translate(0,203.111)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">10</text>
+    </g>
+    <g transform="translate(0,157.468)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">12</text>
+    </g>
+    <g transform="translate(0,111.825)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">14</text>
+    </g>
+    <g transform="translate(0,66.182)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">16</text>
+    </g>
+    <g transform="translate(0,20.539)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">18</text>
+    </g>
+  </g>
+  <g aria-label="rule" stroke="currentColor">0</g>
+  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5">000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</g>
+  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5">
+    <circle cx="486.096" cy="0" r="5"></circle>
+  </g>
+  <g aria-label="text" fill="currentColor" transform="translate(0,-10)">
+    <text x="486.096" y="0" dominant-baseline="alphabetic">Thu Sep 06 2012 17:00:00 GMT-0700 (Pacific Daylight Time)</text>
+  </g>
+</svg>

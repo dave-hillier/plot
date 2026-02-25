@@ -1,4 +1,5 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, Geo, Frame, Graticule, Sphere} from "../../src/react/index.js";
 
 const shape = {
   type: "LineString",
@@ -10,35 +11,43 @@ const shape = {
 } as const;
 
 export async function projectionHeightGeometry() {
-  return Plot.plot({
-    facet: {data: [0, 1], y: [0, 1]},
-    projection: "identity",
-    marks: [Plot.geo(shape), Plot.frame({stroke: "red", strokeDasharray: 4})]
-  });
+  return React.createElement(Plot, {
+      facet: {data: [0, 1], y: [0, 1]},
+      projection: "identity"
+    },
+    React.createElement(Geo, {data: shape}),
+    React.createElement(Frame, {stroke: "red", strokeDasharray: 4})
+  );
 }
 
 export async function projectionHeightDegenerate() {
-  return Plot.plot({
-    style: "border: #777 1px solid;",
-    projection: "mercator",
-    height: 400,
-    inset: 199.5,
-    marks: [Plot.graticule(), Plot.sphere()]
-  });
+  return React.createElement(Plot, {
+      style: "border: #777 1px solid;",
+      projection: "mercator",
+      height: 400,
+      inset: 199.5
+    },
+    React.createElement(Graticule, {}),
+    React.createElement(Sphere, {})
+  );
 }
 
 export async function projectionHeightGeometryDomain() {
-  return Plot.plot({
-    projection: {type: "identity", domain: shape},
-    marks: [Plot.geo(shape), Plot.frame({stroke: "red", strokeDasharray: 4})]
-  });
+  return React.createElement(Plot, {
+      projection: {type: "identity", domain: shape}
+    },
+    React.createElement(Geo, {data: shape}),
+    React.createElement(Frame, {stroke: "red", strokeDasharray: 4})
+  );
 }
 
 export async function projectionHeightGeometryNull() {
-  return Plot.plot({
-    aspectRatio: true,
-    width: 400,
-    facet: {data: [0, 1], y: [0, 1]},
-    marks: [Plot.geo(shape), Plot.frame({stroke: "red", strokeDasharray: 4})]
-  });
+  return React.createElement(Plot, {
+      aspectRatio: true,
+      width: 400,
+      facet: {data: [0, 1], y: [0, 1]}
+    },
+    React.createElement(Geo, {data: shape}),
+    React.createElement(Frame, {stroke: "red", strokeDasharray: 4})
+  );
 }

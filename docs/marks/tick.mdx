@@ -6,11 +6,7 @@ import alphabet from "../data/alphabet.ts";
 
 export const stateage = [];
 
-{/*
-// TODO: manually convert: d3.csv("../data/us-population-state-age.csv", d3.autoType).then((data) => {
-// TODO: manually convert: const ages = data.columns.slice(1); // convert wide data to tidy data
-// TODO: manually convert: stateage.value = Object.assign(ages.flatMap((age) => data.map((d) => ({state: d.name, age, population: d[age]}))), {ages});
-*/}
+{/* Data: stateage is loaded externally from us-population-state-age.csv, pivoted from wide to tidy format with {state, age, population} rows and an .ages property listing age groups. */}
 
 # Tick mark
 

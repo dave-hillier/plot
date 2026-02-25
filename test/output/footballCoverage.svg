@@ -13,402 +13,814 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
-    <g transform="translate(0,0)">
-      <text y="0.71em" transform="translate(78,400)">C2</text>
+  <defs>
+    <clipPath id="_r_n2_">
+      <rect x="0" y="0" width="639" height="429"></rect>
+    </clipPath>
+  </defs>
+  <g transform="translate(2,0)">
+    <g aria-label="x-axis" transform="translate(0,429)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+      <line x1="0" x2="639" stroke="currentColor"></line>
+      <g transform="translate(8.3,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">2</text>
+      </g>
+      <g transform="translate(19.367,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">4</text>
+      </g>
+      <g transform="translate(30.433,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">6</text>
+      </g>
+      <g transform="translate(41.5,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">8</text>
+      </g>
+      <g transform="translate(52.567,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">10</text>
+      </g>
+      <g transform="translate(63.633,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">12</text>
+      </g>
+      <g transform="translate(74.7,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">14</text>
+      </g>
     </g>
-    <g transform="translate(84,0)">
-      <text y="0.71em" transform="translate(78,400)">C3</text>
+    <g aria-label="y-axis" transform="translate(0,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
+      <line y1="0" y2="429" stroke="currentColor"></line>
+      <g transform="translate(0,429)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.00</text>
+      </g>
+      <g transform="translate(0,386.1)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.05</text>
+      </g>
+      <g transform="translate(0,343.2)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.10</text>
+      </g>
+      <g transform="translate(0,300.3)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.15</text>
+      </g>
+      <g transform="translate(0,257.4)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.20</text>
+      </g>
+      <g transform="translate(0,214.5)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.25</text>
+      </g>
+      <g transform="translate(0,171.6)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.30</text>
+      </g>
+      <g transform="translate(0,128.7)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.35</text>
+      </g>
+      <g transform="translate(0,85.8)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.40</text>
+      </g>
+      <g transform="translate(0,42.9)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.45</text>
+      </g>
+      <g transform="translate(0,0)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.50</text>
+      </g>
     </g>
-    <g transform="translate(168,0)">
-      <text y="0.71em" transform="translate(78,400)">C4</text>
-    </g>
-    <g transform="translate(252,0)">
-      <text y="0.71em" transform="translate(78,400)">M0</text>
-    </g>
-    <g transform="translate(336,0)">
-      <text y="0.71em" transform="translate(78,400)">M1</text>
-    </g>
-    <g transform="translate(420,0)">
-      <text y="0.71em" transform="translate(78,400)">M2</text>
-    </g>
-    <g transform="translate(504,0)">
-      <text y="0.71em" transform="translate(78,400)">T2</text>
-    </g>
-  </g>
-  <g aria-label="fx-axis label" transform="translate(0.5,27.5)">
-    <text transform="translate(330,400)">coverage</text>
-  </g>
-  <g aria-label="y-grid" aria-hidden="true" transform="translate(0,0.5)">
-    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0)">
-      <line x1="40" x2="116" y1="400" y2="400"></line>
-      <line x1="40" x2="116" y1="362" y2="362"></line>
-      <line x1="40" x2="116" y1="324" y2="324"></line>
-      <line x1="40" x2="116" y1="286" y2="286"></line>
-      <line x1="40" x2="116" y1="248" y2="248"></line>
-      <line x1="40" x2="116" y1="210" y2="210"></line>
-      <line x1="40" x2="116" y1="172" y2="172"></line>
-      <line x1="40" x2="116" y1="134" y2="134"></line>
-      <line x1="40" x2="116" y1="95.99999999999999" y2="95.99999999999999"></line>
-      <line x1="40" x2="116" y1="57.99999999999999" y2="57.99999999999999"></line>
-      <line x1="40" x2="116" y1="20" y2="20"></line>
-    </g>
-    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(84,0)">
-      <line x1="40" x2="116" y1="400" y2="400"></line>
-      <line x1="40" x2="116" y1="362" y2="362"></line>
-      <line x1="40" x2="116" y1="324" y2="324"></line>
-      <line x1="40" x2="116" y1="286" y2="286"></line>
-      <line x1="40" x2="116" y1="248" y2="248"></line>
-      <line x1="40" x2="116" y1="210" y2="210"></line>
-      <line x1="40" x2="116" y1="172" y2="172"></line>
-      <line x1="40" x2="116" y1="134" y2="134"></line>
-      <line x1="40" x2="116" y1="95.99999999999999" y2="95.99999999999999"></line>
-      <line x1="40" x2="116" y1="57.99999999999999" y2="57.99999999999999"></line>
-      <line x1="40" x2="116" y1="20" y2="20"></line>
-    </g>
-    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(168,0)">
-      <line x1="40" x2="116" y1="400" y2="400"></line>
-      <line x1="40" x2="116" y1="362" y2="362"></line>
-      <line x1="40" x2="116" y1="324" y2="324"></line>
-      <line x1="40" x2="116" y1="286" y2="286"></line>
-      <line x1="40" x2="116" y1="248" y2="248"></line>
-      <line x1="40" x2="116" y1="210" y2="210"></line>
-      <line x1="40" x2="116" y1="172" y2="172"></line>
-      <line x1="40" x2="116" y1="134" y2="134"></line>
-      <line x1="40" x2="116" y1="95.99999999999999" y2="95.99999999999999"></line>
-      <line x1="40" x2="116" y1="57.99999999999999" y2="57.99999999999999"></line>
-      <line x1="40" x2="116" y1="20" y2="20"></line>
-    </g>
-    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(252,0)">
-      <line x1="40" x2="116" y1="400" y2="400"></line>
-      <line x1="40" x2="116" y1="362" y2="362"></line>
-      <line x1="40" x2="116" y1="324" y2="324"></line>
-      <line x1="40" x2="116" y1="286" y2="286"></line>
-      <line x1="40" x2="116" y1="248" y2="248"></line>
-      <line x1="40" x2="116" y1="210" y2="210"></line>
-      <line x1="40" x2="116" y1="172" y2="172"></line>
-      <line x1="40" x2="116" y1="134" y2="134"></line>
-      <line x1="40" x2="116" y1="95.99999999999999" y2="95.99999999999999"></line>
-      <line x1="40" x2="116" y1="57.99999999999999" y2="57.99999999999999"></line>
-      <line x1="40" x2="116" y1="20" y2="20"></line>
-    </g>
-    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(336,0)">
-      <line x1="40" x2="116" y1="400" y2="400"></line>
-      <line x1="40" x2="116" y1="362" y2="362"></line>
-      <line x1="40" x2="116" y1="324" y2="324"></line>
-      <line x1="40" x2="116" y1="286" y2="286"></line>
-      <line x1="40" x2="116" y1="248" y2="248"></line>
-      <line x1="40" x2="116" y1="210" y2="210"></line>
-      <line x1="40" x2="116" y1="172" y2="172"></line>
-      <line x1="40" x2="116" y1="134" y2="134"></line>
-      <line x1="40" x2="116" y1="95.99999999999999" y2="95.99999999999999"></line>
-      <line x1="40" x2="116" y1="57.99999999999999" y2="57.99999999999999"></line>
-      <line x1="40" x2="116" y1="20" y2="20"></line>
-    </g>
-    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(420,0)">
-      <line x1="40" x2="116" y1="400" y2="400"></line>
-      <line x1="40" x2="116" y1="362" y2="362"></line>
-      <line x1="40" x2="116" y1="324" y2="324"></line>
-      <line x1="40" x2="116" y1="286" y2="286"></line>
-      <line x1="40" x2="116" y1="248" y2="248"></line>
-      <line x1="40" x2="116" y1="210" y2="210"></line>
-      <line x1="40" x2="116" y1="172" y2="172"></line>
-      <line x1="40" x2="116" y1="134" y2="134"></line>
-      <line x1="40" x2="116" y1="95.99999999999999" y2="95.99999999999999"></line>
-      <line x1="40" x2="116" y1="57.99999999999999" y2="57.99999999999999"></line>
-      <line x1="40" x2="116" y1="20" y2="20"></line>
-    </g>
-    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(504,0)">
-      <line x1="40" x2="116" y1="400" y2="400"></line>
-      <line x1="40" x2="116" y1="362" y2="362"></line>
-      <line x1="40" x2="116" y1="324" y2="324"></line>
-      <line x1="40" x2="116" y1="286" y2="286"></line>
-      <line x1="40" x2="116" y1="248" y2="248"></line>
-      <line x1="40" x2="116" y1="210" y2="210"></line>
-      <line x1="40" x2="116" y1="172" y2="172"></line>
-      <line x1="40" x2="116" y1="134" y2="134"></line>
-      <line x1="40" x2="116" y1="95.99999999999999" y2="95.99999999999999"></line>
-      <line x1="40" x2="116" y1="57.99999999999999" y2="57.99999999999999"></line>
-      <line x1="40" x2="116" y1="20" y2="20"></line>
-    </g>
-  </g>
-  <g aria-label="y-axis tick" aria-hidden="true" transform="translate(0,0.5)">
-    <g fill="none" stroke="currentColor" transform="translate(0,0)">
-      <path transform="translate(40,400)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,362)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,324)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,286)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,248)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,210)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,172)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,134)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,95.99999999999999)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,57.99999999999999)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,20)" d="M0,0L-6,0"></path>
+    <rect aria-label="frame" x="0" y="0" width="639" height="429" fill="none" stroke="currentColor" stroke-width="1"></rect>
+    <g aria-label="dot" fill="black" stroke="currentColor" stroke-width="1.5">
+      <circle cx="27.667" cy="326.04" r="3"></circle>
+      <circle cx="33.2" cy="343.2" r="3"></circle>
+      <circle cx="27.667" cy="351.78" r="3"></circle>
+      <circle cx="16.6" cy="308.88" r="3"></circle>
+      <circle cx="33.2" cy="351.78" r="3"></circle>
+      <circle cx="33.2" cy="326.04" r="3"></circle>
+      <circle cx="38.733" cy="360.36" r="3"></circle>
+      <circle cx="38.733" cy="351.78" r="3"></circle>
+      <circle cx="22.133" cy="334.62" r="3"></circle>
+      <circle cx="22.133" cy="308.88" r="3"></circle>
+      <circle cx="33.2" cy="317.46" r="3"></circle>
+      <circle cx="38.733" cy="343.2" r="3"></circle>
+      <circle cx="27.667" cy="308.88" r="3"></circle>
+      <circle cx="27.667" cy="334.62" r="3"></circle>
+      <circle cx="33.2" cy="334.62" r="3"></circle>
+      <circle cx="38.733" cy="317.46" r="3"></circle>
+      <circle cx="44.267" cy="351.78" r="3"></circle>
+      <circle cx="44.267" cy="360.36" r="3"></circle>
+      <circle cx="38.733" cy="326.04" r="3"></circle>
+      <circle cx="44.267" cy="343.2" r="3"></circle>
+      <circle cx="49.8" cy="351.78" r="3"></circle>
+      <circle cx="33.2" cy="308.88" r="3"></circle>
+      <circle cx="38.733" cy="334.62" r="3"></circle>
+      <circle cx="44.267" cy="334.62" r="3"></circle>
+      <circle cx="44.267" cy="326.04" r="3"></circle>
+      <circle cx="49.8" cy="334.62" r="3"></circle>
+      <circle cx="38.733" cy="308.88" r="3"></circle>
+      <circle cx="55.333" cy="351.78" r="3"></circle>
+      <circle cx="49.8" cy="326.04" r="3"></circle>
+      <circle cx="44.267" cy="317.46" r="3"></circle>
+      <circle cx="49.8" cy="343.2" r="3"></circle>
+      <circle cx="49.8" cy="317.46" r="3"></circle>
     </g>
   </g>
-  <g aria-label="y-axis tick label" transform="translate(-8.5,0.5)">
-    <g text-anchor="end" font-variant="tabular-nums" transform="translate(0,0)">
-      <text y="0.32em" transform="translate(40,400)">0%</text>
-      <text y="0.32em" transform="translate(40,362)">5%</text>
-      <text y="0.32em" transform="translate(40,324)">10%</text>
-      <text y="0.32em" transform="translate(40,286)">15%</text>
-      <text y="0.32em" transform="translate(40,248)">20%</text>
-      <text y="0.32em" transform="translate(40,210)">25%</text>
-      <text y="0.32em" transform="translate(40,172)">30%</text>
-      <text y="0.32em" transform="translate(40,134)">35%</text>
-      <text y="0.32em" transform="translate(40,95.99999999999999)">40%</text>
-      <text y="0.32em" transform="translate(40,57.99999999999999)">45%</text>
-      <text y="0.32em" transform="translate(40,20)">50%</text>
+  <g transform="translate(94,0)">
+    <g aria-label="x-axis" transform="translate(0,429)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+      <line x1="0" x2="639" stroke="currentColor"></line>
+      <g transform="translate(8.3,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">2</text>
+      </g>
+      <g transform="translate(19.367,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">4</text>
+      </g>
+      <g transform="translate(30.433,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">6</text>
+      </g>
+      <g transform="translate(41.5,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">8</text>
+      </g>
+      <g transform="translate(52.567,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">10</text>
+      </g>
+      <g transform="translate(63.633,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">12</text>
+      </g>
+      <g transform="translate(74.7,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">14</text>
+      </g>
+    </g>
+    <g aria-label="y-axis" transform="translate(0,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
+      <line y1="0" y2="429" stroke="currentColor"></line>
+      <g transform="translate(0,429)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.00</text>
+      </g>
+      <g transform="translate(0,386.1)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.05</text>
+      </g>
+      <g transform="translate(0,343.2)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.10</text>
+      </g>
+      <g transform="translate(0,300.3)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.15</text>
+      </g>
+      <g transform="translate(0,257.4)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.20</text>
+      </g>
+      <g transform="translate(0,214.5)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.25</text>
+      </g>
+      <g transform="translate(0,171.6)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.30</text>
+      </g>
+      <g transform="translate(0,128.7)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.35</text>
+      </g>
+      <g transform="translate(0,85.8)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.40</text>
+      </g>
+      <g transform="translate(0,42.9)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.45</text>
+      </g>
+      <g transform="translate(0,0)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.50</text>
+      </g>
+    </g>
+    <rect aria-label="frame" x="0" y="0" width="639" height="429" fill="none" stroke="currentColor" stroke-width="1"></rect>
+    <g aria-label="dot" fill="black" stroke="currentColor" stroke-width="1.5">
+      <circle cx="0" cy="137.28" r="3"></circle>
+      <circle cx="0" cy="128.7" r="3"></circle>
+      <circle cx="38.733" cy="102.96" r="3"></circle>
+      <circle cx="5.533" cy="137.28" r="3"></circle>
+      <circle cx="2.767" cy="154.44" r="3"></circle>
+      <circle cx="5.533" cy="128.7" r="3"></circle>
+      <circle cx="41.5" cy="94.38" r="3"></circle>
+      <circle cx="11.067" cy="137.28" r="3"></circle>
+      <circle cx="8.3" cy="154.44" r="3"></circle>
+      <circle cx="11.067" cy="128.7" r="3"></circle>
+      <circle cx="16.6" cy="137.28" r="3"></circle>
+      <circle cx="8.3" cy="145.86" r="3"></circle>
+      <circle cx="16.6" cy="128.7" r="3"></circle>
+      <circle cx="22.133" cy="128.7" r="3"></circle>
+      <circle cx="22.133" cy="137.28" r="3"></circle>
+      <circle cx="13.833" cy="154.44" r="3"></circle>
+      <circle cx="33.2" cy="120.12" r="3"></circle>
+      <circle cx="27.667" cy="128.7" r="3"></circle>
+      <circle cx="38.733" cy="120.12" r="3"></circle>
+      <circle cx="33.2" cy="128.7" r="3"></circle>
+      <circle cx="13.833" cy="145.86" r="3"></circle>
+      <circle cx="44.267" cy="102.96" r="3"></circle>
+      <circle cx="27.667" cy="137.28" r="3"></circle>
+      <circle cx="41.5" cy="77.22" r="3"></circle>
+      <circle cx="44.267" cy="120.12" r="3"></circle>
+      <circle cx="19.367" cy="145.86" r="3"></circle>
+      <circle cx="33.2" cy="137.28" r="3"></circle>
+      <circle cx="24.9" cy="145.86" r="3"></circle>
+      <circle cx="38.733" cy="128.7" r="3"></circle>
+      <circle cx="38.733" cy="137.28" r="3"></circle>
+      <circle cx="49.8" cy="120.12" r="3"></circle>
+      <circle cx="44.267" cy="128.7" r="3"></circle>
     </g>
   </g>
-  <g aria-label="frame" transform="translate(0.5,0.5)">
-    <rect fill="none" stroke="currentColor" x="40" y="20" width="76" height="380" transform="translate(0,0)"></rect>
-    <rect fill="none" stroke="currentColor" x="40" y="20" width="76" height="380" transform="translate(84,0)"></rect>
-    <rect fill="none" stroke="currentColor" x="40" y="20" width="76" height="380" transform="translate(168,0)"></rect>
-    <rect fill="none" stroke="currentColor" x="40" y="20" width="76" height="380" transform="translate(252,0)"></rect>
-    <rect fill="none" stroke="currentColor" x="40" y="20" width="76" height="380" transform="translate(336,0)"></rect>
-    <rect fill="none" stroke="currentColor" x="40" y="20" width="76" height="380" transform="translate(420,0)"></rect>
-    <rect fill="none" stroke="currentColor" x="40" y="20" width="76" height="380" transform="translate(504,0)"></rect>
+  <g transform="translate(186,0)">
+    <g aria-label="x-axis" transform="translate(0,429)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+      <line x1="0" x2="639" stroke="currentColor"></line>
+      <g transform="translate(8.3,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">2</text>
+      </g>
+      <g transform="translate(19.367,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">4</text>
+      </g>
+      <g transform="translate(30.433,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">6</text>
+      </g>
+      <g transform="translate(41.5,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">8</text>
+      </g>
+      <g transform="translate(52.567,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">10</text>
+      </g>
+      <g transform="translate(63.633,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">12</text>
+      </g>
+      <g transform="translate(74.7,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">14</text>
+      </g>
+    </g>
+    <g aria-label="y-axis" transform="translate(0,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
+      <line y1="0" y2="429" stroke="currentColor"></line>
+      <g transform="translate(0,429)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.00</text>
+      </g>
+      <g transform="translate(0,386.1)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.05</text>
+      </g>
+      <g transform="translate(0,343.2)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.10</text>
+      </g>
+      <g transform="translate(0,300.3)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.15</text>
+      </g>
+      <g transform="translate(0,257.4)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.20</text>
+      </g>
+      <g transform="translate(0,214.5)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.25</text>
+      </g>
+      <g transform="translate(0,171.6)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.30</text>
+      </g>
+      <g transform="translate(0,128.7)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.35</text>
+      </g>
+      <g transform="translate(0,85.8)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.40</text>
+      </g>
+      <g transform="translate(0,42.9)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.45</text>
+      </g>
+      <g transform="translate(0,0)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.50</text>
+      </g>
+    </g>
+    <rect aria-label="frame" x="0" y="0" width="639" height="429" fill="none" stroke="currentColor" stroke-width="1"></rect>
+    <g aria-label="dot" fill="black" stroke="currentColor" stroke-width="1.5">
+      <circle cx="24.9" cy="248.82" r="3"></circle>
+      <circle cx="11.067" cy="291.72" r="3"></circle>
+      <circle cx="13.833" cy="257.4" r="3"></circle>
+      <circle cx="19.367" cy="257.4" r="3"></circle>
+      <circle cx="22.133" cy="231.66" r="3"></circle>
+      <circle cx="19.367" cy="223.08" r="3"></circle>
+      <circle cx="24.9" cy="223.08" r="3"></circle>
+      <circle cx="30.433" cy="248.82" r="3"></circle>
+      <circle cx="16.6" cy="291.72" r="3"></circle>
+      <circle cx="27.667" cy="231.66" r="3"></circle>
+      <circle cx="24.9" cy="257.4" r="3"></circle>
+      <circle cx="35.967" cy="248.82" r="3"></circle>
+      <circle cx="22.133" cy="291.72" r="3"></circle>
+      <circle cx="11.067" cy="265.98" r="3"></circle>
+      <circle cx="27.667" cy="240.24" r="3"></circle>
+      <circle cx="27.667" cy="283.14" r="3"></circle>
+      <circle cx="16.6" cy="265.98" r="3"></circle>
+      <circle cx="30.433" cy="274.56" r="3"></circle>
+      <circle cx="33.2" cy="231.66" r="3"></circle>
+      <circle cx="35.967" cy="274.56" r="3"></circle>
+      <circle cx="22.133" cy="265.98" r="3"></circle>
+      <circle cx="27.667" cy="265.98" r="3"></circle>
+      <circle cx="41.5" cy="274.56" r="3"></circle>
+      <circle cx="41.5" cy="248.82" r="3"></circle>
+      <circle cx="33.2" cy="283.14" r="3"></circle>
+      <circle cx="19.367" cy="300.3" r="3"></circle>
+      <circle cx="33.2" cy="240.24" r="3"></circle>
+      <circle cx="38.733" cy="240.24" r="3"></circle>
+      <circle cx="33.2" cy="265.98" r="3"></circle>
+      <circle cx="38.733" cy="265.98" r="3"></circle>
+      <circle cx="27.667" cy="291.72" r="3"></circle>
+      <circle cx="30.433" cy="257.4" r="3"></circle>
+    </g>
   </g>
-  <g aria-label="dot" transform="translate(0.5,0.5)">
-    <g fill="black" transform="translate(0,0)">
-      <circle cx="59" cy="308.8" r="3"></circle>
-      <circle cx="63.75" cy="324" r="3"></circle>
-      <circle cx="54.25" cy="331.6" r="3"></circle>
-      <circle cx="59" cy="293.6" r="3"></circle>
-      <circle cx="63.75" cy="331.6" r="3"></circle>
-      <circle cx="68.5" cy="308.8" r="3"></circle>
-      <circle cx="73.25" cy="339.2" r="3"></circle>
-      <circle cx="73.25" cy="331.6" r="3"></circle>
-      <circle cx="54.25" cy="316.4" r="3"></circle>
-      <circle cx="68.5" cy="293.6" r="3"></circle>
-      <circle cx="63.75" cy="301.2" r="3"></circle>
-      <circle cx="73.25" cy="324" r="3"></circle>
-      <circle cx="78" cy="293.6" r="3"></circle>
-      <circle cx="63.75" cy="316.4" r="3"></circle>
-      <circle cx="73.25" cy="316.4" r="3"></circle>
-      <circle cx="73.25" cy="301.2" r="3"></circle>
-      <circle cx="82.75" cy="331.6" r="3"></circle>
-      <circle cx="82.75" cy="339.2" r="3"></circle>
-      <circle cx="78" cy="308.8" r="3"></circle>
-      <circle cx="82.75" cy="324" r="3"></circle>
-      <circle cx="92.25" cy="331.6" r="3"></circle>
-      <circle cx="87.5" cy="293.6" r="3"></circle>
-      <circle cx="82.75" cy="316.4" r="3"></circle>
-      <circle cx="92.25" cy="316.4" r="3"></circle>
-      <circle cx="87.5" cy="308.8" r="3"></circle>
-      <circle cx="101.75" cy="316.4" r="3"></circle>
-      <circle cx="97" cy="293.6" r="3"></circle>
-      <circle cx="101.75" cy="331.6" r="3"></circle>
-      <circle cx="97" cy="308.8" r="3"></circle>
-      <circle cx="82.75" cy="301.2" r="3"></circle>
-      <circle cx="92.25" cy="324" r="3"></circle>
-      <circle cx="92.25" cy="301.2" r="3"></circle>
+  <g transform="translate(278,0)">
+    <g aria-label="x-axis" transform="translate(0,429)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+      <line x1="0" x2="639" stroke="currentColor"></line>
+      <g transform="translate(8.3,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">2</text>
+      </g>
+      <g transform="translate(19.367,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">4</text>
+      </g>
+      <g transform="translate(30.433,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">6</text>
+      </g>
+      <g transform="translate(41.5,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">8</text>
+      </g>
+      <g transform="translate(52.567,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">10</text>
+      </g>
+      <g transform="translate(63.633,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">12</text>
+      </g>
+      <g transform="translate(74.7,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">14</text>
+      </g>
     </g>
-    <g fill="black" transform="translate(84,0)">
-      <circle cx="44.75" cy="141.6" r="3"></circle>
-      <circle cx="40" cy="134" r="3"></circle>
-      <circle cx="73.25" cy="111.2" r="3"></circle>
-      <circle cx="54.25" cy="141.6" r="3"></circle>
-      <circle cx="68.5" cy="156.8" r="3"></circle>
-      <circle cx="49.5" cy="134" r="3"></circle>
-      <circle cx="78" cy="103.6" r="3"></circle>
-      <circle cx="63.75" cy="141.6" r="3"></circle>
-      <circle cx="78" cy="156.8" r="3"></circle>
-      <circle cx="59" cy="134" r="3"></circle>
-      <circle cx="73.25" cy="141.6" r="3"></circle>
-      <circle cx="63.75" cy="149.2" r="3"></circle>
-      <circle cx="68.5" cy="134" r="3"></circle>
-      <circle cx="78" cy="134" r="3"></circle>
-      <circle cx="82.75" cy="141.6" r="3"></circle>
-      <circle cx="87.5" cy="156.8" r="3"></circle>
-      <circle cx="63.75" cy="126.4" r="3"></circle>
-      <circle cx="87.5" cy="134" r="3"></circle>
-      <circle cx="73.25" cy="126.4" r="3"></circle>
-      <circle cx="97" cy="134" r="3"></circle>
-      <circle cx="73.25" cy="149.2" r="3"></circle>
-      <circle cx="82.75" cy="111.2" r="3"></circle>
-      <circle cx="92.25" cy="141.6" r="3"></circle>
-      <circle cx="78" cy="88.4" r="3"></circle>
-      <circle cx="82.75" cy="126.4" r="3"></circle>
-      <circle cx="82.75" cy="149.2" r="3"></circle>
-      <circle cx="101.75" cy="141.6" r="3"></circle>
-      <circle cx="92.25" cy="149.2" r="3"></circle>
-      <circle cx="106.5" cy="134" r="3"></circle>
-      <circle cx="111.25" cy="141.6" r="3"></circle>
-      <circle cx="92.25" cy="126.4" r="3"></circle>
-      <circle cx="116" cy="134" r="3"></circle>
+    <g aria-label="y-axis" transform="translate(0,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
+      <line y1="0" y2="429" stroke="currentColor"></line>
+      <g transform="translate(0,429)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.00</text>
+      </g>
+      <g transform="translate(0,386.1)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.05</text>
+      </g>
+      <g transform="translate(0,343.2)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.10</text>
+      </g>
+      <g transform="translate(0,300.3)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.15</text>
+      </g>
+      <g transform="translate(0,257.4)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.20</text>
+      </g>
+      <g transform="translate(0,214.5)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.25</text>
+      </g>
+      <g transform="translate(0,171.6)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.30</text>
+      </g>
+      <g transform="translate(0,128.7)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.35</text>
+      </g>
+      <g transform="translate(0,85.8)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.40</text>
+      </g>
+      <g transform="translate(0,42.9)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.45</text>
+      </g>
+      <g transform="translate(0,0)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.50</text>
+      </g>
     </g>
-    <g fill="black" transform="translate(168,0)">
-      <circle cx="63.75" cy="240.40000000000003" r="3"></circle>
-      <circle cx="63.75" cy="278.4" r="3"></circle>
-      <circle cx="63.75" cy="248" r="3"></circle>
-      <circle cx="73.25" cy="248" r="3"></circle>
-      <circle cx="68.5" cy="225.2" r="3"></circle>
-      <circle cx="73.25" cy="217.6" r="3"></circle>
-      <circle cx="82.75" cy="217.6" r="3"></circle>
-      <circle cx="73.25" cy="240.40000000000003" r="3"></circle>
-      <circle cx="73.25" cy="278.4" r="3"></circle>
-      <circle cx="78" cy="225.2" r="3"></circle>
-      <circle cx="82.75" cy="248" r="3"></circle>
-      <circle cx="82.75" cy="240.40000000000003" r="3"></circle>
-      <circle cx="82.75" cy="278.4" r="3"></circle>
-      <circle cx="54.25" cy="255.6" r="3"></circle>
-      <circle cx="68.5" cy="232.80000000000004" r="3"></circle>
-      <circle cx="73.25" cy="270.79999999999995" r="3"></circle>
-      <circle cx="63.75" cy="255.6" r="3"></circle>
-      <circle cx="68.5" cy="263.2" r="3"></circle>
-      <circle cx="87.5" cy="225.2" r="3"></circle>
-      <circle cx="78" cy="263.2" r="3"></circle>
-      <circle cx="73.25" cy="255.6" r="3"></circle>
-      <circle cx="82.75" cy="255.6" r="3"></circle>
-      <circle cx="87.5" cy="263.2" r="3"></circle>
-      <circle cx="92.25" cy="240.40000000000003" r="3"></circle>
-      <circle cx="82.75" cy="270.79999999999995" r="3"></circle>
-      <circle cx="78" cy="286" r="3"></circle>
-      <circle cx="78" cy="232.80000000000004" r="3"></circle>
-      <circle cx="87.5" cy="232.80000000000004" r="3"></circle>
-      <circle cx="92.25" cy="255.6" r="3"></circle>
-      <circle cx="101.75" cy="255.6" r="3"></circle>
-      <circle cx="92.25" cy="278.4" r="3"></circle>
-      <circle cx="92.25" cy="248" r="3"></circle>
+    <rect aria-label="frame" x="0" y="0" width="639" height="429" fill="none" stroke="currentColor" stroke-width="1"></rect>
+    <g aria-label="dot" fill="black" stroke="currentColor" stroke-width="1.5">
+      <circle cx="35.967" cy="257.4" r="3"></circle>
+      <circle cx="38.733" cy="231.66" r="3"></circle>
+      <circle cx="41.5" cy="257.4" r="3"></circle>
+      <circle cx="47.033" cy="248.82" r="3"></circle>
+      <circle cx="30.433" cy="223.08" r="3"></circle>
+      <circle cx="47.033" cy="257.4" r="3"></circle>
+      <circle cx="44.267" cy="265.98" r="3"></circle>
+      <circle cx="52.567" cy="257.4" r="3"></circle>
+      <circle cx="24.9" cy="300.3" r="3"></circle>
+      <circle cx="41.5" cy="214.5" r="3"></circle>
+      <circle cx="38.733" cy="283.14" r="3"></circle>
+      <circle cx="44.267" cy="231.66" r="3"></circle>
+      <circle cx="49.8" cy="265.98" r="3"></circle>
+      <circle cx="44.267" cy="240.24" r="3"></circle>
+      <circle cx="49.8" cy="240.24" r="3"></circle>
+      <circle cx="58.1" cy="257.4" r="3"></circle>
+      <circle cx="63.633" cy="257.4" r="3"></circle>
+      <circle cx="35.967" cy="223.08" r="3"></circle>
+      <circle cx="41.5" cy="223.08" r="3"></circle>
+      <circle cx="38.733" cy="197.34" r="3"></circle>
+      <circle cx="52.567" cy="248.82" r="3"></circle>
+      <circle cx="49.8" cy="231.66" r="3"></circle>
+      <circle cx="47.033" cy="223.08" r="3"></circle>
+      <circle cx="44.267" cy="283.14" r="3"></circle>
+      <circle cx="55.333" cy="231.66" r="3"></circle>
+      <circle cx="60.867" cy="231.66" r="3"></circle>
+      <circle cx="52.567" cy="223.08" r="3"></circle>
+      <circle cx="58.1" cy="223.08" r="3"></circle>
+      <circle cx="55.333" cy="240.24" r="3"></circle>
+      <circle cx="63.633" cy="223.08" r="3"></circle>
+      <circle cx="55.333" cy="265.98" r="3"></circle>
+      <circle cx="38.733" cy="205.92" r="3"></circle>
     </g>
-    <g fill="black" transform="translate(252,0)">
-      <circle cx="54.25" cy="248" r="3"></circle>
-      <circle cx="59" cy="225.2" r="3"></circle>
-      <circle cx="63.75" cy="248" r="3"></circle>
-      <circle cx="73.25" cy="240.40000000000003" r="3"></circle>
-      <circle cx="49.5" cy="217.6" r="3"></circle>
-      <circle cx="73.25" cy="248" r="3"></circle>
-      <circle cx="68.5" cy="255.6" r="3"></circle>
-      <circle cx="82.75" cy="248" r="3"></circle>
-      <circle cx="78" cy="286" r="3"></circle>
-      <circle cx="78" cy="210" r="3"></circle>
-      <circle cx="73.25" cy="270.79999999999995" r="3"></circle>
-      <circle cx="68.5" cy="225.2" r="3"></circle>
-      <circle cx="78" cy="255.6" r="3"></circle>
-      <circle cx="68.5" cy="232.80000000000004" r="3"></circle>
-      <circle cx="78" cy="232.80000000000004" r="3"></circle>
-      <circle cx="92.25" cy="248" r="3"></circle>
-      <circle cx="101.75" cy="248" r="3"></circle>
-      <circle cx="59" cy="217.6" r="3"></circle>
-      <circle cx="68.5" cy="217.6" r="3"></circle>
-      <circle cx="78" cy="194.8" r="3"></circle>
-      <circle cx="82.75" cy="240.40000000000003" r="3"></circle>
-      <circle cx="78" cy="225.2" r="3"></circle>
-      <circle cx="78" cy="217.6" r="3"></circle>
-      <circle cx="82.75" cy="270.79999999999995" r="3"></circle>
-      <circle cx="87.5" cy="225.2" r="3"></circle>
-      <circle cx="97" cy="225.2" r="3"></circle>
-      <circle cx="87.5" cy="217.6" r="3"></circle>
-      <circle cx="97" cy="217.6" r="3"></circle>
-      <circle cx="87.5" cy="232.80000000000004" r="3"></circle>
-      <circle cx="106.5" cy="217.6" r="3"></circle>
-      <circle cx="87.5" cy="255.6" r="3"></circle>
-      <circle cx="78" cy="202.4" r="3"></circle>
+  </g>
+  <g transform="translate(370,0)">
+    <g aria-label="x-axis" transform="translate(0,429)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+      <line x1="0" x2="639" stroke="currentColor"></line>
+      <g transform="translate(8.3,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">2</text>
+      </g>
+      <g transform="translate(19.367,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">4</text>
+      </g>
+      <g transform="translate(30.433,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">6</text>
+      </g>
+      <g transform="translate(41.5,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">8</text>
+      </g>
+      <g transform="translate(52.567,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">10</text>
+      </g>
+      <g transform="translate(63.633,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">12</text>
+      </g>
+      <g transform="translate(74.7,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">14</text>
+      </g>
     </g>
-    <g fill="black" transform="translate(336,0)">
-      <circle cx="63.75" cy="149.2" r="3"></circle>
-      <circle cx="59" cy="141.6" r="3"></circle>
-      <circle cx="49.5" cy="134" r="3"></circle>
-      <circle cx="59" cy="134" r="3"></circle>
-      <circle cx="78" cy="179.60000000000002" r="3"></circle>
-      <circle cx="49.5" cy="156.8" r="3"></circle>
-      <circle cx="68.5" cy="134" r="3"></circle>
-      <circle cx="68.5" cy="141.6" r="3"></circle>
-      <circle cx="59" cy="156.8" r="3"></circle>
-      <circle cx="68.5" cy="156.8" r="3"></circle>
-      <circle cx="68.5" cy="172" r="3"></circle>
-      <circle cx="68.5" cy="164.4" r="3"></circle>
-      <circle cx="78" cy="156.8" r="3"></circle>
-      <circle cx="78" cy="164.4" r="3"></circle>
-      <circle cx="73.25" cy="149.2" r="3"></circle>
-      <circle cx="78" cy="187.19999999999996" r="3"></circle>
-      <circle cx="78" cy="134" r="3"></circle>
-      <circle cx="87.5" cy="134" r="3"></circle>
-      <circle cx="78" cy="172" r="3"></circle>
-      <circle cx="78" cy="118.8" r="3"></circle>
-      <circle cx="87.5" cy="156.8" r="3"></circle>
-      <circle cx="87.5" cy="172" r="3"></circle>
-      <circle cx="78" cy="141.6" r="3"></circle>
-      <circle cx="97" cy="156.8" r="3"></circle>
-      <circle cx="97" cy="134" r="3"></circle>
-      <circle cx="87.5" cy="164.4" r="3"></circle>
-      <circle cx="106.5" cy="134" r="3"></circle>
-      <circle cx="106.5" cy="156.8" r="3"></circle>
-      <circle cx="82.75" cy="149.2" r="3"></circle>
-      <circle cx="87.5" cy="141.6" r="3"></circle>
-      <circle cx="92.25" cy="149.2" r="3"></circle>
-      <circle cx="97" cy="141.6" r="3"></circle>
+    <g aria-label="y-axis" transform="translate(0,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
+      <line y1="0" y2="429" stroke="currentColor"></line>
+      <g transform="translate(0,429)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.00</text>
+      </g>
+      <g transform="translate(0,386.1)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.05</text>
+      </g>
+      <g transform="translate(0,343.2)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.10</text>
+      </g>
+      <g transform="translate(0,300.3)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.15</text>
+      </g>
+      <g transform="translate(0,257.4)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.20</text>
+      </g>
+      <g transform="translate(0,214.5)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.25</text>
+      </g>
+      <g transform="translate(0,171.6)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.30</text>
+      </g>
+      <g transform="translate(0,128.7)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.35</text>
+      </g>
+      <g transform="translate(0,85.8)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.40</text>
+      </g>
+      <g transform="translate(0,42.9)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.45</text>
+      </g>
+      <g transform="translate(0,0)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.50</text>
+      </g>
     </g>
-    <g fill="black" transform="translate(420,0)">
-      <circle cx="73.25" cy="316.4" r="3"></circle>
-      <circle cx="73.25" cy="263.2" r="3"></circle>
-      <circle cx="49.5" cy="286" r="3"></circle>
-      <circle cx="59" cy="293.6" r="3"></circle>
-      <circle cx="68.5" cy="255.6" r="3"></circle>
-      <circle cx="59" cy="286" r="3"></circle>
-      <circle cx="82.75" cy="263.2" r="3"></circle>
-      <circle cx="68.5" cy="286" r="3"></circle>
-      <circle cx="44.75" cy="278.4" r="3"></circle>
-      <circle cx="78" cy="248" r="3"></circle>
-      <circle cx="68.5" cy="293.6" r="3"></circle>
-      <circle cx="78" cy="286" r="3"></circle>
-      <circle cx="78" cy="255.6" r="3"></circle>
-      <circle cx="82.75" cy="316.4" r="3"></circle>
-      <circle cx="87.5" cy="286" r="3"></circle>
-      <circle cx="54.25" cy="278.4" r="3"></circle>
-      <circle cx="63.75" cy="278.4" r="3"></circle>
-      <circle cx="73.25" cy="270.79999999999995" r="3"></circle>
-      <circle cx="82.75" cy="270.79999999999995" r="3"></circle>
-      <circle cx="78" cy="308.8" r="3"></circle>
-      <circle cx="97" cy="286" r="3"></circle>
-      <circle cx="73.25" cy="278.4" r="3"></circle>
-      <circle cx="78" cy="293.6" r="3"></circle>
-      <circle cx="82.75" cy="278.4" r="3"></circle>
-      <circle cx="87.5" cy="255.6" r="3"></circle>
-      <circle cx="106.5" cy="286" r="3"></circle>
-      <circle cx="92.25" cy="278.4" r="3"></circle>
-      <circle cx="87.5" cy="293.6" r="3"></circle>
-      <circle cx="97" cy="293.6" r="3"></circle>
-      <circle cx="101.75" cy="278.4" r="3"></circle>
-      <circle cx="111.25" cy="278.4" r="3"></circle>
-      <circle cx="78" cy="240.40000000000003" r="3"></circle>
+    <rect aria-label="frame" x="0" y="0" width="639" height="429" fill="none" stroke="currentColor" stroke-width="1"></rect>
+    <g aria-label="dot" fill="black" stroke="currentColor" stroke-width="1.5">
+      <circle cx="30.433" cy="145.86" r="3"></circle>
+      <circle cx="44.267" cy="137.28" r="3"></circle>
+      <circle cx="49.8" cy="128.7" r="3"></circle>
+      <circle cx="55.333" cy="128.7" r="3"></circle>
+      <circle cx="35.967" cy="180.18" r="3"></circle>
+      <circle cx="19.367" cy="154.44" r="3"></circle>
+      <circle cx="60.867" cy="128.7" r="3"></circle>
+      <circle cx="49.8" cy="137.28" r="3"></circle>
+      <circle cx="24.9" cy="154.44" r="3"></circle>
+      <circle cx="30.433" cy="154.44" r="3"></circle>
+      <circle cx="19.367" cy="171.6" r="3"></circle>
+      <circle cx="22.133" cy="163.02" r="3"></circle>
+      <circle cx="35.967" cy="154.44" r="3"></circle>
+      <circle cx="27.667" cy="163.02" r="3"></circle>
+      <circle cx="35.967" cy="145.86" r="3"></circle>
+      <circle cx="30.433" cy="188.76" r="3"></circle>
+      <circle cx="66.4" cy="128.7" r="3"></circle>
+      <circle cx="71.933" cy="128.7" r="3"></circle>
+      <circle cx="24.9" cy="171.6" r="3"></circle>
+      <circle cx="41.5" cy="111.54" r="3"></circle>
+      <circle cx="41.5" cy="154.44" r="3"></circle>
+      <circle cx="30.433" cy="171.6" r="3"></circle>
+      <circle cx="55.333" cy="137.28" r="3"></circle>
+      <circle cx="47.033" cy="154.44" r="3"></circle>
+      <circle cx="77.467" cy="128.7" r="3"></circle>
+      <circle cx="33.2" cy="163.02" r="3"></circle>
+      <circle cx="83" cy="128.7" r="3"></circle>
+      <circle cx="52.567" cy="154.44" r="3"></circle>
+      <circle cx="41.5" cy="145.86" r="3"></circle>
+      <circle cx="60.867" cy="137.28" r="3"></circle>
+      <circle cx="47.033" cy="145.86" r="3"></circle>
+      <circle cx="66.4" cy="137.28" r="3"></circle>
     </g>
-    <g fill="black" transform="translate(504,0)">
-      <circle cx="59" cy="164.4" r="3"></circle>
-      <circle cx="68.5" cy="164.4" r="3"></circle>
-      <circle cx="73.25" cy="179.60000000000002" r="3"></circle>
-      <circle cx="59" cy="156.8" r="3"></circle>
-      <circle cx="78" cy="164.4" r="3"></circle>
-      <circle cx="54.25" cy="172" r="3"></circle>
-      <circle cx="59" cy="149.2" r="3"></circle>
-      <circle cx="68.5" cy="141.6" r="3"></circle>
-      <circle cx="63.75" cy="187.19999999999996" r="3"></circle>
-      <circle cx="68.5" cy="156.8" r="3"></circle>
-      <circle cx="63.75" cy="172" r="3"></circle>
-      <circle cx="73.25" cy="172" r="3"></circle>
-      <circle cx="78" cy="141.6" r="3"></circle>
-      <circle cx="82.75" cy="172" r="3"></circle>
-      <circle cx="78" cy="202.4" r="3"></circle>
-      <circle cx="73.25" cy="187.19999999999996" r="3"></circle>
-      <circle cx="68.5" cy="149.2" r="3"></circle>
-      <circle cx="78" cy="149.2" r="3"></circle>
-      <circle cx="87.5" cy="141.6" r="3"></circle>
-      <circle cx="82.75" cy="187.19999999999996" r="3"></circle>
-      <circle cx="87.5" cy="164.4" r="3"></circle>
-      <circle cx="78" cy="156.8" r="3"></circle>
-      <circle cx="92.25" cy="172" r="3"></circle>
-      <circle cx="87.5" cy="149.2" r="3"></circle>
-      <circle cx="92.25" cy="187.19999999999996" r="3"></circle>
-      <circle cx="101.75" cy="172" r="3"></circle>
-      <circle cx="97" cy="164.4" r="3"></circle>
-      <circle cx="87.5" cy="156.8" r="3"></circle>
-      <circle cx="97" cy="149.2" r="3"></circle>
-      <circle cx="97" cy="156.8" r="3"></circle>
-      <circle cx="78" cy="194.8" r="3"></circle>
-      <circle cx="82.75" cy="179.60000000000002" r="3"></circle>
+  </g>
+  <g transform="translate(462,0)">
+    <g aria-label="x-axis" transform="translate(0,429)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+      <line x1="0" x2="639" stroke="currentColor"></line>
+      <g transform="translate(8.3,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">2</text>
+      </g>
+      <g transform="translate(19.367,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">4</text>
+      </g>
+      <g transform="translate(30.433,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">6</text>
+      </g>
+      <g transform="translate(41.5,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">8</text>
+      </g>
+      <g transform="translate(52.567,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">10</text>
+      </g>
+      <g transform="translate(63.633,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">12</text>
+      </g>
+      <g transform="translate(74.7,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">14</text>
+      </g>
+    </g>
+    <g aria-label="y-axis" transform="translate(0,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
+      <line y1="0" y2="429" stroke="currentColor"></line>
+      <g transform="translate(0,429)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.00</text>
+      </g>
+      <g transform="translate(0,386.1)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.05</text>
+      </g>
+      <g transform="translate(0,343.2)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.10</text>
+      </g>
+      <g transform="translate(0,300.3)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.15</text>
+      </g>
+      <g transform="translate(0,257.4)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.20</text>
+      </g>
+      <g transform="translate(0,214.5)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.25</text>
+      </g>
+      <g transform="translate(0,171.6)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.30</text>
+      </g>
+      <g transform="translate(0,128.7)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.35</text>
+      </g>
+      <g transform="translate(0,85.8)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.40</text>
+      </g>
+      <g transform="translate(0,42.9)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.45</text>
+      </g>
+      <g transform="translate(0,0)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.50</text>
+      </g>
+    </g>
+    <rect aria-label="frame" x="0" y="0" width="639" height="429" fill="none" stroke="currentColor" stroke-width="1"></rect>
+    <g aria-label="dot" fill="black" stroke="currentColor" stroke-width="1.5">
+      <circle cx="55.333" cy="334.62" r="3"></circle>
+      <circle cx="47.033" cy="274.56" r="3"></circle>
+      <circle cx="30.433" cy="300.3" r="3"></circle>
+      <circle cx="44.267" cy="308.88" r="3"></circle>
+      <circle cx="60.867" cy="265.98" r="3"></circle>
+      <circle cx="35.967" cy="300.3" r="3"></circle>
+      <circle cx="52.567" cy="274.56" r="3"></circle>
+      <circle cx="41.5" cy="300.3" r="3"></circle>
+      <circle cx="33.2" cy="291.72" r="3"></circle>
+      <circle cx="69.167" cy="257.4" r="3"></circle>
+      <circle cx="49.8" cy="308.88" r="3"></circle>
+      <circle cx="47.033" cy="300.3" r="3"></circle>
+      <circle cx="66.4" cy="265.98" r="3"></circle>
+      <circle cx="60.867" cy="334.62" r="3"></circle>
+      <circle cx="52.567" cy="300.3" r="3"></circle>
+      <circle cx="38.733" cy="291.72" r="3"></circle>
+      <circle cx="44.267" cy="291.72" r="3"></circle>
+      <circle cx="49.8" cy="283.14" r="3"></circle>
+      <circle cx="55.333" cy="283.14" r="3"></circle>
+      <circle cx="55.333" cy="326.04" r="3"></circle>
+      <circle cx="58.1" cy="300.3" r="3"></circle>
+      <circle cx="49.8" cy="291.72" r="3"></circle>
+      <circle cx="55.333" cy="308.88" r="3"></circle>
+      <circle cx="55.333" cy="291.72" r="3"></circle>
+      <circle cx="71.933" cy="265.98" r="3"></circle>
+      <circle cx="63.633" cy="300.3" r="3"></circle>
+      <circle cx="60.867" cy="291.72" r="3"></circle>
+      <circle cx="60.867" cy="308.88" r="3"></circle>
+      <circle cx="66.4" cy="308.88" r="3"></circle>
+      <circle cx="66.4" cy="291.72" r="3"></circle>
+      <circle cx="71.933" cy="291.72" r="3"></circle>
+      <circle cx="58.1" cy="248.82" r="3"></circle>
+    </g>
+  </g>
+  <g transform="translate(554,0)">
+    <g aria-label="x-axis" transform="translate(0,429)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+      <line x1="0" x2="639" stroke="currentColor"></line>
+      <g transform="translate(8.3,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">2</text>
+      </g>
+      <g transform="translate(19.367,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">4</text>
+      </g>
+      <g transform="translate(30.433,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">6</text>
+      </g>
+      <g transform="translate(41.5,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">8</text>
+      </g>
+      <g transform="translate(52.567,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">10</text>
+      </g>
+      <g transform="translate(63.633,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">12</text>
+      </g>
+      <g transform="translate(74.7,0)">
+        <line y2="6" stroke="currentColor"></line>
+        <text y="9" dy="0.71em" fill="currentColor">14</text>
+      </g>
+    </g>
+    <g aria-label="y-axis" transform="translate(0,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
+      <line y1="0" y2="429" stroke="currentColor"></line>
+      <g transform="translate(0,429)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.00</text>
+      </g>
+      <g transform="translate(0,386.1)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.05</text>
+      </g>
+      <g transform="translate(0,343.2)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.10</text>
+      </g>
+      <g transform="translate(0,300.3)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.15</text>
+      </g>
+      <g transform="translate(0,257.4)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.20</text>
+      </g>
+      <g transform="translate(0,214.5)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.25</text>
+      </g>
+      <g transform="translate(0,171.6)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.30</text>
+      </g>
+      <g transform="translate(0,128.7)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.35</text>
+      </g>
+      <g transform="translate(0,85.8)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.40</text>
+      </g>
+      <g transform="translate(0,42.9)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.45</text>
+      </g>
+      <g transform="translate(0,0)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">0.50</text>
+      </g>
+    </g>
+    <rect aria-label="frame" x="0" y="0" width="639" height="429" fill="none" stroke="currentColor" stroke-width="1"></rect>
+    <g aria-label="dot" fill="black" stroke="currentColor" stroke-width="1.5">
+      <circle cx="38.733" cy="163.02" r="3"></circle>
+      <circle cx="44.267" cy="163.02" r="3"></circle>
+      <circle cx="41.5" cy="180.18" r="3"></circle>
+      <circle cx="58.1" cy="154.44" r="3"></circle>
+      <circle cx="49.8" cy="163.02" r="3"></circle>
+      <circle cx="35.967" cy="171.6" r="3"></circle>
+      <circle cx="52.567" cy="145.86" r="3"></circle>
+      <circle cx="71.933" cy="137.28" r="3"></circle>
+      <circle cx="35.967" cy="188.76" r="3"></circle>
+      <circle cx="63.633" cy="154.44" r="3"></circle>
+      <circle cx="41.5" cy="171.6" r="3"></circle>
+      <circle cx="47.033" cy="171.6" r="3"></circle>
+      <circle cx="77.467" cy="137.28" r="3"></circle>
+      <circle cx="52.567" cy="171.6" r="3"></circle>
+      <circle cx="44.267" cy="205.92" r="3"></circle>
+      <circle cx="41.5" cy="188.76" r="3"></circle>
+      <circle cx="58.1" cy="145.86" r="3"></circle>
+      <circle cx="63.633" cy="145.86" r="3"></circle>
+      <circle cx="83" cy="137.28" r="3"></circle>
+      <circle cx="47.033" cy="188.76" r="3"></circle>
+      <circle cx="55.333" cy="163.02" r="3"></circle>
+      <circle cx="69.167" cy="154.44" r="3"></circle>
+      <circle cx="58.1" cy="171.6" r="3"></circle>
+      <circle cx="69.167" cy="145.86" r="3"></circle>
+      <circle cx="52.567" cy="188.76" r="3"></circle>
+      <circle cx="63.633" cy="171.6" r="3"></circle>
+      <circle cx="60.867" cy="163.02" r="3"></circle>
+      <circle cx="74.7" cy="154.44" r="3"></circle>
+      <circle cx="74.7" cy="145.86" r="3"></circle>
+      <circle cx="80.233" cy="154.44" r="3"></circle>
+      <circle cx="44.267" cy="197.34" r="3"></circle>
+      <circle cx="47.033" cy="180.18" r="3"></circle>
     </g>
   </g>
 </svg>

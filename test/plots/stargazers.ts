@@ -1,18 +1,18 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, RuleY, Line, Text, selectLast} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function stargazers() {
   const stargazers = await d3.csv<any>("data/stargazers.csv", d3.autoType);
-  return Plot.plot({
-    marginRight: 40,
-    y: {
-      grid: true,
-      label: "Stargazers"
+  return React.createElement(Plot, {
+      marginRight: 40,
+      y: {
+        grid: true,
+        label: "Stargazers"
+      }
     },
-    marks: [
-      Plot.ruleY([0]),
-      Plot.line(stargazers, {x: "date", y: (_, i) => i}),
-      Plot.text(stargazers, Plot.selectLast({x: "date", y: (_, i) => i, textAnchor: "start", dx: 3}))
-    ]
-  });
+    React.createElement(RuleY, {data: [0]}),
+    React.createElement(Line, {data: stargazers, x: "date", y: (_, i) => i}),
+    React.createElement(Text, {data: stargazers, ...selectLast({x: "date", y: (_, i) => i, textAnchor: "start", dx: 3})})
+  );
 }

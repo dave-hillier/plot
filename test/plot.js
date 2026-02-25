@@ -3,13 +3,55 @@ import {createCanvas, loadImage} from "canvas";
 import {max, mean, quantile} from "d3";
 import * as path from "path";
 import beautify from "js-beautify";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import {act} from "react";
 import assert from "./assert.js";
 import it from "./jsdom.js";
 import * as plots from "./plots/index.ts"; // TODO index.js
 
+// Detect if a value is a React element
+function isReactElement(value) {
+  return value != null && typeof value === "object" && (value.$$typeof != null || (value.type != null && value.props != null));
+}
+
+// Render a React element to a DOM node using ReactDOM with act() for two-phase rendering
+async function renderReactElement(element) {
+  const container = document.createElement("div");
+  document.body.appendChild(container);
+  let reactRoot;
+  await act(async () => {
+    reactRoot = ReactDOM.createRoot(container);
+    reactRoot.render(element);
+  });
+  // Allow additional renders for the two-phase pattern (registration → scale computation → mark rendering)
+  await act(async () => {});
+  await act(async () => {});
+  const result = container.firstElementChild;
+  await act(async () => {
+    reactRoot.unmount();
+  });
+  try {
+    document.body.removeChild(container);
+  } catch (e) {
+    // Ignore: container may already be removed during React unmount
+  }
+  return result;
+}
+
 for (const [name, plot] of Object.entries(plots)) {
   it(`plot ${name}`, async () => {
-    const root = await (name.startsWith("warn") ? assert.warnsAsync : assert.doesNotWarnAsync)(plot);
+    const isWarn = name.startsWith("warn");
+    const assertFn = isWarn ? assert.warnsAsync : assert.doesNotWarnAsync;
+    // For React elements, warnings are emitted during rendering (not during element creation),
+    // so we need to wrap both the plot creation and rendering in the assertion.
+    let root = await assertFn(async () => {
+      let result = await plot();
+      if (isReactElement(result)) {
+        result = await renderReactElement(result);
+      }
+      return result;
+    });
     const ext = root.tagName === "svg" ? "svg" : "html";
     for (const svg of root.tagName === "svg" ? [root] : root.querySelectorAll("svg")) {
       svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns", "http://www.w3.org/2000/svg");
@@ -62,7 +104,7 @@ for (const [name, plot] of Object.entries(plots)) {
 
 function normalizeHtml(html) {
   return beautify.html(
-    html
+    normalizeReactIds(html)
       .replace(/&nbsp;/g, "\xa0") // normalize HTML entities
       .replace(/\d+\.\d{4,}/g, (d) => +(+d).toFixed(3)), // limit numerical precision
     {
@@ -71,6 +113,18 @@ function normalizeHtml(html) {
       indent_inner_html: false
     }
   );
+}
+
+// Normalize React useId()-generated IDs (e.g., :r39f: rendered as _r_39f_ in JSDOM).
+// These change depending on test execution order, so we replace them with sequential stable IDs.
+// The JSDOM format is _r_XXX_ where XXX is a base-32 counter; in browser it's :rXXX:.
+function normalizeReactIds(html) {
+  let index = 0;
+  const map = new Map();
+  return html.replace(/[:_]r[:_][0-9a-z]+[:_]/g, (match) => {
+    if (!map.has(match)) map.set(match, `plot-rid-${++index}`);
+    return map.get(match);
+  });
 }
 
 function reindexStyle(root) {

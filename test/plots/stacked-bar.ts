@@ -1,20 +1,20 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, BarX, stackX} from "../../src/react/index.js";
 
 export async function stackedBar() {
-  return Plot.plot({
-    x: {
-      tickFormat: "%"
+  return React.createElement(Plot, {
+      x: {
+        tickFormat: "%"
+      }
     },
-    marks: [
-      Plot.barX(
-        {length: 20},
-        Plot.stackX({
-          x: (d, i) => i,
-          fill: (d, i) => i,
-          insetLeft: 1,
-          offset: "normalize"
-        })
-      )
-    ]
-  });
+    React.createElement(BarX, {
+      data: {length: 20},
+      ...stackX({
+        x: (d, i) => i,
+        fill: (d, i) => i,
+        insetLeft: 1,
+        offset: "normalize"
+      })
+    })
+  );
 }

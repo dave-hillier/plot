@@ -1,17 +1,20 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, RectY, RuleY, binX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function aaplVolume() {
   const data = await d3.csv<any>("data/aapl.csv", d3.autoType);
-  return Plot.plot({
-    x: {
-      round: true,
-      label: "Trade volume (log₁₀)"
+  return React.createElement(Plot, {
+      x: {
+        round: true,
+        label: "Trade volume (log\u2081\u2080)"
+      },
+      y: {
+        grid: true,
+        percent: true
+      }
     },
-    y: {
-      grid: true,
-      percent: true
-    },
-    marks: [Plot.rectY(data, Plot.binX({y: "proportion"}, {x: (d) => Math.log10(d.Volume)})), Plot.ruleY([0])]
-  });
+    React.createElement(RectY, {data, ...binX({y: "proportion"}, {x: (d) => Math.log10(d.Volume)})}),
+    React.createElement(RuleY, {data: [0]})
+  );
 }

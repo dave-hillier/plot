@@ -1,49 +1,50 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, RuleX, BarX, Dot, TickX, groupY} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function moviesProfitByGenre() {
   const movies = await d3.json<any>("data/movies.json");
   const Genre = (d) => d["Major Genre"] || "Other";
   const Profit = (d) => (d["Worldwide Gross"] - d["Production Budget"]) / 1e6;
-  return Plot.plot({
-    marginLeft: 120,
-    x: {
-      grid: true,
-      inset: 6,
-      label: "Profit ($M)",
-      domain: [d3.min(movies, Profit), 1e3]
+  return React.createElement(Plot, {
+      marginLeft: 120,
+      x: {
+        grid: true,
+        inset: 6,
+        label: "Profit ($M)",
+        domain: [d3.min(movies, Profit), 1e3]
+      }
     },
-    marks: [
-      Plot.ruleX([0]),
-      Plot.barX(
-        movies,
-        Plot.groupY(
-          {x1: "p25", x2: "p75"},
-          {
-            y: Genre,
-            x: Profit,
-            fillOpacity: 0.2
-          }
-        )
-      ),
-      Plot.dot(movies, {
-        y: Genre,
-        x: Profit,
-        strokeWidth: 1
-      }),
-      Plot.tickX(
-        movies,
-        Plot.groupY(
-          {x: "median"},
-          {
-            y: Genre,
-            x: Profit,
-            stroke: "red",
-            strokeWidth: 2,
-            sort: {y: "-x"}
-          }
-        )
+    React.createElement(RuleX, {data: [0]}),
+    React.createElement(BarX, {
+      data: movies,
+      ...groupY(
+        {x1: "p25", x2: "p75"},
+        {
+          y: Genre,
+          x: Profit,
+          fillOpacity: 0.2
+        }
       )
-    ]
-  });
+    }),
+    React.createElement(Dot, {
+      data: movies,
+      y: Genre,
+      x: Profit,
+      strokeWidth: 1
+    }),
+    React.createElement(TickX, {
+      data: movies,
+      ...groupY(
+        {x: "median"},
+        {
+          y: Genre,
+          x: Profit,
+          stroke: "red",
+          strokeWidth: 2,
+          sort: {y: "-x"}
+        }
+      )
+    })
+  );
 }

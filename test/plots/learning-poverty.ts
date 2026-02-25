@@ -1,4 +1,5 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, BarX, RuleX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function learningPoverty() {
@@ -8,31 +9,23 @@ export async function learningPoverty() {
     {...d, type: "poor", share: d["Learning Poverty"] - d["Out-of-School (OoS)"]},
     {...d, type: "out of school", share: d["Out-of-School (OoS)"]}
   ]);
-  return Plot.plot({
-    marginLeft: 120,
-    height: 1160,
-    x: {
-      axis: "top",
-      grid: true,
-      ticks: 10,
-      tickFormat: (d) => `${Math.abs(d)}%`,
-      nice: true
+  return React.createElement(Plot, {
+      marginLeft: 120,
+      height: 1160,
+      x: {axis: "top", grid: true, ticks: 10, tickFormat: (d) => `${Math.abs(d)}%`, nice: true},
+      y: {label: null},
+      color: {
+        domain: ["ok", "poor", "out of school"],
+        range: ["#aed9e0", "#edd382", "#ffa69e"]
+      }
     },
-    y: {
-      label: null
-    },
-    color: {
-      domain: ["ok", "poor", "out of school"],
-      range: ["#aed9e0", "#edd382", "#ffa69e"]
-    },
-    marks: [
-      Plot.barX(values, {
-        x: (d) => (d.type === "ok" ? -1 : 1) * d.share, // diverging bars
-        y: "Country Name",
-        fill: "type",
-        sort: {y: "-x"}
-      }),
-      Plot.ruleX([0])
-    ]
-  });
+    React.createElement(BarX, {
+      data: values,
+      x: (d) => (d.type === "ok" ? -1 : 1) * d.share, // diverging bars
+      y: "Country Name",
+      fill: "type",
+      sort: {y: "-x"}
+    }),
+    React.createElement(RuleX, {data: [0]})
+  );
 }

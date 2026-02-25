@@ -58,11 +58,13 @@ export function Area({
   dx = 0,
   dy = 0,
   className,
+  channels: extraChannels,
   ...restOptions
 }: AreaProps) {
   const maybeZ = z ?? (typeof fill === "string" && !/^#|^rgb|^hsl|^none|^currentColor/.test(fill) ? fill : undefined);
 
   const channels: Record<string, ChannelSpec> = {
+    ...extraChannels,
     x1: {value: x1, scale: "x"},
     x2: {value: x2, scale: "x", optional: true},
     y1: {value: y1, scale: "y"},

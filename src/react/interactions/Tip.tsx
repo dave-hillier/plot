@@ -45,11 +45,13 @@ export function Tip({
   padding = 6,
   className,
   format: formatFn,
+  channels: extraChannels,
   ...restOptions
 }: TipProps) {
   const {pointer: pointerState, dimensions} = usePlotContext();
 
   const channels: Record<string, ChannelSpec> = {
+    ...extraChannels,
     x: {value: x, scale: "x", optional: true},
     y: {value: y, scale: "y", optional: true},
     ...(titleProp != null ? {title: {value: titleProp, optional: true, filter: null}} : {})

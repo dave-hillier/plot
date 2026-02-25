@@ -1,4 +1,5 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, TickX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function penguinQuantileUnknown() {
@@ -6,14 +7,18 @@ export async function penguinQuantileUnknown() {
     ...d,
     body_mass_g: i % 7 === 0 ? NaN : d.body_mass_g
   }));
-  return Plot.tickX(sample, {x: "culmen_length_mm", stroke: "body_mass_g"}).plot({
-    color: {type: "quantile", n: 5, scheme: "blues", unknown: "red", legend: true}
-  });
+  return React.createElement(Plot, {
+      color: {type: "quantile", n: 5, scheme: "blues", unknown: "red", legend: true}
+    },
+    React.createElement(TickX, {data: sample, x: "culmen_length_mm", stroke: "body_mass_g"})
+  );
 }
 
 export async function penguinQuantileEmpty() {
   const sample = await d3.csv<any>("data/penguins.csv", d3.autoType);
-  return Plot.tickX(sample, {x: "culmen_length_mm", stroke: () => null}).plot({
-    color: {type: "quantile", n: 5, scheme: "blues", unknown: "red"}
-  });
+  return React.createElement(Plot, {
+      color: {type: "quantile", n: 5, scheme: "blues", unknown: "red"}
+    },
+    React.createElement(TickX, {data: sample, x: "culmen_length_mm", stroke: () => null})
+  );
 }

@@ -49,9 +49,11 @@ export function Density({
   dx = 0,
   dy = 0,
   className,
+  channels: extraChannels,
   ...restOptions
 }: DensityProps) {
   const channels: Record<string, ChannelSpec> = {
+    ...extraChannels,
     x: {value: x, scale: "x"},
     y: {value: y, scale: "y"},
     ...(weight != null ? {weight: {value: weight, optional: true}} : {}),

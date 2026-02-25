@@ -58,6 +58,7 @@ export function Image({
   frameAnchor,
   className,
   onClick,
+  channels: extraChannels,
   ...restOptions
 }: ImageProps) {
   const isSrcChannel =
@@ -70,6 +71,7 @@ export function Image({
     typeof heightProp === "string" || typeof heightProp === "function" || Array.isArray(heightProp);
 
   const channels: Record<string, ChannelSpec> = {
+    ...extraChannels,
     x: {value: x, scale: "x", optional: true},
     y: {value: y, scale: "y", optional: true},
     ...(isSrcChannel ? {src: {value: src, optional: true}} : {}),

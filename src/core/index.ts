@@ -35,7 +35,7 @@ export {
 } from "../options.js";
 
 // Projection creation
-export {createProjection, getGeometryChannels, hasProjection} from "../projection.js";
+export {createProjection, getGeometryChannels, hasProjection, project, xyProjection} from "../projection.js";
 
 // Scale creation and management
 export {createScales, createScaleFunctions, autoScaleRange, innerDimensions} from "../scales.js";
@@ -60,3 +60,6 @@ export {maybeCurveAuto} from "../curve.js";
 
 // Value predicates
 export {defined, ascendingDefined, descendingDefined, nonempty, finite, positive, negative} from "../defined.js";
+
+// Interval transforms for Rect/Bar marks
+export {maybeTrivialIntervalX, maybeTrivialIntervalY, maybeIntervalX, maybeIntervalY} from "../transforms/interval.js";

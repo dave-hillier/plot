@@ -1,10 +1,11 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, Density, Frame} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function penguinDensity() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
-  return Plot.plot({
-    inset: 30,
-    marks: [Plot.density(penguins, {x: "flipper_length_mm", y: "culmen_length_mm"}), Plot.frame()]
-  });
+  return React.createElement(Plot, {inset: 30},
+    React.createElement(Density, {data: penguins, x: "flipper_length_mm", y: "culmen_length_mm"}),
+    React.createElement(Frame, {})
+  );
 }

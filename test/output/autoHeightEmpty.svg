@@ -13,13 +13,9 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="fy-axis label" transform="translate(37.5,0.5)">
-    <text transform="translate(600,157.5) rotate(-90)">path</text>
-  </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
-    <text y="0.71em" transform="translate(40,0)">visitors</text>
-  </g>
-  <g aria-label="x-axis label" transform="translate(0.5,27.5)">
-    <text transform="translate(320,315)">date</text>
-  </g>
+  <defs>
+    <clipPath id="_r_8d_">
+      <rect x="0" y="0" width="639" height="399"></rect>
+    </clipPath>
+  </defs>
 </svg>

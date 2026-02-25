@@ -1,21 +1,15 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, Text} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function letterFrequencyCloud() {
   const alphabet = await d3.csv<any>("data/alphabet.csv", d3.autoType);
   const random = d3.randomLcg(3);
   const max = d3.max(alphabet, (d) => d.frequency);
-  return Plot.plot({
-    x: {
-      axis: null,
-      domain: [-0.1, 1.1]
+  return React.createElement(Plot, {
+      x: {axis: null, domain: [-0.1, 1.1]},
+      y: {axis: null, domain: [-0.1, 1.2]}
     },
-    y: {
-      axis: null,
-      domain: [-0.1, 1.2]
-    },
-    marks: [
-      Plot.text(alphabet, {x: random, y: random, text: "letter", fontSize: (d) => 10 + 200 * (d.frequency / max)})
-    ]
-  });
+    React.createElement(Text, {data: alphabet, x: random, y: random, text: "letter", fontSize: (d) => 10 + 200 * (d.frequency / max)})
+  );
 }

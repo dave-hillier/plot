@@ -1,4 +1,5 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, RuleY, Line, Text, normalizeY, selectLast} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 const format = d3.format("+d");
@@ -14,37 +15,36 @@ async function loadSymbol(name) {
 
 export async function stocksIndex() {
   const stocks = (await Promise.all(["aapl", "amzn", "goog", "ibm"].map(loadSymbol))).flat();
-  return Plot.plot({
-    style: "overflow: visible;",
-    y: {
-      type: "log",
-      grid: true,
-      label: "Change in price (%)",
-      tickFormat: formatChange
+  return React.createElement(Plot, {
+      style: "overflow: visible;",
+      y: {
+        type: "log",
+        grid: true,
+        label: "Change in price (%)",
+        tickFormat: formatChange
+      }
     },
-    marks: [
-      Plot.ruleY([1]),
-      Plot.line(
-        stocks,
-        Plot.normalizeY({
+    React.createElement(RuleY, {data: [1]}),
+    React.createElement(Line, {
+      data: stocks,
+      ...normalizeY({
+        x: "Date",
+        y: "Close",
+        stroke: "Symbol"
+      })
+    }),
+    React.createElement(Text, {
+      data: stocks,
+      ...selectLast(
+        normalizeY({
           x: "Date",
           y: "Close",
-          stroke: "Symbol"
+          z: "Symbol",
+          text: (d) => d.Symbol.toUpperCase(),
+          textAnchor: "start",
+          dx: 3
         })
-      ),
-      Plot.text(
-        stocks,
-        Plot.selectLast(
-          Plot.normalizeY({
-            x: "Date",
-            y: "Close",
-            z: "Symbol",
-            text: (d) => d.Symbol.toUpperCase(),
-            textAnchor: "start",
-            dx: 3
-          })
-        )
       )
-    ]
-  });
+    })
+  );
 }

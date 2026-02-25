@@ -13,55 +13,98 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
-    <path transform="translate(40,353.3129822001173)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,324.7881166877269)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,296.26325117533656)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,267.73838566294626)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,239.21352015055587)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,210.68865463816553)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,182.16378912577517)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,153.63892361338483)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,125.11405810099448)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,96.58919258860415)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,68.06432707621377)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,39.53946156382344)" d="M0,0L-6,0"></path>
+  <defs>
+    <clipPath id="_r_2bi_">
+      <rect x="0" y="0" width="639" height="399"></rect>
+    </clipPath>
+  </defs>
+  <g aria-label="x-axis" transform="translate(0,399)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+    <line x1="0" x2="639" stroke="currentColor"></line>
+    <g transform="translate(56.053,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">Jan 07</text>
+    </g>
+    <g transform="translate(134.526,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">Jan 14</text>
+    </g>
+    <g transform="translate(213,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">Jan 21</text>
+    </g>
+    <g transform="translate(291.474,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">Jan 28</text>
+    </g>
+    <g transform="translate(369.947,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">Feb 04</text>
+    </g>
+    <g transform="translate(448.421,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">Feb 11</text>
+    </g>
+    <g transform="translate(526.895,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">Feb 18</text>
+    </g>
+    <g transform="translate(605.368,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">Feb 25</text>
+    </g>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
-    <text y="0.32em" transform="translate(40,353.3129822001173)">156</text>
-    <text y="0.32em" transform="translate(40,324.7881166877269)">158</text>
-    <text y="0.32em" transform="translate(40,296.26325117533656)">160</text>
-    <text y="0.32em" transform="translate(40,267.73838566294626)">162</text>
-    <text y="0.32em" transform="translate(40,239.21352015055587)">164</text>
-    <text y="0.32em" transform="translate(40,210.68865463816553)">166</text>
-    <text y="0.32em" transform="translate(40,182.16378912577517)">168</text>
-    <text y="0.32em" transform="translate(40,153.63892361338483)">170</text>
-    <text y="0.32em" transform="translate(40,125.11405810099448)">172</text>
-    <text y="0.32em" transform="translate(40,96.58919258860415)">174</text>
-    <text y="0.32em" transform="translate(40,68.06432707621377)">176</text>
-    <text y="0.32em" transform="translate(40,39.53946156382344)">178</text>
+  <g aria-label="y-axis" transform="translate(0,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
+    <line y1="0" y2="399" stroke="currentColor"></line>
+    <g transform="translate(0,379.977)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">156</text>
+    </g>
+    <g transform="translate(0,347.458)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">158</text>
+    </g>
+    <g transform="translate(0,314.94)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">160</text>
+    </g>
+    <g transform="translate(0,282.422)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">162</text>
+    </g>
+    <g transform="translate(0,249.903)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">164</text>
+    </g>
+    <g transform="translate(0,217.385)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">166</text>
+    </g>
+    <g transform="translate(0,184.867)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">168</text>
+    </g>
+    <g transform="translate(0,152.348)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">170</text>
+    </g>
+    <g transform="translate(0,119.83)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">172</text>
+    </g>
+    <g transform="translate(0,87.312)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">174</text>
+    </g>
+    <g transform="translate(0,54.793)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">176</text>
+    </g>
+    <g transform="translate(0,22.275)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">178</text>
+    </g>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
-    <path transform="translate(90.87719298245614,370)" d="M0,0L0,6"></path>
-    <path transform="translate(162.10526315789474,370)" d="M0,0L0,6"></path>
-    <path transform="translate(233.33333333333331,370)" d="M0,0L0,6"></path>
-    <path transform="translate(304.5614035087719,370)" d="M0,0L0,6"></path>
-    <path transform="translate(375.7894736842106,370)" d="M0,0L0,6"></path>
-    <path transform="translate(447.0175438596491,370)" d="M0,0L0,6"></path>
-    <path transform="translate(518.2456140350877,370)" d="M0,0L0,6"></path>
-    <path transform="translate(589.4736842105262,370)" d="M0,0L0,6"></path>
-  </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
-    <text transform="translate(90.87719298245614,370)"><tspan x="0" y="0.71em">7</tspan><tspan x="0" dy="1em">Jan</tspan></text>
-    <text y="0.71em" transform="translate(162.10526315789474,370)">14</text>
-    <text y="0.71em" transform="translate(233.33333333333331,370)">21</text>
-    <text y="0.71em" transform="translate(304.5614035087719,370)">28</text>
-    <text transform="translate(375.7894736842106,370)"><tspan x="0" y="0.71em">4</tspan><tspan x="0" dy="1em">Feb</tspan></text>
-    <text y="0.71em" transform="translate(447.0175438596491,370)">11</text>
-    <text y="0.71em" transform="translate(518.2456140350877,370)">18</text>
-    <text y="0.71em" transform="translate(589.4736842105262,370)">25</text>
-  </g>
-  <g aria-label="line" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
-    <path d="M40,151.357L50.175,117.555L60.351,117.412L70.526,104.576L101.053,91.597L111.228,88.745L121.404,108.57L131.579,88.174L141.754,65.497L182.456,40.966L192.632,65.925L202.807,20L212.982,30.839L243.509,49.523L253.684,49.523L263.86,50.236L274.035,89.315L284.211,125.114L314.737,151.357L324.912,217.392L335.088,198.28L345.263,194.002L355.439,210.689L385.965,309.099L396.14,370L406.316,252.192L416.491,292.127L426.667,338.052L457.193,317.657L467.368,268.452L477.544,252.906L487.719,156.634L497.895,119.98L538.596,124.401L548.772,113.276L558.947,127.967L569.123,101.296L599.649,63.072L609.825,23.851L620,21.569"></path>
+  <g aria-label="line" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="1">
+    <path d="M0,149.747L11.211,111.213L22.421,111.05L33.632,96.417L67.263,81.621L78.474,78.369L89.684,100.969L100.895,77.719L112.105,51.867L156.947,23.901L168.158,52.355L179.368,0L190.579,12.357L224.211,33.656L235.421,33.656L246.632,34.469L257.842,79.02L269.053,119.83L302.684,149.747L313.895,225.027L325.105,203.24L336.316,198.362L347.526,217.385L381.158,329.573L392.368,399L403.579,264.699L414.789,310.225L426,362.579L459.632,339.329L470.842,283.235L482.053,265.512L493.263,155.763L504.474,113.977L549.316,119.017L560.526,106.335L571.737,123.082L582.947,92.677L616.579,49.103L627.789,4.39L639,1.789"></path>
   </g>
 </svg>

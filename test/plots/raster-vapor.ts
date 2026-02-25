@@ -1,4 +1,5 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, Raster, Contour, Sphere, Geo, identity} from "../../src/react/index.js";
 import * as d3 from "d3";
 import {feature} from "topojson-client";
 
@@ -10,166 +11,169 @@ async function vapor() {
 }
 
 export async function rasterVapor() {
-  return Plot.plot({
-    color: {scheme: "blues"},
-    x: {transform: (x) => x - 180},
-    y: {transform: (y) => 90 - y},
-    marks: [Plot.raster(await vapor(), {width: 360, height: 180})]
-  });
+  return React.createElement(Plot, {
+      color: {scheme: "blues"},
+      x: {transform: (x) => x - 180},
+      y: {transform: (y) => 90 - y}
+    },
+    React.createElement(Raster, {data: await vapor(), width: 360, height: 180})
+  );
 }
 
 export async function rasterVapor2() {
-  return Plot.plot({
-    color: {scheme: "blues", legend: true},
-    x: {transform: (x) => x - 180},
-    y: {transform: (y) => 90 - y},
-    marks: [
-      Plot.raster(await vapor(), {
-        width: 360,
-        height: 180
-      }),
-      Plot.raster(await vapor(), {
-        width: 360,
-        height: 180,
-        fill: {value: (d) => (d > 4 ? "red" : null), scale: null}
-      })
-    ]
-  });
+  return React.createElement(Plot, {
+      color: {scheme: "blues", legend: true},
+      x: {transform: (x) => x - 180},
+      y: {transform: (y) => 90 - y}
+    },
+    React.createElement(Raster, {
+      data: await vapor(),
+      width: 360,
+      height: 180
+    }),
+    React.createElement(Raster, {
+      data: await vapor(),
+      width: 360,
+      height: 180,
+      fill: {value: (d) => (d > 4 ? "red" : null), scale: null}
+    })
+  );
 }
 
 export async function contourVapor() {
-  return Plot.plot({
-    width: 960,
-    projection: "equal-earth",
-    color: {scheme: "blues"},
-    marks: [
-      Plot.contour(await vapor(), {
-        fill: Plot.identity,
-        width: 360,
-        height: 180,
-        x1: -180,
-        y1: 90,
-        x2: 180,
-        y2: -90,
-        interval: 0.25,
-        blur: 0.5,
-        stroke: "currentColor",
-        strokeWidth: 0.5,
-        clip: "sphere"
-      }),
-      Plot.sphere()
-    ]
-  });
+  return React.createElement(Plot, {
+      width: 960,
+      projection: "equal-earth",
+      color: {scheme: "blues"}
+    },
+    React.createElement(Contour, {
+      data: await vapor(),
+      fill: identity,
+      width: 360,
+      height: 180,
+      x1: -180,
+      y1: 90,
+      x2: 180,
+      y2: -90,
+      interval: 0.25,
+      blur: 0.5,
+      stroke: "currentColor",
+      strokeWidth: 0.5,
+      clip: "sphere"
+    }),
+    React.createElement(Sphere, {})
+  );
 }
 
 export async function contourVaporClip() {
   const [world, data] = await Promise.all([d3.json<any>("data/countries-50m.json"), vapor()]);
   const land = feature(world, world.objects.land);
-  return Plot.plot({
-    width: 960,
-    projection: {type: "orthographic", rotate: [0, -90]},
-    color: {scheme: "blues"},
-    marks: [
-      Plot.sphere({fill: "#eee"}),
-      Plot.raster(data, {
-        fill: Plot.identity,
-        interpolate: "random-walk",
-        width: 360,
-        height: 180,
-        x1: -180,
-        y1: 90,
-        x2: 180,
-        y2: -90,
-        blur: 1,
-        pixelSize: 3,
-        clip: land
-      }),
-      Plot.contour(data, {
-        value: Plot.identity,
-        width: 360,
-        height: 180,
-        x1: -180,
-        y1: 90,
-        x2: 180,
-        y2: -90,
-        blur: 0.5,
-        stroke: "black",
-        strokeWidth: 0.5,
-        clip: land
-      }),
-      Plot.geo(land, {stroke: "black"}),
-      Plot.sphere({stroke: "black"})
-    ]
-  });
+  return React.createElement(Plot, {
+      width: 960,
+      projection: {type: "orthographic", rotate: [0, -90]},
+      color: {scheme: "blues"}
+    },
+    React.createElement(Sphere, {fill: "#eee"}),
+    React.createElement(Raster, {
+      data,
+      fill: identity,
+      interpolate: "random-walk",
+      width: 360,
+      height: 180,
+      x1: -180,
+      y1: 90,
+      x2: 180,
+      y2: -90,
+      blur: 1,
+      pixelSize: 3,
+      clip: land
+    }),
+    React.createElement(Contour, {
+      data,
+      value: identity,
+      width: 360,
+      height: 180,
+      x1: -180,
+      y1: 90,
+      x2: 180,
+      y2: -90,
+      blur: 0.5,
+      stroke: "black",
+      strokeWidth: 0.5,
+      clip: land
+    }),
+    React.createElement(Geo, {data: land, stroke: "black"}),
+    React.createElement(Sphere, {stroke: "black"})
+  );
 }
 
 export async function rasterVaporPeters() {
   const radians = Math.PI / 180;
   const sin = (y) => Math.sin(y * radians);
   const asin = (y) => Math.asin(y) / radians;
-  return Plot.plot({
-    width: Math.floor(30 + (500 * Math.PI) / 2),
-    height: 500 + 20,
-    marginLeft: 30,
-    marginBottom: 20,
-    y: {
-      transform: sin,
-      ticks: d3.ticks(-80, 80, 10).map(sin),
-      tickFormat: (y) => Math.round(asin(y))
+  return React.createElement(Plot, {
+      width: Math.floor(30 + (500 * Math.PI) / 2),
+      height: 500 + 20,
+      marginLeft: 30,
+      marginBottom: 20,
+      y: {
+        transform: sin,
+        ticks: d3.ticks(-80, 80, 10).map(sin),
+        tickFormat: (y) => Math.round(asin(y))
+      },
+      color: {
+        scheme: "blues"
+      }
     },
-    color: {
-      scheme: "blues"
-    },
-    marks: [
-      Plot.raster(await vapor(), {
-        width: 360,
-        height: 180,
-        x1: -180,
-        y1: 90,
-        x2: 180,
-        y2: -90,
-        interpolate: "nearest"
-      })
-    ]
-  });
+    React.createElement(Raster, {
+      data: await vapor(),
+      width: 360,
+      height: 180,
+      x1: -180,
+      y1: 90,
+      x2: 180,
+      y2: -90,
+      interpolate: "nearest"
+    })
+  );
 }
 
 export async function rasterVaporEqualEarth() {
-  return Plot.plot({
-    projection: "equal-earth",
-    color: {scheme: "blues"},
-    marks: [
-      Plot.raster(await vapor(), {
-        width: 360,
-        height: 180,
-        x1: -180,
-        y1: 90,
-        x2: 180,
-        y2: -90,
-        interpolate: "random-walk",
-        clip: "sphere"
-      }),
-      Plot.sphere()
-    ]
-  });
+  return React.createElement(Plot, {
+      projection: "equal-earth",
+      color: {scheme: "blues"}
+    },
+    React.createElement(Raster, {
+      data: await vapor(),
+      width: 360,
+      height: 180,
+      x1: -180,
+      y1: 90,
+      x2: 180,
+      y2: -90,
+      interpolate: "random-walk",
+      clip: "sphere"
+    }),
+    React.createElement(Sphere, {})
+  );
 }
 
 export async function rasterVaporEqualEarthBarycentric() {
-  return Plot.plot({
-    projection: "equal-earth",
-    color: {scheme: "blues"},
-    marks: [
-      Plot.raster(await vapor(), {
-        width: 360,
-        height: 180,
-        x1: -180,
-        y1: 90,
-        x2: 180,
-        y2: -90,
-        interpolate: "barycentric",
-        clip: "sphere"
-      }),
-      Plot.sphere()
-    ]
-  });
+  return React.createElement(Plot, {
+      projection: "equal-earth",
+      color: {scheme: "blues"}
+    },
+    React.createElement(Raster, {
+      data: await vapor(),
+      width: 360,
+      height: 180,
+      x1: -180,
+      y1: 90,
+      x2: 180,
+      y2: -90,
+      interpolate: "barycentric",
+      clip: "sphere"
+    }),
+    React.createElement(Sphere, {})
+  );
 }

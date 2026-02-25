@@ -2,6 +2,7 @@ import React from "react";
 import {geoPath, geoGraticule10} from "d3";
 import {useMark} from "../useMark.js";
 import {usePlotContext} from "../PlotContext.js";
+import {xyProjection} from "../../core/index.js";
 import {indirectStyleProps, directStyleProps, channelStyleProps, computeTransform, isColorChannel, isColorValue} from "../styles.js";
 import type {ChannelSpec} from "../PlotContext.js";
 
@@ -43,11 +44,13 @@ export function Geo({
   dx = 0,
   dy = 0,
   className,
+  channels: extraChannels,
   ...restOptions
 }: GeoProps) {
   const {projection} = usePlotContext();
 
   const channels: Record<string, ChannelSpec> = {
+    ...extraChannels,
     geometry: {value: geometry ?? ((d: any) => d), scale: "projection", optional: true},
     ...(r != null && (typeof r === "string" || typeof r === "function" || Array.isArray(r))
       ? {r: {value: r, scale: "r", optional: true}}
@@ -92,7 +95,7 @@ export function Geo({
   if (!values || !index || !dimensions) return null;
 
   const {geometry: G, r: R} = values;
-  const path = geoPath(projection);
+  const path = geoPath(projection ?? xyProjection(scales ?? {}));
 
   const transform = computeTransform({dx, dy}, scales ?? {});
   const groupProps = {

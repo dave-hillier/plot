@@ -122,16 +122,9 @@ The **weight** channel specifies the contribution of each data point to the esti
 You can specify a negative weight for points that the density contours should avoid, resulting in regions of influence that do not overlap.
 
 <Plot inset={10} color={{legend: true}}>
-  {/* TODO: d3.groups(penguins, (d) => d.species).map(([s]) =>
-      Plot.density(penguins, {
-        x: "flipper_length_mm",
-        y: "culmen_length_mm",
-        weight: (d) => d.species === s ? 1 : -1,
-        fill: () => s,
-        fillOpacity: 0.2,
-        thresholds: [0.05]
-      })
-    ) */}
+  {d3.groups(penguins, (d) => d.species).map(([s]) =>
+    <Density key={s} data={penguins} x="flipper_length_mm" y="culmen_length_mm" weight={(d) => d.species === s ? 1 : -1} fill={() => s} fillOpacity={0.2} thresholds={[0.05]} />
+  )}
   <Dot data={penguins} x="flipper_length_mm" y="culmen_length_mm" stroke="species" />
   <Frame />
 </Plot>

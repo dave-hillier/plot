@@ -1,5 +1,7 @@
 import React from "react";
 import {pathRound as path, symbolCircle} from "d3";
+import {maybeSymbol} from "../../symbol.js";
+import {first, second} from "../../options.js";
 import {useMark} from "../useMark.js";
 import {
   indirectStyleProps,
@@ -48,8 +50,8 @@ export interface DotProps {
 
 export function Dot({
   data,
-  x,
-  y,
+  x: xProp,
+  y: yProp,
   r,
   rotate,
   symbol = symbolCircle,
@@ -70,20 +72,31 @@ export function Dot({
   onClick,
   onPointerEnter,
   onPointerLeave,
+  channels: extraChannels,
   ...restOptions
 }: DotProps) {
-  // Determine whether r, rotate, symbol are channels or constants
-  const isRChannel = r != null && (typeof r === "string" || typeof r === "function" || Array.isArray(r));
+  // Default x/y for array-of-arrays data when frameAnchor is not set
+  const x = frameAnchor === undefined && xProp === undefined && yProp === undefined ? first : xProp;
+  const y = frameAnchor === undefined && xProp === undefined && yProp === undefined ? second : yProp;
+
+  // Determine whether r, rotate, symbol are channels or constants.
+  // Lazy column objects like {transform: fn} are channels, not constants.
+  const isLazyColumn = (v: any) => v != null && typeof v === "object" && typeof v.transform === "function";
+  const isRChannel =
+    r != null && (typeof r === "string" || typeof r === "function" || Array.isArray(r) || isLazyColumn(r));
   const isRotateChannel =
-    rotate != null && (typeof rotate === "string" || typeof rotate === "function" || Array.isArray(rotate));
+    rotate != null &&
+    (typeof rotate === "string" || typeof rotate === "function" || Array.isArray(rotate) || isLazyColumn(rotate));
   const isSymbolChannel =
     symbol != null &&
-    typeof symbol !== "object" &&
-    ((typeof symbol === "string" && symbol !== "circle" && symbol !== "hexagon") ||
-      typeof symbol === "function" ||
-      Array.isArray(symbol));
+    !symbol.draw &&
+    (typeof symbol === "function" ||
+      Array.isArray(symbol) ||
+      isLazyColumn(symbol) ||
+      (typeof symbol === "string" && symbol !== "circle" && symbol !== "hexagon"));
 
   const channels: Record<string, ChannelSpec> = {
+    ...extraChannels,
     x: {value: x, scale: "x", optional: true},
     y: {value: y, scale: "y", optional: true},
     ...(isRChannel ? {r: {value: r, scale: "r", optional: true}} : {}),
@@ -184,7 +197,8 @@ export function Dot({
         }
 
         // Non-circle symbols: use path
-        const sym = S ? S[i] : typeof symbol === "object" ? symbol : symbolCircle;
+        const rawSym = S ? S[i] : symbol;
+        const sym = typeof rawSym === "object" && rawSym?.draw ? rawSym : maybeSymbol(rawSym) ?? symbolCircle;
         const s = R ? R[i] * R[i] * Math.PI : size;
         const p = path();
         sym.draw(p, s);

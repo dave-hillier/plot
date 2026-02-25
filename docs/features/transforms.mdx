@@ -1,4 +1,4 @@
-import {Cell, Plot, RectY, RuleX, TickX, binX, group, groupY, normalizeY, identity, valueof, column, indexOf} from "replot/react";
+import {Cell, Plot, RectY, RuleX, TickX, binX, group, groupY, normalizeY, identity, valueof, column, indexOf, scale} from "replot/react";
 import * as d3 from "d3";
 import penguins from "../data/penguins.ts";
 import olympians from "../data/olympians.ts";
@@ -7,10 +7,7 @@ import bls from "../data/bls-industry-unemployment.ts";
 
 export const traffic = [];
 export const bins = [];
-
-{/*
-// TODO: manually convert: const scheme = Plot.scale({color: {type: "categorical"}}).range;
-*/}
+export const scheme = scale({color: {type: "categorical"}}).range;
 
 # Transforms
 
@@ -79,7 +76,7 @@ Transforms are composable: you can pass *options* through more than one transfor
 <Plot y={{percent: true}}>
   <RectY data={olympians} {...normalizeY(
         "sum", // normalize each series by the sum per series
-        Plot.binX(
+        binX(
           {y2: "count"},
           {x: "weight", fill: "sex", mixBlendMode: "multiply"}
         )

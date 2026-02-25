@@ -1,9 +1,13 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, BarX, TickX, groupY} from "../../src/react/index.js";
 import * as d3 from "d3";
+import type * as PlotType from "replot";
 
-async function countNationality(sort: Plot.ChannelDomainSort) {
+async function countNationality(sort: PlotType.ChannelDomainSort) {
   const athletes = await d3.csv<any>("data/athletes.csv", d3.autoType);
-  return Plot.barX(athletes, Plot.groupY({x: "count"}, {y: "nationality", sort})).plot();
+  return React.createElement(Plot, {},
+    React.createElement(BarX, {data: athletes, ...groupY({x: "count"}, {y: "nationality", sort})})
+  );
 }
 
 export async function channelDomainDefault() {
@@ -49,12 +53,14 @@ export async function channelDomainComparatorReverse() {
 // This test avoids the group transform because the group transform always sorts
 // groups in natural ascending order by key. (Perhaps there should be an option
 // to disable that behavior?)
-async function groupNationality(sort: Plot.ChannelDomainSort) {
+async function groupNationality(sort: PlotType.ChannelDomainSort) {
   const athletes = await d3.csv<any>("data/athletes.csv", d3.autoType);
   const nationalities = d3.groups(athletes, (d) => d.nationality);
   const count = Object.assign(([, D]) => D.length, {label: "Frequency"});
   const key = Object.assign(([d]) => d, {label: "nationality"});
-  return Plot.barX(nationalities, {x: count, y: key, sort}).plot();
+  return React.createElement(Plot, {},
+    React.createElement(BarX, {data: nationalities, x: count, y: key, sort})
+  );
 }
 
 export async function channelDomainNull() {
@@ -65,9 +71,11 @@ export async function channelDomainNullReverse() {
   return groupNationality({y: "x", order: null, reverse: true, limit: 20});
 }
 
-async function weightNationality(sort: Plot.ChannelDomainSort) {
+async function weightNationality(sort: PlotType.ChannelDomainSort) {
   const athletes = await d3.csv<any>("data/athletes.csv", d3.autoType);
-  return Plot.tickX(athletes, {x: "weight", y: "nationality", sort}).plot();
+  return React.createElement(Plot, {},
+    React.createElement(TickX, {data: athletes, x: "weight", y: "nationality", sort})
+  );
 }
 
 export async function channelDomainReduceCount() {

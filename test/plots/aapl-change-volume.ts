@@ -1,25 +1,26 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, RuleX, Dot} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function aaplChangeVolume() {
   const data = await d3.csv<any>("data/aapl.csv", d3.autoType);
-  return Plot.plot({
-    x: {
-      label: "Daily change (%)",
-      tickFormat: "+f"
+  return React.createElement(Plot, {
+      x: {
+        label: "Daily change (%)",
+        tickFormat: "+f"
+      },
+      y: {
+        label: "Volume (log\u2081\u2080)",
+        transform: Math.log10
+      },
+      grid: true
     },
-    y: {
-      label: "Volume (log₁₀)",
-      transform: Math.log10
-    },
-    grid: true,
-    marks: [
-      Plot.ruleX([0]),
-      Plot.dot(data, {
-        x: (d) => ((d.Close - d.Open) / d.Open) * 100,
-        y: "Volume",
-        r: "Volume"
-      })
-    ]
-  });
+    React.createElement(RuleX, {data: [0]}),
+    React.createElement(Dot, {
+      data,
+      x: (d) => ((d.Close - d.Open) / d.Open) * 100,
+      y: "Volume",
+      r: "Volume"
+    })
+  );
 }

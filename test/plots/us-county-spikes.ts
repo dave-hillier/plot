@@ -1,4 +1,5 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, Geo, Spike, geoCentroid} from "../../src/react/index.js";
 import * as d3 from "d3";
 import {feature, mesh} from "topojson-client";
 
@@ -15,17 +16,16 @@ export async function usCountySpikes() {
       .csv("data/us-county-population.csv")
       .then((data) => new Map(data.map(({state, county, population}) => [state + county, +population])))
   ]);
-  return Plot.plot({
-    width: 960,
-    height: 600,
-    projection: "albers-usa",
-    length: {
-      range: [0, 200]
+  return React.createElement(Plot, {
+      width: 960,
+      height: 600,
+      projection: "albers-usa",
+      length: {
+        range: [0, 200]
+      }
     },
-    marks: [
-      Plot.geo(nation, {fill: "#e0e0e0"}),
-      Plot.geo(statemesh, {stroke: "white"}),
-      Plot.spike(counties.features, Plot.geoCentroid({stroke: "red", length: (d) => population.get(d.id)}))
-    ]
-  });
+    React.createElement(Geo, {data: nation, fill: "#e0e0e0"}),
+    React.createElement(Geo, {data: statemesh, stroke: "white"}),
+    React.createElement(Spike, {data: counties.features, ...geoCentroid({stroke: "red", length: (d) => population.get(d.id)})})
+  );
 }

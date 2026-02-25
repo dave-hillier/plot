@@ -13,366 +13,1209 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
-    <g transform="translate(2,0)">
-      <text transform="translate(225.5,30)">clip-start</text>
+  <defs>
+    <clipPath id="_r_2e8_">
+      <rect x="180" y="0" width="619" height="829"></rect>
+    </clipPath>
+  </defs>
+  <g transform="translate(183,0)">
+    <g aria-label="y-axis" transform="translate(180,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
+      <line y1="0" y2="829" stroke="currentColor"></line>
+      <g transform="translate(0,19)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Best Years of Our Lives</text>
+      </g>
+      <g transform="translate(0,41)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Ballad of Gregorio Cortez</text>
+      </g>
+      <g transform="translate(0,63)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">My Big Fat Independent Movie</text>
+      </g>
+      <g transform="translate(0,85)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Battle for the Planet of the Apes</text>
+      </g>
+      <g transform="translate(0,107)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Big Things</text>
+      </g>
+      <g transform="translate(0,129)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Bogus</text>
+      </g>
+      <g transform="translate(0,151)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Beverly Hills Cop</text>
+      </g>
+      <g transform="translate(0,173)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Beverly Hills Cop II</text>
+      </g>
+      <g transform="translate(0,195)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Beverly Hills Cop III</text>
+      </g>
+      <g transform="translate(0,217)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Black Hole</text>
+      </g>
+      <g transform="translate(0,239)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Big Parade</text>
+      </g>
+      <g transform="translate(0,261)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Boyz n the Hood</text>
+      </g>
+      <g transform="translate(0,283)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Book of Mormon Movie,
+          Volume 1: The Journey</text>
+      </g>
+      <g transform="translate(0,305)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Return to the Blue Lagoon</text>
+      </g>
+      <g transform="translate(0,327)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Bright Lights, Big City</text>
+      </g>
+      <g transform="translate(0,349)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Blue Bird</text>
+      </g>
+      <g transform="translate(0,371)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Blue Butterfly</text>
+      </g>
+      <g transform="translate(0,393)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Blade Runner</text>
+      </g>
+      <g transform="translate(0,415)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Bloodsport</text>
+      </g>
+      <g transform="translate(0,437)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Blues Brothers</text>
+      </g>
+      <g transform="translate(0,459)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Blow Out</text>
+      </g>
+      <g transform="translate(0,481)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">De battre mon cœur s'est arrêté</text>
+      </g>
+      <g transform="translate(0,503)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Broadway Melody</text>
+      </g>
+      <g transform="translate(0,525)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Boom Town</text>
+      </g>
+      <g transform="translate(0,547)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Bill &amp; Ted's Bogus Journey</text>
+      </g>
+      <g transform="translate(0,569)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Birth of a Nation</text>
+      </g>
+      <g transform="translate(0,591)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Ballad of Cable Hogue</text>
+      </g>
+      <g transform="translate(0,613)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Blood of Heroes</text>
+      </g>
+      <g transform="translate(0,635)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Blood of My Brother: A Story of Death in Iraq</text>
+      </g>
+      <g transform="translate(0,657)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Boomerang</text>
+      </g>
+      <g transform="translate(0,679)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Bridge on the River Kwai</text>
+      </g>
+      <g transform="translate(0,701)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Born on the Fourth of July</text>
+      </g>
+      <g transform="translate(0,723)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Basquiat</text>
+      </g>
+      <g transform="translate(0,745)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Black Rain</text>
+      </g>
+      <g transform="translate(0,767)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Bottle Rocket</text>
+      </g>
+      <g transform="translate(0,789)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩</text>
+      </g>
+      <g transform="translate(0,811)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿.🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿</text>
+      </g>
     </g>
-    <g transform="translate(103,0)">
-      <text transform="translate(225.5,30)">clip-end</text>
+    <g aria-label="text" fill="currentColor" transform="translate(4,0)">
+      <text x="180" y="19" dominant-baseline="central">The Best Years of Our Lives</text>
+      <text x="180" y="41" dominant-baseline="central">The Ballad of Gregorio Cortez</text>
+      <text x="180" y="63" dominant-baseline="central">My Big Fat Independent Movie</text>
+      <text x="180" y="85" dominant-baseline="central">Battle for the Planet of the Apes</text>
+      <text x="180" y="107" dominant-baseline="central">Big Things</text>
+      <text x="180" y="129" dominant-baseline="central">Bogus</text>
+      <text x="180" y="151" dominant-baseline="central">Beverly Hills Cop</text>
+      <text x="180" y="173" dominant-baseline="central">Beverly Hills Cop II</text>
+      <text x="180" y="195" dominant-baseline="central">Beverly Hills Cop III</text>
+      <text x="180" y="217" dominant-baseline="central">The Black Hole</text>
+      <text x="180" y="239" dominant-baseline="central">The Big Parade</text>
+      <text x="180" y="261" dominant-baseline="central">Boyz n the Hood</text>
+      <text x="180" y="283" dominant-baseline="central">The Book of Mormon Movie,
+        Volume 1: The Journey</text>
+      <text x="180" y="305" dominant-baseline="central">Return to the Blue Lagoon</text>
+      <text x="180" y="327" dominant-baseline="central">Bright Lights, Big City</text>
+      <text x="180" y="349" dominant-baseline="central">The Blue Bird</text>
+      <text x="180" y="371" dominant-baseline="central">The Blue Butterfly</text>
+      <text x="180" y="393" dominant-baseline="central">Blade Runner</text>
+      <text x="180" y="415" dominant-baseline="central">Bloodsport</text>
+      <text x="180" y="437" dominant-baseline="central">The Blues Brothers</text>
+      <text x="180" y="459" dominant-baseline="central">Blow Out</text>
+      <text x="180" y="481" dominant-baseline="central">De battre mon cœur s'est arrêté</text>
+      <text x="180" y="503" dominant-baseline="central">The Broadway Melody</text>
+      <text x="180" y="525" dominant-baseline="central">Boom Town</text>
+      <text x="180" y="547" dominant-baseline="central">Bill &amp; Ted's Bogus Journey</text>
+      <text x="180" y="569" dominant-baseline="central">The Birth of a Nation</text>
+      <text x="180" y="591" dominant-baseline="central">The Ballad of Cable Hogue</text>
+      <text x="180" y="613" dominant-baseline="central">The Blood of Heroes</text>
+      <text x="180" y="635" dominant-baseline="central">The Blood of My Brother: A Story of Death in Iraq</text>
+      <text x="180" y="657" dominant-baseline="central">Boomerang</text>
+      <text x="180" y="679" dominant-baseline="central">The Bridge on the River Kwai</text>
+      <text x="180" y="701" dominant-baseline="central">Born on the Fourth of July</text>
+      <text x="180" y="723" dominant-baseline="central">Basquiat</text>
+      <text x="180" y="745" dominant-baseline="central">Black Rain</text>
+      <text x="180" y="767" dominant-baseline="central">Bottle Rocket</text>
+      <text x="180" y="789" dominant-baseline="central">👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩</text>
+      <text x="180" y="811" dominant-baseline="central">🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿.🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿</text>
     </g>
-    <g transform="translate(204,0)">
-      <text transform="translate(225.5,30)">ellipsis-start</text>
-    </g>
-    <g transform="translate(305,0)">
-      <text transform="translate(225.5,30)">ellipsis-middle</text>
-    </g>
-    <g transform="translate(406,0)">
-      <text transform="translate(225.5,30)">ellipsis-end</text>
-    </g>
-    <g transform="translate(507,0)">
-      <text transform="translate(225.5,30)">monospace</text>
-    </g>
+    <g aria-label="text" fill="currentColor" transform="translate(-4,0)"></g>
+    <g aria-label="text" fill="currentColor" transform="translate(4,0)"></g>
+    <g aria-label="text" fill="currentColor"></g>
+    <g aria-label="text" fill="currentColor" transform="translate(-4,0)"></g>
+    <g aria-label="text" fill="currentColor" transform="translate(-4,0)"></g>
+    <rect aria-label="frame" x="180" y="0" width="619" height="829" fill="none" stroke="currentColor" stroke-width="1"></rect>
   </g>
-  <g aria-label="y-axis tick" aria-hidden="true" transform="translate(0,0.5)">
-    <g fill="none" stroke="currentColor" transform="translate(2,0)">
-      <path transform="translate(180,42)" d="M0,0L-6,0"></path>
-      <path transform="translate(180,63)" d="M0,0L-6,0"></path>
-      <path transform="translate(180,84)" d="M0,0L-6,0"></path>
-      <path transform="translate(180,105)" d="M0,0L-6,0"></path>
-      <path transform="translate(180,126)" d="M0,0L-6,0"></path>
-      <path transform="translate(180,147)" d="M0,0L-6,0"></path>
-      <path transform="translate(180,168)" d="M0,0L-6,0"></path>
-      <path transform="translate(180,189)" d="M0,0L-6,0"></path>
-      <path transform="translate(180,210)" d="M0,0L-6,0"></path>
-      <path transform="translate(180,231)" d="M0,0L-6,0"></path>
-      <path transform="translate(180,252)" d="M0,0L-6,0"></path>
-      <path transform="translate(180,273)" d="M0,0L-6,0"></path>
-      <path transform="translate(180,294)" d="M0,0L-6,0"></path>
-      <path transform="translate(180,315)" d="M0,0L-6,0"></path>
-      <path transform="translate(180,336)" d="M0,0L-6,0"></path>
-      <path transform="translate(180,357)" d="M0,0L-6,0"></path>
-      <path transform="translate(180,378)" d="M0,0L-6,0"></path>
-      <path transform="translate(180,399)" d="M0,0L-6,0"></path>
-      <path transform="translate(180,420)" d="M0,0L-6,0"></path>
-      <path transform="translate(180,441)" d="M0,0L-6,0"></path>
-      <path transform="translate(180,462)" d="M0,0L-6,0"></path>
-      <path transform="translate(180,483)" d="M0,0L-6,0"></path>
-      <path transform="translate(180,504)" d="M0,0L-6,0"></path>
-      <path transform="translate(180,525)" d="M0,0L-6,0"></path>
-      <path transform="translate(180,546)" d="M0,0L-6,0"></path>
-      <path transform="translate(180,567)" d="M0,0L-6,0"></path>
-      <path transform="translate(180,588)" d="M0,0L-6,0"></path>
-      <path transform="translate(180,609)" d="M0,0L-6,0"></path>
-      <path transform="translate(180,630)" d="M0,0L-6,0"></path>
-      <path transform="translate(180,651)" d="M0,0L-6,0"></path>
-      <path transform="translate(180,672)" d="M0,0L-6,0"></path>
-      <path transform="translate(180,693)" d="M0,0L-6,0"></path>
-      <path transform="translate(180,714)" d="M0,0L-6,0"></path>
-      <path transform="translate(180,735)" d="M0,0L-6,0"></path>
-      <path transform="translate(180,756)" d="M0,0L-6,0"></path>
-      <path transform="translate(180,777)" d="M0,0L-6,0"></path>
-      <path transform="translate(180,798)" d="M0,0L-6,0"></path>
+  <g transform="translate(287,0)">
+    <g aria-label="y-axis" transform="translate(180,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
+      <line y1="0" y2="829" stroke="currentColor"></line>
+      <g transform="translate(0,19)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Best Years of Our Lives</text>
+      </g>
+      <g transform="translate(0,41)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Ballad of Gregorio Cortez</text>
+      </g>
+      <g transform="translate(0,63)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">My Big Fat Independent Movie</text>
+      </g>
+      <g transform="translate(0,85)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Battle for the Planet of the Apes</text>
+      </g>
+      <g transform="translate(0,107)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Big Things</text>
+      </g>
+      <g transform="translate(0,129)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Bogus</text>
+      </g>
+      <g transform="translate(0,151)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Beverly Hills Cop</text>
+      </g>
+      <g transform="translate(0,173)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Beverly Hills Cop II</text>
+      </g>
+      <g transform="translate(0,195)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Beverly Hills Cop III</text>
+      </g>
+      <g transform="translate(0,217)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Black Hole</text>
+      </g>
+      <g transform="translate(0,239)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Big Parade</text>
+      </g>
+      <g transform="translate(0,261)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Boyz n the Hood</text>
+      </g>
+      <g transform="translate(0,283)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Book of Mormon Movie,
+          Volume 1: The Journey</text>
+      </g>
+      <g transform="translate(0,305)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Return to the Blue Lagoon</text>
+      </g>
+      <g transform="translate(0,327)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Bright Lights, Big City</text>
+      </g>
+      <g transform="translate(0,349)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Blue Bird</text>
+      </g>
+      <g transform="translate(0,371)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Blue Butterfly</text>
+      </g>
+      <g transform="translate(0,393)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Blade Runner</text>
+      </g>
+      <g transform="translate(0,415)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Bloodsport</text>
+      </g>
+      <g transform="translate(0,437)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Blues Brothers</text>
+      </g>
+      <g transform="translate(0,459)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Blow Out</text>
+      </g>
+      <g transform="translate(0,481)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">De battre mon cœur s'est arrêté</text>
+      </g>
+      <g transform="translate(0,503)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Broadway Melody</text>
+      </g>
+      <g transform="translate(0,525)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Boom Town</text>
+      </g>
+      <g transform="translate(0,547)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Bill &amp; Ted's Bogus Journey</text>
+      </g>
+      <g transform="translate(0,569)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Birth of a Nation</text>
+      </g>
+      <g transform="translate(0,591)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Ballad of Cable Hogue</text>
+      </g>
+      <g transform="translate(0,613)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Blood of Heroes</text>
+      </g>
+      <g transform="translate(0,635)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Blood of My Brother: A Story of Death in Iraq</text>
+      </g>
+      <g transform="translate(0,657)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Boomerang</text>
+      </g>
+      <g transform="translate(0,679)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Bridge on the River Kwai</text>
+      </g>
+      <g transform="translate(0,701)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Born on the Fourth of July</text>
+      </g>
+      <g transform="translate(0,723)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Basquiat</text>
+      </g>
+      <g transform="translate(0,745)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Black Rain</text>
+      </g>
+      <g transform="translate(0,767)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Bottle Rocket</text>
+      </g>
+      <g transform="translate(0,789)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩</text>
+      </g>
+      <g transform="translate(0,811)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿.🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿</text>
+      </g>
     </g>
-  </g>
-  <g aria-label="y-axis tick label" transform="translate(-8.5,0.5)">
-    <g text-anchor="end" transform="translate(2,0)">
-      <text y="0.32em" transform="translate(180,42)">The Best Years of Our Lives</text>
-      <text y="0.32em" transform="translate(180,63)">The Ballad of Gregorio Cortez</text>
-      <text y="0.32em" transform="translate(180,84)">My Big Fat Independent Movie</text>
-      <text y="0.32em" transform="translate(180,105)">Battle for the Planet of the Apes</text>
-      <text y="0.32em" transform="translate(180,126)">Big Things</text>
-      <text y="0.32em" transform="translate(180,147)">Bogus</text>
-      <text y="0.32em" transform="translate(180,168)">Beverly Hills Cop</text>
-      <text y="0.32em" transform="translate(180,189)">Beverly Hills Cop II</text>
-      <text y="0.32em" transform="translate(180,210)">Beverly Hills Cop III</text>
-      <text y="0.32em" transform="translate(180,231)">The Black Hole</text>
-      <text y="0.32em" transform="translate(180,252)">The Big Parade</text>
-      <text y="0.32em" transform="translate(180,273)">Boyz n the Hood</text>
-      <text transform="translate(180,294)"><tspan x="0" y="-0.18em">The Book of Mormon Movie,</tspan><tspan x="0" dy="1em">Volume 1: The Journey</tspan></text>
-      <text y="0.32em" transform="translate(180,315)">Return to the Blue Lagoon</text>
-      <text y="0.32em" transform="translate(180,336)">Bright Lights, Big City</text>
-      <text y="0.32em" transform="translate(180,357)">The Blue Bird</text>
-      <text y="0.32em" transform="translate(180,378)">The Blue Butterfly</text>
-      <text y="0.32em" transform="translate(180,399)">Blade Runner</text>
-      <text y="0.32em" transform="translate(180,420)">Bloodsport</text>
-      <text y="0.32em" transform="translate(180,441)">The Blues Brothers</text>
-      <text y="0.32em" transform="translate(180,462)">Blow Out</text>
-      <text y="0.32em" transform="translate(180,483)">De battre mon cœur s'est arrêté</text>
-      <text y="0.32em" transform="translate(180,504)">The Broadway Melody</text>
-      <text y="0.32em" transform="translate(180,525)">Boom Town</text>
-      <text y="0.32em" transform="translate(180,546)">Bill &amp; Ted's Bogus Journey</text>
-      <text y="0.32em" transform="translate(180,567)">The Birth of a Nation</text>
-      <text y="0.32em" transform="translate(180,588)">The Ballad of Cable Hogue</text>
-      <text y="0.32em" transform="translate(180,609)">The Blood of Heroes</text>
-      <text y="0.32em" transform="translate(180,630)">The Blood of My Brother: A Story of Death in Iraq</text>
-      <text y="0.32em" transform="translate(180,651)">Boomerang</text>
-      <text y="0.32em" transform="translate(180,672)">The Bridge on the River Kwai</text>
-      <text y="0.32em" transform="translate(180,693)">Born on the Fourth of July</text>
-      <text y="0.32em" transform="translate(180,714)">Basquiat</text>
-      <text y="0.32em" transform="translate(180,735)">Black Rain</text>
-      <text y="0.32em" transform="translate(180,756)">Bottle Rocket</text>
-      <text y="0.32em" transform="translate(180,777)">👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩</text>
-      <text y="0.32em" transform="translate(180,798)">🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿.🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿</text>
+    <g aria-label="text" fill="currentColor" transform="translate(4,0)"></g>
+    <g aria-label="text" fill="currentColor" transform="translate(-4,0)">
+      <text x="799" y="19" dominant-baseline="central">The Best Years of Our Lives</text>
+      <text x="799" y="41" dominant-baseline="central">The Ballad of Gregorio Cortez</text>
+      <text x="799" y="63" dominant-baseline="central">My Big Fat Independent Movie</text>
+      <text x="799" y="85" dominant-baseline="central">Battle for the Planet of the Apes</text>
+      <text x="799" y="107" dominant-baseline="central">Big Things</text>
+      <text x="799" y="129" dominant-baseline="central">Bogus</text>
+      <text x="799" y="151" dominant-baseline="central">Beverly Hills Cop</text>
+      <text x="799" y="173" dominant-baseline="central">Beverly Hills Cop II</text>
+      <text x="799" y="195" dominant-baseline="central">Beverly Hills Cop III</text>
+      <text x="799" y="217" dominant-baseline="central">The Black Hole</text>
+      <text x="799" y="239" dominant-baseline="central">The Big Parade</text>
+      <text x="799" y="261" dominant-baseline="central">Boyz n the Hood</text>
+      <text x="799" y="283" dominant-baseline="central">The Book of Mormon Movie,
+        Volume 1: The Journey</text>
+      <text x="799" y="305" dominant-baseline="central">Return to the Blue Lagoon</text>
+      <text x="799" y="327" dominant-baseline="central">Bright Lights, Big City</text>
+      <text x="799" y="349" dominant-baseline="central">The Blue Bird</text>
+      <text x="799" y="371" dominant-baseline="central">The Blue Butterfly</text>
+      <text x="799" y="393" dominant-baseline="central">Blade Runner</text>
+      <text x="799" y="415" dominant-baseline="central">Bloodsport</text>
+      <text x="799" y="437" dominant-baseline="central">The Blues Brothers</text>
+      <text x="799" y="459" dominant-baseline="central">Blow Out</text>
+      <text x="799" y="481" dominant-baseline="central">De battre mon cœur s'est arrêté</text>
+      <text x="799" y="503" dominant-baseline="central">The Broadway Melody</text>
+      <text x="799" y="525" dominant-baseline="central">Boom Town</text>
+      <text x="799" y="547" dominant-baseline="central">Bill &amp; Ted's Bogus Journey</text>
+      <text x="799" y="569" dominant-baseline="central">The Birth of a Nation</text>
+      <text x="799" y="591" dominant-baseline="central">The Ballad of Cable Hogue</text>
+      <text x="799" y="613" dominant-baseline="central">The Blood of Heroes</text>
+      <text x="799" y="635" dominant-baseline="central">The Blood of My Brother: A Story of Death in Iraq</text>
+      <text x="799" y="657" dominant-baseline="central">Boomerang</text>
+      <text x="799" y="679" dominant-baseline="central">The Bridge on the River Kwai</text>
+      <text x="799" y="701" dominant-baseline="central">Born on the Fourth of July</text>
+      <text x="799" y="723" dominant-baseline="central">Basquiat</text>
+      <text x="799" y="745" dominant-baseline="central">Black Rain</text>
+      <text x="799" y="767" dominant-baseline="central">Bottle Rocket</text>
+      <text x="799" y="789" dominant-baseline="central">👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩</text>
+      <text x="799" y="811" dominant-baseline="central">🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿.🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿</text>
     </g>
+    <g aria-label="text" fill="currentColor" transform="translate(4,0)"></g>
+    <g aria-label="text" fill="currentColor"></g>
+    <g aria-label="text" fill="currentColor" transform="translate(-4,0)"></g>
+    <g aria-label="text" fill="currentColor" transform="translate(-4,0)"></g>
+    <rect aria-label="frame" x="180" y="0" width="619" height="829" fill="none" stroke="currentColor" stroke-width="1"></rect>
   </g>
-  <g aria-label="text" transform="translate(4.5,0.5)">
-    <g text-anchor="start" transform="translate(2,0)">
-      <text y="0.32em" transform="translate(180,42)">ars of Our Lives<title>The Best Years of Our Lives</title></text>
-      <text y="0.32em" transform="translate(180,63)">Gregorio Cortez<title>The Ballad of Gregorio Cortez</title></text>
-      <text y="0.32em" transform="translate(180,84)">ependent Movie<title>My Big Fat Independent Movie</title></text>
-      <text y="0.32em" transform="translate(180,105)">anet of the Apes<title>Battle for the Planet of the Apes</title></text>
-      <text y="0.32em" transform="translate(180,126)">Big Things</text>
-      <text y="0.32em" transform="translate(180,147)">Bogus</text>
-      <text y="0.32em" transform="translate(180,168)">everly Hills Cop<title>Beverly Hills Cop</title></text>
-      <text y="0.32em" transform="translate(180,189)">verly Hills Cop II<title>Beverly Hills Cop II</title></text>
-      <text y="0.32em" transform="translate(180,210)">erly Hills Cop III<title>Beverly Hills Cop III</title></text>
-      <text y="0.32em" transform="translate(180,231)">The Black Hole</text>
-      <text y="0.32em" transform="translate(180,252)">The Big Parade</text>
-      <text y="0.32em" transform="translate(180,273)">Boyz n the Hood</text>
-      <text transform="translate(180,294)"><tspan x="0" y="-0.18em">Mormon Movie,</tspan><tspan x="0" dy="1em">e 1: The Journey</tspan><title>The Book of Mormon Movie,
-          Volume 1: The Journey</title></text>
-      <text y="0.32em" transform="translate(180,315)">the Blue Lagoon<title>Return to the Blue Lagoon</title></text>
-      <text y="0.32em" transform="translate(180,336)">Lights, Big City<title>Bright Lights, Big City</title></text>
-      <text y="0.32em" transform="translate(180,357)">The Blue Bird</text>
-      <text y="0.32em" transform="translate(180,378)">e Blue Butterfly<title>The Blue Butterfly</title></text>
-      <text y="0.32em" transform="translate(180,399)">Blade Runner</text>
-      <text y="0.32em" transform="translate(180,420)">Bloodsport</text>
-      <text y="0.32em" transform="translate(180,441)">e Blues Brothers<title>The Blues Brothers</title></text>
-      <text y="0.32em" transform="translate(180,462)">Blow Out</text>
-      <text y="0.32em" transform="translate(180,483)">cœur s'est arrêté<title>De battre mon cœur s'est arrêté</title></text>
-      <text y="0.32em" transform="translate(180,504)">roadway Melody<title>The Broadway Melody</title></text>
-      <text y="0.32em" transform="translate(180,525)">Boom Town</text>
-      <text y="0.32em" transform="translate(180,546)">Bogus Journey<title>Bill &amp; Ted's Bogus Journey</title></text>
-      <text y="0.32em" transform="translate(180,567)">Birth of a Nation<title>The Birth of a Nation</title></text>
-      <text y="0.32em" transform="translate(180,588)">of Cable Hogue<title>The Ballad of Cable Hogue</title></text>
-      <text y="0.32em" transform="translate(180,609)">Blood of Heroes<title>The Blood of Heroes</title></text>
-      <text y="0.32em" transform="translate(180,630)">of Death in Iraq<title>The Blood of My Brother: A Story of Death in Iraq</title></text>
-      <text y="0.32em" transform="translate(180,651)">Boomerang</text>
-      <text y="0.32em" transform="translate(180,672)">n the River Kwai<title>The Bridge on the River Kwai</title></text>
-      <text y="0.32em" transform="translate(180,693)">e Fourth of July<title>Born on the Fourth of July</title></text>
-      <text y="0.32em" transform="translate(180,714)">Basquiat</text>
-      <text y="0.32em" transform="translate(180,735)">Black Rain</text>
-      <text y="0.32em" transform="translate(180,756)">Bottle Rocket</text>
-      <text y="0.32em" transform="translate(180,777)">👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩<title>👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩</title></text>
-      <text y="0.32em" transform="translate(180,798)">.🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿<title>🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿.🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿</title></text>
+  <g transform="translate(391,0)">
+    <g aria-label="y-axis" transform="translate(180,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
+      <line y1="0" y2="829" stroke="currentColor"></line>
+      <g transform="translate(0,19)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Best Years of Our Lives</text>
+      </g>
+      <g transform="translate(0,41)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Ballad of Gregorio Cortez</text>
+      </g>
+      <g transform="translate(0,63)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">My Big Fat Independent Movie</text>
+      </g>
+      <g transform="translate(0,85)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Battle for the Planet of the Apes</text>
+      </g>
+      <g transform="translate(0,107)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Big Things</text>
+      </g>
+      <g transform="translate(0,129)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Bogus</text>
+      </g>
+      <g transform="translate(0,151)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Beverly Hills Cop</text>
+      </g>
+      <g transform="translate(0,173)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Beverly Hills Cop II</text>
+      </g>
+      <g transform="translate(0,195)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Beverly Hills Cop III</text>
+      </g>
+      <g transform="translate(0,217)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Black Hole</text>
+      </g>
+      <g transform="translate(0,239)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Big Parade</text>
+      </g>
+      <g transform="translate(0,261)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Boyz n the Hood</text>
+      </g>
+      <g transform="translate(0,283)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Book of Mormon Movie,
+          Volume 1: The Journey</text>
+      </g>
+      <g transform="translate(0,305)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Return to the Blue Lagoon</text>
+      </g>
+      <g transform="translate(0,327)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Bright Lights, Big City</text>
+      </g>
+      <g transform="translate(0,349)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Blue Bird</text>
+      </g>
+      <g transform="translate(0,371)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Blue Butterfly</text>
+      </g>
+      <g transform="translate(0,393)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Blade Runner</text>
+      </g>
+      <g transform="translate(0,415)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Bloodsport</text>
+      </g>
+      <g transform="translate(0,437)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Blues Brothers</text>
+      </g>
+      <g transform="translate(0,459)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Blow Out</text>
+      </g>
+      <g transform="translate(0,481)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">De battre mon cœur s'est arrêté</text>
+      </g>
+      <g transform="translate(0,503)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Broadway Melody</text>
+      </g>
+      <g transform="translate(0,525)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Boom Town</text>
+      </g>
+      <g transform="translate(0,547)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Bill &amp; Ted's Bogus Journey</text>
+      </g>
+      <g transform="translate(0,569)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Birth of a Nation</text>
+      </g>
+      <g transform="translate(0,591)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Ballad of Cable Hogue</text>
+      </g>
+      <g transform="translate(0,613)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Blood of Heroes</text>
+      </g>
+      <g transform="translate(0,635)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Blood of My Brother: A Story of Death in Iraq</text>
+      </g>
+      <g transform="translate(0,657)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Boomerang</text>
+      </g>
+      <g transform="translate(0,679)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Bridge on the River Kwai</text>
+      </g>
+      <g transform="translate(0,701)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Born on the Fourth of July</text>
+      </g>
+      <g transform="translate(0,723)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Basquiat</text>
+      </g>
+      <g transform="translate(0,745)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Black Rain</text>
+      </g>
+      <g transform="translate(0,767)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Bottle Rocket</text>
+      </g>
+      <g transform="translate(0,789)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩</text>
+      </g>
+      <g transform="translate(0,811)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿.🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿</text>
+      </g>
     </g>
-  </g>
-  <g aria-label="text" transform="translate(-3.5,0.5)">
-    <g text-anchor="end" transform="translate(103,0)">
-      <text y="0.32em" transform="translate(271,42)">The Best Years<title>The Best Years of Our Lives</title></text>
-      <text y="0.32em" transform="translate(271,63)">The Ballad of Gr<title>The Ballad of Gregorio Cortez</title></text>
-      <text y="0.32em" transform="translate(271,84)">My Big Fat Inde<title>My Big Fat Independent Movie</title></text>
-      <text y="0.32em" transform="translate(271,105)">Battle for the Pl<title>Battle for the Planet of the Apes</title></text>
-      <text y="0.32em" transform="translate(271,126)">Big Things</text>
-      <text y="0.32em" transform="translate(271,147)">Bogus</text>
-      <text y="0.32em" transform="translate(271,168)">Beverly Hills Co<title>Beverly Hills Cop</title></text>
-      <text y="0.32em" transform="translate(271,189)">Beverly Hills Co<title>Beverly Hills Cop II</title></text>
-      <text y="0.32em" transform="translate(271,210)">Beverly Hills Co<title>Beverly Hills Cop III</title></text>
-      <text y="0.32em" transform="translate(271,231)">The Black Hole</text>
-      <text y="0.32em" transform="translate(271,252)">The Big Parade</text>
-      <text y="0.32em" transform="translate(271,273)">Boyz n the Hood</text>
-      <text transform="translate(271,294)"><tspan x="0" y="-0.18em">The Book of Mor</tspan><tspan x="0" dy="1em">Volume 1: The J</tspan><title>The Book of Mormon Movie,
-          Volume 1: The Journey</title></text>
-      <text y="0.32em" transform="translate(271,315)">Return to the Bl<title>Return to the Blue Lagoon</title></text>
-      <text y="0.32em" transform="translate(271,336)">Bright Lights, Bi<title>Bright Lights, Big City</title></text>
-      <text y="0.32em" transform="translate(271,357)">The Blue Bird</text>
-      <text y="0.32em" transform="translate(271,378)">The Blue Butterf<title>The Blue Butterfly</title></text>
-      <text y="0.32em" transform="translate(271,399)">Blade Runner</text>
-      <text y="0.32em" transform="translate(271,420)">Bloodsport</text>
-      <text y="0.32em" transform="translate(271,441)">The Blues Broth<title>The Blues Brothers</title></text>
-      <text y="0.32em" transform="translate(271,462)">Blow Out</text>
-      <text y="0.32em" transform="translate(271,483)">De battre mon c<title>De battre mon cœur s'est arrêté</title></text>
-      <text y="0.32em" transform="translate(271,504)">The Broadway<title>The Broadway Melody</title></text>
-      <text y="0.32em" transform="translate(271,525)">Boom Town</text>
-      <text y="0.32em" transform="translate(271,546)">Bill &amp; Ted's Bog<title>Bill &amp; Ted's Bogus Journey</title></text>
-      <text y="0.32em" transform="translate(271,567)">The Birth of a N<title>The Birth of a Nation</title></text>
-      <text y="0.32em" transform="translate(271,588)">The Ballad of Ca<title>The Ballad of Cable Hogue</title></text>
-      <text y="0.32em" transform="translate(271,609)">The Blood of He<title>The Blood of Heroes</title></text>
-      <text y="0.32em" transform="translate(271,630)">The Blood of My<title>The Blood of My Brother: A Story of Death in Iraq</title></text>
-      <text y="0.32em" transform="translate(271,651)">Boomerang</text>
-      <text y="0.32em" transform="translate(271,672)">The Bridge on t<title>The Bridge on the River Kwai</title></text>
-      <text y="0.32em" transform="translate(271,693)">Born on the Fou<title>Born on the Fourth of July</title></text>
-      <text y="0.32em" transform="translate(271,714)">Basquiat</text>
-      <text y="0.32em" transform="translate(271,735)">Black Rain</text>
-      <text y="0.32em" transform="translate(271,756)">Bottle Rocket</text>
-      <text y="0.32em" transform="translate(271,777)">👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩<title>👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩</title></text>
-      <text y="0.32em" transform="translate(271,798)">🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿.<title>🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿.🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿</title></text>
+    <g aria-label="text" fill="currentColor" transform="translate(4,0)"></g>
+    <g aria-label="text" fill="currentColor" transform="translate(-4,0)"></g>
+    <g aria-label="text" fill="currentColor" transform="translate(4,0)">
+      <text x="180" y="19" dominant-baseline="central">The Best Years of Our Lives</text>
+      <text x="180" y="41" dominant-baseline="central">The Ballad of Gregorio Cortez</text>
+      <text x="180" y="63" dominant-baseline="central">My Big Fat Independent Movie</text>
+      <text x="180" y="85" dominant-baseline="central">Battle for the Planet of the Apes</text>
+      <text x="180" y="107" dominant-baseline="central">Big Things</text>
+      <text x="180" y="129" dominant-baseline="central">Bogus</text>
+      <text x="180" y="151" dominant-baseline="central">Beverly Hills Cop</text>
+      <text x="180" y="173" dominant-baseline="central">Beverly Hills Cop II</text>
+      <text x="180" y="195" dominant-baseline="central">Beverly Hills Cop III</text>
+      <text x="180" y="217" dominant-baseline="central">The Black Hole</text>
+      <text x="180" y="239" dominant-baseline="central">The Big Parade</text>
+      <text x="180" y="261" dominant-baseline="central">Boyz n the Hood</text>
+      <text x="180" y="283" dominant-baseline="central">The Book of Mormon Movie,
+        Volume 1: The Journey</text>
+      <text x="180" y="305" dominant-baseline="central">Return to the Blue Lagoon</text>
+      <text x="180" y="327" dominant-baseline="central">Bright Lights, Big City</text>
+      <text x="180" y="349" dominant-baseline="central">The Blue Bird</text>
+      <text x="180" y="371" dominant-baseline="central">The Blue Butterfly</text>
+      <text x="180" y="393" dominant-baseline="central">Blade Runner</text>
+      <text x="180" y="415" dominant-baseline="central">Bloodsport</text>
+      <text x="180" y="437" dominant-baseline="central">The Blues Brothers</text>
+      <text x="180" y="459" dominant-baseline="central">Blow Out</text>
+      <text x="180" y="481" dominant-baseline="central">De battre mon cœur s'est arrêté</text>
+      <text x="180" y="503" dominant-baseline="central">The Broadway Melody</text>
+      <text x="180" y="525" dominant-baseline="central">Boom Town</text>
+      <text x="180" y="547" dominant-baseline="central">Bill &amp; Ted's Bogus Journey</text>
+      <text x="180" y="569" dominant-baseline="central">The Birth of a Nation</text>
+      <text x="180" y="591" dominant-baseline="central">The Ballad of Cable Hogue</text>
+      <text x="180" y="613" dominant-baseline="central">The Blood of Heroes</text>
+      <text x="180" y="635" dominant-baseline="central">The Blood of My Brother: A Story of Death in Iraq</text>
+      <text x="180" y="657" dominant-baseline="central">Boomerang</text>
+      <text x="180" y="679" dominant-baseline="central">The Bridge on the River Kwai</text>
+      <text x="180" y="701" dominant-baseline="central">Born on the Fourth of July</text>
+      <text x="180" y="723" dominant-baseline="central">Basquiat</text>
+      <text x="180" y="745" dominant-baseline="central">Black Rain</text>
+      <text x="180" y="767" dominant-baseline="central">Bottle Rocket</text>
+      <text x="180" y="789" dominant-baseline="central">👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩</text>
+      <text x="180" y="811" dominant-baseline="central">🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿.🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿</text>
     </g>
+    <g aria-label="text" fill="currentColor"></g>
+    <g aria-label="text" fill="currentColor" transform="translate(-4,0)"></g>
+    <g aria-label="text" fill="currentColor" transform="translate(-4,0)"></g>
+    <rect aria-label="frame" x="180" y="0" width="619" height="829" fill="none" stroke="currentColor" stroke-width="1"></rect>
   </g>
-  <g aria-label="text" transform="translate(4.5,0.5)">
-    <g text-anchor="start" transform="translate(204,0)">
-      <text y="0.32em" transform="translate(180,42)">…rs of Our Lives<title>The Best Years of Our Lives</title></text>
-      <text y="0.32em" transform="translate(180,63)">…regorio Cortez<title>The Ballad of Gregorio Cortez</title></text>
-      <text y="0.32em" transform="translate(180,84)">…pendent Movie<title>My Big Fat Independent Movie</title></text>
-      <text y="0.32em" transform="translate(180,105)">…et of the Apes<title>Battle for the Planet of the Apes</title></text>
-      <text y="0.32em" transform="translate(180,126)">Big Things</text>
-      <text y="0.32em" transform="translate(180,147)">Bogus</text>
-      <text y="0.32em" transform="translate(180,168)">…verly Hills Cop<title>Beverly Hills Cop</title></text>
-      <text y="0.32em" transform="translate(180,189)">…rly Hills Cop II<title>Beverly Hills Cop II</title></text>
-      <text y="0.32em" transform="translate(180,210)">…rly Hills Cop III<title>Beverly Hills Cop III</title></text>
-      <text y="0.32em" transform="translate(180,231)">The Black Hole</text>
-      <text y="0.32em" transform="translate(180,252)">The Big Parade</text>
-      <text y="0.32em" transform="translate(180,273)">Boyz n the Hood</text>
-      <text transform="translate(180,294)"><tspan x="0" y="-0.18em">…ormon Movie,</tspan><tspan x="0" dy="1em">…1: The Journey</tspan><title>The Book of Mormon Movie,
-          Volume 1: The Journey</title></text>
-      <text y="0.32em" transform="translate(180,315)">…e Blue Lagoon<title>Return to the Blue Lagoon</title></text>
-      <text y="0.32em" transform="translate(180,336)">…ights, Big City<title>Bright Lights, Big City</title></text>
-      <text y="0.32em" transform="translate(180,357)">The Blue Bird</text>
-      <text y="0.32em" transform="translate(180,378)">…Blue Butterfly<title>The Blue Butterfly</title></text>
-      <text y="0.32em" transform="translate(180,399)">Blade Runner</text>
-      <text y="0.32em" transform="translate(180,420)">Bloodsport</text>
-      <text y="0.32em" transform="translate(180,441)">…Blues Brothers<title>The Blues Brothers</title></text>
-      <text y="0.32em" transform="translate(180,462)">Blow Out</text>
-      <text y="0.32em" transform="translate(180,483)">…ur s'est arrêté<title>De battre mon cœur s'est arrêté</title></text>
-      <text y="0.32em" transform="translate(180,504)">…adway Melody<title>The Broadway Melody</title></text>
-      <text y="0.32em" transform="translate(180,525)">Boom Town</text>
-      <text y="0.32em" transform="translate(180,546)">…ogus Journey<title>Bill &amp; Ted's Bogus Journey</title></text>
-      <text y="0.32em" transform="translate(180,567)">…rth of a Nation<title>The Birth of a Nation</title></text>
-      <text y="0.32em" transform="translate(180,588)">…f Cable Hogue<title>The Ballad of Cable Hogue</title></text>
-      <text y="0.32em" transform="translate(180,609)">…lood of Heroes<title>The Blood of Heroes</title></text>
-      <text y="0.32em" transform="translate(180,630)">…f Death in Iraq<title>The Blood of My Brother: A Story of Death in Iraq</title></text>
-      <text y="0.32em" transform="translate(180,651)">Boomerang</text>
-      <text y="0.32em" transform="translate(180,672)">…the River Kwai<title>The Bridge on the River Kwai</title></text>
-      <text y="0.32em" transform="translate(180,693)">…Fourth of July<title>Born on the Fourth of July</title></text>
-      <text y="0.32em" transform="translate(180,714)">Basquiat</text>
-      <text y="0.32em" transform="translate(180,735)">Black Rain</text>
-      <text y="0.32em" transform="translate(180,756)">Bottle Rocket</text>
-      <text y="0.32em" transform="translate(180,777)">…👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩<title>👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩</title></text>
-      <text y="0.32em" transform="translate(180,798)">….👨🏻.👧🏼.👦🏽.🧒🏿<title>🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿.🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿</title></text>
+  <g transform="translate(495,0)">
+    <g aria-label="y-axis" transform="translate(180,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
+      <line y1="0" y2="829" stroke="currentColor"></line>
+      <g transform="translate(0,19)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Best Years of Our Lives</text>
+      </g>
+      <g transform="translate(0,41)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Ballad of Gregorio Cortez</text>
+      </g>
+      <g transform="translate(0,63)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">My Big Fat Independent Movie</text>
+      </g>
+      <g transform="translate(0,85)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Battle for the Planet of the Apes</text>
+      </g>
+      <g transform="translate(0,107)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Big Things</text>
+      </g>
+      <g transform="translate(0,129)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Bogus</text>
+      </g>
+      <g transform="translate(0,151)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Beverly Hills Cop</text>
+      </g>
+      <g transform="translate(0,173)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Beverly Hills Cop II</text>
+      </g>
+      <g transform="translate(0,195)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Beverly Hills Cop III</text>
+      </g>
+      <g transform="translate(0,217)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Black Hole</text>
+      </g>
+      <g transform="translate(0,239)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Big Parade</text>
+      </g>
+      <g transform="translate(0,261)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Boyz n the Hood</text>
+      </g>
+      <g transform="translate(0,283)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Book of Mormon Movie,
+          Volume 1: The Journey</text>
+      </g>
+      <g transform="translate(0,305)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Return to the Blue Lagoon</text>
+      </g>
+      <g transform="translate(0,327)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Bright Lights, Big City</text>
+      </g>
+      <g transform="translate(0,349)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Blue Bird</text>
+      </g>
+      <g transform="translate(0,371)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Blue Butterfly</text>
+      </g>
+      <g transform="translate(0,393)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Blade Runner</text>
+      </g>
+      <g transform="translate(0,415)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Bloodsport</text>
+      </g>
+      <g transform="translate(0,437)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Blues Brothers</text>
+      </g>
+      <g transform="translate(0,459)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Blow Out</text>
+      </g>
+      <g transform="translate(0,481)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">De battre mon cœur s'est arrêté</text>
+      </g>
+      <g transform="translate(0,503)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Broadway Melody</text>
+      </g>
+      <g transform="translate(0,525)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Boom Town</text>
+      </g>
+      <g transform="translate(0,547)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Bill &amp; Ted's Bogus Journey</text>
+      </g>
+      <g transform="translate(0,569)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Birth of a Nation</text>
+      </g>
+      <g transform="translate(0,591)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Ballad of Cable Hogue</text>
+      </g>
+      <g transform="translate(0,613)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Blood of Heroes</text>
+      </g>
+      <g transform="translate(0,635)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Blood of My Brother: A Story of Death in Iraq</text>
+      </g>
+      <g transform="translate(0,657)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Boomerang</text>
+      </g>
+      <g transform="translate(0,679)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Bridge on the River Kwai</text>
+      </g>
+      <g transform="translate(0,701)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Born on the Fourth of July</text>
+      </g>
+      <g transform="translate(0,723)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Basquiat</text>
+      </g>
+      <g transform="translate(0,745)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Black Rain</text>
+      </g>
+      <g transform="translate(0,767)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Bottle Rocket</text>
+      </g>
+      <g transform="translate(0,789)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩</text>
+      </g>
+      <g transform="translate(0,811)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿.🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿</text>
+      </g>
     </g>
-  </g>
-  <g aria-label="text" transform="translate(0.5,0.5)">
-    <g transform="translate(305,0)">
-      <text y="0.32em" transform="translate(225.5,42)">The Be…ur Lives<title>The Best Years of Our Lives</title></text>
-      <text y="0.32em" transform="translate(225.5,63)">The Ba…Cortez<title>The Ballad of Gregorio Cortez</title></text>
-      <text y="0.32em" transform="translate(225.5,84)">My Big…t Movie<title>My Big Fat Independent Movie</title></text>
-      <text y="0.32em" transform="translate(225.5,105)">Battle f…e Apes<title>Battle for the Planet of the Apes</title></text>
-      <text y="0.32em" transform="translate(225.5,126)">Big Things</text>
-      <text y="0.32em" transform="translate(225.5,147)">Bogus</text>
-      <text y="0.32em" transform="translate(225.5,168)">Beverly…ills Cop<title>Beverly Hills Cop</title></text>
-      <text y="0.32em" transform="translate(225.5,189)">Beverly…Cop II<title>Beverly Hills Cop II</title></text>
-      <text y="0.32em" transform="translate(225.5,210)">Beverly…Cop III<title>Beverly Hills Cop III</title></text>
-      <text y="0.32em" transform="translate(225.5,231)">The Black Hole</text>
-      <text y="0.32em" transform="translate(225.5,252)">The Big Parade</text>
-      <text y="0.32em" transform="translate(225.5,273)">Boyz n the Hood</text>
-      <text transform="translate(225.5,294)"><tspan x="0" y="-0.18em">The Bo…Movie,</tspan><tspan x="0" dy="1em">Volum…Journey</tspan><title>The Book of Mormon Movie,
-          Volume 1: The Journey</title></text>
-      <text y="0.32em" transform="translate(225.5,315)">Return…Lagoon<title>Return to the Blue Lagoon</title></text>
-      <text y="0.32em" transform="translate(225.5,336)">Bright…Big City<title>Bright Lights, Big City</title></text>
-      <text y="0.32em" transform="translate(225.5,357)">The Blue Bird</text>
-      <text y="0.32em" transform="translate(225.5,378)">The Bl…utterfly<title>The Blue Butterfly</title></text>
-      <text y="0.32em" transform="translate(225.5,399)">Blade Runner</text>
-      <text y="0.32em" transform="translate(225.5,420)">Bloodsport</text>
-      <text y="0.32em" transform="translate(225.5,441)">The Bl…rothers<title>The Blues Brothers</title></text>
-      <text y="0.32em" transform="translate(225.5,462)">Blow Out</text>
-      <text y="0.32em" transform="translate(225.5,483)">De batt…t arrêté<title>De battre mon cœur s'est arrêté</title></text>
-      <text y="0.32em" transform="translate(225.5,504)">The Br…Melody<title>The Broadway Melody</title></text>
-      <text y="0.32em" transform="translate(225.5,525)">Boom Town</text>
-      <text y="0.32em" transform="translate(225.5,546)">Bill &amp; T…Journey<title>Bill &amp; Ted's Bogus Journey</title></text>
-      <text y="0.32em" transform="translate(225.5,567)">The Bir…Nation<title>The Birth of a Nation</title></text>
-      <text y="0.32em" transform="translate(225.5,588)">The Ba…Hogue<title>The Ballad of Cable Hogue</title></text>
-      <text y="0.32em" transform="translate(225.5,609)">The Bl…f Heroes<title>The Blood of Heroes</title></text>
-      <text y="0.32em" transform="translate(225.5,630)">The Bl…h in Iraq<title>The Blood of My Brother: A Story of Death in Iraq</title></text>
-      <text y="0.32em" transform="translate(225.5,651)">Boomerang</text>
-      <text y="0.32em" transform="translate(225.5,672)">The Bri…er Kwai<title>The Bridge on the River Kwai</title></text>
-      <text y="0.32em" transform="translate(225.5,693)">Born o…of July<title>Born on the Fourth of July</title></text>
-      <text y="0.32em" transform="translate(225.5,714)">Basquiat</text>
-      <text y="0.32em" transform="translate(225.5,735)">Black Rain</text>
-      <text y="0.32em" transform="translate(225.5,756)">Bottle Rocket</text>
-      <text y="0.32em" transform="translate(225.5,777)">👁️‍🗨️👩‍❤️‍💋‍👩…👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩<title>👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩</title></text>
-      <text y="0.32em" transform="translate(225.5,798)">🧑🏾.👨🏻.….👦🏽.🧒🏿<title>🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿.🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿</title></text>
+    <g aria-label="text" fill="currentColor" transform="translate(4,0)"></g>
+    <g aria-label="text" fill="currentColor" transform="translate(-4,0)"></g>
+    <g aria-label="text" fill="currentColor" transform="translate(4,0)"></g>
+    <g aria-label="text" fill="currentColor">
+      <text x="489.5" y="19" dominant-baseline="central">The Best Years of Our Lives</text>
+      <text x="489.5" y="41" dominant-baseline="central">The Ballad of Gregorio Cortez</text>
+      <text x="489.5" y="63" dominant-baseline="central">My Big Fat Independent Movie</text>
+      <text x="489.5" y="85" dominant-baseline="central">Battle for the Planet of the Apes</text>
+      <text x="489.5" y="107" dominant-baseline="central">Big Things</text>
+      <text x="489.5" y="129" dominant-baseline="central">Bogus</text>
+      <text x="489.5" y="151" dominant-baseline="central">Beverly Hills Cop</text>
+      <text x="489.5" y="173" dominant-baseline="central">Beverly Hills Cop II</text>
+      <text x="489.5" y="195" dominant-baseline="central">Beverly Hills Cop III</text>
+      <text x="489.5" y="217" dominant-baseline="central">The Black Hole</text>
+      <text x="489.5" y="239" dominant-baseline="central">The Big Parade</text>
+      <text x="489.5" y="261" dominant-baseline="central">Boyz n the Hood</text>
+      <text x="489.5" y="283" dominant-baseline="central">The Book of Mormon Movie,
+        Volume 1: The Journey</text>
+      <text x="489.5" y="305" dominant-baseline="central">Return to the Blue Lagoon</text>
+      <text x="489.5" y="327" dominant-baseline="central">Bright Lights, Big City</text>
+      <text x="489.5" y="349" dominant-baseline="central">The Blue Bird</text>
+      <text x="489.5" y="371" dominant-baseline="central">The Blue Butterfly</text>
+      <text x="489.5" y="393" dominant-baseline="central">Blade Runner</text>
+      <text x="489.5" y="415" dominant-baseline="central">Bloodsport</text>
+      <text x="489.5" y="437" dominant-baseline="central">The Blues Brothers</text>
+      <text x="489.5" y="459" dominant-baseline="central">Blow Out</text>
+      <text x="489.5" y="481" dominant-baseline="central">De battre mon cœur s'est arrêté</text>
+      <text x="489.5" y="503" dominant-baseline="central">The Broadway Melody</text>
+      <text x="489.5" y="525" dominant-baseline="central">Boom Town</text>
+      <text x="489.5" y="547" dominant-baseline="central">Bill &amp; Ted's Bogus Journey</text>
+      <text x="489.5" y="569" dominant-baseline="central">The Birth of a Nation</text>
+      <text x="489.5" y="591" dominant-baseline="central">The Ballad of Cable Hogue</text>
+      <text x="489.5" y="613" dominant-baseline="central">The Blood of Heroes</text>
+      <text x="489.5" y="635" dominant-baseline="central">The Blood of My Brother: A Story of Death in Iraq</text>
+      <text x="489.5" y="657" dominant-baseline="central">Boomerang</text>
+      <text x="489.5" y="679" dominant-baseline="central">The Bridge on the River Kwai</text>
+      <text x="489.5" y="701" dominant-baseline="central">Born on the Fourth of July</text>
+      <text x="489.5" y="723" dominant-baseline="central">Basquiat</text>
+      <text x="489.5" y="745" dominant-baseline="central">Black Rain</text>
+      <text x="489.5" y="767" dominant-baseline="central">Bottle Rocket</text>
+      <text x="489.5" y="789" dominant-baseline="central">👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩</text>
+      <text x="489.5" y="811" dominant-baseline="central">🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿.🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿</text>
     </g>
+    <g aria-label="text" fill="currentColor" transform="translate(-4,0)"></g>
+    <g aria-label="text" fill="currentColor" transform="translate(-4,0)"></g>
+    <rect aria-label="frame" x="180" y="0" width="619" height="829" fill="none" stroke="currentColor" stroke-width="1"></rect>
   </g>
-  <g aria-label="text" transform="translate(-3.5,0.5)">
-    <g text-anchor="end" transform="translate(406,0)">
-      <text y="0.32em" transform="translate(271,42)">The Best Year…<title>The Best Years of Our Lives</title></text>
-      <text y="0.32em" transform="translate(271,63)">The Ballad of…<title>The Ballad of Gregorio Cortez</title></text>
-      <text y="0.32em" transform="translate(271,84)">My Big Fat Ind…<title>My Big Fat Independent Movie</title></text>
-      <text y="0.32em" transform="translate(271,105)">Battle for the…<title>Battle for the Planet of the Apes</title></text>
-      <text y="0.32em" transform="translate(271,126)">Big Things</text>
-      <text y="0.32em" transform="translate(271,147)">Bogus</text>
-      <text y="0.32em" transform="translate(271,168)">Beverly Hills C…<title>Beverly Hills Cop</title></text>
-      <text y="0.32em" transform="translate(271,189)">Beverly Hills C…<title>Beverly Hills Cop II</title></text>
-      <text y="0.32em" transform="translate(271,210)">Beverly Hills C…<title>Beverly Hills Cop III</title></text>
-      <text y="0.32em" transform="translate(271,231)">The Black Hole</text>
-      <text y="0.32em" transform="translate(271,252)">The Big Parade</text>
-      <text y="0.32em" transform="translate(271,273)">Boyz n the Hood</text>
-      <text transform="translate(271,294)"><tspan x="0" y="-0.18em">The Book of M…</tspan><tspan x="0" dy="1em">Volume 1: The…</tspan><title>The Book of Mormon Movie,
-          Volume 1: The Journey</title></text>
-      <text y="0.32em" transform="translate(271,315)">Return to the…<title>Return to the Blue Lagoon</title></text>
-      <text y="0.32em" transform="translate(271,336)">Bright Lights,…<title>Bright Lights, Big City</title></text>
-      <text y="0.32em" transform="translate(271,357)">The Blue Bird</text>
-      <text y="0.32em" transform="translate(271,378)">The Blue Butte…<title>The Blue Butterfly</title></text>
-      <text y="0.32em" transform="translate(271,399)">Blade Runner</text>
-      <text y="0.32em" transform="translate(271,420)">Bloodsport</text>
-      <text y="0.32em" transform="translate(271,441)">The Blues Brot…<title>The Blues Brothers</title></text>
-      <text y="0.32em" transform="translate(271,462)">Blow Out</text>
-      <text y="0.32em" transform="translate(271,483)">De battre mon…<title>De battre mon cœur s'est arrêté</title></text>
-      <text y="0.32em" transform="translate(271,504)">The Broadway…<title>The Broadway Melody</title></text>
-      <text y="0.32em" transform="translate(271,525)">Boom Town</text>
-      <text y="0.32em" transform="translate(271,546)">Bill &amp; Ted's Bo…<title>Bill &amp; Ted's Bogus Journey</title></text>
-      <text y="0.32em" transform="translate(271,567)">The Birth of a…<title>The Birth of a Nation</title></text>
-      <text y="0.32em" transform="translate(271,588)">The Ballad of…<title>The Ballad of Cable Hogue</title></text>
-      <text y="0.32em" transform="translate(271,609)">The Blood of H…<title>The Blood of Heroes</title></text>
-      <text y="0.32em" transform="translate(271,630)">The Blood of…<title>The Blood of My Brother: A Story of Death in Iraq</title></text>
-      <text y="0.32em" transform="translate(271,651)">Boomerang</text>
-      <text y="0.32em" transform="translate(271,672)">The Bridge on…<title>The Bridge on the River Kwai</title></text>
-      <text y="0.32em" transform="translate(271,693)">Born on the Fo…<title>Born on the Fourth of July</title></text>
-      <text y="0.32em" transform="translate(271,714)">Basquiat</text>
-      <text y="0.32em" transform="translate(271,735)">Black Rain</text>
-      <text y="0.32em" transform="translate(271,756)">Bottle Rocket</text>
-      <text y="0.32em" transform="translate(271,777)">👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️…<title>👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩</title></text>
-      <text y="0.32em" transform="translate(271,798)">🧑🏾.👨🏻.👧🏼.👦🏽.…<title>🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿.🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿</title></text>
+  <g transform="translate(599,0)">
+    <g aria-label="y-axis" transform="translate(180,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
+      <line y1="0" y2="829" stroke="currentColor"></line>
+      <g transform="translate(0,19)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Best Years of Our Lives</text>
+      </g>
+      <g transform="translate(0,41)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Ballad of Gregorio Cortez</text>
+      </g>
+      <g transform="translate(0,63)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">My Big Fat Independent Movie</text>
+      </g>
+      <g transform="translate(0,85)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Battle for the Planet of the Apes</text>
+      </g>
+      <g transform="translate(0,107)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Big Things</text>
+      </g>
+      <g transform="translate(0,129)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Bogus</text>
+      </g>
+      <g transform="translate(0,151)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Beverly Hills Cop</text>
+      </g>
+      <g transform="translate(0,173)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Beverly Hills Cop II</text>
+      </g>
+      <g transform="translate(0,195)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Beverly Hills Cop III</text>
+      </g>
+      <g transform="translate(0,217)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Black Hole</text>
+      </g>
+      <g transform="translate(0,239)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Big Parade</text>
+      </g>
+      <g transform="translate(0,261)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Boyz n the Hood</text>
+      </g>
+      <g transform="translate(0,283)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Book of Mormon Movie,
+          Volume 1: The Journey</text>
+      </g>
+      <g transform="translate(0,305)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Return to the Blue Lagoon</text>
+      </g>
+      <g transform="translate(0,327)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Bright Lights, Big City</text>
+      </g>
+      <g transform="translate(0,349)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Blue Bird</text>
+      </g>
+      <g transform="translate(0,371)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Blue Butterfly</text>
+      </g>
+      <g transform="translate(0,393)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Blade Runner</text>
+      </g>
+      <g transform="translate(0,415)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Bloodsport</text>
+      </g>
+      <g transform="translate(0,437)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Blues Brothers</text>
+      </g>
+      <g transform="translate(0,459)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Blow Out</text>
+      </g>
+      <g transform="translate(0,481)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">De battre mon cœur s'est arrêté</text>
+      </g>
+      <g transform="translate(0,503)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Broadway Melody</text>
+      </g>
+      <g transform="translate(0,525)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Boom Town</text>
+      </g>
+      <g transform="translate(0,547)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Bill &amp; Ted's Bogus Journey</text>
+      </g>
+      <g transform="translate(0,569)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Birth of a Nation</text>
+      </g>
+      <g transform="translate(0,591)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Ballad of Cable Hogue</text>
+      </g>
+      <g transform="translate(0,613)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Blood of Heroes</text>
+      </g>
+      <g transform="translate(0,635)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Blood of My Brother: A Story of Death in Iraq</text>
+      </g>
+      <g transform="translate(0,657)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Boomerang</text>
+      </g>
+      <g transform="translate(0,679)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Bridge on the River Kwai</text>
+      </g>
+      <g transform="translate(0,701)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Born on the Fourth of July</text>
+      </g>
+      <g transform="translate(0,723)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Basquiat</text>
+      </g>
+      <g transform="translate(0,745)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Black Rain</text>
+      </g>
+      <g transform="translate(0,767)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Bottle Rocket</text>
+      </g>
+      <g transform="translate(0,789)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩</text>
+      </g>
+      <g transform="translate(0,811)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿.🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿</text>
+      </g>
     </g>
-  </g>
-  <g aria-label="text" transform="translate(-3.5,0.5)">
-    <g text-anchor="end" font-family="ui-monospace, monospace" transform="translate(507,0)">
-      <text y="0.32em" transform="translate(271,42)">The Best Ye…<title>The Best Years of Our Lives</title></text>
-      <text y="0.32em" transform="translate(271,63)">The Ballad…<title>The Ballad of Gregorio Cortez</title></text>
-      <text y="0.32em" transform="translate(271,84)">My Big Fat…<title>My Big Fat Independent Movie</title></text>
-      <text y="0.32em" transform="translate(271,105)">Battle for…<title>Battle for the Planet of the Apes</title></text>
-      <text y="0.32em" transform="translate(271,126)">Big Things</text>
-      <text y="0.32em" transform="translate(271,147)">Bogus</text>
-      <text y="0.32em" transform="translate(271,168)">Beverly Hil…<title>Beverly Hills Cop</title></text>
-      <text y="0.32em" transform="translate(271,189)">Beverly Hil…<title>Beverly Hills Cop II</title></text>
-      <text y="0.32em" transform="translate(271,210)">Beverly Hil…<title>Beverly Hills Cop III</title></text>
-      <text y="0.32em" transform="translate(271,231)">The Black H…<title>The Black Hole</title></text>
-      <text y="0.32em" transform="translate(271,252)">The Big Par…<title>The Big Parade</title></text>
-      <text y="0.32em" transform="translate(271,273)">Boyz n the…<title>Boyz n the Hood</title></text>
-      <text transform="translate(271,294)"><tspan x="0" y="-0.18em">The Book of…</tspan><tspan x="0" dy="1em">Volume 1: T…</tspan><title>The Book of Mormon Movie,
-          Volume 1: The Journey</title></text>
-      <text y="0.32em" transform="translate(271,315)">Return to t…<title>Return to the Blue Lagoon</title></text>
-      <text y="0.32em" transform="translate(271,336)">Bright Ligh…<title>Bright Lights, Big City</title></text>
-      <text y="0.32em" transform="translate(271,357)">The Blue Bi…<title>The Blue Bird</title></text>
-      <text y="0.32em" transform="translate(271,378)">The Blue Bu…<title>The Blue Butterfly</title></text>
-      <text y="0.32em" transform="translate(271,399)">Blade Runner</text>
-      <text y="0.32em" transform="translate(271,420)">Bloodsport</text>
-      <text y="0.32em" transform="translate(271,441)">The Blues B…<title>The Blues Brothers</title></text>
-      <text y="0.32em" transform="translate(271,462)">Blow Out</text>
-      <text y="0.32em" transform="translate(271,483)">De battre m…<title>De battre mon cœur s'est arrêté</title></text>
-      <text y="0.32em" transform="translate(271,504)">The Broadwa…<title>The Broadway Melody</title></text>
-      <text y="0.32em" transform="translate(271,525)">Boom Town</text>
-      <text y="0.32em" transform="translate(271,546)">Bill &amp; Ted'…<title>Bill &amp; Ted's Bogus Journey</title></text>
-      <text y="0.32em" transform="translate(271,567)">The Birth o…<title>The Birth of a Nation</title></text>
-      <text y="0.32em" transform="translate(271,588)">The Ballad…<title>The Ballad of Cable Hogue</title></text>
-      <text y="0.32em" transform="translate(271,609)">The Blood o…<title>The Blood of Heroes</title></text>
-      <text y="0.32em" transform="translate(271,630)">The Blood o…<title>The Blood of My Brother: A Story of Death in Iraq</title></text>
-      <text y="0.32em" transform="translate(271,651)">Boomerang</text>
-      <text y="0.32em" transform="translate(271,672)">The Bridge…<title>The Bridge on the River Kwai</title></text>
-      <text y="0.32em" transform="translate(271,693)">Born on the…<title>Born on the Fourth of July</title></text>
-      <text y="0.32em" transform="translate(271,714)">Basquiat</text>
-      <text y="0.32em" transform="translate(271,735)">Black Rain</text>
-      <text y="0.32em" transform="translate(271,756)">Bottle Rock…<title>Bottle Rocket</title></text>
-      <text y="0.32em" transform="translate(271,777)">👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️…<title>👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩</title></text>
-      <text y="0.32em" transform="translate(271,798)">🧑🏾.👨🏻.👧🏼.👦🏽…<title>🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿.🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿</title></text>
+    <g aria-label="text" fill="currentColor" transform="translate(4,0)"></g>
+    <g aria-label="text" fill="currentColor" transform="translate(-4,0)"></g>
+    <g aria-label="text" fill="currentColor" transform="translate(4,0)"></g>
+    <g aria-label="text" fill="currentColor"></g>
+    <g aria-label="text" fill="currentColor" transform="translate(-4,0)">
+      <text x="799" y="19" dominant-baseline="central">The Best Years of Our Lives</text>
+      <text x="799" y="41" dominant-baseline="central">The Ballad of Gregorio Cortez</text>
+      <text x="799" y="63" dominant-baseline="central">My Big Fat Independent Movie</text>
+      <text x="799" y="85" dominant-baseline="central">Battle for the Planet of the Apes</text>
+      <text x="799" y="107" dominant-baseline="central">Big Things</text>
+      <text x="799" y="129" dominant-baseline="central">Bogus</text>
+      <text x="799" y="151" dominant-baseline="central">Beverly Hills Cop</text>
+      <text x="799" y="173" dominant-baseline="central">Beverly Hills Cop II</text>
+      <text x="799" y="195" dominant-baseline="central">Beverly Hills Cop III</text>
+      <text x="799" y="217" dominant-baseline="central">The Black Hole</text>
+      <text x="799" y="239" dominant-baseline="central">The Big Parade</text>
+      <text x="799" y="261" dominant-baseline="central">Boyz n the Hood</text>
+      <text x="799" y="283" dominant-baseline="central">The Book of Mormon Movie,
+        Volume 1: The Journey</text>
+      <text x="799" y="305" dominant-baseline="central">Return to the Blue Lagoon</text>
+      <text x="799" y="327" dominant-baseline="central">Bright Lights, Big City</text>
+      <text x="799" y="349" dominant-baseline="central">The Blue Bird</text>
+      <text x="799" y="371" dominant-baseline="central">The Blue Butterfly</text>
+      <text x="799" y="393" dominant-baseline="central">Blade Runner</text>
+      <text x="799" y="415" dominant-baseline="central">Bloodsport</text>
+      <text x="799" y="437" dominant-baseline="central">The Blues Brothers</text>
+      <text x="799" y="459" dominant-baseline="central">Blow Out</text>
+      <text x="799" y="481" dominant-baseline="central">De battre mon cœur s'est arrêté</text>
+      <text x="799" y="503" dominant-baseline="central">The Broadway Melody</text>
+      <text x="799" y="525" dominant-baseline="central">Boom Town</text>
+      <text x="799" y="547" dominant-baseline="central">Bill &amp; Ted's Bogus Journey</text>
+      <text x="799" y="569" dominant-baseline="central">The Birth of a Nation</text>
+      <text x="799" y="591" dominant-baseline="central">The Ballad of Cable Hogue</text>
+      <text x="799" y="613" dominant-baseline="central">The Blood of Heroes</text>
+      <text x="799" y="635" dominant-baseline="central">The Blood of My Brother: A Story of Death in Iraq</text>
+      <text x="799" y="657" dominant-baseline="central">Boomerang</text>
+      <text x="799" y="679" dominant-baseline="central">The Bridge on the River Kwai</text>
+      <text x="799" y="701" dominant-baseline="central">Born on the Fourth of July</text>
+      <text x="799" y="723" dominant-baseline="central">Basquiat</text>
+      <text x="799" y="745" dominant-baseline="central">Black Rain</text>
+      <text x="799" y="767" dominant-baseline="central">Bottle Rocket</text>
+      <text x="799" y="789" dominant-baseline="central">👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩</text>
+      <text x="799" y="811" dominant-baseline="central">🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿.🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿</text>
     </g>
+    <g aria-label="text" fill="currentColor" transform="translate(-4,0)"></g>
+    <rect aria-label="frame" x="180" y="0" width="619" height="829" fill="none" stroke="currentColor" stroke-width="1"></rect>
   </g>
-  <g aria-label="frame" transform="translate(0.5,0.5)">
-    <rect fill="none" stroke="currentColor" x="180" y="30" width="91" height="780" transform="translate(2,0)"></rect>
-    <rect fill="none" stroke="currentColor" x="180" y="30" width="91" height="780" transform="translate(103,0)"></rect>
-    <rect fill="none" stroke="currentColor" x="180" y="30" width="91" height="780" transform="translate(204,0)"></rect>
-    <rect fill="none" stroke="currentColor" x="180" y="30" width="91" height="780" transform="translate(305,0)"></rect>
-    <rect fill="none" stroke="currentColor" x="180" y="30" width="91" height="780" transform="translate(406,0)"></rect>
-    <rect fill="none" stroke="currentColor" x="180" y="30" width="91" height="780" transform="translate(507,0)"></rect>
+  <g transform="translate(703,0)">
+    <g aria-label="y-axis" transform="translate(180,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
+      <line y1="0" y2="829" stroke="currentColor"></line>
+      <g transform="translate(0,19)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Best Years of Our Lives</text>
+      </g>
+      <g transform="translate(0,41)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Ballad of Gregorio Cortez</text>
+      </g>
+      <g transform="translate(0,63)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">My Big Fat Independent Movie</text>
+      </g>
+      <g transform="translate(0,85)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Battle for the Planet of the Apes</text>
+      </g>
+      <g transform="translate(0,107)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Big Things</text>
+      </g>
+      <g transform="translate(0,129)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Bogus</text>
+      </g>
+      <g transform="translate(0,151)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Beverly Hills Cop</text>
+      </g>
+      <g transform="translate(0,173)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Beverly Hills Cop II</text>
+      </g>
+      <g transform="translate(0,195)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Beverly Hills Cop III</text>
+      </g>
+      <g transform="translate(0,217)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Black Hole</text>
+      </g>
+      <g transform="translate(0,239)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Big Parade</text>
+      </g>
+      <g transform="translate(0,261)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Boyz n the Hood</text>
+      </g>
+      <g transform="translate(0,283)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Book of Mormon Movie,
+          Volume 1: The Journey</text>
+      </g>
+      <g transform="translate(0,305)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Return to the Blue Lagoon</text>
+      </g>
+      <g transform="translate(0,327)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Bright Lights, Big City</text>
+      </g>
+      <g transform="translate(0,349)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Blue Bird</text>
+      </g>
+      <g transform="translate(0,371)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Blue Butterfly</text>
+      </g>
+      <g transform="translate(0,393)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Blade Runner</text>
+      </g>
+      <g transform="translate(0,415)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Bloodsport</text>
+      </g>
+      <g transform="translate(0,437)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Blues Brothers</text>
+      </g>
+      <g transform="translate(0,459)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Blow Out</text>
+      </g>
+      <g transform="translate(0,481)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">De battre mon cœur s'est arrêté</text>
+      </g>
+      <g transform="translate(0,503)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Broadway Melody</text>
+      </g>
+      <g transform="translate(0,525)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Boom Town</text>
+      </g>
+      <g transform="translate(0,547)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Bill &amp; Ted's Bogus Journey</text>
+      </g>
+      <g transform="translate(0,569)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Birth of a Nation</text>
+      </g>
+      <g transform="translate(0,591)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Ballad of Cable Hogue</text>
+      </g>
+      <g transform="translate(0,613)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Blood of Heroes</text>
+      </g>
+      <g transform="translate(0,635)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Blood of My Brother: A Story of Death in Iraq</text>
+      </g>
+      <g transform="translate(0,657)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Boomerang</text>
+      </g>
+      <g transform="translate(0,679)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">The Bridge on the River Kwai</text>
+      </g>
+      <g transform="translate(0,701)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Born on the Fourth of July</text>
+      </g>
+      <g transform="translate(0,723)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Basquiat</text>
+      </g>
+      <g transform="translate(0,745)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Black Rain</text>
+      </g>
+      <g transform="translate(0,767)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">Bottle Rocket</text>
+      </g>
+      <g transform="translate(0,789)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩</text>
+      </g>
+      <g transform="translate(0,811)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿.🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿</text>
+      </g>
+    </g>
+    <g aria-label="text" fill="currentColor" transform="translate(4,0)"></g>
+    <g aria-label="text" fill="currentColor" transform="translate(-4,0)"></g>
+    <g aria-label="text" fill="currentColor" transform="translate(4,0)"></g>
+    <g aria-label="text" fill="currentColor"></g>
+    <g aria-label="text" fill="currentColor" transform="translate(-4,0)"></g>
+    <g aria-label="text" fill="currentColor" transform="translate(-4,0)">
+      <text x="799" y="19" dominant-baseline="central">The Best Years of Our Lives</text>
+      <text x="799" y="41" dominant-baseline="central">The Ballad of Gregorio Cortez</text>
+      <text x="799" y="63" dominant-baseline="central">My Big Fat Independent Movie</text>
+      <text x="799" y="85" dominant-baseline="central">Battle for the Planet of the Apes</text>
+      <text x="799" y="107" dominant-baseline="central">Big Things</text>
+      <text x="799" y="129" dominant-baseline="central">Bogus</text>
+      <text x="799" y="151" dominant-baseline="central">Beverly Hills Cop</text>
+      <text x="799" y="173" dominant-baseline="central">Beverly Hills Cop II</text>
+      <text x="799" y="195" dominant-baseline="central">Beverly Hills Cop III</text>
+      <text x="799" y="217" dominant-baseline="central">The Black Hole</text>
+      <text x="799" y="239" dominant-baseline="central">The Big Parade</text>
+      <text x="799" y="261" dominant-baseline="central">Boyz n the Hood</text>
+      <text x="799" y="283" dominant-baseline="central">The Book of Mormon Movie,
+        Volume 1: The Journey</text>
+      <text x="799" y="305" dominant-baseline="central">Return to the Blue Lagoon</text>
+      <text x="799" y="327" dominant-baseline="central">Bright Lights, Big City</text>
+      <text x="799" y="349" dominant-baseline="central">The Blue Bird</text>
+      <text x="799" y="371" dominant-baseline="central">The Blue Butterfly</text>
+      <text x="799" y="393" dominant-baseline="central">Blade Runner</text>
+      <text x="799" y="415" dominant-baseline="central">Bloodsport</text>
+      <text x="799" y="437" dominant-baseline="central">The Blues Brothers</text>
+      <text x="799" y="459" dominant-baseline="central">Blow Out</text>
+      <text x="799" y="481" dominant-baseline="central">De battre mon cœur s'est arrêté</text>
+      <text x="799" y="503" dominant-baseline="central">The Broadway Melody</text>
+      <text x="799" y="525" dominant-baseline="central">Boom Town</text>
+      <text x="799" y="547" dominant-baseline="central">Bill &amp; Ted's Bogus Journey</text>
+      <text x="799" y="569" dominant-baseline="central">The Birth of a Nation</text>
+      <text x="799" y="591" dominant-baseline="central">The Ballad of Cable Hogue</text>
+      <text x="799" y="613" dominant-baseline="central">The Blood of Heroes</text>
+      <text x="799" y="635" dominant-baseline="central">The Blood of My Brother: A Story of Death in Iraq</text>
+      <text x="799" y="657" dominant-baseline="central">Boomerang</text>
+      <text x="799" y="679" dominant-baseline="central">The Bridge on the River Kwai</text>
+      <text x="799" y="701" dominant-baseline="central">Born on the Fourth of July</text>
+      <text x="799" y="723" dominant-baseline="central">Basquiat</text>
+      <text x="799" y="745" dominant-baseline="central">Black Rain</text>
+      <text x="799" y="767" dominant-baseline="central">Bottle Rocket</text>
+      <text x="799" y="789" dominant-baseline="central">👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩</text>
+      <text x="799" y="811" dominant-baseline="central">🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿.🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿</text>
+    </g>
+    <rect aria-label="frame" x="180" y="0" width="619" height="829" fill="none" stroke="currentColor" stroke-width="1"></rect>
   </g>
 </svg>

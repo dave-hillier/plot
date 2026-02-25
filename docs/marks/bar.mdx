@@ -7,21 +7,17 @@ import hadcrut from "../data/hadcrut.ts";
 import penguins from "../data/penguins.ts";
 import statepop from "../data/us-state-population-2010-2019.ts";
 
-export const timeseries = [];
+export const timeseries = [
+  {year: 2014, population: 7295.290765},
+  {year: 2015, population: 7379.797139},
+  {year: 2016, population: 7464.022049},
+  {year: 2017, population: 7547.858925},
+  // {year: 2018} intentionally missing to demonstrate gaps
+  {year: 2019, population: 7713.468100},
+  {year: 2020, population: 7794.798739}
+];
 export const checked = true;
 export const setChecked = () => {};
-
-{/*
-// TODO: manually convert: const timeseries = [
-
-
-
-
-
-
-// TODO: manually convert: {year: 2020, population: 7794.798739}
-
-*/}
 
 # Bar mark
 
@@ -92,10 +88,9 @@ When ordinal data is regular, such as the yearly observations of the time-series
   </label>
 </p>
 
-{/* TODO: manually convert */}
-{/* Plot
-  .barY(timeseries, {x: "year", y: "population"})
-  .plot({x: {tickFormat: "", interval: checked ? 1 : undefined}}) */}
+<Plot x={{tickFormat: "", interval: checked ? 1 : undefined}}>
+  <BarY data={timeseries} x="year" y="population" />
+</Plot>
 
 
 You can also make a time-series bar chart with a [rect mark](./rect.md), possibly with the [bin transform](../transforms/bin.md) to bin observations at regular intervals.

@@ -25,6 +25,8 @@ import {
   createProjection,
   getGeometryChannels,
   hasProjection,
+  project,
+  xyProjection,
   createScales,
   createScaleFunctions,
   autoScaleRange,
@@ -33,6 +35,7 @@ import {
   maybeClassName,
   defined
 } from "../core/index.js";
+import {geoPath} from "d3";
 import {facetTranslator} from "../facet.js";
 import {PlotContext, FacetContext} from "./PlotContext.js";
 import type {MarkRegistration, MarkState, FacetInfo, PlotContextValue, PointerState} from "./PlotContext.js";
@@ -309,7 +312,11 @@ export function Plot({
       const reg = marksRef.current.get(markId);
       if (!reg?.initializer) continue;
       const markDims = reg.facet === "super" ? dimensions : subdimensions;
-      const update = reg.initializer(state.data, state.facets, state.channels, scaleFunctions, markDims, {});
+      const context = {
+        projection,
+        path() { return geoPath(this.projection ?? xyProjection(scaleFunctions)); }
+      };
+      const update = reg.initializer(state.data, state.facets, state.channels, scaleFunctions, markDims, context);
       if (update.data !== undefined) state.data = update.data;
       if (update.facets !== undefined) state.facets = update.facets;
       if (update.channels !== undefined) {
@@ -335,24 +342,14 @@ export function Plot({
       }
       values.channels = channels;
 
-      // Apply projection if present
+      // Apply projection to x/y channel pairs using the stream API
       if (projection) {
         for (const cx in channels) {
           const ch = channels[cx] as any;
           if (ch.scale === "x" && /^x|x$/.test(cx)) {
             const cy = cx.replace(/^x|x$/, "y");
             if (cy in channels && (channels[cy] as any).scale === "y") {
-              // Project x,y pairs
-              const n = values[cx]?.length || 0;
-              for (let i = 0; i < n; ++i) {
-                if (values[cx][i] != null && values[cy][i] != null) {
-                  const projected = projection([values[cx][i], values[cy][i]]);
-                  if (projected) {
-                    values[cx][i] = projected[0];
-                    values[cy][i] = projected[1];
-                  }
-                }
-              }
+              project(cx, cy, values, projection);
             }
           }
         }
@@ -491,9 +488,10 @@ export function Plot({
     return {hasX, hasY};
   })();
 
-  // Render implicit axes when the corresponding scale exists and no explicit axis is provided
+  // Render implicit axes when the corresponding scale exists and no explicit axis is provided.
+  // Suppress axes when a projection is specified (matching imperative API behavior).
   const implicitAxes = (() => {
-    if (!computed?.scaleFunctions) return null;
+    if (!computed?.scaleFunctions || computed.projection) return null;
     const axes: ReactNode[] = [];
     if (!hasExplicitAxes.hasX && computed.scaleFunctions.x) {
       axes.push(<ImplicitAxisX key="__implicit-axis-x" />);
@@ -577,16 +575,21 @@ export function Plot({
 
   if (!useFigure) return svg;
 
+  // Helper to render values that may be strings, React nodes, or DOM elements (from htl's html``)
+  const renderContent = (value: any, Tag: string, style: any) => {
+    if (value == null) return null;
+    if (value instanceof Node) {
+      return React.createElement(Tag, {style, dangerouslySetInnerHTML: {__html: value.innerHTML ?? value.textContent}});
+    }
+    return React.createElement(Tag, {style}, value);
+  };
+
   return (
     <figure style={{maxWidth: width, margin: "0 auto"}}>
-      {title != null && <h2 style={{fontSize: "16px", fontWeight: "bold", margin: "0 0 4px"}}>{title}</h2>}
-      {subtitle != null && (
-        <h3 style={{fontSize: "12px", fontWeight: "normal", color: "#666", margin: "0 0 8px"}}>{subtitle}</h3>
-      )}
+      {renderContent(title, "h2", {fontSize: "16px", fontWeight: "bold", margin: "0 0 4px"})}
+      {renderContent(subtitle, "h3", {fontSize: "12px", fontWeight: "normal", color: "#666", margin: "0 0 8px"})}
       {svg}
-      {caption != null && (
-        <figcaption style={{fontSize: "12px", color: "#666", marginTop: "4px"}}>{caption}</figcaption>
-      )}
+      {renderContent(caption, "figcaption", {fontSize: "12px", color: "#666", marginTop: "4px"})}
     </figure>
   );
 }

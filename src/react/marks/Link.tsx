@@ -35,10 +35,12 @@ export interface LinkProps {
 
 export function Link({
   data,
-  x1,
-  y1,
-  x2,
-  y2,
+  x,
+  y,
+  x1: x1Prop,
+  y1: y1Prop,
+  x2: x2Prop,
+  y2: y2Prop,
   stroke,
   strokeWidth,
   strokeOpacity,
@@ -51,13 +53,21 @@ export function Link({
   tension,
   className,
   onClick,
+  channels: extraChannels,
   ...restOptions
 }: LinkProps) {
+  // Support shorthand: x sets both x1 and x2, y sets both y1 and y2
+  const x1 = x1Prop ?? x;
+  const y1 = y1Prop ?? y;
+  const x2 = x2Prop ?? x;
+  const y2 = y2Prop ?? y;
+
   const channels: Record<string, ChannelSpec> = {
+    ...extraChannels,
     x1: {value: x1, scale: "x"},
     y1: {value: y1, scale: "y"},
-    x2: {value: x2, scale: "x"},
-    y2: {value: y2, scale: "y"},
+    x2: {value: x2, scale: "x", optional: true},
+    y2: {value: y2, scale: "y", optional: true},
     ...(isColorChannel(stroke)
       ? {stroke: {value: stroke, scale: "auto", optional: true}}
       : {}),

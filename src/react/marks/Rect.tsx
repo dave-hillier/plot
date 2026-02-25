@@ -1,6 +1,7 @@
 import React from "react";
 import {useMark} from "../useMark.js";
 import {indirectStyleProps, directStyleProps, channelStyleProps, isColorChannel, isColorValue} from "../styles.js";
+import {maybeTrivialIntervalX, maybeTrivialIntervalY} from "../../core/index.js";
 import type {ChannelSpec} from "../PlotContext.js";
 
 const defaults = {
@@ -38,37 +39,42 @@ export interface RectProps {
   [key: string]: any;
 }
 
-export function Rect({
-  data,
-  x1,
-  x2,
-  y1,
-  y2,
-  fill,
-  stroke,
-  fillOpacity,
-  strokeOpacity,
-  strokeWidth,
-  opacity,
-  title,
-  href,
-  tip,
-  dx = 0,
-  dy = 0,
-  inset = 0,
-  insetTop = inset,
-  insetRight = inset,
-  insetBottom = inset,
-  insetLeft = inset,
-  rx,
-  ry,
-  className,
-  onClick,
-  onPointerEnter,
-  onPointerLeave,
-  ...restOptions
-}: RectProps) {
+export function Rect(props: RectProps) {
+  // Preprocess: convert x/y + interval to x1/x2/y1/y2 (like imperative rect() factory)
+  const processed = maybeTrivialIntervalX(maybeTrivialIntervalY(props));
+  const {
+    data,
+    x1,
+    x2,
+    y1,
+    y2,
+    fill,
+    stroke,
+    fillOpacity,
+    strokeOpacity,
+    strokeWidth,
+    opacity,
+    title,
+    href,
+    tip,
+    dx = 0,
+    dy = 0,
+    inset = 0,
+    insetTop = inset,
+    insetRight = inset,
+    insetBottom = inset,
+    insetLeft = inset,
+    rx,
+    ry,
+    className,
+    onClick,
+    onPointerEnter,
+    onPointerLeave,
+    channels: extraChannels,
+    ...restOptions
+  } = processed;
   const channels: Record<string, ChannelSpec> = {
+    ...extraChannels,
     x1: {value: x1, scale: "x", optional: true},
     x2: {value: x2, scale: "x", optional: true},
     y1: {value: y1, scale: "y", optional: true},

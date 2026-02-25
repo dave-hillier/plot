@@ -1,10 +1,8 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, CellX} from "../../src/react/index.js";
 
 export async function highCardinalityOrdinal() {
-  return Plot.plot({
-    color: {
-      type: "ordinal"
-    },
-    marks: [Plot.cellX("ABCDEFGHIJKLMNOPQRSTUVWXYZ")]
-  });
+  return React.createElement(Plot, {color: {type: "ordinal"}},
+    React.createElement(CellX, {data: "ABCDEFGHIJKLMNOPQRSTUVWXYZ"})
+  );
 }

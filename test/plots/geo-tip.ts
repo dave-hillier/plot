@@ -1,28 +1,52 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, Geo, Text, centroid, geoCentroid} from "../../src/react/index.js";
 import * as d3 from "d3";
 import {feature} from "topojson-client";
 
 export async function geoText() {
   const london = feature(await d3.json("data/london.json"), "boroughs");
-  return Plot.plot({
-    projection: {type: "transverse-mercator", rotate: [2, 0, 0], domain: london},
-    marks: [
-      Plot.geo(london),
-      Plot.text(london.features, Plot.centroid({text: "id", stroke: "var(--plot-background)", fill: "currentColor"}))
-    ]
-  });
+  return React.createElement(Plot, {
+      projection: {type: "transverse-mercator", rotate: [2, 0, 0], domain: london}
+    },
+    React.createElement(Geo, {data: london}),
+    React.createElement(Text, {data: london.features, ...centroid({text: "id", stroke: "var(--plot-background)", fill: "currentColor"})})
+  );
 }
 
 /** The geo mark with the tip option. */
 export async function geoTip() {
   const [london, boroughs] = await getLondonBoroughs();
   const access = await getLondonAccess();
-  return Plot.plot({
-    width: 900,
-    projection: {type: "transverse-mercator", rotate: [2, 0, 0], domain: london},
-    color: {scheme: "RdYlBu", pivot: 0.5},
-    marks: [
-      Plot.geo(access, {
+  return React.createElement(Plot, {
+      width: 900,
+      projection: {type: "transverse-mercator", rotate: [2, 0, 0], domain: london},
+      color: {scheme: "RdYlBu", pivot: 0.5}
+    },
+    React.createElement(Geo, {
+      data: access,
+      fx: "year",
+      geometry: (d) => boroughs.get(d.borough),
+      fill: "access",
+      stroke: "var(--plot-background)",
+      strokeWidth: 0.75,
+      channels: {borough: "borough"},
+      tip: true
+    })
+  );
+}
+
+/** The geo mark with the tip option and the centroid transform. */
+export async function geoTipCentroid() {
+  const [london, boroughs] = await getLondonBoroughs();
+  const access = await getLondonAccess();
+  return React.createElement(Plot, {
+      width: 900,
+      projection: {type: "transverse-mercator", rotate: [2, 0, 0], domain: london},
+      color: {scheme: "RdYlBu", pivot: 0.5}
+    },
+    React.createElement(Geo, {
+      data: access,
+      ...centroid({
         fx: "year",
         geometry: (d) => boroughs.get(d.borough),
         fill: "access",
@@ -31,58 +55,32 @@ export async function geoTip() {
         channels: {borough: "borough"},
         tip: true
       })
-    ]
-  });
-}
-
-/** The geo mark with the tip option and the centroid transform. */
-export async function geoTipCentroid() {
-  const [london, boroughs] = await getLondonBoroughs();
-  const access = await getLondonAccess();
-  return Plot.plot({
-    width: 900,
-    projection: {type: "transverse-mercator", rotate: [2, 0, 0], domain: london},
-    color: {scheme: "RdYlBu", pivot: 0.5},
-    marks: [
-      Plot.geo(
-        access,
-        Plot.centroid({
-          fx: "year",
-          geometry: (d) => boroughs.get(d.borough),
-          fill: "access",
-          stroke: "var(--plot-background)",
-          strokeWidth: 0.75,
-          channels: {borough: "borough"},
-          tip: true
-        })
-      )
-    ]
-  });
+    })
+  );
 }
 
 /** The geo mark with the tip option and the geoCentroid transform. */
 export async function geoTipGeoCentroid() {
   const [london, boroughs] = await getLondonBoroughs();
   const access = await getLondonAccess();
-  return Plot.plot({
-    width: 900,
-    projection: {type: "transverse-mercator", rotate: [2, 0, 0], domain: london},
-    color: {scheme: "RdYlBu", pivot: 0.5},
-    marks: [
-      Plot.geo(
-        access,
-        Plot.geoCentroid({
-          fx: "year",
-          geometry: (d) => boroughs.get(d.borough),
-          fill: "access",
-          stroke: "var(--plot-background)",
-          strokeWidth: 0.75,
-          channels: {borough: "borough"},
-          tip: true
-        })
-      )
-    ]
-  });
+  return React.createElement(Plot, {
+      width: 900,
+      projection: {type: "transverse-mercator", rotate: [2, 0, 0], domain: london},
+      color: {scheme: "RdYlBu", pivot: 0.5}
+    },
+    React.createElement(Geo, {
+      data: access,
+      ...geoCentroid({
+        fx: "year",
+        geometry: (d) => boroughs.get(d.borough),
+        fill: "access",
+        stroke: "var(--plot-background)",
+        strokeWidth: 0.75,
+        channels: {borough: "borough"},
+        tip: true
+      })
+    })
+  );
 }
 
 function getFirstPoint(feature) {
@@ -95,14 +93,38 @@ function getFirstPoint(feature) {
 export async function geoTipXY() {
   const [london, boroughs] = await getLondonBoroughs();
   const access = await getLondonAccess();
-  return Plot.plot({
-    width: 900,
-    projection: {type: "transverse-mercator", rotate: [2, 0, 0], domain: london},
-    color: {scheme: "RdYlBu", pivot: 0.5},
-    marks: [
-      Plot.geo(access, {
-        x: (d) => getFirstPoint(boroughs.get(d.borough))[0],
-        y: (d) => getFirstPoint(boroughs.get(d.borough))[1],
+  return React.createElement(Plot, {
+      width: 900,
+      projection: {type: "transverse-mercator", rotate: [2, 0, 0], domain: london},
+      color: {scheme: "RdYlBu", pivot: 0.5}
+    },
+    React.createElement(Geo, {
+      data: access,
+      x: (d) => getFirstPoint(boroughs.get(d.borough))[0],
+      y: (d) => getFirstPoint(boroughs.get(d.borough))[1],
+      fx: "year",
+      geometry: (d) => boroughs.get(d.borough),
+      fill: "access",
+      stroke: "var(--plot-background)",
+      strokeWidth: 0.75,
+      channels: {borough: "borough"},
+      tip: true
+    })
+  );
+}
+
+/** The geo mark with the tip option, and scaled x and y channels. */
+export async function geoTipScaled() {
+  const [, boroughs] = await getLondonBoroughs();
+  const access = await getLondonAccess();
+  return React.createElement(Plot, {
+      width: 900,
+      height: 265,
+      color: {scheme: "RdYlBu", pivot: 0.5}
+    },
+    React.createElement(Geo, {
+      data: access,
+      ...centroid({
         fx: "year",
         geometry: (d) => boroughs.get(d.borough),
         fill: "access",
@@ -111,33 +133,8 @@ export async function geoTipXY() {
         channels: {borough: "borough"},
         tip: true
       })
-    ]
-  });
-}
-
-/** The geo mark with the tip option, and scaled x and y channels. */
-export async function geoTipScaled() {
-  const [, boroughs] = await getLondonBoroughs();
-  const access = await getLondonAccess();
-  return Plot.plot({
-    width: 900,
-    height: 265,
-    color: {scheme: "RdYlBu", pivot: 0.5},
-    marks: [
-      Plot.geo(
-        access,
-        Plot.centroid({
-          fx: "year",
-          geometry: (d) => boroughs.get(d.borough),
-          fill: "access",
-          stroke: "var(--plot-background)",
-          strokeWidth: 0.75,
-          channels: {borough: "borough"},
-          tip: true
-        })
-      )
-    ]
-  });
+    })
+  );
 }
 
 async function getLondonBoroughs() {

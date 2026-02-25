@@ -1,4 +1,5 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, Line, AreaY} from "../../src/react/index.js";
 
 export async function integerInterval() {
   const requests = [
@@ -7,11 +8,9 @@ export async function integerInterval() {
     [3.5, 10],
     [5, 12]
   ];
-  return Plot.plot({
-    x: {interval: 1},
-    y: {zero: true},
-    marks: [Plot.line(requests)]
-  });
+  return React.createElement(Plot, {x: {interval: 1}, y: {zero: true}},
+    React.createElement(Line, {data: requests})
+  );
 }
 
 export async function integerIntervalArea() {
@@ -21,21 +20,19 @@ export async function integerIntervalArea() {
     {x: 5, y: 9, type: "b"},
     {x: 10, y: 4, type: "b"}
   ];
-  return Plot.plot({
-    color: {legend: true},
-    marks: [
-      Plot.areaY(series, {
-        interval: 5,
-        x: "x",
-        y: "y",
-        fill: "type",
-        stroke: "type",
-        strokeWidth: 2,
-        fillOpacity: 0.7,
-        tip: true
-      })
-    ]
-  });
+  return React.createElement(Plot, {color: {legend: true}},
+    React.createElement(AreaY, {
+      data: series,
+      interval: 5,
+      x: "x",
+      y: "y",
+      fill: "type",
+      stroke: "type",
+      strokeWidth: 2,
+      fillOpacity: 0.7,
+      tip: true
+    })
+  );
 }
 
 export async function integerIntervalAreaZ() {
@@ -47,21 +44,18 @@ export async function integerIntervalAreaZ() {
     {x: 1, y: 1, type: "c", category: "R"},
     {x: 3, y: 7, type: "c", category: "R"}
   ];
-  return Plot.plot({
-    x: {interval: 1},
-    color: {scheme: "Paired", legend: true},
-    marks: [
-      Plot.areaY(series, {
-        x: "x",
-        y: "y",
-        interval: 1,
-        fill: "type",
-        stroke: "category",
-        z: "type",
-        strokeWidth: 2,
-        fillOpacity: 0.7,
-        tip: true
-      })
-    ]
-  });
+  return React.createElement(Plot, {x: {interval: 1}, color: {scheme: "Paired", legend: true}},
+    React.createElement(AreaY, {
+      data: series,
+      x: "x",
+      y: "y",
+      interval: 1,
+      fill: "type",
+      stroke: "category",
+      z: "type",
+      strokeWidth: 2,
+      fillOpacity: 0.7,
+      tip: true
+    })
+  );
 }

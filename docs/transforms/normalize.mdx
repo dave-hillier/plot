@@ -1,23 +1,10 @@
-import {Dot, Line, Plot, RuleX, RuleY, Text, groupY, normalizeY, selectLast, selectMinX} from "replot/react";
+import {Dot, Line, Plot, RuleX, RuleY, Text, groupY, normalizeX, normalizeY, selectLast, selectMinX} from "replot/react";
 import * as d3 from "d3";
 import {useState} from "react";
 
 export const stateage = [];
 export const stocks = [];
-
-{/*
-// TODO: manually convert: const xy = Plot.normalizeX("sum", {z: "state", x: "population", y: "state"});
-// TODO: manually convert: Promise.all([
-// TODO: manually convert: d3.csv("../data/aapl.csv", d3.autoType),
-// TODO: manually convert: d3.csv("../data/amzn.csv", d3.autoType),
-// TODO: manually convert: d3.csv("../data/goog.csv", d3.autoType),
-// TODO: manually convert: d3.csv("../data/ibm.csv", d3.autoType)
-// TODO: manually convert: ]).then((datas) => {
-// TODO: manually convert: stocks.value = d3.zip(["AAPL", "AMZN", "GOOG", "IBM"], datas).flatMap(([Symbol, data]) => data.map((d) => ({Symbol, ...d})));
-// TODO: manually convert: d3.csv("../data/us-population-state-age.csv", d3.autoType).then((data) => {
-// TODO: manually convert: const ages = data.columns.slice(1); // convert wide data to tidy data
-// TODO: manually convert: stateage.value = Object.assign(ages.flatMap((age) => data.map((d) => ({state: d.name, age, population: d[age]}))), {ages});
-*/}
+export const xy = normalizeX("sum", {z: "state", x: "population", y: "state"});
 
 # Normalize transform
 
@@ -35,7 +22,7 @@ The **normalize transform** is a specialized [map transform](./map.md) that norm
       y: "Close",
       stroke: "Symbol"
     })} />
-  <Text data={stocks} {...selectLast(Plot.normalizeY({
+  <Text data={stocks} {...selectLast(normalizeY({
       x: "Date",
       y: "Close",
       z: "Symbol",

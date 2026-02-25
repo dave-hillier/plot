@@ -1,4 +1,4 @@
-import {AreaY, Arrow, BarX, BoxX, Dot, Frame, Line, Plot, Text, groupY, normalizeY} from "replot/react";
+import {AreaY, Arrow, BarX, BoxX, Dot, Frame, Line, Plot, Text, groupY, normalizeY, scale} from "replot/react";
 import * as d3 from "d3";
 import {useEffect} from "react";
 import anscombe from "../data/anscombe.ts";
@@ -7,15 +7,7 @@ import industries from "../data/bls-industry-unemployment.ts";
 import penguins from "../data/penguins.ts";
 import olympians from "../data/olympians.ts";
 
-export const scheme = [];
-
-{/*
-// TODO: manually convert: const olympians = shallowRef([
-
-// TODO: manually convert: {weight: 170, height: 2.21, sex: "male"}
-
-// TODO: manually convert: const scheme = Plot.scale({color: {type: "categorical"}}).range;
-*/}
+export const scheme = scale({color: {type: "categorical"}}).range;
 
 # Facets
 
@@ -84,10 +76,34 @@ You can mix-and-match faceted and non-faceted marks within the same plot. The no
 Set the [**facet** mark option](#mark-facet-options) to *exclude* to draw only the dots *not* in the current facet.
 When there are many facets, facets may be small and hard to read; you may need to increase the plot’s **width** or **height**. Alternatively, you can wrap facets by computing a row and column number as **fy** and **fx**. Below, small multiples of varying unemployment counts across industries are shown in a three-column display.
 
-{/* TODO: manually convert this facet-wrapping plot
-  Uses IIFE to compute fx/fy from industry index for wrapping facets into columns.
-  Needs: industries data, normalizeY transform, AreaY, Text, Frame marks.
-*/}
+{(() => {
+  const columns = 3;
+  const industryNames = [...new Set(industries.map((d) => d.industry))];
+  return (
+    <Plot height={industryNames.length / columns * 120} axis={null} y={{insetTop: 4}} fx={{padding: 0.03}} fy={{padding: 0.03}}>
+      <AreaY data={industries} {...normalizeY("extent", {
+        x: "date",
+        y: "unemployment",
+        fy: (d) => Math.floor(industryNames.indexOf(d.industry) / columns),
+        fx: (d) => industryNames.indexOf(d.industry) % columns,
+        z: "industry",
+        fillOpacity: 0.5
+      })} />
+      <Text data={industries} {...normalizeY("extent", {
+        x: "date",
+        y: "unemployment",
+        fy: (d) => Math.floor(industryNames.indexOf(d.industry) / columns),
+        fx: (d) => industryNames.indexOf(d.industry) % columns,
+        z: "industry",
+        text: ((d, i, data) => i === 0 ? d.industry : null),
+        frameAnchor: "top-left",
+        dx: 6,
+        dy: 6
+      })} />
+      <Frame />
+    </Plot>
+  );
+})()}
 
 
 If you are interested in automatic facet wrapping, please upvote [#277](https://github.com/observablehq/plot/issues/277).

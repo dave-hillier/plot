@@ -1,4 +1,4 @@
-import {AxisFx, AxisX, AxisY, BarX, BarY, Dot, Frame, GridX, GridY, Line, Plot, RuleX, RuleY} from "replot/react";
+import {AxisFx, AxisX, AxisY, BarX, BarY, Dot, Frame, GridX, GridY, Line, Plot, RuleX, RuleY, identity} from "replot/react";
 import * as d3 from "d3";
 import {useState} from "react";
 import aapl from "../data/aapl.ts";
@@ -9,18 +9,14 @@ export const anchor = "bottom";
 export const setAnchor = () => {};
 export const facetAnchor = "auto";
 export const setFacetAnchor = () => {};
-export const responses = [];
-
-{/*
-// TODO: manually convert: const responses = [
-
-
-
-
-
-// TODO: manually convert: {name: "Not enough politics", value: 0.12}
-
-*/}
+export const responses = [
+  {name: "Family in feud with Zucker\u00ADbergs", value: 0.17},
+  {name: "Committed 671 birthdays to memory", value: 0.19},
+  {name: "Ex is doing too well", value: 0.10},
+  {name: "High school friends all dead now", value: 0.15},
+  {name: "Discovered how to \"like\" things mentally", value: 0.27},
+  {name: "Not enough politics", value: 0.12}
+];
 
 # Axis mark <VersionBadge version="0.6.3" />
 
@@ -119,14 +115,17 @@ You can even style an axis dynamically based on data! The data associated with a
 
 The color of an axis can be controlled with the **color**, **stroke**, and **fill** options, which affect the axis’ component marks differently. The **stroke** option affects the tick vector; the **fill** option affects the label texts. The **color** option is shorthand for setTing both **fill** and **stroke**. While these options are typically set to constant colors (such as _red_ or the default _currentColor_), they can be specified as channels to assign colors dynamically based on the associated tick value.
 
-{/* TODO: manually convert */}
-{/* Plot.axisX(d3.ticks(0, 1, 10), {color: "red"}).plot() // text fill and tick stroke */}
+<Plot>
+  <AxisX data={d3.ticks(0, 1, 10)} color="red" />
+</Plot>
 
-{/* TODO: manually convert */}
-{/* Plot.axisX(d3.ticks(0, 1, 10), {stroke: Plot.identity, strokeWidth: 3, tickSize: 10}).plot() // tick stroke */}
+<Plot>
+  <AxisX data={d3.ticks(0, 1, 10)} stroke={identity} strokeWidth={3} tickSize={10} />
+</Plot>
 
-{/* TODO: manually convert */}
-{/* Plot.axisX(d3.ticks(0, 1, 10), {fill: "red"}).plot() // text fill */}
+<Plot>
+  <AxisX data={d3.ticks(0, 1, 10)} fill="red" />
+</Plot>
 
 To draw an outline around the tick labels, say to improve legibility when drawing an axes atop other marks, use the **textStroke** (default _none_), **textStrokeWidth** (default 3), and **textStrokeOpacity**  (default 1) options.
 

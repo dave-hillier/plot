@@ -25,7 +25,7 @@ Frames are most commonly used in conjunction with facets to provide better separ
 </p>
 
 <Plot grid inset={10}>
-  {/* TODO: framed ? Plot.frame() : null */}
+  {framed ? <Frame /> : null}
   <Dot data={penguins} x="culmen_length_mm" y="culmen_depth_mm" fill="#eee" />
   <Dot data={penguins} x="culmen_length_mm" y="culmen_depth_mm" fx="species" />
 </Plot>

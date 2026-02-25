@@ -58,6 +58,7 @@ export function Vector({
   anchor = "middle",
   frameAnchor,
   className,
+  channels: extraChannels,
   ...restOptions
 }: VectorProps) {
   const isLengthChannel =
@@ -68,6 +69,7 @@ export function Vector({
     (typeof rotateProp === "string" || typeof rotateProp === "function" || Array.isArray(rotateProp));
 
   const channels: Record<string, ChannelSpec> = {
+    ...extraChannels,
     x: {value: x, scale: "x", optional: true},
     y: {value: y, scale: "y", optional: true},
     ...(isLengthChannel ? {length: {value: lengthProp, scale: "length", optional: true}} : {}),

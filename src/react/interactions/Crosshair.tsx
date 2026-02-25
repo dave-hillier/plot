@@ -25,11 +25,13 @@ export function CrosshairX({
   strokeWidth = 1,
   strokeDasharray,
   className,
+  channels: extraChannels,
   ...restOptions
 }: CrosshairProps) {
   const {pointer, dimensions} = usePlotContext();
 
   const channels: Record<string, ChannelSpec> = {
+    ...extraChannels,
     x: {value: x, scale: "x", optional: true},
     y: {value: y, scale: "y", optional: true}
   };
@@ -76,11 +78,13 @@ export function CrosshairY({
   strokeWidth = 1,
   strokeDasharray,
   className,
+  channels: extraChannels,
   ...restOptions
 }: CrosshairProps) {
   const {pointer, dimensions} = usePlotContext();
 
   const channels: Record<string, ChannelSpec> = {
+    ...extraChannels,
     x: {value: x, scale: "x", optional: true},
     y: {value: y, scale: "y", optional: true}
   };
@@ -128,11 +132,13 @@ export function Crosshair({
   strokeWidth = 1,
   strokeDasharray,
   className,
+  channels: extraChannels,
   ...restOptions
 }: CrosshairProps) {
   const {pointer, dimensions} = usePlotContext();
 
   const channels: Record<string, ChannelSpec> = {
+    ...extraChannels,
     x: {value: x, scale: "x", optional: true},
     y: {value: y, scale: "y", optional: true}
   };

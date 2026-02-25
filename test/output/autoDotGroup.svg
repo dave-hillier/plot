@@ -13,38 +13,40 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
-    <path transform="translate(40,32)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,55)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,78)" d="M0,0L-6,0"></path>
+  <defs>
+    <clipPath id="_r_7p_">
+      <rect x="0" y="0" width="639" height="119"></rect>
+    </clipPath>
+  </defs>
+  <g aria-label="x-axis" transform="translate(0,119)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+    <line x1="0" x2="639" stroke="currentColor"></line>
+    <g transform="translate(107,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">Biscoe</text>
+    </g>
+    <g transform="translate(320,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">Dream</text>
+    </g>
+    <g transform="translate(533,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">Torgersen</text>
+    </g>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-    <text y="0.32em" transform="translate(40,32)">Adelie</text>
-    <text y="0.32em" transform="translate(40,55)">Chinstrap</text>
-    <text y="0.32em" transform="translate(40,78)">Gentoo</text>
+  <g aria-label="y-axis" transform="translate(0,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
+    <line y1="0" y2="119" stroke="currentColor"></line>
+    <g transform="translate(0,21)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">Adelie</text>
+    </g>
+    <g transform="translate(0,60)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">Chinstrap</text>
+    </g>
+    <g transform="translate(0,99)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">Gentoo</text>
+    </g>
   </g>
-  <g aria-label="y-axis label" transform="translate(-36.5,0.5)">
-    <text y="0.71em" transform="translate(40,55) rotate(-90)">species</text>
-  </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
-    <path transform="translate(137,90)" d="M0,0L0,6"></path>
-    <path transform="translate(330,90)" d="M0,0L0,6"></path>
-    <path transform="translate(523,90)" d="M0,0L0,6"></path>
-  </g>
-  <g aria-label="x-axis tick label" transform="translate(0.5,9.5)">
-    <text y="0.71em" transform="translate(137,90)">Biscoe</text>
-    <text y="0.71em" transform="translate(330,90)">Dream</text>
-    <text y="0.71em" transform="translate(523,90)">Torgersen</text>
-  </g>
-  <g aria-label="x-axis label" transform="translate(0.5,27.5)">
-    <text transform="translate(330,90)">island</text>
-  </g>
-  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
-    <circle cx="137" cy="78" r="4.632659976896477"></circle>
-    <circle cx="330" cy="55" r="3.4306312493811943"></circle>
-    <circle cx="330" cy="32" r="3.1132471299766253"></circle>
-    <circle cx="523" cy="32" r="3.0000000000000004"></circle>
-    <circle cx="137" cy="32" r="2.7595986330234"></circle>
-  </g>
-  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0.5,0.5)"></g>
+  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5">00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</g>
 </svg>

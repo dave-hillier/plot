@@ -1,27 +1,27 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, RectY, RuleY, binX, groupZ} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function stargazersBinned() {
   const stargazers = await d3.csv<any>("data/stargazers.csv", d3.autoType);
   const format = d3.utcFormat("%Y-%m-%d");
-  return Plot.plot({
-    y: {
-      grid: true,
-      label: "Stargazers added per week"
+  return React.createElement(Plot, {
+      y: {
+        grid: true,
+        label: "Stargazers added per week"
+      }
     },
-    marks: [
-      Plot.rectY(
-        stargazers,
-        Plot.binX(
-          {y: "count", title: (d, {x1, x2}) => `${format(x1)} to ${format(x2)}\n${d.length}`},
-          {x: "date", thresholds: "week"}
-        )
-      ),
-      Plot.ruleY(
-        stargazers,
-        Plot.groupZ({y: "median"}, Plot.binX({y: "count", x: null}, {x: "date", stroke: "red", thresholds: "week"}))
-      ),
-      Plot.ruleY([0])
-    ]
-  });
+    React.createElement(RectY, {
+      data: stargazers,
+      ...binX(
+        {y: "count", title: (d, {x1, x2}) => `${format(x1)} to ${format(x2)}\n${d.length}`},
+        {x: "date", thresholds: "week"}
+      )
+    }),
+    React.createElement(RuleY, {
+      data: stargazers,
+      ...groupZ({y: "median"}, binX({y: "count", x: null}, {x: "date", stroke: "red", thresholds: "week"}))
+    }),
+    React.createElement(RuleY, {data: [0]})
+  );
 }

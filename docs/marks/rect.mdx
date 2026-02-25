@@ -7,14 +7,10 @@ import diamonds from "../data/diamonds.ts";
 
 export const povcalnet = [];
 export const countyboxes = [];
-export const bins = [];
+export const bins = d3.bin()(d3.range(1000).map(d3.randomNormal.source(d3.randomLcg(42))()));
 export const seattle = [];
 export const r = 0;
 export const setR = () => {};
-
-{/*
-// TODO: manually convert: const bins = d3.bin()(d3.range(1000).map(d3.randomNormal.source(d3.randomLcg(42))()));
-*/}
 
 # Rect mark
 

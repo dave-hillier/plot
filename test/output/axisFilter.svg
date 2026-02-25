@@ -13,33 +13,90 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
-    <circle cx="137" cy="70" r="3"></circle>
-    <circle cx="330" cy="20" r="3"></circle>
-    <circle cx="523" cy="45" r="3"></circle>
+  <defs>
+    <clipPath id="_r_a7_">
+      <rect x="0" y="0" width="639" height="99"></rect>
+    </clipPath>
+  </defs>
+  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5">000</g>
+  <g aria-label="x-grid">
+    <line x1="107" x2="107" y1="0" y2="99" stroke="#ddd" stroke-width="1" stroke-opacity="1"></line>
+    <line x1="320" x2="320" y1="0" y2="99" stroke="#ddd" stroke-width="1" stroke-opacity="1"></line>
+    <line x1="533" x2="533" y1="0" y2="99" stroke="#ddd" stroke-width="1" stroke-opacity="1"></line>
   </g>
-  <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-    <line x1="137" x2="137" y1="20" y2="70"></line>
-    <line x1="330" x2="330" y1="20" y2="70"></line>
+  <g aria-label="y-grid">
+    <line x1="0" x2="639" y1="99" y2="99" stroke="#ddd" stroke-width="1" stroke-opacity="1"></line>
+    <line x1="0" x2="639" y1="89.1" y2="89.1" stroke="#ddd" stroke-width="1" stroke-opacity="1"></line>
+    <line x1="0" x2="639" y1="79.2" y2="79.2" stroke="#ddd" stroke-width="1" stroke-opacity="1"></line>
+    <line x1="0" x2="639" y1="69.3" y2="69.3" stroke="#ddd" stroke-width="1" stroke-opacity="1"></line>
+    <line x1="0" x2="639" y1="59.4" y2="59.4" stroke="#ddd" stroke-width="1" stroke-opacity="1"></line>
+    <line x1="0" x2="639" y1="49.5" y2="49.5" stroke="#ddd" stroke-width="1" stroke-opacity="1"></line>
+    <line x1="0" x2="639" y1="39.6" y2="39.6" stroke="#ddd" stroke-width="1" stroke-opacity="1"></line>
+    <line x1="0" x2="639" y1="29.7" y2="29.7" stroke="#ddd" stroke-width="1" stroke-opacity="1"></line>
+    <line x1="0" x2="639" y1="19.8" y2="19.8" stroke="#ddd" stroke-width="1" stroke-opacity="1"></line>
+    <line x1="0" x2="639" y1="9.9" y2="9.9" stroke="#ddd" stroke-width="1" stroke-opacity="1"></line>
+    <line x1="0" x2="639" y1="0" y2="0" stroke="#ddd" stroke-width="1" stroke-opacity="1"></line>
   </g>
-  <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
-    <line x1="40" x2="620" y1="45" y2="45"></line>
-    <line x1="40" x2="620" y1="20" y2="20"></line>
+  <g aria-label="x-axis bottom" transform="translate(0,99)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+    <line x1="0" x2="639" stroke="currentColor" stroke-opacity="1"></line>
+    <g transform="translate(107,0)">
+      <line y2="6" stroke="currentColor" stroke-opacity="1"></line>
+      <text y="9" dy="0.71em" text-anchor="middle" fill="currentColor">A</text>
+    </g>
+    <g transform="translate(320,0)">
+      <line y2="6" stroke="currentColor" stroke-opacity="1"></line>
+      <text y="9" dy="0.71em" text-anchor="middle" fill="currentColor">B</text>
+    </g>
+    <g transform="translate(533,0)">
+      <line y2="6" stroke="currentColor" stroke-opacity="1"></line>
+      <text y="9" dy="0.71em" text-anchor="middle" fill="currentColor">0</text>
+    </g>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
-    <path transform="translate(137,70)" d="M0,0L0,6"></path>
-    <path transform="translate(330,70)" d="M0,0L0,6"></path>
-  </g>
-  <g aria-label="x-axis tick label" transform="translate(0.5,9.5)">
-    <text y="0.71em" transform="translate(137,70)">A</text>
-    <text y="0.71em" transform="translate(330,70)">B</text>
-  </g>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
-    <path transform="translate(40,45)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,20)" d="M0,0L-6,0"></path>
-  </g>
-  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
-    <text y="0.32em" transform="translate(40,45)">1</text>
-    <text y="0.32em" transform="translate(40,20)">2</text>
+  <g aria-label="y-axis left" transform="translate(0,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
+    <line y1="0" y2="99" stroke="currentColor" stroke-opacity="1"></line>
+    <g transform="translate(0,99)">
+      <line x2="-6" stroke="currentColor" stroke-opacity="1"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">0.0</text>
+    </g>
+    <g transform="translate(0,89.1)">
+      <line x2="-6" stroke="currentColor" stroke-opacity="1"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">0.2</text>
+    </g>
+    <g transform="translate(0,79.2)">
+      <line x2="-6" stroke="currentColor" stroke-opacity="1"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">0.4</text>
+    </g>
+    <g transform="translate(0,69.3)">
+      <line x2="-6" stroke="currentColor" stroke-opacity="1"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">0.6</text>
+    </g>
+    <g transform="translate(0,59.4)">
+      <line x2="-6" stroke="currentColor" stroke-opacity="1"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">0.8</text>
+    </g>
+    <g transform="translate(0,49.5)">
+      <line x2="-6" stroke="currentColor" stroke-opacity="1"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">1.0</text>
+    </g>
+    <g transform="translate(0,39.6)">
+      <line x2="-6" stroke="currentColor" stroke-opacity="1"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">1.2</text>
+    </g>
+    <g transform="translate(0,29.7)">
+      <line x2="-6" stroke="currentColor" stroke-opacity="1"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">1.4</text>
+    </g>
+    <g transform="translate(0,19.8)">
+      <line x2="-6" stroke="currentColor" stroke-opacity="1"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">1.6</text>
+    </g>
+    <g transform="translate(0,9.9)">
+      <line x2="-6" stroke="currentColor" stroke-opacity="1"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">1.8</text>
+    </g>
+    <g transform="translate(0,0)">
+      <line x2="-6" stroke="currentColor" stroke-opacity="1"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">2.0</text>
+    </g>
   </g>
 </svg>

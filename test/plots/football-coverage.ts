@@ -1,24 +1,15 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, Frame, Dot, stackX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function footballCoverage() {
   const football = await d3.csv<any>("data/football-coverage.csv", d3.autoType);
-  return Plot.plot({
-    x: {
-      axis: null
+  return React.createElement(Plot, {
+      x: {axis: null},
+      y: {grid: true, domain: [0, 0.5], tickFormat: "%"},
+      facet: {data: football, x: "coverage"}
     },
-    y: {
-      grid: true,
-      domain: [0, 0.5],
-      tickFormat: "%"
-    },
-    facet: {
-      data: football,
-      x: "coverage"
-    },
-    marks: [
-      Plot.frame(),
-      Plot.dot(football, Plot.stackX({offset: "center", y: (d) => +d.value.toFixed(2), fill: "black"}))
-    ]
-  });
+    React.createElement(Frame),
+    React.createElement(Dot, {data: football, ...stackX({offset: "center", y: (d) => +d.value.toFixed(2), fill: "black"})})
+  );
 }

@@ -1,0 +1,54 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <defs>
+    <clipPath id="_r_1tl_">
+      <rect x="0" y="0" width="639" height="399"></rect>
+    </clipPath>
+  </defs>
+  <g aria-label="x-axis" transform="translate(0,399)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+    <line x1="0" x2="639" stroke="currentColor"></line>
+    <g transform="translate(21,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">Adelie</text>
+    </g>
+    <g transform="translate(227,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">Chinstrap</text>
+    </g>
+    <g transform="translate(433,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">Gentoo</text>
+    </g>
+  </g>
+  <g aria-label="y-axis" transform="translate(0,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
+    <line y1="0" y2="399" stroke="currentColor"></line>
+    <g transform="translate(0,199.5)">
+      <line x2="-6" stroke="currentColor"></line>
+      <text x="-9" dy="0.32em" fill="currentColor">0</text>
+    </g>
+  </g>
+  <g aria-label="bar" fill="currentColor">
+    <rect x="24" y="3" width="179" height="393"></rect>
+    <rect x="230" y="3" width="179" height="393"></rect>
+    <rect x="436" y="3" width="179" height="393"></rect>
+  </g>
+  <g aria-label="bar" fill="currentColor" stroke="currentColor">
+    <rect x="21" y="0" width="185" height="399"></rect>
+    <rect x="227" y="0" width="185" height="399"></rect>
+    <rect x="433" y="0" width="185" height="399"></rect>
+  </g>
+  <g aria-label="rule" stroke="currentColor">0</g>
+</svg>

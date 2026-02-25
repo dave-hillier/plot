@@ -1,18 +1,16 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, Dot, GridX, GridY, AxisX, AxisY} from "../../src/react/index.js";
 
 export async function axisFilter() {
-  return Plot.plot({
-    height: 100,
-    marks: [
-      Plot.dot([
-        ["A", 0],
-        ["B", 2],
-        [0, 1]
-      ]),
-      Plot.gridX({filter: (d) => d}),
-      Plot.gridY({filter: (d) => d}),
-      Plot.axisX({filter: (d) => d}),
-      Plot.axisY({filter: (d) => d})
-    ]
-  });
+  return React.createElement(Plot, {height: 100},
+    React.createElement(Dot, {data: [
+      ["A", 0],
+      ["B", 2],
+      [0, 1]
+    ]}),
+    React.createElement(GridX, {filter: (d) => d}),
+    React.createElement(GridY, {filter: (d) => d}),
+    React.createElement(AxisX, {filter: (d) => d}),
+    React.createElement(AxisY, {filter: (d) => d})
+  );
 }

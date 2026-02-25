@@ -1,4 +1,5 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, BarX, RuleX, groupY} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 function Likert(
@@ -11,7 +12,7 @@ function Likert(
   ]
 ): {
   order: string[];
-  offset: Plot.StackOffset;
+  offset: any;
 } {
   const map = new Map(responses);
   return {
@@ -33,23 +34,16 @@ function Likert(
 export async function likertSurvey() {
   const survey = await d3.csv<any>("data/survey.csv");
   const {order, offset} = Likert();
-  return Plot.plot({
-    x: {
-      tickFormat: Math.abs,
-      label: "← more disagree · Number of responses · more agree →",
-      labelAnchor: "center"
+  return React.createElement(Plot, {
+      x: {
+        tickFormat: Math.abs,
+        label: "\u2190 more disagree \u00b7 Number of responses \u00b7 more agree \u2192",
+        labelAnchor: "center"
+      },
+      y: {tickSize: 0},
+      color: {legend: true, domain: order, scheme: "RdBu"}
     },
-    y: {
-      tickSize: 0
-    },
-    color: {
-      legend: true,
-      domain: order,
-      scheme: "RdBu"
-    },
-    marks: [
-      Plot.barX(survey, Plot.groupY({x: "count"}, {y: "Question", fill: "Response", order, offset})),
-      Plot.ruleX([0])
-    ]
-  });
+    React.createElement(BarX, {data: survey, ...groupY({x: "count"}, {y: "Question", fill: "Response", order, offset})}),
+    React.createElement(RuleX, {data: [0]})
+  );
 }

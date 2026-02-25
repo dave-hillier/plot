@@ -1,24 +1,21 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, BarX, BarY, RuleY, RuleX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function errorBarX() {
   const alphabet = await d3.csv<any>("data/alphabet.csv", d3.autoType);
-  return Plot.plot({
-    marks: [
-      Plot.barX(alphabet, {x: "frequency", y: "letter", sort: {y: "-x"}, fill: "steelblue"}),
-      Plot.ruleY(alphabet, {x1: (d) => d.frequency * 0.9, x2: (d) => d.frequency * 1.1, y: "letter", marker: "tick"}),
-      Plot.ruleX([0])
-    ]
-  });
+  return React.createElement(Plot, {},
+    React.createElement(BarX, {data: alphabet, x: "frequency", y: "letter", sort: {y: "-x"}, fill: "steelblue"}),
+    React.createElement(RuleY, {data: alphabet, x1: (d) => d.frequency * 0.9, x2: (d) => d.frequency * 1.1, y: "letter", marker: "tick"}),
+    React.createElement(RuleX, {data: [0]})
+  );
 }
 
 export async function errorBarY() {
   const alphabet = await d3.csv<any>("data/alphabet.csv", d3.autoType);
-  return Plot.plot({
-    marks: [
-      Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "-y"}, fill: "steelblue"}),
-      Plot.ruleX(alphabet, {x: "letter", y1: (d) => d.frequency * 0.9, y2: (d) => d.frequency * 1.1, marker: "tick"}),
-      Plot.ruleY([0])
-    ]
-  });
+  return React.createElement(Plot, {},
+    React.createElement(BarY, {data: alphabet, x: "letter", y: "frequency", sort: {x: "-y"}, fill: "steelblue"}),
+    React.createElement(RuleX, {data: alphabet, x: "letter", y1: (d) => d.frequency * 0.9, y2: (d) => d.frequency * 1.1, marker: "tick"}),
+    React.createElement(RuleY, {data: [0]})
+  );
 }

@@ -3,20 +3,18 @@ import * as d3 from "d3";
 import metros from "../data/metros.ts";
 import miserables from "../data/miserables.ts";
 
-export const markov = [];
+export const markov = (() => {
+  const matrix = [[3, 2, 5], [1, 7, 2], [1, 1, 8]];
+  const nodes = matrix.map((m, i) => d3.pointRadial(((2 - i) * 2 * Math.PI) / matrix.length, 100));
+  const edges = matrix.flatMap((m, i) => m.map((value, j) => ([nodes[i], nodes[j], value])));
+  return {nodes, edges};
+})();
 
-{/*
-// TODO: manually convert: const markov = (() => {
-// TODO: manually convert: const matrix = [[3, 2, 5], [1, 7, 2], [1, 1, 8]];
-// TODO: manually convert: const nodes = matrix.map((m, i) => d3.pointRadial(((2 - i) * 2 * Math.PI) / matrix.length, 100));
-// TODO: manually convert: const edges = matrix.flatMap((m, i) => m.map((value, j) => ([nodes[i], nodes[j], value])));
-// TODO: manually convert: return {nodes, edges};
-// TODO: manually convert: })();
-// TODO: manually convert: function samegroup({source, target}) {
-// TODO: manually convert: source = miserables.groups.get(source);
-// TODO: manually convert: target = miserables.groups.get(target);
-// TODO: manually convert: return source === target ? source : null;
-*/}
+export function samegroup({source, target}) {
+  const s = miserables.groups.get(source);
+  const t = miserables.groups.get(target);
+  return s === t ? s : null;
+}
 
 # Arrow mark <VersionBadge version="0.4.0" />
 

@@ -1,4 +1,4 @@
-<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="40" viewBox="0 0 640 40" style="overflow: visible;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="40" viewBox="0 0 640 40" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
     :where(.plot) {
       --plot-background: white;
@@ -13,36 +13,28 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,1)">
-    <path transform="translate(95,30)" d="M0,0L0,-6"></path>
-    <path transform="translate(245,30)" d="M0,0L0,-6"></path>
-    <path transform="translate(395,30)" d="M0,0L0,-6"></path>
-    <path transform="translate(545,30)" d="M0,0L0,-6"></path>
-  </g>
-  <g aria-label="x-axis tick label" transform="translate(0.5,-8.5)">
-    <text transform="translate(95,30)">after</text>
-    <text transform="translate(245,30)">before</text>
-    <text transform="translate(395,30)">between</text>
-    <text transform="translate(545,30)">no name</text>
-  </g>
-  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)" visibility="hidden">
-    <g transform="translate(95,35)">
-      <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))"></path>
-      <text fill="currentColor" fill-opacity="1" stroke="none"><tspan x="0" dy="1em">​Hello</tspan><tspan x="0" dy="1em">​ </tspan><tspan x="0" dy="1em">​ </tspan></text>
+  <defs>
+    <clipPath id="_r_2li_">
+      <rect x="0" y="0" width="639" height="39"></rect>
+    </clipPath>
+  </defs>
+  <g aria-label="x-axis" transform="translate(0,39)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+    <line x1="0" x2="639" stroke="currentColor"></line>
+    <g transform="translate(81,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">after</text>
     </g>
-    <g transform="translate(245,35)">
-      <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))"></path>
-      <text fill="currentColor" fill-opacity="1" stroke="none"><tspan x="0" dy="1em">​ </tspan><tspan x="0" dy="1em">​ </tspan><tspan x="0" dy="1em">​World</tspan></text>
+    <g transform="translate(240,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">before</text>
     </g>
-    <g transform="translate(395,35)">
-      <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))"></path>
-      <text fill="currentColor" fill-opacity="1" stroke="none"><tspan x="0" dy="1em">​{</tspan><tspan x="0" dy="1em">​ </tspan><tspan x="0" dy="1em">​}</tspan></text>
+    <g transform="translate(399,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">between</text>
     </g>
-  </g>
-  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)" visibility="hidden">
-    <g transform="translate(545,35)">
-      <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))"></path>
-      <text fill="currentColor" fill-opacity="1" stroke="none"><tspan x="0" dy="1em">​<tspan font-weight="bold">a</tspan> first</tspan><tspan x="0" dy="1em">​<tspan font-weight="bold">b</tspan> second</tspan><tspan x="0" dy="1em">​ </tspan><tspan x="0" dy="1em">​<tspan font-weight="bold">x</tspan> no name</tspan></text>
+    <g transform="translate(558,0)">
+      <line y2="6" stroke="currentColor"></line>
+      <text y="9" dy="0.71em" fill="currentColor">no name</text>
     </g>
   </g>
 </svg>

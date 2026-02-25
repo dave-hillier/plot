@@ -60,9 +60,11 @@ export function WaffleY({
   ry,
   className,
   onClick,
+  channels: extraChannels,
   ...restOptions
 }: WaffleProps) {
   const channels: Record<string, ChannelSpec> = {
+    ...extraChannels,
     y1: {value: y1, scale: "y"},
     y2: {value: y2, scale: "y"},
     x: {value: x, scale: "x", type: "band", optional: true},
@@ -166,9 +168,11 @@ export function WaffleX({
   ry,
   className,
   onClick,
+  channels: extraChannels,
   ...restOptions
 }: WaffleProps) {
   const channels: Record<string, ChannelSpec> = {
+    ...extraChannels,
     x1: {value: x1, scale: "x"},
     x2: {value: x2, scale: "x"},
     y: {value: y, scale: "y", type: "band", optional: true},

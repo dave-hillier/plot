@@ -13,18 +13,9 @@ export const land = [];
 export const stateage = [];
 export const stocks = [];
 
-{/*
-// TODO: manually convert: d3.text("../data/beagle.csv").then((text) => (beagle.value = d3.csvParseRows(text).map(d3.autoType)));
-// TODO: manually convert: d3.csv("../data/us-population-state-age.csv", d3.autoType).then((data) => {
-// TODO: manually convert: const ages = data.columns.slice(1); // convert wide data to tidy data
-// TODO: manually convert: stateage.value = Object.assign(ages.flatMap((age) => data.map((d) => ({state: d.name, age, population: d[age]}))), {ages});
-// TODO: manually convert: Promise.all([
-// TODO: manually convert: d3.csv("../data/amzn.csv", d3.autoType),
-// TODO: manually convert: d3.csv("../data/goog.csv", d3.autoType),
-// TODO: manually convert: d3.csv("../data/ibm.csv", d3.autoType)
-// TODO: manually convert: ]).then((datas) => {
-// TODO: manually convert: stocks.value = d3.zip(["AAPL", "AMZN", "GOOG", "IBM"], [aapl].concat(datas)).flatMap(([Symbol, data]) => data.map((d) => ({Symbol, ...d})));
-*/}
+{/* Data: beagle is loaded from beagle.csv as [[lon, lat], ...] rows.
+   stateage is loaded from us-population-state-age.csv, pivoted to tidy format with {state, age, population} and an .ages property.
+   stocks is loaded from amzn.csv, goog.csv, ibm.csv combined with aapl, each row having {Symbol, Date, Close, ...}. */}
 
 # Line mark
 
@@ -50,8 +41,9 @@ The [lineY constructor](#lineY) provides default channel definitions of **x** = 
 
 As with [areas](./area.md), points in lines are connected in input order: the first point is connected to the second point, the second is connected to the third, and so on. Line data is typically in chronological order. Unsorted data may produce gibberish.
 
-{/* TODO: manually convert */}
-{/* Plot.lineY(d3.shuffler(d3.randomLcg(42))(aapl.slice()), {x: "Date", y: "Close"}).plot() // 🌶️ */}
+<Plot>
+  <LineY data={d3.shuffler(d3.randomLcg(42))(aapl.slice())} x="Date" y="Close" />
+</Plot>
 
 If your data isn’t sorted, use the [sort transform](../transforms/sort.md).
 
@@ -106,7 +98,7 @@ If a **stroke** (or **fill**) channel is specified, the **z** option defaults to
       y: "Close",
       stroke: "Symbol"
     })} />
-  <Text data={stocks} {...selectLast(Plot.normalizeY({
+  <Text data={stocks} {...selectLast(normalizeY({
       x: "Date",
       y: "Close",
       z: "Symbol",
@@ -193,10 +185,8 @@ With a [spherical projection](../features/projections.md), line segments become 
 
 <Plot projection="equirectangular">
   <Geo data={land} />
-  {/* TODO: // MultiPolygon
-    Plot.line(beagle, {stroke: "red"}) */}
-  {/* TODO: // [[lon, lat], …]
-    Plot.geo({type: "Point", coordinates: [-0.13, 51.5]}, {fill: "red"}) */}
+  <Line data={beagle} stroke="red" />
+  <Geo data={[{type: "Point", coordinates: [-0.13, 51.5]}]} fill="red" />
 </Plot>
 
 

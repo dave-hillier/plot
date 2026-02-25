@@ -1,34 +1,36 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, BarX, TextX, RuleX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function documentationLinks() {
   const data = await d3.json<any>("data/plot-documentation.json").then((d) => d.listings);
-  return Plot.plot({
-    marginLeft: 140,
-    x: {
-      domain: [0, 41],
-      clamp: true,
-      grid: true
+  return React.createElement(Plot, {
+      marginLeft: 140,
+      x: {
+        domain: [0, 41],
+        clamp: true,
+        grid: true
+      },
+      y: {
+        tickFormat: (i) => data[i].title.replace(" / Observable Plot", "")
+      }
     },
-    y: {
-      tickFormat: (i) => data[i].title.replace(" / Observable Plot", "")
-    },
-    marks: [
-      Plot.barX(data, {
-        x: "likes",
-        y: (d, i) => i,
-        href: (d) => `https://observablehq.com/@observablehq/${d.slug}`,
-        target: "_blank"
-      }),
-      Plot.textX(data, {
-        x: "likes",
-        y: (d, i) => i,
-        text: (d) => `${d.likes > 40 ? "⚡︎" : ""} ${d.likes}`,
-        textAnchor: "end",
-        fill: "white",
-        dx: -3
-      }),
-      Plot.ruleX([0])
-    ]
-  });
+    React.createElement(BarX, {
+      data,
+      x: "likes",
+      y: (d, i) => i,
+      href: (d) => `https://observablehq.com/@observablehq/${d.slug}`,
+      target: "_blank"
+    }),
+    React.createElement(TextX, {
+      data,
+      x: "likes",
+      y: (d, i) => i,
+      text: (d) => `${d.likes > 40 ? "\u26A1\uFE0E" : ""} ${d.likes}`,
+      textAnchor: "end",
+      fill: "white",
+      dx: -3
+    }),
+    React.createElement(RuleX, {data: [0]})
+  );
 }

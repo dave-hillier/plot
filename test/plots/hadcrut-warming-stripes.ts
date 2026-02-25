@@ -1,4 +1,5 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, BarX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function hadcrutWarmingStripes() {
@@ -11,20 +12,15 @@ export async function hadcrutWarmingStripes() {
       year: new Date(Date.UTC(+year, 0, 1)),
       anomaly: +anomaly
     }));
-  return Plot.plot({
-    x: {
-      round: true
+  return React.createElement(Plot, {
+      x: {round: true},
+      color: {scheme: "BuRd", symmetric: false}
     },
-    color: {
-      scheme: "BuRd",
-      symmetric: false
-    },
-    marks: [
-      Plot.barX(hadcrut, {
-        x1: "year", // start of current year
-        x2: (d) => d3.utcYear.offset(d.year), // start of next year
-        fill: "anomaly"
-      })
-    ]
-  });
+    React.createElement(BarX, {
+      data: hadcrut,
+      x1: "year", // start of current year
+      x2: (d) => d3.utcYear.offset(d.year), // start of next year
+      fill: "anomaly"
+    })
+  );
 }

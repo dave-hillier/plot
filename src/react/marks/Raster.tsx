@@ -52,9 +52,11 @@ export function Raster({
   dx = 0,
   dy = 0,
   className,
+  channels: extraChannels,
   ...restOptions
 }: RasterProps) {
   const channels: Record<string, ChannelSpec> = {
+    ...extraChannels,
     ...(isColorChannel(fill)
       ? {fill: {value: fill, scale: "auto", optional: true}}
       : {}),

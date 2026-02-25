@@ -1,4 +1,5 @@
-import * as Plot from "replot";
+import React from "react";
+import {Plot, Geo, Graticule, Dot, Frame, dodgeY} from "../../src/react/index.js";
 import * as d3 from "d3";
 import {feature} from "topojson-client";
 
@@ -6,18 +7,14 @@ export async function populationByLongitude() {
   const world = await d3.json<any>("data/countries-110m.json");
   const land = feature(world, world.objects.land);
   const cities = await d3.csv<any>("data/cities-10k.csv", d3.autoType);
-  return Plot.plot({
-    style: {overflow: "visible"},
-    projection: {type: "equirectangular", rotate: [-10, 0]},
-    r: {range: [0, 5]},
-    marks: [
-      Plot.geo(land, {fill: "#f0f0f0"}),
-      Plot.graticule(),
-      Plot.dot(
-        d3.sort(cities, (d) => -d.population).slice(0, 5000),
-        Plot.dodgeY({x: "longitude", y: "latitude", r: "population", fill: "currentColor", anchor: "middle"})
-      ),
-      Plot.frame()
-    ]
-  });
+  return React.createElement(Plot, {
+      style: {overflow: "visible"},
+      projection: {type: "equirectangular", rotate: [-10, 0]},
+      r: {range: [0, 5]}
+    },
+    React.createElement(Geo, {data: land, fill: "#f0f0f0"}),
+    React.createElement(Graticule, {}),
+    React.createElement(Dot, {data: d3.sort(cities, (d) => -d.population).slice(0, 5000), ...dodgeY({x: "longitude", y: "latitude", r: "population", fill: "currentColor", anchor: "middle"})}),
+    React.createElement(Frame, {})
+  );
 }

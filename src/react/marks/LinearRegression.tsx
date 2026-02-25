@@ -62,9 +62,11 @@ export function LinearRegressionY({
   strokeWidth,
   strokeOpacity,
   className,
+  channels: extraChannels,
   ...restOptions
 }: LinearRegressionProps) {
   const channels: Record<string, ChannelSpec> = {
+    ...extraChannels,
     x: {value: x, scale: "x"},
     y: {value: y, scale: "y"},
     ...(z != null ? {z: {value: z, optional: true}} : {}),
@@ -135,9 +137,11 @@ export function LinearRegressionX({
   strokeWidth,
   strokeOpacity,
   className,
+  channels: extraChannels,
   ...restOptions
 }: LinearRegressionProps) {
   const channels: Record<string, ChannelSpec> = {
+    ...extraChannels,
     x: {value: x, scale: "x"},
     y: {value: y, scale: "y"},
     ...(z != null ? {z: {value: z, optional: true}} : {}),

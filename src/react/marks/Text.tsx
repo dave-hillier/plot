@@ -74,9 +74,11 @@ export function Text({
   frameAnchor,
   className,
   onClick,
+  channels: extraChannels,
   ...restOptions
 }: TextProps) {
   const channels: Record<string, ChannelSpec> = {
+    ...extraChannels,
     x: {value: x, scale: "x", optional: true},
     y: {value: y, scale: "y", optional: true},
     text: {value: text ?? (x == null && y == null ? (d: any) => d : undefined), optional: true, filter: null},
