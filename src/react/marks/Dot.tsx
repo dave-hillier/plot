@@ -22,6 +22,64 @@ const defaults = {
   strokeWidth: 1.5
 };
 
+// Bridges a composed render (e.g., from pointer()) into React. The render
+// receives a context with getMarkState, ownerSVGElement, pointerSticky, and
+// dispatchValue, plus a `next` callback that produces a default dot rendering
+// as a DOM node. The returned DOM node is mounted under a <g> ref.
+function ComposedRenderHost({
+  render,
+  markThis,
+  index,
+  values,
+  scales,
+  exposedScales,
+  dimensions
+}: {
+  render: any;
+  markThis: any;
+  index: number[];
+  values: any;
+  scales: any;
+  exposedScales: any;
+  dimensions: any;
+}) {
+  const gRef = React.useRef<SVGGElement | null>(null);
+  React.useEffect(() => {
+    const g = gRef.current;
+    if (!g) return;
+    const svg = g.ownerSVGElement!;
+    const NS = "http://www.w3.org/2000/svg";
+    const defaultRender = (idx: number[]) => {
+      const group = document.createElementNS(NS, "g");
+      const X = values.x, Y = values.y;
+      for (const i of idx) {
+        const circle = document.createElementNS(NS, "circle");
+        if (X) circle.setAttribute("cx", String(X[i]));
+        if (Y) circle.setAttribute("cy", String(Y[i]));
+        circle.setAttribute("r", "3");
+        group.appendChild(circle);
+      }
+      return group;
+    };
+    const context = {
+      ownerSVGElement: svg,
+      pointerSticky: false,
+      dispatchValue: () => {},
+      getMarkState: () => ({data: markThis.data})
+    };
+    const next = (idx: number[], _s: any, _v: any, _d: any, _c: any) => defaultRender(idx);
+    const node = render.call(markThis, index, scales, values, dimensions, context, next);
+    if (node) {
+      while (g.firstChild) g.removeChild(g.firstChild);
+      g.appendChild(node);
+    }
+    return () => {
+      while (g.firstChild) g.removeChild(g.firstChild);
+    };
+  }, [render, index, values, scales, dimensions, markThis, exposedScales]);
+  return <g ref={gRef} />;
+}
+
 // Mounts a raw DOM node inside a React tree (used when render() returns a node
 // from an embedded imperative Plot.plot() call).
 function DOMNode({node}: {node: Element}) {
@@ -172,8 +230,26 @@ export function Dot({
   // bound to the mark and receives exposed scales (with .domain, .range),
   // not raw d3 scale functions. Supports returning a DOM node (e.g., from an
   // embedded imperative Plot.plot() call) via a ref-mounted wrapper.
+  //
+  // Render functions that accept 5+ args use the composed-render context API
+  // (e.g., pointer() interaction from ../interactions/pointer.js). These need
+  // context.getMarkState, context.ownerSVGElement, context.dispatchValue, and
+  // a `next` callback that produces the default DOM rendering of this mark.
   if (customRender) {
-    const markThis = {data};
+    const markThis: any = {data};
+    if (customRender.length >= 5) {
+      return (
+        <ComposedRenderHost
+          render={customRender}
+          markThis={markThis}
+          index={index}
+          values={values}
+          scales={scales}
+          exposedScales={exposedScales}
+          dimensions={dimensions}
+        />
+      );
+    }
     const result = customRender.call(markThis, index, {scales: exposedScales}, values, dimensions);
     if (result && typeof (result as any).nodeType === "number") {
       return <DOMNode node={result as any} />;
