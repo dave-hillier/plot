@@ -3,6 +3,7 @@ import {pathRound as path, symbolCircle} from "d3";
 import {maybeSymbol} from "../../symbol.js";
 import {first, second} from "../../options.js";
 import {useMark} from "../useMark.js";
+import {usePlotContext} from "../PlotContext.js";
 import {
   indirectStyleProps,
   directStyleProps,
@@ -20,6 +21,22 @@ const defaults = {
   stroke: "currentColor",
   strokeWidth: 1.5
 };
+
+// Mounts a raw DOM node inside a React tree (used when render() returns a node
+// from an embedded imperative Plot.plot() call).
+function DOMNode({node}: {node: Element}) {
+  const ref = React.useRef<SVGGElement | null>(null);
+  React.useEffect(() => {
+    const g = ref.current;
+    if (!g) return;
+    while (g.firstChild) g.removeChild(g.firstChild);
+    g.appendChild(node);
+    return () => {
+      if (node.parentNode === g) g.removeChild(node);
+    };
+  }, [node]);
+  return <g ref={ref} />;
+}
 
 export interface DotProps {
   data?: any;
@@ -139,6 +156,7 @@ export function Dot({
     frameAnchor
   };
 
+  const {scales: exposedScales} = usePlotContext();
   const {values, index, scales, dimensions} = useMark({
     data,
     channels,
@@ -150,9 +168,17 @@ export function Dot({
   // Registration phase — nothing to render yet
   if (!values || !index || !dimensions || !scales) return null;
 
-  // Custom render function
+  // Custom render function. Mirrors mark.render signature: called with `this`
+  // bound to the mark and receives exposed scales (with .domain, .range),
+  // not raw d3 scale functions. Supports returning a DOM node (e.g., from an
+  // embedded imperative Plot.plot() call) via a ref-mounted wrapper.
   if (customRender) {
-    return <>{customRender(index, scales, values, dimensions)}</>;
+    const markThis = {data};
+    const result = customRender.call(markThis, index, {scales: exposedScales}, values, dimensions);
+    if (result && typeof (result as any).nodeType === "number") {
+      return <DOMNode node={result as any} />;
+    }
+    return <>{result}</>;
   }
 
   const {x: X, y: Y, r: R, rotate: A, symbol: S} = values;

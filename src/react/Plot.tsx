@@ -35,7 +35,9 @@ import {
   maybeClassName,
   defined
 } from "../core/index.js";
-import {geoPath} from "d3";
+import {geoPath, extent} from "d3";
+// @ts-expect-error — JS module without .d.ts
+import {utcInterval} from "../time.js";
 import {facetTranslator} from "../facet.js";
 import {PlotContext, FacetContext} from "./PlotContext.js";
 import type {MarkRegistration, MarkState, FacetInfo, PlotContextValue, PointerState} from "./PlotContext.js";
@@ -288,6 +290,32 @@ export function Plot({
 
     // Create scales
     const scaleDescriptors = createScales(channelsByScale, plotOptions);
+
+    // Warn when the scale-level `ticks` option produces a set that doesn't
+    // intersect the computed (ordinal) scale domain — e.g. "year" ticks
+    // against a "4 weeks" interval. Mirrors src/marks/axis.js.
+    for (const k of ["x", "y"] as const) {
+      const scaleOpts = plotOptions[k];
+      const desc = scaleDescriptors[k];
+      if (!scaleOpts?.ticks || !desc || desc.scale?.ticks) continue;
+      const domain = desc.domain;
+      if (!Array.isArray(domain)) continue;
+      let ticks = scaleOpts.ticks;
+      if (typeof ticks === "string") {
+        try {
+          const interval = utcInterval(ticks);
+          if (!interval || !domain.length) continue;
+          const [d0, d1] = extent(domain as any[]);
+          ticks = interval.range(d0 as any, interval.offset(d1 as any));
+        } catch { continue; }
+      } else if (typeof ticks === "number") continue;
+      if (!Array.isArray(ticks)) continue;
+      const domainSet = new Set(domain.map((d: any) => +d));
+      const filtered = ticks.filter((t: any) => domainSet.has(+t));
+      if (!filtered.length) {
+        console.warn(`Warning: the ${k}-axis ticks appear to not align with the scale domain, resulting in no ticks. Try different ticks?`); // prettier-ignore
+      }
+    }
 
     // Simulate marks array for dimension calculation (need marginTop etc.)
     const dimensionMarks = marks.map((reg) => ({
@@ -578,7 +606,7 @@ export function Plot({
   // Helper to render values that may be strings, React nodes, or DOM elements (from htl's html``)
   const renderContent = (value: any, Tag: string, style: any) => {
     if (value == null) return null;
-    if (value instanceof Node) {
+    if (typeof Node !== "undefined" && value instanceof Node) {
       return React.createElement(Tag, {style, dangerouslySetInnerHTML: {__html: value.innerHTML ?? value.textContent}});
     }
     return React.createElement(Tag, {style}, value);

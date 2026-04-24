@@ -1,0 +1,204 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="960" height="480" viewBox="0 0 960 480" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <defs>
+    <clipPath id="plot-rid-1">
+      <rect x="40" y="35" width="919" height="405"></rect>
+    </clipPath>
+  </defs>
+  <g transform="translate(41,0)">
+    <g aria-label="y-axis" transform="translate(40,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
+      <line y1="35" y2="440" stroke="currentColor"></line>
+      <g transform="translate(0,421.579)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">52</text>
+      </g>
+      <g transform="translate(0,384.737)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">54</text>
+      </g>
+      <g transform="translate(0,347.895)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">56</text>
+      </g>
+      <g transform="translate(0,311.053)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">58</text>
+      </g>
+      <g transform="translate(0,274.211)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">60</text>
+      </g>
+      <g transform="translate(0,237.368)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">62</text>
+      </g>
+      <g transform="translate(0,200.526)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">64</text>
+      </g>
+      <g transform="translate(0,163.684)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">66</text>
+      </g>
+      <g transform="translate(0,126.842)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">68</text>
+      </g>
+      <g transform="translate(0,90)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">70</text>
+      </g>
+    </g>
+    <g aria-label="fx-axis top" transform="translate(0,35)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+      <g transform="translate(183,0)">
+        <line y2="-6" stroke="currentColor" stroke-opacity="1"></line>
+        <text y="-9" dy="0" text-anchor="middle" fill="currentColor">D</text>
+      </g>
+      <g transform="translate(499,0)">
+        <line y2="-6" stroke="currentColor" stroke-opacity="1"></line>
+        <text y="-9" dy="0" text-anchor="middle" fill="currentColor">E</text>
+      </g>
+      <g transform="translate(815,0)">
+        <line y2="-6" stroke="currentColor" stroke-opacity="1"></line>
+        <text y="-9" dy="0" text-anchor="middle" fill="currentColor">F</text>
+      </g>
+    </g>
+    <rect aria-label="frame" x="40" y="35" width="919" height="405" fill="none" stroke="currentColor" stroke-width="1"></rect>
+    <g></g>
+  </g>
+  <g transform="translate(357,0)">
+    <g aria-label="y-axis" transform="translate(40,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
+      <line y1="35" y2="440" stroke="currentColor"></line>
+      <g transform="translate(0,421.579)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">52</text>
+      </g>
+      <g transform="translate(0,384.737)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">54</text>
+      </g>
+      <g transform="translate(0,347.895)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">56</text>
+      </g>
+      <g transform="translate(0,311.053)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">58</text>
+      </g>
+      <g transform="translate(0,274.211)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">60</text>
+      </g>
+      <g transform="translate(0,237.368)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">62</text>
+      </g>
+      <g transform="translate(0,200.526)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">64</text>
+      </g>
+      <g transform="translate(0,163.684)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">66</text>
+      </g>
+      <g transform="translate(0,126.842)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">68</text>
+      </g>
+      <g transform="translate(0,90)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">70</text>
+      </g>
+    </g>
+    <g aria-label="fx-axis top" transform="translate(0,35)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+      <g transform="translate(183,0)">
+        <line y2="-6" stroke="currentColor" stroke-opacity="1"></line>
+        <text y="-9" dy="0" text-anchor="middle" fill="currentColor">D</text>
+      </g>
+      <g transform="translate(499,0)">
+        <line y2="-6" stroke="currentColor" stroke-opacity="1"></line>
+        <text y="-9" dy="0" text-anchor="middle" fill="currentColor">E</text>
+      </g>
+      <g transform="translate(815,0)">
+        <line y2="-6" stroke="currentColor" stroke-opacity="1"></line>
+        <text y="-9" dy="0" text-anchor="middle" fill="currentColor">F</text>
+      </g>
+    </g>
+    <rect aria-label="frame" x="40" y="35" width="919" height="405" fill="none" stroke="currentColor" stroke-width="1"></rect>
+    <g></g>
+  </g>
+  <g transform="translate(673,0)">
+    <g aria-label="y-axis" transform="translate(40,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
+      <line y1="35" y2="440" stroke="currentColor"></line>
+      <g transform="translate(0,421.579)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">52</text>
+      </g>
+      <g transform="translate(0,384.737)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">54</text>
+      </g>
+      <g transform="translate(0,347.895)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">56</text>
+      </g>
+      <g transform="translate(0,311.053)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">58</text>
+      </g>
+      <g transform="translate(0,274.211)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">60</text>
+      </g>
+      <g transform="translate(0,237.368)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">62</text>
+      </g>
+      <g transform="translate(0,200.526)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">64</text>
+      </g>
+      <g transform="translate(0,163.684)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">66</text>
+      </g>
+      <g transform="translate(0,126.842)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">68</text>
+      </g>
+      <g transform="translate(0,90)">
+        <line x2="-6" stroke="currentColor"></line>
+        <text x="-9" dy="0.32em" fill="currentColor">70</text>
+      </g>
+    </g>
+    <g aria-label="fx-axis top" transform="translate(0,35)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+      <g transform="translate(183,0)">
+        <line y2="-6" stroke="currentColor" stroke-opacity="1"></line>
+        <text y="-9" dy="0" text-anchor="middle" fill="currentColor">D</text>
+      </g>
+      <g transform="translate(499,0)">
+        <line y2="-6" stroke="currentColor" stroke-opacity="1"></line>
+        <text y="-9" dy="0" text-anchor="middle" fill="currentColor">E</text>
+      </g>
+      <g transform="translate(815,0)">
+        <line y2="-6" stroke="currentColor" stroke-opacity="1"></line>
+        <text y="-9" dy="0" text-anchor="middle" fill="currentColor">F</text>
+      </g>
+    </g>
+    <rect aria-label="frame" x="40" y="35" width="919" height="405" fill="none" stroke="currentColor" stroke-width="1"></rect>
+    <g></g>
+  </g>
+</svg>
