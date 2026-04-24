@@ -32,6 +32,11 @@
 </style>
 <script type="module">
   import * as tests from "./index.ts";
+  import {createRoot} from "react-dom/client";
+
+  function isReactElement(value) {
+    return value != null && typeof value === "object" && value.$$typeof != null && value.type !== undefined;
+  }
 
   if (location.pathname !== "/") {
     location = `/${location.search}${location.hash}`;
@@ -93,8 +98,10 @@
 
   let currentChart = document.createElement("DIV");
   document.body.append(currentChart);
+  let currentRoot = null;
 
   async function render() {
+    if (currentRoot) { currentRoot.unmount(); currentRoot = null; }
     const newChart = document.createElement("DIV");
     currentChart.replaceWith(newChart);
     currentChart = newChart;
@@ -103,7 +110,12 @@
     const plot = await tests[select.value]();
     const end = performance.now();
     info.textContent = `${(end - start).toFixed(0)} ms`;
-    newChart.append(plot);
+    if (isReactElement(plot)) {
+      currentRoot = createRoot(newChart);
+      currentRoot.render(plot);
+    } else {
+      newChart.append(plot);
+    }
   }
 
   render();
