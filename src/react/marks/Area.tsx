@@ -61,7 +61,7 @@ export function Area({
   channels: extraChannels,
   ...restOptions
 }: AreaProps) {
-  const maybeZ = z ?? (typeof fill === "string" && !/^#|^rgb|^hsl|^none|^currentColor/.test(fill) ? fill : undefined);
+  const maybeZ = z !== undefined ? z : (isColorChannel(fill) ? fill : undefined);
 
   const channels: Record<string, ChannelSpec> = {
     ...extraChannels,
@@ -93,6 +93,9 @@ export function Area({
         : defaults.fill,
     stroke: typeof stroke === "string" ? stroke : defaults.stroke,
     strokeWidth: typeof strokeWidth === "number" ? strokeWidth : defaults.strokeWidth,
+    fillOpacity: typeof fillOpacity === "number" ? fillOpacity : undefined,
+    strokeOpacity: typeof strokeOpacity === "number" ? strokeOpacity : undefined,
+    opacity: typeof opacity === "number" ? opacity : undefined,
     dx,
     dy,
     className

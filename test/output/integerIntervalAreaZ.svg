@@ -14,7 +14,7 @@
     }
   </style>
   <defs>
-    <clipPath id="_r_151_">
+    <clipPath id="plot-rid-1">
       <rect x="0" y="0" width="639" height="399"></rect>
     </clipPath>
   </defs>
@@ -124,7 +124,7 @@
       <text x="-9" dy="0.32em" fill="currentColor">9</text>
     </g>
   </g>
-  <g aria-label="area" fill="currentColor" stroke="category" stroke-width="2" stroke-miterlimit="1">
+  <g aria-label="area" fill="currentColor" fill-opacity="0.7" stroke="category" stroke-width="2" stroke-miterlimit="1">
     <path d="M0,199.5L213,99.75L213,99.75L0,199.5Z" fill="#b2df8a" stroke="#a6cee3"></path>
     <path d="M213,0L426,249.375L426,249.375L213,0Z" fill="#33a02c" stroke="#a6cee3"></path>
     <path d="M213,399L639,99.75L639,99.75L213,399Z" fill="#fb9a99" stroke="#1f78b4"></path>

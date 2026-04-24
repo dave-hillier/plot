@@ -63,10 +63,12 @@ export function Line({
   const y = xProp === undefined && yProp === undefined ? second : yProp;
 
   // Determine z channel: defaults to fill or stroke if they're channels
+  // (i.e., field names or accessors, not literal color values). Explicit
+  // z=null disables grouping (don't fall through to fill/stroke defaults).
   const maybeZ =
-    z ??
-    (typeof fill === "string" && !/^#|^rgb|^hsl|^none|^currentColor/.test(fill) ? fill : undefined) ??
-    (typeof stroke === "string" && !/^#|^rgb|^hsl|^none|^currentColor/.test(stroke) ? stroke : undefined);
+    z !== undefined
+      ? z
+      : (isColorChannel(fill) ? fill : undefined) ?? (isColorChannel(stroke) ? stroke : undefined);
 
   const channels: Record<string, ChannelSpec> = {
     ...extraChannels,
