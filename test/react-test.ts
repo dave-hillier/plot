@@ -1059,7 +1059,14 @@ describe("Implicit axis detection", () => {
 import jsdomit from "./jsdom.js";
 import ReactDOM from "react-dom/client";
 import {act} from "react";
-import {validatePlot} from "../src/react/__validate.js";
+import {
+  validatePlot,
+  validateFrame,
+  validateRuleX,
+  validateRuleY,
+  validateTickX,
+  validateTickY
+} from "../src/react/__validate.js";
 
 describe("New Plot contract (Unit 1)", () => {
   jsdomit("renders a Frame mark via the new useMark contract", async () => {
@@ -1081,5 +1088,51 @@ describe("New Plot contract (Unit 1)", () => {
       root.unmount();
     });
     container.remove();
+  });
+});
+
+describe("New Plot contract — Unit 2 façades", () => {
+  async function mountAndQuery(element: any, selector: string) {
+    const container = (globalThis as any).document.createElement("div");
+    (globalThis as any).document.body.appendChild(container);
+    let root: any;
+    await act(async () => {
+      root = ReactDOM.createRoot(container);
+      root.render(element);
+    });
+    await act(async () => {});
+    const svgs = container.querySelectorAll("svg");
+    assert.strictEqual(svgs.length, 1, "expected exactly one <svg>");
+    const matches = svgs[0].querySelectorAll(selector);
+    await act(async () => {
+      root.unmount();
+    });
+    container.remove();
+    return matches;
+  }
+
+  jsdomit("Frame façade renders a <rect> via PlotV2", async () => {
+    const rects = await mountAndQuery(validateFrame(), "rect");
+    assert.ok(rects.length >= 1, "expected at least one <rect>");
+  });
+
+  jsdomit("RuleX façade renders <line> elements via PlotV2", async () => {
+    const lines = await mountAndQuery(validateRuleX(), "line");
+    assert.ok(lines.length >= 1, "expected at least one <line>");
+  });
+
+  jsdomit("RuleY façade renders <line> elements via PlotV2", async () => {
+    const lines = await mountAndQuery(validateRuleY(), "line");
+    assert.ok(lines.length >= 1, "expected at least one <line>");
+  });
+
+  jsdomit("TickX façade renders <line> elements via PlotV2", async () => {
+    const lines = await mountAndQuery(validateTickX(), "line");
+    assert.ok(lines.length >= 1, "expected at least one <line>");
+  });
+
+  jsdomit("TickY façade renders <line> elements via PlotV2", async () => {
+    const lines = await mountAndQuery(validateTickY(), "line");
+    assert.ok(lines.length >= 1, "expected at least one <line>");
   });
 });
