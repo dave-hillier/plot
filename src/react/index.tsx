@@ -90,7 +90,6 @@ export type {ImageProps} from "./marks/Image.js";
 
 // Geometric / computational marks
 export {Geo, Sphere, Graticule} from "./marks/Geo.js";
-export type {GeoProps} from "./marks/Geo.js";
 
 export {DelaunayLink, DelaunayMesh, Hull, Voronoi, VoronoiMesh} from "./marks/Delaunay.js";
 export type {DelaunayProps} from "./marks/Delaunay.js";
@@ -108,7 +107,6 @@ export type {RasterProps} from "./marks/Raster.js";
 export {interpolateNone, interpolatorBarycentric, interpolateNearest, interpolatorRandomWalk} from "../marks/raster.js";
 
 export {Hexgrid} from "./marks/Hexgrid.js";
-export type {HexgridProps} from "./marks/Hexgrid.js";
 
 // Composite marks
 export {BoxX, BoxY} from "./marks/Box.js";
