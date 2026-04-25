@@ -1,199 +1,38 @@
-import React from "react";
-import {useMark} from "../useMark.legacy.js";
-import {indirectStyleProps, directStyleProps, channelStyleProps, isColorChannel, isColorValue} from "../styles.js";
-import {maybeTrivialIntervalX, maybeTrivialIntervalY} from "../../core/index.js";
-import type {ChannelSpec} from "../PlotContext.legacy.js";
-
-const defaults = {
-  ariaLabel: "rect"
-};
+import {useMark, stampOptions} from "../useMark.js";
+import {rect, rectX, rectY} from "../../marks/rect.js";
+import {cell, cellX, cellY} from "../../marks/cell.js";
 
 export interface RectProps {
   data?: any;
-  x1?: any;
-  x2?: any;
-  y1?: any;
-  y2?: any;
-  fill?: any;
-  stroke?: any;
-  fillOpacity?: any;
-  strokeOpacity?: any;
-  strokeWidth?: any;
-  opacity?: any;
-  title?: any;
-  href?: any;
-  tip?: any;
-  dx?: number;
-  dy?: number;
-  inset?: number;
-  insetTop?: number;
-  insetRight?: number;
-  insetBottom?: number;
-  insetLeft?: number;
-  rx?: number;
-  ry?: number;
-  className?: string;
-  onClick?: (event: React.MouseEvent, datum: any) => void;
-  onPointerEnter?: (event: React.PointerEvent, datum: any) => void;
-  onPointerLeave?: (event: React.PointerEvent, datum: any) => void;
   [key: string]: any;
 }
 
-export function Rect(props: RectProps) {
-  // Preprocess: convert x/y + interval to x1/x2/y1/y2 (like imperative rect() factory)
-  const processed = maybeTrivialIntervalX(maybeTrivialIntervalY(props));
-  const {
-    data,
-    x1,
-    x2,
-    y1,
-    y2,
-    fill,
-    stroke,
-    fillOpacity,
-    strokeOpacity,
-    strokeWidth,
-    opacity,
-    title,
-    href,
-    tip,
-    dx = 0,
-    dy = 0,
-    inset = 0,
-    insetTop = inset,
-    insetRight = inset,
-    insetBottom = inset,
-    insetLeft = inset,
-    rx,
-    ry,
-    className,
-    onClick,
-    onPointerEnter,
-    onPointerLeave,
-    channels: extraChannels,
-    ...restOptions
-  } = processed;
-  const channels: Record<string, ChannelSpec> = {
-    ...extraChannels,
-    x1: {value: x1, scale: "x", optional: true},
-    x2: {value: x2, scale: "x", optional: true},
-    y1: {value: y1, scale: "y", optional: true},
-    y2: {value: y2, scale: "y", optional: true},
-    ...(isColorChannel(fill)
-      ? {fill: {value: fill, scale: "auto", optional: true}}
-      : {}),
-    ...(isColorChannel(stroke)
-      ? {stroke: {value: stroke, scale: "auto", optional: true}}
-      : {}),
-    ...(typeof fillOpacity === "string" || typeof fillOpacity === "function"
-      ? {fillOpacity: {value: fillOpacity, scale: "auto", optional: true}}
-      : {}),
-    ...(typeof opacity === "string" || typeof opacity === "function"
-      ? {opacity: {value: opacity, scale: "auto", optional: true}}
-      : {}),
-    ...(title != null ? {title: {value: title, optional: true, filter: null}} : {}),
-    ...(href != null ? {href: {value: href, optional: true, filter: null}} : {})
-  };
-
-  const markOptions = {
-    ...defaults,
-    ...restOptions,
-    fill:
-      typeof fill === "string" && isColorValue(fill)
-        ? fill
-        : "currentColor",
-    stroke: typeof stroke === "string" ? stroke : undefined,
-    dx,
-    dy,
-    className
-  };
-
-  const {values, index, scales, dimensions} = useMark({
-    data,
-    channels,
-    ariaLabel: defaults.ariaLabel,
-    tip,
-    ...markOptions
-  });
-
-  if (!values || !index || !dimensions || !scales) return null;
-
-  const {x1: X1, x2: X2, y1: Y1, y2: Y2} = values;
-  const {marginLeft, marginTop, width, height, marginRight, marginBottom} = dimensions;
-
-  const groupProps = indirectStyleProps(markOptions, dimensions);
-
-  return (
-    <g {...groupProps}>
-      {index.map((i) => {
-        const x1v = X1 ? X1[i] : marginLeft;
-        const x2v = X2 ? X2[i] : width - marginRight;
-        const y1v = Y1 ? Y1[i] : marginTop;
-        const y2v = Y2 ? Y2[i] : height - marginBottom;
-        const xMin = Math.min(x1v, x2v) + insetLeft;
-        const xMax = Math.max(x1v, x2v) - insetRight;
-        const yMin = Math.min(y1v, y2v) + insetTop;
-        const yMax = Math.max(y1v, y2v) - insetBottom;
-        const w = Math.max(0, xMax - xMin);
-        const h = Math.max(0, yMax - yMin);
-
-        const chStyles = channelStyleProps(i, values);
-        const dStyles = directStyleProps(markOptions);
-
-        return (
-          <rect
-            key={i}
-            x={xMin}
-            y={yMin}
-            width={w}
-            height={h}
-            rx={rx}
-            ry={ry}
-            {...dStyles}
-            {...chStyles}
-            onClick={onClick ? (e) => onClick(e, data?.[i]) : undefined}
-            onPointerEnter={onPointerEnter ? (e) => onPointerEnter(e, data?.[i]) : undefined}
-            onPointerLeave={onPointerLeave ? (e) => onPointerLeave(e, data?.[i]) : undefined}
-          >
-            {values.title && values.title[i] != null && <title>{`${values.title[i]}`}</title>}
-          </rect>
-        );
-      })}
-    </g>
-  );
+export function Rect({data, ...options}: RectProps) {
+  useMark({stamp: stampOptions("rect", data, options), factory: () => rect(data, options)});
+  return null;
 }
 
-// Cell is a Rect with band x and y scales
-export function Cell(props: RectProps) {
-  return <Rect {...props} />;
+export function RectX({data, ...options}: RectProps) {
+  useMark({stamp: stampOptions("rectX", data, options), factory: () => rectX(data, options)});
+  return null;
 }
 
-// CellX: like Cell, but x defaults to the zero-based index and fill defaults to identity
-export function CellX(props: RectProps) {
-  const {x1 = (_d: any, i: number) => i, fill = (d: any) => d, ...rest} = props;
-  return <Rect x1={x1} fill={fill} {...rest} />;
+export function RectY({data, ...options}: RectProps) {
+  useMark({stamp: stampOptions("rectY", data, options), factory: () => rectY(data, options)});
+  return null;
 }
 
-// CellY: like Cell, but y defaults to the zero-based index and fill defaults to identity
-export function CellY(props: RectProps) {
-  const {y1 = (_d: any, i: number) => i, fill = (d: any) => d, ...rest} = props;
-  return <Rect y1={y1} fill={fill} {...rest} />;
+export function Cell({data, ...options}: RectProps) {
+  useMark({stamp: stampOptions("cell", data, options), factory: () => cell(data, options)});
+  return null;
 }
 
-// RectX: like Rect, but with y defaulting to index and x2 defaulting to identity.
-// Maps x to x2 (with x1=0 baseline) when x1/x2 are not provided, matching maybeZero.
-export function RectX(props: RectProps) {
-  const {y1 = (_d: any, i: number) => i, x, x1, x2, ...rest} = props;
-  const resolvedX1 = x1 ?? (x !== undefined ? 0 : undefined);
-  const resolvedX2 = x2 ?? x ?? ((d: any) => d);
-  return <Rect y1={y1} x1={resolvedX1} x2={resolvedX2} {...rest} />;
+export function CellX({data, ...options}: RectProps) {
+  useMark({stamp: stampOptions("cellX", data, options), factory: () => cellX(data, options)});
+  return null;
 }
 
-// RectY: like Rect, but with x defaulting to index and y2 defaulting to identity.
-// Maps y to y2 (with y1=0 baseline) when y1/y2 are not provided, matching maybeZero.
-export function RectY(props: RectProps) {
-  const {x1 = (_d: any, i: number) => i, y, y1, y2, ...rest} = props;
-  const resolvedY1 = y1 ?? (y !== undefined ? 0 : undefined);
-  const resolvedY2 = y2 ?? y ?? ((d: any) => d);
-  return <Rect x1={x1} y1={resolvedY1} y2={resolvedY2} {...rest} />;
+export function CellY({data, ...options}: RectProps) {
+  useMark({stamp: stampOptions("cellY", data, options), factory: () => cellY(data, options)});
+  return null;
 }
