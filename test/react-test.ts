@@ -1092,7 +1092,14 @@ import {
   validateAuto,
   validateDensity,
   validateContour,
-  validateRaster
+  validateRaster,
+  validateDelaunayMesh,
+  validateDelaunayLink,
+  validateHull,
+  validateVoronoi,
+  validateVoronoiMesh,
+  validateWaffleX,
+  validateWaffleY
 } from "../src/react/__validate.js";
 
 async function renderAndQuery(element: any) {
@@ -1622,6 +1629,85 @@ describe("Unit 12: Density, Contour, Raster façades", () => {
     await act(async () => {
       root.unmount();
     });
+    container.remove();
+  });
+});
+
+describe("Delaunay and Waffle façades (Unit 13)", () => {
+  async function renderInJsdom(element: any) {
+    const container = (globalThis as any).document.createElement("div");
+    (globalThis as any).document.body.appendChild(container);
+    let root: any;
+    await act(async () => {
+      root = ReactDOM.createRoot(container);
+      root.render(element);
+    });
+    await act(async () => {});
+    return {container, root};
+  }
+
+  jsdomit("renders DelaunayMesh via the new useMark contract", async () => {
+    const {container, root} = await renderInJsdom(validateDelaunayMesh());
+    const svgs = container.querySelectorAll("svg");
+    assert.strictEqual(svgs.length, 1);
+    assert.ok(svgs[0].querySelector('g[aria-label*="delaunay"]'), "expected a delaunay layer");
+    await act(async () => root.unmount());
+    container.remove();
+  });
+
+  jsdomit("renders DelaunayLink via the new useMark contract", async () => {
+    const {container, root} = await renderInJsdom(validateDelaunayLink());
+    const svgs = container.querySelectorAll("svg");
+    assert.strictEqual(svgs.length, 1);
+    assert.ok(svgs[0].querySelector('g[aria-label*="link"]'), "expected a link layer");
+    await act(async () => root.unmount());
+    container.remove();
+  });
+
+  jsdomit("renders Hull via the new useMark contract", async () => {
+    const {container, root} = await renderInJsdom(validateHull());
+    const svgs = container.querySelectorAll("svg");
+    assert.strictEqual(svgs.length, 1);
+    assert.ok(svgs[0].querySelector('g[aria-label*="hull"]'), "expected a hull layer");
+    await act(async () => root.unmount());
+    container.remove();
+  });
+
+  jsdomit("renders Voronoi via the new useMark contract", async () => {
+    const {container, root} = await renderInJsdom(validateVoronoi());
+    const svgs = container.querySelectorAll("svg");
+    assert.strictEqual(svgs.length, 1);
+    assert.ok(svgs[0].querySelector('g[aria-label*="voronoi"]'), "expected a voronoi layer");
+    await act(async () => root.unmount());
+    container.remove();
+  });
+
+  jsdomit("renders VoronoiMesh via the new useMark contract", async () => {
+    const {container, root} = await renderInJsdom(validateVoronoiMesh());
+    const svgs = container.querySelectorAll("svg");
+    assert.strictEqual(svgs.length, 1);
+    assert.ok(svgs[0].querySelector('g[aria-label*="voronoi"]'), "expected a voronoi layer");
+    await act(async () => root.unmount());
+    container.remove();
+  });
+
+  jsdomit("renders WaffleY via the new useMark contract", async () => {
+    const {container, root} = await renderInJsdom(validateWaffleY());
+    const svgs = container.querySelectorAll("svg");
+    assert.strictEqual(svgs.length, 1);
+    const rects = svgs[0].querySelectorAll("rect");
+    assert.ok(rects.length >= 1, "expected at least one waffle cell rect");
+    await act(async () => root.unmount());
+    container.remove();
+  });
+
+  jsdomit("renders WaffleX via the new useMark contract", async () => {
+    const {container, root} = await renderInJsdom(validateWaffleX());
+    const svgs = container.querySelectorAll("svg");
+    assert.strictEqual(svgs.length, 1);
+    const rects = svgs[0].querySelectorAll("rect");
+    assert.ok(rects.length >= 1, "expected at least one waffle cell rect");
+    await act(async () => root.unmount());
     container.remove();
   });
 });

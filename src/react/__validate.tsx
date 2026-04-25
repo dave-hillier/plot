@@ -33,6 +33,8 @@ import {Auto} from "./marks/Auto.js";
 import {Density} from "./marks/Density.js";
 import {Contour} from "./marks/Contour.js";
 import {Raster} from "./marks/Raster.js";
+import {DelaunayLink, DelaunayMesh, Hull, Voronoi, VoronoiMesh} from "./marks/Delaunay.js";
+import {WaffleX, WaffleY} from "./marks/Waffle.js";
 
 // Facet axes need an fx/fy scale, which is created by a mark with an fx/fy
 // channel. Seed the facet scale via a dot mark with the appropriate facet data.
@@ -527,6 +529,76 @@ export function validateRaster() {
         y2={2}
         fill={(x: number, y: number) => Math.sin(x) * Math.cos(y)}
       />
+    </Plot>
+  );
+}
+
+const delaunayPoints = [
+  {x: 10, y: 20},
+  {x: 30, y: 60},
+  {x: 50, y: 30},
+  {x: 70, y: 80},
+  {x: 90, y: 40}
+];
+
+const waffleData = [
+  {name: "a", value: 5},
+  {name: "b", value: 7},
+  {name: "c", value: 3}
+];
+
+export function validateDelaunayMesh() {
+  return (
+    <Plot width={200} height={150}>
+      <DelaunayMesh data={delaunayPoints} x="x" y="y" stroke="black" />
+    </Plot>
+  );
+}
+
+export function validateDelaunayLink() {
+  return (
+    <Plot width={200} height={150}>
+      <DelaunayLink data={delaunayPoints} x="x" y="y" stroke="purple" />
+    </Plot>
+  );
+}
+
+export function validateHull() {
+  return (
+    <Plot width={200} height={150}>
+      <Hull data={delaunayPoints} x="x" y="y" stroke="red" />
+    </Plot>
+  );
+}
+
+export function validateVoronoi() {
+  return (
+    <Plot width={200} height={150}>
+      <Voronoi data={delaunayPoints} x="x" y="y" stroke="blue" />
+    </Plot>
+  );
+}
+
+export function validateVoronoiMesh() {
+  return (
+    <Plot width={200} height={150}>
+      <VoronoiMesh data={delaunayPoints} x="x" y="y" stroke="green" />
+    </Plot>
+  );
+}
+
+export function validateWaffleY() {
+  return (
+    <Plot width={300} height={200}>
+      <WaffleY data={waffleData} x="name" y="value" fill="steelblue" />
+    </Plot>
+  );
+}
+
+export function validateWaffleX() {
+  return (
+    <Plot width={300} height={200}>
+      <WaffleX data={waffleData} y="name" x="value" fill="tomato" />
     </Plot>
   );
 }
