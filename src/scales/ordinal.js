@@ -3,7 +3,7 @@ import {scaleBand, scaleOrdinal, scalePoint, scaleImplicit} from "d3";
 import {ascendingDefined} from "../defined.js";
 import {isNoneish, map, maybeRangeInterval} from "../options.js";
 import {maybeSymbol} from "../symbol.js";
-import {registry, color, position, symbol} from "./index.js";
+import {registry, color, opacity, position, symbol} from "./index.js";
 import {maybeBooleanRange, ordinalScheme, quantitativeScheme} from "./schemes.js";
 
 // This denotes an implicitly ordinal color scale: the scale type was not set,
@@ -50,6 +50,10 @@ export function createScaleOrdinal(key, channels, {type, interval, domain, range
       } else {
         range = ordinalScheme(scheme);
       }
+    }
+  } else if (registry.get(key) === opacity) {
+    if (range === undefined) {
+      range = ({length: n}) => quantize((t) => t, n);
     }
   }
   if (unknown === scaleImplicit) {
@@ -100,6 +104,7 @@ function inferDomain(channels, interval, key) {
     const [min, max] = extent(values).map(interval.floor, interval);
     return interval.range(min, interval.offset(max));
   }
+  if (key === "opacity") values.add(0); // akin to inferZeroDomain
   if (values.size > 10e3 && registry.get(key) === position) {
     throw new Error(`implicit ordinal domain of ${key} scale has more than 10,000 values`);
   }

@@ -2,6 +2,15 @@ import React from "react";
 import {Plot, AreaY, LineY, RuleY, AxisY, normalizeY, valueof} from "../../src/react/index.js";
 import * as d3 from "d3";
 
+export async function aaplCloseVaryingColor() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  return React.createElement(Plot, {y: {grid: true}},
+    React.createElement(AreaY, {data: aapl, x: "Date", y: "Close", fill: "Close", fillOpacity: 0.2}),
+    React.createElement(LineY, {data: aapl, x: "Date", y: "Close", stroke: "Close"}),
+    React.createElement(RuleY, {data: [0]})
+  );
+}
+
 export async function aaplClose() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return React.createElement(Plot, {y: {grid: true}},

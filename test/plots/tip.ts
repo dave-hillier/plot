@@ -1,7 +1,92 @@
-import React from "react";
-import {Plot, AreaY, Dot, DotX, LineX, LineY, RectY, RuleX, Tip, Frame, Geo, Raster, Cell, BarX, BarY, Hexagon, Voronoi, VoronoiMesh, binX, groupY, groupX, group, dodgeY, hexbin, centroid, geoCentroid, pointer, identity} from "../../src/react/index.js";
+import React, {useEffect, useRef} from "react";
+import {Plot, AreaY, Dot, DotX, LineX, LineY, RectY, RuleX, Tip, Frame, Geo, Raster, Cell, BarX, BarY, BoxX, Hexagon, Voronoi, VoronoiMesh, Crosshair, CrosshairX, binX, groupY, groupX, group, dodgeY, hexbin, centroid, geoCentroid, pointer, identity} from "../../src/react/index.js";
 import * as d3 from "d3";
 import {feature, mesh} from "topojson-client";
+
+// Replicates the upstream test pattern of dispatching a pointermove on the
+// detached SVG (where clientX/Y are already SVG-local). We dispatch after
+// mount, so we offset by the SVG's bounding rect to land at the same spot.
+function DispatchPointerMove({x, y, children}: {x: number; y: number; children: React.ReactNode}) {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const id = window.setTimeout(() => {
+      const svg = ref.current?.querySelector("svg");
+      if (!svg) return;
+      const r = svg.getBoundingClientRect();
+      svg.dispatchEvent(new PointerEvent("pointermove", {pointerType: "mouse", clientX: r.left + x, clientY: r.top + y, bubbles: true}));
+    }, 50);
+    return () => window.clearTimeout(id);
+  }, [x, y]);
+  return React.createElement("div", {ref}, children);
+}
+
+export async function tipDispatch() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  return React.createElement(DispatchPointerMove, {x: 200, y: 200},
+    React.createElement(Plot, {},
+      React.createElement(Dot, {data: penguins, x: "culmen_length_mm", y: "culmen_depth_mm", title: "island", tip: true})
+    )
+  );
+}
+
+export async function tipNull() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  return React.createElement(DispatchPointerMove, {x: 200, y: 200},
+    React.createElement(Plot, {},
+      React.createElement(Dot, {data: penguins, x: "culmen_length_mm", y: "culmen_depth_mm", title: (d: any) => (d.island === "Torgersen" ? null : d.island), tip: true})
+    )
+  );
+}
+
+export async function tipAnchors() {
+  const anchors = ["top", "right", "bottom", "left", "top-left", "top-right", "bottom-right", "bottom-left", "middle"] as const;
+  return React.createElement(Plot, {style: "overflow: visible;", height: 160},
+    React.createElement(Frame, {strokeOpacity: 0.2}),
+    ...anchors.flatMap((anchor) => [
+      React.createElement(Dot, {data: {length: 1}, frameAnchor: anchor, fill: "blue"}),
+      React.createElement(Tip, {data: [anchor], frameAnchor: anchor, anchor})
+    ])
+  );
+}
+
+export async function tipBoxX() {
+  const morley = await d3.csv<any>("data/morley.csv", d3.autoType);
+  return React.createElement(Plot, {},
+    React.createElement(BoxX, {data: morley, x: "Speed", y: "Expt", tip: true})
+  );
+}
+
+export async function tipCrosshair() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  return React.createElement(Plot, {y: {grid: true}},
+    React.createElement(LineY, {data: aapl, x: "Date", y: "Close", tip: true}),
+    React.createElement(CrosshairX, {data: aapl, x: "Date", y: "Close"})
+  );
+}
+
+export async function tipCrosshairFacet() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  return React.createElement(Plot, {grid: true},
+    React.createElement(Dot, {data: penguins, x: "culmen_length_mm", y: "culmen_depth_mm", fy: "species"}),
+    React.createElement(Crosshair, {data: penguins, x: "culmen_length_mm", y: "culmen_depth_mm", fy: "species"})
+  );
+}
+
+export async function tipPool() {
+  const cars = await d3.csv<any>("data/cars.csv", d3.autoType);
+  return React.createElement(Plot, {},
+    React.createElement(Hexagon, {data: cars, ...hexbin({fill: "count"}, {x: "power (hp)", y: "economy (mpg)", tip: true})}),
+    React.createElement(Dot, {data: cars, x: "power (hp)", y: "economy (mpg)", tip: true})
+  );
+}
+
+export async function tipPoolFacet() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  return React.createElement(Plot, {grid: true},
+    React.createElement(Dot, {data: penguins, ...hexbin({}, {x: "culmen_length_mm", y: "culmen_depth_mm", fy: "species", tip: true})}),
+    React.createElement(Dot, {data: penguins, x: "culmen_length_mm", y: "culmen_depth_mm", fy: "species", fill: "sex", tip: true})
+  );
+}
 
 export async function tipAreaBand() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);

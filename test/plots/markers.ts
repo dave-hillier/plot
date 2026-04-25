@@ -1,5 +1,24 @@
 import React from "react";
-import {Plot, RuleX, RuleY, TickX, TickY} from "../../src/react/index.js";
+import {Plot, RuleX, RuleY, TickX, TickY, LineY} from "../../src/react/index.js";
+
+export async function markerDasharray() {
+  return React.createElement(Plot, {axis: null, inset: 20},
+    React.createElement(LineY, {
+      data: [
+        [0, 5],
+        [5, 2],
+        [10, 0]
+      ],
+      x: (d: number[]) => d[0],
+      y: (d: number[]) => d[1],
+      strokeDasharray: "1,10",
+      strokeWidth: 3,
+      markerStart: "dot",
+      markerMid: "arrow",
+      markerEnd: "circle-stroke"
+    })
+  );
+}
 
 export async function markerRuleX() {
   return React.createElement(Plot, {},

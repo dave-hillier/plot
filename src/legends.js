@@ -57,6 +57,11 @@ function legendColor(color, {legend = true, ...options}) {
 }
 
 function legendOpacity({type, interpolate, ...scale}, {legend = true, color = rgb(0, 0, 0), ...options}) {
+  if (type === "ordinal" || type === "threshold") {
+    if (legend === true) legend = "swatches";
+    if (`${legend}`.toLowerCase() !== "swatches") throw new Error(`${legend} opacity legends are not supported`);
+    return legendSwatches({type, ...scale, color, key: "opacity"}, options);
+  }
   if (!interpolate) throw new Error(`${type} opacity scales are not supported`);
   if (legend === true) legend = "ramp";
   if (`${legend}`.toLowerCase() !== "ramp") throw new Error(`${legend} opacity legends are not supported`);
