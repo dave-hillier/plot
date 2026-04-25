@@ -37,6 +37,7 @@ import {DelaunayLink, DelaunayMesh, Hull, Voronoi, VoronoiMesh} from "./marks/De
 import {WaffleX, WaffleY} from "./marks/Waffle.js";
 import {Tip} from "./interactions/Tip.js";
 import {Crosshair} from "./interactions/Crosshair.js";
+import {Legend} from "./legends/Legend.js";
 
 // Facet axes need an fx/fy scale, which is created by a mark with an fx/fy
 // channel. Seed the facet scale via a dot mark with the appropriate facet data.
@@ -635,4 +636,12 @@ export function validateCrosshair() {
       <Crosshair data={sampleData} x="x" y="y" />
     </Plot>
   );
+}
+
+export function validateLegendSwatches() {
+  return <Legend color={{type: "categorical", domain: ["a", "b", "c"], range: ["red", "green", "blue"]}} />;
+}
+
+export function validateLegendRamp() {
+  return <Legend color={{type: "linear", domain: [0, 100]}} />;
 }

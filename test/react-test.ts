@@ -1099,7 +1099,9 @@ import {
   validateVoronoi,
   validateVoronoiMesh,
   validateWaffleX,
-  validateWaffleY
+  validateWaffleY,
+  validateLegendSwatches,
+  validateLegendRamp
 } from "../src/react/__validate.js";
 
 async function renderAndQuery(element: any) {
@@ -1707,6 +1709,42 @@ describe("Delaunay and Waffle façades (Unit 13)", () => {
     assert.strictEqual(svgs.length, 1);
     const rects = svgs[0].querySelectorAll("rect");
     assert.ok(rects.length >= 1, "expected at least one waffle cell rect");
+    await act(async () => root.unmount());
+    container.remove();
+  });
+});
+
+describe("Legend façade (Unit 15)", () => {
+  jsdomit("renders a swatches legend via the imperative legend()", async () => {
+    const container = (globalThis as any).document.createElement("div");
+    (globalThis as any).document.body.appendChild(container);
+    let root: any;
+    await act(async () => {
+      root = ReactDOM.createRoot(container);
+      root.render(validateLegendSwatches());
+    });
+    await act(async () => {});
+    const host = container.querySelector(".plot-legend");
+    assert.ok(host, "expected a .plot-legend host div");
+    const swatches = host.querySelectorAll("svg");
+    assert.ok(swatches.length >= 1, "expected at least one swatch <svg>");
+    await act(async () => root.unmount());
+    container.remove();
+  });
+
+  jsdomit("renders a ramp legend via the imperative legend()", async () => {
+    const container = (globalThis as any).document.createElement("div");
+    (globalThis as any).document.body.appendChild(container);
+    let root: any;
+    await act(async () => {
+      root = ReactDOM.createRoot(container);
+      root.render(validateLegendRamp());
+    });
+    await act(async () => {});
+    const host = container.querySelector(".plot-legend");
+    assert.ok(host, "expected a .plot-legend host div");
+    const svg = host.querySelector("svg");
+    assert.ok(svg, "expected an <svg> ramp");
     await act(async () => root.unmount());
     container.remove();
   });
