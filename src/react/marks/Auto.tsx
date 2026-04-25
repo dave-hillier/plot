@@ -1,8 +1,12 @@
-import React from "react";
-import {Dot} from "./Dot.js";
+import {useMark, stampOptions} from "../useMark.js";
+import {auto} from "../../marks/auto.js";
 
-// Minimal Auto mark stub. The imperative auto mark auto-detects the best mark
-// type from the data; this React wrapper currently renders as a Dot placeholder.
-export function Auto(props: any) {
-  return <Dot {...props} />;
+export interface AutoProps {
+  data?: any;
+  [key: string]: any;
+}
+
+export function Auto({data, ...options}: AutoProps) {
+  useMark({stamp: stampOptions("auto", data, options), factory: () => auto(data, options)});
+  return null;
 }
