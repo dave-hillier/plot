@@ -1073,7 +1073,9 @@ import {
   validateBarX,
   validateRectY,
   validateCellY,
-  validateCell
+  validateCell,
+  validateDot,
+  validateDotPointer
 } from "../src/react/__validate.js";
 
 describe("New Plot contract (Unit 1)", () => {
@@ -1264,5 +1266,50 @@ describe("New Plot contract — Unit 2 façades", () => {
   jsdomit("TickY façade renders <line> elements via PlotV2", async () => {
     const lines = await mountAndQuery(validateTickY(), "line");
     assert.ok(lines.length >= 1, "expected at least one <line>");
+  });
+});
+
+describe("Dot façade (Unit 5)", () => {
+  jsdomit("renders Dot via the new useMark contract", async () => {
+    const container = (globalThis as any).document.createElement("div");
+    (globalThis as any).document.body.appendChild(container);
+    let root: any;
+    await act(async () => {
+      root = ReactDOM.createRoot(container);
+      root.render(validateDot());
+    });
+    await act(async () => {});
+    const svgs = container.querySelectorAll("svg");
+    assert.strictEqual(svgs.length, 1, "expected exactly one <svg>");
+    const circles = svgs[0].querySelectorAll("circle");
+    assert.ok(circles.length >= 3, `expected at least 3 <circle> elements; got ${circles.length}`);
+    // The imperative `dot()` factory applies stroke to the enclosing <g>, not
+    // each <circle>, via applyIndirectStyles.
+    const groupStroke = (circles[0].parentNode as Element)?.getAttribute("stroke");
+    assert.strictEqual(groupStroke, "red");
+    await act(async () => {
+      root.unmount();
+    });
+    container.remove();
+  });
+
+  jsdomit("renders Dot with spread pointer({...}) interaction", async () => {
+    const container = (globalThis as any).document.createElement("div");
+    (globalThis as any).document.body.appendChild(container);
+    let root: any;
+    await act(async () => {
+      root = ReactDOM.createRoot(container);
+      root.render(validateDotPointer());
+    });
+    await act(async () => {});
+    const svgs = container.querySelectorAll("svg");
+    assert.strictEqual(svgs.length, 1, "expected exactly one <svg>");
+    // pointer renders an empty initial state; the SVG should still mount.
+    const groups = svgs[0].querySelectorAll("g");
+    assert.ok(groups.length >= 1, "expected at least one <g>");
+    await act(async () => {
+      root.unmount();
+    });
+    container.remove();
   });
 });

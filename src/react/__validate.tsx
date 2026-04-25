@@ -13,6 +13,8 @@ import {BarY, BarX} from "./marks/Bar.js";
 import {RectY, Cell, CellY} from "./marks/Rect.js";
 import {Line, LineX, LineY} from "./marks/Line.js";
 import {Area, AreaX, AreaY} from "./marks/Area.js";
+import {Dot} from "./marks/Dot.js";
+import {pointer} from "../interactions/pointer.js";
 
 export function validatePlot() {
   return (
@@ -195,6 +197,28 @@ export function validateAreaY() {
   return (
     <Plot width={200} height={100}>
       <AreaY data={[1, 2, 3, 4, 5]} />
+    </Plot>
+  );
+}
+
+const dotData = [
+  {x: 1, y: 1},
+  {x: 2, y: 4},
+  {x: 3, y: 9}
+];
+
+export function validateDot() {
+  return (
+    <Plot width={200} height={200}>
+      <Dot data={dotData} x="x" y="y" stroke="red" />
+    </Plot>
+  );
+}
+
+export function validateDotPointer() {
+  return (
+    <Plot width={200} height={200}>
+      <Dot data={dotData} {...pointer({x: "x", y: "y"})} stroke="blue" />
     </Plot>
   );
 }
