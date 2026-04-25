@@ -133,9 +133,8 @@ export function Plot({children, title, subtitle, caption, figure, onValue, class
       hostRef.current.replaceChildren();
       return;
     }
-    const svg = imperativePlot({...options, marks: flat, figure: false}) as SVGSVGElement;
+    const svg = imperativePlot({...options, marks: flat, figure: false, style}) as SVGSVGElement;
     if (className) svg.classList.add(className);
-    if (style) Object.assign(svg.style, style);
     let onInput: (() => void) | null = null;
     if (onValue) {
       onInput = () => onValue((svg as any).value);
