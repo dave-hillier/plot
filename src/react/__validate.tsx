@@ -6,6 +6,7 @@ import React from "react";
 import {Plot} from "./Plot.js";
 import {useMark, stampOptions} from "./useMark.js";
 import {frame as frameMark} from "../marks/frame.js";
+import {Legend} from "./legends/Legend.js";
 
 function FrameNew(props: Record<string, any>) {
   useMark({
@@ -21,4 +22,12 @@ export function validatePlot() {
       <FrameNew stroke="black" />
     </Plot>
   );
+}
+
+export function validateLegendSwatches() {
+  return <Legend color={{type: "categorical", domain: ["a", "b", "c"], range: ["red", "green", "blue"]}} />;
+}
+
+export function validateLegendRamp() {
+  return <Legend color={{type: "linear", domain: [0, 100]}} />;
 }

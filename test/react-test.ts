@@ -1059,7 +1059,7 @@ describe("Implicit axis detection", () => {
 import jsdomit from "./jsdom.js";
 import ReactDOM from "react-dom/client";
 import {act} from "react";
-import {validatePlot} from "../src/react/__validate.js";
+import {validatePlot, validateLegendSwatches, validateLegendRamp} from "../src/react/__validate.js";
 
 describe("New Plot contract (Unit 1)", () => {
   jsdomit("renders a Frame mark via the new useMark contract", async () => {
@@ -1080,6 +1080,42 @@ describe("New Plot contract (Unit 1)", () => {
     await act(async () => {
       root.unmount();
     });
+    container.remove();
+  });
+});
+
+describe("Legend façade (Unit 15)", () => {
+  jsdomit("renders a swatches legend via the imperative legend()", async () => {
+    const container = (globalThis as any).document.createElement("div");
+    (globalThis as any).document.body.appendChild(container);
+    let root: any;
+    await act(async () => {
+      root = ReactDOM.createRoot(container);
+      root.render(validateLegendSwatches());
+    });
+    await act(async () => {});
+    const host = container.querySelector(".plot-legend");
+    assert.ok(host, "expected a .plot-legend host div");
+    const swatches = host.querySelectorAll("svg");
+    assert.ok(swatches.length >= 1, "expected at least one swatch <svg>");
+    await act(async () => root.unmount());
+    container.remove();
+  });
+
+  jsdomit("renders a ramp legend via the imperative legend()", async () => {
+    const container = (globalThis as any).document.createElement("div");
+    (globalThis as any).document.body.appendChild(container);
+    let root: any;
+    await act(async () => {
+      root = ReactDOM.createRoot(container);
+      root.render(validateLegendRamp());
+    });
+    await act(async () => {});
+    const host = container.querySelector(".plot-legend");
+    assert.ok(host, "expected a .plot-legend host div");
+    const svg = host.querySelector("svg");
+    assert.ok(svg, "expected an <svg> ramp");
+    await act(async () => root.unmount());
     container.remove();
   });
 });
