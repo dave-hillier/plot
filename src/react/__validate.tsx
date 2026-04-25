@@ -20,6 +20,19 @@ import {Link} from "./marks/Link.js";
 import {Arrow} from "./marks/Arrow.js";
 import {Vector, Spike} from "./marks/Vector.js";
 import {Image} from "./marks/Image.js";
+import {AxisX, AxisY, AxisFx, AxisFy, GridX, GridY, GridFx, GridFy} from "./marks/Axis.js";
+import {useMark, stampOptions} from "./useMark.js";
+import {dot as dotMark} from "../marks/dot.js";
+
+// Facet axes need an fx/fy scale, which is created by a mark with an fx/fy
+// channel. Seed the facet scale via a dot mark with the appropriate facet data.
+function FacetSeed({data, ...rest}: Record<string, any>) {
+  useMark({
+    stamp: stampOptions("dotSeed", data, rest),
+    factory: () => dotMark(data, rest)
+  });
+  return null;
+}
 
 export function validatePlot() {
   return (
@@ -301,3 +314,71 @@ export function validateImage() {
   );
 }
 
+
+export function validateAxisX() {
+  return (
+    <Plot width={300} height={200} x={{domain: [0, 10]}}>
+      <AxisX />
+    </Plot>
+  );
+}
+
+export function validateAxisY() {
+  return (
+    <Plot width={300} height={200} y={{domain: [0, 10]}}>
+      <AxisY />
+    </Plot>
+  );
+}
+
+export function validateGridX() {
+  return (
+    <Plot width={300} height={200} x={{domain: [0, 10]}}>
+      <GridX />
+    </Plot>
+  );
+}
+
+export function validateGridY() {
+  return (
+    <Plot width={300} height={200} y={{domain: [0, 10]}}>
+      <GridY />
+    </Plot>
+  );
+}
+
+export function validateAxisFx() {
+  return (
+    <Plot width={300} height={200}>
+      <FacetSeed data={["a", "b", "c"]} fx={(d: string) => d} />
+      <AxisFx />
+    </Plot>
+  );
+}
+
+export function validateAxisFy() {
+  return (
+    <Plot width={300} height={200}>
+      <FacetSeed data={["a", "b", "c"]} fy={(d: string) => d} />
+      <AxisFy />
+    </Plot>
+  );
+}
+
+export function validateGridFx() {
+  return (
+    <Plot width={300} height={200}>
+      <FacetSeed data={["a", "b", "c"]} fx={(d: string) => d} />
+      <GridFx />
+    </Plot>
+  );
+}
+
+export function validateGridFy() {
+  return (
+    <Plot width={300} height={200}>
+      <FacetSeed data={["a", "b", "c"]} fy={(d: string) => d} />
+      <GridFy />
+    </Plot>
+  );
+}
