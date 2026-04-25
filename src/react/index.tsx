@@ -18,20 +18,12 @@ export {Plot} from "./Plot.js";
 export type {PlotProps} from "./Plot.js";
 
 // Context (for advanced usage / custom marks)
-export {PlotContext, FacetContext, usePlotContext, useFacetContext} from "./PlotContext.js";
-export type {
-  PlotContextValue,
-  FacetContextValue,
-  MarkRegistration,
-  MarkState,
-  Dimensions,
-  FacetInfo,
-  ChannelSpec
-} from "./PlotContext.js";
+export {PlotContext, usePlotContext} from "./PlotContext.js";
+export type {PlotContextValue, Dimensions} from "./PlotContext.js";
 
 // Core hook (for building custom marks)
-export {useMark} from "./useMark.js";
-export type {UseMarkOptions, UseMarkResult} from "./useMark.js";
+export {useMark, stampOptions} from "./useMark.js";
+export type {UseMarkOptions, MarkFactory} from "./useMark.js";
 
 // Style utilities (for building custom marks)
 export {
@@ -86,7 +78,6 @@ export type {ImageProps} from "./marks/Image.js";
 
 // Geometric / computational marks
 export {Geo, Sphere, Graticule} from "./marks/Geo.js";
-export type {GeoProps} from "./marks/Geo.js";
 
 export {DelaunayLink, DelaunayMesh, Hull, Voronoi, VoronoiMesh} from "./marks/Delaunay.js";
 export type {DelaunayProps} from "./marks/Delaunay.js";
@@ -104,7 +95,6 @@ export type {RasterProps} from "./marks/Raster.js";
 export {interpolateNone, interpolatorBarycentric, interpolateNearest, interpolatorRandomWalk} from "../marks/raster.js";
 
 export {Hexgrid} from "./marks/Hexgrid.js";
-export type {HexgridProps} from "./marks/Hexgrid.js";
 
 // Composite marks
 export {BoxX, BoxY} from "./marks/Box.js";
@@ -129,7 +119,6 @@ export type {WaffleProps} from "./marks/Waffle.js";
 
 // Axis and grid components (including facet axes)
 export {AxisX, AxisY, GridX, GridY, AxisFx, AxisFy, GridFx, GridFy} from "./marks/Axis.js";
-export type {AxisProps} from "./marks/Axis.js";
 
 // Legend components
 export {Legend} from "./legends/Legend.js";
