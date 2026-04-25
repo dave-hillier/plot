@@ -11,6 +11,8 @@ import {Geo, Sphere, Graticule} from "./marks/Geo.js";
 import {Hexgrid} from "./marks/Hexgrid.js";
 import {BarY, BarX} from "./marks/Bar.js";
 import {RectY, Cell, CellY} from "./marks/Rect.js";
+import {Line, LineX, LineY} from "./marks/Line.js";
+import {Area, AreaX, AreaY} from "./marks/Area.js";
 
 export function validatePlot() {
   return (
@@ -138,6 +140,61 @@ export function validateCell() {
   return (
     <Plot width={200} height={100}>
       <Cell data={data} x="x" y="y" fill="v" />
+    </Plot>
+  );
+}
+
+const lineData = [
+  {x: 0, y: 0},
+  {x: 1, y: 1},
+  {x: 2, y: 4},
+  {x: 3, y: 9}
+];
+
+export function validateLine() {
+  return (
+    <Plot width={200} height={100}>
+      <Line data={lineData} x="x" y="y" />
+    </Plot>
+  );
+}
+
+export function validateLineX() {
+  return (
+    <Plot width={200} height={100}>
+      <LineX data={[1, 2, 3, 4, 5]} />
+    </Plot>
+  );
+}
+
+export function validateLineY() {
+  return (
+    <Plot width={200} height={100}>
+      <LineY data={[1, 2, 3, 4, 5]} />
+    </Plot>
+  );
+}
+
+export function validateArea() {
+  return (
+    <Plot width={200} height={100}>
+      <Area data={lineData} x1="x" y1="y" />
+    </Plot>
+  );
+}
+
+export function validateAreaX() {
+  return (
+    <Plot width={200} height={100}>
+      <AreaX data={[1, 2, 3, 4, 5]} />
+    </Plot>
+  );
+}
+
+export function validateAreaY() {
+  return (
+    <Plot width={200} height={100}>
+      <AreaY data={[1, 2, 3, 4, 5]} />
     </Plot>
   );
 }
