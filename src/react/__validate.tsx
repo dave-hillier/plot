@@ -35,6 +35,8 @@ import {Contour} from "./marks/Contour.js";
 import {Raster} from "./marks/Raster.js";
 import {DelaunayLink, DelaunayMesh, Hull, Voronoi, VoronoiMesh} from "./marks/Delaunay.js";
 import {WaffleX, WaffleY} from "./marks/Waffle.js";
+import {Tip} from "./interactions/Tip.js";
+import {Crosshair} from "./interactions/Crosshair.js";
 
 // Facet axes need an fx/fy scale, which is created by a mark with an fx/fy
 // channel. Seed the facet scale via a dot mark with the appropriate facet data.
@@ -599,6 +601,38 @@ export function validateWaffleX() {
   return (
     <Plot width={300} height={200}>
       <WaffleX data={waffleData} y="name" x="value" fill="tomato" />
+    </Plot>
+  );
+}
+
+function DotNew({data, ...options}: {data: any; [key: string]: any}) {
+  useMark({
+    stamp: stampOptions("dot", data, options),
+    factory: () => dotMark(data, options)
+  });
+  return null;
+}
+
+const sampleData = [
+  {x: 1, y: 2},
+  {x: 2, y: 4},
+  {x: 3, y: 6}
+];
+
+export function validateTip() {
+  return (
+    <Plot width={200} height={100}>
+      <DotNew data={sampleData} x="x" y="y" />
+      <Tip data={sampleData} x="x" y="y" />
+    </Plot>
+  );
+}
+
+export function validateCrosshair() {
+  return (
+    <Plot width={200} height={100}>
+      <DotNew data={sampleData} x="x" y="y" />
+      <Crosshair data={sampleData} x="x" y="y" />
     </Plot>
   );
 }
