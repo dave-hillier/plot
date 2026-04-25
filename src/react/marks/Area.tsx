@@ -7,7 +7,11 @@ export interface AreaProps {
 }
 
 export function Area({data, ...options}: AreaProps) {
-  useMark({stamp: stampOptions("area", data, options), factory: () => area(data, options)});
+  const hasOptions = Object.keys(options).length > 0;
+  useMark({
+    stamp: stampOptions("area", data, options),
+    factory: () => (hasOptions ? area(data, options) : area(data))
+  });
   return null;
 }
 

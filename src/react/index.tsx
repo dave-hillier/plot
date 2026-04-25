@@ -14,28 +14,16 @@
 //   }
 
 // Root component
-// NOTE: During the faithful-port migration, the legacy Plot is still the
-// default export so existing marks (which use the legacy stack) continue to
-// work. The new contract is available as PlotV2 alongside the new useMark.
-export {Plot} from "./Plot.legacy.js";
-export type {PlotProps} from "./Plot.legacy.js";
-export {Plot as PlotV2} from "./Plot.js";
+export {Plot} from "./Plot.js";
+export type {PlotProps} from "./Plot.js";
 
 // Context (for advanced usage / custom marks)
-export {PlotContext, FacetContext, usePlotContext, useFacetContext} from "./PlotContext.legacy.js";
-export type {
-  PlotContextValue,
-  FacetContextValue,
-  MarkRegistration,
-  MarkState,
-  Dimensions,
-  FacetInfo,
-  ChannelSpec
-} from "./PlotContext.legacy.js";
+export {PlotContext, usePlotContext} from "./PlotContext.js";
+export type {PlotContextValue, Dimensions} from "./PlotContext.js";
 
 // Core hook (for building custom marks)
-export {useMark} from "./useMark.legacy.js";
-export type {UseMarkOptions, UseMarkResult} from "./useMark.legacy.js";
+export {useMark, stampOptions} from "./useMark.js";
+export type {UseMarkOptions, MarkFactory} from "./useMark.js";
 
 // Style utilities (for building custom marks)
 export {

@@ -1,5 +1,4 @@
 import {useMark, stampOptions} from "../useMark.js";
-// @ts-expect-error — JS module without .d.ts
 import {waffleX, waffleY} from "../../marks/waffle.js";
 
 export interface WaffleProps {

@@ -1,5 +1,5 @@
 import {isColor} from "../core/index.js";
-import type {Dimensions} from "./PlotContext.legacy.js";
+import type {Dimensions} from "./PlotContext.js";
 
 // Returns true if the given value should be treated as a literal color
 // (constant style) rather than a data field name (channel). Uses the same

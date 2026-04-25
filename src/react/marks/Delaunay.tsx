@@ -1,5 +1,4 @@
 import {useMark, stampOptions} from "../useMark.js";
-// @ts-expect-error — JS module without .d.ts
 import {delaunayLink, delaunayMesh, hull, voronoi, voronoiMesh} from "../../marks/delaunay.js";
 
 export interface DelaunayProps {
