@@ -1059,7 +1059,7 @@ describe("Implicit axis detection", () => {
 import jsdomit from "./jsdom.js";
 import ReactDOM from "react-dom/client";
 import {act} from "react";
-import {validatePlot} from "../src/react/__validate.js";
+import {validatePlot, validateBollingerY, validateDifferenceY, validateLinearRegressionY} from "../src/react/__validate.js";
 
 describe("New Plot contract (Unit 1)", () => {
   jsdomit("renders a Frame mark via the new useMark contract", async () => {
@@ -1077,6 +1077,71 @@ describe("New Plot contract (Unit 1)", () => {
     assert.ok(rects.length >= 1, "expected at least one <rect>");
     const stroke = rects[0].getAttribute("stroke");
     assert.strictEqual(stroke, "black");
+    await act(async () => {
+      root.unmount();
+    });
+    container.remove();
+  });
+});
+
+describe("New Plot contract (Unit 10)", () => {
+  jsdomit("renders BollingerY band via the imperative bollingerY composite", async () => {
+    const container = (globalThis as any).document.createElement("div");
+    (globalThis as any).document.body.appendChild(container);
+    let root: any;
+    await act(async () => {
+      root = ReactDOM.createRoot(container);
+      root.render(validateBollingerY());
+    });
+    await act(async () => {});
+    const svgs = container.querySelectorAll("svg");
+    assert.strictEqual(svgs.length, 1, "expected exactly one <svg>");
+    const paths = Array.from(svgs[0].querySelectorAll("path")) as any[];
+    // The bollingerY composite emits an area (the band) plus a line (the
+    // centerline). Both should produce non-empty `d` attributes once the
+    // imperative window+map+stack pipeline has run.
+    const ds = paths.map((p) => p.getAttribute("d") || "").filter((d: string) => d.length > 0);
+    assert.ok(ds.length >= 2, `expected at least 2 non-empty path d attributes, got ${ds.length}`);
+    await act(async () => {
+      root.unmount();
+    });
+    container.remove();
+  });
+
+  jsdomit("renders DifferenceY via the imperative differenceY composite", async () => {
+    const container = (globalThis as any).document.createElement("div");
+    (globalThis as any).document.body.appendChild(container);
+    let root: any;
+    await act(async () => {
+      root = ReactDOM.createRoot(container);
+      root.render(validateDifferenceY());
+    });
+    await act(async () => {});
+    const svgs = container.querySelectorAll("svg");
+    assert.strictEqual(svgs.length, 1, "expected exactly one <svg>");
+    const paths = Array.from(svgs[0].querySelectorAll("path")) as any[];
+    const ds = paths.map((p) => p.getAttribute("d") || "").filter((d: string) => d.length > 0);
+    assert.ok(ds.length >= 1, `expected at least 1 non-empty path d attribute, got ${ds.length}`);
+    await act(async () => {
+      root.unmount();
+    });
+    container.remove();
+  });
+
+  jsdomit("renders LinearRegressionY line via the imperative linearRegressionY composite", async () => {
+    const container = (globalThis as any).document.createElement("div");
+    (globalThis as any).document.body.appendChild(container);
+    let root: any;
+    await act(async () => {
+      root = ReactDOM.createRoot(container);
+      root.render(validateLinearRegressionY());
+    });
+    await act(async () => {});
+    const svgs = container.querySelectorAll("svg");
+    assert.strictEqual(svgs.length, 1, "expected exactly one <svg>");
+    const paths = Array.from(svgs[0].querySelectorAll("path")) as any[];
+    const ds = paths.map((p) => p.getAttribute("d") || "").filter((d: string) => d.length > 0);
+    assert.ok(ds.length >= 1, `expected at least 1 non-empty path d attribute, got ${ds.length}`);
     await act(async () => {
       root.unmount();
     });
