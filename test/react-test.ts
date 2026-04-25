@@ -1059,7 +1059,7 @@ describe("Implicit axis detection", () => {
 import jsdomit from "./jsdom.js";
 import ReactDOM from "react-dom/client";
 import {act} from "react";
-import {validatePlot} from "../src/react/__validate.js";
+import {validatePlot, validateDensity, validateContour, validateRaster} from "../src/react/__validate.js";
 
 describe("New Plot contract (Unit 1)", () => {
   jsdomit("renders a Frame mark via the new useMark contract", async () => {
@@ -1077,6 +1077,65 @@ describe("New Plot contract (Unit 1)", () => {
     assert.ok(rects.length >= 1, "expected at least one <rect>");
     const stroke = rects[0].getAttribute("stroke");
     assert.strictEqual(stroke, "black");
+    await act(async () => {
+      root.unmount();
+    });
+    container.remove();
+  });
+});
+
+describe("Unit 12: Density, Contour, Raster façades", () => {
+  jsdomit("renders Density as paths via the imperative density() factory", async () => {
+    const container = (globalThis as any).document.createElement("div");
+    (globalThis as any).document.body.appendChild(container);
+    let root: any;
+    await act(async () => {
+      root = ReactDOM.createRoot(container);
+      root.render(validateDensity());
+    });
+    await act(async () => {});
+    const svgs = container.querySelectorAll("svg");
+    assert.strictEqual(svgs.length, 1, "expected exactly one <svg>");
+    const paths = svgs[0].querySelectorAll("path");
+    assert.ok(paths.length >= 1, "expected at least one density <path>");
+    await act(async () => {
+      root.unmount();
+    });
+    container.remove();
+  });
+
+  jsdomit("renders Contour as paths via the imperative contour() factory", async () => {
+    const container = (globalThis as any).document.createElement("div");
+    (globalThis as any).document.body.appendChild(container);
+    let root: any;
+    await act(async () => {
+      root = ReactDOM.createRoot(container);
+      root.render(validateContour());
+    });
+    await act(async () => {});
+    const svgs = container.querySelectorAll("svg");
+    assert.strictEqual(svgs.length, 1, "expected exactly one <svg>");
+    const paths = svgs[0].querySelectorAll("path");
+    assert.ok(paths.length >= 1, "expected at least one contour <path>");
+    await act(async () => {
+      root.unmount();
+    });
+    container.remove();
+  });
+
+  jsdomit("renders Raster as an <image> via the imperative raster() factory", async () => {
+    const container = (globalThis as any).document.createElement("div");
+    (globalThis as any).document.body.appendChild(container);
+    let root: any;
+    await act(async () => {
+      root = ReactDOM.createRoot(container);
+      root.render(validateRaster());
+    });
+    await act(async () => {});
+    const svgs = container.querySelectorAll("svg");
+    assert.strictEqual(svgs.length, 1, "expected exactly one <svg>");
+    const images = svgs[0].querySelectorAll("image");
+    assert.ok(images.length >= 1, "expected at least one <image> element (canvas pipeline)");
     await act(async () => {
       root.unmount();
     });
