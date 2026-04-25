@@ -1,4 +1,13 @@
+import * as d3 from "d3";
 import {legend} from "../../src/react/index.js";
+
+export function opacityLegendSwatches() {
+  return legend({opacity: {type: "ordinal", domain: d3.range(10)}});
+}
+
+export function opacityLegendSwatchesColor() {
+  return legend({opacity: {type: "ordinal", domain: d3.range(10)}, color: "red"});
+}
 
 export function opacityLegend() {
   return legend({opacity: {domain: [0, 10], label: "Quantitative"}});

@@ -19,6 +19,17 @@ export async function rasterPrecision() {
   );
 }
 
+export async function rasterMixedOpacity() {
+  return React.createElement(Plot, {},
+    React.createElement(Raster, {
+      width: 4,
+      height: 10,
+      imageRendering: "pixelated",
+      fill: (x: number, y: number) => (x < 2 ? d3.schemeObservable10[y | 0] : `rgba(128, 128, 128, ${y / 10})`)
+    })
+  );
+}
+
 export async function rasterFacet() {
   const points = d3.range(0, 2 * Math.PI, Math.PI / 10).map((d) => [Math.cos(d), Math.sin(d)]);
   return React.createElement(Plot, {
