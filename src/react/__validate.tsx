@@ -23,6 +23,10 @@ import {Image} from "./marks/Image.js";
 import {AxisX, AxisY, AxisFx, AxisFy, GridX, GridY, GridFx, GridFy} from "./marks/Axis.js";
 import {useMark, stampOptions} from "./useMark.js";
 import {dot as dotMark} from "../marks/dot.js";
+import {frame as frameMark} from "../marks/frame.js";
+import {BollingerY} from "./marks/Bollinger.js";
+import {DifferenceY} from "./marks/Difference.js";
+import {LinearRegressionY} from "./marks/LinearRegression.js";
 
 // Facet axes need an fx/fy scale, which is created by a mark with an fx/fy
 // channel. Seed the facet scale via a dot mark with the appropriate facet data.
@@ -379,6 +383,50 @@ export function validateGridFy() {
     <Plot width={300} height={200}>
       <FacetSeed data={["a", "b", "c"]} fy={(d: string) => d} />
       <GridFy />
+    </Plot>
+  );
+}
+
+export function validateBollingerY() {
+  // A series with enough samples for the n=5 window — verifies the band
+  // (area + line) is actually computed by the imperative bollingerY composite.
+  const data = [
+    10, 11, 12, 13, 14, 13, 12, 13, 15, 17,
+    18, 19, 18, 17, 16, 17, 19, 20, 21, 22
+  ];
+  return (
+    <Plot width={300} height={150}>
+      <BollingerY data={data} n={5} />
+    </Plot>
+  );
+}
+
+export function validateDifferenceY() {
+  const data = [
+    {x: 0, y1: 1, y2: 2},
+    {x: 1, y1: 3, y2: 2},
+    {x: 2, y1: 5, y2: 4},
+    {x: 3, y1: 4, y2: 6},
+    {x: 4, y1: 6, y2: 5}
+  ];
+  return (
+    <Plot width={300} height={150}>
+      <DifferenceY data={data} x="x" y1="y1" y2="y2" />
+    </Plot>
+  );
+}
+
+export function validateLinearRegressionY() {
+  const data = [
+    {x: 0, y: 1},
+    {x: 1, y: 2.1},
+    {x: 2, y: 2.9},
+    {x: 3, y: 4.05},
+    {x: 4, y: 5.1}
+  ];
+  return (
+    <Plot width={300} height={150}>
+      <LinearRegressionY data={data} x="x" y="y" />
     </Plot>
   );
 }
