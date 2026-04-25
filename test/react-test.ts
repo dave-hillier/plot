@@ -4,7 +4,10 @@ import {renderToStaticMarkup} from "react-dom/server";
 import assert from "assert";
 import {findNearest} from "../src/react/interactions/usePointer.js";
 import {formatTip} from "../src/react/interactions/Tip.js";
-import {Plot} from "../src/react/Plot.js";
+// Legacy <Plot> remains the default for SSR-based tests during the
+// faithful-port migration; the new contract is exercised by the dedicated
+// "New Plot contract" suite below.
+import {Plot} from "../src/react/Plot.legacy.js";
 import {Dot, DotX, DotY} from "../src/react/marks/Dot.js";
 import {Line, LineX, LineY} from "../src/react/marks/Line.js";
 import {Area, AreaX, AreaY} from "../src/react/marks/Area.js";
@@ -1046,5 +1049,37 @@ describe("Implicit axis detection", () => {
       )
     );
     assert.ok(html.includes("<svg"));
+  });
+});
+
+// --- New <Plot> contract validation (Unit 1) ---
+// Renders the new façade through JSDOM + ReactDOM to confirm the imperative
+// mount path produces real SVG output via the imperative `plot()` factory.
+
+import jsdomit from "./jsdom.js";
+import ReactDOM from "react-dom/client";
+import {act} from "react";
+import {validatePlot} from "../src/react/__validate.js";
+
+describe("New Plot contract (Unit 1)", () => {
+  jsdomit("renders a Frame mark via the new useMark contract", async () => {
+    const container = (globalThis as any).document.createElement("div");
+    (globalThis as any).document.body.appendChild(container);
+    let root: any;
+    await act(async () => {
+      root = ReactDOM.createRoot(container);
+      root.render(validatePlot());
+    });
+    await act(async () => {});
+    const svgs = container.querySelectorAll("svg");
+    assert.strictEqual(svgs.length, 1, "expected exactly one <svg>");
+    const rects = svgs[0].querySelectorAll("rect");
+    assert.ok(rects.length >= 1, "expected at least one <rect>");
+    const stroke = rects[0].getAttribute("stroke");
+    assert.strictEqual(stroke, "black");
+    await act(async () => {
+      root.unmount();
+    });
+    container.remove();
   });
 });

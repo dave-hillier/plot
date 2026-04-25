@@ -1,10 +1,10 @@
 import React from "react";
 import {geoPath, geoGraticule10} from "d3";
-import {useMark} from "../useMark.js";
-import {usePlotContext} from "../PlotContext.js";
+import {useMark} from "../useMark.legacy.js";
+import {usePlotContext} from "../PlotContext.legacy.js";
 import {xyProjection} from "../../core/index.js";
 import {indirectStyleProps, directStyleProps, channelStyleProps, computeTransform, isColorChannel, isColorValue} from "../styles.js";
-import type {ChannelSpec} from "../PlotContext.js";
+import type {ChannelSpec} from "../PlotContext.legacy.js";
 
 const defaults = {
   ariaLabel: "geo",

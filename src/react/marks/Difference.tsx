@@ -1,6 +1,6 @@
 import React, {useId} from "react";
-import {useMark} from "../useMark.js";
-import type {ChannelSpec} from "../PlotContext.js";
+import {useMark} from "../useMark.legacy.js";
+import type {ChannelSpec} from "../PlotContext.legacy.js";
 
 export interface DifferenceProps {
   data?: any;

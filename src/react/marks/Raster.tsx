@@ -1,7 +1,7 @@
 import React, {useRef, useEffect} from "react";
-import {useMark} from "../useMark.js";
+import {useMark} from "../useMark.legacy.js";
 import {indirectStyleProps, isColorChannel, isColorValue} from "../styles.js";
-import type {ChannelSpec} from "../PlotContext.js";
+import type {ChannelSpec} from "../PlotContext.legacy.js";
 
 const defaults = {
   ariaLabel: "raster"

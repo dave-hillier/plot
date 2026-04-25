@@ -1,5 +1,5 @@
 import React from "react";
-import {usePlotContext} from "../PlotContext.js";
+import {usePlotContext} from "../PlotContext.legacy.js";
 
 export interface HexgridProps {
   binWidth?: number;

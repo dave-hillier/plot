@@ -1,10 +1,10 @@
 import React from "react";
 import {line as shapeLine, group, curveLinear} from "d3";
-import {useMark} from "../useMark.js";
+import {useMark} from "../useMark.legacy.js";
 import {indirectStyleProps, directStyleProps, groupChannelStyleProps, computeTransform, isColorChannel, isColorValue} from "../styles.js";
 import {maybeCurveAuto, defined} from "../../core/index.js";
 import {first, second} from "../../options.js";
-import type {ChannelSpec} from "../PlotContext.js";
+import type {ChannelSpec} from "../PlotContext.legacy.js";
 
 const defaults = {
   ariaLabel: "line",

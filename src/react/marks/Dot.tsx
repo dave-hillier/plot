@@ -2,7 +2,7 @@ import React from "react";
 import {pathRound as path, symbolCircle} from "d3";
 import {maybeSymbol} from "../../symbol.js";
 import {first, second} from "../../options.js";
-import {useMark} from "../useMark.js";
+import {useMark} from "../useMark.legacy.js";
 import {
   indirectStyleProps,
   directStyleProps,
@@ -12,7 +12,7 @@ import {
   isColorChannel,
   isColorValue
 } from "../styles.js";
-import type {ChannelSpec} from "../PlotContext.js";
+import type {ChannelSpec} from "../PlotContext.legacy.js";
 
 const defaults = {
   ariaLabel: "dot",

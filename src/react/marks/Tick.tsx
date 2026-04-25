@@ -1,7 +1,7 @@
 import React from "react";
-import {useMark} from "../useMark.js";
+import {useMark} from "../useMark.legacy.js";
 import {indirectStyleProps, directStyleProps, channelStyleProps, computeTransform, isColorChannel, isColorValue} from "../styles.js";
-import type {ChannelSpec} from "../PlotContext.js";
+import type {ChannelSpec} from "../PlotContext.legacy.js";
 
 const defaults = {
   ariaLabel: "tick",

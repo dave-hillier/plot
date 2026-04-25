@@ -1,8 +1,8 @@
 import React from "react";
-import {usePlotContext} from "../PlotContext.js";
-import {useMark} from "../useMark.js";
+import {usePlotContext} from "../PlotContext.legacy.js";
+import {useMark} from "../useMark.legacy.js";
 import {findNearest} from "./usePointer.js";
-import type {ChannelSpec} from "../PlotContext.js";
+import type {ChannelSpec} from "../PlotContext.legacy.js";
 
 export interface CrosshairProps {
   data?: any;

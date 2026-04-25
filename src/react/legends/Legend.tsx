@@ -1,5 +1,5 @@
 import React, {useId} from "react";
-import {usePlotContext} from "../PlotContext.js";
+import {usePlotContext} from "../PlotContext.legacy.js";
 import {formatDefault} from "../../core/index.js";
 
 export interface LegendProps {
