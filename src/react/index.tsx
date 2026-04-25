@@ -133,7 +133,6 @@ export type {WaffleProps} from "./marks/Waffle.js";
 
 // Axis and grid components (including facet axes)
 export {AxisX, AxisY, GridX, GridY, AxisFx, AxisFy, GridFx, GridFy} from "./marks/Axis.js";
-export type {AxisProps} from "./marks/Axis.js";
 
 // Legend components
 export {Legend} from "./legends/Legend.js";

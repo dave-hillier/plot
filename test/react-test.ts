@@ -1059,7 +1059,17 @@ describe("Implicit axis detection", () => {
 import jsdomit from "./jsdom.js";
 import ReactDOM from "react-dom/client";
 import {act} from "react";
-import {validatePlot} from "../src/react/__validate.js";
+import {
+  validatePlot,
+  validateAxisX,
+  validateAxisY,
+  validateGridX,
+  validateGridY,
+  validateAxisFx,
+  validateAxisFy,
+  validateGridFx,
+  validateGridFy
+} from "../src/react/__validate.js";
 
 describe("New Plot contract (Unit 1)", () => {
   jsdomit("renders a Frame mark via the new useMark contract", async () => {
@@ -1081,5 +1091,90 @@ describe("New Plot contract (Unit 1)", () => {
       root.unmount();
     });
     container.remove();
+  });
+});
+
+describe("Axis/Grid façades (Unit 9)", () => {
+  async function renderInJsdom(element: any) {
+    const container = (globalThis as any).document.createElement("div");
+    (globalThis as any).document.body.appendChild(container);
+    let root: any;
+    await act(async () => {
+      root = ReactDOM.createRoot(container);
+      root.render(element);
+    });
+    await act(async () => {});
+    return {container, root};
+  }
+
+  async function unmount(container: any, root: any) {
+    await act(async () => {
+      root.unmount();
+    });
+    container.remove();
+  }
+
+  jsdomit("renders AxisX via the new useMark contract", async () => {
+    const {container, root} = await renderInJsdom(validateAxisX());
+    const svgs = container.querySelectorAll("svg");
+    assert.strictEqual(svgs.length, 1);
+    const ariaLabel = svgs[0].querySelector('[aria-label*="x-axis"]');
+    assert.ok(ariaLabel, "expected an x-axis group");
+    await unmount(container, root);
+  });
+
+  jsdomit("renders AxisY via the new useMark contract", async () => {
+    const {container, root} = await renderInJsdom(validateAxisY());
+    const svgs = container.querySelectorAll("svg");
+    assert.strictEqual(svgs.length, 1);
+    const ariaLabel = svgs[0].querySelector('[aria-label*="y-axis"]');
+    assert.ok(ariaLabel, "expected a y-axis group");
+    await unmount(container, root);
+  });
+
+  jsdomit("renders GridX via the new useMark contract", async () => {
+    const {container, root} = await renderInJsdom(validateGridX());
+    const svgs = container.querySelectorAll("svg");
+    assert.strictEqual(svgs.length, 1);
+    const grid = svgs[0].querySelector('[aria-label*="x-grid"]');
+    assert.ok(grid, "expected an x-grid group");
+    await unmount(container, root);
+  });
+
+  jsdomit("renders GridY via the new useMark contract", async () => {
+    const {container, root} = await renderInJsdom(validateGridY());
+    const svgs = container.querySelectorAll("svg");
+    assert.strictEqual(svgs.length, 1);
+    const grid = svgs[0].querySelector('[aria-label*="y-grid"]');
+    assert.ok(grid, "expected a y-grid group");
+    await unmount(container, root);
+  });
+
+  jsdomit("renders AxisFx via the new useMark contract", async () => {
+    const {container, root} = await renderInJsdom(validateAxisFx());
+    const svgs = container.querySelectorAll("svg");
+    assert.strictEqual(svgs.length, 1);
+    await unmount(container, root);
+  });
+
+  jsdomit("renders AxisFy via the new useMark contract", async () => {
+    const {container, root} = await renderInJsdom(validateAxisFy());
+    const svgs = container.querySelectorAll("svg");
+    assert.strictEqual(svgs.length, 1);
+    await unmount(container, root);
+  });
+
+  jsdomit("renders GridFx via the new useMark contract", async () => {
+    const {container, root} = await renderInJsdom(validateGridFx());
+    const svgs = container.querySelectorAll("svg");
+    assert.strictEqual(svgs.length, 1);
+    await unmount(container, root);
+  });
+
+  jsdomit("renders GridFy via the new useMark contract", async () => {
+    const {container, root} = await renderInJsdom(validateGridFy());
+    const svgs = container.querySelectorAll("svg");
+    assert.strictEqual(svgs.length, 1);
+    await unmount(container, root);
   });
 });
