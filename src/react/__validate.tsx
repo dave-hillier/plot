@@ -18,6 +18,8 @@ import {pointer} from "../interactions/pointer.js";
 import {Text} from "./marks/Text.js";
 import {Link} from "./marks/Link.js";
 import {Arrow} from "./marks/Arrow.js";
+import {Vector, Spike} from "./marks/Vector.js";
+import {Image} from "./marks/Image.js";
 
 export function validatePlot() {
   return (
@@ -258,6 +260,43 @@ export function validateArrow() {
   return (
     <Plot width={200} height={100}>
       <Arrow data={data} x1="x1" y1="y1" x2="x2" y2="y2" stroke="green" />
+    </Plot>
+  );
+}
+
+export function validateVector() {
+  const data = [
+    {x: 1, y: 1, len: 10},
+    {x: 2, y: 2, len: 20},
+    {x: 3, y: 3, len: 30}
+  ];
+  return (
+    <Plot width={200} height={200}>
+      <Vector data={data} x="x" y="y" length="len" stroke="red" />
+    </Plot>
+  );
+}
+
+export function validateSpike() {
+  const data = [
+    {x: 1, y: 1, len: 10},
+    {x: 2, y: 2, len: 20}
+  ];
+  return (
+    <Plot width={200} height={200}>
+      <Spike data={data} x="x" y="y" length="len" stroke="blue" />
+    </Plot>
+  );
+}
+
+export function validateImage() {
+  const data = [
+    {x: 1, y: 1},
+    {x: 2, y: 2}
+  ];
+  return (
+    <Plot width={200} height={200}>
+      <Image data={data} x="x" y="y" src="https://example.com/img.png" width={16} height={16} />
     </Plot>
   );
 }
