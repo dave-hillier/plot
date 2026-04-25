@@ -1,7 +1,42 @@
-import React from "react";
+import React, {useEffect, useRef} from "react";
 import {Plot, AreaY, Dot, DotX, LineX, LineY, RectY, RuleX, Tip, Frame, Geo, Raster, Cell, BarX, BarY, BoxX, Hexagon, Voronoi, VoronoiMesh, Crosshair, CrosshairX, binX, groupY, groupX, group, dodgeY, hexbin, centroid, geoCentroid, pointer, identity} from "../../src/react/index.js";
 import * as d3 from "d3";
 import {feature, mesh} from "topojson-client";
+
+// Replicates the upstream test pattern of dispatching a pointermove on the
+// detached SVG (where clientX/Y are already SVG-local). We dispatch after
+// mount, so we offset by the SVG's bounding rect to land at the same spot.
+function DispatchPointerMove({x, y, children}: {x: number; y: number; children: React.ReactNode}) {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const id = window.setTimeout(() => {
+      const svg = ref.current?.querySelector("svg");
+      if (!svg) return;
+      const r = svg.getBoundingClientRect();
+      svg.dispatchEvent(new PointerEvent("pointermove", {pointerType: "mouse", clientX: r.left + x, clientY: r.top + y, bubbles: true}));
+    }, 50);
+    return () => window.clearTimeout(id);
+  }, [x, y]);
+  return React.createElement("div", {ref}, children);
+}
+
+export async function tipDispatch() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  return React.createElement(DispatchPointerMove, {x: 200, y: 200},
+    React.createElement(Plot, {},
+      React.createElement(Dot, {data: penguins, x: "culmen_length_mm", y: "culmen_depth_mm", title: "island", tip: true})
+    )
+  );
+}
+
+export async function tipNull() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  return React.createElement(DispatchPointerMove, {x: 200, y: 200},
+    React.createElement(Plot, {},
+      React.createElement(Dot, {data: penguins, x: "culmen_length_mm", y: "culmen_depth_mm", title: (d: any) => (d.island === "Torgersen" ? null : d.island), tip: true})
+    )
+  );
+}
 
 export async function tipAnchors() {
   const anchors = ["top", "right", "bottom", "left", "top-left", "top-right", "bottom-right", "bottom-left", "middle"] as const;

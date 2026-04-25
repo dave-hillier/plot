@@ -189,6 +189,7 @@ export * from "./multiplication-table.js";
 export * from "./music-revenue.js";
 export * from "./nested-facets.js";
 export * from "./npm-versions.js";
+export * from "./offset.js";
 export * from "./opacity.js";
 export * from "./ordinal-bar.js";
 export * from "./ordinal-opacity.js";
