@@ -1059,7 +1059,7 @@ describe("Implicit axis detection", () => {
 import jsdomit from "./jsdom.js";
 import ReactDOM from "react-dom/client";
 import {act} from "react";
-import {validatePlot} from "../src/react/__validate.js";
+import {validatePlot, validateBoxY, validateTreeMark, validateAuto} from "../src/react/__validate.js";
 
 describe("New Plot contract (Unit 1)", () => {
   jsdomit("renders a Frame mark via the new useMark contract", async () => {
@@ -1080,6 +1080,57 @@ describe("New Plot contract (Unit 1)", () => {
     await act(async () => {
       root.unmount();
     });
+    container.remove();
+  });
+});
+
+// --- Unit 11: Box, Tree, Auto façades ---
+
+describe("Box/Tree/Auto façades (Unit 11)", () => {
+  async function renderInJsdom(element: any) {
+    const container = (globalThis as any).document.createElement("div");
+    (globalThis as any).document.body.appendChild(container);
+    let root: any;
+    await act(async () => {
+      root = ReactDOM.createRoot(container);
+      root.render(element);
+    });
+    await act(async () => {});
+    return {container, root};
+  }
+
+  jsdomit("BoxY emits composite rule + bar + tick from raw values", async () => {
+    const {container, root} = await renderInJsdom(validateBoxY());
+    const svg = container.querySelector("svg");
+    assert.ok(svg, "expected an <svg>");
+    const lines = svg.querySelectorAll("line");
+    const rects = svg.querySelectorAll("rect");
+    assert.ok(lines.length >= 2, `expected whisker/tick lines, got ${lines.length}`);
+    assert.ok(rects.length >= 1, `expected box rects, got ${rects.length}`);
+    await act(async () => root.unmount());
+    container.remove();
+  });
+
+  jsdomit("TreeMark runs the tree() layout transform on flat path data", async () => {
+    const {container, root} = await renderInJsdom(validateTreeMark());
+    const svg = container.querySelector("svg");
+    assert.ok(svg, "expected an <svg>");
+    // tree() must compute positions and emit edges + node labels.
+    const paths = svg.querySelectorAll("path");
+    const texts = svg.querySelectorAll("text");
+    assert.ok(paths.length >= 1, `expected tree edge paths, got ${paths.length}`);
+    assert.ok(texts.length >= 1, `expected tree node labels, got ${texts.length}`);
+    await act(async () => root.unmount());
+    container.remove();
+  });
+
+  jsdomit("Auto infers a mark from the data shape", async () => {
+    const {container, root} = await renderInJsdom(validateAuto());
+    const svg = container.querySelector("svg");
+    assert.ok(svg, "expected an <svg>");
+    const drawn = svg.querySelectorAll("path, circle, rect, line");
+    assert.ok(drawn.length >= 1, `expected at least one drawn element, got ${drawn.length}`);
+    await act(async () => root.unmount());
     container.remove();
   });
 });
