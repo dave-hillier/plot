@@ -14,94 +14,94 @@
     }
   </style>
   <defs>
-    <clipPath id="_r_15o_">
-      <rect x="0" y="0" width="639" height="399"></rect>
+    <clipPath id="plot-rid-1">
+      <rect x="40" y="20" width="580" height="350"></rect>
     </clipPath>
   </defs>
-  <g aria-label="x-axis" transform="translate(0,399)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
-    <line x1="0" x2="639" stroke="currentColor"></line>
-    <g transform="translate(54.535,0)">
+  <g aria-label="x-axis" transform="translate(0,370)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+    <line x1="40" x2="620" stroke="currentColor"></line>
+    <g transform="translate(89.5,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">50</text>
     </g>
-    <g transform="translate(109.622,0)">
+    <g transform="translate(139.5,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">100</text>
     </g>
-    <g transform="translate(164.708,0)">
+    <g transform="translate(189.5,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">150</text>
     </g>
-    <g transform="translate(219.794,0)">
+    <g transform="translate(239.5,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">200</text>
     </g>
-    <g transform="translate(274.88,0)">
+    <g transform="translate(289.5,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">250</text>
     </g>
-    <g transform="translate(329.966,0)">
+    <g transform="translate(339.5,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">300</text>
     </g>
-    <g transform="translate(385.053,0)">
+    <g transform="translate(389.5,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">350</text>
     </g>
-    <g transform="translate(440.139,0)">
+    <g transform="translate(439.5,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">400</text>
     </g>
-    <g transform="translate(495.225,0)">
+    <g transform="translate(489.5,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">450</text>
     </g>
-    <g transform="translate(550.311,0)">
+    <g transform="translate(539.5,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">500</text>
     </g>
-    <g transform="translate(605.397,0)">
+    <g transform="translate(589.5,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">550</text>
     </g>
   </g>
-  <g aria-label="y-axis" transform="translate(0,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
-    <line y1="0" y2="399" stroke="currentColor"></line>
-    <g transform="translate(0,399)">
+  <g aria-label="y-axis" transform="translate(40,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
+    <line y1="20" y2="370" stroke="currentColor"></line>
+    <g transform="translate(0,370)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">0</text>
     </g>
-    <g transform="translate(0,342)">
+    <g transform="translate(0,320)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">50</text>
     </g>
-    <g transform="translate(0,285)">
+    <g transform="translate(0,270)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">100</text>
     </g>
-    <g transform="translate(0,228)">
+    <g transform="translate(0,220)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">150</text>
     </g>
-    <g transform="translate(0,171)">
+    <g transform="translate(0,170)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">200</text>
     </g>
-    <g transform="translate(0,114)">
+    <g transform="translate(0,120)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">250</text>
     </g>
-    <g transform="translate(0,57)">
+    <g transform="translate(0,70)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">300</text>
     </g>
-    <g transform="translate(0,0)">
+    <g transform="translate(0,20)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">350</text>
     </g>
   </g>
-  <rect aria-label="frame" x="0" y="0" width="639" height="399" fill="black" stroke="currentColor" stroke-width="1"></rect>
+  <rect aria-label="frame" x="40" y="20" width="580" height="350" fill="black" stroke="currentColor" stroke-width="1"></rect>
   <g aria-label="raster">
-    <image x="0" y="0" width="639" height="399" image-rendering="pixelated" preserveAspectRatio="none" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAn8AAAGPCAYAAAAtNLZ/AAAABmJLR0QA/wD/AP+gvaeTAAAEEUlEQVR4nO3WwQ0AIAzEsILYf2WYAip09gR5ZlTVLgAAIszuAAAA3jF/AABBzB8AQBDzBwAQxPwBAARZ3QFwwegOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP5wAAIXARAyRAMwAAAAAElFTkSuQmCC"></image>
+    <image x="40" y="20" width="580" height="350" image-rendering="pixelated" preserveAspectRatio="none" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkQAAAFeCAYAAABkRQA6AAAABmJLR0QA/wD/AP+gvaeTAAADRklEQVR4nO3WQQ0AMAzEsHYaf8objEo9G0Ge6ap6BQAQ7EwHAABMM0QAQDxDBADEM0QAQDxDBADEu9MBAMA6PR0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAah8q/gEQByFFyAAAAABJRU5ErkJggg=="></image>
   </g>
 </svg>

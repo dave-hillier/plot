@@ -14,25 +14,25 @@
     }
   </style>
   <defs>
-    <clipPath id="_r_2ba_">
-      <rect x="0" y="0" width="639" height="59"></rect>
+    <clipPath id="plot-rid-1">
+      <rect x="20" y="0" width="600" height="30"></rect>
     </clipPath>
   </defs>
-  <g aria-label="x-axis" transform="translate(0,59)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
-    <line x1="0" x2="639" stroke="currentColor"></line>
-    <g transform="translate(0,0)">
+  <g aria-label="x-axis" transform="translate(0,30)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+    <line x1="20" x2="620" stroke="currentColor"></line>
+    <g transform="translate(20,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">0</text>
     </g>
-    <g transform="translate(81.923,0)">
+    <g transform="translate(96.923,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">5</text>
     </g>
-    <g transform="translate(163.846,0)">
+    <g transform="translate(173.846,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">10</text>
     </g>
-    <g transform="translate(245.769,0)">
+    <g transform="translate(250.769,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">15</text>
     </g>
@@ -40,15 +40,15 @@
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">20</text>
     </g>
-    <g transform="translate(409.615,0)">
+    <g transform="translate(404.615,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">25</text>
     </g>
-    <g transform="translate(491.538,0)">
+    <g transform="translate(481.538,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">30</text>
     </g>
-    <g transform="translate(573.462,0)">
+    <g transform="translate(558.462,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">35</text>
     </g>

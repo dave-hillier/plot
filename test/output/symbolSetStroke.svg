@@ -14,21 +14,21 @@
     }
   </style>
   <defs>
-    <clipPath id="_r_2e4_">
-      <rect x="0" y="0" width="639" height="59"></rect>
+    <clipPath id="plot-rid-1">
+      <rect x="20" y="0" width="600" height="30"></rect>
     </clipPath>
   </defs>
-  <g aria-label="x-axis" transform="translate(0,59)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
-    <line x1="0" x2="639" stroke="currentColor"></line>
-    <g transform="translate(47,0)">
+  <g aria-label="x-axis" transform="translate(0,30)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+    <line x1="20" x2="620" stroke="currentColor"></line>
+    <g transform="translate(65,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">circle</text>
     </g>
-    <g transform="translate(138,0)">
+    <g transform="translate(150,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">cross</text>
     </g>
-    <g transform="translate(229,0)">
+    <g transform="translate(235,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">diamond</text>
     </g>
@@ -36,15 +36,15 @@
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">square</text>
     </g>
-    <g transform="translate(411,0)">
+    <g transform="translate(405,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">star</text>
     </g>
-    <g transform="translate(502,0)">
+    <g transform="translate(490,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">triangle</text>
     </g>
-    <g transform="translate(593,0)">
+    <g transform="translate(575,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">wye</text>
     </g>

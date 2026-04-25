@@ -14,53 +14,53 @@
     }
   </style>
   <defs>
-    <clipPath id="_r_15u_">
-      <rect x="0" y="0" width="639" height="59"></rect>
+    <clipPath id="plot-rid-1">
+      <rect x="20" y="0" width="600" height="30"></rect>
     </clipPath>
   </defs>
-  <g aria-label="x-axis" transform="translate(0,59)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
-    <line x1="0" x2="639" stroke="currentColor"></line>
-    <g transform="translate(9,0)">
+  <g aria-label="x-axis" transform="translate(0,30)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+    <line x1="20" x2="620" stroke="currentColor"></line>
+    <g transform="translate(26,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">1950-01-01</text>
     </g>
-    <g transform="translate(66,0)">
+    <g transform="translate(80,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">1955-01-01</text>
     </g>
-    <g transform="translate(123,0)">
+    <g transform="translate(134,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">1960-01-01</text>
     </g>
-    <g transform="translate(180,0)">
+    <g transform="translate(188,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">1965-01-01</text>
     </g>
-    <g transform="translate(237,0)">
+    <g transform="translate(242,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">1970-01-01</text>
     </g>
-    <g transform="translate(294,0)">
+    <g transform="translate(296,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">1975-01-01</text>
     </g>
-    <g transform="translate(351,0)">
+    <g transform="translate(350,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">1980-01-01</text>
     </g>
-    <g transform="translate(408,0)">
+    <g transform="translate(404,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">1985-01-01</text>
     </g>
-    <g transform="translate(465,0)">
+    <g transform="translate(458,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">1990-01-01</text>
     </g>
-    <g transform="translate(522,0)">
+    <g transform="translate(512,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">1995-01-01</text>
     </g>
-    <g transform="translate(579,0)">
+    <g transform="translate(566,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2000-01-01</text>
     </g>

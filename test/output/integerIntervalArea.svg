@@ -15,105 +15,105 @@
   </style>
   <defs>
     <clipPath id="plot-rid-1">
-      <rect x="0" y="0" width="639" height="399"></rect>
+      <rect x="40" y="20" width="580" height="350"></rect>
     </clipPath>
   </defs>
-  <g aria-label="x-axis" transform="translate(0,399)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
-    <line x1="0" x2="639" stroke="currentColor"></line>
-    <g transform="translate(0,0)">
+  <g aria-label="x-axis" transform="translate(0,370)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+    <line x1="40" x2="620" stroke="currentColor"></line>
+    <g transform="translate(40,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">0</text>
     </g>
-    <g transform="translate(63.9,0)">
+    <g transform="translate(98,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">1</text>
     </g>
-    <g transform="translate(127.8,0)">
+    <g transform="translate(156,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2</text>
     </g>
-    <g transform="translate(191.7,0)">
+    <g transform="translate(214,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">3</text>
     </g>
-    <g transform="translate(255.6,0)">
+    <g transform="translate(272,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">4</text>
     </g>
-    <g transform="translate(319.5,0)">
+    <g transform="translate(330,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">5</text>
     </g>
-    <g transform="translate(383.4,0)">
+    <g transform="translate(388,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">6</text>
     </g>
-    <g transform="translate(447.3,0)">
+    <g transform="translate(446,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">7</text>
     </g>
-    <g transform="translate(511.2,0)">
+    <g transform="translate(504,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">8</text>
     </g>
-    <g transform="translate(575.1,0)">
+    <g transform="translate(562,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">9</text>
     </g>
-    <g transform="translate(639,0)">
+    <g transform="translate(620,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">10</text>
     </g>
   </g>
-  <g aria-label="y-axis" transform="translate(0,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
-    <line y1="0" y2="399" stroke="currentColor"></line>
-    <g transform="translate(0,399)">
+  <g aria-label="y-axis" transform="translate(40,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
+    <line y1="20" y2="370" stroke="currentColor"></line>
+    <g transform="translate(0,370)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">4.0</text>
     </g>
-    <g transform="translate(0,359.1)">
+    <g transform="translate(0,335)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">4.5</text>
     </g>
-    <g transform="translate(0,319.2)">
+    <g transform="translate(0,300)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">5.0</text>
     </g>
-    <g transform="translate(0,279.3)">
+    <g transform="translate(0,265)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">5.5</text>
     </g>
-    <g transform="translate(0,239.4)">
+    <g transform="translate(0,230)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">6.0</text>
     </g>
-    <g transform="translate(0,199.5)">
+    <g transform="translate(0,195)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">6.5</text>
     </g>
-    <g transform="translate(0,159.6)">
+    <g transform="translate(0,160)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">7.0</text>
     </g>
-    <g transform="translate(0,119.7)">
+    <g transform="translate(0,125)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">7.5</text>
     </g>
-    <g transform="translate(0,79.8)">
+    <g transform="translate(0,90)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">8.0</text>
     </g>
-    <g transform="translate(0,39.9)">
+    <g transform="translate(0,55)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">8.5</text>
     </g>
-    <g transform="translate(0,0)">
+    <g transform="translate(0,20)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">9.0</text>
     </g>
   </g>
   <g aria-label="area" fill="currentColor" fill-opacity="0.7" stroke="type" stroke-width="2" stroke-miterlimit="1">
-    <path d="M0,319.2L319.5,159.6L319.5,159.6L0,319.2Z" fill="#4269d0" stroke="#4269d0"></path>
-    <path d="M319.5,0L639,399L639,399L319.5,0Z" fill="#efb118" stroke="#efb118"></path>
+    <path d="M40,300L330,160L330,160L40,300Z" fill="#4269d0" stroke="#4269d0"></path>
+    <path d="M330,20L620,370L620,370L330,20Z" fill="#efb118" stroke="#efb118"></path>
   </g>
 </svg>

@@ -14,61 +14,61 @@
     }
   </style>
   <defs>
-    <clipPath id="_r_12v_">
-      <rect x="0" y="0" width="639" height="59"></rect>
+    <clipPath id="plot-rid-1">
+      <rect x="20" y="0" width="600" height="30"></rect>
     </clipPath>
   </defs>
-  <g aria-label="x-axis" transform="translate(0,59)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
-    <line x1="0" x2="639" stroke="currentColor"></line>
-    <g transform="translate(9,0)">
+  <g aria-label="x-axis" transform="translate(0,30)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+    <line x1="20" x2="620" stroke="currentColor"></line>
+    <g transform="translate(35,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2018-04-16</text>
     </g>
-    <g transform="translate(33,0)">
+    <g transform="translate(57,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2018-04-17</text>
     </g>
-    <g transform="translate(57,0)">
+    <g transform="translate(79,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2018-04-18</text>
     </g>
-    <g transform="translate(81,0)">
+    <g transform="translate(101,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2018-04-19</text>
     </g>
-    <g transform="translate(105,0)">
+    <g transform="translate(123,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2018-04-20</text>
     </g>
-    <g transform="translate(129,0)">
+    <g transform="translate(145,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2018-04-21</text>
     </g>
-    <g transform="translate(153,0)">
+    <g transform="translate(167,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2018-04-22</text>
     </g>
-    <g transform="translate(177,0)">
+    <g transform="translate(189,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2018-04-23</text>
     </g>
-    <g transform="translate(201,0)">
+    <g transform="translate(211,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2018-04-24</text>
     </g>
-    <g transform="translate(225,0)">
+    <g transform="translate(233,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2018-04-25</text>
     </g>
-    <g transform="translate(249,0)">
+    <g transform="translate(255,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2018-04-26</text>
     </g>
-    <g transform="translate(273,0)">
+    <g transform="translate(277,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2018-04-27</text>
     </g>
-    <g transform="translate(297,0)">
+    <g transform="translate(299,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2018-04-28</text>
     </g>
@@ -76,51 +76,51 @@
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2018-04-29</text>
     </g>
-    <g transform="translate(345,0)">
+    <g transform="translate(343,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2018-04-30</text>
     </g>
-    <g transform="translate(369,0)">
+    <g transform="translate(365,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2018-05-01</text>
     </g>
-    <g transform="translate(393,0)">
+    <g transform="translate(387,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2018-05-02</text>
     </g>
-    <g transform="translate(417,0)">
+    <g transform="translate(409,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2018-05-03</text>
     </g>
-    <g transform="translate(441,0)">
+    <g transform="translate(431,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2018-05-04</text>
     </g>
-    <g transform="translate(465,0)">
+    <g transform="translate(453,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2018-05-05</text>
     </g>
-    <g transform="translate(489,0)">
+    <g transform="translate(475,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2018-05-06</text>
     </g>
-    <g transform="translate(513,0)">
+    <g transform="translate(497,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2018-05-07</text>
     </g>
-    <g transform="translate(537,0)">
+    <g transform="translate(519,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2018-05-08</text>
     </g>
-    <g transform="translate(561,0)">
+    <g transform="translate(541,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2018-05-09</text>
     </g>
-    <g transform="translate(585,0)">
+    <g transform="translate(563,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2018-05-10</text>
     </g>
-    <g transform="translate(609,0)">
+    <g transform="translate(585,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2018-05-11</text>
     </g>

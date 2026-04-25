@@ -162,6 +162,22 @@ export function Plot({
     }
   });
 
+  // Check whether children already include explicit axis components.
+  // Compare by function reference (not .name) so this survives minification.
+  // Computed before `computed` so dimension calculation can reserve default
+  // axis margins for implicit axes.
+  const hasExplicitAxes = (() => {
+    let hasX = false,
+      hasY = false;
+    React.Children.forEach(children, (child) => {
+      if (!React.isValidElement(child)) return;
+      const {type} = child;
+      if (type === AxisXMark || type === GridXMark) hasX = true;
+      if (type === AxisYMark || type === GridYMark) hasY = true;
+    });
+    return {hasX, hasY};
+  })();
+
   // Compute scales, dimensions, and mark states from all registrations.
   // This is the React equivalent of the monolithic plot() function.
   const computed = (() => {
@@ -317,13 +333,22 @@ export function Plot({
       }
     }
 
-    // Simulate marks array for dimension calculation (need marginTop etc.)
-    const dimensionMarks = marks.map((reg) => ({
-      marginTop: reg.options.marginTop || 0,
-      marginRight: reg.options.marginRight || 0,
-      marginBottom: reg.options.marginBottom || 0,
-      marginLeft: reg.options.marginLeft || 0
-    }));
+    // Simulate marks array for dimension calculation (need marginTop etc.).
+    // Include default axis margins when implicit axes will be rendered, matching
+    // the original imperative axis mark defaults from src/marks/axis.js.
+    const dimensionMarks: {marginTop: number; marginRight: number; marginBottom: number; marginLeft: number}[] =
+      marks.map((reg) => ({
+        marginTop: reg.options.marginTop || 0,
+        marginRight: reg.options.marginRight || 0,
+        marginBottom: reg.options.marginBottom || 0,
+        marginLeft: reg.options.marginLeft || 0
+      }));
+    if (!hasExplicitAxes.hasY && scaleDescriptors.y) {
+      dimensionMarks.push({marginTop: 20, marginRight: 0, marginBottom: 20, marginLeft: 40});
+    }
+    if (!hasExplicitAxes.hasX && scaleDescriptors.x) {
+      dimensionMarks.push({marginTop: 0, marginRight: 20, marginBottom: 30, marginLeft: 20});
+    }
     const dimensions = createDimensions(scaleDescriptors, dimensionMarks, plotOptions);
     autoScaleRange(scaleDescriptors, dimensions);
 
@@ -501,20 +526,6 @@ export function Plot({
 
   // Determine if figure wrapping is needed
   const useFigure = figureProp ?? (title != null || subtitle != null || caption != null);
-
-  // Check whether children already include explicit axis components.
-  // Compare by function reference (not .name) so this survives minification.
-  const hasExplicitAxes = (() => {
-    let hasX = false,
-      hasY = false;
-    React.Children.forEach(children, (child) => {
-      if (!React.isValidElement(child)) return;
-      const {type} = child;
-      if (type === AxisXMark || type === GridXMark) hasX = true;
-      if (type === AxisYMark || type === GridYMark) hasY = true;
-    });
-    return {hasX, hasY};
-  })();
 
   // Render implicit axes when the corresponding scale exists and no explicit axis is provided.
   // Suppress axes when a projection is specified (matching imperative API behavior).

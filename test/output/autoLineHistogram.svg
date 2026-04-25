@@ -14,61 +14,61 @@
     }
   </style>
   <defs>
-    <clipPath id="_r_9b_">
-      <rect x="0" y="0" width="639" height="59"></rect>
+    <clipPath id="plot-rid-1">
+      <rect x="20" y="0" width="600" height="30"></rect>
     </clipPath>
   </defs>
-  <g aria-label="x-axis" transform="translate(0,59)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
-    <line x1="0" x2="639" stroke="currentColor"></line>
-    <g transform="translate(21.368,0)">
+  <g aria-label="x-axis" transform="translate(0,30)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+    <line x1="20" x2="620" stroke="currentColor"></line>
+    <g transform="translate(40.064,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">20,000,000</text>
     </g>
-    <g transform="translate(71.505,0)">
+    <g transform="translate(87.141,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">40,000,000</text>
     </g>
-    <g transform="translate(121.641,0)">
+    <g transform="translate(134.217,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">60,000,000</text>
     </g>
-    <g transform="translate(171.777,0)">
+    <g transform="translate(181.293,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">80,000,000</text>
     </g>
-    <g transform="translate(221.914,0)">
+    <g transform="translate(228.37,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">100,000,000</text>
     </g>
-    <g transform="translate(272.05,0)">
+    <g transform="translate(275.446,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">120,000,000</text>
     </g>
-    <g transform="translate(322.186,0)">
+    <g transform="translate(322.522,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">140,000,000</text>
     </g>
-    <g transform="translate(372.323,0)">
+    <g transform="translate(369.599,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">160,000,000</text>
     </g>
-    <g transform="translate(422.459,0)">
+    <g transform="translate(416.675,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">180,000,000</text>
     </g>
-    <g transform="translate(472.595,0)">
+    <g transform="translate(463.752,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">200,000,000</text>
     </g>
-    <g transform="translate(522.732,0)">
+    <g transform="translate(510.828,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">220,000,000</text>
     </g>
-    <g transform="translate(572.868,0)">
+    <g transform="translate(557.904,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">240,000,000</text>
     </g>
-    <g transform="translate(623.005,0)">
+    <g transform="translate(604.981,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">260,000,000</text>
     </g>

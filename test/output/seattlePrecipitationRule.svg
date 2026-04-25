@@ -14,73 +14,73 @@
     }
   </style>
   <defs>
-    <clipPath id="_r_29k_">
-      <rect x="0" y="0" width="639" height="59"></rect>
+    <clipPath id="plot-rid-1">
+      <rect x="20" y="0" width="600" height="30"></rect>
     </clipPath>
   </defs>
-  <g aria-label="x-axis" transform="translate(0,59)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
-    <line x1="0" x2="639" stroke="currentColor"></line>
-    <g transform="translate(0,0)">
+  <g aria-label="x-axis" transform="translate(0,30)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+    <line x1="20" x2="620" stroke="currentColor"></line>
+    <g transform="translate(20,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2012</text>
     </g>
-    <g transform="translate(39.828,0)">
+    <g transform="translate(57.397,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">April</text>
     </g>
-    <g transform="translate(79.656,0)">
+    <g transform="translate(94.795,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">July</text>
     </g>
-    <g transform="translate(119.922,0)">
+    <g transform="translate(132.603,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">October</text>
     </g>
-    <g transform="translate(160.188,0)">
+    <g transform="translate(170.411,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2013</text>
     </g>
-    <g transform="translate(199.578,0)">
+    <g transform="translate(207.397,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">April</text>
     </g>
-    <g transform="translate(239.406,0)">
+    <g transform="translate(244.795,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">July</text>
     </g>
-    <g transform="translate(279.672,0)">
+    <g transform="translate(282.603,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">October</text>
     </g>
-    <g transform="translate(319.938,0)">
+    <g transform="translate(320.411,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2014</text>
     </g>
-    <g transform="translate(359.328,0)">
+    <g transform="translate(357.397,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">April</text>
     </g>
-    <g transform="translate(399.156,0)">
+    <g transform="translate(394.795,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">July</text>
     </g>
-    <g transform="translate(439.422,0)">
+    <g transform="translate(432.603,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">October</text>
     </g>
-    <g transform="translate(479.688,0)">
+    <g transform="translate(470.411,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2015</text>
     </g>
-    <g transform="translate(519.078,0)">
+    <g transform="translate(507.397,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">April</text>
     </g>
-    <g transform="translate(558.906,0)">
+    <g transform="translate(544.795,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">July</text>
     </g>
-    <g transform="translate(599.172,0)">
+    <g transform="translate(582.603,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">October</text>
     </g>

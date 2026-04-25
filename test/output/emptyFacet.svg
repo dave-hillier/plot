@@ -14,18 +14,18 @@
     }
   </style>
   <defs>
-    <clipPath id="_r_l9_">
-      <rect x="0" y="0" width="639" height="89"></rect>
+    <clipPath id="plot-rid-1">
+      <rect x="20" y="0" width="600" height="60"></rect>
     </clipPath>
   </defs>
-  <g transform="translate(0,0)">
-    <g aria-label="x-axis" transform="translate(0,89)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
-      <line x1="0" x2="639" stroke="currentColor"></line>
-      <g transform="translate(15,0)">
+  <g transform="translate(21,0)">
+    <g aria-label="x-axis" transform="translate(0,60)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+      <line x1="20" x2="620" stroke="currentColor"></line>
+      <g transform="translate(34,0)">
         <line y2="6" stroke="currentColor"></line>
         <text y="9" dy="0.71em" fill="currentColor">1</text>
       </g>
-      <g transform="translate(158,0)">
+      <g transform="translate(169,0)">
         <line y2="6" stroke="currentColor"></line>
         <text y="9" dy="0.71em" fill="currentColor">2</text>
       </g>
@@ -33,13 +33,13 @@
     <g aria-label="bar" fill="currentColor"></g>
   </g>
   <g transform="translate(336,0)">
-    <g aria-label="x-axis" transform="translate(0,89)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
-      <line x1="0" x2="639" stroke="currentColor"></line>
-      <g transform="translate(15,0)">
+    <g aria-label="x-axis" transform="translate(0,60)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+      <line x1="20" x2="620" stroke="currentColor"></line>
+      <g transform="translate(34,0)">
         <line y2="6" stroke="currentColor"></line>
         <text y="9" dy="0.71em" fill="currentColor">1</text>
       </g>
-      <g transform="translate(158,0)">
+      <g transform="translate(169,0)">
         <line y2="6" stroke="currentColor"></line>
         <text y="9" dy="0.71em" fill="currentColor">2</text>
       </g>

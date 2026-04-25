@@ -14,57 +14,57 @@
     }
   </style>
   <defs>
-    <clipPath id="_r_318_">
-      <rect x="0" y="0" width="959" height="299"></rect>
+    <clipPath id="plot-rid-1">
+      <rect x="20" y="0" width="920" height="270"></rect>
     </clipPath>
   </defs>
-  <g aria-label="x-axis" transform="translate(0,299)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
-    <line x1="0" x2="959" stroke="currentColor"></line>
-    <g transform="translate(71.404,0)">
+  <g aria-label="x-axis" transform="translate(0,270)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+    <line x1="20" x2="940" stroke="currentColor"></line>
+    <g transform="translate(89.608,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">1800</text>
     </g>
-    <g transform="translate(148.987,0)">
+    <g transform="translate(163.825,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">1820</text>
     </g>
-    <g transform="translate(226.581,0)">
+    <g transform="translate(238.053,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">1840</text>
     </g>
-    <g transform="translate(304.174,0)">
+    <g transform="translate(312.28,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">1860</text>
     </g>
-    <g transform="translate(381.767,0)">
+    <g transform="translate(386.507,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">1880</text>
     </g>
-    <g transform="translate(459.361,0)">
+    <g transform="translate(460.734,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">1900</text>
     </g>
-    <g transform="translate(536.944,0)">
+    <g transform="translate(534.952,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">1920</text>
     </g>
-    <g transform="translate(614.537,0)">
+    <g transform="translate(609.179,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">1940</text>
     </g>
-    <g transform="translate(692.13,0)">
+    <g transform="translate(683.406,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">1960</text>
     </g>
-    <g transform="translate(769.724,0)">
+    <g transform="translate(757.633,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">1980</text>
     </g>
-    <g transform="translate(847.317,0)">
+    <g transform="translate(831.861,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2000</text>
     </g>
-    <g transform="translate(924.911,0)">
+    <g transform="translate(906.088,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2020</text>
     </g>

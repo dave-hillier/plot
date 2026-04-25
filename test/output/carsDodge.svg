@@ -14,37 +14,37 @@
     }
   </style>
   <defs>
-    <clipPath id="_r_db_">
-      <rect x="0" y="0" width="639" height="199"></rect>
+    <clipPath id="plot-rid-1">
+      <rect x="20" y="0" width="600" height="170"></rect>
     </clipPath>
   </defs>
-  <g aria-label="x-axis" transform="translate(0,199)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
-    <line x1="0" x2="639" stroke="currentColor"></line>
-    <g transform="translate(70.114,0)">
+  <g aria-label="x-axis" transform="translate(0,170)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+    <line x1="20" x2="620" stroke="currentColor"></line>
+    <g transform="translate(85.835,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2,000</text>
     </g>
-    <g transform="translate(160.701,0)">
+    <g transform="translate(170.893,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2,500</text>
     </g>
-    <g transform="translate(251.288,0)">
+    <g transform="translate(255.951,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">3,000</text>
     </g>
-    <g transform="translate(341.875,0)">
+    <g transform="translate(341.009,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">3,500</text>
     </g>
-    <g transform="translate(432.462,0)">
+    <g transform="translate(426.067,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">4,000</text>
     </g>
-    <g transform="translate(523.049,0)">
+    <g transform="translate(511.126,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">4,500</text>
     </g>
-    <g transform="translate(613.636,0)">
+    <g transform="translate(596.184,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">5,000</text>
     </g>

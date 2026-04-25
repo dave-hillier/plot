@@ -14,74 +14,74 @@
     }
   </style>
   <defs>
-    <clipPath id="_r_2cl_">
-      <rect x="0" y="0" width="639" height="59"></rect>
+    <clipPath id="plot-rid-1">
+      <rect x="20" y="0" width="600" height="30"></rect>
     </clipPath>
   </defs>
-  <g aria-label="x-axis" transform="translate(0,59)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
-    <line x1="0" x2="639" stroke="currentColor"></line>
-    <g transform="translate(0,0)">
+  <g aria-label="x-axis" transform="translate(0,30)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+    <line x1="20" x2="620" stroke="currentColor"></line>
+    <g transform="translate(20,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">0</text>
     </g>
-    <g transform="translate(63.9,0)">
+    <g transform="translate(80,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">10</text>
     </g>
-    <g transform="translate(127.8,0)">
+    <g transform="translate(140,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">20</text>
     </g>
-    <g transform="translate(191.7,0)">
+    <g transform="translate(200,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">30</text>
     </g>
-    <g transform="translate(255.6,0)">
+    <g transform="translate(260,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">40</text>
     </g>
-    <g transform="translate(319.5,0)">
+    <g transform="translate(320,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">50</text>
     </g>
-    <g transform="translate(383.4,0)">
+    <g transform="translate(380,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">60</text>
     </g>
-    <g transform="translate(447.3,0)">
+    <g transform="translate(440,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">70</text>
     </g>
-    <g transform="translate(511.2,0)">
+    <g transform="translate(500,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">80</text>
     </g>
-    <g transform="translate(575.1,0)">
+    <g transform="translate(560,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">90</text>
     </g>
-    <g transform="translate(639,0)">
+    <g transform="translate(620,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">100</text>
     </g>
   </g>
   <g aria-label="bar" fill="currentColor">
-    <rect x="0.5" y="0" width="318.5" height="59"></rect>
-    <rect x="320" y="0" width="144.633" height="59"></rect>
-    <rect x="465.633" y="0" width="70.33" height="59"></rect>
-    <rect x="536.963" y="0" width="37.637" height="59"></rect>
-    <rect x="575.6" y="0" width="30.207" height="59"></rect>
-    <rect x="606.807" y="0" width="16.833" height="59"></rect>
-    <rect x="624.64" y="0" width="13.86" height="59"></rect>
+    <rect x="20.5" y="0" width="299" height="30"></rect>
+    <rect x="320.5" y="0" width="135.744" height="30"></rect>
+    <rect x="457.244" y="0" width="65.977" height="30"></rect>
+    <rect x="524.221" y="0" width="35.279" height="30"></rect>
+    <rect x="560.5" y="0" width="28.302" height="30"></rect>
+    <rect x="589.802" y="0" width="15.744" height="30"></rect>
+    <rect x="606.547" y="0" width="12.953" height="30"></rect>
   </g>
   <g aria-label="text" fill="currentColor">
-    <text x="159.75" y="29.5" dominant-baseline="central">348</text>
-    <text x="392.316" y="29.5" dominant-baseline="central">368</text>
-    <text x="500.798" y="29.5" dominant-baseline="central">429</text>
-    <text x="555.781" y="29.5" dominant-baseline="central">359</text>
-    <text x="590.703" y="29.5" dominant-baseline="central">369</text>
-    <text x="615.223" y="29.5" dominant-baseline="central">381</text>
-    <text x="631.57" y="29.5" dominant-baseline="central">324</text>
+    <text x="170" y="15" dominant-baseline="central">348</text>
+    <text x="388.372" y="15" dominant-baseline="central">368</text>
+    <text x="490.233" y="15" dominant-baseline="central">429</text>
+    <text x="541.86" y="15" dominant-baseline="central">359</text>
+    <text x="574.651" y="15" dominant-baseline="central">369</text>
+    <text x="597.674" y="15" dominant-baseline="central">381</text>
+    <text x="613.023" y="15" dominant-baseline="central">324</text>
   </g>
   <g aria-label="rule" stroke="currentColor">00</g>
 </svg>

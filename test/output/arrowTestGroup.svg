@@ -14,105 +14,105 @@
     }
   </style>
   <defs>
-    <clipPath id="_r_36_">
-      <rect x="60" y="0" width="579" height="59"></rect>
+    <clipPath id="plot-rid-1">
+      <rect x="60" y="0" width="560" height="30"></rect>
     </clipPath>
   </defs>
-  <g aria-label="x-axis" transform="translate(0,59)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
-    <line x1="60" x2="639" stroke="currentColor"></line>
-    <g transform="translate(70,0)">
+  <g aria-label="x-axis" transform="translate(0,30)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+    <line x1="60" x2="620" stroke="currentColor"></line>
+    <g transform="translate(66,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">0</text>
     </g>
-    <g transform="translate(117,0)">
+    <g transform="translate(112,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">1</text>
     </g>
-    <g transform="translate(164,0)">
+    <g transform="translate(158,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2</text>
     </g>
-    <g transform="translate(211,0)">
+    <g transform="translate(204,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">3</text>
     </g>
-    <g transform="translate(258,0)">
+    <g transform="translate(250,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">4</text>
     </g>
-    <g transform="translate(305,0)">
+    <g transform="translate(296,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">5</text>
     </g>
-    <g transform="translate(352,0)">
+    <g transform="translate(342,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">6</text>
     </g>
-    <g transform="translate(399,0)">
+    <g transform="translate(388,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">7</text>
     </g>
-    <g transform="translate(446,0)">
+    <g transform="translate(434,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">8</text>
     </g>
-    <g transform="translate(493,0)">
+    <g transform="translate(480,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">9</text>
     </g>
-    <g transform="translate(540,0)">
+    <g transform="translate(526,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">10</text>
     </g>
-    <g transform="translate(587,0)">
+    <g transform="translate(572,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">11</text>
     </g>
   </g>
   <g aria-label="bar" fill="currentColor">
-    <rect x="70" y="0" width="42" height="59"></rect>
-    <rect x="305" y="0" width="42" height="59"></rect>
-    <rect x="117" y="0" width="42" height="59"></rect>
-    <rect x="164" y="0" width="42" height="59"></rect>
-    <rect x="211" y="0" width="42" height="59"></rect>
-    <rect x="258" y="0" width="42" height="59"></rect>
-    <rect x="352" y="0" width="42" height="59"></rect>
-    <rect x="446" y="0" width="42" height="59"></rect>
-    <rect x="399" y="0" width="42" height="59"></rect>
-    <rect x="540" y="0" width="42" height="59"></rect>
-    <rect x="493" y="0" width="42" height="59"></rect>
-    <rect x="70" y="0" width="42" height="59"></rect>
-    <rect x="117" y="0" width="42" height="59"></rect>
-    <rect x="164" y="0" width="42" height="59"></rect>
-    <rect x="211" y="0" width="42" height="59"></rect>
-    <rect x="258" y="0" width="42" height="59"></rect>
-    <rect x="305" y="0" width="42" height="59"></rect>
-    <rect x="352" y="0" width="42" height="59"></rect>
-    <rect x="446" y="0" width="42" height="59"></rect>
-    <rect x="399" y="0" width="42" height="59"></rect>
-    <rect x="540" y="0" width="42" height="59"></rect>
-    <rect x="493" y="0" width="42" height="59"></rect>
-    <rect x="70" y="0" width="42" height="59"></rect>
-    <rect x="117" y="0" width="42" height="59"></rect>
-    <rect x="211" y="0" width="42" height="59"></rect>
-    <rect x="258" y="0" width="42" height="59"></rect>
-    <rect x="164" y="0" width="42" height="59"></rect>
-    <rect x="305" y="0" width="42" height="59"></rect>
-    <rect x="399" y="0" width="42" height="59"></rect>
-    <rect x="352" y="0" width="42" height="59"></rect>
-    <rect x="446" y="0" width="42" height="59"></rect>
-    <rect x="493" y="0" width="42" height="59"></rect>
-    <rect x="70" y="0" width="42" height="59"></rect>
-    <rect x="164" y="0" width="42" height="59"></rect>
-    <rect x="117" y="0" width="42" height="59"></rect>
-    <rect x="258" y="0" width="42" height="59"></rect>
-    <rect x="211" y="0" width="42" height="59"></rect>
-    <rect x="305" y="0" width="42" height="59"></rect>
-    <rect x="352" y="0" width="42" height="59"></rect>
-    <rect x="399" y="0" width="42" height="59"></rect>
-    <rect x="446" y="0" width="42" height="59"></rect>
-    <rect x="540" y="0" width="42" height="59"></rect>
-    <rect x="493" y="0" width="42" height="59"></rect>
-    <rect x="587" y="0" width="42" height="59"></rect>
+    <rect x="66" y="0" width="41" height="30"></rect>
+    <rect x="296" y="0" width="41" height="30"></rect>
+    <rect x="112" y="0" width="41" height="30"></rect>
+    <rect x="158" y="0" width="41" height="30"></rect>
+    <rect x="204" y="0" width="41" height="30"></rect>
+    <rect x="250" y="0" width="41" height="30"></rect>
+    <rect x="342" y="0" width="41" height="30"></rect>
+    <rect x="434" y="0" width="41" height="30"></rect>
+    <rect x="388" y="0" width="41" height="30"></rect>
+    <rect x="526" y="0" width="41" height="30"></rect>
+    <rect x="480" y="0" width="41" height="30"></rect>
+    <rect x="66" y="0" width="41" height="30"></rect>
+    <rect x="112" y="0" width="41" height="30"></rect>
+    <rect x="158" y="0" width="41" height="30"></rect>
+    <rect x="204" y="0" width="41" height="30"></rect>
+    <rect x="250" y="0" width="41" height="30"></rect>
+    <rect x="296" y="0" width="41" height="30"></rect>
+    <rect x="342" y="0" width="41" height="30"></rect>
+    <rect x="434" y="0" width="41" height="30"></rect>
+    <rect x="388" y="0" width="41" height="30"></rect>
+    <rect x="526" y="0" width="41" height="30"></rect>
+    <rect x="480" y="0" width="41" height="30"></rect>
+    <rect x="66" y="0" width="41" height="30"></rect>
+    <rect x="112" y="0" width="41" height="30"></rect>
+    <rect x="204" y="0" width="41" height="30"></rect>
+    <rect x="250" y="0" width="41" height="30"></rect>
+    <rect x="158" y="0" width="41" height="30"></rect>
+    <rect x="296" y="0" width="41" height="30"></rect>
+    <rect x="388" y="0" width="41" height="30"></rect>
+    <rect x="342" y="0" width="41" height="30"></rect>
+    <rect x="434" y="0" width="41" height="30"></rect>
+    <rect x="480" y="0" width="41" height="30"></rect>
+    <rect x="66" y="0" width="41" height="30"></rect>
+    <rect x="158" y="0" width="41" height="30"></rect>
+    <rect x="112" y="0" width="41" height="30"></rect>
+    <rect x="250" y="0" width="41" height="30"></rect>
+    <rect x="204" y="0" width="41" height="30"></rect>
+    <rect x="296" y="0" width="41" height="30"></rect>
+    <rect x="342" y="0" width="41" height="30"></rect>
+    <rect x="388" y="0" width="41" height="30"></rect>
+    <rect x="434" y="0" width="41" height="30"></rect>
+    <rect x="526" y="0" width="41" height="30"></rect>
+    <rect x="480" y="0" width="41" height="30"></rect>
+    <rect x="572" y="0" width="41" height="30"></rect>
   </g>
 </svg>

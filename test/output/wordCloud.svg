@@ -14,337 +14,337 @@
     }
   </style>
   <defs>
-    <clipPath id="_r_38p_">
-      <rect x="0" y="0" width="639" height="399"></rect>
+    <clipPath id="plot-rid-1">
+      <rect x="40" y="20" width="580" height="350"></rect>
     </clipPath>
   </defs>
-  <g aria-label="x-axis" transform="translate(0,399)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
-    <line x1="0" x2="639" stroke="currentColor"></line>
-    <g transform="translate(78.958,0)">
+  <g aria-label="x-axis" transform="translate(0,370)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+    <line x1="40" x2="620" stroke="currentColor"></line>
+    <g transform="translate(113.151,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">0.1</text>
     </g>
-    <g transform="translate(139.093,0)">
+    <g transform="translate(167.362,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">0.2</text>
     </g>
-    <g transform="translate(199.228,0)">
+    <g transform="translate(221.574,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">0.3</text>
     </g>
-    <g transform="translate(259.362,0)">
+    <g transform="translate(275.786,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">0.4</text>
     </g>
-    <g transform="translate(319.497,0)">
+    <g transform="translate(329.997,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">0.5</text>
     </g>
-    <g transform="translate(379.632,0)">
+    <g transform="translate(384.209,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">0.6</text>
     </g>
-    <g transform="translate(439.766,0)">
+    <g transform="translate(438.421,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">0.7</text>
     </g>
-    <g transform="translate(499.901,0)">
+    <g transform="translate(492.632,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">0.8</text>
     </g>
-    <g transform="translate(560.036,0)">
+    <g transform="translate(546.844,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">0.9</text>
     </g>
   </g>
-  <g aria-label="y-axis" transform="translate(0,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
-    <line y1="0" y2="399" stroke="currentColor"></line>
-    <g transform="translate(0,343.647)">
+  <g aria-label="y-axis" transform="translate(40,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
+    <line y1="20" y2="370" stroke="currentColor"></line>
+    <g transform="translate(0,319.472)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">0.1</text>
     </g>
-    <g transform="translate(0,307.661)">
+    <g transform="translate(0,288.398)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">0.2</text>
     </g>
-    <g transform="translate(0,271.675)">
+    <g transform="translate(0,257.324)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">0.3</text>
     </g>
-    <g transform="translate(0,235.689)">
+    <g transform="translate(0,226.25)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">0.4</text>
     </g>
-    <g transform="translate(0,199.704)">
+    <g transform="translate(0,195.176)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">0.5</text>
     </g>
-    <g transform="translate(0,163.718)">
+    <g transform="translate(0,164.102)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">0.6</text>
     </g>
-    <g transform="translate(0,127.732)">
+    <g transform="translate(0,133.028)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">0.7</text>
     </g>
-    <g transform="translate(0,91.746)">
+    <g transform="translate(0,101.954)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">0.8</text>
     </g>
-    <g transform="translate(0,55.761)">
+    <g transform="translate(0,70.88)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">0.9</text>
     </g>
   </g>
   <g aria-label="text" fill="currentColor" font-size="[object Object]">
-    <text x="127.72" y="225.997" dominant-baseline="central">me (25)</text>
-    <text x="457.926" y="26.293" dominant-baseline="central">ishmael (2)</text>
-    <text x="531.406" y="282.724" dominant-baseline="central">some (11)</text>
-    <text x="348.696" y="77.885" dominant-baseline="central">ago (2)</text>
-    <text x="101.154" y="254.873" dominant-baseline="central">never (5)</text>
-    <text x="491.881" y="126.327" dominant-baseline="central">how (3)</text>
-    <text x="271.479" y="104.554" dominant-baseline="central">long (2)</text>
-    <text x="410.634" y="54.249" dominant-baseline="central">having (2)</text>
-    <text x="544.033" y="279.701" dominant-baseline="central">little (4)</text>
-    <text x="225.254" y="316.27" dominant-baseline="central">or (10)</text>
-    <text x="207.167" y="223.579" dominant-baseline="central">no (6)</text>
-    <text x="277.281" y="208.211" dominant-baseline="central">money (4)</text>
-    <text x="384.844" y="352.932" dominant-baseline="central">in (48)</text>
-    <text x="498.75" y="94.879" dominant-baseline="central">my (14)</text>
-    <text x="583.316" y="197.423" dominant-baseline="central">purse (3)</text>
-    <text x="31.849" y="133.219" dominant-baseline="central">and (73)</text>
-    <text x="403.468" y="71.053" dominant-baseline="central">nothing (3)</text>
-    <text x="350.904" y="110.893" dominant-baseline="central">particular (2)</text>
-    <text x="528.621" y="254.575" dominant-baseline="central">to (53)</text>
-    <text x="481.346" y="157.875" dominant-baseline="central">on (12)</text>
-    <text x="116.256" y="84.416" dominant-baseline="central">i (43)</text>
-    <text x="240.355" y="215.477" dominant-baseline="central">would (4)</text>
-    <text x="552.569" y="87.265" dominant-baseline="central">sail (2)</text>
-    <text x="106.871" y="34.413" dominant-baseline="central">about (7)</text>
-    <text x="611.791" y="42.462" dominant-baseline="central">a (69)</text>
-    <text x="137.19" y="328.427" dominant-baseline="central">see (6)</text>
-    <text x="488.721" y="264.647" dominant-baseline="central">the (124)</text>
-    <text x="110.99" y="93.145" dominant-baseline="central">part (7)</text>
-    <text x="30.8" y="179.584" dominant-baseline="central">of (81)</text>
-    <text x="305.295" y="150.364" dominant-baseline="central">world (4)</text>
-    <text x="455.941" y="329.898" dominant-baseline="central">it (33)</text>
-    <text x="171.232" y="129.035" dominant-baseline="central">is (34)</text>
-    <text x="418.884" y="170.059" dominant-baseline="central">way (6)</text>
-    <text x="351.651" y="303.777" dominant-baseline="central">have (8)</text>
-    <text x="395.211" y="300.028" dominant-baseline="central">off (3)</text>
-    <text x="123.608" y="59.789" dominant-baseline="central">whenever (5)</text>
-    <text x="515.523" y="109.085" dominant-baseline="central">find (2)</text>
-    <text x="529.09" y="301.967" dominant-baseline="central">myself (3)</text>
-    <text x="201.733" y="134.451" dominant-baseline="central">soul (3)</text>
-    <text x="97.488" y="310.873" dominant-baseline="central">before (3)</text>
-    <text x="456.236" y="363.632" dominant-baseline="central">warehouses (2)</text>
-    <text x="275.333" y="210.308" dominant-baseline="central">up (4)</text>
-    <text x="222.699" y="81.004" dominant-baseline="central">every (4)</text>
-    <text x="242.199" y="307.468" dominant-baseline="central">get (6)</text>
-    <text x="234.432" y="173.625" dominant-baseline="central">such (5)</text>
-    <text x="376.048" y="41.953" dominant-baseline="central">an (4)</text>
-    <text x="591.766" y="291.605" dominant-baseline="central">hand (3)</text>
-    <text x="41.055" y="309.597" dominant-baseline="central">that (31)</text>
-    <text x="522.895" y="67.273" dominant-baseline="central">requires (2)</text>
-    <text x="414.248" y="55.581" dominant-baseline="central">strong (2)</text>
-    <text x="35.065" y="30.816" dominant-baseline="central">from (11)</text>
-    <text x="321.921" y="139.652" dominant-baseline="central">into (9)</text>
-    <text x="156.174" y="185.925" dominant-baseline="central">s (5)</text>
-    <text x="203.199" y="366.94" dominant-baseline="central">then (5)</text>
-    <text x="439.161" y="370.365" dominant-baseline="central">account (2)</text>
-    <text x="73.515" y="351.754" dominant-baseline="central">high (4)</text>
-    <text x="340.457" y="98.371" dominant-baseline="central">time (6)</text>
-    <text x="236" y="373.658" dominant-baseline="central">sea (13)</text>
-    <text x="428.977" y="164.641" dominant-baseline="central">as (26)</text>
-    <text x="438.994" y="356.425" dominant-baseline="central">can (6)</text>
-    <text x="414.559" y="21.004" dominant-baseline="central">this (17)</text>
-    <text x="209.652" y="29.333" dominant-baseline="central">for (16)</text>
-    <text x="337.609" y="331.302" dominant-baseline="central">with (13)</text>
-    <text x="123.151" y="323.753" dominant-baseline="central">himself (2)</text>
-    <text x="166.995" y="356.3" dominant-baseline="central">upon (9)</text>
-    <text x="231.781" y="151.42" dominant-baseline="central">his (10)</text>
-    <text x="197.611" y="214.559" dominant-baseline="central">take (6)</text>
-    <text x="190.428" y="330.916" dominant-baseline="central">ship (3)</text>
-    <text x="502.937" y="294.477" dominant-baseline="central">there (16)</text>
-    <text x="274.96" y="218.567" dominant-baseline="central">if (9)</text>
-    <text x="301.615" y="258.825" dominant-baseline="central">they (12)</text>
-    <text x="590.564" y="49.387" dominant-baseline="central">but (15)</text>
-    <text x="87.623" y="319.045" dominant-baseline="central">almost (3)</text>
-    <text x="411.756" y="68.565" dominant-baseline="central">all (23)</text>
-    <text x="246.829" y="73.119" dominant-baseline="central">men (4)</text>
-    <text x="527.013" y="143.484" dominant-baseline="central">their (4)</text>
-    <text x="414.293" y="87.039" dominant-baseline="central">other (6)</text>
-    <text x="399.338" y="55.769" dominant-baseline="central">same (5)</text>
-    <text x="89.637" y="259.643" dominant-baseline="central">ocean (2)</text>
-    <text x="355.235" y="253.589" dominant-baseline="central">now (5)</text>
-    <text x="437.532" y="137.364" dominant-baseline="central">your (6)</text>
-    <text x="63.355" y="254.953" dominant-baseline="central">city (2)</text>
-    <text x="410.947" y="250.989" dominant-baseline="central">round (2)</text>
-    <text x="91.353" y="48.523" dominant-baseline="central">by (8)</text>
-    <text x="23.574" y="165.479" dominant-baseline="central">right (3)</text>
-    <text x="203.706" y="275.591" dominant-baseline="central">streets (2)</text>
-    <text x="449.865" y="317.632" dominant-baseline="central">you (23)</text>
-    <text x="355.424" y="162.418" dominant-baseline="central">its (2)</text>
-    <text x="210.33" y="288.6" dominant-baseline="central">where (2)</text>
-    <text x="368.171" y="308.079" dominant-baseline="central">which (4)</text>
-    <text x="57.609" y="34.263" dominant-baseline="central">previous (2)</text>
-    <text x="102.87" y="171.587" dominant-baseline="central">were (7)</text>
-    <text x="478.75" y="156.862" dominant-baseline="central">out (3)</text>
-    <text x="582.728" y="233.541" dominant-baseline="central">sight (2)</text>
-    <text x="191.72" y="68.419" dominant-baseline="central">land (6)</text>
-    <text x="355.949" y="209.813" dominant-baseline="central">look (2)</text>
-    <text x="114.379" y="188.895" dominant-baseline="central">at (5)</text>
-    <text x="486.881" y="330.923" dominant-baseline="central">crowds (2)</text>
-    <text x="179.06" y="219.937" dominant-baseline="central">water (8)</text>
-    <text x="518.187" y="363.287" dominant-baseline="central">go (12)</text>
-    <text x="39.069" y="357.821" dominant-baseline="central">what (9)</text>
-    <text x="467.226" y="99.572" dominant-baseline="central">do (8)</text>
-    <text x="191.539" y="333.189" dominant-baseline="central">like (6)</text>
-    <text x="126.656" y="89.02" dominant-baseline="central">stand (5)</text>
-    <text x="282.575" y="150.014" dominant-baseline="central">thousands (2)</text>
-    <text x="240.144" y="241.096" dominant-baseline="central">fixed (2)</text>
-    <text x="551.846" y="332.836" dominant-baseline="central">reveries (2)</text>
-    <text x="425.755" y="267.156" dominant-baseline="central">over (2)</text>
-    <text x="553.334" y="182.513" dominant-baseline="central">ships (3)</text>
-    <text x="176.197" y="305.31" dominant-baseline="central">aloft (2)</text>
-    <text x="246.739" y="39.439" dominant-baseline="central">still (3)</text>
-    <text x="419.346" y="276.573" dominant-baseline="central">better (2)</text>
-    <text x="316.038" y="246" dominant-baseline="central">these (4)</text>
-    <text x="401.271" y="365.305" dominant-baseline="central">are (5)</text>
-    <text x="270.561" y="359.488" dominant-baseline="central">here (5)</text>
-    <text x="560.466" y="369.644" dominant-baseline="central">come (3)</text>
-    <text x="176.732" y="87.086" dominant-baseline="central">more (6)</text>
-    <text x="54.858" y="122.618" dominant-baseline="central">will (6)</text>
-    <text x="219.345" y="306.62" dominant-baseline="central">content (2)</text>
-    <text x="560.621" y="28.964" dominant-baseline="central">them (5)</text>
-    <text x="463.765" y="80.857" dominant-baseline="central">under (2)</text>
-    <text x="210.059" y="249.836" dominant-baseline="central">yonder (2)</text>
-    <text x="615.99" y="155.072" dominant-baseline="central">not (11)</text>
-    <text x="240.284" y="63.744" dominant-baseline="central">must (4)</text>
-    <text x="171.3" y="217.281" dominant-baseline="central">just (2)</text>
-    <text x="52.017" y="178.855" dominant-baseline="central">without (3)</text>
-    <text x="411.925" y="283.654" dominant-baseline="central">miles (3)</text>
-    <text x="505.762" y="132.015" dominant-baseline="central">yet (4)</text>
-    <text x="353.171" y="319.754" dominant-baseline="central">tell (4)</text>
-    <text x="203.963" y="189.512" dominant-baseline="central">does (2)</text>
-    <text x="31.409" y="273.105" dominant-baseline="central">those (4)</text>
-    <text x="521.808" y="227.92" dominant-baseline="central">once (2)</text>
-    <text x="201.061" y="276.487" dominant-baseline="central">say (3)</text>
-    <text x="124.254" y="82.933" dominant-baseline="central">country (2)</text>
-    <text x="174.395" y="148.353" dominant-baseline="central">any (2)</text>
-    <text x="139.832" y="108.116" dominant-baseline="central">one (11)</text>
-    <text x="600.346" y="68.454" dominant-baseline="central">down (6)</text>
-    <text x="377.866" y="296.119" dominant-baseline="central">leaves (2)</text>
-    <text x="279.991" y="147.438" dominant-baseline="central">stream (2)</text>
-    <text x="77.906" y="351.256" dominant-baseline="central">magic (2)</text>
-    <text x="428.717" y="34.415" dominant-baseline="central">let (2)</text>
-    <text x="66.601" y="116.703" dominant-baseline="central">most (5)</text>
-    <text x="589.531" y="131.039" dominant-baseline="central">be (9)</text>
-    <text x="157.678" y="59.302" dominant-baseline="central">plunged (2)</text>
-    <text x="289.011" y="252.816" dominant-baseline="central">man (3)</text>
-    <text x="529.872" y="319.038" dominant-baseline="central">set (3)</text>
-    <text x="22.433" y="34.883" dominant-baseline="central">going (4)</text>
-    <text x="444.428" y="329.488" dominant-baseline="central">he (10)</text>
-    <text x="606.251" y="103.426" dominant-baseline="central">lead (2)</text>
-    <text x="610.914" y="164.143" dominant-baseline="central">should (3)</text>
-    <text x="523.458" y="123.957" dominant-baseline="central">ever (5)</text>
-    <text x="572.623" y="254.457" dominant-baseline="central">great (3)</text>
-    <text x="329.721" y="37.528" dominant-baseline="central">metaphysical (2)</text>
-    <text x="567.806" y="95.805" dominant-baseline="central">chief (2)</text>
-    <text x="353.292" y="82.547" dominant-baseline="central">each (2)</text>
-    <text x="104.11" y="142.284" dominant-baseline="central">meadow (2)</text>
-    <text x="268.545" y="75.08" dominant-baseline="central">sleep (2)</text>
-    <text x="215.392" y="207.24" dominant-baseline="central">deep (2)</text>
-    <text x="596.482" y="145.297" dominant-baseline="central">distant (2)</text>
-    <text x="98.19" y="52.369" dominant-baseline="central">winds (3)</text>
-    <text x="437.51" y="201.614" dominant-baseline="central">hill (2)</text>
-    <text x="613.396" y="349.159" dominant-baseline="central">though (7)</text>
-    <text x="520.209" y="249.134" dominant-baseline="central">shepherd (2)</text>
-    <text x="216.292" y="136.271" dominant-baseline="central">head (4)</text>
-    <text x="413.549" y="67.866" dominant-baseline="central">unless (2)</text>
-    <text x="364.258" y="46.156" dominant-baseline="central">him (3)</text>
-    <text x="515.67" y="120.211" dominant-baseline="central">when (5)</text>
-    <text x="319.459" y="131.12" dominant-baseline="central">scores (2)</text>
-    <text x="69.414" y="316.672" dominant-baseline="central">among (2)</text>
-    <text x="187.586" y="27.111" dominant-baseline="central">thousand (2)</text>
-    <text x="183.044" y="180.622" dominant-baseline="central">why (7)</text>
-    <text x="451.765" y="360.68" dominant-baseline="central">did (5)</text>
-    <text x="606.087" y="218.293" dominant-baseline="central">two (4)</text>
-    <text x="347.315" y="73.893" dominant-baseline="central">robust (2)</text>
-    <text x="352.347" y="246.047" dominant-baseline="central">healthy (2)</text>
-    <text x="270.626" y="368.134" dominant-baseline="central">first (4)</text>
-    <text x="35.587" y="277.924" dominant-baseline="central">voyage (6)</text>
-    <text x="482.703" y="329.24" dominant-baseline="central">passenger (4)</text>
-    <text x="350.646" y="334.267" dominant-baseline="central">old (6)</text>
-    <text x="435.334" y="92.884" dominant-baseline="central">own (2)</text>
-    <text x="411.991" y="206.732" dominant-baseline="central">meaning (2)</text>
-    <text x="65.703" y="171.088" dominant-baseline="central">who (5)</text>
-    <text x="124.104" y="31.232" dominant-baseline="central">because (4)</text>
-    <text x="449.455" y="204.464" dominant-baseline="central">could (2)</text>
-    <text x="363.745" y="172.074" dominant-baseline="central">image (3)</text>
-    <text x="464.346" y="143.883" dominant-baseline="central">was (8)</text>
-    <text x="445.87" y="291.615" dominant-baseline="central">we (3)</text>
-    <text x="101.598" y="129.267" dominant-baseline="central">ourselves (2)</text>
-    <text x="588.641" y="209.352" dominant-baseline="central">phantom (2)</text>
-    <text x="548.182" y="48.874" dominant-baseline="central">am (4)</text>
-    <text x="53.329" y="146.459" dominant-baseline="central">begin (2)</text>
-    <text x="47.427" y="284.53" dominant-baseline="central">grow (2)</text>
-    <text x="29.901" y="172.07" dominant-baseline="central">mean (2)</text>
-    <text x="187.827" y="195.136" dominant-baseline="central">something (3)</text>
-    <text x="463.997" y="230.844" dominant-baseline="central">besides (2)</text>
-    <text x="294.633" y="131.781" dominant-baseline="central">passengers (3)</text>
-    <text x="563.229" y="67.504" dominant-baseline="central">t (2)</text>
-    <text x="42.694" y="282.793" dominant-baseline="central">themselves (2)</text>
-    <text x="221.903" y="374.911" dominant-baseline="central">much (4)</text>
-    <text x="375.841" y="193.363" dominant-baseline="central">thing (2)</text>
-    <text x="408.651" y="55.813" dominant-baseline="central">commodore (2)</text>
-    <text x="420.762" y="123.463" dominant-baseline="central">captain (2)</text>
-    <text x="447.319" y="102.74" dominant-baseline="central">cook (3)</text>
-    <text x="613.404" y="180.839" dominant-baseline="central">glory (2)</text>
-    <text x="463.704" y="152.326" dominant-baseline="central">care (2)</text>
-    <text x="217.138" y="258.326" dominant-baseline="central">being (4)</text>
-    <text x="125.05" y="376.931" dominant-baseline="central">sort (3)</text>
-    <text x="156.721" y="161.249" dominant-baseline="central">officer (2)</text>
-    <text x="372.722" y="320.11" dominant-baseline="central">broiled (3)</text>
-    <text x="401.964" y="224.602" dominant-baseline="central">respectfully (2)</text>
-    <text x="173.786" y="217.505" dominant-baseline="central">than (4)</text>
-    <text x="127.927" y="129.043" dominant-baseline="central">sailor (5)</text>
-    <text x="294.337" y="243.686" dominant-baseline="central">mast (2)</text>
-    <text x="392.182" y="66.651" dominant-baseline="central">forecastle (2)</text>
-    <text x="522.032" y="298.853" dominant-baseline="central">order (2)</text>
-    <text x="181.753" y="357.788" dominant-baseline="central">make (2)</text>
-    <text x="446.997" y="46.16" dominant-baseline="central">spar (2)</text>
-    <text x="55.89" y="108.359" dominant-baseline="central">may (3)</text>
-    <text x="485.152" y="239.976" dominant-baseline="central">been (2)</text>
-    <text x="353.973" y="40.469" dominant-baseline="central">schoolmaster (2)</text>
-    <text x="436.076" y="345.074" dominant-baseline="central">hunks (2)</text>
-    <text x="412.416" y="192.828" dominant-baseline="central">think (2)</text>
-    <text x="163.293" y="280.074" dominant-baseline="central">thinks (2)</text>
-    <text x="339.447" y="360.158" dominant-baseline="central">well (2)</text>
-    <text x="212.807" y="95.055" dominant-baseline="central">however (2)</text>
-    <text x="251.203" y="307.894" dominant-baseline="central">thump (2)</text>
-    <text x="522.318" y="177.607" dominant-baseline="central">else (2)</text>
-    <text x="285.647" y="310.159" dominant-baseline="central">point (2)</text>
-    <text x="485.674" y="233.738" dominant-baseline="central">so (4)</text>
-    <text x="39.76" y="90.882" dominant-baseline="central">always (2)</text>
-    <text x="543.653" y="71.322" dominant-baseline="central">paying (3)</text>
-    <text x="297.582" y="214.964" dominant-baseline="central">pay (2)</text>
-    <text x="479.935" y="233.333" dominant-baseline="central">between (2)</text>
-    <text x="303.28" y="98.95" dominant-baseline="central">paid (2)</text>
-    <text x="458.396" y="42.207" dominant-baseline="central">perhaps (2)</text>
-    <text x="256.828" y="247.407" dominant-baseline="central">air (2)</text>
-    <text x="372.115" y="22.845" dominant-baseline="central">deck (2)</text>
-    <text x="381.349" y="268.089" dominant-baseline="central">leaders (2)</text>
-    <text x="44.025" y="332.139" dominant-baseline="central">things (4)</text>
-    <text x="358.897" y="95.785" dominant-baseline="central">whaling (5)</text>
-    <text x="276.115" y="39.221" dominant-baseline="central">fates (2)</text>
-    <text x="271.825" y="84.039" dominant-baseline="central">grand (3)</text>
-    <text x="435.146" y="279.257" dominant-baseline="central">cannot (2)</text>
-    <text x="519.273" y="99.041" dominant-baseline="central">exactly (2)</text>
-    <text x="270.604" y="151.875" dominant-baseline="central">parts (3)</text>
-    <text x="25.082" y="268.757" dominant-baseline="central">motives (2)</text>
-    <text x="477.029" y="165.255" dominant-baseline="central">whale (3)</text>
-    <text x="82.742" y="154.609" dominant-baseline="central">wild (2)</text>
-    <text x="469.027" y="297.167" dominant-baseline="central">seas (2)</text>
+    <text x="157.11" y="217.88" dominant-baseline="central">me (25)</text>
+    <text x="454.792" y="45.434" dominant-baseline="central">ishmael (2)</text>
+    <text x="521.034" y="266.864" dominant-baseline="central">some (11)</text>
+    <text x="356.32" y="89.984" dominant-baseline="central">ago (2)</text>
+    <text x="133.161" y="242.815" dominant-baseline="central">never (5)</text>
+    <text x="485.402" y="131.814" dominant-baseline="central">how (3)</text>
+    <text x="286.709" y="113.013" dominant-baseline="central">long (2)</text>
+    <text x="412.158" y="69.574" dominant-baseline="central">having (2)</text>
+    <text x="532.417" y="264.254" dominant-baseline="central">little (4)</text>
+    <text x="245.037" y="295.832" dominant-baseline="central">or (10)</text>
+    <text x="228.732" y="215.792" dominant-baseline="central">no (6)</text>
+    <text x="291.94" y="202.522" dominant-baseline="central">money (4)</text>
+    <text x="388.908" y="327.49" dominant-baseline="central">in (48)</text>
+    <text x="491.594" y="104.659" dominant-baseline="central">my (14)</text>
+    <text x="567.831" y="193.206" dominant-baseline="central">purse (3)</text>
+    <text x="70.682" y="137.766" dominant-baseline="central">and (73)</text>
+    <text x="405.698" y="84.084" dominant-baseline="central">nothing (3)</text>
+    <text x="358.311" y="118.487" dominant-baseline="central">particular (2)</text>
+    <text x="518.523" y="242.557" dominant-baseline="central">to (53)</text>
+    <text x="475.905" y="159.056" dominant-baseline="central">on (12)</text>
+    <text x="146.775" y="95.624" dominant-baseline="central">i (43)</text>
+    <text x="258.65" y="208.796" dominant-baseline="central">would (4)</text>
+    <text x="540.112" y="98.084" dominant-baseline="central">sail (2)</text>
+    <text x="138.315" y="52.445" dominant-baseline="central">about (7)</text>
+    <text x="593.501" y="59.396" dominant-baseline="central">a (69)</text>
+    <text x="165.647" y="306.33" dominant-baseline="central">see (6)</text>
+    <text x="482.553" y="251.255" dominant-baseline="central">the (124)</text>
+    <text x="142.028" y="103.162" dominant-baseline="central">part (7)</text>
+    <text x="69.736" y="177.802" dominant-baseline="central">of (81)</text>
+    <text x="317.194" y="152.571" dominant-baseline="central">world (4)</text>
+    <text x="453.002" y="307.6" dominant-baseline="central">it (33)</text>
+    <text x="196.336" y="134.153" dominant-baseline="central">is (34)</text>
+    <text x="419.595" y="169.577" dominant-baseline="central">way (6)</text>
+    <text x="358.984" y="285.044" dominant-baseline="central">have (8)</text>
+    <text x="398.253" y="281.807" dominant-baseline="central">off (3)</text>
+    <text x="153.403" y="74.358" dominant-baseline="central">whenever (5)</text>
+    <text x="506.715" y="116.926" dominant-baseline="central">find (2)</text>
+    <text x="518.946" y="283.481" dominant-baseline="central">myself (3)</text>
+    <text x="223.833" y="138.829" dominant-baseline="central">soul (3)</text>
+    <text x="129.856" y="291.172" dominant-baseline="central">before (3)</text>
+    <text x="453.268" y="336.73" dominant-baseline="central">warehouses (2)</text>
+    <text x="290.183" y="204.333" dominant-baseline="central">up (4)</text>
+    <text x="242.733" y="92.677" dominant-baseline="central">every (4)</text>
+    <text x="260.313" y="288.232" dominant-baseline="central">get (6)</text>
+    <text x="253.311" y="172.657" dominant-baseline="central">such (5)</text>
+    <text x="380.979" y="58.956" dominant-baseline="central">an (4)</text>
+    <text x="575.448" y="274.534" dominant-baseline="central">hand (3)</text>
+    <text x="78.981" y="290.07" dominant-baseline="central">that (31)</text>
+    <text x="513.361" y="80.821" dominant-baseline="central">requires (2)</text>
+    <text x="415.416" y="70.724" dominant-baseline="central">strong (2)</text>
+    <text x="73.582" y="49.34" dominant-baseline="central">from (11)</text>
+    <text x="332.182" y="143.321" dominant-baseline="central">into (9)</text>
+    <text x="182.761" y="183.278" dominant-baseline="central">s (5)</text>
+    <text x="225.155" y="339.586" dominant-baseline="central">then (5)</text>
+    <text x="437.875" y="342.544" dominant-baseline="central">account (2)</text>
+    <text x="108.244" y="326.473" dominant-baseline="central">high (4)</text>
+    <text x="348.893" y="107.674" dominant-baseline="central">time (6)</text>
+    <text x="254.725" y="345.387" dominant-baseline="central">sea (13)</text>
+    <text x="428.694" y="164.899" dominant-baseline="central">as (26)</text>
+    <text x="437.724" y="330.506" dominant-baseline="central">can (6)</text>
+    <text x="415.696" y="40.867" dominant-baseline="central">this (17)</text>
+    <text x="230.972" y="48.059" dominant-baseline="central">for (16)</text>
+    <text x="346.325" y="308.812" dominant-baseline="central">with (13)</text>
+    <text x="152.991" y="302.294" dominant-baseline="central">himself (2)</text>
+    <text x="192.516" y="330.398" dominant-baseline="central">upon (9)</text>
+    <text x="250.921" y="153.482" dominant-baseline="central">his (10)</text>
+    <text x="220.116" y="208.004" dominant-baseline="central">take (6)</text>
+    <text x="213.642" y="308.479" dominant-baseline="central">ship (3)</text>
+    <text x="495.369" y="277.013" dominant-baseline="central">there (16)</text>
+    <text x="289.847" y="211.465" dominant-baseline="central">if (9)</text>
+    <text x="313.877" y="246.228" dominant-baseline="central">they (12)</text>
+    <text x="574.365" y="65.376" dominant-baseline="central">but (15)</text>
+    <text x="120.962" y="298.228" dominant-baseline="central">almost (3)</text>
+    <text x="413.169" y="81.937" dominant-baseline="central">all (23)</text>
+    <text x="264.487" y="85.869" dominant-baseline="central">men (4)</text>
+    <text x="517.074" y="146.63" dominant-baseline="central">their (4)</text>
+    <text x="415.456" y="97.888" dominant-baseline="central">other (6)</text>
+    <text x="401.974" y="70.887" dominant-baseline="central">same (5)</text>
+    <text x="122.778" y="246.934" dominant-baseline="central">ocean (2)</text>
+    <text x="362.215" y="241.706" dominant-baseline="central">now (5)</text>
+    <text x="436.406" y="141.345" dominant-baseline="central">your (6)</text>
+    <text x="99.085" y="242.884" dominant-baseline="central">city (2)</text>
+    <text x="412.44" y="239.461" dominant-baseline="central">round (2)</text>
+    <text x="124.325" y="64.63" dominant-baseline="central">by (8)</text>
+    <text x="63.222" y="165.623" dominant-baseline="central">right (3)</text>
+    <text x="225.611" y="260.706" dominant-baseline="central">streets (2)</text>
+    <text x="447.524" y="297.008" dominant-baseline="central">you (23)</text>
+    <text x="362.386" y="162.979" dominant-baseline="central">its (2)</text>
+    <text x="231.583" y="271.939" dominant-baseline="central">where (2)</text>
+    <text x="373.877" y="288.759" dominant-baseline="central">which (4)</text>
+    <text x="93.905" y="52.316" dominant-baseline="central">previous (2)</text>
+    <text x="134.707" y="170.897" dominant-baseline="central">were (7)</text>
+    <text x="473.564" y="158.182" dominant-baseline="central">out (3)</text>
+    <text x="567.301" y="224.394" dominant-baseline="central">sight (2)</text>
+    <text x="214.806" y="81.81" dominant-baseline="central">land (6)</text>
+    <text x="362.859" y="203.905" dominant-baseline="central">look (2)</text>
+    <text x="145.083" y="185.842" dominant-baseline="central">at (5)</text>
+    <text x="480.894" y="308.485" dominant-baseline="central">crowds (2)</text>
+    <text x="203.393" y="212.648" dominant-baseline="central">water (8)</text>
+    <text x="509.117" y="336.431" dominant-baseline="central">go (12)</text>
+    <text x="77.191" y="331.711" dominant-baseline="central">what (9)</text>
+    <text x="463.176" y="108.711" dominant-baseline="central">do (8)</text>
+    <text x="214.643" y="310.442" dominant-baseline="central">like (6)</text>
+    <text x="156.151" y="99.599" dominant-baseline="central">stand (5)</text>
+    <text x="296.712" y="152.268" dominant-baseline="central">thousands (2)</text>
+    <text x="258.46" y="230.918" dominant-baseline="central">fixed (2)</text>
+    <text x="539.461" y="310.137" dominant-baseline="central">reveries (2)</text>
+    <text x="425.789" y="253.422" dominant-baseline="central">over (2)</text>
+    <text x="540.802" y="180.331" dominant-baseline="central">ships (3)</text>
+    <text x="200.812" y="286.368" dominant-baseline="central">aloft (2)</text>
+    <text x="264.406" y="56.786" dominant-baseline="central">still (3)</text>
+    <text x="420.011" y="261.553" dominant-baseline="central">better (2)</text>
+    <text x="326.879" y="235.153" dominant-baseline="central">these (4)</text>
+    <text x="403.717" y="338.174" dominant-baseline="central">are (5)</text>
+    <text x="285.881" y="333.152" dominant-baseline="central">here (5)</text>
+    <text x="547.231" y="341.921" dominant-baseline="central">come (3)</text>
+    <text x="201.294" y="97.93" dominant-baseline="central">more (6)</text>
+    <text x="91.424" y="128.612" dominant-baseline="central">will (6)</text>
+    <text x="239.71" y="287.499" dominant-baseline="central">content (2)</text>
+    <text x="547.371" y="47.741" dominant-baseline="central">them (5)</text>
+    <text x="460.055" y="92.551" dominant-baseline="central">under (2)</text>
+    <text x="231.339" y="238.466" dominant-baseline="central">yonder (2)</text>
+    <text x="597.287" y="156.636" dominant-baseline="central">not (11)</text>
+    <text x="258.586" y="77.773" dominant-baseline="central">must (4)</text>
+    <text x="196.397" y="210.354" dominant-baseline="central">just (2)</text>
+    <text x="88.863" y="177.173" dominant-baseline="central">without (3)</text>
+    <text x="413.321" y="267.668" dominant-baseline="central">miles (3)</text>
+    <text x="497.916" y="136.726" dominant-baseline="central">yet (4)</text>
+    <text x="360.355" y="298.84" dominant-baseline="central">tell (4)</text>
+    <text x="225.843" y="186.375" dominant-baseline="central">does (2)</text>
+    <text x="70.285" y="258.559" dominant-baseline="central">those (4)</text>
+    <text x="512.381" y="219.541" dominant-baseline="central">once (2)</text>
+    <text x="223.227" y="261.479" dominant-baseline="central">say (3)</text>
+    <text x="153.985" y="94.344" dominant-baseline="central">country (2)</text>
+    <text x="199.187" y="150.834" dominant-baseline="central">any (2)</text>
+    <text x="168.029" y="116.089" dominant-baseline="central">one (11)</text>
+    <text x="583.184" y="81.841" dominant-baseline="central">down (6)</text>
+    <text x="382.617" y="278.432" dominant-baseline="central">leaves (2)</text>
+    <text x="294.383" y="150.044" dominant-baseline="central">stream (2)</text>
+    <text x="112.202" y="326.043" dominant-baseline="central">magic (2)</text>
+    <text x="428.459" y="52.447" dominant-baseline="central">let (2)</text>
+    <text x="102.011" y="123.504" dominant-baseline="central">most (5)</text>
+    <text x="573.434" y="135.883" dominant-baseline="central">be (9)</text>
+    <text x="184.117" y="73.938" dominant-baseline="central">plunged (2)</text>
+    <text x="302.514" y="241.039" dominant-baseline="central">man (3)</text>
+    <text x="519.651" y="298.222" dominant-baseline="central">set (3)</text>
+    <text x="62.193" y="52.852" dominant-baseline="central">going (4)</text>
+    <text x="442.623" y="307.246" dominant-baseline="central">he (10)</text>
+    <text x="588.507" y="112.039" dominant-baseline="central">lead (2)</text>
+    <text x="592.71" y="164.468" dominant-baseline="central">should (3)</text>
+    <text x="513.869" y="129.767" dominant-baseline="central">ever (5)</text>
+    <text x="558.191" y="242.456" dominant-baseline="central">great (3)</text>
+    <text x="339.214" y="55.136" dominant-baseline="central">metaphysical (2)</text>
+    <text x="553.849" y="105.459" dominant-baseline="central">chief (2)</text>
+    <text x="360.464" y="94.01" dominant-baseline="central">each (2)</text>
+    <text x="135.826" y="145.593" dominant-baseline="central">meadow (2)</text>
+    <text x="284.064" y="87.562" dominant-baseline="central">sleep (2)</text>
+    <text x="236.147" y="201.683" dominant-baseline="central">deep (2)</text>
+    <text x="579.7" y="148.195" dominant-baseline="central">distant (2)</text>
+    <text x="130.489" y="67.951" dominant-baseline="central">winds (3)</text>
+    <text x="436.387" y="196.825" dominant-baseline="central">hill (2)</text>
+    <text x="594.948" y="324.232" dominant-baseline="central">though (7)</text>
+    <text x="510.94" y="237.859" dominant-baseline="central">shepherd (2)</text>
+    <text x="236.958" y="140.401" dominant-baseline="central">head (4)</text>
+    <text x="414.786" y="81.333" dominant-baseline="central">unless (2)</text>
+    <text x="370.35" y="62.586" dominant-baseline="central">him (3)</text>
+    <text x="506.848" y="126.533" dominant-baseline="central">when (5)</text>
+    <text x="329.963" y="135.953" dominant-baseline="central">scores (2)</text>
+    <text x="104.546" y="296.179" dominant-baseline="central">among (2)</text>
+    <text x="211.079" y="46.14" dominant-baseline="central">thousand (2)</text>
+    <text x="206.985" y="178.699" dominant-baseline="central">why (7)</text>
+    <text x="449.237" y="334.18" dominant-baseline="central">did (5)</text>
+    <text x="588.359" y="211.228" dominant-baseline="central">two (4)</text>
+    <text x="355.075" y="86.537" dominant-baseline="central">robust (2)</text>
+    <text x="359.611" y="235.194" dominant-baseline="central">healthy (2)</text>
+    <text x="285.94" y="340.617" dominant-baseline="central">first (4)</text>
+    <text x="74.052" y="262.72" dominant-baseline="central">voyage (6)</text>
+    <text x="477.128" y="307.032" dominant-baseline="central">passenger (4)</text>
+    <text x="358.078" y="311.373" dominant-baseline="central">old (6)</text>
+    <text x="434.424" y="102.936" dominant-baseline="central">own (2)</text>
+    <text x="413.381" y="201.245" dominant-baseline="central">meaning (2)</text>
+    <text x="101.201" y="170.466" dominant-baseline="central">who (5)</text>
+    <text x="153.85" y="49.699" dominant-baseline="central">because (4)</text>
+    <text x="447.155" y="199.286" dominant-baseline="central">could (2)</text>
+    <text x="369.887" y="171.317" dominant-baseline="central">image (3)</text>
+    <text x="460.579" y="146.974" dominant-baseline="central">was (8)</text>
+    <text x="443.923" y="274.542" dominant-baseline="central">we (3)</text>
+    <text x="133.56" y="134.353" dominant-baseline="central">ourselves (2)</text>
+    <text x="572.631" y="203.508" dominant-baseline="central">phantom (2)</text>
+    <text x="536.158" y="64.933" dominant-baseline="central">am (4)</text>
+    <text x="90.047" y="149.199" dominant-baseline="central">begin (2)</text>
+    <text x="84.725" y="268.424" dominant-baseline="central">grow (2)</text>
+    <text x="68.926" y="171.314" dominant-baseline="central">mean (2)</text>
+    <text x="211.296" y="191.231" dominant-baseline="central">something (3)</text>
+    <text x="460.264" y="222.066" dominant-baseline="central">besides (2)</text>
+    <text x="307.582" y="136.524" dominant-baseline="central">passengers (3)</text>
+    <text x="549.723" y="81.02" dominant-baseline="central">t (2)</text>
+    <text x="80.459" y="266.925" dominant-baseline="central">themselves (2)</text>
+    <text x="242.016" y="346.469" dominant-baseline="central">much (4)</text>
+    <text x="380.792" y="189.701" dominant-baseline="central">thing (2)</text>
+    <text x="410.37" y="70.925" dominant-baseline="central">commodore (2)</text>
+    <text x="421.288" y="129.342" dominant-baseline="central">captain (2)</text>
+    <text x="445.229" y="111.447" dominant-baseline="central">cook (3)</text>
+    <text x="594.956" y="178.886" dominant-baseline="central">glory (2)</text>
+    <text x="460" y="154.264" dominant-baseline="central">care (2)</text>
+    <text x="237.721" y="245.797" dominant-baseline="central">being (4)</text>
+    <text x="154.703" y="348.213" dominant-baseline="central">sort (3)</text>
+    <text x="183.255" y="161.97" dominant-baseline="central">officer (2)</text>
+    <text x="377.98" y="299.148" dominant-baseline="central">broiled (3)</text>
+    <text x="404.342" y="216.676" dominant-baseline="central">respectfully (2)</text>
+    <text x="198.639" y="210.547" dominant-baseline="central">than (4)</text>
+    <text x="157.296" y="134.159" dominant-baseline="central">sailor (5)</text>
+    <text x="307.316" y="233.155" dominant-baseline="central">mast (2)</text>
+    <text x="395.523" y="80.284" dominant-baseline="central">forecastle (2)</text>
+    <text x="512.584" y="280.792" dominant-baseline="central">order (2)</text>
+    <text x="205.82" y="331.683" dominant-baseline="central">make (2)</text>
+    <text x="444.939" y="62.59" dominant-baseline="central">spar (2)</text>
+    <text x="92.355" y="116.299" dominant-baseline="central">may (3)</text>
+    <text x="479.336" y="229.951" dominant-baseline="central">been (2)</text>
+    <text x="361.077" y="57.675" dominant-baseline="central">schoolmaster (2)</text>
+    <text x="435.093" y="320.704" dominant-baseline="central">hunks (2)</text>
+    <text x="413.764" y="189.239" dominant-baseline="central">think (2)</text>
+    <text x="189.179" y="264.577" dominant-baseline="central">thinks (2)</text>
+    <text x="347.982" y="333.73" dominant-baseline="central">well (2)</text>
+    <text x="233.816" y="104.811" dominant-baseline="central">however (2)</text>
+    <text x="268.43" y="288.6" dominant-baseline="central">thump (2)</text>
+    <text x="512.841" y="176.095" dominant-baseline="central">else (2)</text>
+    <text x="299.481" y="290.555" dominant-baseline="central">point (2)</text>
+    <text x="479.806" y="224.565" dominant-baseline="central">so (4)</text>
+    <text x="77.814" y="101.207" dominant-baseline="central">always (2)</text>
+    <text x="532.075" y="84.317" dominant-baseline="central">paying (3)</text>
+    <text x="310.241" y="208.354" dominant-baseline="central">pay (2)</text>
+    <text x="474.632" y="224.215" dominant-baseline="central">between (2)</text>
+    <text x="315.378" y="108.175" dominant-baseline="central">paid (2)</text>
+    <text x="455.215" y="59.176" dominant-baseline="central">perhaps (2)</text>
+    <text x="273.501" y="236.368" dominant-baseline="central">air (2)</text>
+    <text x="377.432" y="42.457" dominant-baseline="central">deck (2)</text>
+    <text x="385.757" y="254.227" dominant-baseline="central">leaders (2)</text>
+    <text x="81.659" y="309.535" dominant-baseline="central">things (4)</text>
+    <text x="365.516" y="105.441" dominant-baseline="central">whaling (5)</text>
+    <text x="290.888" y="56.598" dominant-baseline="central">fates (2)</text>
+    <text x="287.021" y="95.299" dominant-baseline="central">grand (3)</text>
+    <text x="434.255" y="263.871" dominant-baseline="central">cannot (2)</text>
+    <text x="510.096" y="108.253" dominant-baseline="central">exactly (2)</text>
+    <text x="285.92" y="153.876" dominant-baseline="central">parts (3)</text>
+    <text x="64.581" y="254.804" dominant-baseline="central">motives (2)</text>
+    <text x="472.013" y="165.429" dominant-baseline="central">whale (3)</text>
+    <text x="116.562" y="156.237" dominant-baseline="central">wild (2)</text>
+    <text x="464.799" y="279.336" dominant-baseline="central">seas (2)</text>
   </g>
 </svg>

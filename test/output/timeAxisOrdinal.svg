@@ -15,317 +15,317 @@
   </style>
   <defs>
     <clipPath id="plot-rid-1">
-      <rect x="0" y="0" width="639" height="59"></rect>
+      <rect x="20" y="0" width="600" height="30"></rect>
     </clipPath>
   </defs>
-  <g aria-label="x-axis" transform="translate(0,59)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
-    <line x1="0" x2="639" stroke="currentColor"></line>
-    <g transform="translate(15,0)">
+  <g aria-label="x-axis" transform="translate(0,30)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+    <line x1="20" x2="620" stroke="currentColor"></line>
+    <g transform="translate(20.982,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2013-05-01</text>
     </g>
-    <g transform="translate(25,0)">
+    <g transform="translate(30.802,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2013-06-01</text>
     </g>
-    <g transform="translate(35,0)">
+    <g transform="translate(40.622,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2013-07-01</text>
     </g>
-    <g transform="translate(45,0)">
+    <g transform="translate(50.442,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2013-08-01</text>
     </g>
-    <g transform="translate(55,0)">
+    <g transform="translate(60.262,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2013-09-01</text>
     </g>
-    <g transform="translate(65,0)">
+    <g transform="translate(70.082,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2013-10-01</text>
     </g>
-    <g transform="translate(75,0)">
+    <g transform="translate(79.902,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2013-11-01</text>
     </g>
-    <g transform="translate(85,0)">
+    <g transform="translate(89.722,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2013-12-01</text>
     </g>
-    <g transform="translate(95,0)">
+    <g transform="translate(99.542,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2014-01-01</text>
     </g>
-    <g transform="translate(105,0)">
+    <g transform="translate(109.362,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2014-02-01</text>
     </g>
-    <g transform="translate(115,0)">
+    <g transform="translate(119.182,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2014-03-01</text>
     </g>
-    <g transform="translate(125,0)">
+    <g transform="translate(129.002,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2014-04-01</text>
     </g>
-    <g transform="translate(135,0)">
+    <g transform="translate(138.822,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2014-05-01</text>
     </g>
-    <g transform="translate(145,0)">
+    <g transform="translate(148.642,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2014-06-01</text>
     </g>
-    <g transform="translate(155,0)">
+    <g transform="translate(158.462,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2014-07-01</text>
     </g>
-    <g transform="translate(165,0)">
+    <g transform="translate(168.282,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2014-08-01</text>
     </g>
-    <g transform="translate(175,0)">
+    <g transform="translate(178.101,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2014-09-01</text>
     </g>
-    <g transform="translate(185,0)">
+    <g transform="translate(187.921,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2014-10-01</text>
     </g>
-    <g transform="translate(195,0)">
+    <g transform="translate(197.741,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2014-11-01</text>
     </g>
-    <g transform="translate(205,0)">
+    <g transform="translate(207.561,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2014-12-01</text>
     </g>
-    <g transform="translate(215,0)">
+    <g transform="translate(217.381,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2015-01-01</text>
     </g>
-    <g transform="translate(225,0)">
+    <g transform="translate(227.201,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2015-02-01</text>
     </g>
-    <g transform="translate(235,0)">
+    <g transform="translate(237.021,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2015-03-01</text>
     </g>
-    <g transform="translate(245,0)">
+    <g transform="translate(246.841,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2015-04-01</text>
     </g>
-    <g transform="translate(255,0)">
+    <g transform="translate(256.661,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2015-05-01</text>
     </g>
-    <g transform="translate(265,0)">
+    <g transform="translate(266.481,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2015-06-01</text>
     </g>
-    <g transform="translate(275,0)">
+    <g transform="translate(276.301,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2015-07-01</text>
     </g>
-    <g transform="translate(285,0)">
+    <g transform="translate(286.121,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2015-08-01</text>
     </g>
-    <g transform="translate(295,0)">
+    <g transform="translate(295.941,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2015-09-01</text>
     </g>
-    <g transform="translate(305,0)">
+    <g transform="translate(305.761,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2015-10-01</text>
     </g>
-    <g transform="translate(315,0)">
+    <g transform="translate(315.581,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2015-11-01</text>
     </g>
-    <g transform="translate(325,0)">
+    <g transform="translate(325.401,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2015-12-01</text>
     </g>
-    <g transform="translate(335,0)">
+    <g transform="translate(335.221,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2016-01-01</text>
     </g>
-    <g transform="translate(345,0)">
+    <g transform="translate(345.041,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2016-02-01</text>
     </g>
-    <g transform="translate(355,0)">
+    <g transform="translate(354.861,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2016-03-01</text>
     </g>
-    <g transform="translate(365,0)">
+    <g transform="translate(364.681,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2016-04-01</text>
     </g>
-    <g transform="translate(375,0)">
+    <g transform="translate(374.501,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2016-05-01</text>
     </g>
-    <g transform="translate(385,0)">
+    <g transform="translate(384.321,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2016-06-01</text>
     </g>
-    <g transform="translate(395,0)">
+    <g transform="translate(394.141,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2016-07-01</text>
     </g>
-    <g transform="translate(405,0)">
+    <g transform="translate(403.961,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2016-08-01</text>
     </g>
-    <g transform="translate(415,0)">
+    <g transform="translate(413.781,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2016-09-01</text>
     </g>
-    <g transform="translate(425,0)">
+    <g transform="translate(423.601,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2016-10-01</text>
     </g>
-    <g transform="translate(435,0)">
+    <g transform="translate(433.421,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2016-11-01</text>
     </g>
-    <g transform="translate(445,0)">
+    <g transform="translate(443.241,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2016-12-01</text>
     </g>
-    <g transform="translate(455,0)">
+    <g transform="translate(453.061,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2017-01-01</text>
     </g>
-    <g transform="translate(465,0)">
+    <g transform="translate(462.881,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2017-02-01</text>
     </g>
-    <g transform="translate(475,0)">
+    <g transform="translate(472.7,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2017-03-01</text>
     </g>
-    <g transform="translate(485,0)">
+    <g transform="translate(482.52,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2017-04-01</text>
     </g>
-    <g transform="translate(495,0)">
+    <g transform="translate(492.34,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2017-05-01</text>
     </g>
-    <g transform="translate(505,0)">
+    <g transform="translate(502.16,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2017-06-01</text>
     </g>
-    <g transform="translate(515,0)">
+    <g transform="translate(511.98,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2017-07-01</text>
     </g>
-    <g transform="translate(525,0)">
+    <g transform="translate(521.8,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2017-08-01</text>
     </g>
-    <g transform="translate(535,0)">
+    <g transform="translate(531.62,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2017-09-01</text>
     </g>
-    <g transform="translate(545,0)">
+    <g transform="translate(541.44,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2017-10-01</text>
     </g>
-    <g transform="translate(555,0)">
+    <g transform="translate(551.26,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2017-11-01</text>
     </g>
-    <g transform="translate(565,0)">
+    <g transform="translate(561.08,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2017-12-01</text>
     </g>
-    <g transform="translate(575,0)">
+    <g transform="translate(570.9,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2018-01-01</text>
     </g>
-    <g transform="translate(585,0)">
+    <g transform="translate(580.72,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2018-02-01</text>
     </g>
-    <g transform="translate(595,0)">
+    <g transform="translate(590.54,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2018-03-01</text>
     </g>
-    <g transform="translate(605,0)">
+    <g transform="translate(600.36,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2018-04-01</text>
     </g>
-    <g transform="translate(615,0)">
+    <g transform="translate(610.18,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2018-05-01</text>
     </g>
   </g>
   <g aria-label="bar" fill="currentColor">
-    <rect x="15" y="0" width="9" height="59"><title>Sun May 12 2013 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="25" y="0" width="9" height="59"><title>Sun Jun 02 2013 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="35" y="0" width="9" height="59"><title>Sun Jun 30 2013 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="45" y="0" width="9" height="59"><title>Wed Jul 31 2013 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="55" y="0" width="9" height="59"><title>Mon Sep 02 2013 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="65" y="0" width="9" height="59"><title>Mon Sep 30 2013 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="75" y="0" width="9" height="59"><title>Thu Oct 31 2013 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="85" y="0" width="9" height="59"><title>Sun Dec 01 2013 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="95" y="0" width="9" height="59"><title>Wed Jan 01 2014 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="105" y="0" width="9" height="59"><title>Sun Feb 02 2014 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="115" y="0" width="9" height="59"><title>Sun Mar 02 2014 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="125" y="0" width="9" height="59"><title>Mon Mar 31 2014 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="135" y="0" width="9" height="59"><title>Wed Apr 30 2014 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="145" y="0" width="9" height="59"><title>Sun Jun 01 2014 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="155" y="0" width="9" height="59"><title>Mon Jun 30 2014 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="165" y="0" width="9" height="59"><title>Thu Jul 31 2014 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="175" y="0" width="9" height="59"><title>Mon Sep 01 2014 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="185" y="0" width="9" height="59"><title>Tue Sep 30 2014 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="195" y="0" width="9" height="59"><title>Sun Nov 02 2014 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="205" y="0" width="9" height="59"><title>Sun Nov 30 2014 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="215" y="0" width="9" height="59"><title>Thu Jan 01 2015 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="225" y="0" width="9" height="59"><title>Sun Feb 01 2015 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="235" y="0" width="9" height="59"><title>Sun Mar 01 2015 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="245" y="0" width="9" height="59"><title>Tue Mar 31 2015 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="255" y="0" width="9" height="59"><title>Thu Apr 30 2015 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="265" y="0" width="9" height="59"><title>Sun May 31 2015 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="275" y="0" width="9" height="59"><title>Tue Jun 30 2015 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="285" y="0" width="9" height="59"><title>Sun Aug 02 2015 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="295" y="0" width="9" height="59"><title>Mon Aug 31 2015 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="305" y="0" width="9" height="59"><title>Wed Sep 30 2015 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="315" y="0" width="9" height="59"><title>Sun Nov 01 2015 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="325" y="0" width="9" height="59"><title>Mon Nov 30 2015 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="335" y="0" width="9" height="59"><title>Sun Jan 03 2016 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="345" y="0" width="9" height="59"><title>Sun Jan 31 2016 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="355" y="0" width="9" height="59"><title>Mon Feb 29 2016 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="365" y="0" width="9" height="59"><title>Thu Mar 31 2016 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="375" y="0" width="9" height="59"><title>Sun May 01 2016 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="385" y="0" width="9" height="59"><title>Tue May 31 2016 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="395" y="0" width="9" height="59"><title>Thu Jun 30 2016 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="405" y="0" width="9" height="59"><title>Sun Jul 31 2016 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="415" y="0" width="9" height="59"><title>Wed Aug 31 2016 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="425" y="0" width="9" height="59"><title>Sun Oct 02 2016 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="435" y="0" width="9" height="59"><title>Mon Oct 31 2016 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="445" y="0" width="9" height="59"><title>Wed Nov 30 2016 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="455" y="0" width="9" height="59"><title>Mon Jan 02 2017 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="465" y="0" width="9" height="59"><title>Tue Jan 31 2017 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="475" y="0" width="9" height="59"><title>Tue Feb 28 2017 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="485" y="0" width="9" height="59"><title>Sun Apr 02 2017 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="495" y="0" width="9" height="59"><title>Sun Apr 30 2017 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="505" y="0" width="9" height="59"><title>Wed May 31 2017 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="515" y="0" width="9" height="59"><title>Sun Jul 02 2017 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="525" y="0" width="9" height="59"><title>Mon Jul 31 2017 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="535" y="0" width="9" height="59"><title>Thu Aug 31 2017 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="545" y="0" width="9" height="59"><title>Sun Oct 01 2017 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="555" y="0" width="9" height="59"><title>Tue Oct 31 2017 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="565" y="0" width="9" height="59"><title>Thu Nov 30 2017 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="575" y="0" width="9" height="59"><title>Mon Jan 01 2018 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="585" y="0" width="9" height="59"><title>Wed Jan 31 2018 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="595" y="0" width="9" height="59"><title>Wed Feb 28 2018 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="605" y="0" width="9" height="59"><title>Sun Apr 01 2018 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="615" y="0" width="9" height="59"><title>Mon Apr 30 2018 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
+    <rect x="20.982" y="0" width="8.838" height="30"><title>Sun May 12 2013 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
+    <rect x="30.802" y="0" width="8.838" height="30"><title>Sun Jun 02 2013 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
+    <rect x="40.622" y="0" width="8.838" height="30"><title>Sun Jun 30 2013 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
+    <rect x="50.442" y="0" width="8.838" height="30"><title>Wed Jul 31 2013 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
+    <rect x="60.262" y="0" width="8.838" height="30"><title>Mon Sep 02 2013 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
+    <rect x="70.082" y="0" width="8.838" height="30"><title>Mon Sep 30 2013 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
+    <rect x="79.902" y="0" width="8.838" height="30"><title>Thu Oct 31 2013 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
+    <rect x="89.722" y="0" width="8.838" height="30"><title>Sun Dec 01 2013 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
+    <rect x="99.542" y="0" width="8.838" height="30"><title>Wed Jan 01 2014 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
+    <rect x="109.362" y="0" width="8.838" height="30"><title>Sun Feb 02 2014 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
+    <rect x="119.182" y="0" width="8.838" height="30"><title>Sun Mar 02 2014 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
+    <rect x="129.002" y="0" width="8.838" height="30"><title>Mon Mar 31 2014 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
+    <rect x="138.822" y="0" width="8.838" height="30"><title>Wed Apr 30 2014 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
+    <rect x="148.642" y="0" width="8.838" height="30"><title>Sun Jun 01 2014 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
+    <rect x="158.462" y="0" width="8.838" height="30"><title>Mon Jun 30 2014 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
+    <rect x="168.282" y="0" width="8.838" height="30"><title>Thu Jul 31 2014 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
+    <rect x="178.101" y="0" width="8.838" height="30"><title>Mon Sep 01 2014 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
+    <rect x="187.921" y="0" width="8.838" height="30"><title>Tue Sep 30 2014 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
+    <rect x="197.741" y="0" width="8.838" height="30"><title>Sun Nov 02 2014 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
+    <rect x="207.561" y="0" width="8.838" height="30"><title>Sun Nov 30 2014 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
+    <rect x="217.381" y="0" width="8.838" height="30"><title>Thu Jan 01 2015 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
+    <rect x="227.201" y="0" width="8.838" height="30"><title>Sun Feb 01 2015 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
+    <rect x="237.021" y="0" width="8.838" height="30"><title>Sun Mar 01 2015 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
+    <rect x="246.841" y="0" width="8.838" height="30"><title>Tue Mar 31 2015 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
+    <rect x="256.661" y="0" width="8.838" height="30"><title>Thu Apr 30 2015 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
+    <rect x="266.481" y="0" width="8.838" height="30"><title>Sun May 31 2015 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
+    <rect x="276.301" y="0" width="8.838" height="30"><title>Tue Jun 30 2015 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
+    <rect x="286.121" y="0" width="8.838" height="30"><title>Sun Aug 02 2015 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
+    <rect x="295.941" y="0" width="8.838" height="30"><title>Mon Aug 31 2015 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
+    <rect x="305.761" y="0" width="8.838" height="30"><title>Wed Sep 30 2015 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
+    <rect x="315.581" y="0" width="8.838" height="30"><title>Sun Nov 01 2015 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
+    <rect x="325.401" y="0" width="8.838" height="30"><title>Mon Nov 30 2015 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
+    <rect x="335.221" y="0" width="8.838" height="30"><title>Sun Jan 03 2016 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
+    <rect x="345.041" y="0" width="8.838" height="30"><title>Sun Jan 31 2016 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
+    <rect x="354.861" y="0" width="8.838" height="30"><title>Mon Feb 29 2016 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
+    <rect x="364.681" y="0" width="8.838" height="30"><title>Thu Mar 31 2016 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
+    <rect x="374.501" y="0" width="8.838" height="30"><title>Sun May 01 2016 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
+    <rect x="384.321" y="0" width="8.838" height="30"><title>Tue May 31 2016 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
+    <rect x="394.141" y="0" width="8.838" height="30"><title>Thu Jun 30 2016 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
+    <rect x="403.961" y="0" width="8.838" height="30"><title>Sun Jul 31 2016 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
+    <rect x="413.781" y="0" width="8.838" height="30"><title>Wed Aug 31 2016 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
+    <rect x="423.601" y="0" width="8.838" height="30"><title>Sun Oct 02 2016 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
+    <rect x="433.421" y="0" width="8.838" height="30"><title>Mon Oct 31 2016 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
+    <rect x="443.241" y="0" width="8.838" height="30"><title>Wed Nov 30 2016 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
+    <rect x="453.061" y="0" width="8.838" height="30"><title>Mon Jan 02 2017 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
+    <rect x="462.881" y="0" width="8.838" height="30"><title>Tue Jan 31 2017 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
+    <rect x="472.7" y="0" width="8.838" height="30"><title>Tue Feb 28 2017 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
+    <rect x="482.52" y="0" width="8.838" height="30"><title>Sun Apr 02 2017 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
+    <rect x="492.34" y="0" width="8.838" height="30"><title>Sun Apr 30 2017 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
+    <rect x="502.16" y="0" width="8.838" height="30"><title>Wed May 31 2017 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
+    <rect x="511.98" y="0" width="8.838" height="30"><title>Sun Jul 02 2017 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
+    <rect x="521.8" y="0" width="8.838" height="30"><title>Mon Jul 31 2017 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
+    <rect x="531.62" y="0" width="8.838" height="30"><title>Thu Aug 31 2017 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
+    <rect x="541.44" y="0" width="8.838" height="30"><title>Sun Oct 01 2017 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
+    <rect x="551.26" y="0" width="8.838" height="30"><title>Tue Oct 31 2017 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
+    <rect x="561.08" y="0" width="8.838" height="30"><title>Thu Nov 30 2017 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
+    <rect x="570.9" y="0" width="8.838" height="30"><title>Mon Jan 01 2018 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
+    <rect x="580.72" y="0" width="8.838" height="30"><title>Wed Jan 31 2018 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
+    <rect x="590.54" y="0" width="8.838" height="30"><title>Wed Feb 28 2018 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
+    <rect x="600.36" y="0" width="8.838" height="30"><title>Sun Apr 01 2018 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
+    <rect x="610.18" y="0" width="8.838" height="30"><title>Mon Apr 30 2018 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
   </g>
 </svg>

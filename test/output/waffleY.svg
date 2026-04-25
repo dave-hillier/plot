@@ -14,36 +14,36 @@
     }
   </style>
   <defs>
-    <clipPath id="_r_36d_">
-      <rect x="0" y="0" width="639" height="399"></rect>
+    <clipPath id="plot-rid-1">
+      <rect x="20" y="0" width="600" height="370"></rect>
     </clipPath>
   </defs>
-  <g aria-label="x-axis" transform="translate(0,399)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
-    <line x1="0" x2="639" stroke="currentColor"></line>
-    <g transform="translate(13,0)">
+  <g aria-label="x-axis" transform="translate(0,370)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+    <line x1="20" x2="620" stroke="currentColor"></line>
+    <g transform="translate(33,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">Adults 18+</text>
     </g>
-    <g transform="translate(138,0)">
+    <g transform="translate(150,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">Children &lt;11</text>
     </g>
-    <g transform="translate(263,0)">
+    <g transform="translate(267,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">Elderly 65+</text>
     </g>
-    <g transform="translate(388,0)">
+    <g transform="translate(384,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">Infants &lt;1</text>
     </g>
-    <g transform="translate(513,0)">
+    <g transform="translate(501,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">Teens 12-17</text>
     </g>
   </g>
-  <g aria-label="y-axis left" transform="translate(0,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
-    <line y1="0" y2="399" stroke="currentColor" stroke-opacity="1"></line>
-    <g transform="translate(0,199.5)">
+  <g aria-label="y-axis left" transform="translate(20,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
+    <line y1="0" y2="370" stroke="currentColor" stroke-opacity="1"></line>
+    <g transform="translate(0,185)">
       <line x2="-6" stroke="currentColor" stroke-opacity="1"></line>
       <text x="-9" dy="0.32em" fill="currentColor">0</text>
     </g>

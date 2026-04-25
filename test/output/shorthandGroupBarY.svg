@@ -14,17 +14,17 @@
     }
   </style>
   <defs>
-    <clipPath id="_r_2bg_">
-      <rect x="0" y="0" width="639" height="59"></rect>
+    <clipPath id="plot-rid-1">
+      <rect x="20" y="0" width="600" height="30"></rect>
     </clipPath>
   </defs>
-  <g aria-label="x-axis" transform="translate(0,59)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
-    <line x1="0" x2="639" stroke="currentColor"></line>
-    <g transform="translate(17,0)">
+  <g aria-label="x-axis" transform="translate(0,30)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+    <line x1="20" x2="620" stroke="currentColor"></line>
+    <g transform="translate(35,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">A</text>
     </g>
-    <g transform="translate(172,0)">
+    <g transform="translate(181,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">C</text>
     </g>
@@ -32,15 +32,15 @@
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">G</text>
     </g>
-    <g transform="translate(482,0)">
+    <g transform="translate(473,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">T</text>
     </g>
   </g>
   <g aria-label="bar" fill="currentColor">
-    <rect x="17" y="0" width="140" height="59"></rect>
-    <rect x="327" y="0" width="140" height="59"></rect>
-    <rect x="482" y="0" width="140" height="59"></rect>
-    <rect x="172" y="0" width="140" height="59"></rect>
+    <rect x="35" y="0" width="131" height="30"></rect>
+    <rect x="327" y="0" width="131" height="30"></rect>
+    <rect x="473" y="0" width="131" height="30"></rect>
+    <rect x="181" y="0" width="131" height="30"></rect>
   </g>
 </svg>

@@ -14,148 +14,148 @@
     }
   </style>
   <defs>
-    <clipPath id="_r_2t_">
-      <rect x="60" y="0" width="579" height="399"></rect>
+    <clipPath id="plot-rid-1">
+      <rect x="60" y="20" width="560" height="350"></rect>
     </clipPath>
   </defs>
-  <g aria-label="x-axis" transform="translate(0,399)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
-    <line x1="60" x2="639" stroke="currentColor"></line>
+  <g aria-label="x-axis" transform="translate(0,370)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+    <line x1="60" x2="620" stroke="currentColor"></line>
     <g transform="translate(60,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">0</text>
     </g>
-    <g transform="translate(108.25,0)">
+    <g transform="translate(106.667,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">1</text>
     </g>
-    <g transform="translate(156.5,0)">
+    <g transform="translate(153.333,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2</text>
     </g>
-    <g transform="translate(204.75,0)">
+    <g transform="translate(200,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">3</text>
     </g>
-    <g transform="translate(253,0)">
+    <g transform="translate(246.667,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">4</text>
     </g>
-    <g transform="translate(301.25,0)">
+    <g transform="translate(293.333,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">5</text>
     </g>
-    <g transform="translate(349.5,0)">
+    <g transform="translate(340,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">6</text>
     </g>
-    <g transform="translate(397.75,0)">
+    <g transform="translate(386.667,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">7</text>
     </g>
-    <g transform="translate(446,0)">
+    <g transform="translate(433.333,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">8</text>
     </g>
-    <g transform="translate(494.25,0)">
+    <g transform="translate(480,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">9</text>
     </g>
-    <g transform="translate(542.5,0)">
+    <g transform="translate(526.667,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">10</text>
     </g>
-    <g transform="translate(590.75,0)">
+    <g transform="translate(573.333,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">11</text>
     </g>
-    <g transform="translate(639,0)">
+    <g transform="translate(620,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">12</text>
     </g>
   </g>
   <g aria-label="y-axis" transform="translate(60,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
-    <line y1="0" y2="399" stroke="currentColor"></line>
-    <g transform="translate(0,399)">
+    <line y1="20" y2="370" stroke="currentColor"></line>
+    <g transform="translate(0,370)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">0</text>
     </g>
-    <g transform="translate(0,349.274)">
+    <g transform="translate(0,326.381)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">2,000</text>
     </g>
-    <g transform="translate(0,299.548)">
+    <g transform="translate(0,282.762)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">4,000</text>
     </g>
-    <g transform="translate(0,249.823)">
+    <g transform="translate(0,239.143)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">6,000</text>
     </g>
-    <g transform="translate(0,200.097)">
+    <g transform="translate(0,195.523)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">8,000</text>
     </g>
-    <g transform="translate(0,150.371)">
+    <g transform="translate(0,151.904)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">10,000</text>
     </g>
-    <g transform="translate(0,100.645)">
+    <g transform="translate(0,108.285)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">12,000</text>
     </g>
-    <g transform="translate(0,50.919)">
+    <g transform="translate(0,64.666)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">14,000</text>
     </g>
-    <g transform="translate(0,1.193)">
+    <g transform="translate(0,21.047)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">16,000</text>
     </g>
   </g>
   <g aria-label="rect" fill="currentColor">
-    <rect x="61" y="11.884" width="47.25" height="387.116"></rect>
-    <rect x="109.25" y="257.48" width="47.25" height="141.52"></rect>
-    <rect x="157.5" y="345.644" width="47.25" height="53.356"></rect>
-    <rect x="205.75" y="379.98" width="47.25" height="19.02"></rect>
-    <rect x="254" y="392.337" width="47.25" height="6.663"></rect>
-    <rect x="302.25" y="396.215" width="47.25" height="2.785"></rect>
-    <rect x="350.5" y="398.08" width="47.25" height="0.92"></rect>
-    <rect x="398.75" y="398.453" width="47.25" height="0.547"></rect>
-    <rect x="447" y="398.727" width="47.25" height="0.273"></rect>
-    <rect x="495.25" y="398.975" width="47.25" height="0.025"></rect>
-    <rect x="543.5" y="398.975" width="47.25" height="0.025"></rect>
-    <rect x="61" y="8.926" width="47.25" height="390.074"></rect>
-    <rect x="109.25" y="254" width="47.25" height="145"></rect>
-    <rect x="157.5" y="345.644" width="47.25" height="53.356"></rect>
-    <rect x="205.75" y="380.403" width="47.25" height="18.597"></rect>
-    <rect x="254" y="392.386" width="47.25" height="6.614"></rect>
-    <rect x="302.25" y="396.414" width="47.25" height="2.586"></rect>
-    <rect x="350.5" y="397.881" width="47.25" height="1.119"></rect>
-    <rect x="398.75" y="398.652" width="47.25" height="0.348"></rect>
-    <rect x="447" y="398.851" width="47.25" height="0.149"></rect>
-    <rect x="495.25" y="398.95" width="47.25" height="0.05"></rect>
-    <rect x="543.5" y="398.975" width="47.25" height="0.025"></rect>
-    <rect x="61" y="0" width="47.25" height="399"></rect>
-    <rect x="109.25" y="252.831" width="47.25" height="146.169"></rect>
-    <rect x="157.5" y="344.451" width="47.25" height="54.549"></rect>
-    <rect x="205.75" y="379.309" width="47.25" height="19.691"></rect>
-    <rect x="254" y="391.342" width="47.25" height="7.658"></rect>
-    <rect x="302.25" y="396.663" width="47.25" height="2.337"></rect>
-    <rect x="350.5" y="397.931" width="47.25" height="1.069"></rect>
-    <rect x="398.75" y="398.652" width="47.25" height="0.348"></rect>
-    <rect x="447" y="398.925" width="47.25" height="0.075"></rect>
-    <rect x="495.25" y="398.925" width="47.25" height="0.075"></rect>
-    <rect x="61" y="6.216" width="47.25" height="392.784"></rect>
-    <rect x="109.25" y="253.328" width="47.25" height="145.672"></rect>
-    <rect x="157.5" y="344.525" width="47.25" height="54.475"></rect>
-    <rect x="205.75" y="378.538" width="47.25" height="20.462"></rect>
-    <rect x="254" y="391.541" width="47.25" height="7.459"></rect>
-    <rect x="302.25" y="396.315" width="47.25" height="2.685"></rect>
-    <rect x="350.5" y="397.981" width="47.25" height="1.019"></rect>
-    <rect x="398.75" y="398.602" width="47.25" height="0.398"></rect>
-    <rect x="447" y="398.876" width="47.25" height="0.124"></rect>
-    <rect x="495.25" y="398.975" width="47.25" height="0.025"></rect>
-    <rect x="543.5" y="398.975" width="47.25" height="0.025"></rect>
-    <rect x="591.75" y="398.975" width="47.25" height="0.025"></rect>
+    <rect x="61" y="30.425" width="45.667" height="339.575"></rect>
+    <rect x="107.667" y="245.86" width="45.667" height="124.14"></rect>
+    <rect x="154.333" y="323.197" width="45.667" height="46.803"></rect>
+    <rect x="201" y="353.316" width="45.667" height="16.684"></rect>
+    <rect x="247.667" y="364.155" width="45.667" height="5.845"></rect>
+    <rect x="294.333" y="367.557" width="45.667" height="2.443"></rect>
+    <rect x="341" y="369.193" width="45.667" height="0.807"></rect>
+    <rect x="387.667" y="369.52" width="45.667" height="0.48"></rect>
+    <rect x="434.333" y="369.76" width="45.667" height="0.24"></rect>
+    <rect x="481" y="369.978" width="45.667" height="0.022"></rect>
+    <rect x="527.667" y="369.978" width="45.667" height="0.022"></rect>
+    <rect x="61" y="27.83" width="45.667" height="342.17"></rect>
+    <rect x="107.667" y="242.807" width="45.667" height="127.193"></rect>
+    <rect x="154.333" y="323.197" width="45.667" height="46.803"></rect>
+    <rect x="201" y="353.686" width="45.667" height="16.314"></rect>
+    <rect x="247.667" y="364.199" width="45.667" height="5.801"></rect>
+    <rect x="294.333" y="367.732" width="45.667" height="2.268"></rect>
+    <rect x="341" y="369.019" width="45.667" height="0.981"></rect>
+    <rect x="387.667" y="369.695" width="45.667" height="0.305"></rect>
+    <rect x="434.333" y="369.869" width="45.667" height="0.131"></rect>
+    <rect x="481" y="369.956" width="45.667" height="0.044"></rect>
+    <rect x="527.667" y="369.978" width="45.667" height="0.022"></rect>
+    <rect x="61" y="20" width="45.667" height="350"></rect>
+    <rect x="107.667" y="241.782" width="45.667" height="128.218"></rect>
+    <rect x="154.333" y="322.15" width="45.667" height="47.85"></rect>
+    <rect x="201" y="352.727" width="45.667" height="17.273"></rect>
+    <rect x="247.667" y="363.283" width="45.667" height="6.717"></rect>
+    <rect x="294.333" y="367.95" width="45.667" height="2.05"></rect>
+    <rect x="341" y="369.062" width="45.667" height="0.938"></rect>
+    <rect x="387.667" y="369.695" width="45.667" height="0.305"></rect>
+    <rect x="434.333" y="369.935" width="45.667" height="0.065"></rect>
+    <rect x="481" y="369.935" width="45.667" height="0.065"></rect>
+    <rect x="61" y="25.452" width="45.667" height="344.548"></rect>
+    <rect x="107.667" y="242.218" width="45.667" height="127.782"></rect>
+    <rect x="154.333" y="322.215" width="45.667" height="47.785"></rect>
+    <rect x="201" y="352.051" width="45.667" height="17.949"></rect>
+    <rect x="247.667" y="363.457" width="45.667" height="6.543"></rect>
+    <rect x="294.333" y="367.645" width="45.667" height="2.355"></rect>
+    <rect x="341" y="369.106" width="45.667" height="0.894"></rect>
+    <rect x="387.667" y="369.651" width="45.667" height="0.349"></rect>
+    <rect x="434.333" y="369.891" width="45.667" height="0.109"></rect>
+    <rect x="481" y="369.978" width="45.667" height="0.022"></rect>
+    <rect x="527.667" y="369.978" width="45.667" height="0.022"></rect>
+    <rect x="574.333" y="369.978" width="45.667" height="0.022"></rect>
   </g>
 </svg>

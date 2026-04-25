@@ -14,188 +14,188 @@
     }
   </style>
   <defs>
-    <clipPath id="_r_2f_">
-      <rect x="100" y="0" width="539" height="1079"></rect>
+    <clipPath id="plot-rid-1">
+      <rect x="100" y="20" width="520" height="1030"></rect>
     </clipPath>
   </defs>
-  <g aria-label="x-axis" transform="translate(0,1079)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
-    <line x1="100" x2="639" stroke="currentColor"></line>
+  <g aria-label="x-axis" transform="translate(0,1050)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+    <line x1="100" x2="620" stroke="currentColor"></line>
     <g transform="translate(100,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">0.0</text>
     </g>
-    <g transform="translate(153.9,0)">
+    <g transform="translate(152,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">0.1</text>
     </g>
-    <g transform="translate(207.8,0)">
+    <g transform="translate(204,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">0.2</text>
     </g>
-    <g transform="translate(261.7,0)">
+    <g transform="translate(256,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">0.3</text>
     </g>
-    <g transform="translate(315.6,0)">
+    <g transform="translate(308,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">0.4</text>
     </g>
-    <g transform="translate(369.5,0)">
+    <g transform="translate(360,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">0.5</text>
     </g>
-    <g transform="translate(423.4,0)">
+    <g transform="translate(412,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">0.6</text>
     </g>
-    <g transform="translate(477.3,0)">
+    <g transform="translate(464,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">0.7</text>
     </g>
-    <g transform="translate(531.2,0)">
+    <g transform="translate(516,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">0.8</text>
     </g>
-    <g transform="translate(585.1,0)">
+    <g transform="translate(568,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">0.9</text>
     </g>
-    <g transform="translate(639,0)">
+    <g transform="translate(620,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">1.0</text>
     </g>
   </g>
   <g aria-label="y-axis" transform="translate(100,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
-    <line y1="0" y2="1079" stroke="currentColor"></line>
-    <g transform="translate(0,8)">
+    <line y1="20" y2="1050" stroke="currentColor"></line>
+    <g transform="translate(0,41)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Fauchelevent</text>
     </g>
-    <g transform="translate(0,22)">
+    <g transform="translate(0,54)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Gribier</text>
     </g>
-    <g transform="translate(0,36)">
+    <g transform="translate(0,67)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">MotherInnocent</text>
     </g>
-    <g transform="translate(0,50)">
+    <g transform="translate(0,80)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Champtercier</text>
     </g>
-    <g transform="translate(0,64)">
+    <g transform="translate(0,93)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Count</text>
     </g>
-    <g transform="translate(0,78)">
+    <g transform="translate(0,106)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">CountessdeLo</text>
     </g>
-    <g transform="translate(0,92)">
+    <g transform="translate(0,119)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Cravatte</text>
     </g>
-    <g transform="translate(0,106)">
+    <g transform="translate(0,132)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Geborand</text>
     </g>
-    <g transform="translate(0,120)">
+    <g transform="translate(0,145)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Mlle.Baptistine</text>
     </g>
-    <g transform="translate(0,134)">
+    <g transform="translate(0,158)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Mme.Magloire</text>
     </g>
-    <g transform="translate(0,148)">
+    <g transform="translate(0,171)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Myriel</text>
     </g>
-    <g transform="translate(0,162)">
+    <g transform="translate(0,184)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Napoleon</text>
     </g>
-    <g transform="translate(0,176)">
+    <g transform="translate(0,197)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">OldMan</text>
     </g>
-    <g transform="translate(0,190)">
+    <g transform="translate(0,210)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Bamatabois</text>
     </g>
-    <g transform="translate(0,204)">
+    <g transform="translate(0,223)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Brevet</text>
     </g>
-    <g transform="translate(0,218)">
+    <g transform="translate(0,236)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Champmathieu</text>
     </g>
-    <g transform="translate(0,232)">
+    <g transform="translate(0,249)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Chenildieu</text>
     </g>
-    <g transform="translate(0,246)">
+    <g transform="translate(0,262)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Cochepaille</text>
     </g>
-    <g transform="translate(0,260)">
+    <g transform="translate(0,275)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Gervais</text>
     </g>
-    <g transform="translate(0,274)">
+    <g transform="translate(0,288)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Isabeau</text>
     </g>
-    <g transform="translate(0,288)">
+    <g transform="translate(0,301)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Judge</text>
     </g>
-    <g transform="translate(0,302)">
+    <g transform="translate(0,314)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Labarre</text>
     </g>
-    <g transform="translate(0,316)">
+    <g transform="translate(0,327)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Mme.deR</text>
     </g>
-    <g transform="translate(0,330)">
+    <g transform="translate(0,340)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Scaufflaire</text>
     </g>
-    <g transform="translate(0,344)">
+    <g transform="translate(0,353)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Simplice</text>
     </g>
-    <g transform="translate(0,358)">
+    <g transform="translate(0,366)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Valjean</text>
     </g>
-    <g transform="translate(0,372)">
+    <g transform="translate(0,379)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Woman1</text>
     </g>
-    <g transform="translate(0,386)">
+    <g transform="translate(0,392)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Blacheville</text>
     </g>
-    <g transform="translate(0,400)">
+    <g transform="translate(0,405)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Dahlia</text>
     </g>
-    <g transform="translate(0,414)">
+    <g transform="translate(0,418)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Fameuil</text>
     </g>
-    <g transform="translate(0,428)">
+    <g transform="translate(0,431)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Fantine</text>
     </g>
-    <g transform="translate(0,442)">
+    <g transform="translate(0,444)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Favourite</text>
     </g>
-    <g transform="translate(0,456)">
+    <g transform="translate(0,457)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Listolier</text>
     </g>
@@ -203,175 +203,175 @@
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Marguerite</text>
     </g>
-    <g transform="translate(0,484)">
+    <g transform="translate(0,483)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Perpetue</text>
     </g>
-    <g transform="translate(0,498)">
+    <g transform="translate(0,496)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Tholomyes</text>
     </g>
-    <g transform="translate(0,512)">
+    <g transform="translate(0,509)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Zephine</text>
     </g>
-    <g transform="translate(0,526)">
+    <g transform="translate(0,522)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Anzelma</text>
     </g>
-    <g transform="translate(0,540)">
+    <g transform="translate(0,535)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Babet</text>
     </g>
-    <g transform="translate(0,554)">
+    <g transform="translate(0,548)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Brujon</text>
     </g>
-    <g transform="translate(0,568)">
+    <g transform="translate(0,561)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Claquesous</text>
     </g>
-    <g transform="translate(0,582)">
+    <g transform="translate(0,574)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Eponine</text>
     </g>
-    <g transform="translate(0,596)">
+    <g transform="translate(0,587)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Gueulemer</text>
     </g>
-    <g transform="translate(0,610)">
+    <g transform="translate(0,600)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Javert</text>
     </g>
-    <g transform="translate(0,624)">
+    <g transform="translate(0,613)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Mme.Thenardier</text>
     </g>
-    <g transform="translate(0,638)">
+    <g transform="translate(0,626)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Montparnasse</text>
     </g>
-    <g transform="translate(0,652)">
+    <g transform="translate(0,639)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Pontmercy</text>
     </g>
-    <g transform="translate(0,666)">
+    <g transform="translate(0,652)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Thenardier</text>
     </g>
-    <g transform="translate(0,680)">
+    <g transform="translate(0,665)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">BaronessT</text>
     </g>
-    <g transform="translate(0,694)">
+    <g transform="translate(0,678)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Cosette</text>
     </g>
-    <g transform="translate(0,708)">
+    <g transform="translate(0,691)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Gillenormand</text>
     </g>
-    <g transform="translate(0,722)">
+    <g transform="translate(0,704)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Lt.Gillenormand</text>
     </g>
-    <g transform="translate(0,736)">
+    <g transform="translate(0,717)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Magnon</text>
     </g>
-    <g transform="translate(0,750)">
+    <g transform="translate(0,730)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Mlle.Gillenormand</text>
     </g>
-    <g transform="translate(0,764)">
+    <g transform="translate(0,743)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Mlle.Vaubois</text>
     </g>
-    <g transform="translate(0,778)">
+    <g transform="translate(0,756)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Mme.Pontmercy</text>
     </g>
-    <g transform="translate(0,792)">
+    <g transform="translate(0,769)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Toussaint</text>
     </g>
-    <g transform="translate(0,806)">
+    <g transform="translate(0,782)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Woman2</text>
     </g>
-    <g transform="translate(0,820)">
+    <g transform="translate(0,795)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Boulatruelle</text>
     </g>
-    <g transform="translate(0,834)">
+    <g transform="translate(0,808)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Jondrette</text>
     </g>
-    <g transform="translate(0,848)">
+    <g transform="translate(0,821)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Mme.Burgon</text>
     </g>
-    <g transform="translate(0,862)">
+    <g transform="translate(0,834)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Bahorel</text>
     </g>
-    <g transform="translate(0,876)">
+    <g transform="translate(0,847)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Bossuet</text>
     </g>
-    <g transform="translate(0,890)">
+    <g transform="translate(0,860)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Combeferre</text>
     </g>
-    <g transform="translate(0,904)">
+    <g transform="translate(0,873)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Courfeyrac</text>
     </g>
-    <g transform="translate(0,918)">
+    <g transform="translate(0,886)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Enjolras</text>
     </g>
-    <g transform="translate(0,932)">
+    <g transform="translate(0,899)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Feuilly</text>
     </g>
-    <g transform="translate(0,946)">
+    <g transform="translate(0,912)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Gavroche</text>
     </g>
-    <g transform="translate(0,960)">
+    <g transform="translate(0,925)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Grantaire</text>
     </g>
-    <g transform="translate(0,974)">
+    <g transform="translate(0,938)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Joly</text>
     </g>
-    <g transform="translate(0,988)">
+    <g transform="translate(0,951)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Mabeuf</text>
     </g>
-    <g transform="translate(0,1002)">
+    <g transform="translate(0,964)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Marius</text>
     </g>
-    <g transform="translate(0,1016)">
+    <g transform="translate(0,977)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Mme.Hucheloup</text>
     </g>
-    <g transform="translate(0,1030)">
+    <g transform="translate(0,990)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Prouvaire</text>
     </g>
-    <g transform="translate(0,1044)">
+    <g transform="translate(0,1003)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">MotherPlutarch</text>
     </g>
-    <g transform="translate(0,1058)">
+    <g transform="translate(0,1016)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Child1</text>
     </g>
-    <g transform="translate(0,1072)">
+    <g transform="translate(0,1029)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Child2</text>
     </g>

@@ -14,80 +14,80 @@
     }
   </style>
   <defs>
-    <clipPath id="_r_ho_">
-      <rect x="300" y="0" width="659" height="349"></rect>
+    <clipPath id="plot-rid-1">
+      <rect x="300" y="20" width="640" height="300"></rect>
     </clipPath>
   </defs>
-  <g aria-label="x-axis" transform="translate(0,349)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
-    <line x1="300" x2="959" stroke="currentColor"></line>
+  <g aria-label="x-axis" transform="translate(0,320)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+    <line x1="300" x2="940" stroke="currentColor"></line>
     <g transform="translate(300,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">0</text>
     </g>
-    <g transform="translate(365.9,0)">
+    <g transform="translate(364,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">10</text>
     </g>
-    <g transform="translate(431.8,0)">
+    <g transform="translate(428,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">20</text>
     </g>
-    <g transform="translate(497.7,0)">
+    <g transform="translate(492,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">30</text>
     </g>
-    <g transform="translate(563.6,0)">
+    <g transform="translate(556,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">40</text>
     </g>
-    <g transform="translate(629.5,0)">
+    <g transform="translate(620,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">50</text>
     </g>
-    <g transform="translate(695.4,0)">
+    <g transform="translate(684,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">60</text>
     </g>
-    <g transform="translate(761.3,0)">
+    <g transform="translate(748,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">70</text>
     </g>
-    <g transform="translate(827.2,0)">
+    <g transform="translate(812,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">80</text>
     </g>
-    <g transform="translate(893.1,0)">
+    <g transform="translate(876,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">90</text>
     </g>
-    <g transform="translate(959,0)">
+    <g transform="translate(940,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">100</text>
     </g>
   </g>
   <g aria-label="y-axis" transform="translate(300,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
-    <line y1="0" y2="349" stroke="currentColor"></line>
-    <g transform="translate(0,2)">
+    <line y1="20" y2="320" stroke="currentColor"></line>
+    <g transform="translate(0,20)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor"></text>
     </g>
-    <g transform="translate(0,25)">
+    <g transform="translate(0,40)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">For fun</text>
     </g>
-    <g transform="translate(0,48)">
+    <g transform="translate(0,60)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">For school</text>
     </g>
-    <g transform="translate(0,71)">
+    <g transform="translate(0,80)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">For work</text>
     </g>
-    <g transform="translate(0,94)">
+    <g transform="translate(0,100)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">I think digital interactive systems tha explain complex systems visually are the future</text>
     </g>
-    <g transform="translate(0,117)">
+    <g transform="translate(0,120)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">Tableau to D3</text>
     </g>
@@ -95,35 +95,35 @@
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">To express myself</text>
     </g>
-    <g transform="translate(0,163)">
+    <g transform="translate(0,160)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">To get a job</text>
     </g>
-    <g transform="translate(0,186)">
+    <g transform="translate(0,180)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">for my own projects</text>
     </g>
-    <g transform="translate(0,209)">
+    <g transform="translate(0,200)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">improve as a product designer</text>
     </g>
-    <g transform="translate(0,232)">
+    <g transform="translate(0,220)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">to address visual learners</text>
     </g>
-    <g transform="translate(0,255)">
+    <g transform="translate(0,240)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">to do vis on the web</text>
     </g>
-    <g transform="translate(0,278)">
+    <g transform="translate(0,260)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">to give back to the dataviz community</text>
     </g>
-    <g transform="translate(0,301)">
+    <g transform="translate(0,280)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">to understand data better</text>
     </g>
-    <g transform="translate(0,324)">
+    <g transform="translate(0,300)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">to work with open data</text>
     </g>

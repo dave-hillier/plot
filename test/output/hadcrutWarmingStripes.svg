@@ -14,25 +14,25 @@
     }
   </style>
   <defs>
-    <clipPath id="_r_116_">
-      <rect x="0" y="0" width="639" height="59"></rect>
+    <clipPath id="plot-rid-1">
+      <rect x="20" y="0" width="600" height="30"></rect>
     </clipPath>
   </defs>
-  <g aria-label="x-axis" transform="translate(0,59)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
-    <line x1="0" x2="639" stroke="currentColor"></line>
-    <g transform="translate(37,0)">
+  <g aria-label="x-axis" transform="translate(0,30)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+    <line x1="20" x2="620" stroke="currentColor"></line>
+    <g transform="translate(55,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">1860</text>
     </g>
-    <g transform="translate(112,0)">
+    <g transform="translate(125,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">1880</text>
     </g>
-    <g transform="translate(187,0)">
+    <g transform="translate(195,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">1900</text>
     </g>
-    <g transform="translate(262,0)">
+    <g transform="translate(266,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">1920</text>
     </g>
@@ -40,19 +40,19 @@
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">1940</text>
     </g>
-    <g transform="translate(411,0)">
+    <g transform="translate(406,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">1960</text>
     </g>
-    <g transform="translate(486,0)">
+    <g transform="translate(476,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">1980</text>
     </g>
-    <g transform="translate(561,0)">
+    <g transform="translate(546,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2000</text>
     </g>
-    <g transform="translate(635,0)">
+    <g transform="translate(616,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2020</text>
     </g>

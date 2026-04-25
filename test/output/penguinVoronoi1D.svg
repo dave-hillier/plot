@@ -14,37 +14,37 @@
     }
   </style>
   <defs>
-    <clipPath id="_r_1uo_">
-      <rect x="0" y="0" width="639" height="59"></rect>
+    <clipPath id="plot-rid-1">
+      <rect x="20" y="0" width="600" height="30"></rect>
     </clipPath>
   </defs>
-  <g aria-label="x-axis" transform="translate(0,59)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
-    <line x1="0" x2="639" stroke="currentColor"></line>
-    <g transform="translate(61.583,0)">
+  <g aria-label="x-axis" transform="translate(0,30)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+    <line x1="20" x2="620" stroke="currentColor"></line>
+    <g transform="translate(78.333,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">3,000</text>
     </g>
-    <g transform="translate(147.556,0)">
+    <g transform="translate(158.889,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">3,500</text>
     </g>
-    <g transform="translate(233.528,0)">
+    <g transform="translate(239.444,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">4,000</text>
     </g>
-    <g transform="translate(319.5,0)">
+    <g transform="translate(320,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">4,500</text>
     </g>
-    <g transform="translate(405.472,0)">
+    <g transform="translate(400.556,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">5,000</text>
     </g>
-    <g transform="translate(491.444,0)">
+    <g transform="translate(481.111,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">5,500</text>
     </g>
-    <g transform="translate(577.417,0)">
+    <g transform="translate(561.667,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">6,000</text>
     </g>

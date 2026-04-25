@@ -14,191 +14,191 @@
     }
   </style>
   <defs>
-    <clipPath id="_r_d6_">
-      <rect x="0" y="0" width="639" height="119"></rect>
+    <clipPath id="plot-rid-1">
+      <rect x="20" y="0" width="600" height="90"></rect>
     </clipPath>
   </defs>
   <g transform="translate(0,0)">
-    <g aria-label="x-axis" transform="translate(0,119)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
-      <line x1="0" x2="639" stroke="currentColor"></line>
-      <g transform="translate(31.523,0)">
+    <g aria-label="x-axis" transform="translate(0,90)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+      <line x1="20" x2="620" stroke="currentColor"></line>
+      <g transform="translate(49.599,0)">
         <line y2="6" stroke="currentColor"></line>
         <text y="9" dy="0.71em" fill="currentColor">06 AM</text>
       </g>
-      <g transform="translate(127.693,0)">
+      <g transform="translate(139.9,0)">
         <line y2="6" stroke="currentColor"></line>
         <text y="9" dy="0.71em" fill="currentColor">09 AM</text>
       </g>
-      <g transform="translate(223.864,0)">
+      <g transform="translate(230.201,0)">
         <line y2="6" stroke="currentColor"></line>
         <text y="9" dy="0.71em" fill="currentColor">12 PM</text>
       </g>
-      <g transform="translate(320.034,0)">
+      <g transform="translate(320.502,0)">
         <line y2="6" stroke="currentColor"></line>
         <text y="9" dy="0.71em" fill="currentColor">03 PM</text>
       </g>
-      <g transform="translate(416.205,0)">
+      <g transform="translate(410.803,0)">
         <line y2="6" stroke="currentColor"></line>
         <text y="9" dy="0.71em" fill="currentColor">06 PM</text>
       </g>
-      <g transform="translate(512.375,0)">
+      <g transform="translate(501.104,0)">
         <line y2="6" stroke="currentColor"></line>
         <text y="9" dy="0.71em" fill="currentColor">09 PM</text>
       </g>
-      <g transform="translate(608.546,0)">
+      <g transform="translate(591.405,0)">
         <line y2="6" stroke="currentColor"></line>
         <text y="9" dy="0.71em" fill="currentColor">Jan 02</text>
       </g>
     </g>
     <g aria-label="vector" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(34.194,59.5) rotate(0)" stroke="brown"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(66.251,59.5) rotate(0)" stroke="brown"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(98.308,59.5) rotate(0)" stroke="brown"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(387.354,59.5) rotate(0)" stroke="brown"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(419.411,59.5) rotate(0)" stroke="brown"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(390.559,59.5) rotate(180)" stroke="brown"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(422.616,59.5) rotate(180)" stroke="brown"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(454.673,59.5) rotate(180)" stroke="brown"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(43.811,59.5) rotate(0)" stroke="brown"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(75.868,59.5) rotate(0)" stroke="brown"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(107.925,59.5) rotate(0)" stroke="brown"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(375.599,59.5) rotate(180)" stroke="brown"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(410.328,59.5) rotate(180)" stroke="brown"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(442.385,59.5) rotate(180)" stroke="brown"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(90.828,59.5) rotate(180)" stroke="brown"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(122.885,59.5) rotate(180)" stroke="brown"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(52.107,45) rotate(0)" stroke="brown"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(82.207,45) rotate(0)" stroke="brown"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(112.308,45) rotate(0)" stroke="brown"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(383.712,45) rotate(0)" stroke="brown"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(413.813,45) rotate(0)" stroke="brown"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(386.722,45) rotate(180)" stroke="brown"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(416.823,45) rotate(180)" stroke="brown"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(446.923,45) rotate(180)" stroke="brown"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(61.137,45) rotate(0)" stroke="brown"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(91.237,45) rotate(0)" stroke="brown"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(121.338,45) rotate(0)" stroke="brown"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(372.676,45) rotate(180)" stroke="brown"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(405.284,45) rotate(180)" stroke="brown"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(435.385,45) rotate(180)" stroke="brown"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(105.284,45) rotate(180)" stroke="brown"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(135.385,45) rotate(180)" stroke="brown"></line>
     </g>
   </g>
-  <g transform="translate(0,41)">
-    <g aria-label="x-axis" transform="translate(0,119)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
-      <line x1="0" x2="639" stroke="currentColor"></line>
-      <g transform="translate(31.523,0)">
+  <g transform="translate(0,31)">
+    <g aria-label="x-axis" transform="translate(0,90)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+      <line x1="20" x2="620" stroke="currentColor"></line>
+      <g transform="translate(49.599,0)">
         <line y2="6" stroke="currentColor"></line>
         <text y="9" dy="0.71em" fill="currentColor">06 AM</text>
       </g>
-      <g transform="translate(127.693,0)">
+      <g transform="translate(139.9,0)">
         <line y2="6" stroke="currentColor"></line>
         <text y="9" dy="0.71em" fill="currentColor">09 AM</text>
       </g>
-      <g transform="translate(223.864,0)">
+      <g transform="translate(230.201,0)">
         <line y2="6" stroke="currentColor"></line>
         <text y="9" dy="0.71em" fill="currentColor">12 PM</text>
       </g>
-      <g transform="translate(320.034,0)">
+      <g transform="translate(320.502,0)">
         <line y2="6" stroke="currentColor"></line>
         <text y="9" dy="0.71em" fill="currentColor">03 PM</text>
       </g>
-      <g transform="translate(416.205,0)">
+      <g transform="translate(410.803,0)">
         <line y2="6" stroke="currentColor"></line>
         <text y="9" dy="0.71em" fill="currentColor">06 PM</text>
       </g>
-      <g transform="translate(512.375,0)">
+      <g transform="translate(501.104,0)">
         <line y2="6" stroke="currentColor"></line>
         <text y="9" dy="0.71em" fill="currentColor">09 PM</text>
       </g>
-      <g transform="translate(608.546,0)">
+      <g transform="translate(591.405,0)">
         <line y2="6" stroke="currentColor"></line>
         <text y="9" dy="0.71em" fill="currentColor">Jan 02</text>
       </g>
     </g>
     <g aria-label="vector" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(96.171,59.5) rotate(180)" stroke="peru"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(128.227,59.5) rotate(180)" stroke="peru"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(384.682,59.5) rotate(180)" stroke="peru"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(417.273,59.5) rotate(180)" stroke="peru"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(453.605,59.5) rotate(0)" stroke="peru"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(133.57,59.5) rotate(0)" stroke="peru"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(165.627,59.5) rotate(0)" stroke="peru"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(325.911,59.5) rotate(0)" stroke="peru"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(72.128,59.5) rotate(0)" stroke="peru"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(104.185,59.5) rotate(0)" stroke="peru"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(360.64,59.5) rotate(0)" stroke="peru"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(392.696,59.5) rotate(0)" stroke="peru"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(424.753,59.5) rotate(0)" stroke="peru"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(73.196,59.5) rotate(180)" stroke="peru"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(105.253,59.5) rotate(180)" stroke="peru"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(137.31,59.5) rotate(180)" stroke="peru"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(364.914,59.5) rotate(0)" stroke="peru"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(396.971,59.5) rotate(0)" stroke="peru"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(429.028,59.5) rotate(0)" stroke="peru"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(173.107,59.5) rotate(180)" stroke="peru"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(333.391,59.5) rotate(180)" stroke="peru"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(365.448,59.5) rotate(180)" stroke="peru"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(77.471,59.5) rotate(180)" stroke="peru"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(109.528,59.5) rotate(180)" stroke="peru"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(141.584,59.5) rotate(180)" stroke="peru"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(50.757,59.5) rotate(0)" stroke="peru"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(82.814,59.5) rotate(0)" stroke="peru"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(114.87,59.5) rotate(0)" stroke="peru"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(404.451,59.5) rotate(180)" stroke="peru"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(436.508,59.5) rotate(180)" stroke="peru"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(468.564,59.5) rotate(180)" stroke="peru"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(412.999,59.5) rotate(0)" stroke="peru"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(445.056,59.5) rotate(0)" stroke="peru"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(61.977,59.5) rotate(180)" stroke="peru"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(110.301,45) rotate(180)" stroke="peru"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(140.401,45) rotate(180)" stroke="peru"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(381.204,45) rotate(180)" stroke="peru"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(411.806,45) rotate(180)" stroke="peru"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(445.92,45) rotate(0)" stroke="peru"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(145.418,45) rotate(0)" stroke="peru"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(175.518,45) rotate(0)" stroke="peru"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(326.02,45) rotate(0)" stroke="peru"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(87.726,45) rotate(0)" stroke="peru"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(117.826,45) rotate(0)" stroke="peru"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(358.629,45) rotate(0)" stroke="peru"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(388.729,45) rotate(0)" stroke="peru"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(418.829,45) rotate(0)" stroke="peru"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(88.729,45) rotate(180)" stroke="peru"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(118.829,45) rotate(180)" stroke="peru"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(148.93,45) rotate(180)" stroke="peru"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(362.642,45) rotate(0)" stroke="peru"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(392.742,45) rotate(0)" stroke="peru"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(422.843,45) rotate(0)" stroke="peru"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(182.542,45) rotate(180)" stroke="peru"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(333.043,45) rotate(180)" stroke="peru"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(363.144,45) rotate(180)" stroke="peru"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(92.742,45) rotate(180)" stroke="peru"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(122.843,45) rotate(180)" stroke="peru"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(152.943,45) rotate(180)" stroke="peru"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(67.659,45) rotate(0)" stroke="peru"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(97.759,45) rotate(0)" stroke="peru"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(127.86,45) rotate(0)" stroke="peru"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(399.766,45) rotate(180)" stroke="peru"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(429.866,45) rotate(180)" stroke="peru"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(459.967,45) rotate(180)" stroke="peru"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(407.793,45) rotate(0)" stroke="peru"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(437.893,45) rotate(0)" stroke="peru"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(78.194,45) rotate(180)" stroke="peru"></line>
     </g>
   </g>
-  <g transform="translate(0,82)">
-    <g aria-label="x-axis" transform="translate(0,119)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
-      <line x1="0" x2="639" stroke="currentColor"></line>
-      <g transform="translate(31.523,0)">
+  <g transform="translate(0,62)">
+    <g aria-label="x-axis" transform="translate(0,90)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+      <line x1="20" x2="620" stroke="currentColor"></line>
+      <g transform="translate(49.599,0)">
         <line y2="6" stroke="currentColor"></line>
         <text y="9" dy="0.71em" fill="currentColor">06 AM</text>
       </g>
-      <g transform="translate(127.693,0)">
+      <g transform="translate(139.9,0)">
         <line y2="6" stroke="currentColor"></line>
         <text y="9" dy="0.71em" fill="currentColor">09 AM</text>
       </g>
-      <g transform="translate(223.864,0)">
+      <g transform="translate(230.201,0)">
         <line y2="6" stroke="currentColor"></line>
         <text y="9" dy="0.71em" fill="currentColor">12 PM</text>
       </g>
-      <g transform="translate(320.034,0)">
+      <g transform="translate(320.502,0)">
         <line y2="6" stroke="currentColor"></line>
         <text y="9" dy="0.71em" fill="currentColor">03 PM</text>
       </g>
-      <g transform="translate(416.205,0)">
+      <g transform="translate(410.803,0)">
         <line y2="6" stroke="currentColor"></line>
         <text y="9" dy="0.71em" fill="currentColor">06 PM</text>
       </g>
-      <g transform="translate(512.375,0)">
+      <g transform="translate(501.104,0)">
         <line y2="6" stroke="currentColor"></line>
         <text y="9" dy="0.71em" fill="currentColor">09 PM</text>
       </g>
-      <g transform="translate(608.546,0)">
+      <g transform="translate(591.405,0)">
         <line y2="6" stroke="currentColor"></line>
         <text y="9" dy="0.71em" fill="currentColor">Jan 02</text>
       </g>
     </g>
     <g aria-label="vector" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(0,59.5) rotate(0)" stroke="currentColor"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(480.853,59.5) rotate(0)" stroke="currentColor"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(512.91,59.5) rotate(0)" stroke="currentColor"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(544.967,59.5) rotate(0)" stroke="currentColor"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(577.023,59.5) rotate(0)" stroke="currentColor"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(161.353,59.5) rotate(180)" stroke="currentColor"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(193.41,59.5) rotate(180)" stroke="currentColor"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(225.467,59.5) rotate(180)" stroke="currentColor"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(257.523,59.5) rotate(180)" stroke="currentColor"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(289.58,59.5) rotate(180)" stroke="currentColor"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(321.637,59.5) rotate(180)" stroke="currentColor"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(353.694,59.5) rotate(180)" stroke="currentColor"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(459.482,59.5) rotate(0)" stroke="currentColor"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(42.742,59.5) rotate(180)" stroke="currentColor"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(494.21,59.5) rotate(180)" stroke="currentColor"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(18.7,59.5) rotate(0)" stroke="currentColor"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(531.61,59.5) rotate(180)" stroke="currentColor"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(563.666,59.5) rotate(180)" stroke="currentColor"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(595.723,59.5) rotate(180)" stroke="currentColor"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(340.337,59.5) rotate(0)" stroke="currentColor"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(149.599,59.5) rotate(0)" stroke="currentColor"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(181.656,59.5) rotate(0)" stroke="currentColor"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(213.712,59.5) rotate(0)" stroke="currentColor"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(245.769,59.5) rotate(0)" stroke="currentColor"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(277.826,59.5) rotate(0)" stroke="currentColor"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(309.883,59.5) rotate(0)" stroke="currentColor"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(26.714,59.5) rotate(180)" stroke="currentColor"></line>
-      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(639,59.5) rotate(180)" stroke="currentColor"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(20,45) rotate(0)" stroke="currentColor"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(471.505,45) rotate(0)" stroke="currentColor"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(501.605,45) rotate(0)" stroke="currentColor"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(531.706,45) rotate(0)" stroke="currentColor"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(561.806,45) rotate(0)" stroke="currentColor"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(171.505,45) rotate(180)" stroke="currentColor"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(201.605,45) rotate(180)" stroke="currentColor"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(231.706,45) rotate(180)" stroke="currentColor"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(261.806,45) rotate(180)" stroke="currentColor"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(291.906,45) rotate(180)" stroke="currentColor"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(322.007,45) rotate(180)" stroke="currentColor"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(352.107,45) rotate(180)" stroke="currentColor"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(451.438,45) rotate(0)" stroke="currentColor"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(60.134,45) rotate(180)" stroke="currentColor"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(484.047,45) rotate(180)" stroke="currentColor"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(37.559,45) rotate(0)" stroke="currentColor"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(519.164,45) rotate(180)" stroke="currentColor"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(549.264,45) rotate(180)" stroke="currentColor"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(579.365,45) rotate(180)" stroke="currentColor"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(339.565,45) rotate(0)" stroke="currentColor"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(160.468,45) rotate(0)" stroke="currentColor"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(190.569,45) rotate(0)" stroke="currentColor"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(220.669,45) rotate(0)" stroke="currentColor"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(250.769,45) rotate(0)" stroke="currentColor"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(280.87,45) rotate(0)" stroke="currentColor"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(310.97,45) rotate(0)" stroke="currentColor"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(45.084,45) rotate(180)" stroke="currentColor"></line>
+      <line x1="0" y1="-6" x2="0" y2="6" transform="translate(620,45) rotate(180)" stroke="currentColor"></line>
     </g>
   </g>
 </svg>

@@ -14,37 +14,37 @@
     }
   </style>
   <defs>
-    <clipPath id="_r_ju_">
-      <rect x="0" y="0" width="639" height="399"></rect>
+    <clipPath id="plot-rid-1">
+      <rect x="40" y="20" width="599" height="360"></rect>
     </clipPath>
   </defs>
-  <g aria-label="y-axis" transform="translate(0,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
-    <line y1="0" y2="399" stroke="currentColor"></line>
-    <g transform="translate(0,355.872)">
+  <g aria-label="y-axis" transform="translate(40,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
+    <line y1="20" y2="380" stroke="currentColor"></line>
+    <g transform="translate(0,341.087)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">1.5</text>
     </g>
-    <g transform="translate(0,300.949)">
+    <g transform="translate(0,291.533)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">2.0</text>
     </g>
-    <g transform="translate(0,246.026)">
+    <g transform="translate(0,241.979)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">2.5</text>
     </g>
-    <g transform="translate(0,191.104)">
+    <g transform="translate(0,192.424)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">3.0</text>
     </g>
-    <g transform="translate(0,136.181)">
+    <g transform="translate(0,142.87)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">3.5</text>
     </g>
-    <g transform="translate(0,81.258)">
+    <g transform="translate(0,93.316)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">4.0</text>
     </g>
-    <g transform="translate(0,26.336)">
+    <g transform="translate(0,43.761)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">4.5</text>
     </g>

@@ -14,130 +14,130 @@
     }
   </style>
   <defs>
-    <clipPath id="_r_1su_">
-      <rect x="0" y="0" width="639" height="399"></rect>
+    <clipPath id="plot-rid-1">
+      <rect x="40" y="20" width="580" height="350"></rect>
     </clipPath>
   </defs>
-  <g aria-label="x-axis" transform="translate(0,399)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
-    <line x1="0" x2="639" stroke="currentColor"></line>
-    <g transform="translate(0,0)">
+  <g aria-label="x-axis" transform="translate(0,370)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+    <line x1="40" x2="620" stroke="currentColor"></line>
+    <g transform="translate(40,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2,500</text>
     </g>
-    <g transform="translate(80,0)">
+    <g transform="translate(113,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">3,000</text>
     </g>
-    <g transform="translate(160,0)">
+    <g transform="translate(185,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">3,500</text>
     </g>
-    <g transform="translate(240,0)">
+    <g transform="translate(258,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">4,000</text>
     </g>
-    <g transform="translate(320,0)">
+    <g transform="translate(330,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">4,500</text>
     </g>
-    <g transform="translate(399,0)">
+    <g transform="translate(403,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">5,000</text>
     </g>
-    <g transform="translate(479,0)">
+    <g transform="translate(475,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">5,500</text>
     </g>
-    <g transform="translate(559,0)">
+    <g transform="translate(548,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">6,000</text>
     </g>
-    <g transform="translate(639,0)">
+    <g transform="translate(620,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">6,500</text>
     </g>
   </g>
-  <g aria-label="y-axis" transform="translate(0,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
-    <line y1="0" y2="399" stroke="currentColor"></line>
-    <g transform="translate(0,399)">
+  <g aria-label="y-axis" transform="translate(40,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
+    <line y1="20" y2="370" stroke="currentColor"></line>
+    <g transform="translate(0,370)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">0</text>
     </g>
-    <g transform="translate(0,364.603)">
+    <g transform="translate(0,339.828)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">5</text>
     </g>
-    <g transform="translate(0,330.207)">
+    <g transform="translate(0,309.655)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">10</text>
     </g>
-    <g transform="translate(0,295.81)">
+    <g transform="translate(0,279.483)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">15</text>
     </g>
-    <g transform="translate(0,261.414)">
+    <g transform="translate(0,249.31)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">20</text>
     </g>
-    <g transform="translate(0,227.017)">
+    <g transform="translate(0,219.138)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">25</text>
     </g>
-    <g transform="translate(0,192.621)">
+    <g transform="translate(0,188.966)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">30</text>
     </g>
-    <g transform="translate(0,158.224)">
+    <g transform="translate(0,158.793)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">35</text>
     </g>
-    <g transform="translate(0,123.828)">
+    <g transform="translate(0,128.621)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">40</text>
     </g>
-    <g transform="translate(0,89.431)">
+    <g transform="translate(0,98.448)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">45</text>
     </g>
-    <g transform="translate(0,55.034)">
+    <g transform="translate(0,68.276)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">50</text>
     </g>
-    <g transform="translate(0,20.638)">
+    <g transform="translate(0,38.103)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">55</text>
     </g>
   </g>
   <g aria-label="rect" fill="currentColor">
-    <rect x="1" y="350.845" width="79" height="48.155"><title>Adelie FEMALE (6)
+    <rect x="41" y="327.759" width="72" height="42.241"><title>Adelie FEMALE (6)
         Adelie null (1)</title></rect>
-    <rect x="81" y="75.672" width="79" height="323.328"><title>Adelie FEMALE (42)
+    <rect x="114" y="86.379" width="71" height="283.621"><title>Adelie FEMALE (42)
         Adelie MALE (3)
         Adelie null (2)</title></rect>
-    <rect x="161" y="0" width="79" height="399"><title>Adelie MALE (32)
+    <rect x="186" y="20" width="72" height="350"><title>Adelie MALE (32)
         Adelie FEMALE (25)
         Adelie null (1)</title></rect>
-    <rect x="241" y="185.741" width="79" height="213.259"><title>Adelie MALE (30)
+    <rect x="259" y="182.931" width="71" height="187.069"><title>Adelie MALE (30)
         Adelie null (1)</title></rect>
-    <rect x="321" y="343.966" width="78" height="55.034"><title>Adelie MALE (8)</title></rect>
-    <rect x="1" y="385.241" width="79" height="13.759"><title>Chinstrap FEMALE (2)</title></rect>
-    <rect x="81" y="295.81" width="79" height="103.19"><title>Chinstrap FEMALE (11)
+    <rect x="331" y="321.724" width="72" height="48.276"><title>Adelie MALE (8)</title></rect>
+    <rect x="41" y="357.931" width="72" height="12.069"><title>Chinstrap FEMALE (2)</title></rect>
+    <rect x="114" y="279.483" width="71" height="90.517"><title>Chinstrap FEMALE (11)
         Chinstrap MALE (4)</title></rect>
-    <rect x="161" y="158.224" width="79" height="240.776"><title>Chinstrap FEMALE (20)
+    <rect x="186" y="158.793" width="72" height="211.207"><title>Chinstrap FEMALE (20)
         Chinstrap MALE (15)</title></rect>
-    <rect x="241" y="309.569" width="79" height="89.431"><title>Chinstrap MALE (12)
+    <rect x="259" y="291.552" width="71" height="78.448"><title>Chinstrap MALE (12)
         Chinstrap FEMALE (1)</title></rect>
-    <rect x="321" y="378.362" width="78" height="20.638"><title>Chinstrap MALE (3)</title></rect>
-    <rect x="161" y="392.121" width="79" height="6.879"><title>Gentoo FEMALE (1)</title></rect>
-    <rect x="241" y="295.81" width="79" height="103.19"><title>Gentoo FEMALE (14)
+    <rect x="331" y="351.897" width="72" height="18.103"><title>Chinstrap MALE (3)</title></rect>
+    <rect x="186" y="363.966" width="72" height="6.034"><title>Gentoo FEMALE (1)</title></rect>
+    <rect x="259" y="279.483" width="71" height="90.517"><title>Gentoo FEMALE (14)
         Gentoo null (1)</title></rect>
-    <rect x="321" y="123.828" width="78" height="275.172"><title>Gentoo FEMALE (35)
+    <rect x="331" y="128.621" width="72" height="241.379"><title>Gentoo FEMALE (35)
         Gentoo null (3)
         Gentoo MALE (2)</title></rect>
-    <rect x="400" y="165.103" width="79" height="233.897"><title>Gentoo MALE (26)
+    <rect x="404" y="164.828" width="71" height="205.172"><title>Gentoo MALE (26)
         Gentoo FEMALE (8)</title></rect>
-    <rect x="480" y="199.5" width="79" height="199.5"><title>Gentoo MALE (29)</title></rect>
-    <rect x="560" y="371.483" width="79" height="27.517"><title>Gentoo MALE (4)</title></rect>
+    <rect x="476" y="195" width="72" height="175"><title>Gentoo MALE (29)</title></rect>
+    <rect x="549" y="345.862" width="71" height="24.138"><title>Gentoo MALE (4)</title></rect>
   </g>
   <g aria-label="rule" stroke="currentColor">0</g>
 </svg>

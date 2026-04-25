@@ -14,1102 +14,1102 @@
     }
   </style>
   <defs>
-    <clipPath id="_r_5l_">
-      <rect x="0" y="0" width="639" height="1259"></rect>
+    <clipPath id="plot-rid-1">
+      <rect x="40" y="20" width="580" height="1210"></rect>
     </clipPath>
   </defs>
-  <g aria-label="x-axis" transform="translate(0,1259)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
-    <line x1="0" x2="639" stroke="currentColor"></line>
-    <g transform="translate(41.374,0)">
+  <g aria-label="x-axis" transform="translate(0,1230)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+    <line x1="40" x2="620" stroke="currentColor"></line>
+    <g transform="translate(77.554,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">40</text>
     </g>
-    <g transform="translate(87.345,0)">
+    <g transform="translate(119.281,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">50</text>
     </g>
-    <g transform="translate(133.317,0)">
+    <g transform="translate(161.007,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">60</text>
     </g>
-    <g transform="translate(179.288,0)">
+    <g transform="translate(202.734,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">70</text>
     </g>
-    <g transform="translate(225.259,0)">
+    <g transform="translate(244.46,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">80</text>
     </g>
-    <g transform="translate(271.23,0)">
+    <g transform="translate(286.187,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">90</text>
     </g>
-    <g transform="translate(317.201,0)">
+    <g transform="translate(327.914,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">100</text>
     </g>
-    <g transform="translate(363.173,0)">
+    <g transform="translate(369.64,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">110</text>
     </g>
-    <g transform="translate(409.144,0)">
+    <g transform="translate(411.367,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">120</text>
     </g>
-    <g transform="translate(455.115,0)">
+    <g transform="translate(453.094,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">130</text>
     </g>
-    <g transform="translate(501.086,0)">
+    <g transform="translate(494.82,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">140</text>
     </g>
-    <g transform="translate(547.058,0)">
+    <g transform="translate(536.547,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">150</text>
     </g>
-    <g transform="translate(593.029,0)">
+    <g transform="translate(578.273,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">160</text>
     </g>
-    <g transform="translate(639,0)">
+    <g transform="translate(620,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">170</text>
     </g>
   </g>
-  <g aria-label="y-axis" transform="translate(0,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
-    <line y1="0" y2="1259" stroke="currentColor"></line>
-    <g transform="translate(0,9)">
+  <g aria-label="y-axis" transform="translate(40,0)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="end">
+    <line y1="20" y2="1230" stroke="currentColor"></line>
+    <g transform="translate(0,20.584)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">AFG</text>
     </g>
-    <g transform="translate(0,15)">
+    <g transform="translate(0,26.427)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">ALB</text>
     </g>
-    <g transform="translate(0,21)">
+    <g transform="translate(0,32.269)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">ALG</text>
     </g>
-    <g transform="translate(0,27)">
+    <g transform="translate(0,38.112)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">AND</text>
     </g>
-    <g transform="translate(0,33)">
+    <g transform="translate(0,43.955)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">ANG</text>
     </g>
-    <g transform="translate(0,39)">
+    <g transform="translate(0,49.797)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">ANT</text>
     </g>
-    <g transform="translate(0,45)">
+    <g transform="translate(0,55.64)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">ARG</text>
     </g>
-    <g transform="translate(0,51)">
+    <g transform="translate(0,61.482)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">ARM</text>
     </g>
-    <g transform="translate(0,57)">
+    <g transform="translate(0,67.325)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">ARU</text>
     </g>
-    <g transform="translate(0,63)">
+    <g transform="translate(0,73.168)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">ASA</text>
     </g>
-    <g transform="translate(0,69)">
+    <g transform="translate(0,79.01)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">AUS</text>
     </g>
-    <g transform="translate(0,75)">
+    <g transform="translate(0,84.853)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">AUT</text>
     </g>
-    <g transform="translate(0,81)">
+    <g transform="translate(0,90.695)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">AZE</text>
     </g>
-    <g transform="translate(0,87)">
+    <g transform="translate(0,96.538)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">BAH</text>
     </g>
-    <g transform="translate(0,93)">
+    <g transform="translate(0,102.38)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">BAN</text>
     </g>
-    <g transform="translate(0,99)">
+    <g transform="translate(0,108.223)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">BAR</text>
     </g>
-    <g transform="translate(0,105)">
+    <g transform="translate(0,114.066)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">BDI</text>
     </g>
-    <g transform="translate(0,111)">
+    <g transform="translate(0,119.908)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">BEL</text>
     </g>
-    <g transform="translate(0,117)">
+    <g transform="translate(0,125.751)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">BEN</text>
     </g>
-    <g transform="translate(0,123)">
+    <g transform="translate(0,131.593)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">BER</text>
     </g>
-    <g transform="translate(0,129)">
+    <g transform="translate(0,137.436)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">BHU</text>
     </g>
-    <g transform="translate(0,135)">
+    <g transform="translate(0,143.279)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">BIH</text>
     </g>
-    <g transform="translate(0,141)">
+    <g transform="translate(0,149.121)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">BIZ</text>
     </g>
-    <g transform="translate(0,147)">
+    <g transform="translate(0,154.964)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">BLR</text>
     </g>
-    <g transform="translate(0,153)">
+    <g transform="translate(0,160.806)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">BOL</text>
     </g>
-    <g transform="translate(0,159)">
+    <g transform="translate(0,166.649)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">BOT</text>
     </g>
-    <g transform="translate(0,165)">
+    <g transform="translate(0,172.492)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">BRA</text>
     </g>
-    <g transform="translate(0,171)">
+    <g transform="translate(0,178.334)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">BRN</text>
     </g>
-    <g transform="translate(0,177)">
+    <g transform="translate(0,184.177)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">BRU</text>
     </g>
-    <g transform="translate(0,183)">
+    <g transform="translate(0,190.019)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">BUL</text>
     </g>
-    <g transform="translate(0,189)">
+    <g transform="translate(0,195.862)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">BUR</text>
     </g>
-    <g transform="translate(0,195)">
+    <g transform="translate(0,201.704)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">CAF</text>
     </g>
-    <g transform="translate(0,201)">
+    <g transform="translate(0,207.547)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">CAM</text>
     </g>
-    <g transform="translate(0,207)">
+    <g transform="translate(0,213.39)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">CAN</text>
     </g>
-    <g transform="translate(0,213)">
+    <g transform="translate(0,219.232)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">CAY</text>
     </g>
-    <g transform="translate(0,219)">
+    <g transform="translate(0,225.075)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">CGO</text>
     </g>
-    <g transform="translate(0,225)">
+    <g transform="translate(0,230.917)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">CHA</text>
     </g>
-    <g transform="translate(0,231)">
+    <g transform="translate(0,236.76)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">CHI</text>
     </g>
-    <g transform="translate(0,237)">
+    <g transform="translate(0,242.603)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">CHN</text>
     </g>
-    <g transform="translate(0,243)">
+    <g transform="translate(0,248.445)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">CIV</text>
     </g>
-    <g transform="translate(0,249)">
+    <g transform="translate(0,254.288)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">CMR</text>
     </g>
-    <g transform="translate(0,255)">
+    <g transform="translate(0,260.13)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">COD</text>
     </g>
-    <g transform="translate(0,261)">
+    <g transform="translate(0,265.973)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">COK</text>
     </g>
-    <g transform="translate(0,267)">
+    <g transform="translate(0,271.816)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">COL</text>
     </g>
-    <g transform="translate(0,273)">
+    <g transform="translate(0,277.658)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">COM</text>
     </g>
-    <g transform="translate(0,279)">
+    <g transform="translate(0,283.501)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">CPV</text>
     </g>
-    <g transform="translate(0,285)">
+    <g transform="translate(0,289.343)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">CRC</text>
     </g>
-    <g transform="translate(0,291)">
+    <g transform="translate(0,295.186)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">CRO</text>
     </g>
-    <g transform="translate(0,297)">
+    <g transform="translate(0,301.028)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">CUB</text>
     </g>
-    <g transform="translate(0,303)">
+    <g transform="translate(0,306.871)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">CYP</text>
     </g>
-    <g transform="translate(0,309)">
+    <g transform="translate(0,312.714)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">CZE</text>
     </g>
-    <g transform="translate(0,315)">
+    <g transform="translate(0,318.556)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">DEN</text>
     </g>
-    <g transform="translate(0,321)">
+    <g transform="translate(0,324.399)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">DJI</text>
     </g>
-    <g transform="translate(0,327)">
+    <g transform="translate(0,330.241)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">DMA</text>
     </g>
-    <g transform="translate(0,333)">
+    <g transform="translate(0,336.084)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">DOM</text>
     </g>
-    <g transform="translate(0,339)">
+    <g transform="translate(0,341.927)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">ECU</text>
     </g>
-    <g transform="translate(0,345)">
+    <g transform="translate(0,347.769)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">EGY</text>
     </g>
-    <g transform="translate(0,351)">
+    <g transform="translate(0,353.612)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">ERI</text>
     </g>
-    <g transform="translate(0,357)">
+    <g transform="translate(0,359.454)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">ESA</text>
     </g>
-    <g transform="translate(0,363)">
+    <g transform="translate(0,365.297)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">ESP</text>
     </g>
-    <g transform="translate(0,369)">
+    <g transform="translate(0,371.14)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">EST</text>
     </g>
-    <g transform="translate(0,375)">
+    <g transform="translate(0,376.982)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">ETH</text>
     </g>
-    <g transform="translate(0,381)">
+    <g transform="translate(0,382.825)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">FIJ</text>
     </g>
-    <g transform="translate(0,387)">
+    <g transform="translate(0,388.667)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">FIN</text>
     </g>
-    <g transform="translate(0,393)">
+    <g transform="translate(0,394.51)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">FRA</text>
     </g>
-    <g transform="translate(0,399)">
+    <g transform="translate(0,400.352)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">FSM</text>
     </g>
-    <g transform="translate(0,405)">
+    <g transform="translate(0,406.195)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">GAB</text>
     </g>
-    <g transform="translate(0,411)">
+    <g transform="translate(0,412.038)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">GAM</text>
     </g>
-    <g transform="translate(0,417)">
+    <g transform="translate(0,417.88)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">GBR</text>
     </g>
-    <g transform="translate(0,423)">
+    <g transform="translate(0,423.723)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">GBS</text>
     </g>
-    <g transform="translate(0,429)">
+    <g transform="translate(0,429.565)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">GEO</text>
     </g>
-    <g transform="translate(0,435)">
+    <g transform="translate(0,435.408)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">GEQ</text>
     </g>
-    <g transform="translate(0,441)">
+    <g transform="translate(0,441.251)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">GER</text>
     </g>
-    <g transform="translate(0,447)">
+    <g transform="translate(0,447.093)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">GHA</text>
     </g>
-    <g transform="translate(0,453)">
+    <g transform="translate(0,452.936)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">GRE</text>
     </g>
-    <g transform="translate(0,459)">
+    <g transform="translate(0,458.778)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">GRN</text>
     </g>
-    <g transform="translate(0,465)">
+    <g transform="translate(0,464.621)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">GUA</text>
     </g>
-    <g transform="translate(0,471)">
+    <g transform="translate(0,470.464)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">GUI</text>
     </g>
-    <g transform="translate(0,477)">
+    <g transform="translate(0,476.306)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">GUM</text>
     </g>
-    <g transform="translate(0,483)">
+    <g transform="translate(0,482.149)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">GUY</text>
     </g>
-    <g transform="translate(0,489)">
+    <g transform="translate(0,487.991)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">HAI</text>
     </g>
-    <g transform="translate(0,495)">
+    <g transform="translate(0,493.834)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">HKG</text>
     </g>
-    <g transform="translate(0,501)">
+    <g transform="translate(0,499.676)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">HON</text>
     </g>
-    <g transform="translate(0,507)">
+    <g transform="translate(0,505.519)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">HUN</text>
     </g>
-    <g transform="translate(0,513)">
+    <g transform="translate(0,511.362)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">INA</text>
     </g>
-    <g transform="translate(0,519)">
+    <g transform="translate(0,517.204)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">IND</text>
     </g>
-    <g transform="translate(0,525)">
+    <g transform="translate(0,523.047)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">IOA</text>
     </g>
-    <g transform="translate(0,531)">
+    <g transform="translate(0,528.889)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">IRI</text>
     </g>
-    <g transform="translate(0,537)">
+    <g transform="translate(0,534.732)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">IRL</text>
     </g>
-    <g transform="translate(0,543)">
+    <g transform="translate(0,540.575)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">IRQ</text>
     </g>
-    <g transform="translate(0,549)">
+    <g transform="translate(0,546.417)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">ISL</text>
     </g>
-    <g transform="translate(0,555)">
+    <g transform="translate(0,552.26)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">ISR</text>
     </g>
-    <g transform="translate(0,561)">
+    <g transform="translate(0,558.102)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">ISV</text>
     </g>
-    <g transform="translate(0,567)">
+    <g transform="translate(0,563.945)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">ITA</text>
     </g>
-    <g transform="translate(0,573)">
+    <g transform="translate(0,569.788)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">IVB</text>
     </g>
-    <g transform="translate(0,579)">
+    <g transform="translate(0,575.63)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">JAM</text>
     </g>
-    <g transform="translate(0,585)">
+    <g transform="translate(0,581.473)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">JOR</text>
     </g>
-    <g transform="translate(0,591)">
+    <g transform="translate(0,587.315)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">JPN</text>
     </g>
-    <g transform="translate(0,597)">
+    <g transform="translate(0,593.158)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">KAZ</text>
     </g>
-    <g transform="translate(0,603)">
+    <g transform="translate(0,599)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">KEN</text>
     </g>
-    <g transform="translate(0,609)">
+    <g transform="translate(0,604.843)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">KGZ</text>
     </g>
-    <g transform="translate(0,615)">
+    <g transform="translate(0,610.686)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">KIR</text>
     </g>
-    <g transform="translate(0,621)">
+    <g transform="translate(0,616.528)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">KOR</text>
     </g>
-    <g transform="translate(0,627)">
+    <g transform="translate(0,622.371)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">KOS</text>
     </g>
-    <g transform="translate(0,633)">
+    <g transform="translate(0,628.213)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">KSA</text>
     </g>
-    <g transform="translate(0,639)">
+    <g transform="translate(0,634.056)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">LAO</text>
     </g>
-    <g transform="translate(0,645)">
+    <g transform="translate(0,639.899)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">LAT</text>
     </g>
-    <g transform="translate(0,651)">
+    <g transform="translate(0,645.741)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">LBA</text>
     </g>
-    <g transform="translate(0,657)">
+    <g transform="translate(0,651.584)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">LBR</text>
     </g>
-    <g transform="translate(0,663)">
+    <g transform="translate(0,657.426)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">LCA</text>
     </g>
-    <g transform="translate(0,669)">
+    <g transform="translate(0,663.269)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">LES</text>
     </g>
-    <g transform="translate(0,675)">
+    <g transform="translate(0,669.112)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">LIB</text>
     </g>
-    <g transform="translate(0,681)">
+    <g transform="translate(0,674.954)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">LIE</text>
     </g>
-    <g transform="translate(0,687)">
+    <g transform="translate(0,680.797)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">LTU</text>
     </g>
-    <g transform="translate(0,693)">
+    <g transform="translate(0,686.639)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">LUX</text>
     </g>
-    <g transform="translate(0,699)">
+    <g transform="translate(0,692.482)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">MAD</text>
     </g>
-    <g transform="translate(0,705)">
+    <g transform="translate(0,698.324)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">MAR</text>
     </g>
-    <g transform="translate(0,711)">
+    <g transform="translate(0,704.167)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">MAS</text>
     </g>
-    <g transform="translate(0,717)">
+    <g transform="translate(0,710.01)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">MAW</text>
     </g>
-    <g transform="translate(0,723)">
+    <g transform="translate(0,715.852)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">MDA</text>
     </g>
-    <g transform="translate(0,729)">
+    <g transform="translate(0,721.695)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">MDV</text>
     </g>
-    <g transform="translate(0,735)">
+    <g transform="translate(0,727.537)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">MEX</text>
     </g>
-    <g transform="translate(0,741)">
+    <g transform="translate(0,733.38)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">MGL</text>
     </g>
-    <g transform="translate(0,747)">
+    <g transform="translate(0,739.223)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">MHL</text>
     </g>
-    <g transform="translate(0,753)">
+    <g transform="translate(0,745.065)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">MKD</text>
     </g>
-    <g transform="translate(0,759)">
+    <g transform="translate(0,750.908)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">MLI</text>
     </g>
-    <g transform="translate(0,765)">
+    <g transform="translate(0,756.75)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">MLT</text>
     </g>
-    <g transform="translate(0,771)">
+    <g transform="translate(0,762.593)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">MNE</text>
     </g>
-    <g transform="translate(0,777)">
+    <g transform="translate(0,768.436)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">MON</text>
     </g>
-    <g transform="translate(0,783)">
+    <g transform="translate(0,774.278)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">MOZ</text>
     </g>
-    <g transform="translate(0,789)">
+    <g transform="translate(0,780.121)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">MRI</text>
     </g>
-    <g transform="translate(0,795)">
+    <g transform="translate(0,785.963)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">MTN</text>
     </g>
-    <g transform="translate(0,801)">
+    <g transform="translate(0,791.806)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">MYA</text>
     </g>
-    <g transform="translate(0,807)">
+    <g transform="translate(0,797.648)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">NAM</text>
     </g>
-    <g transform="translate(0,813)">
+    <g transform="translate(0,803.491)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">NCA</text>
     </g>
-    <g transform="translate(0,819)">
+    <g transform="translate(0,809.334)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">NED</text>
     </g>
-    <g transform="translate(0,825)">
+    <g transform="translate(0,815.176)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">NEP</text>
     </g>
-    <g transform="translate(0,831)">
+    <g transform="translate(0,821.019)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">NGR</text>
     </g>
-    <g transform="translate(0,837)">
+    <g transform="translate(0,826.861)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">NIG</text>
     </g>
-    <g transform="translate(0,843)">
+    <g transform="translate(0,832.704)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">NOR</text>
     </g>
-    <g transform="translate(0,849)">
+    <g transform="translate(0,838.547)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">NRU</text>
     </g>
-    <g transform="translate(0,855)">
+    <g transform="translate(0,844.389)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">NZL</text>
     </g>
-    <g transform="translate(0,861)">
+    <g transform="translate(0,850.232)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">OMA</text>
     </g>
-    <g transform="translate(0,867)">
+    <g transform="translate(0,856.074)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">PAK</text>
     </g>
-    <g transform="translate(0,873)">
+    <g transform="translate(0,861.917)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">PAN</text>
     </g>
-    <g transform="translate(0,879)">
+    <g transform="translate(0,867.76)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">PAR</text>
     </g>
-    <g transform="translate(0,885)">
+    <g transform="translate(0,873.602)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">PER</text>
     </g>
-    <g transform="translate(0,891)">
+    <g transform="translate(0,879.445)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">PHI</text>
     </g>
-    <g transform="translate(0,897)">
+    <g transform="translate(0,885.287)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">PLE</text>
     </g>
-    <g transform="translate(0,903)">
+    <g transform="translate(0,891.13)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">PLW</text>
     </g>
-    <g transform="translate(0,909)">
+    <g transform="translate(0,896.972)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">PNG</text>
     </g>
-    <g transform="translate(0,915)">
+    <g transform="translate(0,902.815)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">POL</text>
     </g>
-    <g transform="translate(0,921)">
+    <g transform="translate(0,908.658)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">POR</text>
     </g>
-    <g transform="translate(0,927)">
+    <g transform="translate(0,914.5)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">PRK</text>
     </g>
-    <g transform="translate(0,933)">
+    <g transform="translate(0,920.343)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">PUR</text>
     </g>
-    <g transform="translate(0,939)">
+    <g transform="translate(0,926.185)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">QAT</text>
     </g>
-    <g transform="translate(0,945)">
+    <g transform="translate(0,932.028)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">ROT</text>
     </g>
-    <g transform="translate(0,951)">
+    <g transform="translate(0,937.871)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">ROU</text>
     </g>
-    <g transform="translate(0,957)">
+    <g transform="translate(0,943.713)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">RSA</text>
     </g>
-    <g transform="translate(0,963)">
+    <g transform="translate(0,949.556)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">RUS</text>
     </g>
-    <g transform="translate(0,969)">
+    <g transform="translate(0,955.398)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">RWA</text>
     </g>
-    <g transform="translate(0,975)">
+    <g transform="translate(0,961.241)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">SAM</text>
     </g>
-    <g transform="translate(0,981)">
+    <g transform="translate(0,967.084)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">SEN</text>
     </g>
-    <g transform="translate(0,987)">
+    <g transform="translate(0,972.926)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">SEY</text>
     </g>
-    <g transform="translate(0,993)">
+    <g transform="translate(0,978.769)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">SIN</text>
     </g>
-    <g transform="translate(0,999)">
+    <g transform="translate(0,984.611)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">SKN</text>
     </g>
-    <g transform="translate(0,1005)">
+    <g transform="translate(0,990.454)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">SLE</text>
     </g>
-    <g transform="translate(0,1011)">
+    <g transform="translate(0,996.296)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">SLO</text>
     </g>
-    <g transform="translate(0,1017)">
+    <g transform="translate(0,1002.139)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">SMR</text>
     </g>
-    <g transform="translate(0,1023)">
+    <g transform="translate(0,1007.982)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">SOL</text>
     </g>
-    <g transform="translate(0,1029)">
+    <g transform="translate(0,1013.824)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">SOM</text>
     </g>
-    <g transform="translate(0,1035)">
+    <g transform="translate(0,1019.667)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">SRB</text>
     </g>
-    <g transform="translate(0,1041)">
+    <g transform="translate(0,1025.509)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">SRI</text>
     </g>
-    <g transform="translate(0,1047)">
+    <g transform="translate(0,1031.352)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">SSD</text>
     </g>
-    <g transform="translate(0,1053)">
+    <g transform="translate(0,1037.195)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">STP</text>
     </g>
-    <g transform="translate(0,1059)">
+    <g transform="translate(0,1043.037)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">SUD</text>
     </g>
-    <g transform="translate(0,1065)">
+    <g transform="translate(0,1048.88)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">SUI</text>
     </g>
-    <g transform="translate(0,1071)">
+    <g transform="translate(0,1054.722)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">SUR</text>
     </g>
-    <g transform="translate(0,1077)">
+    <g transform="translate(0,1060.565)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">SVK</text>
     </g>
-    <g transform="translate(0,1083)">
+    <g transform="translate(0,1066.408)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">SWE</text>
     </g>
-    <g transform="translate(0,1089)">
+    <g transform="translate(0,1072.25)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">SWZ</text>
     </g>
-    <g transform="translate(0,1095)">
+    <g transform="translate(0,1078.093)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">SYR</text>
     </g>
-    <g transform="translate(0,1101)">
+    <g transform="translate(0,1083.935)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">TAN</text>
     </g>
-    <g transform="translate(0,1107)">
+    <g transform="translate(0,1089.778)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">TGA</text>
     </g>
-    <g transform="translate(0,1113)">
+    <g transform="translate(0,1095.62)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">THA</text>
     </g>
-    <g transform="translate(0,1119)">
+    <g transform="translate(0,1101.463)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">TJK</text>
     </g>
-    <g transform="translate(0,1125)">
+    <g transform="translate(0,1107.306)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">TKM</text>
     </g>
-    <g transform="translate(0,1131)">
+    <g transform="translate(0,1113.148)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">TLS</text>
     </g>
-    <g transform="translate(0,1137)">
+    <g transform="translate(0,1118.991)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">TOG</text>
     </g>
-    <g transform="translate(0,1143)">
+    <g transform="translate(0,1124.833)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">TPE</text>
     </g>
-    <g transform="translate(0,1149)">
+    <g transform="translate(0,1130.676)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">TTO</text>
     </g>
-    <g transform="translate(0,1155)">
+    <g transform="translate(0,1136.519)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">TUN</text>
     </g>
-    <g transform="translate(0,1161)">
+    <g transform="translate(0,1142.361)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">TUR</text>
     </g>
-    <g transform="translate(0,1167)">
+    <g transform="translate(0,1148.204)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">TUV</text>
     </g>
-    <g transform="translate(0,1173)">
+    <g transform="translate(0,1154.046)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">UAE</text>
     </g>
-    <g transform="translate(0,1179)">
+    <g transform="translate(0,1159.889)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">UGA</text>
     </g>
-    <g transform="translate(0,1185)">
+    <g transform="translate(0,1165.732)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">UKR</text>
     </g>
-    <g transform="translate(0,1191)">
+    <g transform="translate(0,1171.574)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">URU</text>
     </g>
-    <g transform="translate(0,1197)">
+    <g transform="translate(0,1177.417)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">USA</text>
     </g>
-    <g transform="translate(0,1203)">
+    <g transform="translate(0,1183.259)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">UZB</text>
     </g>
-    <g transform="translate(0,1209)">
+    <g transform="translate(0,1189.102)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">VAN</text>
     </g>
-    <g transform="translate(0,1215)">
+    <g transform="translate(0,1194.944)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">VEN</text>
     </g>
-    <g transform="translate(0,1221)">
+    <g transform="translate(0,1200.787)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">VIE</text>
     </g>
-    <g transform="translate(0,1227)">
+    <g transform="translate(0,1206.63)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">VIN</text>
     </g>
-    <g transform="translate(0,1233)">
+    <g transform="translate(0,1212.472)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">YEM</text>
     </g>
-    <g transform="translate(0,1239)">
+    <g transform="translate(0,1218.315)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">ZAM</text>
     </g>
-    <g transform="translate(0,1245)">
+    <g transform="translate(0,1224.157)">
       <line x2="-6" stroke="currentColor"></line>
       <text x="-9" dy="0.32em" fill="currentColor">ZIM</text>
     </g>
   </g>
-  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0,2.5)">0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</g>
+  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0,2.629)">0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</g>
   <g aria-label="tick" stroke="red" stroke-width="2">
-    <line x1="179.288" x2="179.288" y1="363" y2="368"></line>
-    <line x1="160.899" x2="160.899" y1="621" y2="626"></line>
-    <line x1="170.094" x2="170.094" y1="207" y2="212"></line>
-    <line x1="225.259" x2="225.259" y1="723" y2="728"></line>
-    <line x1="193.079" x2="193.079" y1="855" y2="860"></line>
-    <line x1="183.885" x2="183.885" y1="69" y2="74"></line>
-    <line x1="188.482" x2="188.482" y1="1197" y2="1202"></line>
-    <line x1="108.032" x2="108.032" y1="375" y2="380"></line>
-    <line x1="133.317" x2="133.317" y1="171" y2="176"></line>
-    <line x1="271.23" x2="271.23" y1="525" y2="530"></line>
-    <line x1="183.885" x2="183.885" y1="417" y2="422"></line>
-    <line x1="165.496" x2="165.496" y1="1203" y2="1208"></line>
-    <line x1="179.288" x2="179.288" y1="957" y2="962"></line>
-    <line x1="209.169" x2="209.169" y1="345" y2="350"></line>
-    <line x1="142.511" x2="142.511" y1="705" y2="710"></line>
-    <line x1="248.245" x2="248.245" y1="939" y2="944"></line>
-    <line x1="172.392" x2="172.392" y1="1059" y2="1064"></line>
-    <line x1="163.198" x2="163.198" y1="21" y2="26"></line>
-    <line x1="202.273" x2="202.273" y1="315" y2="320"></line>
-    <line x1="188.482" x2="188.482" y1="819" y2="824"></line>
-    <line x1="160.899" x2="160.899" y1="321" y2="326"></line>
-    <line x1="202.273" x2="202.273" y1="981" y2="986"></line>
-    <line x1="204.572" x2="204.572" y1="249" y2="254"></line>
-    <line x1="179.288" x2="179.288" y1="567" y2="572"></line>
-    <line x1="190.781" x2="190.781" y1="837" y2="842"></line>
-    <line x1="188.482" x2="188.482" y1="1083" y2="1088"></line>
-    <line x1="147.108" x2="147.108" y1="447" y2="452"></line>
-    <line x1="170.094" x2="170.094" y1="9" y2="14"></line>
-    <line x1="193.079" x2="193.079" y1="81" y2="86"></line>
-    <line x1="160.899" x2="160.899" y1="633" y2="638"></line>
-    <line x1="174.691" x2="174.691" y1="93" y2="98"></line>
-    <line x1="183.885" x2="183.885" y1="831" y2="836"></line>
-    <line x1="179.288" x2="179.288" y1="963" y2="968"></line>
-    <line x1="151.705" x2="151.705" y1="519" y2="524"></line>
-    <line x1="202.273" x2="202.273" y1="507" y2="512"></line>
-    <line x1="165.496" x2="165.496" y1="597" y2="602"></line>
-    <line x1="128.719" x2="128.719" y1="105" y2="110"></line>
-    <line x1="119.525" x2="119.525" y1="351" y2="356"></line>
-    <line x1="202.273" x2="202.273" y1="915" y2="920"></line>
-    <line x1="179.288" x2="179.288" y1="165" y2="170"></line>
-    <line x1="222.96" x2="222.96" y1="429" y2="434"></line>
-    <line x1="193.079" x2="193.079" y1="309" y2="314"></line>
-    <line x1="170.094" x2="170.094" y1="987" y2="992"></line>
-    <line x1="236.752" x2="236.752" y1="687" y2="692"></line>
-    <line x1="229.856" x2="229.856" y1="531" y2="536"></line>
-    <line x1="170.094" x2="170.094" y1="951" y2="956"></line>
-    <line x1="199.975" x2="199.975" y1="297" y2="302"></line>
-    <line x1="188.482" x2="188.482" y1="1011" y2="1016"></line>
-    <line x1="179.288" x2="179.288" y1="87" y2="92"></line>
-    <line x1="202.273" x2="202.273" y1="45" y2="50"></line>
-    <line x1="158.601" x2="158.601" y1="933" y2="938"></line>
-    <line x1="179.288" x2="179.288" y1="393" y2="398"></line>
-    <line x1="170.094" x2="170.094" y1="969" y2="974"></line>
-    <line x1="101.137" x2="101.137" y1="1137" y2="1142"></line>
-    <line x1="211.468" x2="211.468" y1="1155" y2="1160"></line>
-    <line x1="142.511" x2="142.511" y1="555" y2="560"></line>
-    <line x1="209.169" x2="209.169" y1="645" y2="650"></line>
-    <line x1="167.795" x2="167.795" y1="585" y2="590"></line>
-    <line x1="167.795" x2="167.795" y1="711" y2="716"></line>
-    <line x1="137.914" x2="137.914" y1="675" y2="680"></line>
-    <line x1="147.108" x2="147.108" y1="651" y2="656"></line>
-    <line x1="126.421" x2="126.421" y1="897" y2="902"></line>
-    <line x1="202.273" x2="202.273" y1="543" y2="548"></line>
-    <line x1="174.691" x2="174.691" y1="1161" y2="1166"></line>
-    <line x1="188.482" x2="188.482" y1="1215" y2="1220"></line>
-    <line x1="147.108" x2="147.108" y1="591" y2="596"></line>
-    <line x1="156.302" x2="156.302" y1="1143" y2="1148"></line>
-    <line x1="133.317" x2="133.317" y1="609" y2="614"></line>
-    <line x1="165.496" x2="165.496" y1="237" y2="242"></line>
-    <line x1="174.691" x2="174.691" y1="735" y2="740"></line>
-    <line x1="193.079" x2="193.079" y1="453" y2="458"></line>
-    <line x1="179.288" x2="179.288" y1="537" y2="542"></line>
-    <line x1="183.885" x2="183.885" y1="579" y2="584"></line>
-    <line x1="165.496" x2="165.496" y1="1065" y2="1070"></line>
-    <line x1="179.288" x2="179.288" y1="99" y2="104"></line>
-    <line x1="206.871" x2="206.871" y1="501" y2="506"></line>
-    <line x1="176.989" x2="176.989" y1="33" y2="38"></line>
-    <line x1="188.482" x2="188.482" y1="441" y2="446"></line>
-    <line x1="151.705" x2="151.705" y1="267" y2="272"></line>
-    <line x1="174.691" x2="174.691" y1="1191" y2="1196"></line>
-    <line x1="239.05" x2="239.05" y1="771" y2="776"></line>
-    <line x1="220.662" x2="220.662" y1="1035" y2="1040"></line>
-    <line x1="170.094" x2="170.094" y1="183" y2="188"></line>
-    <line x1="163.198" x2="163.198" y1="387" y2="392"></line>
-    <line x1="165.496" x2="165.496" y1="1185" y2="1190"></line>
-    <line x1="174.691" x2="174.691" y1="147" y2="152"></line>
-    <line x1="193.079" x2="193.079" y1="1017" y2="1022"></line>
-    <line x1="179.288" x2="179.288" y1="261" y2="266"></line>
-    <line x1="172.392" x2="172.392" y1="975" y2="980"></line>
-    <line x1="174.691" x2="174.691" y1="75" y2="80"></line>
-    <line x1="179.288" x2="179.288" y1="111" y2="116"></line>
-    <line x1="137.914" x2="137.914" y1="603" y2="608"></line>
-    <line x1="193.079" x2="193.079" y1="1077" y2="1082"></line>
-    <line x1="179.288" x2="179.288" y1="921" y2="926"></line>
-    <line x1="133.317" x2="133.317" y1="339" y2="344"></line>
-    <line x1="167.795" x2="167.795" y1="1173" y2="1178"></line>
-    <line x1="119.525" x2="119.525" y1="807" y2="812"></line>
-    <line x1="151.705" x2="151.705" y1="483" y2="488"></line>
-    <line x1="202.273" x2="202.273" y1="369" y2="374"></line>
-    <line x1="197.676" x2="197.676" y1="999" y2="1004"></line>
-    <line x1="156.302" x2="156.302" y1="57" y2="62"></line>
-    <line x1="179.288" x2="179.288" y1="873" y2="878"></line>
-    <line x1="133.317" x2="133.317" y1="885" y2="890"></line>
-    <line x1="110.331" x2="110.331" y1="1101" y2="1106"></line>
-    <line x1="211.468" x2="211.468" y1="381" y2="386"></line>
-    <line x1="174.691" x2="174.691" y1="471" y2="476"></line>
-    <line x1="188.482" x2="188.482" y1="843" y2="848"></line>
-    <line x1="193.079" x2="193.079" y1="51" y2="56"></line>
-    <line x1="147.108" x2="147.108" y1="1113" y2="1118"></line>
-    <line x1="156.302" x2="156.302" y1="993" y2="998"></line>
-    <line x1="147.108" x2="147.108" y1="1125" y2="1130"></line>
-    <line x1="255.14" x2="255.14" y1="291" y2="296"></line>
-    <line x1="211.468" x2="211.468" y1="135" y2="140"></line>
-    <line x1="197.676" x2="197.676" y1="1107" y2="1112"></line>
-    <line x1="137.914" x2="137.914" y1="717" y2="722"></line>
-    <line x1="142.511" x2="142.511" y1="333" y2="338"></line>
-    <line x1="133.317" x2="133.317" y1="465" y2="470"></line>
-    <line x1="135.615" x2="135.615" y1="753" y2="758"></line>
-    <line x1="222.96" x2="222.96" y1="1119" y2="1124"></line>
-    <line x1="188.482" x2="188.482" y1="303" y2="308"></line>
-    <line x1="160.899" x2="160.899" y1="231" y2="236"></line>
-    <line x1="188.482" x2="188.482" y1="765" y2="770"></line>
-    <line x1="128.719" x2="128.719" y1="1245" y2="1250"></line>
-    <line x1="193.079" x2="193.079" y1="1149" y2="1154"></line>
-    <line x1="151.705" x2="151.705" y1="285" y2="290"></line>
-    <line x1="126.421" x2="126.421" y1="153" y2="158"></line>
-    <line x1="216.065" x2="216.065" y1="189" y2="194"></line>
-    <line x1="206.871" x2="206.871" y1="549" y2="554"></line>
-    <line x1="181.586" x2="181.586" y1="489" y2="494"></line>
-    <line x1="133.317" x2="133.317" y1="945" y2="950"></line>
-    <line x1="156.302" x2="156.302" y1="741" y2="746"></line>
-    <line x1="135.615" x2="135.615" y1="699" y2="704"></line>
-    <line x1="218.363" x2="218.363" y1="405" y2="410"></line>
-    <line x1="142.511" x2="142.511" y1="1041" y2="1046"></line>
-    <line x1="133.317" x2="133.317" y1="639" y2="644"></line>
-    <line x1="124.122" x2="124.122" y1="789" y2="794"></line>
-    <line x1="160.899" x2="160.899" y1="879" y2="884"></line>
-    <line x1="158.601" x2="158.601" y1="573" y2="578"></line>
-    <line x1="225.259" x2="225.259" y1="423" y2="428"></line>
-    <line x1="193.079" x2="193.079" y1="759" y2="764"></line>
-    <line x1="199.975" x2="199.975" y1="1095" y2="1100"></line>
-    <line x1="133.317" x2="133.317" y1="159" y2="164"></line>
-    <line x1="94.241" x2="94.241" y1="225" y2="230"></line>
-    <line x1="202.273" x2="202.273" y1="861" y2="866"></line>
-    <line x1="119.525" x2="119.525" y1="255" y2="260"></line>
-    <line x1="154.004" x2="154.004" y1="243" y2="248"></line>
-    <line x1="131.018" x2="131.018" y1="435" y2="440"></line>
-    <line x1="193.079" x2="193.079" y1="477" y2="482"></line>
-    <line x1="176.989" x2="176.989" y1="63" y2="68"></line>
-    <line x1="165.496" x2="165.496" y1="1239" y2="1244"></line>
-    <line x1="160.899" x2="160.899" y1="1209" y2="1214"></line>
-    <line x1="183.885" x2="183.885" y1="459" y2="464"></line>
-    <line x1="252.842" x2="252.842" y1="141" y2="146"></line>
-    <line x1="133.317" x2="133.317" y1="1227" y2="1232"></line>
-    <line x1="193.079" x2="193.079" y1="777" y2="782"></line>
-    <line x1="165.496" x2="165.496" y1="15" y2="20"></line>
-    <line x1="124.122" x2="124.122" y1="1053" y2="1058"></line>
-    <line x1="218.363" x2="218.363" y1="1005" y2="1010"></line>
-    <line x1="188.482" x2="188.482" y1="123" y2="128"></line>
-    <line x1="144.809" x2="144.809" y1="495" y2="500"></line>
-    <line x1="193.079" x2="193.079" y1="561" y2="566"></line>
-    <line x1="170.094" x2="170.094" y1="219" y2="224"></line>
-    <line x1="183.885" x2="183.885" y1="39" y2="44"></line>
-    <line x1="245.946" x2="245.946" y1="117" y2="122"></line>
-    <line x1="147.108" x2="147.108" y1="693" y2="698"></line>
-    <line x1="133.317" x2="133.317" y1="891" y2="896"></line>
-    <line x1="170.094" x2="170.094" y1="195" y2="200"></line>
-    <line x1="114.928" x2="114.928" y1="927" y2="932"></line>
-    <line x1="193.079" x2="193.079" y1="681" y2="686"></line>
-    <line x1="156.302" x2="156.302" y1="747" y2="752"></line>
-    <line x1="128.719" x2="128.719" y1="813" y2="818"></line>
-    <line x1="151.705" x2="151.705" y1="615" y2="620"></line>
-    <line x1="151.705" x2="151.705" y1="279" y2="284"></line>
-    <line x1="163.198" x2="163.198" y1="513" y2="518"></line>
-    <line x1="163.198" x2="163.198" y1="399" y2="404"></line>
-    <line x1="137.914" x2="137.914" y1="273" y2="278"></line>
-    <line x1="174.691" x2="174.691" y1="903" y2="908"></line>
-    <line x1="119.525" x2="119.525" y1="801" y2="806"></line>
-    <line x1="193.079" x2="193.079" y1="849" y2="854"></line>
-    <line x1="181.586" x2="181.586" y1="357" y2="362"></line>
-    <line x1="142.511" x2="142.511" y1="27" y2="32"></line>
-    <line x1="188.482" x2="188.482" y1="1167" y2="1172"></line>
-    <line x1="216.065" x2="216.065" y1="1071" y2="1076"></line>
-    <line x1="165.496" x2="165.496" y1="213" y2="218"></line>
-    <line x1="147.108" x2="147.108" y1="825" y2="830"></line>
-    <line x1="197.676" x2="197.676" y1="867" y2="872"></line>
-    <line x1="133.317" x2="133.317" y1="1047" y2="1052"></line>
-    <line x1="149.406" x2="149.406" y1="795" y2="800"></line>
-    <line x1="124.122" x2="124.122" y1="1221" y2="1226"></line>
-    <line x1="160.899" x2="160.899" y1="783" y2="788"></line>
-    <line x1="174.691" x2="174.691" y1="669" y2="674"></line>
-    <line x1="89.644" x2="89.644" y1="663" y2="668"></line>
-    <line x1="133.317" x2="133.317" y1="177" y2="182"></line>
-    <line x1="124.122" x2="124.122" y1="1023" y2="1028"></line>
-    <line x1="110.331" x2="110.331" y1="129" y2="134"></line>
-    <line x1="110.331" x2="110.331" y1="201" y2="206"></line>
-    <line x1="135.615" x2="135.615" y1="627" y2="632"></line>
-    <line x1="151.705" x2="151.705" y1="909" y2="914"></line>
-    <line x1="137.914" x2="137.914" y1="1233" y2="1238"></line>
-    <line x1="176.989" x2="176.989" y1="1089" y2="1094"></line>
-    <line x1="197.676" x2="197.676" y1="327" y2="332"></line>
+    <line x1="202.734" x2="202.734" y1="365.297" y2="370.555"></line>
+    <line x1="186.043" x2="186.043" y1="616.528" y2="621.787"></line>
+    <line x1="194.388" x2="194.388" y1="213.39" y2="218.648"></line>
+    <line x1="244.46" x2="244.46" y1="715.852" y2="721.111"></line>
+    <line x1="215.252" x2="215.252" y1="844.389" y2="849.648"></line>
+    <line x1="206.906" x2="206.906" y1="79.01" y2="84.268"></line>
+    <line x1="211.079" x2="211.079" y1="1177.417" y2="1182.675"></line>
+    <line x1="138.058" x2="138.058" y1="376.982" y2="382.24"></line>
+    <line x1="161.007" x2="161.007" y1="178.334" y2="183.592"></line>
+    <line x1="286.187" x2="286.187" y1="523.047" y2="528.305"></line>
+    <line x1="206.906" x2="206.906" y1="417.88" y2="423.139"></line>
+    <line x1="190.216" x2="190.216" y1="1183.259" y2="1188.518"></line>
+    <line x1="202.734" x2="202.734" y1="943.713" y2="948.972"></line>
+    <line x1="229.856" x2="229.856" y1="347.769" y2="353.028"></line>
+    <line x1="169.353" x2="169.353" y1="698.324" y2="703.583"></line>
+    <line x1="265.324" x2="265.324" y1="926.185" y2="931.444"></line>
+    <line x1="196.475" x2="196.475" y1="1043.037" y2="1048.296"></line>
+    <line x1="188.129" x2="188.129" y1="32.269" y2="37.528"></line>
+    <line x1="223.597" x2="223.597" y1="318.556" y2="323.815"></line>
+    <line x1="211.079" x2="211.079" y1="809.334" y2="814.592"></line>
+    <line x1="186.043" x2="186.043" y1="324.399" y2="329.657"></line>
+    <line x1="223.597" x2="223.597" y1="967.084" y2="972.342"></line>
+    <line x1="225.683" x2="225.683" y1="254.288" y2="259.546"></line>
+    <line x1="202.734" x2="202.734" y1="563.945" y2="569.203"></line>
+    <line x1="213.165" x2="213.165" y1="826.861" y2="832.12"></line>
+    <line x1="211.079" x2="211.079" y1="1066.408" y2="1071.666"></line>
+    <line x1="173.525" x2="173.525" y1="447.093" y2="452.352"></line>
+    <line x1="194.388" x2="194.388" y1="20.584" y2="25.843"></line>
+    <line x1="215.252" x2="215.252" y1="90.695" y2="95.954"></line>
+    <line x1="186.043" x2="186.043" y1="628.213" y2="633.472"></line>
+    <line x1="198.561" x2="198.561" y1="102.38" y2="107.639"></line>
+    <line x1="206.906" x2="206.906" y1="821.019" y2="826.277"></line>
+    <line x1="202.734" x2="202.734" y1="949.556" y2="954.814"></line>
+    <line x1="177.698" x2="177.698" y1="517.204" y2="522.463"></line>
+    <line x1="223.597" x2="223.597" y1="505.519" y2="510.777"></line>
+    <line x1="190.216" x2="190.216" y1="593.158" y2="598.416"></line>
+    <line x1="156.835" x2="156.835" y1="114.066" y2="119.324"></line>
+    <line x1="148.489" x2="148.489" y1="353.612" y2="358.87"></line>
+    <line x1="223.597" x2="223.597" y1="902.815" y2="908.073"></line>
+    <line x1="202.734" x2="202.734" y1="172.492" y2="177.75"></line>
+    <line x1="242.374" x2="242.374" y1="429.565" y2="434.824"></line>
+    <line x1="215.252" x2="215.252" y1="312.714" y2="317.972"></line>
+    <line x1="194.388" x2="194.388" y1="972.926" y2="978.184"></line>
+    <line x1="254.892" x2="254.892" y1="680.797" y2="686.055"></line>
+    <line x1="248.633" x2="248.633" y1="528.889" y2="534.148"></line>
+    <line x1="194.388" x2="194.388" y1="937.871" y2="943.129"></line>
+    <line x1="221.511" x2="221.511" y1="301.028" y2="306.287"></line>
+    <line x1="211.079" x2="211.079" y1="996.296" y2="1001.555"></line>
+    <line x1="202.734" x2="202.734" y1="96.538" y2="101.796"></line>
+    <line x1="223.597" x2="223.597" y1="55.64" y2="60.898"></line>
+    <line x1="183.957" x2="183.957" y1="920.343" y2="925.601"></line>
+    <line x1="202.734" x2="202.734" y1="394.51" y2="399.768"></line>
+    <line x1="194.388" x2="194.388" y1="955.398" y2="960.657"></line>
+    <line x1="131.799" x2="131.799" y1="1118.991" y2="1124.249"></line>
+    <line x1="231.942" x2="231.942" y1="1136.519" y2="1141.777"></line>
+    <line x1="169.353" x2="169.353" y1="552.26" y2="557.518"></line>
+    <line x1="229.856" x2="229.856" y1="639.899" y2="645.157"></line>
+    <line x1="192.302" x2="192.302" y1="581.473" y2="586.731"></line>
+    <line x1="192.302" x2="192.302" y1="704.167" y2="709.425"></line>
+    <line x1="165.18" x2="165.18" y1="669.112" y2="674.37"></line>
+    <line x1="173.525" x2="173.525" y1="645.741" y2="651"></line>
+    <line x1="154.748" x2="154.748" y1="885.287" y2="890.546"></line>
+    <line x1="223.597" x2="223.597" y1="540.575" y2="545.833"></line>
+    <line x1="198.561" x2="198.561" y1="1142.361" y2="1147.62"></line>
+    <line x1="211.079" x2="211.079" y1="1194.944" y2="1200.203"></line>
+    <line x1="173.525" x2="173.525" y1="587.315" y2="592.574"></line>
+    <line x1="181.871" x2="181.871" y1="1124.833" y2="1130.092"></line>
+    <line x1="161.007" x2="161.007" y1="604.843" y2="610.101"></line>
+    <line x1="190.216" x2="190.216" y1="242.603" y2="247.861"></line>
+    <line x1="198.561" x2="198.561" y1="727.537" y2="732.796"></line>
+    <line x1="215.252" x2="215.252" y1="452.936" y2="458.194"></line>
+    <line x1="202.734" x2="202.734" y1="534.732" y2="539.99"></line>
+    <line x1="206.906" x2="206.906" y1="575.63" y2="580.888"></line>
+    <line x1="190.216" x2="190.216" y1="1048.88" y2="1054.138"></line>
+    <line x1="202.734" x2="202.734" y1="108.223" y2="113.481"></line>
+    <line x1="227.77" x2="227.77" y1="499.676" y2="504.935"></line>
+    <line x1="200.647" x2="200.647" y1="43.955" y2="49.213"></line>
+    <line x1="211.079" x2="211.079" y1="441.251" y2="446.509"></line>
+    <line x1="177.698" x2="177.698" y1="271.816" y2="277.074"></line>
+    <line x1="198.561" x2="198.561" y1="1171.574" y2="1176.832"></line>
+    <line x1="256.978" x2="256.978" y1="762.593" y2="767.851"></line>
+    <line x1="240.288" x2="240.288" y1="1019.667" y2="1024.925"></line>
+    <line x1="194.388" x2="194.388" y1="190.019" y2="195.278"></line>
+    <line x1="188.129" x2="188.129" y1="388.667" y2="393.926"></line>
+    <line x1="190.216" x2="190.216" y1="1165.732" y2="1170.99"></line>
+    <line x1="198.561" x2="198.561" y1="154.964" y2="160.222"></line>
+    <line x1="215.252" x2="215.252" y1="1002.139" y2="1007.397"></line>
+    <line x1="202.734" x2="202.734" y1="265.973" y2="271.231"></line>
+    <line x1="196.475" x2="196.475" y1="961.241" y2="966.499"></line>
+    <line x1="198.561" x2="198.561" y1="84.853" y2="90.111"></line>
+    <line x1="202.734" x2="202.734" y1="119.908" y2="125.167"></line>
+    <line x1="165.18" x2="165.18" y1="599" y2="604.259"></line>
+    <line x1="215.252" x2="215.252" y1="1060.565" y2="1065.823"></line>
+    <line x1="202.734" x2="202.734" y1="908.658" y2="913.916"></line>
+    <line x1="161.007" x2="161.007" y1="341.927" y2="347.185"></line>
+    <line x1="192.302" x2="192.302" y1="1154.046" y2="1159.305"></line>
+    <line x1="148.489" x2="148.489" y1="797.648" y2="802.907"></line>
+    <line x1="177.698" x2="177.698" y1="482.149" y2="487.407"></line>
+    <line x1="223.597" x2="223.597" y1="371.14" y2="376.398"></line>
+    <line x1="219.424" x2="219.424" y1="984.611" y2="989.87"></line>
+    <line x1="181.871" x2="181.871" y1="67.325" y2="72.583"></line>
+    <line x1="202.734" x2="202.734" y1="861.917" y2="867.175"></line>
+    <line x1="161.007" x2="161.007" y1="873.602" y2="878.86"></line>
+    <line x1="140.144" x2="140.144" y1="1083.935" y2="1089.194"></line>
+    <line x1="231.942" x2="231.942" y1="382.825" y2="388.083"></line>
+    <line x1="198.561" x2="198.561" y1="470.464" y2="475.722"></line>
+    <line x1="211.079" x2="211.079" y1="832.704" y2="837.962"></line>
+    <line x1="215.252" x2="215.252" y1="61.482" y2="66.741"></line>
+    <line x1="173.525" x2="173.525" y1="1095.62" y2="1100.879"></line>
+    <line x1="181.871" x2="181.871" y1="978.769" y2="984.027"></line>
+    <line x1="173.525" x2="173.525" y1="1107.306" y2="1112.564"></line>
+    <line x1="271.583" x2="271.583" y1="295.186" y2="300.444"></line>
+    <line x1="231.942" x2="231.942" y1="143.279" y2="148.537"></line>
+    <line x1="219.424" x2="219.424" y1="1089.778" y2="1095.036"></line>
+    <line x1="165.18" x2="165.18" y1="710.01" y2="715.268"></line>
+    <line x1="169.353" x2="169.353" y1="336.084" y2="341.342"></line>
+    <line x1="161.007" x2="161.007" y1="464.621" y2="469.879"></line>
+    <line x1="163.094" x2="163.094" y1="745.065" y2="750.324"></line>
+    <line x1="242.374" x2="242.374" y1="1101.463" y2="1106.721"></line>
+    <line x1="211.079" x2="211.079" y1="306.871" y2="312.129"></line>
+    <line x1="186.043" x2="186.043" y1="236.76" y2="242.018"></line>
+    <line x1="211.079" x2="211.079" y1="756.75" y2="762.009"></line>
+    <line x1="156.835" x2="156.835" y1="1224.157" y2="1229.416"></line>
+    <line x1="215.252" x2="215.252" y1="1130.676" y2="1135.934"></line>
+    <line x1="177.698" x2="177.698" y1="289.343" y2="294.602"></line>
+    <line x1="154.748" x2="154.748" y1="160.806" y2="166.065"></line>
+    <line x1="236.115" x2="236.115" y1="195.862" y2="201.12"></line>
+    <line x1="227.77" x2="227.77" y1="546.417" y2="551.676"></line>
+    <line x1="204.82" x2="204.82" y1="487.991" y2="493.25"></line>
+    <line x1="161.007" x2="161.007" y1="932.028" y2="937.286"></line>
+    <line x1="181.871" x2="181.871" y1="733.38" y2="738.638"></line>
+    <line x1="163.094" x2="163.094" y1="692.482" y2="697.74"></line>
+    <line x1="238.201" x2="238.201" y1="406.195" y2="411.453"></line>
+    <line x1="169.353" x2="169.353" y1="1025.509" y2="1030.768"></line>
+    <line x1="161.007" x2="161.007" y1="634.056" y2="639.314"></line>
+    <line x1="152.662" x2="152.662" y1="780.121" y2="785.379"></line>
+    <line x1="186.043" x2="186.043" y1="867.76" y2="873.018"></line>
+    <line x1="183.957" x2="183.957" y1="569.788" y2="575.046"></line>
+    <line x1="244.46" x2="244.46" y1="423.723" y2="428.981"></line>
+    <line x1="215.252" x2="215.252" y1="750.908" y2="756.166"></line>
+    <line x1="221.511" x2="221.511" y1="1078.093" y2="1083.351"></line>
+    <line x1="161.007" x2="161.007" y1="166.649" y2="171.907"></line>
+    <line x1="125.54" x2="125.54" y1="230.917" y2="236.176"></line>
+    <line x1="223.597" x2="223.597" y1="850.232" y2="855.49"></line>
+    <line x1="148.489" x2="148.489" y1="260.13" y2="265.389"></line>
+    <line x1="179.784" x2="179.784" y1="248.445" y2="253.704"></line>
+    <line x1="158.921" x2="158.921" y1="435.408" y2="440.666"></line>
+    <line x1="215.252" x2="215.252" y1="476.306" y2="481.564"></line>
+    <line x1="200.647" x2="200.647" y1="73.168" y2="78.426"></line>
+    <line x1="190.216" x2="190.216" y1="1218.315" y2="1223.573"></line>
+    <line x1="186.043" x2="186.043" y1="1189.102" y2="1194.36"></line>
+    <line x1="206.906" x2="206.906" y1="458.778" y2="464.037"></line>
+    <line x1="269.496" x2="269.496" y1="149.121" y2="154.38"></line>
+    <line x1="161.007" x2="161.007" y1="1206.63" y2="1211.888"></line>
+    <line x1="215.252" x2="215.252" y1="768.436" y2="773.694"></line>
+    <line x1="190.216" x2="190.216" y1="26.427" y2="31.685"></line>
+    <line x1="152.662" x2="152.662" y1="1037.195" y2="1042.453"></line>
+    <line x1="238.201" x2="238.201" y1="990.454" y2="995.712"></line>
+    <line x1="211.079" x2="211.079" y1="131.593" y2="136.852"></line>
+    <line x1="171.439" x2="171.439" y1="493.834" y2="499.092"></line>
+    <line x1="215.252" x2="215.252" y1="558.102" y2="563.361"></line>
+    <line x1="194.388" x2="194.388" y1="225.075" y2="230.333"></line>
+    <line x1="206.906" x2="206.906" y1="49.797" y2="55.056"></line>
+    <line x1="263.237" x2="263.237" y1="125.751" y2="131.009"></line>
+    <line x1="173.525" x2="173.525" y1="686.639" y2="691.898"></line>
+    <line x1="161.007" x2="161.007" y1="879.445" y2="884.703"></line>
+    <line x1="194.388" x2="194.388" y1="201.704" y2="206.963"></line>
+    <line x1="144.317" x2="144.317" y1="914.5" y2="919.759"></line>
+    <line x1="215.252" x2="215.252" y1="674.954" y2="680.212"></line>
+    <line x1="181.871" x2="181.871" y1="739.223" y2="744.481"></line>
+    <line x1="156.835" x2="156.835" y1="803.491" y2="808.749"></line>
+    <line x1="177.698" x2="177.698" y1="610.686" y2="615.944"></line>
+    <line x1="177.698" x2="177.698" y1="283.501" y2="288.759"></line>
+    <line x1="188.129" x2="188.129" y1="511.362" y2="516.62"></line>
+    <line x1="188.129" x2="188.129" y1="400.352" y2="405.611"></line>
+    <line x1="165.18" x2="165.18" y1="277.658" y2="282.916"></line>
+    <line x1="198.561" x2="198.561" y1="891.13" y2="896.388"></line>
+    <line x1="148.489" x2="148.489" y1="791.806" y2="797.064"></line>
+    <line x1="215.252" x2="215.252" y1="838.547" y2="843.805"></line>
+    <line x1="204.82" x2="204.82" y1="359.454" y2="364.713"></line>
+    <line x1="169.353" x2="169.353" y1="38.112" y2="43.37"></line>
+    <line x1="211.079" x2="211.079" y1="1148.204" y2="1153.462"></line>
+    <line x1="236.115" x2="236.115" y1="1054.722" y2="1059.981"></line>
+    <line x1="190.216" x2="190.216" y1="219.232" y2="224.491"></line>
+    <line x1="173.525" x2="173.525" y1="815.176" y2="820.435"></line>
+    <line x1="219.424" x2="219.424" y1="856.074" y2="861.333"></line>
+    <line x1="161.007" x2="161.007" y1="1031.352" y2="1036.61"></line>
+    <line x1="175.612" x2="175.612" y1="785.963" y2="791.222"></line>
+    <line x1="152.662" x2="152.662" y1="1200.787" y2="1206.045"></line>
+    <line x1="186.043" x2="186.043" y1="774.278" y2="779.536"></line>
+    <line x1="198.561" x2="198.561" y1="663.269" y2="668.527"></line>
+    <line x1="121.367" x2="121.367" y1="657.426" y2="662.685"></line>
+    <line x1="161.007" x2="161.007" y1="184.177" y2="189.435"></line>
+    <line x1="152.662" x2="152.662" y1="1007.982" y2="1013.24"></line>
+    <line x1="140.144" x2="140.144" y1="137.436" y2="142.694"></line>
+    <line x1="140.144" x2="140.144" y1="207.547" y2="212.805"></line>
+    <line x1="163.094" x2="163.094" y1="622.371" y2="627.629"></line>
+    <line x1="177.698" x2="177.698" y1="896.972" y2="902.231"></line>
+    <line x1="165.18" x2="165.18" y1="1212.472" y2="1217.731"></line>
+    <line x1="200.647" x2="200.647" y1="1072.25" y2="1077.508"></line>
+    <line x1="219.424" x2="219.424" y1="330.241" y2="335.5"></line>
   </g>
 </svg>

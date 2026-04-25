@@ -15,20 +15,20 @@
   </style>
   <defs>
     <clipPath id="plot-rid-1">
-      <rect x="0" y="0" width="639" height="59"></rect>
+      <rect x="20" y="0" width="600" height="30"></rect>
     </clipPath>
   </defs>
-  <g aria-label="x-axis" transform="translate(0,59)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
-    <line x1="0" x2="639" stroke="currentColor"></line>
-    <g transform="translate(13,0)">
+  <g aria-label="x-axis" transform="translate(0,30)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+    <line x1="20" x2="620" stroke="currentColor"></line>
+    <g transform="translate(31,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2012-11-04</text>
     </g>
-    <g transform="translate(117,0)">
+    <g transform="translate(129,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2013-11-03</text>
     </g>
-    <g transform="translate(221,0)">
+    <g transform="translate(227,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2014-11-02</text>
     </g>
@@ -36,21 +36,21 @@
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2015-11-01</text>
     </g>
-    <g transform="translate(429,0)">
+    <g transform="translate(423,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2016-10-30</text>
     </g>
-    <g transform="translate(533,0)">
+    <g transform="translate(521,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2017-10-29</text>
     </g>
   </g>
   <g aria-label="bar" fill="currentColor">
-    <rect x="13" y="0" width="94" height="59"><title>Sun May 12 2013 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="117" y="0" width="94" height="59"><title>Sun Nov 03 2013 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="221" y="0" width="94" height="59"><title>Sun Nov 02 2014 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="325" y="0" width="94" height="59"><title>Sun Nov 01 2015 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
-    <rect x="429" y="0" width="94" height="59"><title>Sun Oct 30 2016 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
-    <rect x="533" y="0" width="94" height="59"><title>Sun Oct 29 2017 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
+    <rect x="31" y="0" width="88" height="30"><title>Sun May 12 2013 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
+    <rect x="129" y="0" width="88" height="30"><title>Sun Nov 03 2013 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
+    <rect x="227" y="0" width="88" height="30"><title>Sun Nov 02 2014 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
+    <rect x="325" y="0" width="88" height="30"><title>Sun Nov 01 2015 16:00:00 GMT-0800 (Pacific Standard Time)</title></rect>
+    <rect x="423" y="0" width="88" height="30"><title>Sun Oct 30 2016 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
+    <rect x="521" y="0" width="88" height="30"><title>Sun Oct 29 2017 17:00:00 GMT-0700 (Pacific Daylight Time)</title></rect>
   </g>
 </svg>

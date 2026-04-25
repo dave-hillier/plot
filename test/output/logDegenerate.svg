@@ -14,85 +14,85 @@
     }
   </style>
   <defs>
-    <clipPath id="_r_17t_">
-      <rect x="0" y="0" width="639" height="59"></rect>
+    <clipPath id="plot-rid-1">
+      <rect x="20" y="0" width="600" height="30"></rect>
     </clipPath>
   </defs>
-  <g aria-label="x-axis" transform="translate(0,59)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
-    <line x1="0" x2="639" stroke="currentColor"></line>
-    <g transform="translate(0,0)">
+  <g aria-label="x-axis" transform="translate(0,30)" fill="none" font-size="10" font-variant="tabular-nums" text-anchor="middle">
+    <line x1="20" x2="620" stroke="currentColor"></line>
+    <g transform="translate(20,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">100m</text>
     </g>
-    <g transform="translate(96.179,0)">
+    <g transform="translate(110.309,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">200m</text>
     </g>
-    <g transform="translate(152.44,0)">
+    <g transform="translate(163.136,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">300m</text>
     </g>
-    <g transform="translate(192.358,0)">
+    <g transform="translate(200.618,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">400m</text>
     </g>
-    <g transform="translate(223.321,0)">
+    <g transform="translate(229.691,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">500m</text>
     </g>
-    <g transform="translate(248.619,0)">
+    <g transform="translate(253.445,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor"></text>
     </g>
-    <g transform="translate(270.009,0)">
+    <g transform="translate(273.529,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor"></text>
     </g>
-    <g transform="translate(288.537,0)">
+    <g transform="translate(290.927,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor"></text>
     </g>
-    <g transform="translate(304.88,0)">
+    <g transform="translate(306.273,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor"></text>
     </g>
-    <g transform="translate(319.5,0)">
+    <g transform="translate(320,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">1</text>
     </g>
-    <g transform="translate(415.679,0)">
+    <g transform="translate(410.309,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">2</text>
     </g>
-    <g transform="translate(471.94,0)">
+    <g transform="translate(463.136,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">3</text>
     </g>
-    <g transform="translate(511.858,0)">
+    <g transform="translate(500.618,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">4</text>
     </g>
-    <g transform="translate(542.821,0)">
+    <g transform="translate(529.691,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">5</text>
     </g>
-    <g transform="translate(568.119,0)">
+    <g transform="translate(553.445,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor"></text>
     </g>
-    <g transform="translate(589.509,0)">
+    <g transform="translate(573.529,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor"></text>
     </g>
-    <g transform="translate(608.037,0)">
+    <g transform="translate(590.927,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor"></text>
     </g>
-    <g transform="translate(624.38,0)">
+    <g transform="translate(606.273,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor"></text>
     </g>
-    <g transform="translate(639,0)">
+    <g transform="translate(620,0)">
       <line y2="6" stroke="currentColor"></line>
       <text y="9" dy="0.71em" fill="currentColor">10</text>
     </g>
