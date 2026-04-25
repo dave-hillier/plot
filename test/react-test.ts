@@ -1059,7 +1059,17 @@ describe("Implicit axis detection", () => {
 import jsdomit from "./jsdom.js";
 import ReactDOM from "react-dom/client";
 import {act} from "react";
-import {validatePlot} from "../src/react/__validate.js";
+import {
+  validatePlot,
+  validateGeo,
+  validateGeoData,
+  validateHexgrid,
+  validateBarY,
+  validateBarX,
+  validateRectY,
+  validateCellY,
+  validateCell
+} from "../src/react/__validate.js";
 
 describe("New Plot contract (Unit 1)", () => {
   jsdomit("renders a Frame mark via the new useMark contract", async () => {
@@ -1081,5 +1091,127 @@ describe("New Plot contract (Unit 1)", () => {
       root.unmount();
     });
     container.remove();
+  });
+
+  jsdomit("renders Sphere + Graticule via the new useMark contract (Unit 8)", async () => {
+    const container = (globalThis as any).document.createElement("div");
+    (globalThis as any).document.body.appendChild(container);
+    let root: any;
+    await act(async () => {
+      root = ReactDOM.createRoot(container);
+      root.render(validateGeo());
+    });
+    await act(async () => {});
+    const svgs = container.querySelectorAll("svg");
+    assert.strictEqual(svgs.length, 1, "expected exactly one <svg>");
+    const paths = svgs[0].querySelectorAll("path");
+    assert.ok(paths.length >= 2, "expected at least two <path> (sphere + graticule)");
+    await act(async () => {
+      root.unmount();
+    });
+    container.remove();
+  });
+
+  jsdomit("renders Geo with data via the new useMark contract (Unit 8)", async () => {
+    const container = (globalThis as any).document.createElement("div");
+    (globalThis as any).document.body.appendChild(container);
+    let root: any;
+    await act(async () => {
+      root = ReactDOM.createRoot(container);
+      root.render(validateGeoData());
+    });
+    await act(async () => {});
+    const svgs = container.querySelectorAll("svg");
+    assert.strictEqual(svgs.length, 1, "expected exactly one <svg>");
+    await act(async () => {
+      root.unmount();
+    });
+    container.remove();
+  });
+
+  jsdomit("renders Hexgrid via the new useMark contract (Unit 8)", async () => {
+    const container = (globalThis as any).document.createElement("div");
+    (globalThis as any).document.body.appendChild(container);
+    let root: any;
+    await act(async () => {
+      root = ReactDOM.createRoot(container);
+      root.render(validateHexgrid());
+    });
+    await act(async () => {});
+    const svgs = container.querySelectorAll("svg");
+    assert.strictEqual(svgs.length, 1, "expected exactly one <svg>");
+    const paths = svgs[0].querySelectorAll("path");
+    assert.ok(paths.length >= 1, "expected at least one <path> from hexgrid");
+    await act(async () => {
+      root.unmount();
+    });
+    container.remove();
+  });
+});
+
+async function renderUnit3(element: any) {
+  const container = (globalThis as any).document.createElement("div");
+  (globalThis as any).document.body.appendChild(container);
+  let root: any;
+  await act(async () => {
+    root = ReactDOM.createRoot(container);
+    root.render(element);
+  });
+  await act(async () => {});
+  return {
+    container,
+    cleanup: async () => {
+      await act(async () => {
+        root.unmount();
+      });
+      container.remove();
+    }
+  };
+}
+
+describe("Bar/Rect/Cell new contract (Unit 3)", () => {
+  jsdomit("renders BarY via the imperative façade", async () => {
+    const {container, cleanup} = await renderUnit3(validateBarY());
+    const svgs = container.querySelectorAll("svg");
+    assert.strictEqual(svgs.length, 1, "expected exactly one <svg>");
+    const rects = svgs[0].querySelectorAll("rect");
+    assert.ok(rects.length >= 3, `expected at least 3 <rect> for BarY, got ${rects.length}`);
+    await cleanup();
+  });
+
+  jsdomit("renders BarX via the imperative façade", async () => {
+    const {container, cleanup} = await renderUnit3(validateBarX());
+    const svgs = container.querySelectorAll("svg");
+    assert.strictEqual(svgs.length, 1);
+    const rects = svgs[0].querySelectorAll("rect");
+    assert.ok(rects.length >= 2, `expected at least 2 <rect> for BarX, got ${rects.length}`);
+    await cleanup();
+  });
+
+  jsdomit("renders RectY via the imperative façade", async () => {
+    const {container, cleanup} = await renderUnit3(validateRectY());
+    const svgs = container.querySelectorAll("svg");
+    assert.strictEqual(svgs.length, 1);
+    const rects = svgs[0].querySelectorAll("rect");
+    assert.ok(rects.length >= 5, `expected at least 5 <rect> for RectY, got ${rects.length}`);
+    await cleanup();
+  });
+
+  jsdomit("renders CellY via the imperative façade", async () => {
+    const {container, cleanup} = await renderUnit3(validateCellY());
+    const svgs = container.querySelectorAll("svg");
+    assert.strictEqual(svgs.length, 1);
+    const rects = svgs[0].querySelectorAll("rect");
+    assert.ok(rects.length >= 4, `expected at least 4 <rect> for CellY, got ${rects.length}`);
+    await cleanup();
+  });
+
+  jsdomit("renders Cell via the imperative façade", async () => {
+    const {container, cleanup} = await renderUnit3(validateCell());
+    const svgs = container.querySelectorAll("svg");
+    assert.strictEqual(svgs.length, 1);
+    const rects = svgs[0].querySelectorAll("rect");
+    assert.ok(rects.length >= 2, `expected at least 2 <rect> for Cell, got ${rects.length}`);
+    await cleanup();
   });
 });
