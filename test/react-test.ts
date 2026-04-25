@@ -1089,7 +1089,10 @@ import {
   validateLinearRegressionY,
   validateBoxY,
   validateTreeMark,
-  validateAuto
+  validateAuto,
+  validateDensity,
+  validateContour,
+  validateRaster
 } from "../src/react/__validate.js";
 
 async function renderAndQuery(element: any) {
@@ -1560,6 +1563,65 @@ describe("Box/Tree/Auto façades (Unit 11)", () => {
     const drawn = svg.querySelectorAll("path, circle, rect, line");
     assert.ok(drawn.length >= 1, `expected at least one drawn element, got ${drawn.length}`);
     await act(async () => root.unmount());
+    container.remove();
+  });
+});
+
+describe("Unit 12: Density, Contour, Raster façades", () => {
+  jsdomit("renders Density as paths via the imperative density() factory", async () => {
+    const container = (globalThis as any).document.createElement("div");
+    (globalThis as any).document.body.appendChild(container);
+    let root: any;
+    await act(async () => {
+      root = ReactDOM.createRoot(container);
+      root.render(validateDensity());
+    });
+    await act(async () => {});
+    const svgs = container.querySelectorAll("svg");
+    assert.strictEqual(svgs.length, 1, "expected exactly one <svg>");
+    const paths = svgs[0].querySelectorAll("path");
+    assert.ok(paths.length >= 1, "expected at least one density <path>");
+    await act(async () => {
+      root.unmount();
+    });
+    container.remove();
+  });
+
+  jsdomit("renders Contour as paths via the imperative contour() factory", async () => {
+    const container = (globalThis as any).document.createElement("div");
+    (globalThis as any).document.body.appendChild(container);
+    let root: any;
+    await act(async () => {
+      root = ReactDOM.createRoot(container);
+      root.render(validateContour());
+    });
+    await act(async () => {});
+    const svgs = container.querySelectorAll("svg");
+    assert.strictEqual(svgs.length, 1, "expected exactly one <svg>");
+    const paths = svgs[0].querySelectorAll("path");
+    assert.ok(paths.length >= 1, "expected at least one contour <path>");
+    await act(async () => {
+      root.unmount();
+    });
+    container.remove();
+  });
+
+  jsdomit("renders Raster as an <image> via the imperative raster() factory", async () => {
+    const container = (globalThis as any).document.createElement("div");
+    (globalThis as any).document.body.appendChild(container);
+    let root: any;
+    await act(async () => {
+      root = ReactDOM.createRoot(container);
+      root.render(validateRaster());
+    });
+    await act(async () => {});
+    const svgs = container.querySelectorAll("svg");
+    assert.strictEqual(svgs.length, 1, "expected exactly one <svg>");
+    const images = svgs[0].querySelectorAll("image");
+    assert.ok(images.length >= 1, "expected at least one <image> element (canvas pipeline)");
+    await act(async () => {
+      root.unmount();
+    });
     container.remove();
   });
 });
