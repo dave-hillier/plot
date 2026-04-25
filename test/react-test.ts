@@ -1059,7 +1059,7 @@ describe("Implicit axis detection", () => {
 import jsdomit from "./jsdom.js";
 import ReactDOM from "react-dom/client";
 import {act} from "react";
-import {validatePlot} from "../src/react/__validate.js";
+import {validatePlot, validateDot, validateDotPointer} from "../src/react/__validate.js";
 
 describe("New Plot contract (Unit 1)", () => {
   jsdomit("renders a Frame mark via the new useMark contract", async () => {
@@ -1077,6 +1077,51 @@ describe("New Plot contract (Unit 1)", () => {
     assert.ok(rects.length >= 1, "expected at least one <rect>");
     const stroke = rects[0].getAttribute("stroke");
     assert.strictEqual(stroke, "black");
+    await act(async () => {
+      root.unmount();
+    });
+    container.remove();
+  });
+});
+
+describe("Dot façade (Unit 5)", () => {
+  jsdomit("renders Dot via the new useMark contract", async () => {
+    const container = (globalThis as any).document.createElement("div");
+    (globalThis as any).document.body.appendChild(container);
+    let root: any;
+    await act(async () => {
+      root = ReactDOM.createRoot(container);
+      root.render(validateDot());
+    });
+    await act(async () => {});
+    const svgs = container.querySelectorAll("svg");
+    assert.strictEqual(svgs.length, 1, "expected exactly one <svg>");
+    const circles = svgs[0].querySelectorAll("circle");
+    assert.ok(circles.length >= 3, `expected at least 3 <circle> elements; got ${circles.length}`);
+    // The imperative `dot()` factory applies stroke to the enclosing <g>, not
+    // each <circle>, via applyIndirectStyles.
+    const groupStroke = (circles[0].parentNode as Element)?.getAttribute("stroke");
+    assert.strictEqual(groupStroke, "red");
+    await act(async () => {
+      root.unmount();
+    });
+    container.remove();
+  });
+
+  jsdomit("renders Dot with spread pointer({...}) interaction", async () => {
+    const container = (globalThis as any).document.createElement("div");
+    (globalThis as any).document.body.appendChild(container);
+    let root: any;
+    await act(async () => {
+      root = ReactDOM.createRoot(container);
+      root.render(validateDotPointer());
+    });
+    await act(async () => {});
+    const svgs = container.querySelectorAll("svg");
+    assert.strictEqual(svgs.length, 1, "expected exactly one <svg>");
+    // pointer renders an empty initial state; the SVG should still mount.
+    const groups = svgs[0].querySelectorAll("g");
+    assert.ok(groups.length >= 1, "expected at least one <g>");
     await act(async () => {
       root.unmount();
     });
