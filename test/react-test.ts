@@ -1059,27 +1059,64 @@ describe("Implicit axis detection", () => {
 import jsdomit from "./jsdom.js";
 import ReactDOM from "react-dom/client";
 import {act} from "react";
-import {validatePlot} from "../src/react/__validate.js";
+import {validatePlot, validateGeo, validateGeoData, validateHexgrid} from "../src/react/__validate.js";
+
+async function renderAndQuery(element: any) {
+  const container = (globalThis as any).document.createElement("div");
+  (globalThis as any).document.body.appendChild(container);
+  let root: any;
+  await act(async () => {
+    root = ReactDOM.createRoot(container);
+    root.render(element);
+  });
+  await act(async () => {});
+  return {
+    container,
+    cleanup: async () => {
+      await act(async () => {
+        root.unmount();
+      });
+      container.remove();
+    }
+  };
+}
 
 describe("New Plot contract (Unit 1)", () => {
   jsdomit("renders a Frame mark via the new useMark contract", async () => {
-    const container = (globalThis as any).document.createElement("div");
-    (globalThis as any).document.body.appendChild(container);
-    let root: any;
-    await act(async () => {
-      root = ReactDOM.createRoot(container);
-      root.render(validatePlot());
-    });
-    await act(async () => {});
+    const {container, cleanup} = await renderAndQuery(validatePlot());
     const svgs = container.querySelectorAll("svg");
     assert.strictEqual(svgs.length, 1, "expected exactly one <svg>");
     const rects = svgs[0].querySelectorAll("rect");
     assert.ok(rects.length >= 1, "expected at least one <rect>");
     const stroke = rects[0].getAttribute("stroke");
     assert.strictEqual(stroke, "black");
-    await act(async () => {
-      root.unmount();
-    });
-    container.remove();
+    await cleanup();
+  });
+});
+
+describe("Geo/Hexgrid new contract (Unit 8)", () => {
+  jsdomit("renders Sphere + Graticule via the imperative façade", async () => {
+    const {container, cleanup} = await renderAndQuery(validateGeo());
+    const svgs = container.querySelectorAll("svg");
+    assert.strictEqual(svgs.length, 1, "expected exactly one <svg>");
+    const paths = svgs[0].querySelectorAll("path");
+    assert.ok(paths.length >= 2, `expected at least 2 <path> (sphere + graticule), got ${paths.length}`);
+    await cleanup();
+  });
+
+  jsdomit("renders Geo with data via the imperative façade", async () => {
+    const {container, cleanup} = await renderAndQuery(validateGeoData());
+    const svgs = container.querySelectorAll("svg");
+    assert.strictEqual(svgs.length, 1, "expected exactly one <svg>");
+    await cleanup();
+  });
+
+  jsdomit("renders Hexgrid via the imperative façade", async () => {
+    const {container, cleanup} = await renderAndQuery(validateHexgrid());
+    const svgs = container.querySelectorAll("svg");
+    assert.strictEqual(svgs.length, 1, "expected exactly one <svg>");
+    const paths = svgs[0].querySelectorAll("path");
+    assert.ok(paths.length >= 1, `expected at least one <path> from hexgrid, got ${paths.length}`);
+    await cleanup();
   });
 });
