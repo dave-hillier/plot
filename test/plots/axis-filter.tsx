@@ -1,0 +1,19 @@
+import {Plot, Dot, GridX, GridY, AxisX, AxisY} from "../../src/react/index.js";
+
+export async function axisFilter() {
+  return (
+    <Plot height={100}>
+      <Dot
+        data={[
+          ["A", 0],
+          ["B", 2],
+          [0, 1]
+        ]}
+      />
+      <GridX filter={(d) => d} />
+      <GridY filter={(d) => d} />
+      <AxisX filter={(d) => d} />
+      <AxisY filter={(d) => d} />
+    </Plot>
+  );
+}
