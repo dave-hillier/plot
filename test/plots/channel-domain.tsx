@@ -1,12 +1,13 @@
-import React from "react";
 import {Plot, BarX, TickX, groupY} from "../../src/react/index.js";
 import * as d3 from "d3";
 import type * as PlotType from "replot";
 
 async function countNationality(sort: PlotType.ChannelDomainSort) {
   const athletes = await d3.csv<any>("data/athletes.csv", d3.autoType);
-  return React.createElement(Plot, {},
-    React.createElement(BarX, {data: athletes, ...groupY({x: "count"}, {y: "nationality", sort})})
+  return (
+    <Plot>
+      <BarX data={athletes} {...groupY({x: "count"}, {y: "nationality", sort})} />
+    </Plot>
   );
 }
 
@@ -58,8 +59,10 @@ async function groupNationality(sort: PlotType.ChannelDomainSort) {
   const nationalities = d3.groups(athletes, (d) => d.nationality);
   const count = Object.assign(([, D]) => D.length, {label: "Frequency"});
   const key = Object.assign(([d]) => d, {label: "nationality"});
-  return React.createElement(Plot, {},
-    React.createElement(BarX, {data: nationalities, x: count, y: key, sort})
+  return (
+    <Plot>
+      <BarX data={nationalities} x={count} y={key} sort={sort} />
+    </Plot>
   );
 }
 
@@ -73,8 +76,10 @@ export async function channelDomainNullReverse() {
 
 async function weightNationality(sort: PlotType.ChannelDomainSort) {
   const athletes = await d3.csv<any>("data/athletes.csv", d3.autoType);
-  return React.createElement(Plot, {},
-    React.createElement(TickX, {data: athletes, x: "weight", y: "nationality", sort})
+  return (
+    <Plot>
+      <TickX data={athletes} x="weight" y="nationality" sort={sort} />
+    </Plot>
   );
 }
 

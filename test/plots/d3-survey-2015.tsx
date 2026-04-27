@@ -1,4 +1,3 @@
-import React from "react";
 import {Plot, BarX, RuleX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
@@ -22,31 +21,33 @@ export function chooseMany(responses, y, title) {
 }
 
 function bars(groups, title) {
-  return React.createElement(Plot, {
-      marginLeft: 300,
-      width: 960,
-      height: groups.length * 20 + 50,
-      x: {
+  return (
+    <Plot
+      marginLeft={300}
+      width={960}
+      height={groups.length * 20 + 50}
+      x={{
         grid: true,
         axis: "top",
         domain: [0, 100],
         label: "Frequency (%)",
         transform: (x) => x * 100
-      },
-      y: {
+      }}
+      y={{
         padding: 0,
         label: title,
         labelAnchor: "top"
-      }
-    },
-    React.createElement(BarX, {
-      data: groups,
-      x: ([, value]) => value,
-      y: ([key]) => key,
-      fill: "steelblue",
-      insetTop: 1,
-      sort: {y: "-x"}
-    }),
-    React.createElement(RuleX, {data: [0]})
+      }}
+    >
+      <BarX
+        data={groups}
+        x={([, value]) => value}
+        y={([key]) => key}
+        fill="steelblue"
+        insetTop={1}
+        sort={{y: "-x"}}
+      />
+      <RuleX data={[0]} />
+    </Plot>
   );
 }

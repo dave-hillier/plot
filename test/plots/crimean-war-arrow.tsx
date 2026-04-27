@@ -1,0 +1,14 @@
+import {Plot, RuleY, LineY} from "../../src/react/index.js";
+import * as d3 from "d3";
+
+export async function crimeanWarArrow() {
+  const crimea = await d3.csv<any>("data/crimean-war.csv", d3.autoType);
+  const causes = crimea.columns.slice(2);
+  const data = causes.flatMap((cause) => crimea.map(({date, [cause]: deaths}) => ({date, cause, deaths})));
+  return (
+    <Plot x={{tickFormat: "%b", label: null}}>
+      <RuleY data={[0]} />
+      <LineY data={data} x="date" y="deaths" stroke="cause" markerMid="arrow" />
+    </Plot>
+  );
+}

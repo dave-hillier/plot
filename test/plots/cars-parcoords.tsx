@@ -1,4 +1,3 @@
-import React from "react";
 import {Plot, RuleY, LineX, Text} from "../../src/react/index.js";
 import * as d3 from "d3";
 
@@ -28,37 +27,39 @@ export async function carsParcoords() {
       .map((value) => ({dimension, value}));
   });
 
-  return React.createElement(Plot, {
-      marginLeft: 104,
-      marginRight: 20,
-      x: {
+  return (
+    <Plot
+      marginLeft={104}
+      marginRight={20}
+      x={{
         axis: null
-      },
-      y: {
+      }}
+      y={{
         padding: 0.1,
         domain: dimensions,
         label: null,
         tickPadding: 9
-      }
-    },
-    React.createElement(RuleY, {data: dimensions}),
-    React.createElement(LineX, {
-      data: points,
-      x: (d) => scales.get(d.dimension)(d.value),
-      y: "dimension",
-      z: (d) => `${d.name}-${d.year}`,
-      stroke: "#444",
-      strokeWidth: 0.5,
-      strokeOpacity: 0.5
-    }),
-    React.createElement(Text, {
-      data: ticks,
-      x: (d) => scales.get(d.dimension)(d.value),
-      y: "dimension",
-      text: "value",
-      fill: "black",
-      stroke: "white",
-      strokeWidth: 3
-    })
+      }}
+    >
+      <RuleY data={dimensions} />
+      <LineX
+        data={points}
+        x={(d) => scales.get(d.dimension)(d.value)}
+        y="dimension"
+        z={(d) => `${d.name}-${d.year}`}
+        stroke="#444"
+        strokeWidth={0.5}
+        strokeOpacity={0.5}
+      />
+      <Text
+        data={ticks}
+        x={(d) => scales.get(d.dimension)(d.value)}
+        y="dimension"
+        text="value"
+        fill="black"
+        stroke="white"
+        strokeWidth={3}
+      />
+    </Plot>
   );
 }
