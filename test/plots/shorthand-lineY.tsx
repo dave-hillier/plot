@@ -1,4 +1,3 @@
-import React from "react";
 import {Plot, LineY, windowY} from "../../src/react/index.js";
 
 export async function shorthandLineY() {
@@ -7,8 +6,10 @@ export async function shorthandLineY() {
     177.25, 174.51, 172.0, 170.16, 165.53, 166.87, 167.17, 166.0, 159.1, 154.83, 163.09, 160.29, 157.07, 158.5, 161.95,
     163.04, 169.79, 172.36, 172.05, 172.83, 171.8, 173.67, 176.35, 179.1, 179.26
   ];
-  return React.createElement(Plot, {},
-    React.createElement(LineY, {data: numbers})
+  return (
+    <Plot>
+      <LineY data={numbers} />
+    </Plot>
   );
 }
 
@@ -18,7 +19,9 @@ export async function shorthandLineYWindow() {
     177.25, 174.51, 172.0, 170.16, 165.53, 166.87, 167.17, 166.0, 159.1, 154.83, 163.09, 160.29, 157.07, 158.5, 161.95,
     163.04, 169.79, 172.36, 172.05, 172.83, 171.8, 173.67, 176.35, 179.1, 179.26
   ];
-  return React.createElement(Plot, {},
-    React.createElement(LineY, {data: numbers, ...windowY(7)})
+  return (
+    <Plot>
+      <LineY data={numbers} {...windowY(7)} />
+    </Plot>
   );
 }

@@ -1,7 +1,6 @@
-import React from "react";
-import {Plot, Line} from "../../src/react/index.js";
+import {Plot, Dot} from "../../src/react/index.js";
 
-export async function shorthandLine() {
+export async function shorthandDot() {
   const timeSeries = [
     [new Date("2018-01-02"), 170.160004],
     [new Date("2018-01-03"), 172.529999],
@@ -44,7 +43,9 @@ export async function shorthandLine() {
     [new Date("2018-02-27"), 179.100006],
     [new Date("2018-02-28"), 179.259995]
   ];
-  return React.createElement(Plot, {},
-    React.createElement(Line, {data: timeSeries})
+  return (
+    <Plot>
+      <Dot data={timeSeries} />
+    </Plot>
   );
 }
