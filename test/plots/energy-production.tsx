@@ -1,4 +1,3 @@
-import React from "react";
 import {Plot, RectY, RuleY} from "../../src/react/index.js";
 import * as d3 from "d3";
 
@@ -31,20 +30,22 @@ export async function energyProduction() {
     .filter((d) => d.YYYYMM.slice(-2) === "13") // only take annual data
     .filter((d) => types.has(d.Description)) // don't double-count categories
     .map((d) => ({...d, Year: +d.YYYYMM.slice(0, 4), Value: +d.Value}));
-  return React.createElement(Plot, {
-      x: {
+  return (
+    <Plot
+      x={{
         tickFormat: "d",
         label: null
-      },
-      y: {
+      }}
+      y={{
         label: "Annual production (quads)"
-      },
-      color: {
+      }}
+      color={{
         tickFormat: (t) => types.get(t),
         legend: true
-      }
-    },
-    React.createElement(RectY, {data: energy, x: "Year", interval: 1, y: "Value", fill: "Description", sort: {color: "height"}}),
-    React.createElement(RuleY, {data: [0]})
+      }}
+    >
+      <RectY data={energy} x="Year" interval={1} y="Value" fill="Description" sort={{color: "height"}} />
+      <RuleY data={[0]} />
+    </Plot>
   );
 }

@@ -1,4 +1,3 @@
-import React from "react";
 import {Plot, Dot, transform} from "../../src/react/index.js";
 import * as d3 from "d3";
 
@@ -17,15 +16,17 @@ function sample(n, options) {
 
 export async function diamondsCaratSampling() {
   const data = await d3.csv<any>("data/diamonds.csv", d3.autoType);
-  return React.createElement(Plot, {marginLeft: 44},
-    React.createElement(Dot, {
-      data,
-      ...sample(2000, {
-        x: "carat",
-        y: "price",
-        r: 1,
-        fill: "currentColor"
-      })
-    })
+  return (
+    <Plot marginLeft={44}>
+      <Dot
+        data={data}
+        {...sample(2000, {
+          x: "carat",
+          y: "price",
+          r: 1,
+          fill: "currentColor"
+        })}
+      />
+    </Plot>
   );
 }
