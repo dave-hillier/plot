@@ -1,4 +1,3 @@
-import React from "react";
 import {Plot, AreaY, LineY, stackY} from "../../src/react/index.js";
 import * as d3 from "d3";
 
@@ -13,8 +12,10 @@ export async function stackNaN() {
       }
     }
   }
-  return React.createElement(Plot, {y: {grid: true, label: "Unemployed (thousands)", transform: (d: number) => d / 1000}},
-    React.createElement(AreaY, {data: industries, x: "date", y: "unemployed", fill: "industry", fillOpacity: 0.5}),
-    React.createElement(LineY, {data: industries, ...stackY({x: "date", y: "unemployed", stroke: "industry"})})
+  return (
+    <Plot y={{grid: true, label: "Unemployed (thousands)", transform: (d: number) => d / 1000}}>
+      <AreaY data={industries} x="date" y="unemployed" fill="industry" fillOpacity={0.5} />
+      <LineY data={industries} {...stackY({x: "date", y: "unemployed", stroke: "industry"})} />
+    </Plot>
   );
 }

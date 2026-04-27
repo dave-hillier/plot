@@ -1,4 +1,3 @@
-import React from "react";
 import {Plot, LineY, BarY, RuleY} from "../../src/react/index.js";
 import * as d3 from "d3";
 
@@ -15,16 +14,20 @@ async function getYearlyUnemployment() {
 
 export async function yearFormat() {
   const data = await getYearlyUnemployment();
-  return React.createElement(Plot, {},
-    React.createElement(LineY, {data, x: "year", y: "unemployed", stroke: "industry", marker: true, tip: true}),
-    React.createElement(RuleY, {data: [0]})
+  return (
+    <Plot>
+      <LineY data={data} x="year" y="unemployed" stroke="industry" marker={true} tip={true} />
+      <RuleY data={[0]} />
+    </Plot>
   );
 }
 
 export async function yearFormatOrdinal() {
   const data = await getYearlyUnemployment();
-  return React.createElement(Plot, {},
-    React.createElement(BarY, {data, x: "year", y: "unemployed", fill: "industry", tip: true}),
-    React.createElement(RuleY, {data: [0]})
+  return (
+    <Plot>
+      <BarY data={data} x="year" y="unemployed" fill="industry" tip={true} />
+      <RuleY data={[0]} />
+    </Plot>
   );
 }
