@@ -1,4 +1,3 @@
-import React from "react";
 import {Plot, Geo} from "../../src/react/index.js";
 import * as d3 from "d3";
 import {mesh} from "topojson-client";
@@ -10,18 +9,20 @@ export async function projectionFitUsAlbers() {
       mesh(us, filter48(us.objects.states), (a, b) => a === b),
       mesh(us, filter48(us.objects.counties), (a, b) => a !== b)
     ]);
-  return React.createElement(Plot, {
-      width: 960,
-      height: 600,
-      projection: {
+  return (
+    <Plot
+      width={960}
+      height={600}
+      projection={{
         type: "conic-equal-area",
         rotate: [96, 0],
         parallels: [29.5, 45.5],
         domain: conus
-      }
-    },
-    React.createElement(Geo, {data: conus, strokeWidth: 1.5}),
-    React.createElement(Geo, {data: countymesh, strokeOpacity: 0.1})
+      }}
+    >
+      <Geo data={conus} strokeWidth={1.5} />
+      <Geo data={countymesh} strokeOpacity={0.1} />
+    </Plot>
   );
 }
 

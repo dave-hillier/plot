@@ -1,4 +1,3 @@
-import React from "react";
 import {Plot, Graticule, Geo, Sphere} from "../../src/react/index.js";
 import * as d3 from "d3";
 import {feature} from "topojson-client";
@@ -6,17 +5,19 @@ import {feature} from "topojson-client";
 export async function projectionFitConic() {
   const world = await d3.json<any>("data/countries-110m.json");
   const land = feature(world, world.objects.land);
-  return React.createElement(Plot, {
-      width: 640,
-      height: 400,
-      projection: {
+  return (
+    <Plot
+      width={640}
+      height={400}
+      projection={{
         type: "conic-equal-area",
         parallels: [-42, -5],
         rotate: [60, 0]
-      }
-    },
-    React.createElement(Graticule, {}),
-    React.createElement(Geo, {data: land, fill: "currentColor"}),
-    React.createElement(Sphere, {})
+      }}
+    >
+      <Graticule />
+      <Geo data={land} fill="currentColor" />
+      <Sphere />
+    </Plot>
   );
 }
