@@ -1,4 +1,3 @@
-import React from "react";
 import {Plot, Tip, RuleX} from "../../src/react/index.js";
 
 function tip(
@@ -6,9 +5,11 @@ function tip(
   {x = 0, frameAnchor = "bottom", anchor = "bottom", ...tipOptions}: any = {},
   {height = 90, marks = [], ...plotOptions}: any = {}
 ) {
-  return React.createElement(Plot, {height, ...plotOptions},
-    ...marks,
-    React.createElement(Tip, {data, x, frameAnchor, anchor, ...tipOptions})
+  return (
+    <Plot height={height} {...plotOptions}>
+      {marks}
+      <Tip data={data} x={x} frameAnchor={frameAnchor} anchor={anchor} {...tipOptions} />
+    </Plot>
   );
 }
 
@@ -21,7 +22,7 @@ export async function tipFormatFacet() {
 }
 
 export async function tipFormatFacetFalse() {
-  return tip({length: 1}, {facet: false}, {marks: [React.createElement(RuleX, {data: {length: 2}, fx: ["a", "b"]})], height: 110});
+  return tip({length: 1}, {facet: false}, {marks: [<RuleX data={{length: 2}} fx={["a", "b"]} />], height: 110});
 }
 
 export async function tipFormatFacetFormat() {

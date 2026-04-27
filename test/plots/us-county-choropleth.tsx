@@ -1,4 +1,3 @@
-import React from "react";
 import {Plot, Geo} from "../../src/react/index.js";
 import * as d3 from "d3";
 import {feature, mesh} from "topojson-client";
@@ -10,11 +9,12 @@ export async function usCountyChoropleth() {
       .then((us) => [feature(us, us.objects.counties), mesh(us, us.objects.states, (a, b) => a !== b)]),
     d3.csv<any>("data/us-county-unemployment.csv").then((data) => new Map(data.map(({id, rate}) => [id, +rate])))
   ]);
-  return React.createElement(Plot, {
-      width: 960,
-      height: 600,
-      projection: "albers-usa",
-      color: {
+  return (
+    <Plot
+      width={960}
+      height={600}
+      projection="albers-usa"
+      color={{
         scheme: "purd",
         domain: [1, 10],
         type: "quantize",
@@ -22,9 +22,10 @@ export async function usCountyChoropleth() {
         unknown: "#ccc",
         legend: true,
         label: "Unemployment (%)"
-      }
-    },
-    React.createElement(Geo, {data: counties, fill: (d) => unemployment.get(d.id), title: "name"}),
-    React.createElement(Geo, {data: statemesh, stroke: "white"})
+      }}
+    >
+      <Geo data={counties} fill={(d) => unemployment.get(d.id)} title="name" />
+      <Geo data={statemesh} stroke="white" />
+    </Plot>
   );
 }

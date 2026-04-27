@@ -1,4 +1,3 @@
-import React from "react";
 import {Plot, RuleY, Dot, BarY, DotX, groupX} from "../../src/react/index.js";
 import * as Plot_ from "replot";
 import * as d3 from "d3";
@@ -81,68 +80,86 @@ export async function timeAxisRight() {
 
 export async function timeAxisExplicitInterval() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
-  return React.createElement(Plot, {x: {interval: "month"}},
-    React.createElement(RuleY, {data: [0]}),
-    React.createElement(Dot, {data: aapl, x: "Date", y: "Close"})
+  return (
+    <Plot x={{interval: "month"}}>
+      <RuleY data={[0]} />
+      <Dot data={aapl} x="Date" y="Close" />
+    </Plot>
   );
 }
 
 export async function timeAxisExplicitNonstandardInterval() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
-  return React.createElement(Plot, {x: {interval: "4 weeks"}},
-    React.createElement(RuleY, {data: [0]}),
-    React.createElement(Dot, {data: aapl, x: "Date", y: "Close"})
+  return (
+    <Plot x={{interval: "4 weeks"}}>
+      <RuleY data={[0]} />
+      <Dot data={aapl} x="Date" y="Close" />
+    </Plot>
   );
 }
 
 export async function timeAxisExplicitNonstandardIntervalTicks() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
-  return React.createElement(Plot, {x: {interval: "4 weeks", grid: true, ticks: "year"}},
-    React.createElement(RuleY, {data: [0]}),
-    React.createElement(Dot, {data: aapl, x: "Date", y: "Close"})
+  return (
+    <Plot x={{interval: "4 weeks", grid: true, ticks: "year"}}>
+      <RuleY data={[0]} />
+      <Dot data={aapl} x="Date" y="Close" />
+    </Plot>
   );
 }
 
 export async function timeAxisOrdinal() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
-  return React.createElement(Plot, {x: {interval: "month"}},
-    React.createElement(BarY, {data: aapl, ...groupX({y: "median", title: "min"}, {title: "Date", x: "Date", y: "Close"})})
+  return (
+    <Plot x={{interval: "month"}}>
+      <BarY data={aapl} {...groupX({y: "median", title: "min"}, {title: "Date", x: "Date", y: "Close"})} />
+    </Plot>
   );
 }
 
 export async function warnTimeAxisOrdinalIncompatible() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
-  return React.createElement(Plot, {x: {interval: "4 weeks", ticks: "year"}},
-    React.createElement(BarY, {data: aapl, ...groupX({y: "median", title: "min"}, {title: "Date", x: "Date", y: "Close"})})
+  return (
+    <Plot x={{interval: "4 weeks", ticks: "year"}}>
+      <BarY data={aapl} {...groupX({y: "median", title: "min"}, {title: "Date", x: "Date", y: "Close"})} />
+    </Plot>
   );
 }
 
 export async function timeAxisOrdinalSparseTicks() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
-  return React.createElement(Plot, {x: {interval: "4 weeks", ticks: "52 weeks"}},
-    React.createElement(BarY, {data: aapl, ...groupX({y: "median", title: "min"}, {title: "Date", x: "Date", y: "Close"})})
+  return (
+    <Plot x={{interval: "4 weeks", ticks: "52 weeks"}}>
+      <BarY data={aapl} {...groupX({y: "median", title: "min"}, {title: "Date", x: "Date", y: "Close"})} />
+    </Plot>
   );
 }
 
 export async function timeAxisOrdinalSparseInterval() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
-  return React.createElement(Plot, {x: {interval: "52 weeks"}},
-    React.createElement(BarY, {data: aapl, ...groupX({y: "median", title: "min"}, {title: "Date", x: "Date", y: "Close"})})
+  return (
+    <Plot x={{interval: "52 weeks"}}>
+      <BarY data={aapl} {...groupX({y: "median", title: "min"}, {title: "Date", x: "Date", y: "Close"})} />
+    </Plot>
   );
 }
 
 export async function timeAxisOrdinalTicks() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
-  return React.createElement(Plot, {x: {interval: "month", ticks: "3 months"}},
-    React.createElement(BarY, {data: aapl, ...groupX({y: "median", title: "min"}, {title: "Date", x: "Date", y: "Close"})})
+  return (
+    <Plot x={{interval: "month", ticks: "3 months"}}>
+      <BarY data={aapl} {...groupX({y: "median", title: "min"}, {title: "Date", x: "Date", y: "Close"})} />
+    </Plot>
   );
 }
 
 export async function warnTimeAxisOrdinalExplicitIncompatibleTicks() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   const [start, stop] = d3.extent(aapl, (d) => d.Date);
-  return React.createElement(Plot, {x: {interval: "4 weeks", ticks: d3.utcYear.range(start, stop)}},
-    React.createElement(BarY, {data: aapl, ...groupX({y: "median", title: "min"}, {title: "Date", x: "Date", y: "Close"})})
+  return (
+    <Plot x={{interval: "4 weeks", ticks: d3.utcYear.range(start, stop)}}>
+      <BarY data={aapl} {...groupX({y: "median", title: "min"}, {title: "Date", x: "Date", y: "Close"})} />
+    </Plot>
   );
 }
 
@@ -154,7 +171,9 @@ export async function timeAxisLocal() {
     "2023-09-30T18:05:48.452Z",
     "2023-09-30T19:05:48.452Z"
   ].map((d) => new Date(d));
-  return React.createElement(Plot, {x: {type: "time"}},
-    React.createElement(DotX, {data: dates})
+  return (
+    <Plot x={{type: "time"}}>
+      <DotX data={dates} />
+    </Plot>
   );
 }
