@@ -1,4 +1,3 @@
-import React from "react";
 import {Plot, Geo} from "../../src/react/index.js";
 import * as d3 from "d3";
 import {feature, mesh} from "topojson-client";
@@ -13,11 +12,11 @@ async function stateMap(id: string, prj: Prj) {
     {type: "GeometryCollection", geometries: us.objects.counties.geometries.filter((d) => d.id.startsWith(id))},
     (a, b) => a != b
   );
-  return React.createElement(Plot, {
-      projection: {...prj, domain: state}
-    },
-    React.createElement(Geo, {data: counties, strokeOpacity: 0.2}),
-    React.createElement(Geo, {data: state})
+  return (
+    <Plot projection={{...prj, domain: state}}>
+      <Geo data={counties} strokeOpacity={0.2} />
+      <Geo data={state} />
+    </Plot>
   );
 }
 
