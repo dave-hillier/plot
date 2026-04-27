@@ -1,4 +1,3 @@
-import React from "react";
 import {Plot, Text, groupZ} from "../../src/react/index.js";
 import * as d3 from "d3";
 
@@ -14,24 +13,22 @@ export async function wordCloud() {
     .filter((word) => word) // ignore non-letter words
     .map((word) => word.toLowerCase()); // normalize to lowercase
 
-  return React.createElement(Plot, {
-      inset: 20,
-      x: {axis: null},
-      y: {axis: null}
-    },
-    React.createElement(Text, {
-      data: words,
-      ...groupZ(
-        {
-          text: (d) => (d.length > 1 ? `${d[0]} (${d.length})` : ""),
-          fontSize: (d) => 4 * Math.sqrt(d.length)
-        },
-        {
-          x: random,
-          y: random,
-          z: (d) => d
-        }
-      )
-    })
+  return (
+    <Plot inset={20} x={{axis: null}} y={{axis: null}}>
+      <Text
+        data={words}
+        {...groupZ(
+          {
+            text: (d) => (d.length > 1 ? `${d[0]} (${d.length})` : ""),
+            fontSize: (d) => 4 * Math.sqrt(d.length)
+          },
+          {
+            x: random,
+            y: random,
+            z: (d) => d
+          }
+        )}
+      />
+    </Plot>
   );
 }

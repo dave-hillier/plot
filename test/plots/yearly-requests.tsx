@@ -1,4 +1,3 @@
-import React from "react";
 import {Plot, BarY} from "../../src/react/index.js";
 
 const requests = [
@@ -17,19 +16,20 @@ const requests = [
 ];
 
 export async function yearlyRequests() {
-  return React.createElement(Plot, {
-      label: null,
-      x: {interval: 1, tickFormat: ""} // TODO https://github.com/observablehq/plot/issues/768
-    },
-    React.createElement(BarY, {data: requests, x: ([date]) => date.getUTCFullYear(), y: "1"})
+  return (
+    <Plot
+      label={null}
+      x={{interval: 1, tickFormat: ""}} // TODO https://github.com/observablehq/plot/issues/768
+    >
+      <BarY data={requests} x={([date]) => date.getUTCFullYear()} y="1" />
+    </Plot>
   );
 }
 
 export async function yearlyRequestsDate() {
-  return React.createElement(Plot, {
-      label: null,
-      x: {interval: "year"}
-    },
-    React.createElement(BarY, {data: requests, x: "0", y: "1"})
+  return (
+    <Plot label={null} x={{interval: "year"}}>
+      <BarY data={requests} x="0" y="1" />
+    </Plot>
   );
 }
