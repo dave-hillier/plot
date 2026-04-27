@@ -1,4 +1,3 @@
-import React from "react";
 import {Plot, BarX, Text, RuleX, stackX, valueof} from "../../src/react/index.js";
 
 export async function npmVersions() {
@@ -63,30 +62,28 @@ export async function npmVersions() {
     {version: "3.2.1", downloads: 438869}
   ];
   const order = valueof(versions, "version");
-  return React.createElement(Plot, {
-      x: {grid: true},
-      y: {reverse: true},
-      color: {scheme: "rainbow", domain: order}
-    },
-    React.createElement(BarX, {
-      data: versions,
-      x: "downloads",
-      y: (d) => parseInt(d.version),
-      order,
-      fill: "version",
-      title: "version",
-      insetLeft: 1
-    }),
-    React.createElement(Text, {
-      data: versions,
-      ...stackX({
-        x: "downloads",
-        y: (d) => parseInt(d.version),
-        order,
-        text: (d) => (d.downloads > 50e3 ? d.version : ""),
-        z: "version"
-      })
-    }),
-    React.createElement(RuleX, {data: [0]})
+  return (
+    <Plot x={{grid: true}} y={{reverse: true}} color={{scheme: "rainbow", domain: order}}>
+      <BarX
+        data={versions}
+        x="downloads"
+        y={(d) => parseInt(d.version)}
+        order={order}
+        fill="version"
+        title="version"
+        insetLeft={1}
+      />
+      <Text
+        data={versions}
+        {...stackX({
+          x: "downloads",
+          y: (d) => parseInt(d.version),
+          order,
+          text: (d) => (d.downloads > 50e3 ? d.version : ""),
+          z: "version"
+        })}
+      />
+      <RuleX data={[0]} />
+    </Plot>
   );
 }

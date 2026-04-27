@@ -1,4 +1,3 @@
-import React from "react";
 import {Plot, Cell, group} from "../../src/react/index.js";
 import * as d3 from "d3";
 
@@ -17,18 +16,20 @@ export async function mobyDickLetterPosition() {
   // letter of the word, a one position the second letter, and so on.
   const positions = words.flatMap((word) => [...word].map((c, i) => [i, c])); // compute position
 
-  return React.createElement(Plot, {
-      height: 640,
-      padding: 0,
-      align: 0,
-      x: {
+  return (
+    <Plot
+      height={640}
+      padding={0}
+      align={0}
+      x={{
         label: "Position within word",
         axis: "top"
-      },
-      color: {
+      }}
+      color={{
         scheme: "blues"
-      }
-    },
-    React.createElement(Cell, {data: positions, ...group({fill: "count"}, {inset: 0.5})})
+      }}
+    >
+      <Cell data={positions} {...group({fill: "count"}, {inset: 0.5})} />
+    </Plot>
   );
 }
