@@ -1,4 +1,3 @@
-import React from "react";
 import {Plot, BarX, RuleX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
@@ -53,40 +52,30 @@ export async function ballotStatusRace() {
     });
   });
 
-  return React.createElement(Plot, {
-      x: {
-        grid: true,
-        label: "Frequency (%)"
-      },
-      y: {
-        domain: ["ACCEPTED", "REJECTED", "PENDING"],
-        axis: null
-      },
-      fy: {
-        label: null
-      },
-      color: {
+  return (
+    <Plot
+      x={{grid: true, label: "Frequency (%)"}}
+      y={{domain: ["ACCEPTED", "REJECTED", "PENDING"], axis: null}}
+      fy={{label: null}}
+      color={{
         domain: ["ACCEPTED", "REJECTED", "PENDING"],
         range: ["currentColor", "brown", "gray"]
-      },
-      facet: {
-        data: rollup,
-        y: "race",
-        marginLeft: 210
-      }
-    },
-    React.createElement(BarX, {
-      data: rollup,
-      x: "percent",
-      y: "status",
-      fill: "status",
-      title: (d) => `${d.percent.toFixed(1)}%`,
-      sort: {
-        fy: "data",
-        reduce: (data) => data.find((d) => d.status === "ACCEPTED").percent,
-        order: "descending"
-      }
-    }),
-    React.createElement(RuleX, {data: [0]})
+      }}
+      facet={{data: rollup, y: "race", marginLeft: 210}}
+    >
+      <BarX
+        data={rollup}
+        x="percent"
+        y="status"
+        fill="status"
+        title={(d) => `${d.percent.toFixed(1)}%`}
+        sort={{
+          fy: "data",
+          reduce: (data) => data.find((d) => d.status === "ACCEPTED").percent,
+          order: "descending"
+        }}
+      />
+      <RuleX data={[0]} />
+    </Plot>
   );
 }
