@@ -1,4 +1,3 @@
-import React from "react";
 import {Plot, Image, dodgeY} from "../../src/react/index.js";
 import type {ImageProps} from "../../src/react/index.js";
 
@@ -8,14 +7,10 @@ async function kitten({
   src = (d, i) => `https://placekitten.com/${100 + 2 * i}/${100 + 2 * i}`,
   ...options
 }: Partial<ImageProps> = {}) {
-  return React.createElement(Plot, {
-      inset: 60,
-      width: 520,
-      height: 520,
-      axis: null,
-      r: {range: [10, 60]}
-    },
-    React.createElement(Image, {data: {length: 25}, x, y, src, ...options})
+  return (
+    <Plot inset={60} width={520} height={520} axis={null} r={{range: [10, 60]}}>
+      <Image data={{length: 25}} x={x} y={y} src={src} {...options} />
+    </Plot>
   );
 }
 
