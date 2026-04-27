@@ -1,4 +1,3 @@
-import React from "react";
 import {Plot, Vector} from "../../src/react/index.js";
 
 export async function shorthandVector() {
@@ -44,7 +43,9 @@ export async function shorthandVector() {
     [new Date("2018-02-27"), 179.100006],
     [new Date("2018-02-28"), 179.259995]
   ];
-  return React.createElement(Plot, {},
-    React.createElement(Vector, {data: timeSeries})
+  return (
+    <Plot>
+      <Vector data={timeSeries} />
+    </Plot>
   );
 }
