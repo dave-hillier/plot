@@ -1,4 +1,3 @@
-import React from "react";
 import {Plot, AreaY, AxisFy, AxisX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
@@ -8,16 +7,17 @@ export async function trafficHorizon() {
   const max = d3.max(data, (d) => d.vehicles);
   const step = d3.tickStep(0, max, bands);
   const ticks = d3.ticks(0, max, bands);
-  return React.createElement(Plot, {
-      width: 960,
-      height: 1100,
-      margin: 0,
-      marginTop: 30,
-      y: {
+  return (
+    <Plot
+      width={960}
+      height={1100}
+      margin={0}
+      marginTop={30}
+      y={{
         axis: null,
         domain: [0, step]
-      },
-      color: {
+      }}
+      color={{
         type: "ordinal",
         scheme: "blues",
         tickFormat: (
@@ -25,13 +25,16 @@ export async function trafficHorizon() {
             `≥${f(t)}`
         )(d3.format(",")),
         legend: true
-      },
-      fy: {
+      }}
+      fy={{
         domain: data.map((d) => d.location) // respect input order
-      }
-    },
-    ...ticks.map((t) => React.createElement(AreaY, {data, x: "date", y: (d) => d.vehicles - t, fy: "location", fill: t, clip: true})),
-    React.createElement(AxisFy, {frameAnchor: "left", label: null}),
-    React.createElement(AxisX, {anchor: "top", filter: (d, i) => i > 0})
+      }}
+    >
+      {ticks.map((t) => (
+        <AreaY data={data} x="date" y={(d) => d.vehicles - t} fy="location" fill={t} clip={true} />
+      ))}
+      <AxisFy frameAnchor="left" label={null} />
+      <AxisX anchor="top" filter={(d, i) => i > 0} />
+    </Plot>
   );
 }
