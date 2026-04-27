@@ -62,7 +62,7 @@ export default [
     }
   },
   {
-    files: ["test/**/*.js", "test/**/*.ts"],
+    files: ["test/**/*.js", "test/**/*.ts", "test/**/*.tsx"],
     languageOptions: {
       globals: {
         ...globals.mocha

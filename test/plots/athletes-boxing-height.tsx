@@ -1,4 +1,3 @@
-import React from "react";
 import {Plot, Frame, Dot, dodgeX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
@@ -18,14 +17,16 @@ export async function athletesBoxingHeight() {
   const athletes = (await d3.csv<any>("data/athletes.csv", d3.autoType)).filter(
     (d) => d.sport === "boxing" && d.height
   );
-  return React.createElement(Plot, {
-      width: 600,
-      height: 350,
-      facet: {data: athletes, x: "nationality"},
-      y: {domain: [1.45, 2.1]},
-      fx: {transform: (code) => continents.get(code), label: "continent"}
-    },
-    React.createElement(Frame, {}),
-    React.createElement(Dot, {data: athletes, ...dodgeX({y: "height", title: "nationality", fill: "currentColor", anchor: "middle"})})
+  return (
+    <Plot
+      width={600}
+      height={350}
+      facet={{data: athletes, x: "nationality"}}
+      y={{domain: [1.45, 2.1]}}
+      fx={{transform: (code) => continents.get(code), label: "continent"}}
+    >
+      <Frame />
+      <Dot data={athletes} {...dodgeX({y: "height", title: "nationality", fill: "currentColor", anchor: "middle"})} />
+    </Plot>
   );
 }
