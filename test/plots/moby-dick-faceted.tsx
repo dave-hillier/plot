@@ -1,4 +1,3 @@
-import React from "react";
 import {Plot, BarY, RuleY, groupX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
@@ -8,17 +7,19 @@ export async function mobyDickFaceted() {
   const uppers = letters.map((d) => d.toUpperCase());
   const cases = letters.map((d) => (d.toLowerCase() === d ? "lower" : "upper"));
   const vowels = letters.map((d) => (/[aeiouy]/i.test(d) ? "vowel" : "consonant"));
-  return React.createElement(Plot, {
-      y: {
+  return (
+    <Plot
+      y={{
         grid: true
-      },
-      facet: {
+      }}
+      facet={{
         data: letters,
         x: vowels,
         y: cases
-      }
-    },
-    React.createElement(BarY, {data: letters, ...groupX({y: "count"}, {x: uppers})}),
-    React.createElement(RuleY, {data: [0]})
+      }}
+    >
+      <BarY data={letters} {...groupX({y: "count"}, {x: uppers})} />
+      <RuleY data={[0]} />
+    </Plot>
   );
 }
