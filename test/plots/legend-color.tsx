@@ -1,4 +1,3 @@
-import React from "react";
 import * as d3 from "d3";
 import {Plot, CellX, legend} from "../../src/react/index.js";
 import {plot as imperativePlot, dot as imperativeDot} from "replot";
@@ -61,11 +60,10 @@ export function colorLegendOrdinalRamp() {
 }
 
 export function colorLegendOrdinalRampInline() {
-  return React.createElement(Plot, {
-      legend: "ramp",
-      color: {type: "ordinal", domain: "ABCDEFGHIJ"}
-    },
-    React.createElement(CellX, {data: "ABCDEFGHIJ"})
+  return (
+    <Plot legend="ramp" color={{type: "ordinal", domain: "ABCDEFGHIJ"}}>
+      <CellX data="ABCDEFGHIJ" />
+    </Plot>
   );
 }
 
