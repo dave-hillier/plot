@@ -1,4 +1,3 @@
-import React from "react";
 import {Plot, BarX, Text, RuleX, stackX, groupZ} from "../../src/react/index.js";
 import * as d3 from "d3";
 
@@ -24,17 +23,19 @@ export async function softwareVersions() {
     });
   }
 
-  return React.createElement(Plot, {
-      x: {
+  return (
+    <Plot
+      x={{
         percent: true
-      },
-      color: {
+      }}
+      color={{
         type: "ordinal",
         scheme: "blues"
-      }
-    },
-    React.createElement(BarX, {data, ...stack({fill: "version", insetLeft: 0.5, insetRight: 0.5})}),
-    React.createElement(Text, {data, ...stack({text: "version"})}),
-    React.createElement(RuleX, {data: [0, 1]})
+      }}
+    >
+      <BarX data={data} {...stack({fill: "version", insetLeft: 0.5, insetRight: 0.5})} />
+      <Text data={data} {...stack({text: "version"})} />
+      <RuleX data={[0, 1]} />
+    </Plot>
   );
 }

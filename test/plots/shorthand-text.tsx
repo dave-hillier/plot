@@ -1,4 +1,3 @@
-import React from "react";
 import {Plot, Text} from "../../src/react/index.js";
 
 export async function shorthandText() {
@@ -44,7 +43,9 @@ export async function shorthandText() {
     [new Date("2018-02-27"), 179.100006],
     [new Date("2018-02-28"), 179.259995]
   ];
-  return React.createElement(Plot, {},
-    React.createElement(Text, {data: timeSeries})
+  return (
+    <Plot>
+      <Text data={timeSeries} />
+    </Plot>
   );
 }
