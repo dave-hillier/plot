@@ -1,22 +1,57 @@
+import type {Data} from "../mark.js";
+import type {BarXOptions, BarYOptions} from "./bar.js";
 import {extent, namespaces} from "d3";
+// @ts-ignore
 import {valueObject} from "../channel.js";
+// @ts-ignore
 import {create} from "../context.js";
+// @ts-ignore
 import {composeRender} from "../mark.js";
+// @ts-ignore
 import {hasXY, identity, indexOf, isObject} from "../options.js";
+// @ts-ignore
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, getPatternId} from "../style.js";
+// @ts-ignore
 import {template} from "../template.js";
 import {initializer} from "../transforms/basic.js";
+// @ts-ignore
 import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
+// @ts-ignore
 import {maybeIntervalX, maybeIntervalY} from "../transforms/interval.js";
+// @ts-ignore
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
 import {BarX, BarY} from "./bar.js";
+
+/** Options for the waffleX and waffleY mark. */
+interface WaffleOptions {
+  /** The number of cells per row or column; defaults to undefined for automatic. */
+  multiple?: number;
+  /** The quantity each cell represents; defaults to 1. */
+  unit?: number;
+  /** The gap in pixels between cells; defaults to 1. */
+  gap?: number;
+  /** If true, round to integers to avoid partial cells. */
+  round?: boolean | ((value: number) => number);
+}
+
+/** Options for the waffleX mark. */
+export interface WaffleXOptions extends BarXOptions, WaffleOptions {}
+
+/** Options for the waffleY mark. */
+export interface WaffleYOptions extends BarYOptions, WaffleOptions {}
 
 const waffleDefaults = {
   ariaLabel: "waffle"
 };
 
+/** The waffleX mark. */
 export class WaffleX extends BarX {
-  constructor(data, {unit = 1, gap = 1, round, multiple, ...options} = {}) {
+  unit: number;
+  gap: number;
+  round: (value: number) => number;
+  multiple: number | undefined;
+  constructor(data?: Data, {unit = 1, gap = 1, round, multiple, ...options}: WaffleXOptions = {} as any) {
+    // @ts-ignore
     super(data, wafflePolygon("x", options), waffleDefaults);
     this.unit = Math.max(0, unit);
     this.gap = +gap;
@@ -25,8 +60,14 @@ export class WaffleX extends BarX {
   }
 }
 
+/** The waffleY mark. */
 export class WaffleY extends BarY {
-  constructor(data, {unit = 1, gap = 1, round, multiple, ...options} = {}) {
+  unit: number;
+  gap: number;
+  round: (value: number) => number;
+  multiple: number | undefined;
+  constructor(data?: Data, {unit = 1, gap = 1, round, multiple, ...options}: WaffleYOptions = {} as any) {
+    // @ts-ignore
     super(data, wafflePolygon("y", options), waffleDefaults);
     this.unit = Math.max(0, unit);
     this.gap = +gap;
@@ -35,11 +76,11 @@ export class WaffleY extends BarY {
   }
 }
 
-function wafflePolygon(y, options) {
+function wafflePolygon(y: "x" | "y", options: any) {
   const x = y === "y" ? "x" : "y";
   const y1 = `${y}1`;
   const y2 = `${y}2`;
-  return initializer(waffleRender(options), function (data, facets, channels, scales, dimensions) {
+  return initializer(waffleRender(options), function (this: any, data: any, facets: any, channels: any, scales: any, dimensions: any) {
     const {round, unit} = this;
     const Y1 = channels[y1].value;
     const Y2 = channels[y2].value;
@@ -61,12 +102,12 @@ function wafflePolygon(y, options) {
 
     // The reference position.
     const tx = (barwidth - multiple * cx) / 2;
-    const x0 = typeof barx === "function" ? (i) => barx(i) + tx : barx + tx;
+    const x0 = typeof barx === "function" ? (i: number) => barx(i) + tx : barx + tx;
     const y0 = scales[y](0);
 
     // TODO insets?
-    const transform = y === "y" ? ([x, y]) => [x * cx, -y * cy] : ([x, y]) => [y * cy, x * cx];
-    const mx = typeof x0 === "function" ? (i) => x0(i) - barwidth / 2 : () => x0;
+    const transform = y === "y" ? ([x, y]: [number, number]) => [x * cx, -y * cy] : ([x, y]: [number, number]) => [y * cy, x * cx];
+    const mx = typeof x0 === "function" ? (i: number) => x0(i) - barwidth / 2 : () => x0;
     const [ix, iy] = y === "y" ? [0, 1] : [1, 0];
 
     const n = Y2.length;
@@ -94,10 +135,10 @@ function wafflePolygon(y, options) {
   });
 }
 
-function waffleRender({render, ...options}) {
+function waffleRender({render, ...options}: any) {
   return {
     ...options,
-    render: composeRender(render, function (index, scales, values, dimensions, context) {
+    render: composeRender(render, function (this: any, index: any, scales: any, values: any, dimensions: any, context: any) {
       const {gap, rx, ry} = this;
       const {channels, ariaLabel, href, title, ...visualValues} = values;
       const {document} = context;
@@ -122,26 +163,26 @@ function waffleRender({render, ...options}) {
       return create("svg:g", context)
         .call(applyIndirectStyles, this, dimensions, context)
         .call(this._transform, this, scales)
-        .call((g) =>
+        .call((g: any) =>
           g
             .selectAll()
             .data(index)
             .enter()
             .append(() => basePattern.cloneNode(true))
-            .attr("id", (i) => `${patternId}-${i}`)
+            .attr("id", (i: number) => `${patternId}-${i}`)
             .select("rect")
             .call(applyDirectStyles, this)
             .call(applyChannelStyles, this, visualValues)
         )
-        .call((g) =>
+        .call((g: any) =>
           g
             .selectAll()
             .data(index)
             .enter()
             .append("path")
             .attr("transform", template`translate(${x0},${y0})`)
-            .attr("d", (i) => `M${polygon[i].join("L")}Z`)
-            .attr("fill", (i) => `url(#${patternId}-${i})`)
+            .attr("d", (i: number) => `M${polygon[i].join("L")}Z`)
+            .attr("fill", (i: number) => `url(#${patternId}-${i})`)
             .attr("stroke", this.stroke == null ? null : "none")
             .call(applyChannelStyles, this, {ariaLabel, href, title})
         )
@@ -189,7 +230,7 @@ function waffleRender({render, ...options}) {
 // more points.
 //
 // The last point describes the centroid (used for pointing)
-function wafflePoints(i1, i2, columns) {
+function wafflePoints(i1: number, i2: number, columns: number): any[] {
   if (i2 < i1) return wafflePoints(i2, i1, columns); // ensure i1 <= i2
   if (i1 < 0) return wafflePointsOffset(i1, i2, columns, Math.ceil(-Math.min(i1, i2) / columns)); // ensure i1 >= 0
   const x1f = Math.floor(i1 % columns);
@@ -217,11 +258,11 @@ function wafflePoints(i1, i2, columns) {
   return points;
 }
 
-function wafflePointsOffset(i1, i2, columns, k) {
-  return wafflePoints(i1 + k * columns, i2 + k * columns, columns).map(([x, y]) => [x, y - k]);
+function wafflePointsOffset(i1: number, i2: number, columns: number, k: number) {
+  return wafflePoints(i1 + k * columns, i2 + k * columns, columns).map(([x, y]: [number, number]) => [x, y - k]);
 }
 
-function waffleCentroid(i1, i2, columns) {
+function waffleCentroid(i1: number, i2: number, columns: number): [number, number] {
   const r = Math.floor(i2 / columns) - Math.floor(i1 / columns);
   return r === 0
     ? // Single row
@@ -237,7 +278,7 @@ function waffleCentroid(i1, i2, columns) {
       [columns / 2, (Math.round(i1 / columns) + Math.round(i2 / columns)) / 2];
 }
 
-function waffleRowCentroid(i1, i2, columns) {
+function waffleRowCentroid(i1: number, i2: number, columns: number): [number, number] {
   const c = Math.floor(i2) - Math.floor(i1);
   return c === 0
     ? // Single cell
@@ -256,32 +297,94 @@ function waffleRowCentroid(i1, i2, columns) {
       ];
 }
 
-function maybeRound(round) {
+function maybeRound(round: any): (value: number) => number {
   if (round === undefined || round === false) return Number;
   if (round === true) return Math.round;
   if (typeof round !== "function") throw new Error(`invalid round: ${round}`);
   return round;
 }
 
-function maybeMultiple(multiple) {
+function maybeMultiple(multiple: any) {
   return multiple === undefined ? undefined : Math.max(1, Math.floor(multiple));
 }
 
-function scaleof({domain, range}) {
+function scaleof({domain, range}: {domain: any; range: any}) {
   return spread(range) / spread(domain);
 }
 
-function spread(domain) {
-  const [min, max] = extent(domain);
+function spread(domain: any) {
+  const [min, max] = extent(domain) as [number, number];
   return max - min;
 }
 
-export function waffleX(data, {tip, ...options} = {}) {
+/**
+ * Returns a new horizonta waffle mark for the given *data* and *options*; the
+ * required *x* values should be quantitative, and the optional *y* values
+ * should be ordinal. For example, for a horizontal waffle chart of Olympic
+ * athletes by sport:
+ *
+ * ```js
+ * Plot.waffleX(olympians, Plot.groupY({x: "count"}, {y: "sport"}))
+ * ```
+ *
+ * If neither **x1** nor **x2** nor **interval** is specified, an implicit
+ * stackX transform is applied and **x** defaults to the identity function,
+ * assuming that *data* = [*x₀*, *x₁*, *x₂*, …]. Otherwise if an **interval** is
+ * specified, then **x1** and **x2** are derived from **x**, representing the
+ * lower and upper bound of the containing interval, respectively. Otherwise, if
+ * only one of **x1** or **x2** is specified, the other defaults to **x**, which
+ * defaults to zero.
+ *
+ * The optional **y** ordinal channel specifies the vertical position; it is
+ * typically bound to the *y* scale, which must be a *band* scale. If the **y**
+ * channel is not specified, the waffle will span the vertical extent of the
+ * plot’s frame. Because a waffle represents a discrete number of square cells,
+ * it may not use all of the available bandwidth.
+ *
+ * If *options* is undefined, then **y** defaults to the zero-based index of
+ * *data* [0, 1, 2, …], allowing a quick waffle chart from an array of numbers:
+ *
+ * ```js
+ * Plot.waffleX([4, 9, 24, 46, 66, 7])
+ * ```
+ */
+export function waffleX(data?: Data, {tip, ...options}: WaffleXOptions = {} as any): WaffleX {
   if (!hasXY(options)) options = {...options, y: indexOf, x2: identity};
   return new WaffleX(data, {tip: waffleTip(tip), ...maybeStackX(maybeIntervalX(maybeIdentityX(options)))});
 }
 
-export function waffleY(data, {tip, ...options} = {}) {
+/**
+ * Returns a new vertical waffle mark for the given *data* and *options*; the
+ * required *y* values should be quantitative, and the optional *x* values
+ * should be ordinal. For example, for a vertical waffle chart of Olympic
+ * athletes by sport:
+ *
+ * ```js
+ * Plot.waffleY(olympians, Plot.groupX({y: "count"}, {x: "sport"}))
+ * ```
+ *
+ * If neither **y1** nor **y2** nor **interval** is specified, an implicit
+ * stackY transform is applied and **y** defaults to the identity function,
+ * assuming that *data* = [*y₀*, *y₁*, *y₂*, …]. Otherwise if an **interval** is
+ * specified, then **y1** and **y2** are derived from **y**, representing the
+ * lower and upper bound of the containing interval, respectively. Otherwise, if
+ * only one of **y1** or **y2** is specified, the other defaults to **y**, which
+ * defaults to zero.
+ *
+ * The optional **x** ordinal channel specifies the horizontal position; it is
+ * typically bound to the *x* scale, which must be a *band* scale. If the **x**
+ * channel is not specified, the waffle will span the horizontal extent of the
+ * plot’s frame. Because a waffle represents a discrete number of square cells,
+ * it may not use all of the available bandwidth.
+ *
+ * If *options* is undefined, then **y** defaults to the zero-based index of
+ * *data* [0, 1, 2, …], allowing a quick waffle chart from an array of numbers:
+ *
+ * ```js
+ * Plot.waffleY([4, 9, 24, 46, 66, 7])
+ * ```
+ */
+export function waffleY(data?: Data, {tip, ...options}: WaffleYOptions = {} as any): WaffleY {
   if (!hasXY(options)) options = {...options, x: indexOf, y2: identity};
   return new WaffleY(data, {tip: waffleTip(tip), ...maybeStackY(maybeIntervalY(maybeIdentityY(options)))});
 }
@@ -294,7 +397,7 @@ export function waffleY(data, {tip, ...options} = {}) {
  * default maxRadius to Infinity. The “right” way to fix this would be to use
  * signed distance to the waffle geometry rather than the centroid.
  */
-function waffleTip(tip) {
+function waffleTip(tip: any) {
   return tip === true
     ? {maxRadius: Infinity}
     : isObject(tip) && tip.maxRadius === undefined
