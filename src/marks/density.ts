@@ -1,17 +1,58 @@
 import {contourDensity, geoPath} from "d3";
+import type {ChannelValue, ChannelValueSpec} from "../channel.js";
+// @ts-ignore - internal helper not in .d.ts
 import {create} from "../context.js";
-import {Mark} from "../mark.js";
+import type {Data, MarkOptions} from "../mark.js";
+import {Mark as MarkBase} from "../mark.js";
+// @ts-ignore - internal helpers not in .d.ts
 import {TypedArray, coerceNumbers, maybeTuple, maybeZ} from "../options.js";
+// @ts-ignore - internal helper not in .d.ts
 import {applyPosition} from "../projection.js";
-import {
-  applyChannelStyles,
-  applyDirectStyles,
-  applyFrameAnchor,
-  applyIndirectStyles,
-  applyTransform,
-  groupZ
-} from "../style.js";
+// @ts-ignore - internal helpers not in .d.ts
+import {applyChannelStyles, applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform, groupZ} from "../style.js";
+// @ts-ignore - internal helper not in .d.ts
 import {initializer} from "../transforms/basic.js";
+
+// Mark's runtime constructor takes (data, channels, transform, defaults), but the
+// public .d.ts declares Mark with a zero-arg constructor; cast for super(...) typing.
+const Mark = MarkBase as unknown as new (...args: any[]) => MarkBase;
+
+/** Options for the density mark. */
+export interface DensityOptions extends MarkOptions {
+  /** The horizontal position channel, typically bound to the *x* scale. */
+  x?: ChannelValueSpec;
+  /** The vertical position channel, typically bound to the *y* scale. */
+  y?: ChannelValueSpec;
+
+  /**
+   * An optional ordinal channel for grouping, producing independent contours
+   * for each group. If not specified, it defaults to **fill** if a channel, or
+   * **stroke** if a channel.
+   */
+  z?: ChannelValue;
+
+  /**
+   * An optional weight channel specifying the relative contribution of each
+   * point. If not specified, all points have a constant weight of 1.
+   * Non-positive weights are allowed, making associated points repulsive.
+   */
+  weight?: ChannelValue;
+
+  /**
+   * The bandwidth, a number in pixels which defaults to 20, specifies the
+   * standard deviation of the Gaussian kernel used for density estimation. A
+   * larger value will produce smoother contours.
+   */
+  bandwidth?: number;
+
+  /**
+   * How many contours to produce, and at what density; either a number, by
+   * default 20, specifying one more than the number of contours that will be
+   * computed at uniformly-spaced intervals between 0 (exclusive) and the
+   * maximum density (exclusive); or, an iterable of explicit density values.
+   */
+  thresholds?: number | Iterable<number>;
+}
 
 const defaults = {
   ariaLabel: "density",
@@ -20,8 +61,10 @@ const defaults = {
   strokeMiterlimit: 1
 };
 
+/** The density mark. */
 export class Density extends Mark {
-  constructor(data, {x, y, z, weight, fill, stroke, ...options} = {}) {
+  z: any;
+  constructor(data?: Data, {x, y, z, weight, fill, stroke, ...options}: DensityOptions = {}) {
     // If fill or stroke is specified as “density”, then temporarily treat these
     // as a literal color when computing defaults and maybeZ; below, we’ll unset
     // these constant colors back to undefined since they will instead be
@@ -39,14 +82,14 @@ export class Density extends Mark {
       densityInitializer({...options, fill, stroke}, fillDensity, strokeDensity),
       defaults
     );
-    if (fillDensity) this.fill = undefined;
-    if (strokeDensity) this.stroke = undefined;
+    if (fillDensity) (this as any).fill = undefined;
+    if (strokeDensity) (this as any).stroke = undefined;
     this.z = z;
   }
-  filter(index) {
+  filter(index: any): any {
     return index; // don’t filter contours constructed by initializer
   }
-  render(index, scales, channels, dimensions, context) {
+  render(index: any, scales: any, channels: any, dimensions: any, context: any): any {
     const {contours} = channels;
     const path = geoPath();
     return create("svg:g", context)
@@ -60,20 +103,30 @@ export class Density extends Mark {
           .append("path")
           .call(applyDirectStyles, this)
           .call(applyChannelStyles, this, channels)
-          .attr("d", (i) => path(contours[i]))
+          .attr("d", (i: any) => path(contours[i]))
       )
       .node();
   }
 }
 
-export function density(data, {x, y, ...options} = {}) {
+/**
+ * Returns a mark that draws contours representing the estimated density of the
+ * two-dimensional points given by **x** and **y**, and possibly weighted by
+ * **weight**. If either **x** or **y** is not specified, it defaults to the
+ * respective middle of the plot’s frame.
+ *
+ * If the **stroke** or **fill** is specified as *density*, a color channel is
+ * constructed with values representing the density threshold value of each
+ * contour.
+ */
+export function density(data?: Data, {x, y, ...options}: DensityOptions = {}): Density {
   [x, y] = maybeTuple(x, y);
   return new Density(data, {...options, x, y});
 }
 
 const dropChannels = new Set(["x", "y", "z", "weight"]);
 
-function densityInitializer(options, fillDensity, strokeDensity) {
+function densityInitializer(options: any, fillDensity: any, strokeDensity: any) {
   const k = 100; // arbitrary scale factor for readability
   let {bandwidth, thresholds} = options;
   bandwidth = bandwidth === undefined ? 20 : +bandwidth;
@@ -83,7 +136,7 @@ function densityInitializer(options, fillDensity, strokeDensity) {
       : typeof thresholds?.[Symbol.iterator] === "function"
       ? coerceNumbers(thresholds)
       : +thresholds;
-  return initializer(options, function (data, facets, channels, scales, dimensions, context) {
+  return initializer(options, function (this: any, data: any, facets: any, channels: any, scales: any, dimensions: any, context: any) {
     const W = channels.weight ? coerceNumbers(channels.weight.value) : null;
     const Z = channels.z?.value;
     const {z} = this;
@@ -96,27 +149,27 @@ function densityInitializer(options, fillDensity, strokeDensity) {
     // Group any of the input channels according to the first index associated
     // with each z-series or facet. Drop any channels not be needed for
     // rendering after the contours are computed.
-    const newChannels = Object.fromEntries(
+    const newChannels: any = Object.fromEntries(
       Object.entries(channels)
         .filter(([key]) => !dropChannels.has(key))
-        .map(([key, channel]) => [key, {...channel, value: []}])
+        .map(([key, channel]: [string, any]) => [key, {...channel, value: []}])
     );
 
     // If the fill or stroke encodes density, construct new output channels.
-    const FD = fillDensity && [];
-    const SD = strokeDensity && [];
+    const FD: any = fillDensity && [];
+    const SD: any = strokeDensity && [];
 
-    const density = contourDensity()
-      .x(X ? (i) => X[i] : cx)
-      .y(Y ? (i) => Y[i] : cy)
-      .weight(W ? (i) => W[i] : 1)
+    const density: any = (contourDensity() as any)
+      .x(X ? (i: any) => X[i] : cx)
+      .y(Y ? (i: any) => Y[i] : cy)
+      .weight(W ? (i: any) => W[i] : 1)
       .size([width, height])
       .bandwidth(bandwidth);
 
     // Compute the grid for each facet-series.
-    const facetsContours = [];
+    const facetsContours: any[] = [];
     for (const facet of facets) {
-      const facetContours = [];
+      const facetContours: any[] = [];
       facetsContours.push(facetContours);
       for (const index of Z ? groupZ(facet, Z, z) : [facet]) {
         const contour = density.contours(index);
@@ -139,10 +192,10 @@ function densityInitializer(options, fillDensity, strokeDensity) {
     }
 
     // Generate contours for each facet-series.
-    const newFacets = [];
-    const contours = [];
+    const newFacets: any[] = [];
+    const contours: any[] = [];
     for (const facetContours of facetsContours) {
-      const newFacet = [];
+      const newFacet: any[] = [];
       newFacets.push(newFacet);
       for (const [index, contour] of facetContours) {
         for (const t of T) {
@@ -177,6 +230,6 @@ function densityInitializer(options, fillDensity, strokeDensity) {
   });
 }
 
-function isDensity(value) {
+function isDensity(value: any) {
   return /^density$/i.test(value);
 }
