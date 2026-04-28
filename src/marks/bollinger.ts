@@ -1,8 +1,16 @@
+import {deviation, mean} from "d3";
 import type {CompoundMark, Data, MarkOptions} from "../mark.js";
+import {marks} from "../mark.js";
+// @ts-ignore — isNoneish is exported by options.js but not declared in options.d.ts
+import {identity, isNoneish} from "../options.js";
 import type {Map} from "../transforms/map.js";
+import {map} from "../transforms/map.js";
 import type {WindowOptions} from "../transforms/window.js";
+import {window} from "../transforms/window.js";
 import type {AreaXOptions, AreaYOptions} from "./area.js";
+import {areaX, areaY} from "./area.js";
 import type {LineXOptions, LineYOptions} from "./line.js";
+import {lineX, lineY} from "./line.js";
 
 /** Options for the bollinger map method. */
 export interface BollingerWindowOptions {
@@ -58,6 +66,15 @@ export type BollingerXOptions = BollingerOptions & AreaXOptions & LineXOptions;
 /** Options for the bollingerY mark. */
 export type BollingerYOptions = BollingerOptions & AreaYOptions & LineYOptions;
 
+const defaults = {
+  n: 20,
+  k: 2,
+  color: "currentColor",
+  opacity: 0.2,
+  strict: true,
+  anchor: "end" as const
+};
+
 /**
  * Returns a new vertically-oriented bollinger mark for the given *data* and
  * *options*, as in a time-series area chart where time goes up↑ (or down↓).
@@ -66,7 +83,37 @@ export type BollingerYOptions = BollingerOptions & AreaYOptions & LineYOptions;
  * when data is an array of numbers [*x*₀, *x*₁, *x*₂, …]. If the *y* option is
  * not specified, it defaults to [0, 1, 2, …].
  */
-export function bollingerX(data?: Data, options?: BollingerXOptions): CompoundMark;
+export function bollingerX(
+  data?: Data,
+  {
+    x = identity,
+    y,
+    k = defaults.k,
+    color = defaults.color,
+    opacity = defaults.opacity,
+    fill = color,
+    fillOpacity = opacity,
+    stroke = color,
+    strokeOpacity,
+    strokeWidth,
+    ...options
+  }: BollingerXOptions = {} as BollingerXOptions
+): CompoundMark {
+  return marks(
+    isNoneish(fill)
+      ? null
+      : areaX(
+          data,
+          map(
+            {x1: bollinger({k: -k, ...options}), x2: bollinger({k, ...options})},
+            {x1: x, x2: x, y, fill, fillOpacity, ...options}
+          )
+        ),
+    isNoneish(stroke)
+      ? null
+      : lineX(data, map({x: bollinger(options)}, {x, y, stroke, strokeOpacity, strokeWidth, ...options}))
+  );
+}
 
 /**
  * Returns a new horizontally-oriented bollinger mark for the given *data* and
@@ -76,7 +123,37 @@ export function bollingerX(data?: Data, options?: BollingerXOptions): CompoundMa
  * when data is an array of numbers [*y*₀, *y*₁, *y*₂, …]. If the *x* option is
  * not specified, it defaults to [0, 1, 2, …].
  */
-export function bollingerY(data?: Data, options?: BollingerYOptions): CompoundMark;
+export function bollingerY(
+  data?: Data,
+  {
+    x,
+    y = identity,
+    k = defaults.k,
+    color = defaults.color,
+    opacity = defaults.opacity,
+    fill = color,
+    fillOpacity = opacity,
+    stroke = color,
+    strokeOpacity,
+    strokeWidth,
+    ...options
+  }: BollingerYOptions = {} as BollingerYOptions
+): CompoundMark {
+  return marks(
+    isNoneish(fill)
+      ? null
+      : areaY(
+          data,
+          map(
+            {y1: bollinger({k: -k, ...options}), y2: bollinger({k, ...options})},
+            {x, y1: y, y2: y, fill, fillOpacity, ...options}
+          )
+        ),
+    isNoneish(stroke)
+      ? null
+      : lineY(data, map({y: bollinger(options)}, {x, y, stroke, strokeOpacity, strokeWidth, ...options}))
+  );
+}
 
 /**
  * Given the specified bollinger *options*, returns a corresponding map
@@ -90,4 +167,11 @@ export function bollingerY(data?: Data, options?: BollingerYOptions): CompoundMa
  *
  * Here the *k* option defaults to zero instead of two.
  */
-export function bollinger(options?: BollingerWindowOptions): Map;
+export function bollinger({
+  n = defaults.n,
+  k = 0,
+  strict = defaults.strict,
+  anchor = defaults.anchor
+}: BollingerWindowOptions = {}): Map {
+  return window({k: n, reduce: (Y: any) => mean(Y) + k * (deviation(Y) || 0), strict, anchor: anchor as any});
+}
