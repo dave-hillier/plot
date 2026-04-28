@@ -1,7 +1,31 @@
+import {line as shapeLine} from "d3";
 import type {ChannelValue, ChannelValueDenseBinSpec, ChannelValueSpec} from "../channel.js";
+// @ts-ignore — runtime exports from ../context.js not declared in its .d.ts
+import {create} from "../context.js";
+// @ts-ignore — runtime exports from ../curve.js not declared in its .d.ts
+import {curveAuto, maybeCurveAuto} from "../curve.js";
 import type {CurveAutoOptions} from "../curve.js";
-import type {Data, MarkOptions, RenderableMark} from "../mark.js";
+import {Mark} from "../mark.js";
+import type {Data, MarkOptions} from "../mark.js";
+// @ts-ignore — runtime exports from ../marker.js not declared in its .d.ts
+import {applyGroupedMarkers, markers} from "../marker.js";
 import type {MarkerOptions} from "../marker.js";
+// @ts-ignore — runtime exports from ../options.js not declared in its .d.ts
+import {coerceNumbers, indexOf, identity, maybeTuple, maybeZ} from "../options.js";
+import {
+  // @ts-ignore — runtime exports from ../style.js not declared in its .d.ts
+  applyDirectStyles,
+  // @ts-ignore
+  applyIndirectStyles,
+  // @ts-ignore
+  applyTransform,
+  // @ts-ignore
+  applyGroupedChannelStyles,
+  // @ts-ignore
+  groupIndex
+} from "../style.js";
+// @ts-ignore — runtime exports from ../transforms/bin.js not declared in its .d.ts
+import {maybeDenseIntervalX, maybeDenseIntervalY} from "../transforms/bin.js";
 import type {BinOptions, BinReducer} from "../transforms/bin.js";
 
 /** Options for the line mark. */
@@ -82,6 +106,96 @@ export interface LineYOptions extends LineOptions, BinOptions {
   reduce?: BinReducer;
 }
 
+const defaults = {
+  ariaLabel: "line",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 1.5,
+  strokeLinecap: "round",
+  strokeLinejoin: "round",
+  strokeMiterlimit: 1
+};
+
+/** The line mark. */
+export class Line extends Mark {
+  z: any;
+  curve: any;
+  constructor(data?: Data, options: LineOptions = {}) {
+    const {x, y, z, curve, tension} = options;
+    super(
+      // @ts-ignore — Mark constructor signature in .d.ts elides runtime args
+      data,
+      {
+        x: {value: x, scale: "x"},
+        y: {value: y, scale: "y"},
+        z: {value: maybeZ(options), optional: true}
+      },
+      options,
+      defaults
+    );
+    this.z = z;
+    this.curve = maybeCurveAuto(curve, tension);
+    markers(this, options);
+  }
+  filter(index: any) {
+    return index;
+  }
+  project(channels: any, values: any, context: any) {
+    // For the auto curve, projection is handled at render.
+    if (this.curve !== curveAuto) {
+      // @ts-ignore — Mark.project not declared in .d.ts surface
+      super.project(channels, values, context);
+    }
+  }
+  render(index: any, scales: any, channels: any, dimensions: any, context: any) {
+    const {x: X, y: Y} = channels;
+    const {curve} = this;
+    return create("svg:g", context)
+      .call(applyIndirectStyles, this, dimensions, context)
+      .call(applyTransform, this, scales)
+      .call((g) =>
+        g
+          .selectAll()
+          .data(groupIndex(index, [X, Y], this, channels))
+          .enter()
+          .append("path")
+          .call(applyDirectStyles, this)
+          .call(applyGroupedChannelStyles, this, channels)
+          .call(applyGroupedMarkers, this, channels, context)
+          .attr(
+            "d",
+            curve === curveAuto && context.projection
+              ? sphereLine(context.path(), X, Y)
+              : shapeLine<any>()
+                  .curve(curve)
+                  .defined((i) => i >= 0)
+                  .x((i) => X[i])
+                  .y((i) => Y[i])
+          )
+      )
+      .node();
+  }
+}
+
+function sphereLine(path: any, X: any, Y: any) {
+  X = coerceNumbers(X);
+  Y = coerceNumbers(Y);
+  return (I: any) => {
+    let line = [];
+    const lines = [line];
+    for (const i of I) {
+      // Check for undefined value; see groupIndex.
+      if (i === -1) {
+        line = [];
+        lines.push(line);
+      } else {
+        line.push([X[i], Y[i]]);
+      }
+    }
+    return path({type: "MultiLineString", coordinates: lines});
+  };
+}
+
 /**
  * Returns a new line mark for the given *data* and *options* by connecting
  * control points. If neither the **x** nor **y** options are specified, *data*
@@ -110,7 +224,10 @@ export interface LineYOptions extends LineOptions, BinOptions {
  * channels. When any of these channels are used, setting an explicit **z**
  * channel (possibly to null) is strongly recommended.
  */
-export function line(data?: Data, options?: LineOptions): Line;
+export function line(data?: Data, {x, y, ...options}: LineOptions = {}): Line {
+  [x, y] = maybeTuple(x, y);
+  return new Line(data, {...options, x, y});
+}
 
 /**
  * Like line, except that **x** defaults to the identity function assuming that
@@ -130,7 +247,10 @@ export function line(data?: Data, options?: LineOptions): Line;
  * Plot.lineX(observations, {y: "date", x: "temperature", interval: "day"})
  * ```
  */
-export function lineX(data?: Data, options?: LineXOptions): Line;
+export function lineX(data?: Data, options: LineXOptions = {}): Line {
+  const {x = identity, y = indexOf, stroke, z = stroke === x ? null : undefined, ...rest} = maybeDenseIntervalY(options);
+  return new Line(data, {...rest, x, y, z, stroke});
+}
 
 /**
  * Like line, except **y** defaults to the identity function and assumes that
@@ -151,7 +271,7 @@ export function lineX(data?: Data, options?: LineXOptions): Line;
  * Plot.lineY(observations, {x: "date", y: "temperature", interval: "day"})
  * ```
  */
-export function lineY(data?: Data, options?: LineYOptions): Line;
-
-/** The line mark. */
-export class Line extends RenderableMark {}
+export function lineY(data?: Data, options: LineYOptions = {}): Line {
+  const {x = indexOf, y = identity, stroke, z = stroke === y ? null : undefined, ...rest} = maybeDenseIntervalX(options);
+  return new Line(data, {...rest, x, y, z, stroke});
+}
