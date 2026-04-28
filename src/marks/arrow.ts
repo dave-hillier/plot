@@ -1,10 +1,112 @@
 import {ascending, descending} from "d3";
+import type {ChannelValueSpec} from "../channel.js";
+// @ts-expect-error — runtime export missing from context.d.ts
 import {create} from "../context.js";
+import type {Data, MarkOptions} from "../mark.js";
 import {Mark} from "../mark.js";
 import {radians} from "../math.js";
+// @ts-expect-error — runtime exports missing from options.d.ts
 import {constant, keyword} from "../options.js";
+// @ts-expect-error — runtime exports missing from style.d.ts
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 import {maybeSameValue} from "./link.js";
+
+/** Options for the arrow mark. */
+export interface ArrowOptions extends MarkOptions {
+  /**
+   * The horizontal position, for vertical arrows; typically bound to the *x*
+   * scale; shorthand for setting defaults for both **x1** and **x2**.
+   */
+  x?: ChannelValueSpec;
+
+  /**
+   * The vertical position, for horizontal arrows; typically bound to the *y*
+   * scale; shorthand for setting defaults for both **y1** and **y2**.
+   */
+  y?: ChannelValueSpec;
+
+  /**
+   * The starting horizontal position; typically bound to the *x* scale; also
+   * sets a default for **x2**.
+   */
+  x1?: ChannelValueSpec;
+
+  /**
+   * The starting vertical position; typically bound to the *y* scale; also sets
+   * a default for **y2**.
+   */
+  y1?: ChannelValueSpec;
+
+  /**
+   * The ending horizontal position; typically bound to the *x* scale; also sets
+   * a default for **x1**.
+   */
+  x2?: ChannelValueSpec;
+
+  /**
+   * The ending vertical position; typically bound to the *y* scale; also sets a
+   * default for **y1**.
+   */
+  y2?: ChannelValueSpec;
+
+  /**
+   * The angle, a constant in degrees, between the straight line intersecting
+   * the arrow’s two control points and the outgoing tangent direction of the
+   * arrow from the start point. The angle must be within ±90°; a positive angle
+   * will produce a clockwise curve, while a negative angle will produce a
+   * counterclockwise curve; zero (the default) will produce a straight line.
+   * Use true for 22.5°.
+   */
+  bend?: number | boolean;
+
+  /**
+   * How pointy the arrowhead is, in degrees; a constant typically between 0°
+   * and 180°, and defaults to 60°.
+   */
+  headAngle?: number;
+
+  /**
+   * The size of the arrowhead relative to the **strokeWidth**; a constant.
+   * Assuming the default of stroke width 1.5px, this is the length of the
+   * arrowhead’s side in pixels.
+   */
+  headLength?: number;
+
+  /**
+   * Shorthand to set the same default for **insetStart** and **insetEnd**.
+   */
+  inset?: number;
+
+  /**
+   * The starting inset, a constant in pixels; defaults to 0. A positive inset
+   * shortens the arrow by moving the starting point towards the endpoint point,
+   * while a negative inset extends it by moving the starting point in the
+   * opposite direction. A positive starting inset may be useful if the arrow
+   * emerges from a dot.
+   */
+  insetStart?: number;
+
+  /**
+   * The ending inset, a constant in pixels; defaults to 0. A positive inset
+   * shortens the arrow by moving the ending point towards the starting point,
+   * while a negative inset extends it by moving the ending point in the
+   * opposite direction. A positive ending inset may be useful if the arrow
+   * points to a dot.
+   */
+  insetEnd?: number;
+
+  /**
+   * The sweep order; defaults to 1 indicating a positive (clockwise) bend
+   * angle; -1 indicates a negative (anticlockwise) bend angle; 0 effectively
+   * clears the bend angle. If set to *-x*, the bend angle is flipped when the
+   * ending point is to the left of the starting point — ensuring all arrows
+   * bulge up (down if bend is negative); if set to *-y*, the bend angle is
+   * flipped when the ending point is above the starting point — ensuring all
+   * arrows bulge right (left if bend is negative); the sign is negated for *+x*
+   * and *+y*.
+   */
+  sweep?: number | "+x" | "-x" | "+y" | "-y" | ((x1: number, y1: number, x2: number, y2: number) => number);
+}
 
 const defaults = {
   ariaLabel: "arrow",
@@ -15,8 +117,15 @@ const defaults = {
   strokeWidth: 1.5
 };
 
+/** The arrow mark. */
 export class Arrow extends Mark {
-  constructor(data, options = {}) {
+  bend: number;
+  headAngle: number;
+  headLength: number;
+  insetStart: number;
+  insetEnd: number;
+  sweep: any;
+  constructor(data: Data | null | undefined, options: ArrowOptions = {}) {
     const {
       x1,
       y1,
@@ -31,6 +140,7 @@ export class Arrow extends Mark {
       sweep
     } = options;
     super(
+      // @ts-expect-error — Mark constructor signature missing from mark.d.ts
       data,
       {
         x1: {value: x1, scale: "x"},
@@ -41,7 +151,7 @@ export class Arrow extends Mark {
       options,
       defaults
     );
-    this.bend = bend === true ? 22.5 : Math.max(-90, Math.min(90, bend));
+    this.bend = bend === true ? 22.5 : Math.max(-90, Math.min(90, bend as number));
     this.headAngle = +headAngle;
     this.headLength = +headLength;
     this.insetStart = +insetStart;
@@ -50,7 +160,7 @@ export class Arrow extends Mark {
   }
   render(index, scales, channels, dimensions, context) {
     const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1, SW} = channels;
-    const {strokeWidth, bend, headAngle, headLength, insetStart, insetEnd} = this;
+    const {strokeWidth, bend, headAngle, headLength, insetStart, insetEnd} = this as any;
     const sw = SW ? (i) => SW[i] : constant(strokeWidth === undefined ? 1 : strokeWidth);
 
     // The angle between the arrow’s shaft and one of the wings; the “head”
@@ -155,9 +265,9 @@ export class Arrow extends Mark {
 }
 
 // Maybe flip the bend angle, depending on the arrow orientation.
-function maybeSweep(sweep = 1) {
+function maybeSweep(sweep: ArrowOptions["sweep"] = 1) {
   if (typeof sweep === "number") return constant(Math.sign(sweep));
-  if (typeof sweep === "function") return (x1, y1, x2, y2) => Math.sign(sweep(x1, y1, x2, y2));
+  if (typeof sweep === "function") return (x1, y1, x2, y2) => Math.sign((sweep as any)(x1, y1, x2, y2));
   switch (keyword(sweep, "sweep", ["+x", "-x", "+y", "-y"])) {
     case "+x":
       return (x1, y1, x2) => ascending(x1, x2);
@@ -195,7 +305,17 @@ function circleCircleIntersect([ax, ay, ar], [bx, by, br], sign) {
   return [ax + (dx * x + dy * y) / d, ay + (dy * x - dx * y) / d];
 }
 
-export function arrow(data, {x, x1, x2, y, y1, y2, ...options} = {}) {
+/**
+ * Returns a new arrow mark for the given *data* and *options*, drawing
+ * (possibly swoopy) arrows connecting pairs of points. For example, to draw an
+ * arrow connecting an observation from 1980 with an observation from 2015 in a
+ * scatterplot of population and revenue inequality of U.S. cities:
+ *
+ * ```js
+ * Plot.arrow(inequality, {x1: "POP_1980", y1: "R90_10_1980", x2: "POP_2015", y2: "R90_10_2015", bend: true})
+ * ```
+ */
+export function arrow(data?: Data, {x, x1, x2, y, y1, y2, ...options}: ArrowOptions = {}): Arrow {
   [x1, x2] = maybeSameValue(x, x1, x2);
   [y1, y2] = maybeSameValue(y, y1, y2);
   return new Arrow(data, {...options, x1, x2, y1, y2});
