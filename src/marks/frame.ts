@@ -1,8 +1,21 @@
+import type {InsetOptions} from "../inset.js";
+import type {MarkOptions} from "../mark.js";
+import type {RectCornerOptions} from "./rect.js";
 import {create} from "../context.js";
 import {Mark} from "../mark.js";
 import {maybeKeyword, singleton} from "../options.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 import {applyRoundedRect, rectInsets, rectRadii} from "./rect.js";
+
+/** Options for the frame decoration mark. */
+export interface FrameOptions extends MarkOptions, InsetOptions, RectCornerOptions {
+  /**
+   * If null (default), the rectangular outline of the frame is drawn; otherwise
+   * the frame is drawn as a line only on the given side, and the corner radii
+   * (**r** *etc.*) and fill (**fill** and **fillOpacity**) options are ignored.
+   */
+  anchor?: "top" | "right" | "bottom" | "left" | null;
+}
 
 const defaults = {
   ariaLabel: "frame",
@@ -19,8 +32,9 @@ const lineDefaults = {
   clip: false
 };
 
+/** The frame decoration mark. */
 export class Frame extends Mark {
-  constructor(options = {}) {
+  constructor(options: FrameOptions = {}) {
     const {anchor = null} = options;
     super(singleton, undefined, options, anchor == null ? defaults : lineDefaults);
     this.anchor = maybeKeyword(anchor, "anchor", ["top", "right", "bottom", "left"]);
@@ -65,6 +79,11 @@ export class Frame extends Mark {
   }
 }
 
-export function frame(options) {
+/**
+ * Draws a rectangle around the plot’s frame, or if an **anchor** is given, a
+ * line on the given side. Useful for visual separation of facets, or in
+ * conjunction with axes and grids to fill the frame’s background.
+ */
+export function frame(options?: FrameOptions): Frame {
   return new Frame(options);
 }
