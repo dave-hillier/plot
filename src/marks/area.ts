@@ -1,7 +1,23 @@
+import {area as shapeArea} from "d3";
 import type {ChannelValue, ChannelValueDenseBinSpec, ChannelValueSpec} from "../channel.js";
+// @ts-ignore — runtime helper not exposed in companion .d.ts
+import {create} from "../context.js";
+// @ts-ignore — runtime helper not exposed in companion .d.ts
+import {maybeCurve} from "../curve.js";
 import type {CurveOptions} from "../curve.js";
-import type {Data, MarkOptions, RenderableMark} from "../mark.js";
+import {Mark} from "../mark.js";
+import type {Data, MarkOptions} from "../mark.js";
+// @ts-ignore — runtime helpers not exposed in companion .d.ts
+import {first, indexOf, maybeZ, second} from "../options.js";
+// @ts-ignore — runtime helpers not exposed in companion .d.ts
+import {applyDirectStyles, applyIndirectStyles, applyTransform, applyGroupedChannelStyles, groupIndex} from "../style.js";
+// @ts-ignore — runtime helpers not exposed in companion .d.ts
+import {maybeDenseIntervalX, maybeDenseIntervalY} from "../transforms/bin.js";
 import type {BinOptions, BinReducer} from "../transforms/bin.js";
+// @ts-ignore — runtime helpers not exposed in companion .d.ts
+import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
+// @ts-ignore — runtime helpers not exposed in companion .d.ts
+import {maybeStackX, maybeStackY} from "../transforms/stack.js";
 import type {StackOptions} from "../transforms/stack.js";
 
 /** Options for the area, areaX, and areaY marks. */
@@ -124,6 +140,63 @@ export interface AreaYOptions extends Omit<AreaOptions, "x1" | "x2">, BinOptions
   reduce?: BinReducer;
 }
 
+const defaults = {
+  ariaLabel: "area",
+  strokeWidth: 1,
+  strokeLinecap: "round",
+  strokeLinejoin: "round",
+  strokeMiterlimit: 1
+};
+
+/** The area mark. */
+export class Area extends Mark {
+  z: any;
+  curve: any;
+  constructor(data: Data | null | undefined, options: any = {}) {
+    const {x1, y1, x2, y2, z, curve, tension} = options;
+    const channels = {
+      x1: {value: x1, scale: "x"},
+      y1: {value: y1, scale: "y"},
+      x2: {value: x2, scale: "x", optional: true},
+      y2: {value: y2, scale: "y", optional: true},
+      z: {value: maybeZ(options), optional: true}
+    };
+    // @ts-ignore — Mark's companion .d.ts omits its constructor signature.
+    super(data, channels, options, defaults);
+    this.z = z;
+    this.curve = maybeCurve(curve, tension);
+  }
+  filter(index: any): any {
+    return index;
+  }
+  render(index: any, scales: any, channels: any, dimensions: any, context: any): any {
+    const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1} = channels;
+    return create("svg:g", context)
+      .call(applyIndirectStyles, this, dimensions, context)
+      .call(applyTransform, this, scales, 0, 0)
+      .call((g: any) =>
+        g
+          .selectAll()
+          .data(groupIndex(index, [X1, Y1, X2, Y2], this, channels))
+          .enter()
+          .append("path")
+          .call(applyDirectStyles, this)
+          .call(applyGroupedChannelStyles, this, channels)
+          .attr(
+            "d",
+            shapeArea()
+              .curve(this.curve)
+              .defined((i: any) => i >= 0)
+              .x0((i: any) => X1[i])
+              .y0((i: any) => Y1[i])
+              .x1((i: any) => X2[i])
+              .y1((i: any) => Y2[i])
+          )
+      )
+      .node();
+  }
+}
+
 /**
  * Returns a new area mark with the given *data* and *options*. The area mark is
  * rarely used directly; it is only needed when the baseline and topline have
@@ -131,71 +204,27 @@ export interface AreaYOptions extends Omit<AreaOptions, "x1" | "x2">, BinOptions
  * where the baseline and topline share *x* values, or areaX for a vertical
  * orientation where the baseline and topline share *y* values.
  */
-export function area(data?: Data, options?: AreaOptions): Area;
+export function area(data?: Data, options?: AreaOptions): Area {
+  if (options === undefined) return areaY(data, {x: first, y: second} as any);
+  return new Area(data, options);
+}
 
 /**
  * Returns a new vertically-oriented area mark for the given *data* and
  * *options*, where the baseline and topline share **y** values, as in a
- * time-series area chart where time goes up↑. For example, to plot Apple’s
- * daily stock price:
- *
- * ```js
- * Plot.areaX(aapl, {y: "Date", x: "Close"})
- * ```
- *
- * If neither **x1** nor **x2** is specified, an implicit stackX transform is
- * applied and **x** defaults to the identity function, assuming that *data* =
- * [*x₀*, *x₁*, *x₂*, …]. Otherwise, if only one of **x1** or **x2** is
- * specified, the other defaults to **x**, which defaults to zero.
- *
- * If an **interval** is specified, **y** values are binned accordingly,
- * allowing zeroes for empty bins instead of interpolating across gaps. This is
- * recommended to “regularize” sampled data; for example, if your data
- * represents timestamped observations and you expect one observation per day,
- * use *day* as the **interval**.
- *
- * Variable aesthetic channels are supported: if the **fill** is defined as a
- * channel, the area will be broken into contiguous overlapping sections when
- * the fill color changes; the fill color will apply to the interval spanning
- * the current data point and the following data point. This behavior also
- * applies to the **fillOpacity**, **stroke**, **strokeOpacity**,
- * **strokeWidth**, **opacity**, **href**, **title**, and **ariaLabel**
- * channels. When any of these channels are used, setting an explicit **z**
- * channel (possibly to null) is strongly recommended.
+ * time-series area chart where time goes up↑.
  */
-export function areaX(data?: Data, options?: AreaXOptions): Area;
+export function areaX(data?: Data, options?: AreaXOptions): Area {
+  const {x, y = indexOf, color, stroke = color, fill = color, z = x === fill || x === stroke ? null : undefined, ...rest} = maybeDenseIntervalY(options) as any;
+  return new Area(data, maybeStackX(maybeIdentityX({...rest, x, y1: y, y2: undefined, z, stroke, fill}, y === indexOf ? "x2" : "x")));
+}
 
 /**
  * Returns a new horizontally-oriented area mark for the given *data* and
  * *options*, where the baseline and topline share **x** values, as in a
- * time-series area chart where time goes right→. For example, to plot Apple’s
- * daily stock price:
- *
- * ```js
- * Plot.areaY(aapl, {x: "Date", y: "Close"})
- * ```
- *
- * If neither **y1** nor **y2** is specified, an implicit stackY transform is
- * applied and **y** defaults to the identity function, assuming that *data* =
- * [*y₀*, *y₁*, *y₂*, …]. Otherwise, if only one of **y1** or **y2** is
- * specified, the other defaults to **y**, which defaults to zero.
- *
- * If an **interval** is specified, **x** values are binned accordingly,
- * allowing zeroes for empty bins instead of interpolating across gaps. This is
- * recommended to “regularize” sampled data; for example, if your data
- * represents timestamped observations and you expect one observation per day,
- * use *day* as the **interval**.
- *
- * Variable aesthetic channels are supported: if the **fill** is defined as a
- * channel, the area will be broken into contiguous overlapping sections when
- * the fill color changes; the fill color will apply to the interval spanning
- * the current data point and the following data point. This behavior also
- * applies to the **fillOpacity**, **stroke**, **strokeOpacity**,
- * **strokeWidth**, **opacity**, **href**, **title**, and **ariaLabel**
- * channels. When any of these channels are used, setting an explicit **z**
- * channel (possibly to null) is strongly recommended.
+ * time-series area chart where time goes right→.
  */
-export function areaY(data?: Data, options?: AreaYOptions): Area;
-
-/** The area mark. */
-export class Area extends RenderableMark {}
+export function areaY(data?: Data, options?: AreaYOptions): Area {
+  const {x = indexOf, y, color, stroke = color, fill = color, z = y === fill || y === stroke ? null : undefined, ...rest} = maybeDenseIntervalX(options) as any;
+  return new Area(data, maybeStackY(maybeIdentityY({...rest, x1: x, x2: undefined, y, z, stroke, fill}, x === indexOf ? "y2" : "y")));
+}
