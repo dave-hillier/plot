@@ -1,6 +1,11 @@
 import {ascending, InternSet} from "d3";
+import type {ChannelValue} from "../channel.js";
+import type {CompoundMark, Data} from "../mark.js";
 import {marks} from "../mark.js";
+// @ts-ignore -- some symbols are declared only in options.js, not options.d.ts
 import {isColor, isNumeric, isObject, isOptions, isOrdinal, labelof, valueof} from "../options.js";
+import type {Reducer} from "../reducer.js";
+import type {BinOptions} from "../transforms/bin.js";
 import {bin, binX, binY} from "../transforms/bin.js";
 import {group, groupX, groupY} from "../transforms/group.js";
 import {areaX, areaY} from "./area.js";
@@ -12,13 +17,132 @@ import {line, lineX, lineY} from "./line.js";
 import {rect, rectX, rectY} from "./rect.js";
 import {ruleX, ruleY} from "./rule.js";
 
-export function autoSpec(data, options) {
-  options = normalizeOptions(options);
+/** Options for the auto mark. */
+export interface AutoOptions {
+  /**
+   * The horizontal position channel (**value**) and reducer (**reduce**).
+   *
+   * The **x** channel is required if a **y** channel is not specified;
+   * otherwise it is optional.
+   *
+   * If an **x** **reduce** is specified, a **y** channel is required and a
+   * **y** reduce is not allowed; the **y** channel will be grouped, and the
+   * reducer will be applied to each group’s associated **x** channel values (if
+   * any). If a **y** channel is set, but no **x** channel, the **x** **reduce**
+   * defaults to *count* to produce a histogram by grouping on **y**; disable
+   * this by setting the **x** **reduce** to null.
+   *
+   * The **zero** option, if true, draws a vertical rule at *x* = 0, and ensures
+   * that the default *x* scale domain includes 0.
+   */
+  x?: ChannelValue | Reducer | ({value?: ChannelValue; reduce?: Reducer | null; zero?: boolean} & BinOptions);
+
+  /**
+   * The vertical position channel (**value**) and reducer (**reduce**).
+   *
+   * The **y** channel is required if an **x** channel is not specified;
+   * otherwise it is optional.
+   *
+   * If a **y** **reduce** is specified, an **x** channel is required, and an
+   * **x** reduce is not allowed; the **x** channel will be grouped, and the
+   * reducer will be applied to each group’s associated **y** channel values (if
+   * any). If a **x** channel is set, but no **y** channel, the **y** **reduce**
+   * defaults to *count* to produce a histogram by grouping on **x**; disable
+   * this by setting the **y** **reduce** to null.
+   *
+   * The **zero** option, if true, draws a horizontal rule at *y* = 0, and
+   * ensures that the default *y* scale domain includes 0.
+   */
+  y?: ChannelValue | Reducer | ({value?: ChannelValue; reduce?: Reducer | null; zero?: boolean} & BinOptions);
+
+  /**
+   * The color channel (**value**) and reducer (**reduce**), or a constant color
+   * such as *red* for aesthetics (**color**). This option corresponds to the
+   * **stroke** channel for dots, lines, and rules, and the **fill** channel for
+   * areas and bars. If a color channel or reducer is specified, the constant
+   * color is ignored.
+   *
+   * If neither a **x** nor **y** **reduce** is specified, but a **color**
+   * **reduce** is specified, both the **x** and **y** channels (if any) will be
+   * grouped, and the reducer will be applied to each group’s associated
+   * **color** channel values (if any), say to produce a heatmap.
+   */
+  color?: ChannelValue | Reducer | {value?: ChannelValue; reduce?: Reducer | null; color?: string};
+
+  /**
+   * The size channel (**value**) and reducer (**reduce**). This option
+   * corresponds to the **r** channel for dots; it may correspond to the
+   * **length** of vectors in the future.
+   *
+   * If neither a **x** nor **y** **reduce** is specified, but a **size**
+   * **reduce** is specified, both the **x** and **y** channels (if any) will be
+   * grouped, and the reducer will be applied to each group’s associated
+   * **size** channel values (if any), say to produce a binned scatterplot.
+   */
+  size?: ChannelValue | Reducer | {value?: ChannelValue; reduce?: Reducer | null};
+
+  /**
+   * The horizontal facet position channel (**value**), for mark-level faceting,
+   * bound to the *fx* scale.
+   */
+  fx?: ChannelValue | {value?: ChannelValue};
+
+  /**
+   * The vertical facet position channel (**value**), for mark-level faceting,
+   * bound to the *fy* scale.
+   */
+  fy?: ChannelValue | {value?: ChannelValue};
+
+  /**
+   * The desired mark type; one of:
+   *
+   * - *area* - an area
+   * - *bar* - a rect, cell, or bar (depending on the data type)
+   * - *dot* - a dot
+   * - *line* - a line
+   * - *rule* - a rule
+   *
+   * Whenever possible, avoid setting the mark type; the default mark type
+   * should usually suffice, and setting an explicit mark type may lead to a
+   * nonsensical plot (especially if you change other options).
+   */
+  mark?: "area" | "bar" | "dot" | "line" | "rule";
+}
+
+/**
+ * An auto options object with nothing left undefined, as returned by
+ * Plot.autoSpec; the mark type, reducers, and other options will be populated.
+ */
+export interface AutoSpec extends AutoOptions {
+  x: {value: ChannelValue; reduce: Reducer | null; zero: boolean} & BinOptions;
+  y: {value: ChannelValue; reduce: Reducer | null; zero: boolean} & BinOptions;
+  color: {value: ChannelValue; reduce: Reducer | null; color?: string};
+  size: {value: ChannelValue; reduce: Reducer | null};
+  fx: ChannelValue;
+  fy: ChannelValue;
+  mark: NonNullable<AutoOptions["mark"]>;
+}
+
+/**
+ * Returns a fully-specified *options* object for the auto mark, with nothing
+ * left undefined. This is mostly for internal use, but can be used to “lock
+ * down” the specification of an auto mark or to interrogate its behavior. For
+ * example, if you say
+ *
+ * ```js
+ * Plot.autoSpec(penguins, {x: "body_mass_g"})
+ * ```
+ *
+ * the returned object will have **y** set to {value: null, reduce: *count*} and
+ * **mark** set to *bar*, telling you that a histogram will be rendered.
+ */
+export function autoSpec(data?: Data, options?: AutoOptions): AutoSpec {
+  options = normalizeOptions(options) as AutoOptions;
 
   // Greedily materialize columns for type inference; we’ll need them anyway to
   // plot! Note that we don’t apply any type inference to the fx and fy
   // channels, if present; these are always ordinal (at least for now).
-  const {x, y, color, size} = options;
+  const {x, y, color, size}: any = options;
   const X = materializeValue(data, x);
   const Y = materializeValue(data, y);
   const C = materializeValue(data, color);
@@ -33,7 +157,7 @@ export function autoSpec(data, options) {
     color: {value: colorValue, color: colorColor, reduce: colorReduce},
     size: {value: sizeValue, reduce: sizeReduce}, // TODO constant radius?
     mark
-  } = options;
+  }: any = options;
 
   // Determine the default reducer, if any.
   if (xReduce === undefined)
@@ -79,11 +203,11 @@ export function autoSpec(data, options) {
         : null;
   }
 
-  let Z; // may be set to null to disable series-by-color for line and area
-  let colorMode; // "fill" or "stroke"
+  let Z: any; // may be set to null to disable series-by-color for line and area
+  let colorMode: any; // "fill" or "stroke"
 
   // Determine the mark implementation.
-  let markImpl;
+  let markImpl: any;
   switch (mark) {
     case "dot":
       markImpl = dot;
@@ -146,7 +270,7 @@ export function autoSpec(data, options) {
   }
 
   // Determine the mark options.
-  let markOptions = {
+  let markOptions: any = {
     fx,
     fy,
     x: X ?? undefined, // treat null x as undefined for implicit stack
@@ -156,8 +280,8 @@ export function autoSpec(data, options) {
     r: S ?? undefined, // treat null size as undefined for default constant radius
     tip: true
   };
-  let transformImpl;
-  let transformOptions = {[colorMode]: colorReduce ?? undefined, r: sizeReduce ?? undefined};
+  let transformImpl: any;
+  let transformOptions: any = {[colorMode]: colorReduce ?? undefined, r: sizeReduce ?? undefined};
   if (xReduce != null && yReduce != null) {
     throw new Error(`cannot reduce both x and y`); // for now at least
   } else if (yReduce != null) {
@@ -223,11 +347,23 @@ export function autoSpec(data, options) {
     transformImpl: implNames[transformImpl],
     transformOptions,
     colorMode
-  };
+  } as any;
 }
 
-export function auto(data, options) {
-  const spec = autoSpec(data, options);
+/**
+ * Returns a new mark whose implementation is chosen dynamically to best
+ * represent the dimensions of the given *data* specified in *options*,
+ * according to a few simple heuristics. The auto mark seeks to provide a useful
+ * initial plot as quickly as possible through opinionated defaults, and to
+ * accelerate exploratory analysis by letting you refine views with minimal
+ * changes to code. For example, for a histogram of penguins binned by weight:
+ *
+ * ```js
+ * Plot.auto(penguins, {x: "body_mass_g"})
+ * ```
+ */
+export function auto(data?: Data, options?: AutoOptions): CompoundMark {
+  const spec: any = autoSpec(data, options);
   const {
     fx,
     fy,
@@ -237,8 +373,8 @@ export function auto(data, options) {
     transformOptions,
     colorMode
   } = spec;
-  const markImpl = impls[spec.markImpl];
-  const transformImpl = impls[spec.transformImpl];
+  const markImpl = (impls as any)[spec.markImpl];
+  const transformImpl = (impls as any)[spec.transformImpl];
   // In the case of filled marks (particularly bars and areas) the frame and
   // rules should come after the mark; in the case of stroked marks
   // (particularly dots and lines) they should come before the mark.
@@ -249,7 +385,7 @@ export function auto(data, options) {
 }
 
 // TODO What about sorted within series?
-function isMonotonic(values) {
+function isMonotonic(values: any) {
   let previous;
   let previousOrder;
   for (const value of values) {
@@ -271,7 +407,7 @@ function isMonotonic(values) {
 // (but note that they can also be specified as a {transform} object such as
 // Plot.identity). We don’t support reducers for the faceting, but for symmetry
 // with x and y we allow facets to be specified as {value} objects.
-function normalizeOptions({x, y, color, size, fx, fy, mark} = {}) {
+function normalizeOptions({x, y, color, size, fx, fy, mark}: any = {}) {
   if (!isOptions(x)) x = makeOptions(x);
   if (!isOptions(y)) y = makeOptions(y);
   if (!isOptions(color)) color = isColor(color) ? {color} : makeOptions(color);
@@ -285,28 +421,28 @@ function normalizeOptions({x, y, color, size, fx, fy, mark} = {}) {
 // To apply heuristics based on the data types (values), realize the columns. We
 // could maybe look at the data.schema here, but Plot’s behavior depends on the
 // actual values anyway, so this probably is what we want.
-function materializeValue(data, options) {
+function materializeValue(data: any, options: any) {
   const V = valueof(data, options.value);
-  if (V) V.label = labelof(options.value);
+  if (V) (V as any).label = labelof(options.value);
   return V;
 }
 
-function makeOptions(value) {
+function makeOptions(value: any) {
   return isReducer(value) ? {reduce: value} : {value};
 }
 
 // The distinct, count, sum, and proportion reducers are additive (stackable).
-function isZeroReducer(reduce) {
+function isZeroReducer(reduce: any) {
   return /^(?:distinct|count|sum|proportion)$/i.test(reduce);
 }
 
 // The first, last, and mode reducers preserve the type of the aggregated values.
-function isSelectReducer(reduce) {
+function isSelectReducer(reduce: any) {
   return /^(?:first|last|mode)$/i.test(reduce);
 }
 
 // https://github.com/observablehq/plot/blob/818562649280e155136f730fc496e0b3d15ae464/src/transforms/group.js#L236
-function isReducer(reduce) {
+function isReducer(reduce: any) {
   if (reduce == null) return false;
   if (typeof reduce.reduceIndex === "function") return true;
   if (typeof reduce.reduce === "function" && isObject(reduce)) return true; // N.B. array.reduce
@@ -340,7 +476,7 @@ function isReducer(reduce) {
   return false;
 }
 
-function isHighCardinality(value) {
+function isHighCardinality(value: any) {
   return value ? new InternSet(value).size > value.length >> 1 : false;
 }
 
@@ -373,4 +509,4 @@ const impls = {
 // compilation, and by having it in Plot we can more easily introduce a new mark
 // or transform implementation in Plot.auto without having to synchronize a
 // downstream change in the compiler.
-const implNames = Object.fromEntries(Object.entries(impls).map(([name, impl]) => [impl, name]));
+const implNames: any = Object.fromEntries(Object.entries(impls).map(([name, impl]) => [impl, name]));
