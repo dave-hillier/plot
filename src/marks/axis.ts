@@ -1,69 +1,151 @@
 import {InternSet, extent, format, utcFormat} from "d3";
 import {formatDefault} from "../format.js";
+import type {CompoundMark, Data, MarkOptions} from "../mark.js";
 import {marks} from "../mark.js";
 import {radians} from "../math.js";
 import {arrayify, constant, identity, keyword, number, range, valueof} from "../options.js";
 import {isIterable, isNoneish, isTemporal, isInterval} from "../options.js";
 import {maybeColorChannel, maybeNumberChannel, maybeRangeInterval} from "../options.js";
+import type {ScaleOptions} from "../scales.js";
 import {inferScaleOrder} from "../scales.js";
 import {offset} from "../style.js";
 import {generalizeTimeInterval, inferTimeFormat, intervalDuration} from "../time.js";
 import {initializer} from "../transforms/basic.js";
 import {warn} from "../warnings.js";
+import type {RuleX, RuleXOptions, RuleY, RuleYOptions} from "./rule.js";
 import {ruleX, ruleY} from "./rule.js";
+import type {TextOptions} from "./text.js";
 import {text, textX, textY} from "./text.js";
+import type {TickXOptions, TickYOptions} from "./tick.js";
 import {vectorX, vectorY} from "./vector.js";
 
-function maybeData(data, options) {
+/** The subset of scale options for grids. */
+type GridScaleOptions = Pick<ScaleOptions, "interval" | "ticks" | "tickSpacing">;
+
+/** The subset of scale options for axes. */
+type AxisScaleOptions = Pick<ScaleOptions, "tickSize" | "tickPadding" | "tickFormat" | "tickRotate" | "label" | "labelOffset" | "labelAnchor" | "labelArrow">; // prettier-ignore
+
+/** Options for the grid marks. */
+export interface GridOptions extends GridScaleOptions {
+  /**
+   * The side of the frame on which to place the axis: *top* or *bottom* for
+   * horizontal axes (axisX and axisFx) and their associated vertical grids
+   * (gridX and gridFx), or *left* or *right* for vertical axes (axisY and
+   * axisFY) and their associated horizontal grids (gridY and gridFy).
+   *
+   * The default **anchor** depends on the associated scale:
+   *
+   * - *x* - *bottom*
+   * - *y* - *left*
+   * - *fx* - *top* if there is a *bottom* *x* axis, and otherwise *bottom*
+   * - *fy* - *right* if there is a *left* *y* axis, and otherwise *right*
+   *
+   * For grids, the **anchor** also affects the extent of grid lines when the
+   * opposite dimension is specified (**x** for gridY and **y** for gridX). For
+   * example, to draw a horizontal gridY between the *right* edge of the frame
+   * and the specified **x** value:
+   *
+   * ```js
+   * Plot.gridY({x: (y) => aapl.find((d) => d.Close >= y)?.Date, anchor: "right"})
+   * ```
+   */
+  anchor?: "top" | "right" | "bottom" | "left";
+
+  /**
+   * A shorthand for setting both **fill** and **stroke**; affects the stroke of
+   * tick vectors and grid rules, and the fill of tick texts and axis label
+   * texts; defaults to *currentColor*.
+   */
+  color?: MarkOptions["stroke"];
+
+  /**
+   * A shorthand for setting both **fillOpacity** and **strokeOpacity**; affects
+   * the stroke opacity of tick vectors and grid rules, and the fill opacity of
+   * tick texts and axis label texts; defaults to 1 for axes and 0.1 for grids.
+   */
+  opacity?: MarkOptions["opacity"];
+}
+
+/** Options for the axis marks. */
+export interface AxisOptions extends GridOptions, MarkOptions, TextOptions, AxisScaleOptions {
+  /** The tick text **stroke**, say for a *white* outline to improve legibility; defaults to null. */
+  textStroke?: MarkOptions["stroke"];
+  /** The tick text **strokeOpacity**; defaults to 1; has no effect unless **textStroke** is set. */
+  textStrokeOpacity?: MarkOptions["strokeOpacity"];
+  /** The tick text **strokeWidth**; defaults to 4; has no effect unless **textStroke** is set. */
+  textStrokeWidth?: MarkOptions["strokeWidth"];
+}
+
+/** Options for the axisX and axisFx marks. */
+export interface AxisXOptions extends AxisOptions, TickXOptions {}
+
+/** Options for the axisY and axisFy marks. */
+export interface AxisYOptions extends AxisOptions, TickYOptions {}
+
+/** Options for the gridX and gridFx marks. */
+export interface GridXOptions extends GridOptions, Omit<RuleXOptions, "interval"> {}
+
+/** Options for the gridY and gridFy marks. */
+export interface GridYOptions extends GridOptions, Omit<RuleYOptions, "interval"> {}
+
+function maybeData(data: any, options: any): [any, any] {
   if (arguments.length < 2 && !isIterable(data)) (options = data), (data = null);
   if (options === undefined) options = {};
   return [data, options];
 }
 
-function maybeAnchor({anchor} = {}, anchors) {
+function maybeAnchor({anchor}: any = {}, anchors: any): any {
   return anchor === undefined ? anchors[0] : keyword(anchor, "anchor", anchors);
 }
 
-function anchorY(options) {
+function anchorY(options: any): any {
   return maybeAnchor(options, ["left", "right"]);
 }
 
-function anchorFy(options) {
+function anchorFy(options: any): any {
   return maybeAnchor(options, ["right", "left"]);
 }
 
-function anchorX(options) {
+function anchorX(options: any): any {
   return maybeAnchor(options, ["bottom", "top"]);
 }
 
-function anchorFx(options) {
+function anchorFx(options: any): any {
   return maybeAnchor(options, ["top", "bottom"]);
 }
 
-export function axisY() {
-  const [data, options] = maybeData(...arguments);
+export function axisY(data?: Data, options?: AxisYOptions): CompoundMark;
+export function axisY(options?: AxisYOptions): CompoundMark;
+export function axisY(...args: any[]): CompoundMark {
+  const [data, options] = maybeData(...(args as [any, any]));
   return axisKy("y", anchorY(options), data, options);
 }
 
-export function axisFy() {
-  const [data, options] = maybeData(...arguments);
+export function axisFy(data?: Data, options?: AxisYOptions): CompoundMark;
+export function axisFy(options?: AxisYOptions): CompoundMark;
+export function axisFy(...args: any[]): CompoundMark {
+  const [data, options] = maybeData(...(args as [any, any]));
   return axisKy("fy", anchorFy(options), data, options);
 }
 
-export function axisX() {
-  const [data, options] = maybeData(...arguments);
+export function axisX(data?: Data, options?: AxisXOptions): CompoundMark;
+export function axisX(options?: AxisXOptions): CompoundMark;
+export function axisX(...args: any[]): CompoundMark {
+  const [data, options] = maybeData(...(args as [any, any]));
   return axisKx("x", anchorX(options), data, options);
 }
 
-export function axisFx() {
-  const [data, options] = maybeData(...arguments);
+export function axisFx(data?: Data, options?: AxisXOptions): CompoundMark;
+export function axisFx(options?: AxisXOptions): CompoundMark;
+export function axisFx(...args: any[]): CompoundMark {
+  const [data, options] = maybeData(...(args as [any, any]));
   return axisKx("fx", anchorFx(options), data, options);
 }
 
 function axisKy(
-  k,
-  anchor,
-  data,
+  k: any,
+  anchor: any,
+  data: any,
   {
     color = "currentColor",
     opacity = 1,
@@ -91,8 +173,8 @@ function axisKy(
     labelOffset,
     ariaLabel = `${k}-axis`,
     ...options
-  }
-) {
+  }: any
+): any {
   tickSize = number(tickSize);
   tickPadding = number(tickPadding);
   tickRotate = number(tickRotate);
@@ -135,39 +217,42 @@ function axisKy(
     !isNoneish(fill) && label !== null
       ? text(
           [],
-          labelOptions({fill, fillOpacity, ...options}, function (data, facets, channels, scales, dimensions) {
-            const scale = scales[k];
-            const {marginTop, marginRight, marginBottom, marginLeft} = (k === "y" && dimensions.inset) || dimensions;
-            const cla = labelAnchor ?? (scale.bandwidth ? "center" : "top");
-            const clo = labelOffset ?? (anchor === "right" ? marginRight : marginLeft) - 3;
-            if (cla === "center") {
-              this.textAnchor = undefined; // middle
-              this.lineAnchor = anchor === "right" ? "bottom" : "top";
-              this.frameAnchor = anchor;
-              this.rotate = -90;
-            } else {
-              this.textAnchor = anchor === "right" ? "end" : "start";
-              this.lineAnchor = cla;
-              this.frameAnchor = `${cla}-${anchor}`;
-              this.rotate = 0;
+          labelOptions(
+            {fill, fillOpacity, ...options},
+            function (this: any, data: any, facets: any, channels: any, scales: any, dimensions: any) {
+              const scale = scales[k];
+              const {marginTop, marginRight, marginBottom, marginLeft} = (k === "y" && dimensions.inset) || dimensions;
+              const cla = labelAnchor ?? (scale.bandwidth ? "center" : "top");
+              const clo = labelOffset ?? (anchor === "right" ? marginRight : marginLeft) - 3;
+              if (cla === "center") {
+                this.textAnchor = undefined; // middle
+                this.lineAnchor = anchor === "right" ? "bottom" : "top";
+                this.frameAnchor = anchor;
+                this.rotate = -90;
+              } else {
+                this.textAnchor = anchor === "right" ? "end" : "start";
+                this.lineAnchor = cla;
+                this.frameAnchor = `${cla}-${anchor}`;
+                this.rotate = 0;
+              }
+              this.dy = cla === "top" ? 3 - marginTop : cla === "bottom" ? marginBottom - 3 : 0;
+              this.dx = anchor === "right" ? clo : -clo;
+              this.ariaLabel = `${ariaLabel} label`;
+              return {
+                facets: [[0]],
+                channels: {text: {value: [formatAxisLabel(k, scale, {anchor, label, labelAnchor: cla, labelArrow})]}}
+              };
             }
-            this.dy = cla === "top" ? 3 - marginTop : cla === "bottom" ? marginBottom - 3 : 0;
-            this.dx = anchor === "right" ? clo : -clo;
-            this.ariaLabel = `${ariaLabel} label`;
-            return {
-              facets: [[0]],
-              channels: {text: {value: [formatAxisLabel(k, scale, {anchor, label, labelAnchor: cla, labelArrow})]}}
-            };
-          })
+          )
         )
       : null
   );
 }
 
 function axisKx(
-  k,
-  anchor,
-  data,
+  k: any,
+  anchor: any,
+  data: any,
   {
     color = "currentColor",
     opacity = 1,
@@ -195,8 +280,8 @@ function axisKx(
     labelOffset,
     ariaLabel = `${k}-axis`,
     ...options
-  }
-) {
+  }: any
+): any {
   tickSize = number(tickSize);
   tickPadding = number(tickPadding);
   tickRotate = number(tickRotate);
@@ -239,36 +324,39 @@ function axisKx(
     !isNoneish(fill) && label !== null
       ? text(
           [],
-          labelOptions({fill, fillOpacity, ...options}, function (data, facets, channels, scales, dimensions) {
-            const scale = scales[k];
-            const {marginTop, marginRight, marginBottom, marginLeft} = (k === "x" && dimensions.inset) || dimensions;
-            const cla = labelAnchor ?? (scale.bandwidth ? "center" : "right");
-            const clo = labelOffset ?? (anchor === "top" ? marginTop : marginBottom) - 3;
-            if (cla === "center") {
-              this.frameAnchor = anchor;
-              this.textAnchor = undefined; // middle
-            } else {
-              this.frameAnchor = `${anchor}-${cla}`;
-              this.textAnchor = cla === "right" ? "end" : "start";
+          labelOptions(
+            {fill, fillOpacity, ...options},
+            function (this: any, data: any, facets: any, channels: any, scales: any, dimensions: any) {
+              const scale = scales[k];
+              const {marginTop, marginRight, marginBottom, marginLeft} = (k === "x" && dimensions.inset) || dimensions;
+              const cla = labelAnchor ?? (scale.bandwidth ? "center" : "right");
+              const clo = labelOffset ?? (anchor === "top" ? marginTop : marginBottom) - 3;
+              if (cla === "center") {
+                this.frameAnchor = anchor;
+                this.textAnchor = undefined; // middle
+              } else {
+                this.frameAnchor = `${anchor}-${cla}`;
+                this.textAnchor = cla === "right" ? "end" : "start";
+              }
+              this.lineAnchor = anchor;
+              this.dy = anchor === "top" ? -clo : clo;
+              this.dx = cla === "right" ? marginRight - 3 : cla === "left" ? 3 - marginLeft : 0;
+              this.ariaLabel = `${ariaLabel} label`;
+              return {
+                facets: [[0]],
+                channels: {text: {value: [formatAxisLabel(k, scale, {anchor, label, labelAnchor: cla, labelArrow})]}}
+              };
             }
-            this.lineAnchor = anchor;
-            this.dy = anchor === "top" ? -clo : clo;
-            this.dx = cla === "right" ? marginRight - 3 : cla === "left" ? 3 - marginLeft : 0;
-            this.ariaLabel = `${ariaLabel} label`;
-            return {
-              facets: [[0]],
-              channels: {text: {value: [formatAxisLabel(k, scale, {anchor, label, labelAnchor: cla, labelArrow})]}}
-            };
-          })
+          )
         )
       : null
   );
 }
 
 function axisTickKy(
-  k,
-  anchor,
-  data,
+  k: any,
+  anchor: any,
+  data: any,
   {
     strokeWidth = 1,
     strokeLinecap = null,
@@ -283,8 +371,8 @@ function axisTickKy(
     y = k === "y" ? undefined : null,
     ariaLabel,
     ...options
-  }
-) {
+  }: any
+): any {
   return axisMark(
     vectorY,
     k,
@@ -310,9 +398,9 @@ function axisTickKy(
 }
 
 function axisTickKx(
-  k,
-  anchor,
-  data,
+  k: any,
+  anchor: any,
+  data: any,
   {
     strokeWidth = 1,
     strokeLinecap = null,
@@ -327,8 +415,8 @@ function axisTickKx(
     x = k === "x" ? undefined : null,
     ariaLabel,
     ...options
-  }
-) {
+  }: any
+): any {
   return axisMark(
     vectorX,
     k,
@@ -354,9 +442,9 @@ function axisTickKx(
 }
 
 function axisTextKy(
-  k,
-  anchor,
-  data,
+  k: any,
+  anchor: any,
+  data: any,
   {
     facetAnchor = anchor + (k === "y" ? "-empty" : ""),
     frameAnchor = anchor,
@@ -374,8 +462,8 @@ function axisTextKy(
     ariaLabel,
     y = k === "y" ? undefined : null,
     ...options
-  }
-) {
+  }: any
+): any {
   return axisMark(
     textY,
     k,
@@ -393,7 +481,7 @@ function axisTextKy(
       ...options,
       dx: anchor === "left" ? +dx - tickSize - tickPadding + +insetLeft : +dx + +tickSize + +tickPadding - insetRight
     },
-    function (scale, data, ticks, tickFormat, channels) {
+    function (this: any, scale: any, data: any, ticks: any, tickFormat: any, channels: any) {
       if (fontVariant === undefined) this.fontVariant = inferFontVariant(scale);
       if (text === undefined) channels.text = inferTextChannel(scale, data, ticks, tickFormat, anchor);
     }
@@ -401,9 +489,9 @@ function axisTextKy(
 }
 
 function axisTextKx(
-  k,
-  anchor,
-  data,
+  k: any,
+  anchor: any,
+  data: any,
   {
     facetAnchor = anchor + (k === "x" ? "-empty" : ""),
     frameAnchor = anchor,
@@ -411,7 +499,11 @@ function axisTextKx(
     tickRotate = 0,
     tickPadding = Math.max(3, 9 - tickSize) + (Math.abs(tickRotate) >= 10 ? 4 * Math.cos(tickRotate * radians) : 0),
     text,
-    textAnchor = Math.abs(tickRotate) >= 10 ? ((tickRotate < 0) ^ (anchor === "bottom") ? "start" : "end") : "middle",
+    textAnchor = Math.abs(tickRotate) >= 10
+      ? ((tickRotate < 0) as any) ^ ((anchor === "bottom") as any)
+        ? "start"
+        : "end"
+      : "middle",
     lineAnchor = Math.abs(tickRotate) >= 10 ? "middle" : anchor === "bottom" ? "top" : "bottom",
     fontVariant,
     inset = 0,
@@ -421,8 +513,8 @@ function axisTextKx(
     x = k === "x" ? undefined : null,
     ariaLabel,
     ...options
-  }
-) {
+  }: any
+): any {
   return axisMark(
     textX,
     k,
@@ -440,37 +532,45 @@ function axisTextKx(
       ...options,
       dy: anchor === "bottom" ? +dy + +tickSize + +tickPadding - insetBottom : +dy - tickSize - tickPadding + +insetTop
     },
-    function (scale, data, ticks, tickFormat, channels) {
+    function (this: any, scale: any, data: any, ticks: any, tickFormat: any, channels: any) {
       if (fontVariant === undefined) this.fontVariant = inferFontVariant(scale);
       if (text === undefined) channels.text = inferTextChannel(scale, data, ticks, tickFormat, anchor);
     }
   );
 }
 
-export function gridY() {
-  const [data, options] = maybeData(...arguments);
+export function gridY(data?: Data, options?: GridYOptions): RuleY;
+export function gridY(options?: GridYOptions): RuleY;
+export function gridY(...args: any[]): RuleY {
+  const [data, options] = maybeData(...(args as [any, any]));
   return gridKy("y", anchorY(options), data, options);
 }
 
-export function gridFy() {
-  const [data, options] = maybeData(...arguments);
+export function gridFy(data?: Data, options?: GridYOptions): RuleY;
+export function gridFy(options?: GridYOptions): RuleY;
+export function gridFy(...args: any[]): RuleY {
+  const [data, options] = maybeData(...(args as [any, any]));
   return gridKy("fy", anchorFy(options), data, options);
 }
 
-export function gridX() {
-  const [data, options] = maybeData(...arguments);
+export function gridX(data?: Data, options?: GridXOptions): RuleX;
+export function gridX(options?: GridXOptions): RuleX;
+export function gridX(...args: any[]): RuleX {
+  const [data, options] = maybeData(...(args as [any, any]));
   return gridKx("x", anchorX(options), data, options);
 }
 
-export function gridFx() {
-  const [data, options] = maybeData(...arguments);
+export function gridFx(data?: Data, options?: GridXOptions): RuleX;
+export function gridFx(options?: GridXOptions): RuleX;
+export function gridFx(...args: any[]): RuleX {
+  const [data, options] = maybeData(...(args as [any, any]));
   return gridKx("fx", anchorFx(options), data, options);
 }
 
 function gridKy(
-  k,
-  anchor,
-  data,
+  k: any,
+  anchor: any,
+  data: any,
   {
     y = k === "y" ? undefined : null,
     x = null,
@@ -479,15 +579,15 @@ function gridKy(
     ariaLabel = `${k}-grid`,
     ariaHidden = true,
     ...options
-  }
-) {
+  }: any
+): any {
   return axisMark(ruleY, k, data, {ariaLabel, ariaHidden}, {y, x1, x2, ...gridDefaults(options)});
 }
 
 function gridKx(
-  k,
-  anchor,
-  data,
+  k: any,
+  anchor: any,
+  data: any,
   {
     x = k === "x" ? undefined : null,
     y = null,
@@ -496,8 +596,8 @@ function gridKx(
     ariaLabel = `${k}-grid`,
     ariaHidden = true,
     ...options
-  }
-) {
+  }: any
+): any {
   return axisMark(ruleX, k, data, {ariaLabel, ariaHidden}, {x, y1, y2, ...gridDefaults(options)});
 }
 
@@ -508,7 +608,7 @@ function gridDefaults({
   strokeOpacity = opacity,
   strokeWidth = 1,
   ...options
-}) {
+}: any): any {
   return {stroke, strokeOpacity, strokeWidth, ...options};
 }
 
@@ -525,9 +625,9 @@ function labelOptions(
     pointerEvents,
     shapeRendering,
     clip = false
-  },
-  initializer
-) {
+  }: any,
+  initializer: any
+): any {
   // Only propagate these options if constant.
   [, fill] = maybeColorChannel(fill);
   [, fillOpacity] = maybeNumberChannel(fillOpacity);
@@ -550,10 +650,18 @@ function labelOptions(
   };
 }
 
-function axisMark(mark, k, data, properties, options, initialize) {
-  let channels;
+function axisMark(mark: any, k: any, data: any, properties: any, options: any, initialize?: any): any {
+  let channels: any;
 
-  function axisInitializer(data, facets, _channels, scales, dimensions, context) {
+  function axisInitializer(
+    this: any,
+    data: any,
+    facets: any,
+    _channels: any,
+    scales: any,
+    dimensions: any,
+    context: any
+  ): any {
     const initializeFacets = data == null && (k === "fx" || k === "fy");
     const {[k]: scale} = scales;
     if (!scale) throw new Error(`missing scale: ${k}`);
@@ -575,14 +683,14 @@ function axisMark(mark, k, data, properties, options, initialize) {
         data = arrayify(ticks);
       } else if (isInterval(ticks)) {
         // Use the tick interval, if specified.
-        data = inclusiveRange(ticks, ...extent(domain));
+        data = inclusiveRange(ticks, ...(extent(domain) as [any, any]));
       } else if (scale.interval) {
         // If the scale interval is a standard time interval such as "day", we
         // may be able to generalize the scale interval it to a larger aligned
         // time interval to create the desired number of ticks.
         let interval = scale.interval;
         if (scale.ticks) {
-          const [min, max] = extent(domain);
+          const [min, max] = extent(domain) as [any, any];
           const n = (max - min) / interval[intervalDuration]; // current tick count
           // We don’t explicitly check that given interval is a time interval;
           // in that case the generalized interval will be undefined, just like
@@ -593,7 +701,7 @@ function axisMark(mark, k, data, properties, options, initialize) {
           data = domain;
           const n = data.length; // current tick count
           interval = generalizeTimeInterval(interval, n / ticks) ?? interval;
-          if (interval !== scale.interval) data = inclusiveRange(interval, ...extent(data));
+          if (interval !== scale.interval) data = inclusiveRange(interval, ...(extent(data) as [any, any]));
         }
         if (interval === scale.interval) {
           // If we weren’t able to generalize the scale’s interval, compute the
@@ -602,7 +710,7 @@ function axisMark(mark, k, data, properties, options, initialize) {
           // ticks. For example, if the domain has 100 values and 5 ticks are
           // desired, n = 20.
           const n = Math.round(data.length / ticks);
-          if (n > 1) data = data.filter((d, i) => i % n === 0);
+          if (n > 1) data = data.filter((d: any, i: any) => i % n === 0);
         }
       } else if (scale.ticks) {
         data = scale.ticks(ticks);
@@ -617,7 +725,7 @@ function axisMark(mark, k, data, properties, options, initialize) {
         // removed, then warn that the ticks and scale domain may be misaligned
         // (e.g., "year" ticks and "4 weeks" interval).
         const domainSet = new InternSet(domain);
-        data = data.filter((d) => domainSet.has(d));
+        data = data.filter((d: any) => domainSet.has(d));
         if (!data.length) warn(`Warning: the ${k}-axis ticks appear to not align with the scale domain, resulting in no ticks. Try different ticks?`); // prettier-ignore
       }
       if (k === "y" || k === "x") {
@@ -628,7 +736,7 @@ function axisMark(mark, k, data, properties, options, initialize) {
     }
     initialize?.call(this, scale, data, ticks, tickFormat, channels);
     const initializedChannels = Object.fromEntries(
-      Object.entries(channels).map(([name, channel]) => {
+      Object.entries(channels).map(([name, channel]: any) => {
         return [name, {...channel, value: valueof(data, channel.value)}];
       })
     );
@@ -637,8 +745,8 @@ function axisMark(mark, k, data, properties, options, initialize) {
   }
 
   // Apply any basic initializers after the axis initializer computes the ticks.
-  const basicInitializer = initializer(options).initializer;
-  const m = mark(data, initializer({...options, initializer: axisInitializer}, basicInitializer));
+  const basicInitializer = (initializer as any)(options).initializer;
+  const m = mark(data, (initializer as any)({...options, initializer: axisInitializer}, basicInitializer));
   if (data == null) {
     channels = m.channels;
     m.channels = {};
@@ -650,12 +758,12 @@ function axisMark(mark, k, data, properties, options, initialize) {
   return m;
 }
 
-function inferTickCount(scale, tickSpacing) {
-  const [min, max] = extent(scale.range());
+function inferTickCount(scale: any, tickSpacing: any): any {
+  const [min, max] = extent(scale.range()) as [any, any];
   return (max - min) / tickSpacing;
 }
 
-function inferTextChannel(scale, data, ticks, tickFormat, anchor) {
+function inferTextChannel(scale: any, data: any, ticks: any, tickFormat: any, anchor: any): any {
   return {value: inferTickFormat(scale, data, ticks, tickFormat, anchor)};
 }
 
@@ -665,7 +773,7 @@ function inferTextChannel(scale, data, ticks, tickFormat, anchor) {
 // time ticks, we want to use the multi-line time format (e.g., Jan 26) if
 // possible, or the default ISO format (2014-01-26). TODO We need a better way
 // to infer whether the ordinal scale is UTC or local time.
-export function inferTickFormat(scale, data, ticks, tickFormat, anchor) {
+export function inferTickFormat(scale: any, data: any, ticks: any, tickFormat: any, anchor: any): any {
   return typeof tickFormat === "function" && !(scale.type === "log" && scale.tickFormat)
     ? tickFormat
     : tickFormat === undefined && data && isTemporal(data)
@@ -679,33 +787,33 @@ export function inferTickFormat(scale, data, ticks, tickFormat, anchor) {
     : constant(tickFormat);
 }
 
-function inclusiveRange(interval, min, max) {
+function inclusiveRange(interval: any, min: any, max: any): any {
   return interval.range(min, interval.offset(interval.floor(max)));
 }
 
 const shapeTickBottom = {
-  draw(context, l) {
+  draw(context: any, l: any) {
     context.moveTo(0, 0);
     context.lineTo(0, l);
   }
 };
 
 const shapeTickTop = {
-  draw(context, l) {
+  draw(context: any, l: any) {
     context.moveTo(0, 0);
     context.lineTo(0, -l);
   }
 };
 
 const shapeTickLeft = {
-  draw(context, l) {
+  draw(context: any, l: any) {
     context.moveTo(0, 0);
     context.lineTo(-l, 0);
   }
 };
 
 const shapeTickRight = {
-  draw(context, l) {
+  draw(context: any, l: any) {
     context.moveTo(0, 0);
     context.lineTo(l, 0);
   }
@@ -713,13 +821,13 @@ const shapeTickRight = {
 
 // TODO Unify this with the other inferFontVariant; here we only have a scale
 // function rather than a scale descriptor.
-function inferFontVariant(scale) {
+function inferFontVariant(scale: any): any {
   return scale.bandwidth && !scale.interval ? undefined : "tabular-nums";
 }
 
 // Takes the scale label, and if this is not an ordinal scale and the label was
 // inferred from an associated channel, adds an orientation-appropriate arrow.
-function formatAxisLabel(k, scale, {anchor, label = scale.label, labelAnchor, labelArrow} = {}) {
+function formatAxisLabel(k: any, scale: any, {anchor, label = scale.label, labelAnchor, labelArrow}: any = {}): any {
   if (label == null || (label.inferred && hasTemporalDomain(scale) && /^(date|time|year)$/i.test(label))) return;
   label = String(label); // coerce to a string after checking if inferred
   if (labelArrow === "auto") labelArrow = (!scale.bandwidth || scale.interval) && !/[↑↓→←]/.test(label);
@@ -749,7 +857,7 @@ function formatAxisLabel(k, scale, {anchor, label = scale.label, labelAnchor, la
   return label;
 }
 
-function maybeLabelArrow(labelArrow = "auto") {
+function maybeLabelArrow(labelArrow: any = "auto"): any {
   return isNoneish(labelArrow)
     ? false
     : typeof labelArrow === "boolean"
@@ -757,6 +865,6 @@ function maybeLabelArrow(labelArrow = "auto") {
     : keyword(labelArrow, "labelArrow", ["auto", "up", "right", "down", "left"]);
 }
 
-function hasTemporalDomain(scale) {
+function hasTemporalDomain(scale: any): any {
   return isTemporal(scale.domain());
 }

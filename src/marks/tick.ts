@@ -1,0 +1,186 @@
+import {create} from "../context.js";
+import {identity, number} from "../options.js";
+import type {ChannelValueSpec} from "../channel.js";
+import type {InsetOptions} from "../inset.js";
+import type {Data, MarkOptions} from "../mark.js";
+import {Mark} from "../mark.js";
+import type {MarkerOptions} from "../marker.js";
+import {applyMarkers, markers} from "../marker.js";
+import {applyDirectStyles, applyIndirectStyles, applyTransform, applyChannelStyles, offset} from "../style.js";
+
+/** Options for the tickX mark. */
+export interface TickXOptions extends MarkOptions, MarkerOptions, Omit<InsetOptions, "insetLeft" | "insetRight"> {
+  /**
+   * The required horizontal position of the tick; a channel typically bound to
+   * the *x* scale.
+   */
+  x?: ChannelValueSpec;
+
+  /**
+   * The optional vertical position of the tick; an ordinal channel typically
+   * bound to the *y* scale. If not specified, the tick spans the vertical
+   * extent of the frame; otherwise the *y* scale must be a *band* scale.
+   *
+   * If *y* represents quantitative or temporal values, use a ruleX mark
+   * instead.
+   */
+  y?: ChannelValueSpec;
+}
+
+/** Options for the tickY mark. */
+export interface TickYOptions extends MarkOptions, MarkerOptions, Omit<InsetOptions, "insetTop" | "insetBottom"> {
+  /**
+   * The required vertical position of the tick; a channel typically bound to
+   * the *y* scale.
+   */
+  y?: ChannelValueSpec;
+
+  /**
+   * The optional horizontal position of the tick; an ordinal channel typically
+   * bound to the *x* scale. If not specified, the tick spans the horizontal
+   * extent of the frame; otherwise the *x* scale must be a *band* scale.
+   *
+   * If *x* represents quantitative or temporal values, use a ruleY mark
+   * instead.
+   */
+  x?: ChannelValueSpec;
+}
+
+const defaults = {
+  ariaLabel: "tick",
+  fill: null,
+  stroke: "currentColor"
+};
+
+class AbstractTick extends Mark {
+  constructor(data: any, channels: any, options: any) {
+    super(data, channels, options, defaults);
+    markers(this, options);
+  }
+  render(index: any, scales: any, channels: any, dimensions: any, context: any): any {
+    return create("svg:g", context)
+      .call(applyIndirectStyles, this, dimensions, context)
+      .call((this as any)._transform, this, scales)
+      .call((g) =>
+        g
+          .selectAll()
+          .data(index)
+          .enter()
+          .append("line")
+          .call(applyDirectStyles, this)
+          .attr("x1", (this as any)._x1(scales, channels, dimensions))
+          .attr("x2", (this as any)._x2(scales, channels, dimensions))
+          .attr("y1", (this as any)._y1(scales, channels, dimensions))
+          .attr("y2", (this as any)._y2(scales, channels, dimensions))
+          .call(applyChannelStyles, this, channels)
+          .call(applyMarkers, this, channels, context)
+      )
+      .node();
+  }
+}
+
+export class TickX extends AbstractTick {
+  insetTop: number;
+  insetBottom: number;
+  constructor(data: any, options: any = {}) {
+    const {x, y, inset = 0, insetTop = inset, insetBottom = inset} = options;
+    super(
+      data,
+      {
+        x: {value: x, scale: "x"},
+        y: {value: y, scale: "y", type: "band", optional: true}
+      },
+      options
+    );
+    this.insetTop = number(insetTop);
+    this.insetBottom = number(insetBottom);
+  }
+  _transform(selection: any, mark: any, {x}: any) {
+    selection.call(applyTransform, mark, {x}, offset, 0);
+  }
+  _x1(scales: any, {x: X}: any) {
+    return (i: any) => X[i];
+  }
+  _x2(scales: any, {x: X}: any) {
+    return (i: any) => X[i];
+  }
+  _y1({y}: any, {y: Y}: any, {marginTop}: any) {
+    const {insetTop} = this;
+    return Y && y ? (i: any) => Y[i] + insetTop : marginTop + insetTop;
+  }
+  _y2({y}: any, {y: Y}: any, {height, marginBottom}: any) {
+    const {insetBottom} = this;
+    return Y && y ? (i: any) => Y[i] + y.bandwidth() - insetBottom : height - marginBottom - insetBottom;
+  }
+}
+
+export class TickY extends AbstractTick {
+  insetRight: number;
+  insetLeft: number;
+  constructor(data: any, options: any = {}) {
+    const {x, y, inset = 0, insetRight = inset, insetLeft = inset} = options;
+    super(
+      data,
+      {
+        y: {value: y, scale: "y"},
+        x: {value: x, scale: "x", type: "band", optional: true}
+      },
+      options
+    );
+    this.insetRight = number(insetRight);
+    this.insetLeft = number(insetLeft);
+  }
+  _transform(selection: any, mark: any, {y}: any) {
+    selection.call(applyTransform, mark, {y}, 0, offset);
+  }
+  _x1({x}: any, {x: X}: any, {marginLeft}: any) {
+    const {insetLeft} = this;
+    return X && x ? (i: any) => X[i] + insetLeft : marginLeft + insetLeft;
+  }
+  _x2({x}: any, {x: X}: any, {width, marginRight}: any) {
+    const {insetRight} = this;
+    return X && x ? (i: any) => X[i] + x.bandwidth() - insetRight : width - marginRight - insetRight;
+  }
+  _y1(scales: any, {y: Y}: any) {
+    return (i: any) => Y[i];
+  }
+  _y2(scales: any, {y: Y}: any) {
+    return (i: any) => Y[i];
+  }
+}
+
+/**
+ * Returns a new horizontally-positioned tickX mark (a vertical line, |) for the
+ * given *data* and *options*. The **x** channel specifies the tick’s horizontal
+ * position and defaults to identity, assuming that *data* = [*x₀*, *x₁*, *x₂*,
+ * …]; the optional **y** ordinal channel specifies its vertical position. For
+ * example, for a horizontal barcode plot of penguins’ weights:
+ *
+ * ```js
+ * Plot.tickX(penguins, {x: "body_mass_g", y: "sex", stroke: "species"})
+ * ```
+ *
+ * If *y* represents quantitative or temporal values, use a ruleX mark instead.
+ */
+export function tickX(data?: Data, options: TickXOptions = {}): TickX {
+  const {x = identity, ...rest} = options as any;
+  return new TickX(data, {...rest, x});
+}
+
+/**
+ * Returns a new vertically-positioned tickY mark (a horizontal line, —) for the
+ * given *data* and *options*. The **y** channel specifies the vertical position
+ * of the tick and defaults to identity, assuming that *data* = [*y₀*, *y₁*,
+ * *y₂*, …]; the optional **x** ordinal channel specifies its horizontal
+ * position. For example, for a vertical barcode plot of penguins’ weights:
+ *
+ * ```js
+ * Plot.tickY(penguins, {y: "body_mass_g", x: "sex", stroke: "species"})
+ * ```
+ *
+ * If *x* represents quantitative or temporal values, use a ruleY mark instead.
+ */
+export function tickY(data?: Data, options: TickYOptions = {}): TickY {
+  const {y = identity, ...rest} = options as any;
+  return new TickY(data, {...rest, y});
+}
