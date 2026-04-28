@@ -1,11 +1,177 @@
 import {blurImage, Delaunay, randomLcg, rgb} from "d3";
+import type {ChannelValueSpec} from "../channel.js";
+// @ts-expect-error — runtime export missing from channel.d.ts
 import {valueObject} from "../channel.js";
+// @ts-expect-error — runtime export missing from context.d.ts
 import {create} from "../context.js";
-import {map, first, second, third, isTuples, isNumeric, isTemporal, identity} from "../options.js";
-import {maybeColorChannel, maybeNumberChannel} from "../options.js";
+import type {Data, MarkOptions} from "../mark.js";
 import {Mark} from "../mark.js";
+// @ts-expect-error — runtime exports missing from options.d.ts
+import {map, first, second, third, isTuples, isNumeric, isTemporal, identity} from "../options.js";
+// @ts-expect-error — runtime exports missing from options.d.ts
+import {maybeColorChannel, maybeNumberChannel} from "../options.js";
+// @ts-expect-error — runtime exports missing from style.d.ts
 import {applyAttr, applyDirectStyles, applyIndirectStyles, applyTransform, impliedString} from "../style.js";
 import {initializer} from "../transforms/basic.js";
+
+/**
+ * The built-in spatial interpolation methods; one of:
+ *
+ * - *nearest* - assign each pixel to the closest sample’s value (Voronoi diagram)
+ * - *barycentric* - apply barycentric interpolation over the Delaunay triangulation
+ * - *random-walk* - apply a random walk from each pixel, stopping when near a sample
+ */
+export type RasterInterpolateName = "nearest" | "barycentric" | "random-walk";
+
+/**
+ * A spatial interpolation implementation function that receives samples’
+ * positions and values and returns a flat array of *width*×*height* values.
+ * *x*[*index*[0]] represents the *x*-position of the first sample,
+ * *y*[*index*[0]] its *y*-position, and *value*[*index*[0]] its value (*e.g.*,
+ * the observed height for a topographic map).
+ */
+export type RasterInterpolateFunction = (
+  /** An array of numeric indexes into the channels *x*, *y*, *value*. */
+  index: number[],
+  /** The width of the raster grid in pixels; a positive integer. */
+  width: number,
+  /** The height of the raster grid in pixels; a positive integer. */
+  height: number,
+  /** An array of values representing the *x*-position of samples. */
+  x: number[],
+  /** An array of values representing the *y*-position of samples. */
+  y: number[],
+  /** An array of values representing the sample’s observed value. */
+  values: any[]
+) => any[];
+
+/**
+ * A spatial interpolation method; either a named built-in interpolation method,
+ * or a custom interpolation function.
+ */
+export type RasterInterpolate = RasterInterpolateName | RasterInterpolateFunction;
+
+/**
+ * A source of pseudo-random numbers in [0, 1). The default source is seeded to
+ * ensure reproducibility.
+ */
+export type RandomSource = () => number;
+
+/**
+ * A sampler function, which returns a value for the given *x* and *y* values in
+ * the current *facet*.
+ */
+export type RasterSampler = (
+  /** The horizontal position. */
+  x: number,
+  /** The vertical position. */
+  y: number,
+  /** The current facet index, and corresponding *fx* and *fy* value. */
+  facet: number[] & {fx: any; fy: any}
+) => any;
+
+/** Options for the raster mark. */
+export interface RasterOptions extends Omit<MarkOptions, "fill" | "fillOpacity"> {
+  /** The horizontal position channel, typically bound to the *x* scale. */
+  x?: ChannelValueSpec;
+  /** The vertical position channel, typically bound to the *y* scale. */
+  y?: ChannelValueSpec;
+
+  /**
+   * The starting horizontal position (typically the left edge) of the raster
+   * domain; the lower bound of the *x* scale.
+   *
+   * If **width** is specified, defaults to 0; otherwise, if *data* is
+   * specified, defaults to the frame’s left coordinate in *x*. If *data* is not
+   * specified (as when **value** is a function of *x* and *y*), you must
+   * specify **x1** explicitly.
+   */
+  x1?: number;
+
+  /**
+   * The ending horizontal position (typically the right edge) of the raster
+   * domain; the upper bound of the *x* scale.
+   *
+   * If **width** is specified, defaults to **width**; otherwise, if *data* is
+   * specified, defaults to the frame’s right coordinate in *x*. If *data* is
+   * not specified (as when **value** is a function of *x* and *y*), you must
+   * specify **x2** explicitly.
+   */
+  x2?: number;
+
+  /**
+   * The starting vertical position (typically the bottom edge) of the raster
+   * domain; the lower bound of the *y* scale.
+   *
+   * If **height** is specified, defaults to 0; otherwise, if *data* is
+   * specified, defaults to the frame’s top coordinate in *y*. If *data* is not
+   * specified (as when **value** is a function of *x* and *y*), you must
+   * specify **y1** explicitly.
+   */
+  y1?: number;
+
+  /**
+   * The ending vertical position (typically the bottom edge) of the raster
+   * domain; the lower bound of the *y* scale.
+   *
+   * If **height** is specified, defaults to **height**; otherwise, if *data* is
+   * specified, defaults to the frame’s bottom coordinate in *y*. If *data* is
+   * not specified (as when **value** is a function of *x* and *y*), you must
+   * specify **y2** explicitly.
+   */
+  y2?: number;
+
+  /** The width (number of columns) of the raster grid, in actual pixels. */
+  width?: number;
+
+  /** The height (number of rows) of the raster grid, in actual pixels. */
+  height?: number;
+
+  /**
+   * The effective screen size of a raster pixel, used to determine the height
+   * and width of the raster from the frame’s dimensions; defaults to 1.
+   */
+  pixelSize?: number;
+
+  /**
+   * A non-negative pixel radius for smoothing; defaults to 0. Note that
+   * blurring is applied on the values (before the color scale is applied) if
+   * quantitative, and after (on the materialized pixels), if ordinal.
+   */
+  blur?: number;
+
+  /**
+   * The spatial interpolation method, when using *data* samples. One of:
+   *
+   * - *none* (or null, default) - assign each sample to the containing pixel
+   * - a named interpolation method, such as *nearest*, *barycentric*, or *random-walk*
+   * - a custom interpolation function
+   */
+  interpolate?: RasterInterpolate | "none" | null;
+
+  /**
+   * The [image-rendering attribute][1]; defaults to *auto* (bilinear). The
+   * option may be set to *pixelated* to disable bilinear interpolation for a
+   * sharper image; however, note that this is not supported in WebKit.
+   *
+   * [1]: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/image-rendering
+   */
+  imageRendering?: string;
+
+  /**
+   * The fill, typically bound to the *color* scale. Can be specified as a
+   * constant, a channel based on the sample *data*, or as a function *f*(*x*,
+   * *y*) to be evaluated at each pixel if the *data* is not provided.
+   */
+  fill?: ChannelValueSpec | RasterSampler;
+
+  /**
+   * The opacity, typically bound to the *opacity* scale. Can be specified as a
+   * constant, a channel based on the sample *data*, or as a function *f*(*x*,
+   * *y*) to be evaluated at each pixel if the *data* is not provided.
+   */
+  fillOpacity?: ChannelValueSpec | RasterSampler;
+}
 
 const defaults = {
   ariaLabel: "raster",
@@ -13,20 +179,25 @@ const defaults = {
   pixelSize: 1
 };
 
-function number(input, name) {
+function number(input: any, name: string): number {
   const x = +input;
   if (isNaN(x)) throw new Error(`invalid ${name}: ${input}`);
   return x;
 }
 
-function integer(input, name) {
+function integer(input: any, name: string): number {
   const x = Math.floor(input);
   if (isNaN(x)) throw new Error(`invalid ${name}: ${input}`);
   return x;
 }
 
 export class AbstractRaster extends Mark {
-  constructor(data, channels, options = {}, defaults) {
+  width: any;
+  height: any;
+  pixelSize: any;
+  blur: any;
+  interpolate: any;
+  constructor(data: any, channels: any, options: any = {}, defaults: any) {
     let {
       width,
       height,
@@ -61,6 +232,7 @@ export class AbstractRaster extends Mark {
       if (y === undefined && y1 != null && y2 != null) y = denseY(y1, y2, width, height);
     }
     super(
+      // @ts-expect-error — Mark constructor signature missing from mark.d.ts
       data,
       {
         x: {value: x, scale: "x", optional: true},
@@ -82,8 +254,10 @@ export class AbstractRaster extends Mark {
   }
 }
 
+/** The raster mark. */
 export class Raster extends AbstractRaster {
-  constructor(data, options = {}) {
+  imageRendering: any;
+  constructor(data: any, options: any = {}) {
     const {imageRendering} = options;
     if (data == null) {
       const {fill, fillOpacity} = options;
@@ -94,11 +268,12 @@ export class Raster extends AbstractRaster {
     this.imageRendering = impliedString(imageRendering, "auto");
   }
   // Ignore the color scale, so the fill channel is returned unscaled.
-  scale(channels, {color, ...scales}, context) {
+  scale(channels: any, {color, ...scales}: any, context: any) {
+    // @ts-expect-error — Mark.scale missing from mark.d.ts
     return super.scale(channels, scales, context);
   }
-  render(index, scales, values, dimensions, context) {
-    const color = scales[values.channels.fill?.scale] ?? ((x) => x);
+  render(index: any, scales: any, values: any, dimensions: any, context: any) {
+    const color = scales[values.channels.fill?.scale] ?? ((x: any) => x);
     const {x: X, y: Y} = values;
     const {document} = context;
     const [x1, y1, x2, y2] = renderBounds(values, dimensions, context);
@@ -115,15 +290,15 @@ export class Raster extends AbstractRaster {
     if (this.interpolate) {
       const kx = w / dx;
       const ky = h / dy;
-      const IX = map(X, (x) => (x - x1) * kx, Float64Array);
-      const IY = map(Y, (y) => (y - y1) * ky, Float64Array);
+      const IX = (map as any)(X, (x: any) => (x - x1) * kx, Float64Array);
+      const IY = (map as any)(Y, (y: any) => (y - y1) * ky, Float64Array);
       if (F) F = this.interpolate(index, w, h, IX, IY, F);
       if (FO) FO = this.interpolate(index, w, h, IX, IY, FO);
     }
 
     // When faceting without interpolation, as when sampling a continuous
     // function, offset into the dense grid based on the current facet index.
-    else if (this.data == null && index) offset = index.fi * n;
+    else if ((this as any).data == null && index) offset = index.fi * n;
 
     // Render the raster grid to the canvas, blurring if needed.
     const canvas = document.createElement("canvas");
@@ -132,8 +307,8 @@ export class Raster extends AbstractRaster {
     const context2d = canvas.getContext("2d");
     const image = context2d.createImageData(w, h);
     const imageData = image.data;
-    let {r, g, b} = rgb(this.fill) ?? {r: 0, g: 0, b: 0};
-    let a = (this.fillOpacity ?? 1) * 255;
+    let {r, g, b} = rgb((this as any).fill) ?? {r: 0, g: 0, b: 0};
+    let a = ((this as any).fillOpacity ?? 1) * 255;
     for (let i = 0; i < n; ++i) {
       const j = i << 2;
       if (F) {
@@ -171,7 +346,7 @@ export class Raster extends AbstractRaster {
   }
 }
 
-export function maybeTuples(k, data, options) {
+export function maybeTuples(k: any, data: any, options?: any): [any, any] {
   if (arguments.length < 3) (options = data), (data = null);
   let {x, y, [k]: z, ...rest} = options;
   // Because we use implicit x and y when z is a function of (x, y), and when
@@ -186,8 +361,18 @@ export function maybeTuples(k, data, options) {
   return [data, {...rest, x, y, [k]: z}];
 }
 
-export function raster() {
-  const [data, options] = maybeTuples("fill", ...arguments);
+/**
+ * Returns a raster mark which renders a raster image from spatial samples. If
+ * *data* is provided, it represents discrete samples in abstract coordinates
+ * **x** and **y**; the **fill** and **fillOpacity** channels specify further
+ * abstract values (_e.g._, height in a topographic map) to be spatially
+ * interpolated to produce an image.
+ */
+export function raster(data?: Data, options?: RasterOptions): Raster;
+export function raster(options?: RasterOptions): Raster;
+export function raster(): Raster {
+  // eslint-disable-next-line prefer-rest-params
+  const [data, options] = maybeTuples("fill", ...(Array.from(arguments) as [any, any?]));
   return new Raster(
     data,
     data == null || options.fill !== undefined || options.fillOpacity !== undefined
@@ -197,7 +382,7 @@ export function raster() {
 }
 
 // See rasterBounds; this version is called during render.
-function renderBounds({x1, y1, x2, y2}, dimensions, {projection}) {
+function renderBounds({x1, y1, x2, y2}: any, dimensions: any, {projection}: any): [number, number, number, number] {
   const {width, height, marginTop, marginRight, marginBottom, marginLeft} = dimensions;
   return [
     x1 && projection == null ? x1[0] : marginLeft,
@@ -210,8 +395,8 @@ function renderBounds({x1, y1, x2, y2}, dimensions, {projection}) {
 // If x1, y1, x2, y2 were specified, and no projection is in use (and thus the
 // raster grid is necessarily an axis-aligned rectangle), then we can compute
 // tighter bounds for the image, improving resolution.
-export function rasterBounds({x1, y1, x2, y2}, scales, dimensions, context) {
-  const channels = {};
+export function rasterBounds({x1, y1, x2, y2}: any, scales: any, dimensions: any, context: any) {
+  const channels: any = {};
   if (x1) channels.x1 = x1;
   if (y1) channels.y1 = y1;
   if (x2) channels.x2 = x2;
@@ -221,10 +406,10 @@ export function rasterBounds({x1, y1, x2, y2}, scales, dimensions, context) {
 
 // Evaluates the function with the given name, if it exists, on the raster grid,
 // generating a channel of the same name.
-export function sampler(name, options = {}) {
+export function sampler(name: string, options: any = {}) {
   const {[name]: value} = options;
   if (typeof value !== "function") throw new Error(`invalid ${name}: not a function`);
-  return initializer({...options, [name]: undefined}, function (data, facets, channels, scales, dimensions, context) {
+  return initializer({...options, [name]: undefined}, function (this: any, data: any, facets: any, channels: any, scales: any, dimensions: any, context: any) {
     const {x, y} = scales;
     // TODO Allow projections, if invertible.
     if (!x) throw new Error("missing scale: x");
@@ -251,7 +436,7 @@ export function sampler(name, options = {}) {
   });
 }
 
-function maybeInterpolate(interpolate) {
+function maybeInterpolate(interpolate: any): RasterInterpolateFunction | null {
   if (typeof interpolate === "function") return interpolate;
   if (interpolate == null) return interpolateNone;
   switch (`${interpolate}`.toLowerCase()) {
@@ -267,11 +452,13 @@ function maybeInterpolate(interpolate) {
   throw new Error(`invalid interpolate: ${interpolate}`);
 }
 
-// Applies a simple forward mapping of samples, binning them into pixels without
-// any blending or interpolation. Note: if multiple samples map to the same
-// pixel, the last one wins; this can introduce bias if the points are not in
-// random order, so use Plot.shuffle to randomize the input if needed.
-export function interpolateNone(index, width, height, X, Y, V) {
+/**
+ * Applies a simple forward mapping of samples, binning them into pixels in the
+ * raster grid without any blending or interpolation. If multiple samples map to
+ * the same pixel, the last one wins; this can introduce bias if the points are
+ * not in random order, so use Plot.shuffle to randomize the input if needed.
+ */
+export function interpolateNone(index: any, width: any, height: any, X: any, Y: any, V: any) {
   const W = new Array(width * height);
   for (const i of index) {
     if (X[i] < 0 || X[i] >= width || Y[i] < 0 || Y[i] >= height) continue;
@@ -280,15 +467,21 @@ export function interpolateNone(index, width, height, X, Y, V) {
   return W;
 }
 
-export function interpolatorBarycentric({random = randomLcg(42)} = {}) {
+/**
+ * Constructs a Delaunay triangulation of the samples, and then for each pixel
+ * in the raster grid, determines the triangle that covers the pixel’s centroid
+ * and interpolates the values associated with the triangle’s vertices using
+ * barycentric coordinates.
+ */
+export function interpolatorBarycentric({random = randomLcg(42)}: {random?: RandomSource} = {}): RasterInterpolateFunction {
   return (index, width, height, X, Y, V) => {
     // Interpolate the interior of all triangles with barycentric coordinates
     const {points, triangles, hull} = Delaunay.from(
       index,
-      (i) => X[i],
-      (i) => Y[i]
+      (i: any) => X[i],
+      (i: any) => Y[i]
     );
-    const W = new V.constructor(width * height).fill(NaN);
+    const W = new (V as any).constructor(width * height).fill(NaN);
     const S = new Uint8Array(width * height); // 1 if pixel has been seen.
     const mix = mixer(V, random);
 
@@ -335,10 +528,10 @@ export function interpolatorBarycentric({random = randomLcg(42)} = {}) {
 }
 
 // Extrapolate by finding the closest point on the hull.
-function extrapolateBarycentric(W, S, X, Y, V, width, height, hull, index, mix) {
-  X = Float64Array.from(hull, (i) => X[index[i]]);
-  Y = Float64Array.from(hull, (i) => Y[index[i]]);
-  V = Array.from(hull, (i) => V[index[i]]);
+function extrapolateBarycentric(W: any, S: any, X: any, Y: any, V: any, width: any, height: any, hull: any, index: any, mix: any) {
+  X = Float64Array.from(hull, (i: any) => X[index[i]]);
+  Y = Float64Array.from(hull, (i: any) => Y[index[i]]);
+  V = Array.from(hull, (i: any) => V[index[i]]);
   const n = X.length;
   const rays = Array.from({length: n}, (_, j) => ray(j, X, Y));
   let k = 0;
@@ -364,7 +557,7 @@ function extrapolateBarycentric(W, S, X, Y, V, width, height, hull, index, mix) 
 
 // Projects a point p = [x, y] onto the line segment [p1, p2], returning the
 // projected coordinates p’ as t in [0, 1] with p’ = t p1 + (1 - t) p2.
-function segmentProject(x1, y1, x2, y2, x, y) {
+function segmentProject(x1: number, y1: number, x2: number, y2: number, x: number, y: number) {
   const dx = x2 - x1;
   const dy = y2 - y1;
   const a = dx * (x2 - x) + dy * (y2 - y);
@@ -372,11 +565,11 @@ function segmentProject(x1, y1, x2, y2, x, y) {
   return a > 0 && b > 0 ? a / (a + b) : +(a > b);
 }
 
-function cross(xa, ya, xb, yb) {
+function cross(xa: number, ya: number, xb: number, yb: number) {
   return xa * yb - xb * ya;
 }
 
-function ray(j, X, Y) {
+function ray(j: number, X: any, Y: any) {
   const n = X.length;
   const xc = X.at(j - 2);
   const yc = Y.at(j - 2);
@@ -395,7 +588,7 @@ function ray(j, X, Y) {
   const hab = Math.hypot(dxab, dyab);
   const hca = Math.hypot(dxca, dyca);
   const hbd = Math.hypot(dxbd, dybd);
-  return (x, y) => {
+  return (x: number, y: number) => {
     const dxa = x - xa;
     const dya = y - ya;
     const dxb = x - xb;
@@ -408,15 +601,19 @@ function ray(j, X, Y) {
   };
 }
 
-export function interpolateNearest(index, width, height, X, Y, V) {
-  const W = new V.constructor(width * height);
+/**
+ * Assigns each pixel in the raster grid the value of the closest sample;
+ * effectively a Voronoi diagram.
+ */
+export function interpolateNearest(index: any, width: any, height: any, X: any, Y: any, V: any) {
+  const W = new (V as any).constructor(width * height);
   const delaunay = Delaunay.from(
     index,
-    (i) => X[i],
-    (i) => Y[i]
+    (i: any) => X[i],
+    (i: any) => Y[i]
   );
   // memoization of delaunay.find for the line start (iy) and pixel (ix)
-  let iy, ix;
+  let iy: any, ix: any;
   for (let y = 0.5, k = 0; y < height; ++y) {
     ix = iy;
     for (let x = 0.5; x < width; ++x, ++k) {
@@ -428,17 +625,25 @@ export function interpolateNearest(index, width, height, X, Y, V) {
   return W;
 }
 
-// https://observablehq.com/@observablehq/walk-on-spheres-precision
-export function interpolatorRandomWalk({random = randomLcg(42), minDistance = 0.5, maxSteps = 2} = {}) {
+/**
+ * For each pixel in the raster grid, initiates a random walk, stopping when
+ * either the walk is within a given distance (**minDistance**) of a sample or
+ * the maximum allowable number of steps (**maxSteps**) have been taken.
+ */
+export function interpolatorRandomWalk({
+  random = randomLcg(42),
+  minDistance = 0.5,
+  maxSteps = 2
+}: {random?: RandomSource; minDistance?: number; maxSteps?: number} = {}): RasterInterpolateFunction {
   return (index, width, height, X, Y, V) => {
-    const W = new V.constructor(width * height);
+    const W = new (V as any).constructor(width * height);
     const delaunay = Delaunay.from(
       index,
-      (i) => X[i],
-      (i) => Y[i]
+      (i: any) => X[i],
+      (i: any) => Y[i]
     );
     // memoization of delaunay.find for the line start (iy), pixel (ix), and wos step (iw)
-    let iy, ix, iw;
+    let iy: any, ix: any, iw: any;
     for (let y = 0.5, k = 0; y < height; ++y) {
       ix = iy;
       for (let x = 0.5; x < width; ++x, ++k) {
@@ -449,7 +654,7 @@ export function interpolatorRandomWalk({random = randomLcg(42), minDistance = 0.
         let distance; // distance to closest sample
         let step = 0; // count of steps for this walk
         while ((distance = Math.hypot(X[index[iw]] - cx, Y[index[iw]] - cy)) > minDistance && step < maxSteps) {
-          const angle = random(x, y, step) * 2 * Math.PI;
+          const angle = (random as any)(x, y, step) * 2 * Math.PI;
           cx += Math.cos(angle) * distance;
           cy += Math.sin(angle) * distance;
           iw = delaunay.find(cx, cy, iw);
@@ -462,24 +667,24 @@ export function interpolatorRandomWalk({random = randomLcg(42), minDistance = 0.
   };
 }
 
-function blend(a, ca, b, cb, c, cc) {
+function blend(a: number, ca: number, b: number, cb: number, c: number, cc: number) {
   return ca * a + cb * b + cc * c;
 }
 
-function pick(random) {
-  return (a, ca, b, cb, c, cc, x, y) => {
+function pick(random: any) {
+  return (a: any, ca: number, b: any, cb: number, c: any, cc: number, x: number, y: number) => {
     const u = random(x, y);
     return u < ca ? a : u < ca + cb ? b : c;
   };
 }
 
-function mixer(F, random) {
+function mixer(F: any, random: any) {
   return isNumeric(F) || isTemporal(F) ? blend : pick(random);
 }
 
-function denseX(x1, x2, width) {
+function denseX(x1: number, x2: number, width: number, height?: number) {
   return {
-    transform(data) {
+    transform(data: any) {
       const n = data.length;
       const X = new Float64Array(n);
       const kx = (x2 - x1) / width;
@@ -490,9 +695,9 @@ function denseX(x1, x2, width) {
   };
 }
 
-function denseY(y1, y2, width, height) {
+function denseY(y1: number, y2: number, width: number, height: number) {
   return {
-    transform(data) {
+    transform(data: any) {
       const n = data.length;
       const Y = new Float64Array(n);
       const ky = (y2 - y1) / height;
