@@ -14,6 +14,7 @@ export function setOffset(o) {
 
 let nextClipId = 0;
 let nextPatternId = 0;
+let nextFilterId = 0;
 
 export function getClipId() {
   return `plot-clip-${++nextClipId}`;
@@ -21,6 +22,10 @@ export function getClipId() {
 
 export function getPatternId() {
   return `plot-pattern-${++nextPatternId}`;
+}
+
+export function getFilterId() {
+  return `plot-filter-${++nextFilterId}`;
 }
 
 export function styles(
