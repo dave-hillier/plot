@@ -1,0 +1,311 @@
+import {pathRound as path, symbolCircle} from "d3";
+import type {ChannelValue, ChannelValueIntervalSpec, ChannelValueSpec} from "../channel.js";
+// @ts-expect-error not yet exported in context.d.ts
+import {create} from "../context.js";
+import {negative, positive} from "../defined.js";
+import type {Interval} from "../interval.js";
+import type {Data, FrameAnchor, MarkOptions, RenderableMark} from "../mark.js";
+import {Mark} from "../mark.js";
+// @ts-expect-error not yet exported in options.d.ts
+import {identity, maybeFrameAnchor, maybeNumberChannel, maybeTuple} from "../options.js";
+import {
+  // @ts-expect-error not yet exported in style.d.ts
+  applyChannelStyles,
+  // @ts-expect-error not yet exported in style.d.ts
+  applyDirectStyles,
+  // @ts-expect-error not yet exported in style.d.ts
+  applyFrameAnchor,
+  // @ts-expect-error not yet exported in style.d.ts
+  applyIndirectStyles,
+  // @ts-expect-error not yet exported in style.d.ts
+  applyTransform
+} from "../style.js";
+import type {SymbolType} from "../symbol.js";
+// @ts-expect-error not yet exported in symbol.d.ts
+import {maybeSymbolChannel} from "../symbol.js";
+import {template} from "../template.js";
+import {sort} from "../transforms/basic.js";
+import {maybeIntervalMidX, maybeIntervalMidY} from "../transforms/interval.js";
+
+/** Options for the dot mark. */
+export interface DotOptions extends MarkOptions {
+  /**
+   * The horizontal position channel specifying the dot’s center, typically
+   * bound to the *x* scale.
+   */
+  x?: ChannelValueSpec;
+
+  /**
+   * The vertical position channel specifying the dot’s center, typically bound
+   * to the *y* scale.
+   */
+  y?: ChannelValueSpec;
+
+  /**
+   * The radius of dots; either a channel or constant. When a number, it is
+   * interpreted as a constant radius in pixels. Otherwise it is interpreted as
+   * a channel, typically bound to the *r* channel, which defaults to the *sqrt*
+   * type for proportional symbols. The radius defaults to 4.5 pixels when using
+   * the **symbol** channel, and otherwise 3 pixels. Dots with a nonpositive
+   * radius are not drawn.
+   */
+  r?: ChannelValueSpec | number;
+
+  /**
+   * The rotation angle of dots in degrees clockwise; either a channel or a
+   * constant. When a number, it is interpreted as a constant; otherwise it is
+   * interpreted as a channel. Defaults to 0°, pointing up.
+   */
+  rotate?: ChannelValue | number;
+
+  /**
+   * The categorical symbol; either a channel or a constant. A constant symbol
+   * can be specified by a valid symbol name such as *star*, or a symbol object
+   * (implementing the draw method); otherwise it is interpreted as a channel.
+   * Defaults to *circle* for the **dot** mark, and *hexagon* for the
+   * **hexagon** mark.
+   *
+   * If the **symbol** channel’s values are all symbols, symbol names, or
+   * nullish, the channel is unscaled (values are interpreted literally);
+   * otherwise, the channel is bound to the *symbol* scale.
+   */
+  symbol?: ChannelValueSpec | SymbolType;
+
+  /**
+   * The frame anchor specifies defaults for **x** and **y** based on the plot’s
+   * frame; it may be one of the four sides (*top*, *right*, *bottom*, *left*),
+   * one of the four corners (*top-left*, *top-right*, *bottom-right*,
+   * *bottom-left*), or the *middle* of the frame. For example, for dots
+   * distributed horizontally at the top of the frame:
+   *
+   * ```js
+   * Plot.dot(data, {x: "date", frameAnchor: "top"})
+   * ```
+   */
+  frameAnchor?: FrameAnchor;
+}
+
+/** Options for the dotX mark. */
+export interface DotXOptions extends Omit<DotOptions, "y"> {
+  /**
+   * The vertical position of the dot’s center, typically bound to the *y*
+   * scale.
+   */
+  y?: ChannelValueIntervalSpec;
+
+  /**
+   * An interval (such as *day* or a number), to transform **y** values to the
+   * middle of the interval.
+   */
+  interval?: Interval;
+}
+
+/** Options for the dotY mark. */
+export interface DotYOptions extends Omit<DotOptions, "x"> {
+  /**
+   * The horizontal position of the dot’s center, typically bound to the *x*
+   * scale.
+   */
+  x?: ChannelValueIntervalSpec;
+
+  /**
+   * An interval (such as *day* or a number), to transform **x** values to the
+   * middle of the interval.
+   */
+  interval?: Interval;
+}
+
+const defaults = {
+  ariaLabel: "dot",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 1.5
+};
+
+export function withDefaultSort(options: any): any {
+  return options.sort === undefined && options.reverse === undefined ? sort({channel: "-r"}, options) : options;
+}
+
+/** The dot mark. */
+export class Dot extends (Mark as unknown as new (...args: any[]) => RenderableMark) {
+  r: any;
+  rotate: any;
+  symbol: any;
+  frameAnchor: any;
+  declare fill: any;
+  declare stroke: any;
+  declare channels: any;
+  constructor(data: Data | undefined, options: DotOptions = {}) {
+    const {x, y, r, rotate, symbol = symbolCircle, frameAnchor} = options;
+    const [vrotate, crotate] = maybeNumberChannel(rotate, 0);
+    const [vsymbol, csymbol] = maybeSymbolChannel(symbol);
+    const [vr, cr] = maybeNumberChannel(r, vsymbol == null ? 3 : 4.5);
+    super(
+      data,
+      {
+        x: {value: x, scale: "x", optional: true},
+        y: {value: y, scale: "y", optional: true},
+        r: {value: vr, scale: "r", filter: positive, optional: true},
+        rotate: {value: vrotate, optional: true},
+        symbol: {value: vsymbol, scale: "auto", optional: true}
+      },
+      withDefaultSort(options),
+      defaults
+    );
+    this.r = cr;
+    this.rotate = crotate;
+    this.symbol = csymbol;
+    this.frameAnchor = maybeFrameAnchor(frameAnchor);
+
+    // Give a hint to the symbol scale; this allows the symbol scale to choose
+    // appropriate default symbols based on whether the dots are filled or
+    // stroked, and for the symbol legend to match the appearance of the dots.
+    const {channels} = this;
+    const {symbol: symbolChannel} = channels;
+    if (symbolChannel) {
+      const {fill: fillChannel, stroke: strokeChannel} = channels;
+      symbolChannel.hint = {
+        fill: fillChannel
+          ? fillChannel.value === symbolChannel.value
+            ? "color"
+            : "currentColor"
+          : this.fill ?? "currentColor",
+        stroke: strokeChannel
+          ? strokeChannel.value === symbolChannel.value
+            ? "color"
+            : "currentColor"
+          : this.stroke ?? "none"
+      };
+    }
+  }
+  // @ts-expect-error parent declares render as a property; we override it as a method
+  render(index: any, scales: any, channels: any, dimensions: any, context: any): any {
+    const {x, y} = scales;
+    const {x: X, y: Y, r: R, rotate: A, symbol: S} = channels;
+    const {r, rotate, symbol} = this;
+    const [cx, cy] = applyFrameAnchor(this, dimensions);
+    const circle = symbol === symbolCircle;
+    const size = R ? undefined : r * r * Math.PI;
+    if (negative(r)) index = [];
+    return create("svg:g", context)
+      .call(applyIndirectStyles, this, dimensions, context)
+      .call(applyTransform, this, {x: X && x, y: Y && y})
+      .call((g: any) =>
+        g
+          .selectAll()
+          .data(index)
+          .enter()
+          .append(circle ? "circle" : "path")
+          .call(applyDirectStyles, this)
+          .call(
+            circle
+              ? (selection: any) => {
+                  selection
+                    .attr("cx", X ? (i: any) => X[i] : cx)
+                    .attr("cy", Y ? (i: any) => Y[i] : cy)
+                    .attr("r", R ? (i: any) => R[i] : r);
+                }
+              : (selection: any) => {
+                  selection
+                    .attr(
+                      "transform",
+                      template`translate(${X ? (i: any) => X[i] : cx},${Y ? (i: any) => Y[i] : cy})${
+                        A ? (i: any) => ` rotate(${A[i]})` : rotate ? ` rotate(${rotate})` : ``
+                      }`
+                    )
+                    .attr(
+                      "d",
+                      R && S
+                        ? (i: any) => {
+                            const p = path();
+                            S[i].draw(p, R[i] * R[i] * Math.PI);
+                            return p;
+                          }
+                        : R
+                        ? (i: any) => {
+                            const p = path();
+                            symbol.draw(p, R[i] * R[i] * Math.PI);
+                            return p;
+                          }
+                        : S
+                        ? (i: any) => {
+                            const p = path();
+                            S[i].draw(p, size);
+                            return p;
+                          }
+                        : (() => {
+                            const p = path();
+                            symbol.draw(p, size);
+                            return p;
+                          })()
+                    );
+                }
+          )
+          .call(applyChannelStyles, this, channels)
+      )
+      .node();
+  }
+}
+
+/**
+ * Returns a new dot mark for the given *data* and *options* that draws circles,
+ * or other symbols, as in a scatterplot. For example, a scatterplot of sales by
+ * fruit type (category) and units sold (quantitative):
+ *
+ * ```js
+ * Plot.dot(sales, {x: "units", y: "fruit"})
+ * ```
+ *
+ * If either **x** or **y** is not specified, the default is determined by the
+ * **frameAnchor** option. If none of **x**, **y**, and **frameAnchor** are
+ * specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*,
+ * *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** =
+ * [*y₀*, *y₁*, *y₂*, …].
+ *
+ * Dots are sorted by descending radius **r** by default to mitigate
+ * overplotting; set the **sort** option to null to draw them in input order.
+ */
+export function dot(data?: Data, {x, y, ...options}: DotOptions = {}): Dot {
+  if (options.frameAnchor === undefined) [x, y] = maybeTuple(x, y);
+  return new Dot(data, {...options, x, y});
+}
+
+/**
+ * Like dot, except that **x** defaults to the identity function, assuming that
+ * *data* = [*x₀*, *x₁*, *x₂*, …].
+ *
+ * ```js
+ * Plot.dotX(cars.map(d => d["economy (mpg)"]))
+ * ```
+ *
+ * If an **interval** is specified, such as *day*, **y** is transformed to the
+ * middle of the interval.
+ */
+export function dotX(data?: Data, {x = identity, ...options}: DotXOptions = {}): Dot {
+  return new Dot(data, maybeIntervalMidY({...options, x}));
+}
+
+/**
+ * Like dot, except that **y** defaults to the identity function, assuming that
+ * *data* = [*y₀*, *y₁*, *y₂*, …].
+ *
+ * ```js
+ * Plot.dotY(cars.map(d => d["economy (mpg)"]))
+ * ```
+ *
+ * If an **interval** is specified, such as *day*, **x** is transformed to the
+ * middle of the interval.
+ */
+export function dotY(data?: Data, {y = identity, ...options}: DotYOptions = {}): Dot {
+  return new Dot(data, maybeIntervalMidX({...options, y}));
+}
+
+/** Like dot, except that the **symbol** option is set to *circle*. */
+export function circle(data?: Data, options?: Omit<DotOptions, "symbol">): Dot {
+  return dot(data, {...options, symbol: "circle"});
+}
+
+/** Like dot, except that the **symbol** option is set to *hexagon*. */
+export function hexagon(data?: Data, options?: Omit<DotOptions, "symbol">): Dot {
+  return dot(data, {...options, symbol: "hexagon"});
+}
