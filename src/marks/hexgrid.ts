@@ -1,9 +1,24 @@
+// @ts-ignore
 import {create} from "../context.js";
+import type {MarkOptions, RenderableMark} from "../mark.js";
 import {Mark} from "../mark.js";
+// @ts-ignore
 import {number, singleton} from "../options.js";
+// @ts-ignore
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
+// @ts-ignore
 import {sqrt4_3} from "../symbol.js";
+// @ts-ignore
 import {ox, oy} from "../transforms/hexbin.js";
+
+/** Options for the hexgrid mark. */
+export interface HexgridOptions extends MarkOptions {
+  /**
+   * The distance between centers of neighboring hexagons, in pixels; defaults
+   * to 20. Should match the **binWidth** of the hexbin transform.
+   */
+  binWidth?: number;
+}
 
 const defaults = {
   ariaLabel: "hexgrid",
@@ -12,16 +27,38 @@ const defaults = {
   strokeOpacity: 0.1
 };
 
-export function hexgrid(options) {
+/**
+ * The hexgrid decoration mark complements the hexbin transform, showing the
+ * outlines of all hexagons spanning the frame with a default **stroke** of
+ * *currentColor* and a default **strokeOpacity** of 0.1, similar to the the
+ * default axis grids. For example:
+ *
+ * ```js
+ * Plot.plot({
+ *   marks: [
+ *     Plot.hexagon(Plot.hexbin({fill: "count"}, {binWidth: 12, x: "weight", y: "economy"})),
+ *     Plot.hexgrid({binWidth: 12})
+ *   ]
+ * })
+ * ```
+ *
+ * Note that the **binWidth** option of the hexgrid mark should match that of
+ * the hexbin transform. The grid is clipped by the frame. This is a stroke-only
+ * mark, and **fill** is not supported; to fill the frame, use the frame mark.
+ */
+export function hexgrid(options?: HexgridOptions): Hexgrid {
   return new Hexgrid(options);
 }
 
+/** The hexgrid mark. */
 export class Hexgrid extends Mark {
-  constructor({binWidth = 20, clip = true, ...options} = {}) {
+  binWidth: number;
+  constructor({binWidth = 20, clip = true, ...options}: any = {}) {
+    // @ts-ignore - Mark base constructor is not typed in mark.d.ts
     super(singleton, undefined, {clip, ...options}, defaults);
     this.binWidth = number(binWidth);
   }
-  render(index, scales, channels, dimensions, context) {
+  render(index: any, scales: any, channels: any, dimensions: any, context: any) {
     const {binWidth} = this;
     const {marginTop, marginRight, marginBottom, marginLeft, width, height} = dimensions;
     const x0 = marginLeft - ox,
@@ -48,11 +85,11 @@ export class Hexgrid extends Mark {
       .datum(0)
       .call(applyIndirectStyles, this, dimensions, context)
       .call(applyTransform, this, {}, offset + ox, offset + oy)
-      .call((g) => g.append("path").call(applyDirectStyles, this).call(applyChannelStyles, this, channels).attr("d", d))
+      .call((g: any) => g.append("path").call(applyDirectStyles, this).call(applyChannelStyles, this, channels).attr("d", d))
       .node();
   }
 }
 
-function round(x) {
+function round(x: number) {
   return Math.round(x * 1e3) / 1e3;
 }
