@@ -1,9 +1,23 @@
 import type {ChannelValueIntervalSpec, ChannelValueSpec} from "../channel.js";
+// @ts-ignore — runtime export not present in hand-written .d.ts
+import {create} from "../context.js";
 import type {InsetOptions} from "../inset.js";
 import type {Interval} from "../interval.js";
-import type {Data, MarkOptions, RenderableMark} from "../mark.js";
+import type {Data, MarkOptions} from "../mark.js";
+import {Mark} from "../mark.js";
+// @ts-ignore — runtime export not present in hand-written .d.ts
+import {hasXY, identity, indexOf} from "../options.js";
+// @ts-ignore — runtime export not present in hand-written .d.ts
+import {isCollapsed} from "../scales.js";
+// @ts-ignore — runtime exports not present in hand-written .d.ts
+import {applyAttr, applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
+import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
+import {maybeIntervalX, maybeIntervalY} from "../transforms/interval.js";
 import type {StackOptions} from "../transforms/stack.js";
+// @ts-ignore — runtime exports not present in hand-written .d.ts
+import {maybeStackX, maybeStackY} from "../transforms/stack.js";
 import type {RectCornerOptions} from "./rect.js";
+import {applyRoundedRect, rectInsets, rectRadii} from "./rect.js";
 
 /** Options for the barX and barY marks. */
 interface BarOptions extends MarkOptions, InsetOptions, RectCornerOptions, StackOptions {
@@ -120,6 +134,157 @@ export interface BarYOptions extends BarOptions {
   x?: ChannelValueSpec;
 }
 
+const barDefaults = {
+  ariaLabel: "bar"
+};
+
+export class AbstractBar extends Mark {
+  insetTop!: number;
+  insetRight!: number;
+  insetBottom!: number;
+  insetLeft!: number;
+  rx: any;
+  ry: any;
+  rx1y1: any;
+  rx1y2: any;
+  rx2y1: any;
+  rx2y2: any;
+  constructor(data: Data, channels: any, options: any = {}, defaults: any = barDefaults) {
+    // @ts-ignore — Mark constructor signature not declared in .d.ts
+    super(data, channels, options, defaults);
+    rectInsets(this, options);
+    rectRadii(this, options);
+  }
+  render(index: any, scales: any, channels: any, dimensions: any, context: any): any {
+    const {rx, ry, rx1y1, rx1y2, rx2y1, rx2y2} = this;
+    const x = this._x(scales, channels, dimensions);
+    const y = this._y(scales, channels, dimensions);
+    const w = this._width(scales, channels, dimensions);
+    const h = this._height(scales, channels, dimensions);
+    return create("svg:g", context)
+      .call(applyIndirectStyles, this, dimensions, context)
+      .call(this._transform, this, scales)
+      .call((g: any) =>
+        g
+          .selectAll()
+          .data(index)
+          .enter()
+          .call(
+            rx1y1 || rx1y2 || rx2y1 || rx2y2
+              ? (g: any) =>
+                  g
+                    .append("path")
+                    .call(applyDirectStyles, this)
+                    .call(applyRoundedRect, x, y, add(x, w), add(y, h), this)
+                    .call(applyChannelStyles, this, channels)
+              : (g: any) =>
+                  g
+                    .append("rect")
+                    .call(applyDirectStyles, this)
+                    .attr("x", x)
+                    .attr("width", w)
+                    .attr("y", y)
+                    .attr("height", h)
+                    .call(applyAttr, "rx", rx)
+                    .call(applyAttr, "ry", ry)
+                    .call(applyChannelStyles, this, channels)
+          )
+      )
+      .node();
+  }
+  _x(scales: any, {x: X}: any, {marginLeft}: any): any {
+    const {insetLeft} = this;
+    return X ? (i: number) => X[i] + insetLeft : marginLeft + insetLeft;
+  }
+  _y(scales: any, {y: Y}: any, {marginTop}: any): any {
+    const {insetTop} = this;
+    return Y ? (i: number) => Y[i] + insetTop : marginTop + insetTop;
+  }
+  _width({x}: any, {x: X}: any, {marginRight, marginLeft, width}: any): any {
+    const {insetLeft, insetRight} = this;
+    const bandwidth = X && x ? x.bandwidth() : width - marginRight - marginLeft;
+    return Math.max(0, bandwidth - insetLeft - insetRight);
+  }
+  _height({y}: any, {y: Y}: any, {marginTop, marginBottom, height}: any): any {
+    const {insetTop, insetBottom} = this;
+    const bandwidth = Y && y ? y.bandwidth() : height - marginTop - marginBottom;
+    return Math.max(0, bandwidth - insetTop - insetBottom);
+  }
+  _transform(_selection: any, _mark: any, _scales: any): void {
+    // overridden in subclasses
+  }
+}
+
+function add(a: any, b: any): any {
+  return typeof a === "function" && typeof b === "function"
+    ? (i: number) => a(i) + b(i)
+    : typeof a === "function"
+    ? (i: number) => a(i) + b
+    : typeof b === "function"
+    ? (i: number) => a + b(i)
+    : a + b;
+}
+
+/** The barX mark. */
+export class BarX extends AbstractBar {
+  constructor(data: Data, options: BarXOptions = {}, defaults?: any) {
+    const {x1, x2, y} = options;
+    super(
+      data,
+      {
+        x1: {value: x1, scale: "x"},
+        x2: {value: x2, scale: "x"},
+        y: {value: y, scale: "y", type: "band", optional: true}
+      },
+      options,
+      defaults
+    );
+  }
+  _transform(selection: any, mark: any, {x}: any) {
+    selection.call(applyTransform, mark, {x}, 0, 0);
+  }
+  _x({x}: any, {x1: X1, x2: X2}: any, {marginLeft}: any): any {
+    const {insetLeft} = this;
+    return isCollapsed(x) ? marginLeft + insetLeft : (i: number) => Math.min(X1[i], X2[i]) + insetLeft;
+  }
+  _width({x}: any, {x1: X1, x2: X2}: any, {marginRight, marginLeft, width}: any): any {
+    const {insetLeft, insetRight} = this;
+    return isCollapsed(x)
+      ? width - marginRight - marginLeft - insetLeft - insetRight
+      : (i: number) => Math.max(0, Math.abs(X2[i] - X1[i]) - insetLeft - insetRight);
+  }
+}
+
+/** The barY mark. */
+export class BarY extends AbstractBar {
+  constructor(data: Data, options: BarYOptions = {}, defaults?: any) {
+    const {x, y1, y2} = options;
+    super(
+      data,
+      {
+        y1: {value: y1, scale: "y"},
+        y2: {value: y2, scale: "y"},
+        x: {value: x, scale: "x", type: "band", optional: true}
+      },
+      options,
+      defaults
+    );
+  }
+  _transform(selection: any, mark: any, {y}: any) {
+    selection.call(applyTransform, mark, {y}, 0, 0);
+  }
+  _y({y}: any, {y1: Y1, y2: Y2}: any, {marginTop}: any): any {
+    const {insetTop} = this;
+    return isCollapsed(y) ? marginTop + insetTop : (i: number) => Math.min(Y1[i], Y2[i]) + insetTop;
+  }
+  _height({y}: any, {y1: Y1, y2: Y2}: any, {marginTop, marginBottom, height}: any): any {
+    const {insetTop, insetBottom} = this;
+    return isCollapsed(y)
+      ? height - marginTop - marginBottom - insetTop - insetBottom
+      : (i: number) => Math.max(0, Math.abs(Y2[i] - Y1[i]) - insetTop - insetBottom);
+  }
+}
+
 /**
  * Returns a new horizontal bar mark for the given *data* and *options*; the
  * required *x* values should be quantitative or temporal, and the optional *y*
@@ -159,7 +324,10 @@ export interface BarYOptions extends BarOptions {
  * Plot.barX([4, 9, 24, 46, 66, 7])
  * ```
  */
-export function barX(data?: Data, options?: BarXOptions): BarX;
+export function barX(data?: Data, options: BarXOptions = {}): BarX {
+  if (!hasXY(options)) options = {...options, y: indexOf, x2: identity};
+  return new BarX(data as Data, maybeStackX(maybeIntervalX(maybeIdentityX(options))));
+}
 
 /**
  * Returns a new vertical bar mark for the given *data* and *options*; the
@@ -200,10 +368,7 @@ export function barX(data?: Data, options?: BarXOptions): BarX;
  * Plot.barY([4, 9, 24, 46, 66, 7])
  * ```
  */
-export function barY(data?: Data, options?: BarYOptions): BarY;
-
-/** The barX mark. */
-export class BarX extends RenderableMark {}
-
-/** The barY mark. */
-export class BarY extends RenderableMark {}
+export function barY(data?: Data, options: BarYOptions = {}): BarY {
+  if (!hasXY(options)) options = {...options, x: indexOf, y2: identity};
+  return new BarY(data as Data, maybeStackY(maybeIntervalY(maybeIdentityY(options))));
+}
