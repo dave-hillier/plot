@@ -17,6 +17,14 @@ export async function ordinalOpacityImplicitZero() {
   );
 }
 
+export async function ordinalOpacityRamp() {
+  return (
+    <Plot opacity={{type: "ordinal", legend: "ramp"}}>
+      <CellX data={d3.range(10)} fill="red" opacity={identity} />
+    </Plot>
+  );
+}
+
 export async function ordinalOpacityThreshold() {
   return (
     <Plot opacity={{type: "threshold", legend: true, domain: [2, 5, 8], range: [0.2, 0.4, 0.6, 0.8]}}>

@@ -1,9 +1,10 @@
-import {rgb} from "d3";
+import {rgb, select} from "d3";
 import {createContext} from "./context.js";
 import {legendRamp} from "./legends/ramp.js";
 import {isSymbolColorLegend, legendSwatches, legendSymbols} from "./legends/swatches.js";
 import {inherit, isScaleOptions} from "./options.js";
 import {normalizeScale} from "./scales.js";
+import {getFilterId} from "./style.js";
 
 const legendRegistry = new Map([
   ["symbol", legendSymbols],
@@ -59,13 +60,29 @@ function legendColor(color, {legend = true, ...options}) {
 function legendOpacity({type, interpolate, ...scale}, {legend = true, color = rgb(0, 0, 0), ...options}) {
   if (type === "ordinal" || type === "threshold") {
     if (legend === true) legend = "swatches";
-    if (`${legend}`.toLowerCase() !== "swatches") throw new Error(`${legend} opacity legends are not supported`);
-    return legendSwatches({type, ...scale, color, key: "opacity"}, options);
+    const kind = `${legend}`.toLowerCase();
+    if (kind === "swatches") return legendSwatches({type, ...scale, color, key: "opacity"}, options);
+    if (kind === "ramp") return rampWithFilter({type, ...scale, color, key: "opacity"}, options);
+    throw new Error(`${legend} opacity legends are not supported`);
   }
   if (!interpolate) throw new Error(`${type} opacity scales are not supported`);
   if (legend === true) legend = "ramp";
   if (`${legend}`.toLowerCase() !== "ramp") throw new Error(`${legend} opacity legends are not supported`);
   return legendColor({type, ...scale, interpolate: interpolateOpacity(color)}, {legend, ...options});
+}
+
+// Renders an opacity ramp legend for ordinal/threshold scales by drawing a
+// black-on-white ramp via legendRamp and applying an SVG color filter that
+// recolors using the configured `color`. Mirrors upstream Plot's approach.
+function rampWithFilter(scale, options) {
+  const ramp = legendRamp(scale, options);
+  const fid = getFilterId();
+  const svg = select(ramp);
+  svg.select("image").attr("filter", `url(#${fid})`);
+  const filter = svg.append("filter").attr("id", fid);
+  filter.append("feFlood").attr("flood-color", scale.color);
+  filter.append("feComposite").attr("in2", "SourceGraphic").attr("operator", "in");
+  return ramp;
 }
 
 function interpolateOpacity(color) {
