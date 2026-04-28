@@ -1,6 +1,12 @@
 import type {ChannelValueSpec} from "../channel.js";
 import type {InsetOptions} from "../inset.js";
 import type {Data, MarkOptions, RenderableMark} from "../mark.js";
+// @ts-ignore -- maybeColorChannel and maybeTuple are declared only in options.js, not options.d.ts
+import {identity, indexOf, maybeColorChannel, maybeTuple} from "../options.js";
+// @ts-ignore -- applyTransform is declared only in style.js, not style.d.ts
+import {applyTransform} from "../style.js";
+// @ts-ignore -- AbstractBar is declared only in bar.js, not bar.d.ts
+import {AbstractBar} from "./bar.js";
 import type {RectCornerOptions} from "./rect.js";
 
 /** Options for the cell mark. */
@@ -26,6 +32,29 @@ export interface CellOptions extends MarkOptions, InsetOptions, RectCornerOption
   y?: ChannelValueSpec;
 }
 
+const defaults = {
+  ariaLabel: "cell"
+};
+
+/** The cell mark. */
+export class Cell extends (AbstractBar as { new (...args: any[]): RenderableMark }) {
+  constructor(data?: Data, {x, y, ...options}: CellOptions = {}) {
+    super(
+      data,
+      {
+        x: {value: x, scale: "x", type: "band", optional: true},
+        y: {value: y, scale: "y", type: "band", optional: true}
+      },
+      options,
+      defaults
+    );
+  }
+  _transform(selection: any, mark: any) {
+    // apply dx, dy
+    selection.call(applyTransform, mark, {}, 0, 0);
+  }
+}
+
 /**
  * Returns a rectangular cell mark for the given *data* and *options*. Along
  * with **x** and/or **y**, a **fill** channel is typically specified to encode
@@ -44,7 +73,10 @@ export interface CellOptions extends MarkOptions, InsetOptions, RectCornerOption
  * temporal), use a barX mark; if only **y** is quantitative, use a barY mark;
  * if both are quantitative, use a rect mark.
  */
-export function cell(data?: Data, options?: CellOptions): Cell;
+export function cell(data?: Data, {x, y, ...options}: CellOptions = {}): Cell {
+  [x, y] = maybeTuple(x, y);
+  return new Cell(data, {...options, x, y});
+}
 
 /**
  * Like cell, but **x** defaults to the zero-based index [0, 1, 2, …], and if
@@ -56,7 +88,10 @@ export function cell(data?: Data, options?: CellOptions): Cell;
  * Plot.cellX(values)
  * ```
  */
-export function cellX(data?: Data, options?: CellOptions): Cell;
+export function cellX(data?: Data, {x = indexOf, fill, stroke, ...options}: CellOptions = {}): Cell {
+  if (fill === undefined && maybeColorChannel(stroke)[0] === undefined) fill = identity;
+  return new Cell(data, {...options, x, fill, stroke});
+}
 
 /**
  * Like cell, but **y** defaults to the zero-based index [0, 1, 2, …], and if
@@ -68,7 +103,7 @@ export function cellX(data?: Data, options?: CellOptions): Cell;
  * Plot.cellY(values)
  * ```
  */
-export function cellY(data?: Data, options?: CellOptions): Cell;
-
-/** The cell mark. */
-export class Cell extends RenderableMark {}
+export function cellY(data?: Data, {y = indexOf, fill, stroke, ...options}: CellOptions = {}): Cell {
+  if (fill === undefined && maybeColorChannel(stroke)[0] === undefined) fill = identity;
+  return new Cell(data, {...options, y, fill, stroke});
+}

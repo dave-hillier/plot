@@ -1,16 +1,124 @@
 import {select, format as numberFormat, utcFormat} from "d3";
+import type {ChannelName, ChannelValueSpec} from "../channel.js";
+// @ts-ignore -- getSource is declared only in channel.js, not channel.d.ts
 import {getSource} from "../channel.js";
+// @ts-ignore -- create is declared only in context.js, not context.d.ts
 import {create} from "../context.js";
 import {defined} from "../defined.js";
 import {formatDefault} from "../format.js";
+// @ts-ignore -- anchorX/anchorY are declared only in pointer.js, not pointer.d.ts
 import {anchorX, anchorY} from "../interactions/pointer.js";
+import type {Data, FrameAnchor, MarkOptions, RenderableMark} from "../mark.js";
 import {Mark} from "../mark.js";
+// @ts-ignore -- these helpers are declared only in options.js, not options.d.ts
 import {maybeAnchor, maybeFrameAnchor, maybeTuple, number, string} from "../options.js";
+// @ts-ignore -- these helpers are declared only in style.js, not style.d.ts
 import {applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform, impliedString} from "../style.js";
+// @ts-ignore -- these helpers are declared only in options.js, not options.d.ts
 import {identity, isIterable, isTemporal, isTextual} from "../options.js";
+// @ts-ignore -- inferTickFormat is declared only in axis.js, not axis.d.ts
 import {inferTickFormat} from "./axis.js";
+// @ts-ignore -- these helpers are declared only in text.js, not text.d.ts
 import {applyIndirectTextStyles, defaultWidth, ellipsis, monospaceWidth} from "./text.js";
+import type {TextStyles} from "./text.js";
+// @ts-ignore -- these helpers are declared only in text.js, not text.d.ts
 import {cut, clipper, splitter, maybeTextOverflow} from "./text.js";
+
+/**
+ * How to format channel values; one of:
+ *
+ * - a [d3-format][1] string for numeric scales
+ * - a [d3-time-format][2] string for temporal scales
+ * - a function passed a channel *value* and *index*, returning a string
+ *
+ * [1]: https://d3js.org/d3-time
+ * [2]: https://d3js.org/d3-time-format
+ */
+export type TipFormat = string | ((d: any, i: number) => string);
+
+/** Options for the tip mark. */
+export interface TipOptions extends MarkOptions, TextStyles {
+  /**
+   * The horizontal position channel specifying the tip’s anchor, typically
+   * bound to the *x* scale.
+   */
+  x?: ChannelValueSpec;
+
+  /**
+   * The starting horizontal position channel specifying the tip’s anchor,
+   * typically bound to the *x* scale.
+   */
+  x1?: ChannelValueSpec;
+
+  /**
+   * The ending horizontal position channel specifying the tip’s anchor,
+   * typically bound to the *x* scale.
+   */
+  x2?: ChannelValueSpec;
+
+  /**
+   * The vertical position channel specifying the tip’s anchor, typically
+   * bound to the *y* scale.
+   */
+  y?: ChannelValueSpec;
+
+  /**
+   * The starting vertical position channel specifying the tip’s anchor,
+   * typically bound to the *y* scale.
+   */
+  y1?: ChannelValueSpec;
+
+  /**
+   * The ending vertical position channel specifying the tip’s anchor, typically
+   * bound to the *y* scale.
+   */
+  y2?: ChannelValueSpec;
+
+  /**
+   * The frame anchor specifies defaults for **x** and **y** based on the plot’s
+   * frame; it may be one of the four sides (*top*, *right*, *bottom*, *left*),
+   * one of the four corners (*top-left*, *top-right*, *bottom-right*,
+   * *bottom-left*), or the *middle* of the frame. For example, for tips
+   * distributed horizontally at the top of the frame:
+   *
+   * ```js
+   * Plot.tip(data, {x: "date", frameAnchor: "top"})
+   * ```
+   */
+  frameAnchor?: FrameAnchor;
+
+  /**
+   * The tip anchor specifies how to orient the tip box relative to its anchor
+   * position; it refers to the part of the tip box that is attached to the
+   * anchor point. For example, the *top-left* anchor places the top-left corner
+   * of tip box near the anchor position, hence placing the tip box below and to
+   * the right of the anchor position.
+   */
+  anchor?: FrameAnchor;
+
+  /**
+   * If an explicit tip anchor is not specified, an anchor is chosen
+   * automatically such that the tip fits within the plot’s frame; if the
+   * preferred anchor fits, it is chosen.
+   */
+  preferredAnchor?: FrameAnchor | null;
+
+  /**
+   * How channel values are formatted for display. If a format is a string, it
+   * is interpreted as a (UTC) time format for temporal channels, and otherwise
+   * a number format.
+   */
+  format?: {[name in ChannelName]?: null | boolean | TipFormat} | TipFormat;
+
+  /** The image filter for the tip’s box; defaults to a drop shadow. */
+  pathFilter?: string;
+
+  /** The size of the tip’s pointer in pixels; defaults to 12. */
+  pointerSize?: number;
+
+  /** The padding around the text in pixels; defaults to 8. */
+  textPadding?: number;
+}
 
 const defaults = {
   ariaLabel: "tip",
@@ -21,8 +129,29 @@ const defaults = {
 // These channels are not displayed in the default tip; see formatChannels.
 const ignoreChannels = new Set(["geometry", "href", "src", "ariaLabel", "scales"]);
 
-export class Tip extends Mark {
-  constructor(data, options = {}) {
+/** The tip mark. */
+export class Tip extends (Mark as { new (...args: any[]): Mark }) {
+  anchor: any;
+  preferredAnchor: any;
+  frameAnchor: any;
+  textAnchor: any;
+  textPadding: number;
+  pointerSize: number;
+  pathFilter: any;
+  lineHeight: number;
+  lineWidth: number;
+  textOverflow: any;
+  monospace: boolean;
+  fontFamily: any;
+  fontSize: any;
+  fontStyle: any;
+  fontVariant: any;
+  fontWeight: any;
+  splitLines: any;
+  clipLine: any;
+  format: any;
+
+  constructor(data?: Data, options: TipOptions = {}) {
     if (options.tip) options = {...options, tip: false};
     if (options.title === undefined && isIterable(data) && isTextual(data)) options = {...options, title: identity};
     const {
@@ -81,12 +210,12 @@ export class Tip extends Mark {
     this.fontStyle = string(fontStyle);
     this.fontVariant = string(fontVariant);
     this.fontWeight = string(fontWeight);
-    for (const key in defaults) if (key in this.channels) this[key] = defaults[key]; // apply default even if channel
+    for (const key in defaults) if (key in (this as any).channels) (this as any)[key] = (defaults as any)[key]; // apply default even if channel
     this.splitLines = splitter(this);
     this.clipLine = clipper(this);
     this.format = typeof format === "string" || typeof format === "function" ? {title: format} : {...format}; // defensive copy before mutate; also promote nullish to empty
   }
-  render(index, scales, values, dimensions, context) {
+  render(index: any, scales: any, values: any, dimensions: any, context: any): any {
     const mark = this;
     const {x, y, fx, fy} = scales;
     const {ownerSVGElement: svg, document} = context;
@@ -133,17 +262,17 @@ export class Tip extends Mark {
       .call(applyIndirectStyles, this, dimensions, context)
       .call(applyIndirectTextStyles, this)
       .call(applyTransform, this, {x: X && x, y: Y && y})
-      .call((g) =>
+      .call((g: any) =>
         g
           .selectAll()
           .data(index)
           .enter()
           .append("g")
-          .attr("transform", (i) => `translate(${Math.round(px(i))},${Math.round(py(i))})`) // crisp edges
+          .attr("transform", (i: any) => `translate(${Math.round(px(i))},${Math.round(py(i))})`) // crisp edges
           .call(applyDirectStyles, this)
-          .call((g) => g.append("path").attr("filter", pathFilter))
-          .call((g) =>
-            g.append("text").each(function (i) {
+          .call((g: any) => g.append("path").attr("filter", pathFilter))
+          .call((g: any) =>
+            g.append("text").each(function (this: any, i: any) {
               const that = select(this);
               // prevent style inheritance (from path)
               this.setAttribute("fill", "currentColor");
@@ -173,7 +302,7 @@ export class Tip extends Mark {
     // just the initial layout of the text; in postrender we will compute the
     // exact text metrics and translate the text as needed once we know the
     // tip’s orientation (anchor).
-    function renderLine(selection, {label, value, color, opacity}) {
+    function renderLine(selection: any, {label, value, color, opacity}: any) {
       (label ??= ""), (value ??= "");
       const swatch = color != null || opacity != null;
       let title;
@@ -193,7 +322,7 @@ export class Tip extends Mark {
           value = value.slice(0, k).trimEnd() + ellipsis;
         }
       }
-      const line = selection.append("tspan").attr("x", 0).attr("dy", `${lineHeight}em`).text("\u200b"); // zwsp for double-click
+      const line = selection.append("tspan").attr("x", 0).attr("dy", `${lineHeight}em`).text("​"); // zwsp for double-click
       if (label) line.append("tspan").attr("font-weight", "bold").text(label);
       if (value) line.append(() => document.createTextNode(value));
       if (swatch) line.append("tspan").text(" ■").attr("fill", color).attr("fill-opacity", opacity).style("user-select", "none"); // prettier-ignore
@@ -202,9 +331,9 @@ export class Tip extends Mark {
 
     // Only after the plot is attached to the page can we compute the exact text
     // metrics needed to determine the tip size and orientation (anchor).
-    function postrender() {
+    function postrender(this: any) {
       const {width, height} = dimensions.facet ?? dimensions;
-      g.selectChildren().each(function (i) {
+      g.selectChildren().each(function (this: any, i: any) {
         let {x: tx, width: w, height: h} = this.getBBox();
         (w = Math.round(w)), (h = Math.round(h)); // crisp edges
         let a = anchor; // use the specified anchor, if any
@@ -257,20 +386,30 @@ export class Tip extends Mark {
   }
 }
 
-export function tip(data, {x, y, ...options} = {}) {
+/**
+ * Returns a new tip mark for the given *data* and *options*.
+ *
+ * If either **x** or **y** is not specified, the default is determined by the
+ * **frameAnchor** option. If none of **x**, **y**, and **frameAnchor** are
+ * specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*,
+ * *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** =
+ * [*y₀*, *y₁*, *y₂*, …].
+ */
+export function tip(data?: Data, {x, y, ...options}: TipOptions = {}): Tip {
   if (options.frameAnchor === undefined) [x, y] = maybeTuple(x, y);
   return new Tip(data, {...options, x, y});
 }
 
-function getLineOffset(anchor, length, lineHeight) {
+function getLineOffset(anchor: any, length: number, lineHeight: number): number {
   return /^top(?:-|$)/.test(anchor)
     ? 0.94 - lineHeight
-    : /^bottom(?:-|$)/
+    : // @ts-expect-error -- preserve original behavior (regex is always truthy here)
+    /^bottom(?:-|$)/
     ? -0.29 - length * lineHeight
     : (length / 2) * lineHeight;
 }
 
-function getTextTranslate(anchor, m, r, width, height) {
+function getTextTranslate(anchor: any, m: number, r: number, width: number, height: number): any {
   switch (anchor) {
     case "middle":
       return [-width / 2, height / 2];
@@ -293,7 +432,7 @@ function getTextTranslate(anchor, m, r, width, height) {
   }
 }
 
-function getPath(anchor, m, r, width, height) {
+function getPath(anchor: any, m: number, r: number, width: number, height: number): any {
   const w = width + r * 2;
   const h = height + r * 2;
   switch (anchor) {
@@ -319,8 +458,8 @@ function getPath(anchor, m, r, width, height) {
 }
 
 // Note: mutates this.format!
-function getSourceChannels(channels, scales) {
-  const sources = {};
+function getSourceChannels(this: any, channels: any, scales: any) {
+  const sources: any = {};
 
   // Promote x and y shorthand for paired channels (in order).
   let format = this.format;
@@ -377,7 +516,7 @@ function getSourceChannels(channels, scales) {
 }
 
 // Promote x and y shorthand for paired channels, while preserving order.
-function maybeExpandPairedFormat(format, channels, key) {
+function maybeExpandPairedFormat(format: any, channels: any, key: string) {
   if (!(key in format)) return format;
   const key1 = `${key}1`;
   const key2 = `${key}2`;
@@ -388,11 +527,11 @@ function maybeExpandPairedFormat(format, channels, key) {
   return Object.fromEntries(entries);
 }
 
-function formatTitle(i, index, {title}) {
+function formatTitle(this: any, i: any, index: any, {title}: any) {
   return this.format.title(title.value[i], i);
 }
 
-function* formatChannels(i, index, channels, scales, values) {
+function* formatChannels(this: any, i: any, index: any, channels: any, scales: any, values: any): any {
   for (const key in channels) {
     if (key === "fx" || key === "fy") {
       yield {
@@ -428,19 +567,19 @@ function* formatChannels(i, index, channels, scales, values) {
   }
 }
 
-function formatPair(formatValue, c1, c2, i) {
+function formatPair(formatValue: any, c1: any, c2: any, i: any) {
   return c2.hint?.length // e.g., stackY’s y1 and y2
     ? `${formatValue(c2.value[i] - c1.value[i], i)}`
     : `${formatValue(c1.value[i], i)}–${formatValue(c2.value[i], i)}`;
 }
 
-function formatPairLabel(scales, channels, key) {
+function formatPairLabel(scales: any, channels: any, key: string) {
   const l1 = formatLabel(scales, channels, `${key}1`, key);
   const l2 = formatLabel(scales, channels, `${key}2`, key);
   return l1 === l2 ? l1 : `${l1}–${l2}`;
 }
 
-function formatLabel(scales, channels, key, defaultLabel = key) {
+function formatLabel(scales: any, channels: any, key: string, defaultLabel: string = key) {
   const channel = channels[key];
   const scale = scales[channel?.scale ?? key];
   return String(scale?.label ?? channel?.label ?? defaultLabel);
