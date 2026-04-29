@@ -4,7 +4,7 @@ import {create, createContext} from "../context.js";
 import {isNoneish, maybeColorChannel, maybeNumberChannel} from "../options.js";
 import {isOrdinalScale, isThresholdScale} from "../scales.js";
 import {applyInlineStyles, impliedString, maybeClassName} from "../style.js";
-import {inferTickFormat} from "../marks/axis.js";
+import {inferTickFormat} from "../marks/axis";
 
 function maybeScale(scale, key) {
   if (key == null) return key;

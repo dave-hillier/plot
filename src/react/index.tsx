@@ -92,7 +92,7 @@ export {Raster} from "./marks/Raster.js";
 export type {RasterProps} from "./marks/Raster.js";
 
 // Raster interpolation utilities (pure functions, shared with imperative API)
-export {interpolateNone, interpolatorBarycentric, interpolateNearest, interpolatorRandomWalk} from "../marks/raster.js";
+export {interpolateNone, interpolatorBarycentric, interpolateNearest, interpolatorRandomWalk} from "../marks/raster";
 
 export {Hexgrid} from "./marks/Hexgrid.js";
 
@@ -152,8 +152,8 @@ export {treeNode, treeLink} from "../transforms/tree.js";
 export {pointer, pointerX, pointerY} from "../interactions/pointer.js";
 
 // Re-export mark-related utilities (pure functions, shared with imperative API)
-export {bollinger} from "../marks/bollinger.js";
-export {auto, autoSpec} from "../marks/auto.js";
+export {bollinger} from "../marks/bollinger";
+export {auto, autoSpec} from "../marks/auto";
 
 // Re-export data utilities
 export {valueof, column, identity, indexOf, numberInterval} from "../options.js";
