@@ -1,4 +1,5 @@
 import {extent, range, sum, area as shapeArea, namespaces} from "d3";
+import {createElement as h, type ReactNode} from "react";
 import type {ChannelValue, ChannelValueDenseBinSpec, ChannelValueSpec} from "../channel.js";
 // @ts-ignore — create is exported by context.js but not declared in context.d.ts
 import {create} from "../context.js";
@@ -6,6 +7,8 @@ import type {Data, MarkOptions, RenderableMark} from "../mark.js";
 import {Mark} from "../mark.js";
 // @ts-ignore — these helpers are exported by options.js but not declared in options.d.ts
 import {identity, indexOf, isNone, isNoneish, maybeZ} from "../options.js";
+import {directStyleProps, groupChannelStyleProps, indirectStyleProps, transformProp} from "../react/styles.js";
+import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
 import {qt} from "../stats.js";
 // @ts-ignore — these helpers are exported by style.js but not declared in style.d.ts
 import {applyDirectStyles, applyGroupedChannelStyles, applyIndirectStyles, applyTransform, groupZ} from "../style.js";
@@ -155,6 +158,30 @@ class LinearRegression extends Mark {
           )
       )
       .node();
+  }
+  renderJSX(this: any, index: any, scales: any, channels: any, _dimensions: any, _context: any): ReactNode {
+    const {x: X, y: Y, z: Z} = channels;
+    const {ci} = this;
+    const indirect = indirectStyleProps(this);
+    const direct = directStyleProps(this);
+    const transform = transformProp(this, scales);
+    const showBand = ci && !isNone(this.fill);
+    const groups = Array.from((Z ? groupZ(index, Z, this.z) : [index]) as Iterable<number[]>);
+    const elements: ReactNode[] = [];
+    groups.forEach((G, k) => {
+      const lineChannel = groupChannelStyleProps(G, {...channels, fill: null, fillOpacity: null});
+      const lineTitled = withTitleChild(channels, G[0], null);
+      const dLine = (this as any)._renderLine(G, X, Y);
+      if (showBand) {
+        const bandChannel = groupChannelStyleProps(G, {...channels, stroke: null, strokeOpacity: null, strokeWidth: null});
+        const dBand = (this as any)._renderBand(G, X, Y);
+        const bandEl = h("path", {key: `b${k}`, stroke: "none", ...direct, ...bandChannel, d: dBand});
+        elements.push(withHrefWrap(channels, this.target, G[0], bandEl));
+      }
+      const lineEl = h("path", {key: `l${k}`, fill: "none", ...direct, ...lineChannel, d: dLine}, lineTitled);
+      elements.push(withHrefWrap(channels, this.target, G[0], lineEl));
+    });
+    return h("g", {...indirect, ...transform}, elements);
   }
 }
 
