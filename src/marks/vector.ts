@@ -1,4 +1,5 @@
 import {pathRound as path} from "d3";
+import {createElement as h, type ReactNode} from "react";
 import type {ChannelValue, ChannelValueSpec} from "../channel.js";
 // @ts-expect-error — runtime export missing from context.d.ts
 import {create} from "../context.js";
@@ -9,6 +10,8 @@ import {identity} from "../options.js";
 import {maybeFrameAnchor, maybeNumberChannel, maybeTuple, keyword} from "../options.js";
 // @ts-expect-error — runtime exports missing from style.d.ts
 import {applyChannelStyles, applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform} from "../style.js";
+import {channelStyleProps, directStyleProps, indirectStyleProps, transformProp} from "../react/styles.js";
+import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
 import {template} from "../template.js";
 
 /**
@@ -218,6 +221,37 @@ export class Vector extends Mark {
           .call(applyChannelStyles, this, channels)
       )
       .node();
+  }
+  renderJSX(this: any, index, scales, channels, dimensions, _context): ReactNode {
+    if (this.markerStart || this.markerMid || this.markerEnd) {
+      throw new Error("Vector.renderJSX: marker option not yet supported; use render()");
+    }
+    const {x, y} = scales;
+    const {x: X, y: Y, length: L, rotate: A} = channels;
+    const {length, rotate, anchor, shape, r} = this;
+    const [cx, cy] = applyFrameAnchor(this, dimensions);
+    const indirect = indirectStyleProps(this);
+    const transform = transformProp(this, {x: X && x, y: Y && y});
+    const direct = directStyleProps(this);
+    const paths = (index as number[]).map((i, k) => {
+      const tx = X ? X[i] : cx;
+      const ty = Y ? Y[i] : cy;
+      const ang = A ? A[i] : rotate;
+      const len = L ? L[i] : length;
+      const shift = anchor === "start" ? 0 : anchor === "end" ? len : len / 2;
+      const t = `translate(${tx},${ty})${ang ? ` rotate(${ang})` : ""}${shift ? ` translate(0,${shift})` : ""}`;
+      const p = path();
+      shape.draw(p as unknown as CanvasPath, len, r);
+      const channel = channelStyleProps(i, channels);
+      const titled = withTitleChild(channels, i, null);
+      const pathEl = h(
+        "path",
+        {key: k, ...direct, ...channel, transform: t, d: `${p}`},
+        titled
+      );
+      return withHrefWrap(channels, this.target, i, pathEl);
+    });
+    return h("g", {...indirect, ...transform}, paths);
   }
 }
 
