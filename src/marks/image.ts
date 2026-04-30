@@ -1,3 +1,4 @@
+import {createElement as h, type ReactNode} from "react";
 import type {ChannelValue, ChannelValueSpec} from "../channel.js";
 import type {Data, FrameAnchor, MarkOptions} from "../mark.js";
 // @ts-ignore
@@ -6,6 +7,8 @@ import {positive} from "../defined.js";
 import {Mark} from "../mark.js";
 // @ts-ignore
 import {maybeFrameAnchor, maybeNumberChannel, maybeTuple, string} from "../options.js";
+import {channelStyleProps, directStyleProps, indirectStyleProps, transformProp} from "../react/styles.js";
+import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
 import {
   // @ts-ignore
   applyAttr,
@@ -214,6 +217,50 @@ export class Image extends Mark {
           .call(applyChannelStyles, this, channels)
       )
       .node();
+  }
+  renderJSX(this: any, index: any, scales: any, channels: any, dimensions: any, _context: any): ReactNode {
+    const {x, y} = scales;
+    const {x: X, y: Y, width: W, height: H, r: R, rotate: A, src: S} = channels;
+    const {r, width, height, rotate} = this;
+    const [cx, cy] = applyFrameAnchor(this, dimensions);
+    const indirect = indirectStyleProps(this);
+    const direct = directStyleProps(this);
+    const transform = transformProp(this, {x: X && x, y: Y && y});
+    const xOf = position(X, W, R, cx, width, r);
+    const yOf = position(Y, H, R, cy, height, r);
+    const wOf = W ? (i: number) => W[i] : width !== undefined ? width : R ? (i: number) => R[i] * 2 : r * 2;
+    const hOf = H ? (i: number) => H[i] : height !== undefined ? height : R ? (i: number) => R[i] * 2 : r * 2;
+    const xCenter = X ? (i: number) => X[i] : cx;
+    const yCenter = Y ? (i: number) => Y[i] : cy;
+    const images = (index as number[]).map((i, k) => {
+      const channel = channelStyleProps(i, channels);
+      const props: Record<string, any> = {
+        key: k,
+        ...direct,
+        ...channel,
+        x: typeof xOf === "function" ? xOf(i) : xOf,
+        y: typeof yOf === "function" ? yOf(i) : yOf,
+        width: typeof wOf === "function" ? wOf(i) : wOf,
+        height: typeof hOf === "function" ? hOf(i) : hOf,
+        href: S ? S[i] : this.src,
+        preserveAspectRatio: this.preserveAspectRatio,
+        crossOrigin: this.crossOrigin,
+        imageRendering: this.imageRendering
+      };
+      const rotation = A ? A[i] : rotate;
+      if (rotation) {
+        const ox = typeof xCenter === "function" ? xCenter(i) : xCenter;
+        const oy = typeof yCenter === "function" ? yCenter(i) : yCenter;
+        props.transform = `rotate(${rotation})`;
+        props.transformOrigin = `${ox}px ${oy}px`;
+      }
+      const clip = R ? `circle(${R[i]}px)` : r !== undefined ? `circle(${r}px)` : null;
+      if (clip != null) props.clipPath = clip;
+      const titled = withTitleChild(channels, i, null);
+      const imgEl = h("image", props, titled);
+      return withHrefWrap(channels, this.target, i, imgEl);
+    });
+    return h("g", {...indirect, ...transform}, images);
   }
 }
 
