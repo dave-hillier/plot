@@ -15,6 +15,12 @@ import {text} from "./text.js";
 
 // TODO tree channels, e.g., "node:name" | "node:path" | "node:internal" | "node:external"?
 
+// JSX port (Phase 1 unit 25): the tree (and cluster) factories are CompoundMark
+// builders — they compose link, dot, and text marks via the marks() helper and
+// do not perform any imperative DOM construction themselves. The underlying
+// link/dot/text marks each have their own renderJSX implementations, so no JSX
+// rendering is required at this layer.
+
 /** Options for the compound tree mark. */
 export interface TreeOptions extends DotOptions, LinkOptions, TextOptions, TreeTransformOptions {
   /**
