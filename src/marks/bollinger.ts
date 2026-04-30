@@ -1,3 +1,10 @@
+// JSX rendering note: Bollinger has no Mark class of its own — bollingerX and
+// bollingerY are factories that return a CompoundMark composed of an Area
+// (areaX/areaY) sub-mark for the band fill and a Line (lineX/lineY) sub-mark
+// for the central trend. JSX rendering is delegated entirely to those
+// sub-marks via their own renderJSX implementations; there is nothing for
+// Bollinger itself to render. The bollinger() helper is a window-map transform
+// (not a mark) and likewise has no rendering responsibility.
 import {deviation, mean} from "d3";
 import type {CompoundMark, Data, MarkOptions} from "../mark.js";
 import {marks} from "../mark.js";
