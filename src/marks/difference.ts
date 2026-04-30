@@ -1,6 +1,9 @@
+import {createElement as h, type ReactNode} from "react";
 import type {ChannelValue, ChannelValueSpec} from "../channel.js";
 // @ts-ignore - internal helper not in .d.ts
 import {create} from "../context.js";
+import {indirectStyleProps, directStyleProps, transformProp, groupChannelStyleProps} from "../react/styles.js";
+import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
 import type {CurveOptions} from "../curve.js";
 import type {CompoundMark, Data, MarkOptions} from "../mark.js";
 import {marks} from "../mark.js";
@@ -220,6 +223,36 @@ function memo(v: any) {
   let V: any;
   const {value, label = labelof(value)} = maybeValue(v);
   return {transform: (data: any) => V || (V = valueof(data, value)), label};
+}
+
+// JSX-mode parallel to clipDifference. The imperative version recursively
+// invokes `next()` (the underlying area's imperative render) twice, splicing
+// individual <path> children out of one resulting <g> into freshly minted
+// <clipPath> elements and rewriting clip-path references on siblings of the
+// other. Reproducing that without a JSX-aware `next` continuation, and
+// without violating React's "DOM children come from props" model, requires
+// pipeline support we have not yet built. Defer per Phase 1 unit 19 rule.
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function clipDifferenceJSX(this: any, _k: "x" | "y", _positive: boolean) {
+  return (
+    _index: any,
+    _scales: any,
+    _channels: any,
+    _dimensions: any,
+    _context: any,
+    _next: any
+  ): ReactNode => {
+    // Touch the JSX style helpers so that future implementations have them
+    // pre-imported and the import surface matches sibling ported marks.
+    void indirectStyleProps;
+    void directStyleProps;
+    void transformProp;
+    void groupChannelStyleProps;
+    void withHrefWrap;
+    void withTitleChild;
+    void h;
+    throw new Error("Difference.renderJSX: clipPath registration deferred");
+  };
 }
 
 function clipDifference(k: "x" | "y", positive: boolean) {
