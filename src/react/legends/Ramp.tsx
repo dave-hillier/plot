@@ -1,0 +1,244 @@
+// React JSX port of `legendRamp` from src/legends/ramp.js. Renders a ramp
+// legend (continuous color, threshold, or ordinal) directly as an <svg> tree
+// without any d3-selection / DOM-mutation. Pure helpers (interpolators, color
+// stops, tick formatting) come from d3 and the existing JS implementation.
+
+import React, {Fragment} from "react";
+import {format, interpolateNumber, piecewise, quantize, scaleBand, scaleLinear} from "d3";
+import {inferFontVariant} from "../../axes.js";
+// These helpers exist in the JS sources but aren't in the corresponding .d.ts
+// shims, so we reach into them via untyped imports.
+// @ts-expect-error untyped JS export
+import {createContext} from "../../context.js";
+// @ts-expect-error untyped JS export
+import {map, maybeNumberChannel} from "../../options.js";
+import {interpolatePiecewise} from "../../scales/quantitative.js";
+import {impliedString, maybeClassName} from "../../style.js";
+
+// Mirrors the option bag accepted by the imperative `legendRamp(color, options)`.
+// The first positional argument (`color`) is exposed here as the `scale` prop;
+// all other knobs match the imperative names.
+export interface RampProps {
+  scale: any;
+  label?: string;
+  tickSize?: number;
+  width?: number;
+  height?: number;
+  marginTop?: number;
+  marginRight?: number;
+  marginBottom?: number;
+  marginLeft?: number;
+  style?: React.CSSProperties | string;
+  ticks?: number | any[];
+  tickFormat?: ((d: any, i?: number) => any) | string | null;
+  fontVariant?: string;
+  round?: boolean;
+  opacity?: any;
+  className?: string;
+  // Optional opacity-ramp filter (used by rampWithFilter for ordinal/threshold
+  // opacity legends). We don't yet support this in the JSX path.
+  filter?: string;
+}
+
+export function Ramp(props: RampProps) {
+  const color = props.scale;
+  const {
+    label = color.label,
+    tickSize = 6,
+    width = 240,
+    height = 44 + tickSize,
+    marginTop = 18,
+    marginRight = 0,
+    marginBottom = 16 + tickSize,
+    marginLeft = 0,
+    style,
+    fontVariant = inferFontVariant(color),
+    round = true
+  } = props;
+
+  let {ticks = (width - marginLeft - marginRight) / 64, tickFormat} = props;
+  const className = maybeClassName(props.className);
+  const opacity = maybeNumberChannel(props.opacity)[1];
+  if (tickFormat === null) tickFormat = () => null as any;
+
+  const context = createContext(props as any);
+  const applyRange = round
+    ? (s: any, range: number[]) => s.rangeRound(range)
+    : (s: any, range: number[]) => s.range(range);
+
+  const {type, domain, range, interpolate, scale, pivot} = color;
+
+  let x: any;
+  let body: React.ReactNode = null;
+
+  if (interpolate) {
+    const interpolator =
+      range === undefined
+        ? interpolate
+        : piecewise(interpolate.length === 1 ? interpolatePiecewise(interpolate) : interpolate, range);
+    x = applyRange(
+      scale.copy(),
+      quantize(
+        interpolateNumber(marginLeft, width - marginRight),
+        Math.min(domain.length + (pivot !== undefined ? 1 : 0), range === undefined ? Infinity : range.length)
+      )
+    );
+    const href = canvasDataURL(interpolator, context);
+    body = (
+      <image
+        opacity={opacity ?? undefined}
+        x={marginLeft}
+        y={marginTop}
+        width={width - marginLeft - marginRight}
+        height={height - marginTop - marginBottom}
+        preserveAspectRatio="none"
+        xlinkHref={href}
+      />
+    );
+  } else if (type === "threshold") {
+    const thresholds = domain;
+    const thresholdFormat =
+      tickFormat === undefined ? (d: any) => d : typeof tickFormat === "string" ? format(tickFormat) : (tickFormat as any);
+    x = applyRange(scaleLinear().domain([-1, range.length - 1]), [marginLeft, width - marginRight]);
+    body = (
+      <g fillOpacity={opacity ?? undefined}>
+        {(range as any[]).map((d, i) => (
+          <rect
+            key={i}
+            x={x(i - 1)}
+            y={marginTop}
+            width={x(i) - x(i - 1)}
+            height={height - marginTop - marginBottom}
+            fill={d}
+          />
+        ))}
+      </g>
+    );
+    ticks = map(thresholds, ((_: any, i: number) => i) as any);
+    tickFormat = (i: any) => thresholdFormat(thresholds[i], i);
+  } else {
+    // Ordinal
+    x = applyRange(scaleBand().domain(domain as any), [marginLeft, width - marginRight]);
+    body = (
+      <g fillOpacity={opacity ?? undefined}>
+        {(domain as any[]).map((d, i) => (
+          <rect
+            key={i}
+            x={x(d)}
+            y={marginTop}
+            width={Math.max(0, x.bandwidth() - 1)}
+            height={height - marginTop - marginBottom}
+            fill={scale(d)}
+          />
+        ))}
+      </g>
+    );
+  }
+
+  // Bottom axis (replicates d3-axis output for the parts the imperative
+  // legend keeps: ticks only — the .domain path is removed). For ordinal
+  // band scales we don't shift the tick line up to span the ramp.
+  const isBand = !interpolate && type !== "threshold";
+  const tickAxisY = height - marginBottom;
+  const tickLineY1 = isBand ? 0 : marginTop + marginBottom - height;
+  const tickElements = renderTicks(x, ticks, tickFormat, tickSize, tickLineY1);
+
+  // The imperative API accepts either a CSSStyleDeclaration-like object (which
+  // it Object.assigns onto svg.style) or a raw style string (set as a property).
+  // React only takes a CSSProperties object, so a string style is punted.
+  const styleAttr = typeof style === "object" && style !== null ? (style as React.CSSProperties) : undefined;
+
+  return (
+    <svg
+      className={`${className}-ramp`}
+      fontFamily="system-ui, sans-serif"
+      fontSize={10}
+      width={width}
+      height={height}
+      viewBox={`0 0 ${width} ${height}`}
+      style={styleAttr}
+    >
+      <style>{rampStyle(className)}</style>
+      {body}
+      <g
+        transform={`translate(0,${tickAxisY})`}
+        fontVariant={impliedString(fontVariant, "normal") as any}
+      >
+        {tickElements}
+      </g>
+      {label !== undefined ? (
+        <text x={marginLeft} y={marginTop - 6} fill="currentColor" fontWeight="bold">
+          {label}
+        </text>
+      ) : null}
+    </svg>
+  );
+}
+
+function rampStyle(className: string): string {
+  return `:where(.${className}-ramp) {
+  display: block;
+  height: auto;
+  height: intrinsic;
+  max-width: 100%;
+  overflow: visible;
+}
+:where(.${className}-ramp text) {
+  white-space: pre;
+}`;
+}
+
+// Constructs the data URL for a 256x1 canvas filled by `interpolator(t)`.
+function canvasDataURL(interpolator: (t: number) => string, context: any): string {
+  const n = 256;
+  const canvas = context.document.createElement("canvas");
+  canvas.width = n;
+  canvas.height = 1;
+  const c2d = canvas.getContext("2d");
+  for (let i = 0, j = n - 1; i < n; ++i) {
+    c2d.fillStyle = interpolator(i / j);
+    c2d.fillRect(i, 0, 1, 1);
+  }
+  return canvas.toDataURL();
+}
+
+// Replicates the tick markup that d3-axis (axisBottom) emits, minus the
+// .domain path (which the imperative ramp removes). Each tick is a
+// <g class="tick" transform="translate(x,0)"> with a <line> and <text>.
+function renderTicks(
+  x: any,
+  ticks: any,
+  tickFormat: any,
+  tickSize: number,
+  tickLineY1: number
+): React.ReactNode {
+  const values: any[] = Array.isArray(ticks)
+    ? ticks
+    : typeof x.ticks === "function"
+    ? x.ticks(ticks)
+    : x.domain();
+  const fmt: (d: any, i: number) => any =
+    typeof tickFormat === "function"
+      ? tickFormat
+      : typeof tickFormat === "string" && typeof x.tickFormat === "function"
+      ? x.tickFormat(ticks, tickFormat)
+      : typeof x.tickFormat === "function"
+      ? x.tickFormat(Array.isArray(ticks) ? null : ticks)
+      : (d: any) => `${d}`;
+  return (
+    <Fragment>
+      {values.map((d, i) => {
+        const tx = x(d) ?? 0;
+        const text = fmt(d, i);
+        return (
+          <g key={i} className="tick" opacity={1} transform={`translate(${tx + 0.5},0)`}>
+            <line stroke="currentColor" y1={tickLineY1} y2={tickSize} />
+            <text fill="currentColor" y={tickSize + 3} dy="0.71em" textAnchor="middle">
+              {text == null ? "" : `${text}`}
+            </text>
+          </g>
+        );
+      })}
+    </Fragment>
+  );
+}
