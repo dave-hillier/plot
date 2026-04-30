@@ -1,4 +1,5 @@
 import {area as shapeArea} from "d3";
+import {createElement as h, type ReactNode} from "react";
 import type {ChannelValue, ChannelValueDenseBinSpec, ChannelValueSpec} from "../channel.js";
 // @ts-ignore — runtime helper not exposed in companion .d.ts
 import {create} from "../context.js";
@@ -11,6 +12,8 @@ import type {Data, MarkOptions} from "../mark.js";
 import {first, indexOf, maybeZ, second} from "../options.js";
 // @ts-ignore — runtime helpers not exposed in companion .d.ts
 import {applyDirectStyles, applyIndirectStyles, applyTransform, applyGroupedChannelStyles, groupIndex} from "../style.js";
+import {groupChannelStyleProps, indirectStyleProps, directStyleProps, transformProp} from "../react/styles.js";
+import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
 // @ts-ignore — runtime helpers not exposed in companion .d.ts
 import {maybeDenseIntervalX, maybeDenseIntervalY} from "../transforms/bin.js";
 import type {BinOptions, BinReducer} from "../transforms/bin.js";
@@ -194,6 +197,28 @@ export class Area extends Mark {
           )
       )
       .node();
+  }
+  renderJSX(this: any, index: any, scales: any, channels: any, _dimensions: any, _context: any): ReactNode {
+    const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1} = channels;
+    const indirect = indirectStyleProps(this);
+    const direct = directStyleProps(this);
+    const transform = transformProp(this, scales, 0, 0);
+    const generator = shapeArea()
+      .curve(this.curve)
+      .defined((i: any) => i >= 0)
+      .x0((i: any) => X1[i])
+      .y0((i: any) => Y1[i])
+      .x1((i: any) => X2[i])
+      .y1((i: any) => Y2[i]);
+    const groups = Array.from(groupIndex(index, [X1, Y1, X2, Y2], this, channels) as Iterable<number[]>);
+    const paths = groups.map((G, k) => {
+      const channel = groupChannelStyleProps(G, channels);
+      const titled = withTitleChild(channels, G[0], null);
+      const d = generator(G as any) ?? undefined;
+      const pathEl = h("path", {key: k, ...direct, ...channel, d}, titled);
+      return withHrefWrap(channels, this.target, G[0], pathEl);
+    });
+    return h("g", {...indirect, ...transform}, paths);
   }
 }
 
