@@ -1,12 +1,20 @@
-import React, {useLayoutEffect, useRef, useState, type ReactNode} from "react";
-import {plot as imperativePlot} from "../plot.js";
+import React, {createElement, useLayoutEffect, useRef, useState, type ReactNode} from "react";
+import {createRoot, type Root} from "react-dom/client";
+import {plot as imperativePlot, computePlot} from "../plot.js";
+// @ts-expect-error legends.js is untyped
+import {exposeLegends} from "../legends.js";
 import {PlotContext} from "./PlotContext.js";
 import type {MarkFactory} from "./useMark.js";
 
-// The new <Plot> is an Option-B faithful port: it does no rendering of its
-// own. Children call useMark to register imperative Mark factories, then
-// <Plot> invokes the imperative `plot()` once registrations have settled and
-// mounts the resulting <svg> via a single ref.
+// <Plot> renders a JSX <svg> populated by each mark's renderJSX(). For marks
+// whose renderJSX throws or is missing, we fall back to mounting the
+// imperative render() output via a ref + appendChild so existing
+// imperative-only marks keep working during the migration.
+//
+// The whole svg tree is rendered through a single createRoot. computePlot()
+// produces the pre-render state (scales, dimensions, facets, per-mark
+// channels) so this component can iterate marks and call renderJSX without
+// re-implementing the imperative pipeline.
 export interface PlotProps {
   children?: ReactNode;
   width?: number;
@@ -65,21 +73,19 @@ interface LegendRegistration {
   host: HTMLElement;
 }
 
-export function Plot({children, title, subtitle, caption, figure, onValue, className, style, ...options}: PlotProps) {
+export function Plot({children, title, subtitle, caption, figure, onValue, className: classNameProp, style, ...options}: PlotProps) {
   const marksRef = useRef<Map<string, Registration>>(new Map());
   const legendsRef = useRef<Map<string, LegendRegistration>>(new Map());
   const seenRef = useRef<Set<string>>(new Set());
   const dirtyRef = useRef(false);
   const [, setVersion] = useState(0);
 
-  // Reset the seen set for this render pass; children call registerMark
-  // synchronously during their render and the set tracks which ids survived.
   seenRef.current = new Set();
 
-  const registerLegend = (id: string, options: any, host: HTMLElement) => {
+  const registerLegend = (id: string, opts: any, host: HTMLElement) => {
     const prev = legendsRef.current.get(id);
-    legendsRef.current.set(id, {options, host});
-    if (!prev || stableKey(prev.options) !== stableKey(options)) {
+    legendsRef.current.set(id, {options: opts, host});
+    if (!prev || stableKey(prev.options) !== stableKey(opts)) {
       setVersion((v) => v + 1);
     }
   };
@@ -94,14 +100,10 @@ export function Plot({children, title, subtitle, caption, figure, onValue, class
       marksRef.current.set(id, {stamp, factory});
       dirtyRef.current = true;
     } else {
-      // Keep the latest factory closure even when the stamp is unchanged so
-      // inline accessor functions stay current without triggering rebuilds.
       prev.factory = factory;
     }
   };
 
-  // After children render, prune unmounted ids and flush a re-render so the
-  // imperative-mount effect picks up the new registration set.
   useLayoutEffect(() => {
     for (const id of marksRef.current.keys()) {
       if (!seenRef.current.has(id)) {
@@ -116,11 +118,9 @@ export function Plot({children, title, subtitle, caption, figure, onValue, class
   });
 
   const hostRef = useRef<HTMLDivElement>(null);
+  const rootRef = useRef<Root | null>(null);
   const optionsKey = stableKey(options);
 
-  // Mount/replace the imperative SVG whenever the registration set or scalar
-  // options change. We re-build on every flush to keep things simple — the
-  // imperative `plot()` is fast and the tree is small.
   useLayoutEffect(() => {
     if (!hostRef.current) return;
     const flat: any[] = [];
@@ -130,38 +130,70 @@ export function Plot({children, title, subtitle, caption, figure, onValue, class
       else flat.push(m);
     }
     if (!flat.length) {
+      if (rootRef.current) rootRef.current.unmount(), (rootRef.current = null);
       hostRef.current.replaceChildren();
       return;
     }
-    const svg = imperativePlot({...options, marks: flat, figure: false, style}) as SVGSVGElement;
-    if (className) svg.classList.add(className);
-    let onInput: (() => void) | null = null;
-    if (onValue) {
-      onInput = () => onValue((svg as any).value);
-      svg.addEventListener("input", onInput);
+
+    let computed: any;
+    try {
+      computed = computePlot({...options, marks: flat, style});
+    } catch (e) {
+      console.warn("Plot: computePlot failed, falling back to imperative.", e);
+      const svg = imperativePlot({...options, marks: flat, figure: false, style}) as SVGSVGElement;
+      if (classNameProp) svg.classList.add(classNameProp);
+      hostRef.current.replaceChildren(svg);
+      mountLegends(svg, legendsRef.current);
+      return;
     }
-    hostRef.current.replaceChildren(svg);
-    // Render any registered legends that resolve scales from this plot.
-    for (const {options: legendOptions, host} of legendsRef.current.values()) {
-      const scaleName = typeof legendOptions === "string" ? legendOptions : legendOptions?.scale;
-      if (scaleName && typeof (svg as any).legend === "function") {
-        const node = (svg as any).legend(scaleName, legendOptions);
-        if (node) host.replaceChildren(node);
+
+    if (!rootRef.current) {
+      // Ensure the host has no leftover imperative children.
+      hostRef.current.replaceChildren();
+      rootRef.current = createRoot(hostRef.current);
+    }
+
+    const onSvgRef = (svg: SVGSVGElement | null) => {
+      if (!svg) return;
+      // Expose scale + legend on the svg, matching imperative API.
+      (svg as any).scale = computed.scales?.scales ?? null;
+      if (typeof exposeLegends === "function") {
+        (svg as any).legend = exposeLegends(computed.scaleDescriptors, computed.context, options);
       }
-    }
-    return () => {
-      if (onInput) svg.removeEventListener("input", onInput);
+      if (classNameProp) svg.classList.add(classNameProp);
+      mountLegends(svg, legendsRef.current);
     };
-    // optionsKey captures the JSON shape of `options`; we intentionally don't
-    // list `options` itself to avoid spurious rebuilds on identity changes.
+
+    let onInput: ((e: Event) => void) | null = null;
+    if (onValue) {
+      onInput = (e) => {
+        const t = e.target as any;
+        if (t && "value" in t) onValue(t.value);
+      };
+    }
+
+    rootRef.current.render(<PlotSvg computed={computed} svgRef={onSvgRef} className={classNameProp} style={style} onInput={onInput} />);
+
+    return () => {
+      // Don't unmount — keep the root alive so subsequent updates reuse it.
+      // The cleanup happens implicitly when the component unmounts via the
+      // unmount effect below.
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [optionsKey, onValue, className, style]);
+  }, [optionsKey, onValue, classNameProp, style]);
+
+  // Unmount the React root when <Plot> unmounts.
+  useLayoutEffect(() => {
+    return () => {
+      if (rootRef.current) {
+        rootRef.current.unmount();
+        rootRef.current = null;
+      }
+    };
+  }, []);
 
   const ctx = {registerMark, registerLegend, unregisterLegend};
 
-  // Hidden registration subtree drives normal React reconciliation; children
-  // render useMark and emit null. The display:none div keeps them out of
-  // layout entirely.
   const wrap = (
     <PlotContext.Provider value={ctx}>
       <div ref={hostRef} className="plot-host" />
@@ -182,10 +214,152 @@ export function Plot({children, title, subtitle, caption, figure, onValue, class
   );
 }
 
-// Render a title/subtitle/caption slot. If the value is a DOM Node (e.g. an
-// HTMLElement returned from htl), mount it imperatively so React doesn't
-// reject it as an invalid child.
-function SlotHeader({as: Tag, content, style}: {as: any; content: any; style?: any}) {
+// Renders the whole plot as a JSX <svg> tree.
+function PlotSvg({computed, svgRef, className: classNameProp, style: styleOpt, onInput}: any) {
+  const {className, ariaLabel, ariaDescription, dimensions} = computed;
+  const {width, height} = dimensions;
+  const styleText = `:where(.${className}) {
+  --plot-background: white;
+  display: block;
+  height: auto;
+  height: intrinsic;
+  max-width: 100%;
+}
+:where(.${className} text),
+:where(.${className} tspan) {
+  white-space: pre;
+}`;
+  const inlineStyle = typeof styleOpt === "object" && styleOpt !== null && !Array.isArray(styleOpt) ? styleOpt : undefined;
+  const inlineStyleString = typeof styleOpt === "string" ? styleOpt : undefined;
+  return (
+    <svg
+      ref={svgRef as any}
+      className={[className, classNameProp].filter(Boolean).join(" ") || undefined}
+      fill="currentColor"
+      fontFamily="system-ui, sans-serif"
+      fontSize={10}
+      textAnchor="middle"
+      width={width}
+      height={height}
+      viewBox={`0 0 ${width} ${height}`}
+      aria-label={ariaLabel ?? undefined}
+      aria-description={ariaDescription ?? undefined}
+      style={inlineStyle as any}
+      data-style={inlineStyleString}
+      onInput={onInput ?? undefined}
+    >
+      <style>{styleText}</style>
+      {renderMarks(computed)}
+    </svg>
+  );
+}
+
+function renderMarks(computed: any): ReactNode[] {
+  const {marks, stateByMark, facetStateByMark, scales, superdimensions, subdimensions, context, facets, facetDomains, facetTranslate} = computed;
+  const out: ReactNode[] = [];
+  marks.forEach((mark: any, i: number) => {
+    const {channels, values, facets: indexes} = stateByMark.get(mark);
+    if (facets === undefined || mark.facet === "super") {
+      let index: any = null;
+      if (indexes) {
+        index = indexes[0];
+        index = mark.filter(index, channels, values);
+        if (index.length === 0) return;
+      }
+      out.push(<MarkSlot key={i} mark={mark} index={index} scales={scales} values={values} dims={superdimensions} context={context} />);
+    } else {
+      const facetMarks: ReactNode[] = [];
+      for (const f of facets) {
+        if (!(mark.facetAnchor?.(facets, facetDomains, f) ?? !f.empty)) continue;
+        let index: any = null;
+        if (indexes) {
+          const faceted = facetStateByMark.has(mark);
+          index = indexes[faceted ? f.i : 0];
+          index = mark.filter(index, channels, values);
+          if (index.length === 0) continue;
+          if (!faceted && index === indexes[0]) index = subarray(index);
+          (index.fx = f.x), (index.fy = f.y), (index.fi = f.i);
+        }
+        facetMarks.push(<MarkSlot key={f.i} mark={mark} index={index} scales={scales} values={values} dims={subdimensions} context={context} facet={f} facetTranslate={facetTranslate} />);
+      }
+      if (facetMarks.length > 0) {
+        out.push(<g key={i}>{facetMarks}</g>);
+      }
+    }
+  });
+  return out;
+}
+
+// Renders one mark, preferring renderJSX and falling back to mounting
+// imperative render() output via a ref.
+function MarkSlot({mark, index, scales, values, dims, context, facet, facetTranslate}: any) {
+  const groupRef = useRef<SVGGElement | null>(null);
+  // Try renderJSX first.
+  let jsx: ReactNode = null;
+  let useFallback = false;
+  if (typeof mark.renderJSX === "function") {
+    try {
+      // Coerce index to a plain Array. Marks call (index as number[]).map(...)
+      // but `index` is often a TypedArray (e.g. Uint32Array); its .map()
+      // coerces returned React elements back to numbers, corrupting output.
+      const arrayIndex = index == null || !ArrayBuffer.isView(index)
+        ? index
+        : Object.assign(Array.from(index as any), {fx: (index as any).fx, fy: (index as any).fy, fi: (index as any).fi});
+      jsx = mark.renderJSX(arrayIndex, scales, values, dims, context);
+    } catch (e) {
+      useFallback = true;
+    }
+  } else {
+    useFallback = true;
+  }
+
+  useLayoutEffect(() => {
+    if (!useFallback) return;
+    const g = groupRef.current;
+    if (!g) return;
+    g.replaceChildren();
+    const node = mark.render(index, scales, values, dims, context);
+    if (node != null) {
+      // Move attributes from the rendered <g> onto our slot, then re-parent
+      // its children — matching the imperative pipeline's behavior of using
+      // a single <g> per mark.
+      if ((node as Element).tagName === "g") {
+        for (const a of Array.from((node as Element).attributes)) {
+          g.setAttribute(a.name, a.value);
+        }
+        while ((node as Element).firstChild) g.appendChild((node as Element).firstChild!);
+      } else {
+        g.appendChild(node);
+      }
+    }
+    if (facet && facetTranslate) facetTranslate.call(g, facet);
+    return () => {
+      if (g) g.replaceChildren();
+    };
+  });
+
+  if (useFallback) return <g ref={groupRef as any} />;
+  // Return the JSX directly. Most marks' renderJSX returns a <g> wrapper
+  // already; we don't add another to keep the DOM structure identical to
+  // the imperative output.
+  return <>{jsx}</>;
+}
+
+function mountLegends(svg: SVGSVGElement, legends: Map<string, LegendRegistration>) {
+  for (const {options: legendOptions, host} of legends.values()) {
+    const scaleName = typeof legendOptions === "string" ? legendOptions : legendOptions?.scale;
+    if (scaleName && typeof (svg as any).legend === "function") {
+      const node = (svg as any).legend(scaleName, legendOptions);
+      if (node) host.replaceChildren(node);
+    }
+  }
+}
+
+function subarray(index: any): any {
+  return index.slice ? index.slice() : Array.from(index);
+}
+
+function SlotHeader({as: Tag, content, style: styleProp}: {as: any; content: any; style?: any}) {
   const ref = useRef<HTMLElement | null>(null);
   useLayoutEffect(() => {
     const el = ref.current;
@@ -197,14 +371,10 @@ function SlotHeader({as: Tag, content, style}: {as: any; content: any; style?: a
       if (content != null) el.appendChild(document.createTextNode(String(content)));
     }
   }, [content]);
-  // For string content also render via React for SSR friendliness; effect will
-  // overwrite for DOM-node content.
   const isNode = content && typeof (content as any).nodeType === "number";
-  return <Tag ref={ref} style={style}>{isNode ? null : content}</Tag>;
+  return <Tag ref={ref} style={styleProp}>{isNode ? null : content}</Tag>;
 }
 
-// Hash plot-level scalar option shape so option changes trigger a rebuild.
-// Functions are stripped because their identities aren't meaningful here.
 function stableKey(options: Record<string, any>): string {
   try {
     return JSON.stringify(options, (_k, v) => (typeof v === "function" ? "[fn]" : v));
