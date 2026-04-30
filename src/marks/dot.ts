@@ -1,4 +1,7 @@
 import {pathRound as path, symbolCircle} from "d3";
+import {createElement as h, type ReactNode} from "react";
+import {channelStyleProps, directStyleProps, indirectStyleProps, transformProp, computeFrameAnchor} from "../react/styles.js";
+import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
 import type {ChannelValue, ChannelValueIntervalSpec, ChannelValueSpec} from "../channel.js";
 // @ts-expect-error not yet exported in context.d.ts
 import {create} from "../context.js";
@@ -244,6 +247,51 @@ export class Dot extends (Mark as unknown as new (...args: any[]) => RenderableM
           .call(applyChannelStyles, this, channels)
       )
       .node();
+  }
+  renderJSX(this: any, index: any, scales: any, channels: any, dimensions: any, _context: any): ReactNode {
+    const {x: X, y: Y, r: R, rotate: A, symbol: S} = channels;
+    const {r, rotate, symbol} = this;
+    const [cx, cy] = computeFrameAnchor(this.frameAnchor, dimensions);
+    const isCircle = symbol === symbolCircle;
+    const size = R ? undefined : r * r * Math.PI;
+    const indices: number[] = negative(r) ? [] : (index as number[]);
+    const indirect = indirectStyleProps(this);
+    const direct = directStyleProps(this);
+    const transform = transformProp(this, {x: X && scales.x, y: Y && scales.y});
+    const items = indices.map((i, k) => {
+      const channel = channelStyleProps(i, channels);
+      let element: ReactNode;
+      if (isCircle) {
+        element = h("circle", {
+          key: k,
+          ...direct,
+          ...channel,
+          cx: X ? X[i] : cx,
+          cy: Y ? Y[i] : cy,
+          r: R ? R[i] : r
+        });
+      } else {
+        const tx = X ? X[i] : cx;
+        const ty = Y ? Y[i] : cy;
+        const angle = A ? A[i] : rotate;
+        const t = `translate(${tx},${ty})${angle ? ` rotate(${angle})` : ``}`;
+        const p = path();
+        const sym = S ? S[i] : symbol;
+        const sz = R ? R[i] * R[i] * Math.PI : size;
+        sym.draw(p, sz);
+        element = h("path", {
+          key: k,
+          ...direct,
+          ...channel,
+          transform: t,
+          d: `${p}`
+        });
+      }
+      const titled = withTitleChild(channels, i, null);
+      if (titled) element = h("g", {key: k}, element, titled);
+      return withHrefWrap(channels, this.target, i, element);
+    });
+    return h("g", {...indirect, ...transform}, items);
   }
 }
 
