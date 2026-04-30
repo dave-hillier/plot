@@ -1,3 +1,4 @@
+import {createElement as h, type ReactNode} from "react";
 import type {ChannelValueIntervalSpec, ChannelValueSpec} from "../channel.js";
 // @ts-ignore — runtime export not present in hand-written .d.ts
 import {create} from "../context.js";
@@ -12,6 +13,8 @@ import {isCollapsed} from "../scales.js";
 // @ts-ignore — runtime exports not present in hand-written .d.ts
 import {applyAttr, applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 import {impliedString} from "../style.js";
+import {channelStyleProps, directStyleProps, indirectStyleProps, transformProp} from "../react/styles.js";
+import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
 import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
 import {maybeTrivialIntervalX, maybeTrivialIntervalY} from "../transforms/interval.js";
 import type {StackOptions} from "../transforms/stack.js";
@@ -359,6 +362,99 @@ export class Rect extends Mark {
       )
       .node();
   }
+  renderJSX(this: any, index: any, scales: any, channels: any, dimensions: any, context: any): ReactNode {
+    const {x, y} = scales;
+    let {x1: X1, y1: Y1, x2: X2, y2: Y2} = channels;
+    const {marginTop, marginRight, marginBottom, marginLeft, width, height} = dimensions;
+    const {projection} = context;
+    const {insetTop, insetRight, insetBottom, insetLeft} = this;
+    const {rx, ry, rx1y1, rx1y2, rx2y1, rx2y2} = this;
+    if ((X1 || X2) && !projection && isCollapsed(x)) X1 = X2 = null;
+    if ((Y1 || Y2) && !projection && isCollapsed(y)) Y1 = Y2 = null;
+    const bx = x?.bandwidth ? x.bandwidth() : 0;
+    const by = y?.bandwidth ? y.bandwidth() : 0;
+    const indirect = indirectStyleProps(this);
+    const direct = directStyleProps(this);
+    const transform = transformProp(this, {});
+    const rounded = !!(rx1y1 || rx1y2 || rx2y1 || rx2y2);
+    const elementOf = rounded
+      ? (() => {
+          const x1Of =
+            X1 && X2
+              ? (i: number) => X1[i] + (X2[i] < X1[i] ? -insetRight : insetLeft)
+              : X1
+              ? (i: number) => X1[i] + insetLeft
+              : () => marginLeft + insetLeft;
+          const y1Of =
+            Y1 && Y2
+              ? (i: number) => Y1[i] + (Y2[i] < Y1[i] ? -insetBottom : insetTop)
+              : Y1
+              ? (i: number) => Y1[i] + insetTop
+              : () => marginTop + insetTop;
+          const x2Of =
+            X1 && X2
+              ? (i: number) => X2[i] - (X2[i] < X1[i] ? -insetLeft : insetRight)
+              : X1
+              ? (i: number) => X1[i] + bx - insetRight
+              : () => width - marginRight - insetRight;
+          const y2Of =
+            Y1 && Y2
+              ? (i: number) => Y2[i] - (Y2[i] < Y1[i] ? -insetTop : insetBottom)
+              : Y1
+              ? (i: number) => Y1[i] + by - insetBottom
+              : () => height - marginBottom - insetBottom;
+          return (i: number, key: number, props: Record<string, any>, children: ReactNode) =>
+            h(
+              "path",
+              {key, ...props, d: roundedRectPath(x1Of(i), y1Of(i), x2Of(i), y2Of(i), this)},
+              children
+            );
+        })()
+      : (() => {
+          const xOf = X1
+            ? X2
+              ? (i: number) => Math.min(X1[i], X2[i]) + insetLeft
+              : (i: number) => X1[i] + insetLeft
+            : () => marginLeft + insetLeft;
+          const yOf = Y1
+            ? Y2
+              ? (i: number) => Math.min(Y1[i], Y2[i]) + insetTop
+              : (i: number) => Y1[i] + insetTop
+            : () => marginTop + insetTop;
+          const widthOf = X1
+            ? X2
+              ? (i: number) => Math.max(0, Math.abs(X2[i] - X1[i]) + bx - insetLeft - insetRight)
+              : () => bx - insetLeft - insetRight
+            : () => width - marginRight - marginLeft - insetRight - insetLeft;
+          const heightOf = Y1
+            ? Y2
+              ? (i: number) => Math.max(0, Math.abs(Y1[i] - Y2[i]) + by - insetTop - insetBottom)
+              : () => by - insetTop - insetBottom
+            : () => height - marginTop - marginBottom - insetTop - insetBottom;
+          return (i: number, key: number, props: Record<string, any>, children: ReactNode) =>
+            h(
+              "rect",
+              {
+                key,
+                ...props,
+                x: xOf(i),
+                y: yOf(i),
+                width: widthOf(i),
+                height: heightOf(i),
+                rx: rx ?? undefined,
+                ry: ry ?? undefined
+              },
+              children
+            );
+        })();
+    const items = (index as number[]).map((i, k) => {
+      const channel = channelStyleProps(i, channels);
+      const titled = withTitleChild(channels, i, null);
+      const el = elementOf(i, k, {...direct, ...channel}, titled);
+      return withHrefWrap(channels, this.target, i, el);
+    });
+    return h("g", {...indirect, ...transform}, items);
+  }
 }
 
 export function rectInsets(
@@ -398,38 +494,36 @@ export function rectRadii(
   }
 }
 
-export function applyRoundedRect(selection: any, X1: any, Y1: any, X2: any, Y2: any, mark: any) {
+export function roundedRectPath(x1: number, y1: number, x2: number, y2: number, mark: any): string {
   const {rx1y1: r11, rx1y2: r12, rx2y1: r21, rx2y2: r22} = mark;
+  const rx = Math.max(Math.abs(r11 + r21), Math.abs(r12 + r22));
+  const ry = Math.max(Math.abs(r11 + r12), Math.abs(r21 + r22));
+  const ix = x1 > x2;
+  const iy = y1 > y2;
+  const l = ix ? x2 : x1;
+  const r = ix ? x1 : x2;
+  const t = iy ? y2 : y1;
+  const b = iy ? y1 : y2;
+  const k = Math.min(1, (r - l) / rx, (b - t) / ry);
+  const tl = k * (ix ? (iy ? r22 : r21) : iy ? r12 : r11);
+  const tr = k * (ix ? (iy ? r12 : r11) : iy ? r22 : r21);
+  const br = k * (ix ? (iy ? r11 : r12) : iy ? r21 : r22);
+  const bl = k * (ix ? (iy ? r21 : r22) : iy ? r11 : r12);
+  return (
+    `M${l},${t + biasY(tl, bl)}A${tl},${tl} 0 0 ${tl < 0 ? 0 : 1} ${l + biasX(tl, bl)},${t}` +
+    `H${r - biasX(tr, br)}A${tr},${tr} 0 0 ${tr < 0 ? 0 : 1} ${r},${t + biasY(tr, br)}` +
+    `V${b - biasY(br, tr)}A${br},${br} 0 0 ${br < 0 ? 0 : 1} ${r - biasX(br, tr)},${b}` +
+    `H${l + biasX(bl, tl)}A${bl},${bl} 0 0 ${bl < 0 ? 0 : 1} ${l},${b - biasY(bl, tl)}` +
+    `Z`
+  );
+}
+
+export function applyRoundedRect(selection: any, X1: any, Y1: any, X2: any, Y2: any, mark: any) {
   if (typeof X1 !== "function") X1 = constant(X1);
   if (typeof Y1 !== "function") Y1 = constant(Y1);
   if (typeof X2 !== "function") X2 = constant(X2);
   if (typeof Y2 !== "function") Y2 = constant(Y2);
-  const rx = Math.max(Math.abs(r11 + r21), Math.abs(r12 + r22));
-  const ry = Math.max(Math.abs(r11 + r12), Math.abs(r21 + r22));
-  selection.attr("d", (i: number) => {
-    const x1 = X1(i);
-    const y1 = Y1(i);
-    const x2 = X2(i);
-    const y2 = Y2(i);
-    const ix = x1 > x2;
-    const iy = y1 > y2;
-    const l = ix ? x2 : x1;
-    const r = ix ? x1 : x2;
-    const t = iy ? y2 : y1;
-    const b = iy ? y1 : y2;
-    const k = Math.min(1, (r - l) / rx, (b - t) / ry);
-    const tl = k * (ix ? (iy ? r22 : r21) : iy ? r12 : r11);
-    const tr = k * (ix ? (iy ? r12 : r11) : iy ? r22 : r21);
-    const br = k * (ix ? (iy ? r11 : r12) : iy ? r21 : r22);
-    const bl = k * (ix ? (iy ? r21 : r22) : iy ? r11 : r12);
-    return (
-      `M${l},${t + biasY(tl, bl)}A${tl},${tl} 0 0 ${tl < 0 ? 0 : 1} ${l + biasX(tl, bl)},${t}` +
-      `H${r - biasX(tr, br)}A${tr},${tr} 0 0 ${tr < 0 ? 0 : 1} ${r},${t + biasY(tr, br)}` +
-      `V${b - biasY(br, tr)}A${br},${br} 0 0 ${br < 0 ? 0 : 1} ${r - biasX(br, tr)},${b}` +
-      `H${l + biasX(bl, tl)}A${bl},${bl} 0 0 ${bl < 0 ? 0 : 1} ${l},${b - biasY(bl, tl)}` +
-      `Z`
-    );
-  });
+  selection.attr("d", (i: number) => roundedRectPath(X1(i), Y1(i), X2(i), Y2(i), mark));
 }
 
 /**
