@@ -7,6 +7,9 @@ import {Mark} from "../mark.js";
 import type {MarkerOptions} from "../marker.js";
 import {applyMarkers, markers} from "../marker.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, applyChannelStyles, offset} from "../style.js";
+import {channelStyleProps, directStyleProps, indirectStyleProps, transformProp} from "../react/styles.js";
+import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
+import {createElement as h, type ReactNode} from "react";
 
 /** Options for the tickX mark. */
 export interface TickXOptions extends MarkOptions, MarkerOptions, Omit<InsetOptions, "insetLeft" | "insetRight"> {
@@ -77,6 +80,33 @@ class AbstractTick extends Mark {
       )
       .node();
   }
+  renderJSX(this: any, index: any, scales: any, channels: any, dimensions: any, _context: any): ReactNode {
+    if (this.markerStart || this.markerMid || this.markerEnd) {
+      throw new Error("Tick.renderJSX: marker option not yet supported; use render()");
+    }
+    const indirect = indirectStyleProps(this);
+    const transform = (this as any)._transformProp(scales);
+    const direct = directStyleProps(this);
+    const x1Of = this._x1(scales, channels, dimensions);
+    const x2Of = this._x2(scales, channels, dimensions);
+    const y1Of = this._y1(scales, channels, dimensions);
+    const y2Of = this._y2(scales, channels, dimensions);
+    const x1Fn = typeof x1Of === "function" ? x1Of : () => x1Of;
+    const x2Fn = typeof x2Of === "function" ? x2Of : () => x2Of;
+    const y1Fn = typeof y1Of === "function" ? y1Of : () => y1Of;
+    const y2Fn = typeof y2Of === "function" ? y2Of : () => y2Of;
+    const lines = (index as number[]).map((i, k) => {
+      const channel = channelStyleProps(i, channels);
+      const titled = withTitleChild(channels, i, null);
+      const lineEl = h(
+        "line",
+        {key: k, ...direct, ...channel, x1: x1Fn(i), x2: x2Fn(i), y1: y1Fn(i), y2: y2Fn(i)},
+        titled
+      );
+      return withHrefWrap(channels, this.target, i, lineEl);
+    });
+    return h("g", {...indirect, ...transform}, lines);
+  }
 }
 
 export class TickX extends AbstractTick {
@@ -97,6 +127,9 @@ export class TickX extends AbstractTick {
   }
   _transform(selection: any, mark: any, {x}: any) {
     selection.call(applyTransform, mark, {x}, offset, 0);
+  }
+  _transformProp({x}: any) {
+    return transformProp(this as any, {x}, offset, 0);
   }
   _x1(scales: any, {x: X}: any) {
     return (i: any) => X[i];
@@ -132,6 +165,9 @@ export class TickY extends AbstractTick {
   }
   _transform(selection: any, mark: any, {y}: any) {
     selection.call(applyTransform, mark, {y}, 0, offset);
+  }
+  _transformProp({y}: any) {
+    return transformProp(this as any, {y}, 0, offset);
   }
   _x1({x}: any, {x: X}: any, {marginLeft}: any) {
     const {insetLeft} = this;
