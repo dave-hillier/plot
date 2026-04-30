@@ -1,3 +1,11 @@
+// renderJSX delegation: Crosshair has no Mark subclass; the `crosshair`,
+// `crosshairX`, and `crosshairY` factories return a CompoundMark composed of
+// `ruleX`/`ruleY` (Rule) and `text` (Text) sub-marks. Each sub-mark provides
+// its own `renderJSX` via its respective Mark class (Rule from the Phase 0
+// pilot; Text from Phase 1 unit 7), so JSX rendering of a crosshair is the
+// natural composition of its sub-marks' `renderJSX` outputs and requires no
+// dedicated implementation here.
+
 import type {ChannelValueSpec} from "../channel.js";
 // @ts-ignore -- getSource is declared only in channel.js, not channel.d.ts
 import {getSource} from "../channel.js";
