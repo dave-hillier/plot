@@ -9,7 +9,10 @@ import {applyMarkers, markers} from "../marker.js";
 import {identity, number} from "../options.js";
 import {isCollapsed} from "../scales.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
+import {channelStyleProps, directStyleProps, indirectStyleProps, transformProp} from "../react/styles.js";
+import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
 import {maybeIntervalX, maybeIntervalY} from "../transforms/interval.js";
+import {createElement as h, type ReactNode} from "react";
 
 /** Options for the ruleX and ruleY marks. */
 interface RuleOptions extends MarkOptions, MarkerOptions {
@@ -153,6 +156,41 @@ export class RuleX extends Mark {
       )
       .node();
   }
+  renderJSX(this: any, index, scales, channels, dimensions, context): ReactNode {
+    if (this.markerStart || this.markerMid || this.markerEnd) {
+      throw new Error("RuleX.renderJSX: marker option not yet supported; use render()");
+    }
+    const {x, y} = scales;
+    const {x: X, y1: Y1, y2: Y2} = channels;
+    const {width, height, marginTop, marginRight, marginLeft, marginBottom} = dimensions;
+    const {insetTop, insetBottom} = this;
+    const indirect = indirectStyleProps(this);
+    const transform = transformProp(this, {x: X && x}, offset, 0);
+    const direct = directStyleProps(this);
+    const xMid = (marginLeft + width - marginRight) / 2;
+    const x1Of = (i) => (X ? X[i] : xMid);
+    const x2Of = (i) => (X ? X[i] : xMid);
+    const yCollapsed = isCollapsed(y);
+    const y1Const = marginTop + insetTop;
+    const y1Of = Y1 && !yCollapsed ? (i) => Y1[i] + insetTop : () => y1Const;
+    const y2Const = height - marginBottom - insetBottom;
+    const y2Of = Y2 && !yCollapsed
+      ? y.bandwidth
+        ? (i) => Y2[i] + y.bandwidth() - insetBottom
+        : (i) => Y2[i] - insetBottom
+      : () => y2Const;
+    const lines = (index as number[]).map((i, k) => {
+      const channel = channelStyleProps(i, channels);
+      const titled = withTitleChild(channels, i, null);
+      const lineEl = h(
+        "line",
+        {key: k, ...direct, ...channel, x1: x1Of(i), x2: x2Of(i), y1: y1Of(i), y2: y2Of(i)},
+        titled
+      );
+      return withHrefWrap(channels, this.target, i, lineEl);
+    });
+    return h("g", {...indirect, ...transform}, lines);
+  }
 }
 
 /** The ruleY mark. */
@@ -203,6 +241,40 @@ export class RuleY extends Mark {
           .call(applyMarkers, this, channels, context)
       )
       .node();
+  }
+  renderJSX(this: any, index, scales, channels, dimensions, context): ReactNode {
+    if (this.markerStart || this.markerMid || this.markerEnd) {
+      throw new Error("RuleY.renderJSX: marker option not yet supported; use render()");
+    }
+    const {x, y} = scales;
+    const {y: Y, x1: X1, x2: X2} = channels;
+    const {width, height, marginTop, marginRight, marginLeft, marginBottom} = dimensions;
+    const {insetLeft, insetRight} = this;
+    const indirect = indirectStyleProps(this);
+    const transform = transformProp(this, {y: Y && y}, 0, offset);
+    const direct = directStyleProps(this);
+    const xCollapsed = isCollapsed(x);
+    const x1Const = marginLeft + insetLeft;
+    const x1Of = X1 && !xCollapsed ? (i) => X1[i] + insetLeft : () => x1Const;
+    const x2Const = width - marginRight - insetRight;
+    const x2Of = X2 && !xCollapsed
+      ? x.bandwidth
+        ? (i) => X2[i] + x.bandwidth() - insetRight
+        : (i) => X2[i] - insetRight
+      : () => x2Const;
+    const yMid = (marginTop + height - marginBottom) / 2;
+    const yOf = (i) => (Y ? Y[i] : yMid);
+    const lines = (index as number[]).map((i, k) => {
+      const channel = channelStyleProps(i, channels);
+      const titled = withTitleChild(channels, i, null);
+      const lineEl = h(
+        "line",
+        {key: k, ...direct, ...channel, x1: x1Of(i), x2: x2Of(i), y1: yOf(i), y2: yOf(i)},
+        titled
+      );
+      return withHrefWrap(channels, this.target, i, lineEl);
+    });
+    return h("g", {...indirect, ...transform}, lines);
   }
 }
 

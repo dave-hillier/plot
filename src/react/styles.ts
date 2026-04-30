@@ -224,3 +224,21 @@ export function resolveStyles(options: Record<string, any>, defaults: Record<str
     target: target != null ? `${target}` : undefined
   };
 }
+
+// transformProp returns {transform: "..."} (or {}). It complements
+// computeTransform, which returns the string only. Marks should pick one
+// based on call-site convenience: spread {...transformProp(...)} onto a JSX
+// element, or interpolate computeTransform(...) into a transform attribute.
+export function transformProp(
+  mark: {dx?: number; dy?: number},
+  scales: Record<string, any> = {},
+  tx: number = 0,
+  ty: number = 0
+): Record<string, string> {
+  const t = computeTransform(mark, scales, tx, ty);
+  return t ? {transform: t} : {};
+}
+
+// Re-export the imperative offset value so renderJSX call sites can use the
+// same default translate offset (0 or 0.5 depending on devicePixelRatio).
+export {offset} from "../style.js";
