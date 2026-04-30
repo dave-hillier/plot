@@ -1,5 +1,8 @@
 import {blur2, contours, geoPath, max, min, nice, range, ticks, thresholdSturges} from "d3";
+import {Fragment, createElement as h, type ReactNode} from "react";
 import type {ChannelValue} from "../channel.js";
+import {channelStyleProps, directStyleProps, indirectStyleProps, transformProp} from "../react/styles.js";
+import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
 // @ts-expect-error — runtime export missing from channel.d.ts
 import {createChannels} from "../channel.js";
 // @ts-expect-error — runtime export missing from context.d.ts
@@ -147,6 +150,23 @@ export class Contour extends AbstractRaster {
           .call(applyChannelStyles, this, channels);
       })
       .node();
+  }
+  renderJSX(this: any, index: any, scales: any, channels: any, dimensions: any, context: any): ReactNode {
+    const {geometry: G} = channels;
+    const path = geoPath();
+    const indirect = indirectStyleProps(this, dimensions);
+    const transform = transformProp(this, scales);
+    const direct = directStyleProps(this);
+    const children: ReactNode[] = [];
+    for (const i of index) {
+      const channel = channelStyleProps(i, channels);
+      let element: ReactNode = h("path", {key: i, ...direct, ...channel, d: path(G[i]) ?? undefined});
+      const titled = withTitleChild(channels, i, null);
+      if (titled) element = h(Fragment, {key: i}, element, titled);
+      element = withHrefWrap(channels, this.target, i, element);
+      children.push(element);
+    }
+    return h("g", {...indirect, ...transform}, ...children);
   }
 }
 
