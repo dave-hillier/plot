@@ -19,8 +19,13 @@ import {applyInlineStyles, maybeClassName} from "./style.js";
 import {initializer} from "./transforms/basic.js";
 import {consumeWarnings, warn} from "./warnings.js";
 
-export function plot(options = {}) {
-  const {facet, style, title, subtitle, caption, ariaLabel, ariaDescription} = options;
+// Returns the pre-render state needed by both the imperative DOM build path
+// (used by `plot()` below) and the React JSX path (used by `<Plot>` in
+// src/react/Plot.tsx). Producing the SVG element here lets the imperative
+// path keep mutating it, while the JSX path can ignore the empty SVG and
+// emit its own React tree using the returned state.
+export function computePlot(options: any = {}): any {
+  const {facet, ariaLabel, ariaDescription} = options;
 
   // className for inline styles
   const className = maybeClassName(options.className);
@@ -154,7 +159,10 @@ export function plot(options = {}) {
   const context = createContext(options);
   const document = context.document;
   const svg = creator("svg").call(document.documentElement);
-  let figure = svg; // replaced with the figure element, if any
+  // Holder mutated by plot() when it wraps svg in a <figure>; the
+  // dispatchValue closure below reads through this so it tracks the latest.
+  const figureHolder: {current: any} = {current: svg};
+  context.figureHolder = figureHolder;
   context.ownerSVGElement = svg;
   context.className = className;
   context.projection = createProjection(options, subdimensions);
@@ -178,6 +186,7 @@ export function plot(options = {}) {
 
   // Allows e.g. the pointer transform to support viewof.
   context.dispatchValue = (value) => {
+    const figure = figureHolder.current;
     if (figure.value === value) return;
     figure.value = value;
     figure.dispatchEvent(new context.document.defaultView.Event("input", {bubbles: true}));
@@ -246,6 +255,50 @@ export function plot(options = {}) {
     state.values = mark.scale(state.channels, scales, context);
   }
 
+  return {
+    options,
+    className,
+    ariaLabel,
+    ariaDescription,
+    marks,
+    stateByMark,
+    facetStateByMark,
+    scales,
+    scaleDescriptors,
+    dimensions,
+    superdimensions,
+    subdimensions,
+    context,
+    facets,
+    facetDomains,
+    facetTranslate,
+    svg
+  };
+}
+
+export function plot(options: any = {}) {
+  const computed: any = computePlot(options);
+  const {
+    className,
+    ariaLabel,
+    ariaDescription,
+    marks,
+    stateByMark,
+    facetStateByMark,
+    scales,
+    scaleDescriptors,
+    dimensions,
+    superdimensions,
+    subdimensions,
+    context,
+    facets,
+    facetDomains,
+    facetTranslate,
+    svg
+  } = computed;
+  const {style, title, subtitle, caption} = options;
+  const document = context.document;
+  const figureHolder: {current: any} = context.figureHolder;
   const {width, height} = dimensions;
 
   select(svg)
@@ -330,18 +383,19 @@ export function plot(options = {}) {
   const legends = createLegends(scaleDescriptors, context, options);
   const {figure: figured = title != null || subtitle != null || caption != null || legends.length > 0} = options;
   if (figured) {
-    figure = document.createElement("figure");
-    figure.className = `${className}-figure`;
-    figure.style.maxWidth = "initial"; // avoid Observable default style
-    if (title != null) figure.append(createTitleElement(document, title, "h2"));
-    if (subtitle != null) figure.append(createTitleElement(document, subtitle, "h3"));
-    figure.append(...legends, svg);
-    if (caption != null) figure.append(createFigcaption(document, caption));
-    if ("value" in svg) (figure.value = svg.value), delete svg.value;
+    const fig: any = document.createElement("figure");
+    fig.className = `${className}-figure`;
+    fig.style.maxWidth = "initial"; // avoid Observable default style
+    if (title != null) fig.append(createTitleElement(document, title, "h2"));
+    if (subtitle != null) fig.append(createTitleElement(document, subtitle, "h3"));
+    fig.append(...legends, svg);
+    if (caption != null) fig.append(createFigcaption(document, caption));
+    if ("value" in svg) (fig.value = svg.value), delete svg.value;
+    figureHolder.current = fig;
   }
 
-  figure.scale = exposeScales(scales.scales);
-  figure.legend = exposeLegends(scaleDescriptors, context, options);
+  figureHolder.current.scale = exposeScales(scales.scales);
+  figureHolder.current.legend = exposeLegends(scaleDescriptors, context, options);
 
   const w = consumeWarnings();
   if (w > 0) {
@@ -357,7 +411,7 @@ export function plot(options = {}) {
       .text(`${w.toLocaleString("en-US")} warning${w === 1 ? "" : "s"}. Please check the console.`);
   }
 
-  return figure;
+  return figureHolder.current;
 }
 
 function createTitleElement(document, contents, tag) {
