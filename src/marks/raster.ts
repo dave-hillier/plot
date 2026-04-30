@@ -12,7 +12,10 @@ import {map, first, second, third, isTuples, isNumeric, isTemporal, identity} fr
 import {maybeColorChannel, maybeNumberChannel} from "../options.js";
 // @ts-expect-error — runtime exports missing from style.d.ts
 import {applyAttr, applyDirectStyles, applyIndirectStyles, applyTransform, impliedString} from "../style.js";
+import {channelStyleProps, directStyleProps, indirectStyleProps, transformProp} from "../react/styles.js";
+import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
 import {initializer} from "../transforms/basic.js";
+import {createElement as h, Fragment, type ReactNode} from "react";
 
 /**
  * The built-in spatial interpolation methods; one of:
@@ -343,6 +346,74 @@ export class Raster extends AbstractRaster {
           .attr("xlink:href", canvas.toDataURL())
       )
       .node();
+  }
+  renderJSX(this: any, index: any, scales: any, values: any, dimensions: any, context: any): ReactNode {
+    const color = scales[values.channels.fill?.scale] ?? ((x: any) => x);
+    const {x: X, y: Y} = values;
+    const {document} = context;
+    const [x1, y1, x2, y2] = renderBounds(values, dimensions, context);
+    const dx = x2 - x1;
+    const dy = y2 - y1;
+    const {pixelSize: k, width: w = Math.round(Math.abs(dx) / k), height: h = Math.round(Math.abs(dy) / k)} = this;
+    const n = w * h;
+
+    let {fill: F, fillOpacity: FO} = values;
+    let offset = 0;
+    if (this.interpolate) {
+      const kx = w / dx;
+      const ky = h / dy;
+      const IX = (map as any)(X, (x: any) => (x - x1) * kx, Float64Array);
+      const IY = (map as any)(Y, (y: any) => (y - y1) * ky, Float64Array);
+      if (F) F = this.interpolate(index, w, h, IX, IY, F);
+      if (FO) FO = this.interpolate(index, w, h, IX, IY, FO);
+    } else if ((this as any).data == null && index) offset = index.fi * n;
+
+    const canvas = document.createElement("canvas");
+    canvas.width = w;
+    canvas.height = h;
+    const context2d = canvas.getContext("2d");
+    const image = context2d.createImageData(w, h);
+    const imageData = image.data;
+    let {r, g, b} = rgb((this as any).fill) ?? {r: 0, g: 0, b: 0};
+    let a = ((this as any).fillOpacity ?? 1) * 255;
+    for (let i = 0; i < n; ++i) {
+      const j = i << 2;
+      if (F) {
+        const fi = color(F[i + offset]);
+        if (fi == null) {
+          imageData[j + 3] = 0;
+          continue;
+        }
+        ({r, g, b} = rgb(fi));
+      }
+      if (FO) a = FO[i + offset] * 255;
+      imageData[j + 0] = r;
+      imageData[j + 1] = g;
+      imageData[j + 2] = b;
+      imageData[j + 3] = a;
+    }
+    if (this.blur > 0) blurImage(image, this.blur);
+    context2d.putImageData(image, 0, 0);
+
+    const indirect = indirectStyleProps(this);
+    const direct = directStyleProps(this);
+    const channel = channelStyleProps(0, values);
+    const transform = transformProp(this, scales);
+    const imageRendering = this.imageRendering != null ? {"image-rendering": this.imageRendering} : {};
+    let imageEl: ReactNode = h("image", {
+      transform: `translate(${x1},${y1}) scale(${Math.sign(x2 - x1)},${Math.sign(y2 - y1)})`,
+      width: Math.abs(dx),
+      height: Math.abs(dy),
+      preserveAspectRatio: "none",
+      ...imageRendering,
+      ...direct,
+      ...channel,
+      "xlink:href": canvas.toDataURL()
+    });
+    const titled = withTitleChild(values, 0, null);
+    if (titled) imageEl = h(Fragment, null, imageEl, titled);
+    imageEl = withHrefWrap(values, this.target, 0, imageEl);
+    return h("g", {...indirect, ...transform}, imageEl);
   }
 }
 
