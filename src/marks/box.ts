@@ -13,6 +13,13 @@ import {ruleX, ruleY} from "./rule.js";
 import type {TickXOptions, TickYOptions} from "./tick.js";
 import {tickX, tickY} from "./tick.js";
 
+// JSX rendering note: Box is a pure compound-mark factory (boxX/boxY return an
+// array of Bar + Rule + Tick + Dot marks via `marks(...)`). There is no Box
+// Mark class and no imperative `render()` method on this file, so there is
+// nothing to port to JSX here. JSX rendering is handled by each underlying
+// sub-mark's own `renderJSX` (Bar, Rule, Tick, Dot), ported in their respective
+// units.
+
 /** Options for the boxX mark. */
 export type BoxXOptions = DotOptions & BarXOptions & TickXOptions & RuleXOptions;
 
