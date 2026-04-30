@@ -361,6 +361,15 @@ export function autoSpec(data?: Data, options?: AutoOptions): AutoSpec {
  * ```js
  * Plot.auto(penguins, {x: "body_mass_g"})
  * ```
+ *
+ * JSX rendering note: the auto mark is a compound mark — it does not render
+ * itself. Instead, it inspects the data and options to choose an appropriate
+ * underlying mark implementation (for example {@link dot}, {@link line},
+ * {@link barX}, {@link rectY}, etc.) along with optional {@link frame} and
+ * {@link ruleX}/{@link ruleY} decorations, and returns the resulting marks
+ * array. JSX (React) rendering is therefore delegated entirely to the chosen
+ * sub-marks via their own `renderJSX` methods; auto itself has no
+ * `renderJSX` method and contributes no SVG output of its own.
  */
 export function auto(data?: Data, options?: AutoOptions): CompoundMark {
   const spec: any = autoSpec(data, options);
