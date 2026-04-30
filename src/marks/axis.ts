@@ -88,6 +88,12 @@ export interface GridXOptions extends GridOptions, Omit<RuleXOptions, "interval"
 /** Options for the gridY and gridFy marks. */
 export interface GridYOptions extends GridOptions, Omit<RuleYOptions, "interval"> {}
 
+// axisX/axisY/axisFx/axisFy and gridX/gridY/gridFx/gridFy are compound marks
+// that delegate rendering to vectorX/vectorY (tick lines), textX/textY (tick
+// labels and axis labels), and ruleX/ruleY (grids). There is no Mark subclass
+// to port here; the JSX paths are invoked through the sub-marks' renderJSX
+// methods (Vector.renderJSX, Text.renderJSX, RuleX.renderJSX, RuleY.renderJSX).
+
 function maybeData(data: any, options: any): [any, any] {
   if (arguments.length < 2 && !isIterable(data)) (options = data), (data = null);
   if (options === undefined) options = {};
