@@ -1,4 +1,5 @@
 import {ascending, descending} from "d3";
+import {createElement as h, type ReactNode} from "react";
 import type {ChannelValueSpec} from "../channel.js";
 // @ts-expect-error — runtime export missing from context.d.ts
 import {create} from "../context.js";
@@ -9,6 +10,8 @@ import {radians} from "../math.js";
 import {constant, keyword} from "../options.js";
 // @ts-expect-error — runtime exports missing from style.d.ts
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
+import {channelStyleProps, directStyleProps, indirectStyleProps, transformProp} from "../react/styles.js";
+import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
 import {maybeSameValue} from "./link.js";
 
 /** Options for the arrow mark. */
@@ -255,12 +258,75 @@ export class Arrow extends Mark {
             // If the radius is very large (or even infinite, as when the bend
             // angle is zero), then render a straight line.
             const a = r < 1e5 ? `A${r},${r} 0,0,${bendAngle > 0 ? 1 : 0} ` : `L`;
-            const h = headLength ? `M${x3},${y3}L${x2},${y2}L${x4},${y4}` : "";
-            return `M${x1},${y1}${a}${x2},${y2}${h}`;
+            const head = headLength ? `M${x3},${y3}L${x2},${y2}L${x4},${y4}` : "";
+            return `M${x1},${y1}${a}${x2},${y2}${head}`;
           })
           .call(applyChannelStyles, this, channels)
       )
       .node();
+  }
+  renderJSX(this: any, index, scales, channels, dimensions, _context): ReactNode {
+    const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1, SW} = channels;
+    const {strokeWidth, bend, headAngle, headLength, insetStart, insetEnd} = this;
+    const sw = SW ? (i: number) => SW[i] : constant(strokeWidth === undefined ? 1 : strokeWidth);
+    const wingAngle = (headAngle * radians) / 2;
+    const wingScale = headLength / 1.5;
+
+    const buildPath = (i: number): string | null => {
+      let x1 = X1[i],
+        y1 = Y1[i],
+        x2 = X2[i],
+        y2 = Y2[i];
+      const lineLength = Math.hypot(x2 - x1, y2 - y1);
+      if (lineLength <= insetStart + insetEnd) return null;
+      let lineAngle = Math.atan2(y2 - y1, x2 - x1);
+      const headLen = Math.min(wingScale * sw(i), lineLength / 3);
+      const bendAngle = this.sweep(x1, y1, x2, y2) * bend * radians;
+      const r = Math.hypot(lineLength / Math.tan(bendAngle), lineLength) / 2;
+      if (insetStart || insetEnd) {
+        if (r < 1e5) {
+          const sign = Math.sign(bendAngle);
+          const [cx, cy] = pointPointCenter([x1, y1], [x2, y2], r, sign);
+          if (insetStart) {
+            [x1, y1] = circleCircleIntersect([cx, cy, r], [x1, y1, insetStart], -sign * Math.sign(insetStart));
+          }
+          if (insetEnd) {
+            const [x, y] = circleCircleIntersect([cx, cy, r], [x2, y2, insetEnd], sign * Math.sign(insetEnd));
+            lineAngle += Math.atan2(y - cy, x - cx) - Math.atan2(y2 - cy, x2 - cx);
+            (x2 = x), (y2 = y);
+          }
+        } else {
+          const dx = x2 - x1,
+            dy = y2 - y1,
+            d = Math.hypot(dx, dy);
+          if (insetStart) (x1 += (dx / d) * insetStart), (y1 += (dy / d) * insetStart);
+          if (insetEnd) (x2 -= (dx / d) * insetEnd), (y2 -= (dy / d) * insetEnd);
+        }
+      }
+      const endAngle = lineAngle + bendAngle;
+      const leftAngle = endAngle + wingAngle;
+      const rightAngle = endAngle - wingAngle;
+      const x3 = x2 - headLen * Math.cos(leftAngle);
+      const y3 = y2 - headLen * Math.sin(leftAngle);
+      const x4 = x2 - headLen * Math.cos(rightAngle);
+      const y4 = y2 - headLen * Math.sin(rightAngle);
+      const a = r < 1e5 ? `A${r},${r} 0,0,${bendAngle > 0 ? 1 : 0} ` : `L`;
+      const head = headLen ? `M${x3},${y3}L${x2},${y2}L${x4},${y4}` : "";
+      return `M${x1},${y1}${a}${x2},${y2}${head}`;
+    };
+
+    const indirect = indirectStyleProps(this);
+    const transform = transformProp(this, scales);
+    const direct = directStyleProps(this);
+    const paths = (index as number[]).map((i, k) => {
+      const d = buildPath(i);
+      if (d == null) return null;
+      const channel = channelStyleProps(i, channels);
+      const titled = withTitleChild(channels, i, null);
+      const pathEl = h("path", {key: k, ...direct, ...channel, d}, titled);
+      return withHrefWrap(channels, this.target, i, pathEl);
+    });
+    return h("g", {...indirect, ...transform}, paths);
   }
 }
 
