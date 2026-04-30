@@ -1,3 +1,4 @@
+import {createElement as h, type ReactNode} from "react";
 import type {ChannelValueSpec} from "../channel.js";
 import type {InsetOptions} from "../inset.js";
 import type {Data, MarkOptions, RenderableMark} from "../mark.js";
@@ -5,6 +6,8 @@ import type {Data, MarkOptions, RenderableMark} from "../mark.js";
 import {identity, indexOf, maybeColorChannel, maybeTuple} from "../options.js";
 // @ts-ignore -- applyTransform is declared only in style.js, not style.d.ts
 import {applyTransform} from "../style.js";
+import {channelStyleProps, directStyleProps, indirectStyleProps, transformProp} from "../react/styles.js";
+import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
 // @ts-ignore -- AbstractBar is declared only in bar.js, not bar.d.ts
 import {AbstractBar} from "./bar.js";
 import type {RectCornerOptions} from "./rect.js";
@@ -52,6 +55,41 @@ export class Cell extends (AbstractBar as { new (...args: any[]): RenderableMark
   _transform(selection: any, mark: any) {
     // apply dx, dy
     selection.call(applyTransform, mark, {}, 0, 0);
+  }
+  renderJSX(this: any, index: any, scales: any, channels: any, dimensions: any, _context: any): ReactNode {
+    const {rx, ry, rx1y1, rx1y2, rx2y1, rx2y2} = this;
+    if (rx1y1 || rx1y2 || rx2y1 || rx2y2) {
+      throw new Error("Cell.renderJSX: rounded corners not yet supported; use render()");
+    }
+    const xOf = this._x(scales, channels, dimensions);
+    const yOf = this._y(scales, channels, dimensions);
+    const wOf = this._width(scales, channels, dimensions);
+    const hOf = this._height(scales, channels, dimensions);
+    const at = (v: any, i: number) => (typeof v === "function" ? v(i) : v);
+    const indirect = indirectStyleProps(this);
+    const direct = directStyleProps(this);
+    const transform = transformProp(this, {}, 0, 0);
+    const rects = (index as number[]).map((i, k) => {
+      const channel = channelStyleProps(i, channels);
+      const titled = withTitleChild(channels, i, null);
+      const rect = h(
+        "rect",
+        {
+          key: k,
+          ...direct,
+          ...channel,
+          x: at(xOf, i),
+          y: at(yOf, i),
+          width: at(wOf, i),
+          height: at(hOf, i),
+          rx: rx ?? undefined,
+          ry: ry ?? undefined
+        },
+        titled
+      );
+      return withHrefWrap(channels, this.target, i, rect);
+    });
+    return h("g", {...indirect, ...transform}, rects);
   }
 }
 
