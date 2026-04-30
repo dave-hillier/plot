@@ -1,7 +1,15 @@
 import {line as shapeLine} from "d3";
+import {createElement as h, type ReactNode} from "react";
 import type {ChannelValue, ChannelValueDenseBinSpec, ChannelValueSpec} from "../channel.js";
 // @ts-ignore — runtime exports from ../context.js not declared in its .d.ts
 import {create} from "../context.js";
+import {
+  directStyleProps,
+  groupChannelStyleProps,
+  indirectStyleProps,
+  transformProp
+} from "../react/styles.js";
+import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
 // @ts-ignore — runtime exports from ../curve.js not declared in its .d.ts
 import {curveAuto, maybeCurveAuto} from "../curve.js";
 import type {CurveAutoOptions} from "../curve.js";
@@ -174,6 +182,33 @@ export class Line extends Mark {
           )
       )
       .node();
+  }
+  renderJSX(this: any, index: any, scales: any, channels: any, dimensions: any, context: any): ReactNode {
+    if (this.markerStart || this.markerMid || this.markerEnd) {
+      throw new Error("Line.renderJSX: marker option not yet supported; use render()");
+    }
+    const {x: X, y: Y} = channels;
+    const {curve} = this;
+    const indirect = indirectStyleProps(this, dimensions);
+    const transform = transformProp(this, scales);
+    const direct = directStyleProps(this);
+    const dOf =
+      curve === curveAuto && context.projection
+        ? sphereLine(context.path(), X, Y)
+        : shapeLine<any>()
+            .curve(curve)
+            .defined((i: number) => i >= 0)
+            .x((i: number) => X[i])
+            .y((i: number) => Y[i]);
+    const groups = [...groupIndex(index, [X, Y], this, channels)] as number[][];
+    const paths = groups.map((G, k) => {
+      const channel = groupChannelStyleProps(G, channels);
+      const i = G[0];
+      const titled = withTitleChild(channels, i, null);
+      const pathEl = h("path", {key: k, ...direct, ...channel, d: dOf(G)}, titled);
+      return withHrefWrap(channels, this.target, i, pathEl);
+    });
+    return h("g", {...indirect, ...transform}, paths);
   }
 }
 
