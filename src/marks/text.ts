@@ -1,9 +1,12 @@
 import {namespaces} from "d3";
+import {createElement as h, type ReactNode} from "react";
 import type {ChannelValue, ChannelValueIntervalSpec, ChannelValueSpec} from "../channel.js";
 // @ts-expect-error — runtime export not present in hand-written .d.ts
 import {create} from "../context.js";
 import {nonempty} from "../defined.js";
 import {formatDefault} from "../format.js";
+import {channelStyleProps, directStyleProps, indirectStyleProps, transformProp} from "../react/styles.js";
+import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
 import type {Interval} from "../interval.js";
 import type {Data, FrameAnchor, MarkOptions} from "../mark.js";
 import {Mark} from "../mark.js";
@@ -334,6 +337,71 @@ export class Text extends Mark {
           .call(applyChannelStyles, this, channels)
       )
       .node();
+  }
+  renderJSX(this: any, index: any, scales: any, channels: any, dimensions: any, context: any): ReactNode {
+    const {x, y} = scales;
+    const {x: X, y: Y, rotate: R, text: T, title: TL, fontSize: FS} = channels;
+    const {rotate, lineAnchor, lineHeight, lineWidth, textOverflow, splitLines, clipLine} = this;
+    if (lineWidth !== Infinity && textOverflow == null) {
+      throw new Error("Text.renderJSX: lineWidth wrapping (without textOverflow) not yet supported; use render()");
+    }
+    const [cx, cy] = applyFrameAnchor(this, dimensions);
+    const indirect = indirectStyleProps(this);
+    const indirectText = {
+      textAnchor: this.textAnchor,
+      fontFamily: this.fontFamily,
+      fontSize: this.fontSize,
+      fontStyle: this.fontStyle,
+      fontVariant: this.fontVariant === undefined ? inferFontVariant(T) : this.fontVariant,
+      fontWeight: this.fontWeight
+    };
+    const transform = transformProp(this, {x: X && x, y: Y && y});
+    const direct = directStyleProps(this);
+    const texts = (index as number[]).map((i, k) => {
+      const channel = channelStyleProps(i, channels);
+      const tx = X ? X[i] : cx;
+      const ty = Y ? Y[i] : cy;
+      const r = R ? R[i] : rotate;
+      const transformAttr = `translate(${tx},${ty})${r ? ` rotate(${r})` : ""}`;
+      const fontSizeAttr = FS ? FS[i] : undefined;
+      const raw = T ? formatDefault(T[i]) ?? "" : "";
+      const lines: string[] = T ? splitLines(raw).map(clipLine) : [];
+      const n = lines.length;
+      const yOffset = lineAnchor === "top" ? 0.71 : lineAnchor === "bottom" ? 1 - n : (164 - n * 100) / 200;
+      const children: ReactNode[] = [];
+      const textProps: Record<string, any> = {
+        key: k,
+        ...direct,
+        ...channel,
+        transform: transformAttr
+      };
+      if (fontSizeAttr != null) textProps.fontSize = fontSizeAttr;
+      if (T) {
+        if (n > 1) {
+          let m = 0;
+          for (let li = 0; li < n; ++li) {
+            ++m;
+            if (!lines[li]) continue;
+            const tspanProps: Record<string, any> = {key: li, x: 0};
+            if (li === m - 1) tspanProps.y = `${(yOffset + li) * lineHeight}em`;
+            else tspanProps.dy = `${m * lineHeight}em`;
+            children.push(h("tspan", tspanProps, lines[li]));
+            m = 0;
+          }
+        } else {
+          if (yOffset) textProps.y = `${yOffset * lineHeight}em`;
+          if (lines[0] != null) children.push(lines[0]);
+        }
+        if (textOverflow && !TL && lines[0] !== T[i]) {
+          children.push(h("title", {key: "overflow-title"}, T[i]));
+        }
+      }
+      const titled = withTitleChild(channels, i, null);
+      if (titled) children.push(titled);
+      const textEl = h("text", textProps, ...children);
+      return withHrefWrap(channels, this.target, i, textEl);
+    });
+    return h("g", {...indirect, ...indirectText, ...transform}, texts);
   }
 }
 
