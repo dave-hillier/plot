@@ -10,14 +10,8 @@ import {TypedArray, coerceNumbers, maybeTuple, maybeZ} from "../options.js";
 // @ts-ignore - internal helper not in .d.ts
 import {applyPosition} from "../projection.js";
 // @ts-ignore - internal helpers not in .d.ts
-import {
-  applyChannelStyles,
-  applyDirectStyles,
-  applyFrameAnchor,
-  applyIndirectStyles,
-  applyTransform,
-  groupZ
-} from "../style.js";
+// prettier-ignore
+import {applyChannelStyles, applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform, groupZ} from "../style.js";
 // @ts-ignore - internal helper not in .d.ts
 import {initializer} from "../transforms/basic.js";
 import {channelStyleProps, directStyleProps, indirectStyleProps, transformProp} from "../react/styles.js";
@@ -117,7 +111,7 @@ export class Density extends Mark {
       )
       .node();
   }
-  renderJSX(this: any, index: any, _scales: any, channels: any, _dimensions: any, _context: any): ReactNode {
+  renderJSX(this: any, index: any, scales: any, channels: any, dimensions: any, context: any): ReactNode {
     const {contours} = channels;
     const path = geoPath();
     const indirect = indirectStyleProps(this);
