@@ -26,6 +26,9 @@ import {basic, initializer} from "../transforms/basic.js";
 import {exclusiveFacets} from "../transforms/exclusiveFacets.js";
 // @ts-ignore
 import {maybeGroup} from "../transforms/group.js";
+import {createElement as h, type ReactNode} from "react";
+import {channelStyleProps, directStyleProps, indirectStyleProps, transformProp} from "../react/styles.js";
+import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
 
 /** Options for the Delaunay marks. */
 export interface DelaunayOptions extends MarkOptions, MarkerOptions, CurveOptions {
@@ -169,6 +172,73 @@ class DelaunayLink extends MarkBase {
       )
       .node();
   }
+  renderJSX(this: any, index: any, scales: any, channels: any, dimensions: any, _context: any): ReactNode {
+    if (this.markerStart || this.markerMid || this.markerEnd) {
+      throw new Error("DelaunayLink.renderJSX: marker option not yet supported; use render()");
+    }
+    const {x, y} = scales;
+    const {x: X, y: Y, z: Z} = channels;
+    const {curve} = this;
+    const [cx, cy] = applyFrameAnchor(this, dimensions);
+    const xi = X ? (i: number) => X[i] : constant(cx);
+    const yi = Y ? (i: number) => Y[i] : constant(cy);
+    const indirect = indirectStyleProps(this);
+    const transform = transformProp(this, {x: X && x, y: Y && y});
+    const direct = directStyleProps(this);
+
+    const buildLinks = (subIndex: any[]) => {
+      let i = -1;
+      const newIndex: number[] = [];
+      const newChannels: any = {};
+      for (const k in channels) newChannels[k] = [];
+      const X1: number[] = [];
+      const X2: number[] = [];
+      const Y1: number[] = [];
+      const Y2: number[] = [];
+
+      function link(ti: number, tj: number) {
+        ti = subIndex[ti];
+        tj = subIndex[tj];
+        newIndex.push(++i);
+        X1[i] = xi(ti);
+        Y1[i] = yi(ti);
+        X2[i] = xi(tj);
+        Y2[i] = yi(tj);
+        for (const k in channels) newChannels[k].push(channels[k][tj]);
+      }
+
+      const {halfedges, hull, triangles} = Delaunay.from(subIndex, xi, yi);
+      for (let i = 0; i < halfedges.length; ++i) {
+        const j = halfedges[i];
+        if (j > i) link(triangles[i], triangles[j]);
+      }
+      for (let i = 0; i < hull.length; ++i) {
+        link(hull[i], hull[(i + 1) % hull.length]);
+      }
+
+      return newIndex.map((ni, k) => {
+        const p = path();
+        const c = curve(p);
+        c.lineStart();
+        c.point(X1[ni], Y1[ni]);
+        c.point(X2[ni], Y2[ni]);
+        c.lineEnd();
+        const channel = channelStyleProps(ni, newChannels);
+        const titled = withTitleChild(newChannels, ni, null);
+        const pathEl = h("path", {key: k, ...direct, ...channel, d: `${p}`}, titled);
+        return withHrefWrap(newChannels, this.target, ni, pathEl);
+      });
+    };
+
+    let children: ReactNode;
+    if (Z) {
+      const groups = Array.from(group(index, (i: number) => Z[i]).values()) as any[];
+      children = groups.map((sub, gi) => h("g", {key: gi}, buildLinks(sub)));
+    } else {
+      children = buildLinks(index);
+    }
+    return h("g", {...indirect, ...transform}, children);
+  }
 }
 
 class AbstractDelaunayMark extends MarkBase {
@@ -218,6 +288,35 @@ class AbstractDelaunayMark extends MarkBase {
           : (g: any) => g.datum(index).each(mesh)
       )
       .node();
+  }
+  renderJSX(this: any, index: any, scales: any, channels: any, dimensions: any, _context: any): ReactNode {
+    const {x, y} = scales;
+    const {x: X, y: Y, z: Z} = channels;
+    const [cx, cy] = applyFrameAnchor(this, dimensions);
+    const xi = X ? (i: number) => X[i] : constant(cx);
+    const yi = Y ? (i: number) => Y[i] : constant(cy);
+    const indirect = indirectStyleProps(this);
+    const transform = transformProp(this, {x: X && x, y: Y && y});
+    const direct = directStyleProps(this);
+
+    const buildPath = (subIndex: any[], key: number) => {
+      const delaunay = Delaunay.from(subIndex, xi, yi);
+      const i = subIndex[0];
+      const d = (this as any)._render(delaunay, dimensions);
+      const channel = channelStyleProps(i, channels);
+      const titled = withTitleChild(channels, i, null);
+      const pathEl = h("path", {key, ...direct, ...channel, d}, titled);
+      return withHrefWrap(channels, this.target, i, pathEl);
+    };
+
+    let children: ReactNode;
+    if (Z) {
+      const groups = Array.from(group(index, (i: number) => Z[i]).values()) as any[];
+      children = groups.map((sub, gi) => h("g", {key: gi}, buildPath(sub, 0)));
+    } else {
+      children = buildPath(index, 0);
+    }
+    return h("g", {...indirect, ...transform}, children);
   }
 }
 
@@ -290,6 +389,20 @@ class Voronoi extends MarkBase {
           .call(applyChannelStyles, this, channels);
       })
       .node();
+  }
+  renderJSX(this: any, index: any, scales: any, channels: any, dimensions: any, _context: any): ReactNode {
+    const {x, y} = scales;
+    const {x: X, y: Y, cells: C} = channels;
+    const indirect = indirectStyleProps(this);
+    const transform = transformProp(this, {x: X && x, y: Y && y});
+    const direct = directStyleProps(this);
+    const paths = (index as number[]).map((i, k) => {
+      const channel = channelStyleProps(i, channels);
+      const titled = withTitleChild(channels, i, null);
+      const pathEl = h("path", {key: k, ...direct, ...channel, d: C[i]}, titled);
+      return withHrefWrap(channels, this.target, i, pathEl);
+    });
+    return h("g", {...indirect, ...transform}, paths);
   }
 }
 
