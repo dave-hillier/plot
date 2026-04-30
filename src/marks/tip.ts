@@ -1,4 +1,5 @@
 import {select, format as numberFormat, utcFormat} from "d3";
+import {createElement as h, type ReactNode} from "react";
 import type {ChannelName, ChannelValueSpec} from "../channel.js";
 // @ts-ignore -- getSource is declared only in channel.js, not channel.d.ts
 import {getSource} from "../channel.js";
@@ -23,6 +24,8 @@ import {applyIndirectTextStyles, defaultWidth, ellipsis, monospaceWidth} from ".
 import type {TextStyles} from "./text.js";
 // @ts-ignore -- these helpers are declared only in text.js, not text.d.ts
 import {cut, clipper, splitter, maybeTextOverflow} from "./text.js";
+import {channelStyleProps, directStyleProps, indirectStyleProps, transformProp} from "../react/styles.js";
+import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
 
 /**
  * How to format channel values; one of:
@@ -383,6 +386,160 @@ export class Tip extends (Mark as { new (...args: any[]): Mark }) {
     }
 
     return g.node();
+  }
+  renderJSX(this: any, index: any, scales: any, values: any, dimensions: any, _context: any): ReactNode {
+    const mark = this;
+    const {x, y} = scales;
+    const {anchor, monospace, lineHeight, lineWidth} = this;
+    const {textPadding: r, pointerSize: m, pathFilter} = this;
+
+    const {x1: X1, y1: Y1, x2: X2, y2: Y2, x: X = X1 ?? X2, y: Y = Y1 ?? Y2} = values;
+
+    const [cx, cy] = applyFrameAnchor(this, dimensions);
+    const px = anchorX(values, cx);
+    const py = anchorY(values, cy);
+
+    const widthof = monospace ? monospaceWidth : defaultWidth;
+    const ee = widthof(ellipsis);
+
+    let sources: any, format: any;
+    if ("title" in values) {
+      sources = getSourceChannels.call(this, {title: values.channels.title}, scales);
+      format = formatTitle;
+    } else {
+      sources = getSourceChannels.call(this, values.channels, scales);
+      format = formatChannels;
+    }
+
+    const indirect = indirectStyleProps(this);
+    const indirectText: Record<string, any> = {
+      textAnchor: this.textAnchor,
+      fontFamily: this.fontFamily,
+      fontSize: this.fontSize,
+      fontStyle: this.fontStyle,
+      fontVariant: this.fontVariant,
+      fontWeight: this.fontWeight
+    };
+    for (const k of Object.keys(indirectText)) if (indirectText[k] == null) delete indirectText[k];
+    const direct = directStyleProps(this);
+    const transform = transformProp(this, {x: X && x, y: Y && y});
+
+    // Mirrors renderLine in render(): truncates to lineWidth and produces
+    // <tspan> children for one line. Returns an estimated width since we
+    // cannot getBBox in the JSX path.
+    function buildLine(spec: any): {tspans: ReactNode[]; width: number} {
+      let {label, value, color, opacity} = spec;
+      label = label ?? "";
+      value = value ?? "";
+      const swatch = color != null || opacity != null;
+      let title: string | undefined;
+      const w = lineWidth * 100;
+      const [j] = cut(label, w, widthof, ee);
+      if (j >= 0) {
+        label = label.slice(0, j).trimEnd() + ellipsis;
+        title = value.trim();
+        value = "";
+      } else {
+        if (label || (!value && !swatch)) value = " " + value;
+        const [k] = cut(value, w - widthof(label), widthof, ee);
+        if (k >= 0) {
+          title = value.trim();
+          value = value.slice(0, k).trimEnd() + ellipsis;
+        }
+      }
+      const children: ReactNode[] = ["​"]; // zwsp for double-click
+      let width = widthof("​");
+      if (label) {
+        children.push(h("tspan", {key: "label", fontWeight: "bold"}, label));
+        width += widthof(label);
+      }
+      if (value) {
+        children.push(value);
+        width += widthof(value);
+      }
+      if (swatch) {
+        children.push(
+          h("tspan", {key: "swatch", fill: color, fillOpacity: opacity, style: {userSelect: "none"}}, " ■")
+        );
+        width += widthof(" ■");
+      }
+      if (title) children.push(h("title", {key: "title"}, title));
+      return {tspans: children, width};
+    }
+
+    const items = (index as number[]).map((i, k) => {
+      // Generate name-value lines for this datum.
+      const raw = format.call(mark, i, index, sources, scales, values);
+      let lineSpecs: any[];
+      if (typeof raw === "string") {
+        lineSpecs = mark.splitLines(raw).map((line: string) => ({value: mark.clipLine(line)}));
+      } else {
+        lineSpecs = [];
+        const labels = new Set();
+        for (const line of raw) {
+          const {label = ""} = line;
+          if (label && labels.has(label)) continue;
+          else labels.add(label);
+          lineSpecs.push(line);
+        }
+      }
+      const lines = lineSpecs.map(buildLine);
+      const n = lines.length;
+
+      // Approximate text dimensions — we cannot getBBox in JSX rendering.
+      // Width is the widest line; height is n lines at lineHeight em.
+      // widthof returns units of ~100 per em, so scale matches getBBox roughly.
+      const fontSize = +this.fontSize || 10;
+      const w = Math.round(Math.max(0, ...lines.map((l) => (l.width / 100) * fontSize)));
+      const heightPx = Math.round(n * lineHeight * fontSize);
+
+      // Choose anchor: if explicit, use it; otherwise use preferredAnchor (we
+      // cannot do fit detection without DOM measurement in the JSX path).
+      const a = anchor ?? mark.preferredAnchor ?? "bottom";
+
+      const d = getPath(a, m, r, w, heightPx);
+      const [tx, ty] = getTextTranslate(a, m, r, w, heightPx);
+      const yOffset = +getLineOffset(a, n, lineHeight).toFixed(6);
+
+      const channel = channelStyleProps(i, values);
+
+      const pathEl = h("path", {filter: pathFilter, d});
+      const tspans: ReactNode[] = [];
+      for (let li = 0; li < n; li++) {
+        tspans.push(
+          h("tspan", {key: li, x: 0, dy: `${lineHeight}em`}, ...lines[li].tspans)
+        );
+      }
+      const textEl = h(
+        "text",
+        {
+          fill: "currentColor",
+          fillOpacity: 1,
+          stroke: "none",
+          y: `${yOffset}em`,
+          transform: `translate(${tx},${ty})`
+        },
+        ...tspans
+      );
+
+      const inner = h(
+        "g",
+        {
+          key: k,
+          transform: `translate(${Math.round(px(i))},${Math.round(py(i))})`,
+          ...direct,
+          ...channel
+        },
+        pathEl,
+        textEl
+      );
+
+      const titled = withTitleChild(values, i, null);
+      const node = titled ? h("g", {key: k}, inner, titled) : inner;
+      return withHrefWrap(values, this.target, i, node);
+    });
+
+    return h("g", {...indirect, ...indirectText, ...transform}, items);
   }
 }
 
