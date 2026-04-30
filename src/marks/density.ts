@@ -1,4 +1,5 @@
 import {contourDensity, geoPath} from "d3";
+import {createElement as h, type ReactNode} from "react";
 import type {ChannelValue, ChannelValueSpec} from "../channel.js";
 // @ts-ignore - internal helper not in .d.ts
 import {create} from "../context.js";
@@ -9,9 +10,12 @@ import {TypedArray, coerceNumbers, maybeTuple, maybeZ} from "../options.js";
 // @ts-ignore - internal helper not in .d.ts
 import {applyPosition} from "../projection.js";
 // @ts-ignore - internal helpers not in .d.ts
+// prettier-ignore
 import {applyChannelStyles, applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform, groupZ} from "../style.js";
 // @ts-ignore - internal helper not in .d.ts
 import {initializer} from "../transforms/basic.js";
+import {channelStyleProps, directStyleProps, indirectStyleProps, transformProp} from "../react/styles.js";
+import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
 
 // Mark's runtime constructor takes (data, channels, transform, defaults), but the
 // public .d.ts declares Mark with a zero-arg constructor; cast for super(...) typing.
@@ -107,6 +111,20 @@ export class Density extends Mark {
       )
       .node();
   }
+  renderJSX(this: any, index: any, scales: any, channels: any, dimensions: any, context: any): ReactNode {
+    const {contours} = channels;
+    const path = geoPath();
+    const indirect = indirectStyleProps(this);
+    const transform = transformProp(this, {});
+    const direct = directStyleProps(this);
+    const paths = (index as number[]).map((i, k) => {
+      const channel = channelStyleProps(i, channels);
+      const titled = withTitleChild(channels, i, null);
+      const pathEl = h("path", {key: k, ...direct, ...channel, d: path(contours[i]) ?? undefined}, titled);
+      return withHrefWrap(channels, this.target, i, pathEl);
+    });
+    return h("g", {...indirect, ...transform}, paths);
+  }
 }
 
 /**
@@ -136,98 +154,101 @@ function densityInitializer(options: any, fillDensity: any, strokeDensity: any) 
       : typeof thresholds?.[Symbol.iterator] === "function"
       ? coerceNumbers(thresholds)
       : +thresholds;
-  return initializer(options, function (this: any, data: any, facets: any, channels: any, scales: any, dimensions: any, context: any) {
-    const W = channels.weight ? coerceNumbers(channels.weight.value) : null;
-    const Z = channels.z?.value;
-    const {z} = this;
-    const [cx, cy] = applyFrameAnchor(this, dimensions);
-    const {width, height} = dimensions;
+  return initializer(
+    options,
+    function (this: any, data: any, facets: any, channels: any, scales: any, dimensions: any, context: any) {
+      const W = channels.weight ? coerceNumbers(channels.weight.value) : null;
+      const Z = channels.z?.value;
+      const {z} = this;
+      const [cx, cy] = applyFrameAnchor(this, dimensions);
+      const {width, height} = dimensions;
 
-    // Get the (either scaled or projected) xy channels.
-    const {x: X, y: Y} = applyPosition(channels, scales, context);
+      // Get the (either scaled or projected) xy channels.
+      const {x: X, y: Y} = applyPosition(channels, scales, context);
 
-    // Group any of the input channels according to the first index associated
-    // with each z-series or facet. Drop any channels not be needed for
-    // rendering after the contours are computed.
-    const newChannels: any = Object.fromEntries(
-      Object.entries(channels)
-        .filter(([key]) => !dropChannels.has(key))
-        .map(([key, channel]: [string, any]) => [key, {...channel, value: []}])
-    );
+      // Group any of the input channels according to the first index associated
+      // with each z-series or facet. Drop any channels not be needed for
+      // rendering after the contours are computed.
+      const newChannels: any = Object.fromEntries(
+        Object.entries(channels)
+          .filter(([key]) => !dropChannels.has(key))
+          .map(([key, channel]: [string, any]) => [key, {...channel, value: []}])
+      );
 
-    // If the fill or stroke encodes density, construct new output channels.
-    const FD: any = fillDensity && [];
-    const SD: any = strokeDensity && [];
+      // If the fill or stroke encodes density, construct new output channels.
+      const FD: any = fillDensity && [];
+      const SD: any = strokeDensity && [];
 
-    const density: any = (contourDensity() as any)
-      .x(X ? (i: any) => X[i] : cx)
-      .y(Y ? (i: any) => Y[i] : cy)
-      .weight(W ? (i: any) => W[i] : 1)
-      .size([width, height])
-      .bandwidth(bandwidth);
+      const density: any = (contourDensity() as any)
+        .x(X ? (i: any) => X[i] : cx)
+        .y(Y ? (i: any) => Y[i] : cy)
+        .weight(W ? (i: any) => W[i] : 1)
+        .size([width, height])
+        .bandwidth(bandwidth);
 
-    // Compute the grid for each facet-series.
-    const facetsContours: any[] = [];
-    for (const facet of facets) {
-      const facetContours: any[] = [];
-      facetsContours.push(facetContours);
-      for (const index of Z ? groupZ(facet, Z, z) : [facet]) {
-        const contour = density.contours(index);
-        facetContours.push([index, contour]);
-      }
-    }
-
-    // If explicit thresholds were not specified, find the maximum density of
-    // all grids and use this to compute thresholds.
-    let T = thresholds;
-    if (!(T instanceof TypedArray)) {
-      let maxValue = 0;
-      for (const facetContours of facetsContours) {
-        for (const [, contour] of facetContours) {
-          const max = contour.max;
-          if (max > maxValue) maxValue = max;
+      // Compute the grid for each facet-series.
+      const facetsContours: any[] = [];
+      for (const facet of facets) {
+        const facetContours: any[] = [];
+        facetsContours.push(facetContours);
+        for (const index of Z ? groupZ(facet, Z, z) : [facet]) {
+          const contour = density.contours(index);
+          facetContours.push([index, contour]);
         }
       }
-      T = Float64Array.from({length: thresholds - 1}, (_, i) => (maxValue * k * (i + 1)) / thresholds);
-    }
 
-    // Generate contours for each facet-series.
-    const newFacets: any[] = [];
-    const contours: any[] = [];
-    for (const facetContours of facetsContours) {
-      const newFacet: any[] = [];
-      newFacets.push(newFacet);
-      for (const [index, contour] of facetContours) {
-        for (const t of T) {
-          newFacet.push(contours.length);
-          contours.push(contour(t / k));
-          if (FD) FD.push(t);
-          if (SD) SD.push(t);
-          for (const key in newChannels) {
-            newChannels[key].value.push(channels[key].value[index[0]]);
+      // If explicit thresholds were not specified, find the maximum density of
+      // all grids and use this to compute thresholds.
+      let T = thresholds;
+      if (!(T instanceof TypedArray)) {
+        let maxValue = 0;
+        for (const facetContours of facetsContours) {
+          for (const [, contour] of facetContours) {
+            const max = contour.max;
+            if (max > maxValue) maxValue = max;
+          }
+        }
+        T = Float64Array.from({length: thresholds - 1}, (_, i) => (maxValue * k * (i + 1)) / thresholds);
+      }
+
+      // Generate contours for each facet-series.
+      const newFacets: any[] = [];
+      const contours: any[] = [];
+      for (const facetContours of facetsContours) {
+        const newFacet: any[] = [];
+        newFacets.push(newFacet);
+        for (const [index, contour] of facetContours) {
+          for (const t of T) {
+            newFacet.push(contours.length);
+            contours.push(contour(t / k));
+            if (FD) FD.push(t);
+            if (SD) SD.push(t);
+            for (const key in newChannels) {
+              newChannels[key].value.push(channels[key].value[index[0]]);
+            }
           }
         }
       }
+
+      // If the fill or stroke encodes density, ensure that a zero value is
+      // included so that the default color scale domain starts at zero. Otherwise
+      // if the starting range value is the same as the background color, the
+      // first contour might not be visible.
+      if (FD) FD.push(0);
+      if (SD) SD.push(0);
+
+      return {
+        data,
+        facets: newFacets,
+        channels: {
+          ...newChannels,
+          ...(FD && {fill: {value: FD, scale: "color"}}),
+          ...(SD && {stroke: {value: SD, scale: "color"}}),
+          contours: {value: contours}
+        }
+      };
     }
-
-    // If the fill or stroke encodes density, ensure that a zero value is
-    // included so that the default color scale domain starts at zero. Otherwise
-    // if the starting range value is the same as the background color, the
-    // first contour might not be visible.
-    if (FD) FD.push(0);
-    if (SD) SD.push(0);
-
-    return {
-      data,
-      facets: newFacets,
-      channels: {
-        ...newChannels,
-        ...(FD && {fill: {value: FD, scale: "color"}}),
-        ...(SD && {stroke: {value: SD, scale: "color"}}),
-        contours: {value: contours}
-      }
-    };
-  });
+  );
 }
 
 function isDensity(value: any) {
