@@ -9,8 +9,10 @@ import {
   groupChannelStyleProps,
   computeTransform,
   computeFrameAnchor,
-  resolveStyles
+  resolveStyles,
+  transformProp
 } from "../src/react/styles.js";
+import {withTitleChild, withHrefWrap} from "../src/react/styles-jsx.js";
 
 // --- Utility function tests ---
 
@@ -937,5 +939,56 @@ describe("Legend façade (Unit 15)", () => {
     assert.ok(svg, "expected an <svg> ramp");
     await act(async () => root.unmount());
     container.remove();
+  });
+});
+
+import {renderToStaticMarkup} from "react-dom/server";
+
+describe("transformProp", () => {
+  it("returns an empty object when there is nothing to translate", () => {
+    assert.deepStrictEqual(transformProp({}, {}), {});
+    assert.deepStrictEqual(transformProp({dx: 0, dy: 0}, {}), {});
+  });
+  it("returns a translate string when dx or dy is set", () => {
+    assert.deepStrictEqual(transformProp({dx: 5, dy: 0}, {}), {transform: "translate(5,0)"});
+    assert.deepStrictEqual(transformProp({dx: 0, dy: -3}, {}), {transform: "translate(0,-3)"});
+  });
+  it("adds half-bandwidth from band scales", () => {
+    const x = {bandwidth: () => 20};
+    const y = {bandwidth: () => 10};
+    assert.deepStrictEqual(transformProp({}, {x, y}), {transform: "translate(10,5)"});
+  });
+});
+
+describe("withTitleChild", () => {
+  it("returns the original children when there is no title channel", () => {
+    assert.strictEqual(withTitleChild({}, 0, null), null);
+  });
+  it("emits a <title> child when the title channel has a non-empty value", () => {
+    const html = renderToStaticMarkup(<g>{withTitleChild({title: ["hello"]}, 0, null)}</g>);
+    assert.ok(html.includes("<title>hello</title>"), `got ${html}`);
+  });
+  it("skips empty title values", () => {
+    assert.strictEqual(withTitleChild({title: [""]}, 0, null), null);
+    assert.strictEqual(withTitleChild({title: [null]}, 0, null), null);
+  });
+});
+
+describe("withHrefWrap", () => {
+  it("returns the node unchanged when there is no href channel", () => {
+    const node = <line x1={0} x2={10} y1={0} y2={0} />;
+    assert.strictEqual(withHrefWrap({}, undefined, 0, node), node);
+  });
+  it("wraps the node in an <a> when href is present", () => {
+    const node = <line x1={0} x2={10} y1={0} y2={0} />;
+    const wrapped = withHrefWrap({href: ["https://example.com"]}, "_blank", 0, node);
+    const html = renderToStaticMarkup(<g>{wrapped}</g>);
+    assert.ok(html.includes("<a"), `got ${html}`);
+    assert.ok(html.includes("href=\"https://example.com\""), `got ${html}`);
+    assert.ok(html.includes("target=\"_blank\""), `got ${html}`);
+  });
+  it("skips entries with null href", () => {
+    const node = <line x1={0} x2={10} y1={0} y2={0} />;
+    assert.strictEqual(withHrefWrap({href: [null]}, undefined, 0, node), node);
   });
 });

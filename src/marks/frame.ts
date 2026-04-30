@@ -1,3 +1,4 @@
+import {Fragment, createElement as h, type ReactNode} from "react";
 import type {InsetOptions} from "../inset.js";
 import type {MarkOptions} from "../mark.js";
 import type {RectCornerOptions} from "./rect.js";
@@ -5,6 +6,8 @@ import {create} from "../context.js";
 import {Mark} from "../mark.js";
 import {maybeKeyword, singleton} from "../options.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
+import {channelStyleProps, directStyleProps, indirectStyleProps, transformProp} from "../react/styles.js";
+import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
 import {applyRoundedRect, rectInsets, rectRadii} from "./rect.js";
 
 /** Options for the frame decoration mark. */
@@ -76,6 +79,33 @@ export class Frame extends Mark {
                 .attr("ry", ry)
       )
       .node();
+  }
+  renderJSX(this: any, index, scales, channels, dimensions, context): ReactNode {
+    const {marginTop, marginRight, marginBottom, marginLeft, width, height} = dimensions;
+    const {anchor, insetTop, insetRight, insetBottom, insetLeft} = this;
+    const {rx, ry, rx1y1, rx1y2, rx2y1, rx2y2} = this;
+    const x1 = marginLeft + insetLeft;
+    const x2 = width - marginRight - insetRight;
+    const y1 = marginTop + insetTop;
+    const y2 = height - marginBottom - insetBottom;
+    const indirect = indirectStyleProps(this);
+    const direct = directStyleProps(this);
+    const channel = channelStyleProps(0, channels);
+    const transform = transformProp(this, {});
+    const baseProps = {...indirect, ...direct, ...channel, ...transform};
+    let element: ReactNode;
+    if (anchor === "left") element = h("line", {...baseProps, x1, x2: x1, y1, y2});
+    else if (anchor === "right") element = h("line", {...baseProps, x1: x2, x2, y1, y2});
+    else if (anchor === "top") element = h("line", {...baseProps, x1, x2, y1, y2: y1});
+    else if (anchor === "bottom") element = h("line", {...baseProps, x1, x2, y1: y2, y2});
+    else if (rx1y1 || rx1y2 || rx2y1 || rx2y2) {
+      throw new Error("Frame.renderJSX: rounded corners not yet supported; use render()");
+    } else {
+      element = h("rect", {...baseProps, x: x1, y: y1, width: x2 - x1, height: y2 - y1, rx: rx ?? undefined, ry: ry ?? undefined});
+    }
+    const titled = withTitleChild(channels, 0, null);
+    if (titled) element = h(Fragment, null, element, titled);
+    return withHrefWrap(channels, this.target, 0, element);
   }
 }
 
