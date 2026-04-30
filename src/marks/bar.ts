@@ -18,6 +18,9 @@ import type {StackOptions} from "../transforms/stack.js";
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
 import type {RectCornerOptions} from "./rect.js";
 import {applyRoundedRect, rectInsets, rectRadii} from "./rect.js";
+import {createElement as h, type ReactNode} from "react";
+import {channelStyleProps, directStyleProps, indirectStyleProps, transformProp} from "../react/styles.js";
+import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
 
 /** Options for the barX and barY marks. */
 interface BarOptions extends MarkOptions, InsetOptions, RectCornerOptions, StackOptions {
@@ -192,6 +195,41 @@ export class AbstractBar extends Mark {
       )
       .node();
   }
+  renderJSX(this: any, index: any, scales: any, channels: any, dimensions: any, _context: any): ReactNode {
+    const {rx, ry, rx1y1, rx1y2, rx2y1, rx2y2} = this;
+    if (rx1y1 || rx1y2 || rx2y1 || rx2y2) {
+      throw new Error("BarX.renderJSX: rounded corners not yet supported");
+    }
+    const x = this._x(scales, channels, dimensions);
+    const y = this._y(scales, channels, dimensions);
+    const w = this._width(scales, channels, dimensions);
+    const hh = this._height(scales, channels, dimensions);
+    const indirect = indirectStyleProps(this);
+    const direct = directStyleProps(this);
+    const transform = transformProp(this, this._transformScales(scales), 0, 0);
+    const at = (v: any, i: number) => (typeof v === "function" ? v(i) : v);
+    const rects = (index as number[]).map((i, k) => {
+      const channel = channelStyleProps(i, channels);
+      const titled = withTitleChild(channels, i, null);
+      const rectEl = h(
+        "rect",
+        {
+          key: k,
+          ...direct,
+          ...channel,
+          x: at(x, i),
+          y: at(y, i),
+          width: at(w, i),
+          height: at(hh, i),
+          rx: rx ?? undefined,
+          ry: ry ?? undefined
+        },
+        titled
+      );
+      return withHrefWrap(channels, this.target, i, rectEl);
+    });
+    return h("g", {...indirect, ...transform}, rects);
+  }
   _x(scales: any, {x: X}: any, {marginLeft}: any): any {
     const {insetLeft} = this;
     return X ? (i: number) => X[i] + insetLeft : marginLeft + insetLeft;
@@ -212,6 +250,9 @@ export class AbstractBar extends Mark {
   }
   _transform(_selection: any, _mark: any, _scales: any): void {
     // overridden in subclasses
+  }
+  _transformScales(_scales: any): any {
+    return {};
   }
 }
 
@@ -243,6 +284,9 @@ export class BarX extends AbstractBar {
   _transform(selection: any, mark: any, {x}: any) {
     selection.call(applyTransform, mark, {x}, 0, 0);
   }
+  _transformScales({x}: any): any {
+    return {x};
+  }
   _x({x}: any, {x1: X1, x2: X2}: any, {marginLeft}: any): any {
     const {insetLeft} = this;
     return isCollapsed(x) ? marginLeft + insetLeft : (i: number) => Math.min(X1[i], X2[i]) + insetLeft;
@@ -272,6 +316,9 @@ export class BarY extends AbstractBar {
   }
   _transform(selection: any, mark: any, {y}: any) {
     selection.call(applyTransform, mark, {y}, 0, 0);
+  }
+  _transformScales({y}: any): any {
+    return {y};
   }
   _y({y}: any, {y1: Y1, y2: Y2}: any, {marginTop}: any): any {
     const {insetTop} = this;
