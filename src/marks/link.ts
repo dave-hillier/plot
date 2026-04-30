@@ -1,4 +1,5 @@
 import {pathRound as path} from "d3";
+import {createElement as h, type ReactNode} from "react";
 import type {ChannelValueSpec} from "../channel.js";
 // @ts-expect-error — runtime export missing from context.d.ts
 import {create} from "../context.js";
@@ -15,6 +16,8 @@ import {markers, applyMarkers} from "../marker.js";
 import {coerceNumbers} from "../options.js";
 // @ts-expect-error — runtime exports missing from style.d.ts
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
+import {channelStyleProps, directStyleProps, indirectStyleProps, transformProp} from "../react/styles.js";
+import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
 
 /** Options for the link mark. */
 export interface LinkOptions extends MarkOptions, MarkerOptions, CurveAutoOptions {
@@ -135,6 +138,39 @@ export class Link extends Mark {
           .call(applyMarkers, this, channels, context)
       )
       .node();
+  }
+  renderJSX(this: any, index, scales, channels, dimensions, context): ReactNode {
+    if (this.markerStart || this.markerMid || this.markerEnd) {
+      throw new Error("Link.renderJSX: marker option not yet supported; use render()");
+    }
+    const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1} = channels;
+    const {curve} = this;
+    const indirect = indirectStyleProps(this);
+    const transform = transformProp(this, scales);
+    const direct = directStyleProps(this);
+    const useSphere = curve === curveAuto && context.projection;
+    const sphereD = useSphere ? sphereLink(context.path(), X1, Y1, X2, Y2) : null;
+    const dOf = (i: number) => {
+      if (useSphere) return sphereD!(i);
+      const p = path();
+      const c = curve(p);
+      c.lineStart();
+      c.point(X1[i], Y1[i]);
+      c.point(X2[i], Y2[i]);
+      c.lineEnd();
+      return `${p}`;
+    };
+    const paths = (index as number[]).map((i, k) => {
+      const channel = channelStyleProps(i, channels);
+      const titled = withTitleChild(channels, i, null);
+      const pathEl = h(
+        "path",
+        {key: k, ...direct, ...channel, d: dOf(i)},
+        titled
+      );
+      return withHrefWrap(channels, this.target, i, pathEl);
+    });
+    return h("g", {...indirect, ...transform}, paths);
   }
 }
 
