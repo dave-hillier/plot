@@ -387,7 +387,13 @@ export class Tip extends (Mark as { new (...args: any[]): Mark }) {
 
     return g.node();
   }
-  renderJSX(this: any, index: any, scales: any, values: any, dimensions: any, _context: any): ReactNode {
+  renderJSX(this: any, _index: any, _scales: any, _values: any, _dimensions: any, _context: any): ReactNode {
+    // Tip needs the imperative render path because show/hide is driven by
+    // pointer events handled by the imperative pipeline. Rendering all tips
+    // statically (one per datum) would show every tooltip permanently.
+    throw new Error("Tip.renderJSX: pointer-driven tooltip not yet supported; use render()");
+  }
+  renderJSX_unused(this: any, index: any, scales: any, values: any, dimensions: any, _context: any): ReactNode {
     const mark = this;
     const {x, y} = scales;
     const {anchor, monospace, lineHeight, lineWidth} = this;
