@@ -23,7 +23,6 @@ import {Swatches} from "./Swatches.js";
 export type LegendProps = LegendScales;
 
 export function Legend(props: LegendProps) {
-  const ref = useRef<HTMLDivElement>(null);
   const optionsKey = stableKey(props);
   const ctx = useContext(PlotContext);
   const id = useId();
@@ -41,10 +40,14 @@ export function Legend(props: LegendProps) {
   const jsx = swatchesElement ?? rampElement;
   const useImperative = !usePlotScale && jsx === null;
 
+  // Imperative mounts go into a separate child div so they can't clobber the
+  // React-managed JSX path's children (and vice-versa).
+  const impHostRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
-    const host = ref.current;
-    if (!host) return;
     if (usePlotScale && ctx && ctx.registerLegend && ctx.unregisterLegend) {
+      const host = impHostRef.current;
+      if (!host) return;
       ctx.registerLegend(id, props, host);
       return () => {
         ctx.unregisterLegend!(id);
@@ -52,9 +55,13 @@ export function Legend(props: LegendProps) {
       };
     }
     if (!useImperative) {
-      host.replaceChildren();
+      // JSX path: clear the imperative slot so a previous imperative render
+      // doesn't linger after switching to JSX.
+      if (impHostRef.current) impHostRef.current.replaceChildren();
       return;
     }
+    const host = impHostRef.current;
+    if (!host) return;
     const node = imperativeLegend(props as any);
     host.replaceChildren(node);
     return () => {
@@ -66,8 +73,9 @@ export function Legend(props: LegendProps) {
   }, [optionsKey, usePlotScale, useImperative]);
 
   return (
-    <div ref={ref} className="plot-legend">
+    <div className="plot-legend">
       {jsx}
+      <div ref={impHostRef} style={{display: "contents"}} />
     </div>
   );
 }
