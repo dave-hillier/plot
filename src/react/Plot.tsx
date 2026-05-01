@@ -135,11 +135,26 @@ export function Plot({children, title, subtitle, caption, figure, onValue, class
       return;
     }
 
+    // Tip relies on imperative pointer plumbing that subscribes to the SVG's
+    // `__data__` and dispatches via context — its show/hide can't be driven
+    // through the JSX render path without re-implementing that pipeline in
+    // React. When any mark is a Tip (or has tip enabled, which adds an
+    // implicit Tip in inferTips), render the whole plot imperatively.
+    if (flat.some(needsImperativePlot)) {
+      if (rootRef.current) rootRef.current.unmount(), (rootRef.current = null);
+      const svg = imperativePlot({...options, marks: flat, figure: false, style}) as SVGSVGElement;
+      if (classNameProp) svg.classList.add(classNameProp);
+      hostRef.current.replaceChildren(svg);
+      mountLegends(svg, legendsRef.current);
+      return;
+    }
+
     let computed: any;
     try {
       computed = computePlot({...options, marks: flat, style});
     } catch (e) {
       console.warn("Plot: computePlot failed, falling back to imperative.", e);
+      if (rootRef.current) rootRef.current.unmount(), (rootRef.current = null);
       const svg = imperativePlot({...options, marks: flat, figure: false, style}) as SVGSVGElement;
       if (classNameProp) svg.classList.add(classNameProp);
       hostRef.current.replaceChildren(svg);
@@ -343,6 +358,18 @@ function MarkSlot({mark, index, scales, values, dims, context, facet, facetTrans
   // already; we don't add another to keep the DOM structure identical to
   // the imperative output.
   return <>{jsx}</>;
+}
+
+// Marks whose imperative render() integrates with the imperative plot()
+// pipeline in ways the JSX path can't currently reproduce. Currently only
+// Tip (pointer-driven show/hide via shared SVG state); also true if the
+// caller enables `tip:` on any mark, which adds an implicit Tip.
+function needsImperativePlot(mark: any): boolean {
+  if (mark == null) return false;
+  if (mark.constructor?.name === "Tip") return true;
+  if (mark.ariaLabel === "tip") return true;
+  if (mark.tip) return true;
+  return false;
 }
 
 function mountLegends(svg: SVGSVGElement, legends: Map<string, LegendRegistration>) {
