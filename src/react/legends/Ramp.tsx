@@ -3,7 +3,7 @@
 // without any d3-selection / DOM-mutation. Pure helpers (interpolators, color
 // stops, tick formatting) come from d3 and the existing JS implementation.
 
-import React, {Fragment} from "react";
+import React, {Fragment, useId} from "react";
 import {format, interpolateNumber, piecewise, quantize, scaleBand, scaleLinear} from "d3";
 import {inferFontVariant} from "../../axes.js";
 // These helpers exist in the JS sources but aren't in the corresponding .d.ts
@@ -35,9 +35,10 @@ export interface RampProps {
   round?: boolean;
   opacity?: any;
   className?: string;
-  // Optional opacity-ramp filter (used by rampWithFilter for ordinal/threshold
-  // opacity legends). We don't yet support this in the JSX path.
-  filter?: string;
+  // When set, paints the ramp under an SVG <filter> that floods with this
+  // color and composites it through the ramp body — mirrors the imperative
+  // rampWithFilter() used for ordinal/threshold opacity ramps.
+  filterColor?: string;
 }
 
 export function Ramp(props: RampProps) {
@@ -60,6 +61,12 @@ export function Ramp(props: RampProps) {
   const className = maybeClassName(props.className);
   const opacity = maybeNumberChannel(props.opacity)[1];
   if (tickFormat === null) tickFormat = () => null as any;
+
+  // Stable id used when wrapping the body under an SVG color-flood filter
+  // (mirrors imperative rampWithFilter for ordinal/threshold opacity ramps).
+  const reactId = useId();
+  const filterColor = props.filterColor;
+  const filterId = filterColor ? `plot-filter-${reactId.replace(/[^A-Za-z0-9_-]/g, "")}` : null;
 
   const context = createContext(props as any);
   const applyRange = round
@@ -159,7 +166,13 @@ export function Ramp(props: RampProps) {
       style={styleAttr}
     >
       <style>{rampStyle(className)}</style>
-      {body}
+      {filterId ? (
+        <filter id={filterId}>
+          <feFlood floodColor={filterColor} />
+          <feComposite in2="SourceGraphic" operator="in" />
+        </filter>
+      ) : null}
+      {filterId ? <g filter={`url(#${filterId})`}>{body}</g> : body}
       <g
         transform={`translate(0,${tickAxisY})`}
         fontVariant={impliedString(fontVariant, "normal") as any}
