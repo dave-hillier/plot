@@ -238,7 +238,7 @@ export function Plot({children, title, subtitle, caption, figure, onValue, class
 }
 
 // Renders the whole plot as a JSX <svg> tree.
-function PlotSvg({computed, svgRef, className: classNameProp, style: styleOpt, onInput}: any) {
+function PlotSvg({computed, svgRef, className: classNameProp, onInput}: any) {
   const {className, ariaLabel, ariaDescription, dimensions} = computed;
   const {width, height} = dimensions;
   const styleText = `:where(.${className}) {
@@ -252,8 +252,6 @@ function PlotSvg({computed, svgRef, className: classNameProp, style: styleOpt, o
 :where(.${className} tspan) {
   white-space: pre;
 }`;
-  const inlineStyle = typeof styleOpt === "object" && styleOpt !== null && !Array.isArray(styleOpt) ? styleOpt : undefined;
-  const inlineStyleString = typeof styleOpt === "string" ? styleOpt : undefined;
   return (
     <svg
       ref={svgRef as any}
@@ -267,8 +265,8 @@ function PlotSvg({computed, svgRef, className: classNameProp, style: styleOpt, o
       viewBox={`0 0 ${width} ${height}`}
       aria-label={ariaLabel ?? undefined}
       aria-description={ariaDescription ?? undefined}
-      style={inlineStyle as any}
-      data-style={inlineStyleString}
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
       onInput={onInput ?? undefined}
     >
       <style>{styleText}</style>
