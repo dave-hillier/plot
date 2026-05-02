@@ -21,6 +21,9 @@ import {maybeIntervalX, maybeIntervalY} from "../transforms/interval.js";
 // @ts-ignore
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
 import {BarX, BarY} from "./bar.js";
+import {createElement as h, type ReactNode} from "react";
+import {channelStyleProps, directStyleProps, indirectStyleProps, transformProp} from "../react/styles.js";
+import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
 
 /** Options for the waffleX and waffleY mark. */
 interface WaffleOptions {
@@ -58,6 +61,9 @@ export class WaffleX extends BarX {
     this.round = maybeRound(round);
     this.multiple = maybeMultiple(multiple);
   }
+  renderJSX(this: any, index: any, scales: any, values: any, dimensions: any): ReactNode {
+    return waffleRenderJSX(this, index, scales, values, dimensions);
+  }
 }
 
 /** The waffleY mark. */
@@ -74,6 +80,63 @@ export class WaffleY extends BarY {
     this.round = maybeRound(round);
     this.multiple = maybeMultiple(multiple);
   }
+  renderJSX(this: any, index: any, scales: any, values: any, dimensions: any): ReactNode {
+    return waffleRenderJSX(this, index, scales, values, dimensions);
+  }
+}
+
+function waffleRenderJSX(mark: any, index: any, scales: any, values: any, dimensions: any): ReactNode {
+  const {gap, rx, ry} = mark;
+  const {channels} = values;
+  const polygon = channels.polygon.value;
+  const [cx, x0] = channels.cx.value;
+  const [cy, y0] = channels.cy.value;
+  const indirect = indirectStyleProps(mark, dimensions);
+  const direct = directStyleProps(mark);
+  const transform = transformProp(mark, mark._transformScales(scales), 0, 0);
+  const patternId = getPatternId();
+  const indexes = index as number[];
+  const x0i = typeof x0 === "function" ? x0 : () => x0;
+  // The pattern <rect> mirrors the imperative applyChannelStyles(visualValues)
+  // call, which omits ariaLabel/href/title — those decorate the visible <path>.
+  const defs = h(
+    "defs",
+    null,
+    indexes.map((i) => {
+      const {"aria-label": _al, href: _hr, ...rectStyles} = channelStyleProps(i, values);
+      return h(
+        "pattern",
+        {key: i, id: `${patternId}-${i}`, width: cx, height: cy, patternUnits: "userSpaceOnUse"},
+        h("rect", {
+          x: gap / 2,
+          y: gap / 2,
+          width: cx - gap,
+          height: cy - gap,
+          rx: rx ?? undefined,
+          ry: ry ?? undefined,
+          ...direct,
+          ...rectStyles
+        })
+      );
+    })
+  );
+  const paths = indexes.map((i) => {
+    const ariaLabel = (channelStyleProps(i, values) as any)["aria-label"];
+    const pathEl = h(
+      "path",
+      {
+        key: i,
+        d: `M${polygon[i].join("L")}Z`,
+        transform: `translate(${x0i(i)},${y0})`,
+        fill: `url(#${patternId}-${i})`,
+        stroke: mark.stroke == null ? undefined : "none",
+        "aria-label": ariaLabel
+      },
+      withTitleChild(values, i, null)
+    );
+    return withHrefWrap(values, mark.target, i, pathEl);
+  });
+  return h("g", {...indirect, ...transform}, defs, paths);
 }
 
 function wafflePolygon(y: "x" | "y", options: any) {
