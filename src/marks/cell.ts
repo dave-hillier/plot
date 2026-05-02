@@ -11,6 +11,7 @@ import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
 // @ts-ignore -- AbstractBar is declared only in bar.js, not bar.d.ts
 import {AbstractBar} from "./bar.js";
 import type {RectCornerOptions} from "./rect.js";
+import {roundedRectPath} from "./rect.js";
 
 /** Options for the cell mark. */
 export interface CellOptions extends MarkOptions, InsetOptions, RectCornerOptions {
@@ -58,9 +59,7 @@ export class Cell extends (AbstractBar as { new (...args: any[]): RenderableMark
   }
   renderJSX(this: any, index: any, scales: any, channels: any, dimensions: any, _context: any): ReactNode {
     const {rx, ry, rx1y1, rx1y2, rx2y1, rx2y2} = this;
-    if (rx1y1 || rx1y2 || rx2y1 || rx2y2) {
-      throw new Error("Cell.renderJSX: rounded corners not yet supported; use render()");
-    }
+    const rounded = rx1y1 || rx1y2 || rx2y1 || rx2y2;
     const xOf = this._x(scales, channels, dimensions);
     const yOf = this._y(scales, channels, dimensions);
     const wOf = this._width(scales, channels, dimensions);
@@ -72,16 +71,26 @@ export class Cell extends (AbstractBar as { new (...args: any[]): RenderableMark
     const rects = (index as number[]).map((i, k) => {
       const channel = channelStyleProps(i, channels);
       const titled = withTitleChild(channels, i, null);
-      const rect = h(
+      const x = at(xOf, i);
+      const y = at(yOf, i);
+      const w = at(wOf, i);
+      const h2 = at(hOf, i);
+      const rect = rounded
+        ? h(
+            "path",
+            {key: k, ...direct, ...channel, d: roundedRectPath(x, y, x + w, y + h2, this)},
+            titled
+          )
+        : h(
         "rect",
         {
           key: k,
           ...direct,
           ...channel,
-          x: at(xOf, i),
-          y: at(yOf, i),
-          width: at(wOf, i),
-          height: at(hOf, i),
+          x,
+          y,
+          width: w,
+          height: h2,
           rx: rx ?? undefined,
           ry: ry ?? undefined
         },

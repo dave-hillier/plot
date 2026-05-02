@@ -12,7 +12,8 @@ import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransfo
 import {channelStyleProps, directStyleProps, indirectStyleProps, transformProp} from "../react/styles.js";
 import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
 import {maybeIntervalX, maybeIntervalY} from "../transforms/interval.js";
-import {createElement as h, type ReactNode} from "react";
+import {createElement as h, Fragment, type ReactNode} from "react";
+import {markerToJSX} from "../react/Markers.js";
 
 /** Options for the ruleX and ruleY marks. */
 interface RuleOptions extends MarkOptions, MarkerOptions {
@@ -157,11 +158,8 @@ export class RuleX extends Mark {
       .node();
   }
   renderJSX(this: any, index, scales, channels, dimensions, context): ReactNode {
-    if (this.markerStart || this.markerMid || this.markerEnd) {
-      throw new Error("RuleX.renderJSX: marker option not yet supported; use render()");
-    }
     const {x, y} = scales;
-    const {x: X, y1: Y1, y2: Y2} = channels;
+    const {x: X, y1: Y1, y2: Y2, stroke: S} = channels;
     const {width, height, marginTop, marginRight, marginLeft, marginBottom} = dimensions;
     const {insetTop, insetBottom} = this;
     const indirect = indirectStyleProps(this);
@@ -179,17 +177,38 @@ export class RuleX extends Mark {
         ? (i) => Y2[i] + y.bandwidth() - insetBottom
         : (i) => Y2[i] - insetBottom
       : () => y2Const;
+    const markerDefs = new Map<string, ReactNode>();
+    const markerAttrsFor = (color: any) => {
+      const out: Record<string, string> = {};
+      for (const [opt, attr] of [
+        [this.markerStart, "markerStart"],
+        [this.markerMid, "markerMid"],
+        [this.markerEnd, "markerEnd"]
+      ] as const) {
+        if (!opt) continue;
+        const m = markerToJSX(opt, color);
+        if (!m) continue;
+        if (!markerDefs.has(m.id)) markerDefs.set(m.id, m.defJSX);
+        out[attr] = m.urlRef;
+      }
+      return out;
+    };
     const lines = (index as number[]).map((i, k) => {
       const channel = channelStyleProps(i, channels);
       const titled = withTitleChild(channels, i, null);
+      const color = S ? S[i] : this.stroke;
+      const markerAttrs = markerAttrsFor(color);
       const lineEl = h(
         "line",
-        {key: k, ...direct, ...channel, x1: x1Of(i), x2: x2Of(i), y1: y1Of(i), y2: y2Of(i)},
+        {key: k, ...direct, ...channel, ...markerAttrs, x1: x1Of(i), x2: x2Of(i), y1: y1Of(i), y2: y2Of(i)},
         titled
       );
       return withHrefWrap(channels, this.target, i, lineEl);
     });
-    return h("g", {...indirect, ...transform}, lines);
+    const defs = markerDefs.size > 0
+      ? h("defs", {key: "__defs"}, ...Array.from(markerDefs.entries()).map(([id, def]) => h(Fragment, {key: id}, def)))
+      : null;
+    return h("g", {...indirect, ...transform}, defs, ...lines);
   }
 }
 
@@ -243,11 +262,8 @@ export class RuleY extends Mark {
       .node();
   }
   renderJSX(this: any, index, scales, channels, dimensions, context): ReactNode {
-    if (this.markerStart || this.markerMid || this.markerEnd) {
-      throw new Error("RuleY.renderJSX: marker option not yet supported; use render()");
-    }
     const {x, y} = scales;
-    const {y: Y, x1: X1, x2: X2} = channels;
+    const {y: Y, x1: X1, x2: X2, stroke: S} = channels;
     const {width, height, marginTop, marginRight, marginLeft, marginBottom} = dimensions;
     const {insetLeft, insetRight} = this;
     const indirect = indirectStyleProps(this);
@@ -264,17 +280,38 @@ export class RuleY extends Mark {
       : () => x2Const;
     const yMid = (marginTop + height - marginBottom) / 2;
     const yOf = (i) => (Y ? Y[i] : yMid);
+    const markerDefs = new Map<string, ReactNode>();
+    const markerAttrsFor = (color: any) => {
+      const out: Record<string, string> = {};
+      for (const [opt, attr] of [
+        [this.markerStart, "markerStart"],
+        [this.markerMid, "markerMid"],
+        [this.markerEnd, "markerEnd"]
+      ] as const) {
+        if (!opt) continue;
+        const m = markerToJSX(opt, color);
+        if (!m) continue;
+        if (!markerDefs.has(m.id)) markerDefs.set(m.id, m.defJSX);
+        out[attr] = m.urlRef;
+      }
+      return out;
+    };
     const lines = (index as number[]).map((i, k) => {
       const channel = channelStyleProps(i, channels);
       const titled = withTitleChild(channels, i, null);
+      const color = S ? S[i] : this.stroke;
+      const markerAttrs = markerAttrsFor(color);
       const lineEl = h(
         "line",
-        {key: k, ...direct, ...channel, x1: x1Of(i), x2: x2Of(i), y1: yOf(i), y2: yOf(i)},
+        {key: k, ...direct, ...channel, ...markerAttrs, x1: x1Of(i), x2: x2Of(i), y1: yOf(i), y2: yOf(i)},
         titled
       );
       return withHrefWrap(channels, this.target, i, lineEl);
     });
-    return h("g", {...indirect, ...transform}, lines);
+    const defs = markerDefs.size > 0
+      ? h("defs", {key: "__defs"}, ...Array.from(markerDefs.entries()).map(([id, def]) => h(Fragment, {key: id}, def)))
+      : null;
+    return h("g", {...indirect, ...transform}, defs, ...lines);
   }
 }
 

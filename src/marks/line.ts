@@ -1,5 +1,6 @@
 import {line as shapeLine} from "d3";
-import {createElement as h, type ReactNode} from "react";
+import {createElement as h, Fragment, type ReactNode} from "react";
+import {markerToJSX} from "../react/Markers.js";
 import type {ChannelValue, ChannelValueDenseBinSpec, ChannelValueSpec} from "../channel.js";
 // @ts-ignore — runtime exports from ../context.js not declared in its .d.ts
 import {create} from "../context.js";
@@ -184,10 +185,7 @@ export class Line extends Mark {
       .node();
   }
   renderJSX(this: any, index: any, scales: any, channels: any, dimensions: any, context: any): ReactNode {
-    if (this.markerStart || this.markerMid || this.markerEnd) {
-      throw new Error("Line.renderJSX: marker option not yet supported; use render()");
-    }
-    const {x: X, y: Y} = channels;
+    const {x: X, y: Y, stroke: S} = channels;
     const {curve} = this;
     const indirect = indirectStyleProps(this, dimensions);
     const transform = transformProp(this, scales);
@@ -200,15 +198,36 @@ export class Line extends Mark {
             .defined((i: number) => i >= 0)
             .x((i: number) => X[i])
             .y((i: number) => Y[i]);
+    const markerDefs = new Map<string, ReactNode>();
+    const markerAttrsFor = (color: any) => {
+      const out: Record<string, string> = {};
+      for (const [opt, attr] of [
+        [this.markerStart, "markerStart"],
+        [this.markerMid, "markerMid"],
+        [this.markerEnd, "markerEnd"]
+      ] as const) {
+        if (!opt) continue;
+        const m = markerToJSX(opt, color);
+        if (!m) continue;
+        if (!markerDefs.has(m.id)) markerDefs.set(m.id, m.defJSX);
+        out[attr] = m.urlRef;
+      }
+      return out;
+    };
     const groups = [...groupIndex(index, [X, Y], this, channels)] as number[][];
     const paths = groups.map((G, k) => {
       const channel = groupChannelStyleProps(G, channels);
       const i = G[0];
+      const color = S ? S[i] : this.stroke;
+      const markerAttrs = markerAttrsFor(color);
       const titled = withTitleChild(channels, i, null);
-      const pathEl = h("path", {key: k, ...direct, ...channel, d: dOf(G)}, titled);
+      const pathEl = h("path", {key: k, ...direct, ...channel, ...markerAttrs, d: dOf(G)}, titled);
       return withHrefWrap(channels, this.target, i, pathEl);
     });
-    return h("g", {...indirect, ...transform}, paths);
+    const defs = markerDefs.size > 0
+      ? h("defs", {key: "__defs"}, ...Array.from(markerDefs.entries()).map(([id, def]) => h(Fragment, {key: id}, def)))
+      : null;
+    return h("g", {...indirect, ...transform}, defs, ...paths);
   }
 }
 

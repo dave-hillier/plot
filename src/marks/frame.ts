@@ -8,7 +8,7 @@ import {maybeKeyword, singleton} from "../options.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 import {channelStyleProps, directStyleProps, indirectStyleProps, transformProp} from "../react/styles.js";
 import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
-import {applyRoundedRect, rectInsets, rectRadii} from "./rect.js";
+import {applyRoundedRect, rectInsets, rectRadii, roundedRectPath} from "./rect.js";
 
 /** Options for the frame decoration mark. */
 export interface FrameOptions extends MarkOptions, InsetOptions, RectCornerOptions {
@@ -99,7 +99,7 @@ export class Frame extends Mark {
     else if (anchor === "top") element = h("line", {...baseProps, x1, x2, y1, y2: y1});
     else if (anchor === "bottom") element = h("line", {...baseProps, x1, x2, y1: y2, y2});
     else if (rx1y1 || rx1y2 || rx2y1 || rx2y2) {
-      throw new Error("Frame.renderJSX: rounded corners not yet supported; use render()");
+      element = h("path", {...baseProps, d: roundedRectPath(x1, y1, x2, y2, this)});
     } else {
       element = h("rect", {...baseProps, x: x1, y: y1, width: x2 - x1, height: y2 - y1, rx: rx ?? undefined, ry: ry ?? undefined});
     }

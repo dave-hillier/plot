@@ -9,7 +9,8 @@ import {applyMarkers, markers} from "../marker.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, applyChannelStyles, offset} from "../style.js";
 import {channelStyleProps, directStyleProps, indirectStyleProps, transformProp} from "../react/styles.js";
 import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
-import {createElement as h, type ReactNode} from "react";
+import {createElement as h, Fragment, type ReactNode} from "react";
+import {markerToJSX} from "../react/Markers.js";
 
 /** Options for the tickX mark. */
 export interface TickXOptions extends MarkOptions, MarkerOptions, Omit<InsetOptions, "insetLeft" | "insetRight"> {
@@ -81,9 +82,7 @@ class AbstractTick extends Mark {
       .node();
   }
   renderJSX(this: any, index: any, scales: any, channels: any, dimensions: any, _context: any): ReactNode {
-    if (this.markerStart || this.markerMid || this.markerEnd) {
-      throw new Error("Tick.renderJSX: marker option not yet supported; use render()");
-    }
+    const {stroke: S} = channels;
     const indirect = indirectStyleProps(this);
     const transform = (this as any)._transformProp(scales);
     const direct = directStyleProps(this);
@@ -95,17 +94,38 @@ class AbstractTick extends Mark {
     const x2Fn = typeof x2Of === "function" ? x2Of : () => x2Of;
     const y1Fn = typeof y1Of === "function" ? y1Of : () => y1Of;
     const y2Fn = typeof y2Of === "function" ? y2Of : () => y2Of;
+    const markerDefs = new Map<string, ReactNode>();
+    const markerAttrsFor = (color: any) => {
+      const out: Record<string, string> = {};
+      for (const [opt, attr] of [
+        [this.markerStart, "markerStart"],
+        [this.markerMid, "markerMid"],
+        [this.markerEnd, "markerEnd"]
+      ] as const) {
+        if (!opt) continue;
+        const m = markerToJSX(opt, color);
+        if (!m) continue;
+        if (!markerDefs.has(m.id)) markerDefs.set(m.id, m.defJSX);
+        out[attr] = m.urlRef;
+      }
+      return out;
+    };
     const lines = (index as number[]).map((i, k) => {
       const channel = channelStyleProps(i, channels);
       const titled = withTitleChild(channels, i, null);
+      const color = S ? S[i] : this.stroke;
+      const markerAttrs = markerAttrsFor(color);
       const lineEl = h(
         "line",
-        {key: k, ...direct, ...channel, x1: x1Fn(i), x2: x2Fn(i), y1: y1Fn(i), y2: y2Fn(i)},
+        {key: k, ...direct, ...channel, ...markerAttrs, x1: x1Fn(i), x2: x2Fn(i), y1: y1Fn(i), y2: y2Fn(i)},
         titled
       );
       return withHrefWrap(channels, this.target, i, lineEl);
     });
-    return h("g", {...indirect, ...transform}, lines);
+    const defs = markerDefs.size > 0
+      ? h("defs", {key: "__defs"}, ...Array.from(markerDefs.entries()).map(([id, def]) => h(Fragment, {key: id}, def)))
+      : null;
+    return h("g", {...indirect, ...transform}, defs, ...lines);
   }
 }
 

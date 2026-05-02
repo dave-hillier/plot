@@ -26,7 +26,8 @@ import {basic, initializer} from "../transforms/basic.js";
 import {exclusiveFacets} from "../transforms/exclusiveFacets.js";
 // @ts-ignore
 import {maybeGroup} from "../transforms/group.js";
-import {createElement as h, type ReactNode} from "react";
+import {createElement as h, Fragment, type ReactNode} from "react";
+import {markerToJSX} from "../react/Markers.js";
 import {channelStyleProps, directStyleProps, indirectStyleProps, transformProp} from "../react/styles.js";
 import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
 
@@ -173,9 +174,6 @@ class DelaunayLink extends MarkBase {
       .node();
   }
   renderJSX(this: any, index: any, scales: any, channels: any, dimensions: any, _context: any): ReactNode {
-    if (this.markerStart || this.markerMid || this.markerEnd) {
-      throw new Error("DelaunayLink.renderJSX: marker option not yet supported; use render()");
-    }
     const {x, y} = scales;
     const {x: X, y: Y, z: Z} = channels;
     const {curve} = this;
@@ -185,6 +183,22 @@ class DelaunayLink extends MarkBase {
     const indirect = indirectStyleProps(this);
     const transform = transformProp(this, {x: X && x, y: Y && y});
     const direct = directStyleProps(this);
+    const markerDefs = new Map<string, ReactNode>();
+    const markerAttrsFor = (color: any) => {
+      const out: Record<string, string> = {};
+      for (const [opt, attr] of [
+        [this.markerStart, "markerStart"],
+        [this.markerMid, "markerMid"],
+        [this.markerEnd, "markerEnd"]
+      ] as const) {
+        if (!opt) continue;
+        const m = markerToJSX(opt, color);
+        if (!m) continue;
+        if (!markerDefs.has(m.id)) markerDefs.set(m.id, m.defJSX);
+        out[attr] = m.urlRef;
+      }
+      return out;
+    };
 
     const buildLinks = (subIndex: any[]) => {
       let i = -1;
@@ -225,7 +239,9 @@ class DelaunayLink extends MarkBase {
         c.lineEnd();
         const channel = channelStyleProps(ni, newChannels);
         const titled = withTitleChild(newChannels, ni, null);
-        const pathEl = h("path", {key: k, ...direct, ...channel, d: `${p}`}, titled);
+        const color = newChannels.stroke ? newChannels.stroke[ni] : this.stroke;
+        const markerAttrs = markerAttrsFor(color);
+        const pathEl = h("path", {key: k, ...direct, ...channel, ...markerAttrs, d: `${p}`}, titled);
         return withHrefWrap(newChannels, this.target, ni, pathEl);
       });
     };
@@ -237,7 +253,10 @@ class DelaunayLink extends MarkBase {
     } else {
       children = buildLinks(index);
     }
-    return h("g", {...indirect, ...transform}, children);
+    const defs = markerDefs.size > 0
+      ? h("defs", {key: "__defs"}, ...Array.from(markerDefs.entries()).map(([id, def]) => h(Fragment, {key: id}, def)))
+      : null;
+    return h("g", {...indirect, ...transform}, defs, children);
   }
 }
 
