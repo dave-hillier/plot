@@ -1,5 +1,6 @@
 import {pathRound as path} from "d3";
-import {createElement as h, type ReactNode} from "react";
+import {createElement as h, Fragment, type ReactNode} from "react";
+import {markerToJSX} from "../react/Markers.js";
 import type {ChannelValueSpec} from "../channel.js";
 // @ts-expect-error — runtime export missing from context.d.ts
 import {create} from "../context.js";
@@ -140,10 +141,7 @@ export class Link extends Mark {
       .node();
   }
   renderJSX(this: any, index, scales, channels, dimensions, context): ReactNode {
-    if (this.markerStart || this.markerMid || this.markerEnd) {
-      throw new Error("Link.renderJSX: marker option not yet supported; use render()");
-    }
-    const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1} = channels;
+    const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1, stroke: S} = channels;
     const {curve} = this;
     const indirect = indirectStyleProps(this);
     const transform = transformProp(this, scales);
@@ -160,17 +158,32 @@ export class Link extends Mark {
       c.lineEnd();
       return `${p}`;
     };
+    const markerDefs = new Map<string, ReactNode>();
+    const markerAttrs = (i: number) => {
+      const color = S ? S[i] : this.stroke;
+      const out: Record<string, string> = {};
+      for (const [opt, attr] of [[this.markerStart, "markerStart"], [this.markerMid, "markerMid"], [this.markerEnd, "markerEnd"]] as const) {
+        if (!opt) continue;
+        const m = markerToJSX(opt, color);
+        if (!m) continue;
+        if (!markerDefs.has(m.id)) markerDefs.set(m.id, m.defJSX);
+        out[attr] = m.urlRef;
+      }
+      return out;
+    };
     const paths = (index as number[]).map((i, k) => {
       const channel = channelStyleProps(i, channels);
+      const markers = markerAttrs(i);
       const titled = withTitleChild(channels, i, null);
       const pathEl = h(
         "path",
-        {key: k, ...direct, ...channel, d: dOf(i)},
+        {key: k, ...direct, ...channel, ...markers, d: dOf(i)},
         titled
       );
       return withHrefWrap(channels, this.target, i, pathEl);
     });
-    return h("g", {...indirect, ...transform}, paths);
+    const defs = markerDefs.size > 0 ? h("defs", {key: "__defs"}, ...Array.from(markerDefs.entries()).map(([id, def]) => h(Fragment, {key: id}, def))) : null;
+    return h("g", {...indirect, ...transform}, defs, ...paths);
   }
 }
 

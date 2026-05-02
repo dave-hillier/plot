@@ -223,9 +223,6 @@ export class Vector extends Mark {
       .node();
   }
   renderJSX(this: any, index, scales, channels, dimensions, _context): ReactNode {
-    if (this.markerStart || this.markerMid || this.markerEnd) {
-      throw new Error("Vector.renderJSX: marker option not yet supported; use render()");
-    }
     const {x, y} = scales;
     const {x: X, y: Y, length: L, rotate: A} = channels;
     const {length, rotate, anchor, shape, r} = this;
