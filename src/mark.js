@@ -26,7 +26,8 @@ export class Mark {
       clip = defaults?.clip,
       channels: extraChannels,
       tip,
-      render
+      render,
+      renderJSX
     } = options;
     this.data = data;
     this.sort = isDomainSort(sort) ? sort : null;
@@ -87,6 +88,9 @@ export class Mark {
     if (render != null) {
       this.render = composeRender(render, this.render);
     }
+    if (renderJSX != null) {
+      this.renderJSX = composeRenderJSX(renderJSX, this.renderJSX);
+    }
   }
   initialize(facets, facetChannels, plotOptions) {
     let data = dataify(this.data);
@@ -135,6 +139,18 @@ export class Mark {
 export function marks(...marks) {
   marks.plot = Mark.prototype.plot;
   return marks;
+}
+
+export function composeRenderJSX(r1, r2) {
+  if (r1 == null) return r2 === null ? undefined : r2;
+  if (r2 == null) return r1 === null ? undefined : r1;
+  if (typeof r1 !== "function") throw new TypeError(`invalid renderJSX transform: ${r1}`);
+  if (typeof r2 !== "function") throw new TypeError(`invalid renderJSX transform: ${r2}`);
+  return function (i, s, v, d, c, next) {
+    return r1.call(this, i, s, v, d, c, (i, s, v, d, c) => {
+      return r2.call(this, i, s, v, d, c, next);
+    });
+  };
 }
 
 export function composeRender(r1, r2) {

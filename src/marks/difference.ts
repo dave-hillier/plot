@@ -1,4 +1,4 @@
-import {createElement as h, type ReactNode} from "react";
+import {Children, cloneElement, createElement as h, isValidElement, type ReactElement, type ReactNode} from "react";
 import type {ChannelValue, ChannelValueSpec} from "../channel.js";
 // @ts-ignore - internal helper not in .d.ts
 import {create} from "../context.js";
@@ -161,6 +161,7 @@ function differenceK(
             fill: positiveFill,
             fillOpacity: positiveFillOpacity,
             render: composeRender(render, clipDifference(k, true)),
+            renderJSX: clipDifferenceJSX(k, true),
             clip,
             ...options
           }),
@@ -178,6 +179,7 @@ function differenceK(
             fill: negativeFill,
             fillOpacity: negativeFillOpacity,
             render: composeRender(render, clipDifference(k, false)),
+            renderJSX: clipDifferenceJSX(k, false),
             clip,
             ...options
           }),
@@ -225,33 +227,44 @@ function memo(v: any) {
   return {transform: (data: any) => V || (V = valueof(data, value)), label};
 }
 
-// JSX-mode parallel to clipDifference. The imperative version recursively
-// invokes `next()` (the underlying area's imperative render) twice, splicing
-// individual <path> children out of one resulting <g> into freshly minted
-// <clipPath> elements and rewriting clip-path references on siblings of the
-// other. Reproducing that without a JSX-aware `next` continuation, and
-// without violating React's "DOM children come from props" model, requires
-// pipeline support we have not yet built. Defer per Phase 1 unit 19 rule.
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-function clipDifferenceJSX(this: any, _k: "x" | "y", _positive: boolean) {
-  return (
-    _index: any,
-    _scales: any,
-    _channels: any,
-    _dimensions: any,
-    _context: any,
-    _next: any
-  ): ReactNode => {
-    // Touch the JSX style helpers so that future implementations have them
-    // pre-imported and the import surface matches sibling ported marks.
-    void indirectStyleProps;
-    void directStyleProps;
-    void transformProp;
-    void groupChannelStyleProps;
-    void withHrefWrap;
-    void withTitleChild;
-    void h;
-    throw new Error("Difference.renderJSX: clipPath registration deferred");
+// JSX parallel to clipDifference: invokes `next` (the underlying area's
+// renderJSX) twice with channel overrides, then pairs up the resulting <path>
+// children — wrapping one set in <clipPath> defs and applying clip-path refs
+// to the matching paths in the other. Touch the JSX style helpers so that the
+// import surface matches sibling ported marks.
+void indirectStyleProps;
+void directStyleProps;
+void transformProp;
+void groupChannelStyleProps;
+void withHrefWrap;
+void withTitleChild;
+
+function clipDifferenceJSX(k: "x" | "y", positive: boolean) {
+  const f = k === "x" ? "y" : "x";
+  const f1 = `${f}1`;
+  const f2 = `${f}2`;
+  const k1 = `${k}1`;
+  const k2 = `${k}2`;
+  return (index: any, scales: any, channels: any, dimensions: any, context: any, next: any): ReactNode => {
+    const {[f1]: F1, [f2]: F2} = channels;
+    const K1 = new Float32Array(F1.length);
+    const K2 = new Float32Array(F2.length);
+    const m = dimensions[k === "y" ? "height" : "width"];
+    (positive === inferScaleOrder(scales[k]) < 0 ? K1 : K2).fill(m);
+    const clipNode = next(index, scales, {...channels, [f2]: F1, [k2]: K2}, dimensions, context) as ReactElement;
+    const gNode = next(index, scales, {...channels, [f1]: F2, [k1]: K1}, dimensions, context) as ReactElement;
+    const clipChildren = Children.toArray((clipNode as any)?.props?.children).filter(isValidElement);
+    const gChildren = Children.toArray((gNode as any)?.props?.children).filter(isValidElement);
+    const out: ReactNode[] = [];
+    const n = Math.min(clipChildren.length, gChildren.length);
+    for (let i = 0; i < n; i++) {
+      const id = getClipId();
+      const clipChild = clipChildren[i] as ReactElement;
+      const gChild = gChildren[i] as ReactElement;
+      out.push(h("clipPath", {key: `cp-${i}`, id}, clipChild));
+      out.push(cloneElement(gChild, {key: `g-${i}`, clipPath: `url(#${id})`} as any));
+    }
+    return cloneElement(gNode, gNode.props as any, ...out);
   };
 }
 
