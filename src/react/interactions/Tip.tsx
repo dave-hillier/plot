@@ -7,6 +7,12 @@ export interface TipProps {
   [key: string]: any;
 }
 
+// Registers the imperative Tip mark with the enclosing <Plot>; Plot's
+// MarkSlot detects pointer-consumer marks and routes their rendering
+// through PointerContext (see ./PointerContext.tsx). With no pointer hover,
+// Tip renders an empty `<g aria-label="tip">` group; on hover, MarkSlot
+// substitutes the selected datum's index and tip.renderJSX produces the
+// tooltip content.
 export function Tip({data, ...options}: TipProps) {
   useMark({
     stamp: stampOptions("tip", data, options),

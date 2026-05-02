@@ -1,8 +1,9 @@
-import React, {createElement, useLayoutEffect, useRef, useState, type ReactNode} from "react";
+import React, {createElement, useContext, useEffect, useLayoutEffect, useRef, useState, type ReactNode} from "react";
 import {createRoot, type Root} from "react-dom/client";
 import {plot as imperativePlot, computePlot} from "../plot.js";
 import {PlotContext} from "./PlotContext.js";
 import type {MarkFactory} from "./useMark.js";
+import {PointerRoot, PointerContext} from "./interactions/PointerContext.js";
 
 // <Plot> renders a JSX <svg> populated by each mark's renderJSX(). For marks
 // whose renderJSX throws or is missing, we fall back to mounting the
@@ -134,27 +135,6 @@ export function Plot({children, title, subtitle, caption, figure, onValue, class
       return;
     }
 
-    // Tip relies on imperative pointer plumbing that subscribes to the SVG's
-    // `__data__` and dispatches via context — its show/hide can't be driven
-    // through the JSX render path without re-implementing that pipeline in
-    // React. When any mark is a Tip (or has tip enabled, which adds an
-    // implicit Tip in inferTips), render the whole plot imperatively.
-    if (flat.some(needsImperativePlot)) {
-      if (rootRef.current) rootRef.current.unmount(), (rootRef.current = null);
-      const svg = imperativePlot({...options, marks: flat, figure: false, style}) as SVGSVGElement;
-      if (classNameProp) svg.classList.add(classNameProp);
-      hostRef.current.replaceChildren(svg);
-      // Publish scaleDescriptors so descendants like <Legend scale="…"> can
-      // resolve named scales even when the plot is rendered imperatively.
-      try {
-        const computed = computePlot({...options, marks: flat, style});
-        publishResolved({scaleDescriptors: computed.scaleDescriptors, context: computed.context});
-      } catch {
-        // ignore — descendants will fall through to imperative.
-      }
-      return;
-    }
-
     let computed: any;
     try {
       computed = computePlot({...options, marks: flat, style});
@@ -190,7 +170,8 @@ export function Plot({children, title, subtitle, caption, figure, onValue, class
       };
     }
 
-    rootRef.current.render(<PlotSvg computed={computed} svgRef={onSvgRef} className={classNameProp} style={style} onInput={onInput} />);
+    const hasPointerConsumer = computed.marks.some(isPointerConsumer);
+    rootRef.current.render(<PlotSvg computed={computed} svgRef={onSvgRef} className={classNameProp} style={style} onInput={onInput} pointerEnabled={hasPointerConsumer} />);
 
     return () => {
       // Don't unmount — keep the root alive so subsequent updates reuse it.
@@ -199,6 +180,7 @@ export function Plot({children, title, subtitle, caption, figure, onValue, class
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [optionsKey, onValue, classNameProp, style]);
+
 
   // Unmount the React root when <Plot> unmounts.
   useLayoutEffect(() => {
@@ -238,9 +220,14 @@ export function Plot({children, title, subtitle, caption, figure, onValue, class
 }
 
 // Renders the whole plot as a JSX <svg> tree.
-function PlotSvg({computed, svgRef, className: classNameProp, onInput}: any) {
+function PlotSvg({computed, svgRef, className: classNameProp, onInput, pointerEnabled}: any) {
   const {className, ariaLabel, ariaDescription, dimensions} = computed;
   const {width, height} = dimensions;
+  const internalSvgRef = useRef<SVGSVGElement | null>(null);
+  const setSvgRef = (el: SVGSVGElement | null) => {
+    internalSvgRef.current = el;
+    if (typeof svgRef === "function") svgRef(el);
+  };
   const styleText = `:where(.${className}) {
   --plot-background: white;
   display: block;
@@ -252,9 +239,15 @@ function PlotSvg({computed, svgRef, className: classNameProp, onInput}: any) {
 :where(.${className} tspan) {
   white-space: pre;
 }`;
+  const inner = (
+    <>
+      <style>{styleText}</style>
+      {renderMarks(computed)}
+    </>
+  );
   return (
     <svg
-      ref={svgRef as any}
+      ref={setSvgRef}
       className={[className, classNameProp].filter(Boolean).join(" ") || undefined}
       fill="currentColor"
       fontFamily="system-ui, sans-serif"
@@ -269,8 +262,7 @@ function PlotSvg({computed, svgRef, className: classNameProp, onInput}: any) {
       xmlnsXlink="http://www.w3.org/1999/xlink"
       onInput={onInput ?? undefined}
     >
-      <style>{styleText}</style>
-      {renderMarks(computed)}
+      {pointerEnabled ? <PointerRoot svgRef={internalSvgRef}>{inner}</PointerRoot> : inner}
     </svg>
   );
 }
@@ -312,9 +304,39 @@ function renderMarks(computed: any): ReactNode[] {
 }
 
 // Renders one mark, preferring renderJSX and falling back to mounting
-// imperative render() output via a ref.
+// imperative render() output via a ref. Pointer-consumer marks (Tip,
+// crosshair sub-marks) render with an empty index by default; PointerRoot
+// will override this on hover to render only the selected datum.
 function MarkSlot({mark, index, scales, values, dims, context, facet, facetTranslate}: any) {
   const groupRef = useRef<SVGGElement | null>(null);
+  const pointerCtx = useContext(PointerContext);
+  const pointerConsumer = isPointerConsumer(mark);
+
+  // For pointer-consumer marks, replace the data index with the currently-
+  // selected index (or empty when nothing is hovered). The selection key
+  // identifies this mark's registration in PointerRoot.
+  const fi = (index as any)?.fi ?? null;
+  const regId = pointerConsumer ? pointerRegistrationId(mark, fi) : null;
+
+  useEffect(() => {
+    if (!pointerCtx || !pointerConsumer || regId == null || index == null || index.length === 0) return;
+    return pointerCtx.register({id: regId, index, values, fi, kx: 1, ky: 1, maxRadius: 40});
+  }, [pointerCtx, pointerConsumer, regId, index, values, fi]);
+
+  let renderIndex = index;
+  if (pointerConsumer && index != null) {
+    const sel = pointerCtx && regId ? pointerCtx.selectionFor(regId) : null;
+    const empty: any = [];
+    if ((index as any).fx !== undefined) (empty.fx = (index as any).fx), (empty.fy = (index as any).fy), (empty.fi = (index as any).fi);
+    if (sel?.i != null) {
+      const filled: any = [sel.i];
+      filled.fx = (index as any).fx; filled.fy = (index as any).fy; filled.fi = (index as any).fi;
+      renderIndex = filled;
+    } else {
+      renderIndex = empty;
+    }
+  }
+
   // Try renderJSX first.
   let jsx: ReactNode = null;
   let useFallback = false;
@@ -323,9 +345,9 @@ function MarkSlot({mark, index, scales, values, dims, context, facet, facetTrans
       // Coerce index to a plain Array. Marks call (index as number[]).map(...)
       // but `index` is often a TypedArray (e.g. Uint32Array); its .map()
       // coerces returned React elements back to numbers, corrupting output.
-      const arrayIndex = index == null || !ArrayBuffer.isView(index)
-        ? index
-        : Object.assign(Array.from(index as any), {fx: (index as any).fx, fy: (index as any).fy, fi: (index as any).fi});
+      const arrayIndex = renderIndex == null || !ArrayBuffer.isView(renderIndex)
+        ? renderIndex
+        : Object.assign(Array.from(renderIndex as any), {fx: (renderIndex as any).fx, fy: (renderIndex as any).fy, fi: (renderIndex as any).fi});
       jsx = mark.renderJSX(arrayIndex, scales, values, dims, context);
     } catch (e) {
       useFallback = true;
@@ -339,7 +361,7 @@ function MarkSlot({mark, index, scales, values, dims, context, facet, facetTrans
     const g = groupRef.current;
     if (!g) return;
     g.replaceChildren();
-    const node = mark.render(index, scales, values, dims, context);
+    const node = mark.render(renderIndex, scales, values, dims, context);
     if (node != null) {
       // Move attributes from the rendered <g> onto our slot, then re-parent
       // its children — matching the imperative pipeline's behavior of using
@@ -366,15 +388,24 @@ function MarkSlot({mark, index, scales, values, dims, context, facet, facetTrans
   return <>{jsx}</>;
 }
 
-// Marks whose imperative render() integrates with the imperative plot()
-// pipeline in ways the JSX path can't currently reproduce. Currently only
-// Tip (pointer-driven show/hide via shared SVG state); also true if the
-// caller enables `tip:` on any mark, which adds an implicit Tip.
-function needsImperativePlot(mark: any): boolean {
+// Marks driven by the pointer interaction. Their render is wrapped by
+// pointer.js's composeRender (which manages an internal "selected index"
+// via D3 event subscriptions on the imperative path). On the React path,
+// PointerRoot tracks the selection in React state; pointer-consumer marks
+// render with an empty index by default and are overridden to render the
+// selected datum when PointerRoot reports a hit.
+// Stable id for a pointer registration. Combines aria-label and facet so
+// each (mark, facet) pair gets its own slot; the ariaLabel is sufficient
+// to disambiguate Tip from crosshair sub-marks within a single Plot.
+function pointerRegistrationId(mark: any, fi: number | null): string {
+  return `${mark.ariaLabel ?? mark.constructor?.name ?? "?"}#${fi ?? "-"}`;
+}
+
+function isPointerConsumer(mark: any): boolean {
   if (mark == null) return false;
   if (mark.constructor?.name === "Tip") return true;
   if (mark.ariaLabel === "tip") return true;
-  if (mark.tip) return true;
+  if (typeof mark.ariaLabel === "string" && mark.ariaLabel.startsWith("crosshair ")) return true;
   return false;
 }
 
