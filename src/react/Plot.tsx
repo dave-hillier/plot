@@ -1,8 +1,6 @@
 import React, {createElement, useLayoutEffect, useRef, useState, type ReactNode} from "react";
 import {createRoot, type Root} from "react-dom/client";
 import {plot as imperativePlot, computePlot} from "../plot.js";
-// @ts-expect-error legends.js is untyped
-import {exposeLegends} from "../legends.js";
 import {PlotContext} from "./PlotContext.js";
 import type {MarkFactory} from "./useMark.js";
 
@@ -68,29 +66,30 @@ interface Registration {
   factory: MarkFactory;
 }
 
-interface LegendRegistration {
-  options: any;
-  host: HTMLElement;
+interface ResolvedScales {
+  scaleDescriptors: Record<string, any>;
+  context: any;
 }
 
 export function Plot({children, title, subtitle, caption, figure, onValue, className: classNameProp, style, ...options}: PlotProps) {
   const marksRef = useRef<Map<string, Registration>>(new Map());
-  const legendsRef = useRef<Map<string, LegendRegistration>>(new Map());
   const seenRef = useRef<Set<string>>(new Set());
   const dirtyRef = useRef(false);
   const [, setVersion] = useState(0);
+  const [resolved, setResolved] = useState<ResolvedScales | null>(null);
 
   seenRef.current = new Set();
 
-  const registerLegend = (id: string, opts: any, host: HTMLElement) => {
-    const prev = legendsRef.current.get(id);
-    legendsRef.current.set(id, {options: opts, host});
-    if (!prev || stableKey(prev.options) !== stableKey(opts)) {
-      setVersion((v) => v + 1);
+  // Updates the published scale descriptors only when the set of scale keys
+  // changes; identity-only changes mutate in place to avoid re-rendering
+  // every <Legend scale="…"> on each plot update.
+  const publishResolved = (next: ResolvedScales) => {
+    if (resolved && sameScaleKeys(resolved.scaleDescriptors, next.scaleDescriptors)) {
+      resolved.scaleDescriptors = next.scaleDescriptors;
+      resolved.context = next.context;
+    } else {
+      setResolved(next);
     }
-  };
-  const unregisterLegend = (id: string) => {
-    if (legendsRef.current.delete(id)) setVersion((v) => v + 1);
   };
 
   const registerMark = (id: string, stamp: string, factory: MarkFactory) => {
@@ -145,7 +144,14 @@ export function Plot({children, title, subtitle, caption, figure, onValue, class
       const svg = imperativePlot({...options, marks: flat, figure: false, style}) as SVGSVGElement;
       if (classNameProp) svg.classList.add(classNameProp);
       hostRef.current.replaceChildren(svg);
-      mountLegends(svg, legendsRef.current);
+      // Publish scaleDescriptors so descendants like <Legend scale="…"> can
+      // resolve named scales even when the plot is rendered imperatively.
+      try {
+        const computed = computePlot({...options, marks: flat, style});
+        publishResolved({scaleDescriptors: computed.scaleDescriptors, context: computed.context});
+      } catch {
+        // ignore — descendants will fall through to imperative.
+      }
       return;
     }
 
@@ -158,7 +164,6 @@ export function Plot({children, title, subtitle, caption, figure, onValue, class
       const svg = imperativePlot({...options, marks: flat, figure: false, style}) as SVGSVGElement;
       if (classNameProp) svg.classList.add(classNameProp);
       hostRef.current.replaceChildren(svg);
-      mountLegends(svg, legendsRef.current);
       return;
     }
 
@@ -168,15 +173,13 @@ export function Plot({children, title, subtitle, caption, figure, onValue, class
       rootRef.current = createRoot(hostRef.current);
     }
 
+    publishResolved({scaleDescriptors: computed.scaleDescriptors, context: computed.context});
+
     const onSvgRef = (svg: SVGSVGElement | null) => {
       if (!svg) return;
-      // Expose scale + legend on the svg, matching imperative API.
+      // Expose scale on the svg, matching imperative API.
       (svg as any).scale = computed.scales?.scales ?? null;
-      if (typeof exposeLegends === "function") {
-        (svg as any).legend = exposeLegends(computed.scaleDescriptors, computed.context, options);
-      }
       if (classNameProp) svg.classList.add(classNameProp);
-      mountLegends(svg, legendsRef.current);
     };
 
     let onInput: ((e: Event) => void) | null = null;
@@ -207,7 +210,12 @@ export function Plot({children, title, subtitle, caption, figure, onValue, class
     };
   }, []);
 
-  const ctx = {registerMark, registerLegend, unregisterLegend};
+  const ctx = {
+    registerMark,
+    scaleDescriptors: resolved?.scaleDescriptors,
+    context: resolved?.context,
+    plotOptions: options
+  };
 
   const wrap = (
     <PlotContext.Provider value={ctx}>
@@ -372,14 +380,14 @@ function needsImperativePlot(mark: any): boolean {
   return false;
 }
 
-function mountLegends(svg: SVGSVGElement, legends: Map<string, LegendRegistration>) {
-  for (const {options: legendOptions, host} of legends.values()) {
-    const scaleName = typeof legendOptions === "string" ? legendOptions : legendOptions?.scale;
-    if (scaleName && typeof (svg as any).legend === "function") {
-      const node = (svg as any).legend(scaleName, legendOptions);
-      if (node) host.replaceChildren(node);
-    }
-  }
+function sameScaleKeys(a: Record<string, any> | undefined, b: Record<string, any> | undefined): boolean {
+  if (a === b) return true;
+  if (!a || !b) return false;
+  const ka = Object.keys(a);
+  const kb = Object.keys(b);
+  if (ka.length !== kb.length) return false;
+  for (const k of ka) if (!(k in b)) return false;
+  return true;
 }
 
 function subarray(index: any): any {

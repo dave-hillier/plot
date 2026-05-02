@@ -21,8 +21,14 @@ export interface Dimensions {
 // `plot()` to do all rendering.
 export interface PlotContextValue {
   registerMark: (id: string, stamp: string, factory: MarkFactory) => void;
-  registerLegend?: (id: string, options: any, host: HTMLElement) => void;
-  unregisterLegend?: (id: string) => void;
+  // Resolved scale descriptors and render context from the parent Plot's
+  // computePlot() pass. Populated after the first render; descendants like
+  // <Legend scale="color"> read named scales out of this map.
+  scaleDescriptors?: Record<string, any>;
+  context?: any;
+  // Options passed to the parent <Plot> (used as defaults when resolving
+  // scale-name legends, mirroring `exposeLegends(..., defaults)`).
+  plotOptions?: Record<string, any>;
 }
 
 export const PlotContext = createContext<PlotContextValue | null>(null);
