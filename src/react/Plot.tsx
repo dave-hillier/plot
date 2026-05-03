@@ -1,5 +1,4 @@
 import React, {createElement, useLayoutEffect, useRef, useState, type ReactNode} from "react";
-import {createRoot, type Root} from "react-dom/client";
 import {plot as imperativePlot, computePlot} from "../plot.js";
 import {PlotContext} from "./PlotContext.js";
 import type {MarkFactory} from "./useMark.js";
@@ -9,10 +8,12 @@ import type {MarkFactory} from "./useMark.js";
 // imperative render() output via a ref + appendChild so existing
 // imperative-only marks keep working during the migration.
 //
-// The whole svg tree is rendered through a single createRoot. computePlot()
-// produces the pre-render state (scales, dimensions, facets, per-mark
-// channels) so this component can iterate marks and call renderJSX without
-// re-implementing the imperative pipeline.
+// Children's <Mark> components register their factories into marksRef during
+// render; a useLayoutEffect then runs computePlot and stores the result in
+// state. The component re-renders with <PlotSvg> as a normal React child so
+// the JSX tree participates in the parent root's act() scope under JSDOM.
+// Imperative escape hatches (Tip pointer plumbing, computePlot failures)
+// mount their SVG into a separate ref-managed host div.
 export interface PlotProps {
   children?: ReactNode;
   width?: number;
@@ -71,12 +72,19 @@ interface ResolvedScales {
   context: any;
 }
 
+type Mode =
+  | {kind: "empty"}
+  | {kind: "jsx"; computed: any; onSvgRef: (svg: SVGSVGElement | null) => void; onInput: ((e: Event) => void) | null}
+  | {kind: "imperative"; svg: SVGSVGElement};
+
 export function Plot({children, title, subtitle, caption, figure, onValue, className: classNameProp, style, ...options}: PlotProps) {
   const marksRef = useRef<Map<string, Registration>>(new Map());
   const seenRef = useRef<Set<string>>(new Set());
   const dirtyRef = useRef(false);
   const [, setVersion] = useState(0);
   const [resolved, setResolved] = useState<ResolvedScales | null>(null);
+  const [mode, setMode] = useState<Mode>({kind: "empty"});
+  const imperativeHostRef = useRef<HTMLDivElement>(null);
 
   seenRef.current = new Set();
 
@@ -116,12 +124,9 @@ export function Plot({children, title, subtitle, caption, figure, onValue, class
     }
   });
 
-  const hostRef = useRef<HTMLDivElement>(null);
-  const rootRef = useRef<Root | null>(null);
   const optionsKey = stableKey(options);
 
   useLayoutEffect(() => {
-    if (!hostRef.current) return;
     const flat: any[] = [];
     for (const {factory} of marksRef.current.values()) {
       const m = factory();
@@ -129,8 +134,7 @@ export function Plot({children, title, subtitle, caption, figure, onValue, class
       else flat.push(m);
     }
     if (!flat.length) {
-      if (rootRef.current) rootRef.current.unmount(), (rootRef.current = null);
-      hostRef.current.replaceChildren();
+      setMode((prev) => (prev.kind === "empty" ? prev : {kind: "empty"}));
       return;
     }
 
@@ -140,12 +144,11 @@ export function Plot({children, title, subtitle, caption, figure, onValue, class
     // React. When any mark is a Tip (or has tip enabled, which adds an
     // implicit Tip in inferTips), render the whole plot imperatively.
     if (flat.some(needsImperativePlot)) {
-      if (rootRef.current) rootRef.current.unmount(), (rootRef.current = null);
       const svg = imperativePlot({...options, marks: flat, figure: false, style}) as SVGSVGElement;
       if (classNameProp) svg.classList.add(classNameProp);
-      hostRef.current.replaceChildren(svg);
-      // Publish scaleDescriptors so descendants like <Legend scale="…"> can
-      // resolve named scales even when the plot is rendered imperatively.
+      setMode({kind: "imperative", svg});
+      // Still publish scaleDescriptors so descendants like <Legend scale="…">
+      // can resolve named scales even when the plot is rendered imperatively.
       try {
         const computed = computePlot({...options, marks: flat, style});
         publishResolved({scaleDescriptors: computed.scaleDescriptors, context: computed.context});
@@ -160,17 +163,10 @@ export function Plot({children, title, subtitle, caption, figure, onValue, class
       computed = computePlot({...options, marks: flat, style});
     } catch (e) {
       console.warn("Plot: computePlot failed, falling back to imperative.", e);
-      if (rootRef.current) rootRef.current.unmount(), (rootRef.current = null);
       const svg = imperativePlot({...options, marks: flat, figure: false, style}) as SVGSVGElement;
       if (classNameProp) svg.classList.add(classNameProp);
-      hostRef.current.replaceChildren(svg);
+      setMode({kind: "imperative", svg});
       return;
-    }
-
-    if (!rootRef.current) {
-      // Ensure the host has no leftover imperative children.
-      hostRef.current.replaceChildren();
-      rootRef.current = createRoot(hostRef.current);
     }
 
     publishResolved({scaleDescriptors: computed.scaleDescriptors, context: computed.context});
@@ -182,33 +178,30 @@ export function Plot({children, title, subtitle, caption, figure, onValue, class
       if (classNameProp) svg.classList.add(classNameProp);
     };
 
-    let onInput: ((e: Event) => void) | null = null;
-    if (onValue) {
-      onInput = (e) => {
-        const t = e.target as any;
-        if (t && "value" in t) onValue(t.value);
-      };
-    }
+    const onInput = onValue
+      ? (e: Event) => {
+          const t = e.target as any;
+          if (t && "value" in t) onValue(t.value);
+        }
+      : null;
 
-    rootRef.current.render(<PlotSvg computed={computed} svgRef={onSvgRef} className={classNameProp} style={style} onInput={onInput} />);
-
-    return () => {
-      // Don't unmount — keep the root alive so subsequent updates reuse it.
-      // The cleanup happens implicitly when the component unmounts via the
-      // unmount effect below.
-    };
+    setMode({kind: "jsx", computed, onSvgRef, onInput});
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [optionsKey, onValue, classNameProp, style]);
 
-  // Unmount the React root when <Plot> unmounts.
+  // Mount the imperatively-built SVG into the host div when in imperative
+  // mode. We deliberately do NOT clear children in cleanup: the test harness
+  // captures `container.firstElementChild` and reads `outerHTML` after the
+  // root unmounts, which would race with a cleanup that empties the host.
+  // React's reconciler clears the host's children when transitioning out of
+  // imperative mode (the conditional renders different JSX for the next
+  // mode), and host children are also dropped naturally on unmount.
   useLayoutEffect(() => {
-    return () => {
-      if (rootRef.current) {
-        rootRef.current.unmount();
-        rootRef.current = null;
-      }
-    };
-  }, []);
+    if (mode.kind !== "imperative") return;
+    const host = imperativeHostRef.current;
+    if (!host) return;
+    host.replaceChildren(mode.svg);
+  }, [mode]);
 
   const ctx = {
     registerMark,
@@ -217,23 +210,48 @@ export function Plot({children, title, subtitle, caption, figure, onValue, class
     plotOptions: options
   };
 
-  const wrap = (
-    <PlotContext.Provider value={ctx}>
-      <div ref={hostRef} className="plot-host" />
-      <div style={{display: "none"}}>{children}</div>
-    </PlotContext.Provider>
-  );
-
   const wantsFigure = figure ?? Boolean(title || subtitle || caption);
-  if (!wantsFigure) return wrap;
+
+  // In figure mode, wrap the plot in a div.plot-host inside the figure to
+  // match the imperative API's structure (figure > h2/h3 > div.plot-host > svg
+  // > figcaption). In non-figure mode, return the SVG directly (matching the
+  // existing .svg-snapshot test expectations) or the imperatively-mounted
+  // host div.
+  const plotElement =
+    mode.kind === "jsx" ? (
+      <PlotSvg
+        computed={mode.computed}
+        svgRef={mode.onSvgRef}
+        className={classNameProp}
+        onInput={mode.onInput}
+      />
+    ) : mode.kind === "imperative" ? (
+      <div ref={imperativeHostRef} className="plot-host" />
+    ) : (
+      <div className="plot-host" />
+    );
+
+  const hiddenChildren = <div style={{display: "none"}}>{children}</div>;
+
+  if (!wantsFigure) {
+    return (
+      <PlotContext.Provider value={ctx}>
+        {plotElement}
+        {hiddenChildren}
+      </PlotContext.Provider>
+    );
+  }
 
   return (
-    <figure style={{maxWidth: 640, margin: "0 auto"}}>
-      {title != null && <SlotHeader as="h2" content={title} style={{fontSize: "16px", fontWeight: "bold", margin: "0 0 4px"}} />}
-      {subtitle != null && <SlotHeader as="h3" content={subtitle} style={{fontSize: "12px", fontWeight: "normal", color: "#666", margin: "0 0 8px"}} />}
-      {wrap}
-      {caption != null && <SlotHeader as="figcaption" content={caption} style={{fontSize: "12px", color: "#666", marginTop: "4px"}} />}
-    </figure>
+    <PlotContext.Provider value={ctx}>
+      <figure style={{maxWidth: 640, margin: "0 auto"}}>
+        {title != null && <SlotHeader as="h2" content={title} style={{fontSize: "16px", fontWeight: "bold", margin: "0 0 4px"}} />}
+        {subtitle != null && <SlotHeader as="h3" content={subtitle} style={{fontSize: "12px", fontWeight: "normal", color: "#666", margin: "0 0 8px"}} />}
+        {mode.kind === "jsx" ? <div className="plot-host">{plotElement}</div> : plotElement}
+        {caption != null && <SlotHeader as="figcaption" content={caption} style={{fontSize: "12px", color: "#666", marginTop: "4px"}} />}
+        {hiddenChildren}
+      </figure>
+    </PlotContext.Provider>
   );
 }
 
