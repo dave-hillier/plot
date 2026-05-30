@@ -120,7 +120,8 @@ export function Ramp(props: RampProps) {
             y={marginTop}
             width={x(i) - x(i - 1)}
             height={height - marginTop - marginBottom}
-            fill={d}
+            fill={filterColor != null ? filterColor : d}
+            fillOpacity={filterColor != null ? d : undefined}
           />
         ))}
       </g>
@@ -139,7 +140,8 @@ export function Ramp(props: RampProps) {
             y={marginTop}
             width={Math.max(0, x.bandwidth() - 1)}
             height={height - marginTop - marginBottom}
-            fill={scale(d)}
+            fill={filterColor != null ? filterColor : scale(d)}
+            fillOpacity={filterColor != null ? scale(d) : undefined}
           />
         ))}
       </g>

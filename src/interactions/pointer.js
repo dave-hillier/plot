@@ -13,7 +13,7 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
   // displayed. Also default x or y to null to disable maybeTuple etc.
   if (px != null) (x ??= null), (channels = {...channels, px: {value: px, scale: "x"}});
   if (py != null) (y ??= null), (channels = {...channels, py: {value: py, scale: "y"}});
-  return {
+  const pointerResult = {
     x,
     y,
     channels,
@@ -187,6 +187,10 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
       return render(null);
     }, render)
   };
+  // Tag the pointer render so the React MarkSlot can recognize pointer-driven
+  // marks (which render only the selected datum) vs custom render-prop marks.
+  if (typeof pointerResult.render === "function") pointerResult.render.pointer = true;
+  return pointerResult;
 }
 
 export function pointer(options) {
