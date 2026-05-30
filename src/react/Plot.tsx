@@ -514,6 +514,11 @@ export function isPointerConsumer(mark: any): boolean {
   if (mark.constructor?.name === "Tip") return true;
   if (mark.ariaLabel === "tip") return true;
   if (typeof mark.ariaLabel === "string" && mark.ariaLabel.startsWith("crosshair ")) return true;
+  // Pointer-wrapped marks (Plot.pointer/pointerX/pointerY) tag their render
+  // function; such marks render only the pointer-selected datum, so they start
+  // empty until hover. (A bare `render` function alone is not enough — custom
+  // render-prop marks have one too.)
+  if (typeof mark.render === "function" && mark.render.pointer === true) return true;
   return false;
 }
 
