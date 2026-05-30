@@ -1,5 +1,6 @@
 import {createElement as h, Fragment, type ReactNode} from "react";
 import {renderMarksWith, isPointerConsumer} from "./Plot.js";
+import {createClipRegistry, registerClips, type ClipRegistry} from "./clip.js";
 
 // Builds the <svg> React element for a computed plot without any hooks, so it
 // can be serialized via renderToStaticMarkup for the imperative plot() entry
@@ -19,7 +20,11 @@ export function buildStaticPlotSvg(computed: any, warnings: number, classNamePro
 :where(.${className} tspan) {
   white-space: pre;
 }`;
-  const marks = renderMarksWith(computed, staticRenderOne);
+  const clipReg = createClipRegistry();
+  registerClips(computed, clipReg);
+  const marks = renderMarksWith(computed, (mark, index, values, dims, scales, context, key) =>
+    staticRenderOne(mark, index, values, dims, scales, context, key, clipReg)
+  );
   const warningIndicator =
     warnings > 0
       ? h(
@@ -48,6 +53,7 @@ export function buildStaticPlotSvg(computed: any, warnings: number, classNamePro
       "aria-description": ariaDescription ?? undefined
     },
     h("style", null, styleText),
+    ...clipReg.defs,
     ...marks,
     warningIndicator
   );
@@ -60,7 +66,8 @@ function staticRenderOne(
   dims: any,
   scales: any,
   context: any,
-  key: string
+  key: string,
+  clipReg: ClipRegistry
 ): ReactNode {
   if (typeof mark.renderJSX !== "function") return null;
   let renderIndex = index;
@@ -80,5 +87,6 @@ function staticRenderOne(
           fy: (renderIndex as any).fy,
           fi: (renderIndex as any).fi
         });
-  return h(Fragment, {key}, mark.renderJSX(arrayIndex, scales, values, dims, context));
+  const jsx = mark.renderJSX(arrayIndex, scales, values, dims, context);
+  return h(Fragment, {key}, clipReg ? clipReg.wrap(jsx, mark, dims, context) : jsx);
 }

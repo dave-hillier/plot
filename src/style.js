@@ -1,5 +1,4 @@
-import {group, namespaces, select} from "d3";
-import {create} from "./context.js";
+import {group, namespaces} from "d3";
 import {defined, nonempty} from "./defined.js";
 import {formatDefault} from "./format.js";
 import {isNone, isNoneish, isRound, maybeColorChannel, maybeNumberChannel} from "./options.js";
@@ -309,92 +308,6 @@ export function* groupIndex(I, position, mark, channels) {
     // Yield the current group, if any.
     if (Gg) yield Gg;
   }
-}
-
-// Note: may mutate selection.node!
-function applyClip(selection, mark, dimensions, context) {
-  let clipUrl;
-  const {clip = context.clip} = mark;
-  if (clip === "frame") {
-    // Wrap the G element with another (untransformed) G element, applying the
-    // clip to the parent G element so that the clip path is not affected by
-    // the mark’s transform. To simplify the adoption of this fix, mutate the
-    // passed-in selection.node to return the parent G element.
-    selection = create("svg:g", context).each(function () {
-      this.appendChild(selection.node());
-      selection.node = () => this; // Note: mutation!
-    });
-    clipUrl = getFrameClip(context, dimensions);
-  } else if (clip) {
-    clipUrl = getGeoClip(clip, context);
-  }
-
-  // Here we’re careful to apply the ARIA attributes to the outer G element when
-  // clipping is applied, and to apply the ARIA attributes before any other
-  // attributes (for readability).
-  applyAttr(selection, "aria-label", mark.ariaLabel);
-  applyAttr(selection, "aria-description", mark.ariaDescription);
-  applyAttr(selection, "aria-hidden", mark.ariaHidden);
-  applyAttr(selection, "clip-path", clipUrl);
-}
-
-function memoizeClip(clip) {
-  const cache = new WeakMap();
-  return (context, dimensions) => {
-    let url = cache.get(context);
-    if (!url) {
-      const id = getClipId();
-      select(context.ownerSVGElement).append("clipPath").attr("id", id).call(clip, context, dimensions);
-      cache.set(context, (url = `url(#${id})`));
-    }
-    return url;
-  };
-}
-
-const getFrameClip = memoizeClip((clipPath, context, dimensions) => {
-  const {width, height, marginLeft, marginRight, marginTop, marginBottom} = dimensions;
-  clipPath
-    .append("rect")
-    .attr("x", marginLeft)
-    .attr("y", marginTop)
-    .attr("width", width - marginRight - marginLeft)
-    .attr("height", height - marginTop - marginBottom);
-});
-
-const geoClipCache = new WeakMap();
-const sphere = {type: "Sphere"};
-
-function getGeoClip(geo, context) {
-  let cache, url;
-  if (!(cache = geoClipCache.get(context))) geoClipCache.set(context, (cache = new WeakMap()));
-  if (geo.type === "Sphere") geo = sphere; // coalesce all spheres
-  if (!(url = cache.get(geo))) {
-    const id = getClipId();
-    select(context.ownerSVGElement).append("clipPath").attr("id", id).append("path").attr("d", context.path()(geo));
-    cache.set(geo, (url = `url(#${id})`));
-  }
-  return url;
-}
-
-// Note: may mutate selection.node!
-export function applyIndirectStyles(selection, mark, dimensions, context) {
-  applyClip(selection, mark, dimensions, context);
-  applyAttr(selection, "class", mark.className);
-  applyAttr(selection, "fill", mark.fill);
-  applyAttr(selection, "fill-opacity", mark.fillOpacity);
-  applyAttr(selection, "stroke", mark.stroke);
-  applyAttr(selection, "stroke-width", mark.strokeWidth);
-  applyAttr(selection, "stroke-opacity", mark.strokeOpacity);
-  applyAttr(selection, "stroke-linejoin", mark.strokeLinejoin);
-  applyAttr(selection, "stroke-linecap", mark.strokeLinecap);
-  applyAttr(selection, "stroke-miterlimit", mark.strokeMiterlimit);
-  applyAttr(selection, "stroke-dasharray", mark.strokeDasharray);
-  applyAttr(selection, "stroke-dashoffset", mark.strokeDashoffset);
-  applyAttr(selection, "shape-rendering", mark.shapeRendering);
-  applyAttr(selection, "filter", mark.imageFilter);
-  applyAttr(selection, "paint-order", mark.paintOrder);
-  const {pointerEvents = context.pointerSticky === false ? "none" : undefined} = mark;
-  applyAttr(selection, "pointer-events", pointerEvents);
 }
 
 export function applyDirectStyles(selection, mark) {

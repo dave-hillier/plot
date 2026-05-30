@@ -13,6 +13,9 @@
       white-space: pre;
     }
   </style>
+  <clipPath id="plot-clip-1">
+    <rect x="40" y="20" width="580" height="70"></rect>
+  </clipPath>
   <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(-0.5,10)">
     <path transform="translate(40,23)" d="M0,0L-6,0"></path>
     <path transform="translate(40,45)" d="M0,0L-6,0"></path>
@@ -33,10 +36,14 @@
     <text transform="translate(330,90)" y="0.71em">B</text>
     <text transform="translate(523,90)" y="0.71em">C</text>
   </g>
-  <rect aria-label="frame" fill="none" stroke="currentColor" x="40" y="20" width="580" height="70"></rect>
-  <g aria-label="text" font-size="50" transform="translate(0,10)">
-    <text transform="translate(137,23)" y="0.32em">A</text>
-    <text transform="translate(330,45)" y="0.32em">B</text>
-    <text transform="translate(523,67)" y="0.32em">C</text>
+  <g clip-path="url(#plot-clip-1)" aria-label="frame">
+    <rect fill="none" stroke="currentColor" x="40" y="20" width="580" height="70"></rect>
+  </g>
+  <g clip-path="url(#plot-clip-1)" aria-label="text">
+    <g font-size="50" transform="translate(0,10)">
+      <text transform="translate(137,23)" y="0.32em">A</text>
+      <text transform="translate(330,45)" y="0.32em">B</text>
+      <text transform="translate(523,67)" y="0.32em">C</text>
+    </g>
   </g>
 </svg>

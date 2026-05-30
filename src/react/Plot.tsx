@@ -1,10 +1,19 @@
-import React, {useContext, useEffect, useLayoutEffect, useRef, useState, type ReactNode} from "react";
+import React, {
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type ReactNode,
+  type ReactElement
+} from "react";
 import {computePlot} from "../plot.js";
 import {consumeWarnings} from "../warnings.js";
 import {PlotContext} from "./PlotContext.js";
 import type {MarkFactory} from "./useMark.js";
 import {PointerRoot, PointerContext} from "./interactions/PointerContext.js";
 import {buildAutoLegends} from "./legends/Legend.js";
+import {createClipRegistry, registerClips, type ClipRegistry} from "./clip.js";
 
 // <Plot> renders a JSX <svg> populated entirely by each mark's renderJSX();
 // there is no imperative (d3-selection) render fallback.
@@ -73,9 +82,26 @@ interface ResolvedScales {
 
 type Mode =
   | {kind: "empty"}
-  | {kind: "jsx"; computed: any; onSvgRef: (svg: SVGSVGElement | null) => void; onInput: ((e: Event) => void) | null; pointerEnabled: boolean; warnings: number};
+  | {
+      kind: "jsx";
+      computed: any;
+      onSvgRef: (svg: SVGSVGElement | null) => void;
+      onInput: ((e: Event) => void) | null;
+      pointerEnabled: boolean;
+      warnings: number;
+    };
 
-export function Plot({children, title, subtitle, caption, figure, onValue, className: classNameProp, style, ...options}: PlotProps) {
+export function Plot({
+  children,
+  title,
+  subtitle,
+  caption,
+  figure,
+  onValue,
+  className: classNameProp,
+  style,
+  ...options
+}: PlotProps) {
   const marksRef = useRef<Map<string, Registration>>(new Map());
   const seenRef = useRef<Set<string>>(new Set());
   const dirtyRef = useRef(false);
@@ -185,7 +211,9 @@ export function Plot({children, title, subtitle, caption, figure, onValue, class
   // Auto-legends (color/opacity/symbol scales with legend requested) render
   // via the React legend components and force figure mode, matching the
   // imperative plot()'s createLegends behavior.
-  const autoLegends = resolved?.scaleDescriptors ? buildAutoLegends(resolved.scaleDescriptors, resolved.context, options) : [];
+  const autoLegends = resolved?.scaleDescriptors
+    ? buildAutoLegends(resolved.scaleDescriptors, resolved.context, options)
+    : [];
   const wantsFigure = figure ?? Boolean(title || subtitle || caption || autoLegends.length > 0);
 
   // In figure mode, wrap the plot in a div.plot-host inside the figure to
@@ -221,11 +249,21 @@ export function Plot({children, title, subtitle, caption, figure, onValue, class
   return (
     <PlotContext.Provider value={ctx}>
       <figure style={{maxWidth: 640, margin: "0 auto"}}>
-        {title != null && <SlotHeader as="h2" content={title} style={{fontSize: "16px", fontWeight: "bold", margin: "0 0 4px"}} />}
-        {subtitle != null && <SlotHeader as="h3" content={subtitle} style={{fontSize: "12px", fontWeight: "normal", color: "#666", margin: "0 0 8px"}} />}
+        {title != null && (
+          <SlotHeader as="h2" content={title} style={{fontSize: "16px", fontWeight: "bold", margin: "0 0 4px"}} />
+        )}
+        {subtitle != null && (
+          <SlotHeader
+            as="h3"
+            content={subtitle}
+            style={{fontSize: "12px", fontWeight: "normal", color: "#666", margin: "0 0 8px"}}
+          />
+        )}
         {autoLegends}
         {mode.kind === "jsx" ? <div className="plot-host">{plotElement}</div> : plotElement}
-        {caption != null && <SlotHeader as="figcaption" content={caption} style={{fontSize: "12px", color: "#666", marginTop: "4px"}} />}
+        {caption != null && (
+          <SlotHeader as="figcaption" content={caption} style={{fontSize: "12px", color: "#666", marginTop: "4px"}} />
+        )}
         {hiddenChildren}
       </figure>
     </PlotContext.Provider>
@@ -258,13 +296,20 @@ function PlotSvg({computed, svgRef, className: classNameProp, onInput, pointerEn
     warnings > 0 ? (
       <text x={width} y={20} dy="-1em" textAnchor="end" fontFamily="initial">
         {"⚠️"}
-        <title>{`${warnings.toLocaleString("en-US")} warning${warnings === 1 ? "" : "s"}. Please check the console.`}</title>
+        <title>{`${warnings.toLocaleString("en-US")} warning${
+          warnings === 1 ? "" : "s"
+        }. Please check the console.`}</title>
       </text>
     ) : null;
+  // Allocate clip-path defs up front (pre-pass) so they're known before the
+  // marks that reference them are rendered, then render them in the <svg>.
+  const clipReg = createClipRegistry();
+  registerClips(computed, clipReg);
   const inner = (
     <>
       <style>{styleText}</style>
-      {renderMarks(computed)}
+      {clipReg.defs}
+      {renderMarks(computed, clipReg)}
       {warningIndicator}
     </>
   );
@@ -297,7 +342,12 @@ function facetTransform(facetTranslate: any, f: any): string | undefined {
   if (typeof facetTranslate !== "function") return undefined;
   let transform: string | undefined;
   facetTranslate.call(
-    {tagName: "g", setAttribute: (k: string, v: string) => {if (k === "transform") transform = v;}},
+    {
+      tagName: "g",
+      setAttribute: (k: string, v: string) => {
+        if (k === "transform") transform = v;
+      }
+    },
     f
   );
   return transform;
@@ -321,7 +371,18 @@ export type RenderOne = (
 // per-mark rendering is delegated to `renderOne` so the interactive and
 // static paths share identical structure.
 export function renderMarksWith(computed: any, renderOne: RenderOne): ReactNode[] {
-  const {marks, stateByMark, facetStateByMark, scales, superdimensions, subdimensions, context, facets, facetDomains, facetTranslate} = computed;
+  const {
+    marks,
+    stateByMark,
+    facetStateByMark,
+    scales,
+    superdimensions,
+    subdimensions,
+    context,
+    facets,
+    facetDomains,
+    facetTranslate
+  } = computed;
   const out: ReactNode[] = [];
   marks.forEach((mark: any, i: number) => {
     const {channels, values, facets: indexes} = stateByMark.get(mark);
@@ -366,16 +427,25 @@ export function renderMarksWith(computed: any, renderOne: RenderOne): ReactNode[
   return out;
 }
 
-function renderMarks(computed: any): ReactNode[] {
+function renderMarks(computed: any, clipReg: ClipRegistry): ReactNode[] {
   return renderMarksWith(computed, (mark, index, values, dims, scales, context, key) => (
-    <MarkSlot key={key} mark={mark} index={index} scales={scales} values={values} dims={dims} context={context} />
+    <MarkSlot
+      key={key}
+      mark={mark}
+      index={index}
+      scales={scales}
+      values={values}
+      dims={dims}
+      context={context}
+      clipReg={clipReg}
+    />
   ));
 }
 
 // Renders one mark via its renderJSX into pure React SVG. Pointer-consumer
 // marks (Tip, crosshair sub-marks) render with an empty index by default;
 // PointerRoot will override this on hover to render only the selected datum.
-function MarkSlot({mark, index, scales, values, dims, context}: any) {
+function MarkSlot({mark, index, scales, values, dims, context, clipReg}: any) {
   const pointerCtx = useContext(PointerContext);
   const pointerConsumer = isPointerConsumer(mark);
 
@@ -394,10 +464,13 @@ function MarkSlot({mark, index, scales, values, dims, context}: any) {
   if (pointerConsumer && index != null) {
     const sel = pointerCtx && regId ? pointerCtx.selectionFor(regId) : null;
     const empty: any = [];
-    if ((index as any).fx !== undefined) (empty.fx = (index as any).fx), (empty.fy = (index as any).fy), (empty.fi = (index as any).fi);
+    if ((index as any).fx !== undefined)
+      (empty.fx = (index as any).fx), (empty.fy = (index as any).fy), (empty.fi = (index as any).fi);
     if (sel?.i != null) {
       const filled: any = [sel.i];
-      filled.fx = (index as any).fx; filled.fy = (index as any).fy; filled.fi = (index as any).fi;
+      filled.fx = (index as any).fx;
+      filled.fy = (index as any).fy;
+      filled.fi = (index as any).fi;
       renderIndex = filled;
     } else {
       renderIndex = empty;
@@ -411,10 +484,16 @@ function MarkSlot({mark, index, scales, values, dims, context}: any) {
   const arrayIndex =
     renderIndex == null || !ArrayBuffer.isView(renderIndex)
       ? renderIndex
-      : Object.assign(Array.from(renderIndex as any), {fx: (renderIndex as any).fx, fy: (renderIndex as any).fy, fi: (renderIndex as any).fi});
+      : Object.assign(Array.from(renderIndex as any), {
+          fx: (renderIndex as any).fx,
+          fy: (renderIndex as any).fy,
+          fi: (renderIndex as any).fi
+        });
   // renderJSX usually returns its own <g> wrapper; we don't add another, to
-  // keep the DOM structure identical to the imperative output.
-  return <>{mark.renderJSX(arrayIndex, scales, values, dims, context)}</>;
+  // keep the DOM structure identical to the imperative output. Clip wrapping
+  // (frame/geo) is applied via the clip registry.
+  const jsx = mark.renderJSX(arrayIndex, scales, values, dims, context) as ReactElement;
+  return <>{clipReg ? clipReg.wrap(jsx, mark, dims, context) : jsx}</>;
 }
 
 // Marks driven by the pointer interaction. Their render is wrapped by
@@ -465,7 +544,11 @@ function SlotHeader({as: Tag, content, style: styleProp}: {as: any; content: any
     }
   }, [content]);
   const isNode = content && typeof (content as any).nodeType === "number";
-  return <Tag ref={ref} style={styleProp}>{isNode ? null : content}</Tag>;
+  return (
+    <Tag ref={ref} style={styleProp}>
+      {isNode ? null : content}
+    </Tag>
+  );
 }
 
 function stableKey(options: Record<string, any>): string {
