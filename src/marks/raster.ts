@@ -301,8 +301,13 @@ export class Raster extends AbstractRaster {
     const context2d = canvas.getContext("2d");
     const image = context2d.createImageData(w, rh);
     const imageData = image.data;
-    let {r, g, b} = rgb((this as any).fill) ?? {r: 0, g: 0, b: 0};
-    let a = ((this as any).fillOpacity ?? 1) * 255;
+    // rgba is the parsed fill color, including its own alpha (e.g. an
+    // rgba(…) string carrying per-pixel opacity); `a` is the mark-level
+    // fillOpacity baseline (or, if present, the per-pixel fillOpacity
+    // channel). The final pixel alpha composes the color's own opacity with
+    // `a`, matching observablehq-plot's `rgba[3] * a`.
+    let rgba = rgb((this as any).fill ?? "black");
+    let a = (this as any).fillOpacity ?? 1;
     for (let i = 0; i < n; ++i) {
       const j = i << 2;
       if (F) {
@@ -311,13 +316,13 @@ export class Raster extends AbstractRaster {
           imageData[j + 3] = 0;
           continue;
         }
-        ({r, g, b} = rgb(fi));
+        rgba = rgb(fi);
       }
-      if (FO) a = FO[i + offset] * 255;
-      imageData[j + 0] = r;
-      imageData[j + 1] = g;
-      imageData[j + 2] = b;
-      imageData[j + 3] = a;
+      if (FO) a = FO[i + offset];
+      imageData[j + 0] = rgba.r;
+      imageData[j + 1] = rgba.g;
+      imageData[j + 2] = rgba.b;
+      imageData[j + 3] = (rgba.opacity ?? 1) * a * 255;
     }
     if (this.blur > 0) blurImage(image, this.blur);
     context2d.putImageData(image, 0, 0);

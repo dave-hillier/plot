@@ -62,6 +62,6 @@
     <text transform="translate(620,370)" y="0.71em">4.0</text>
   </g>
   <g aria-label="raster" transform="translate(0.5,0.5)">
-    <image transform="translate(40,370) scale(1,-1)" width="580" height="350" preserveAspectRatio="none" image-rendering="pixelated" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAKCAYAAACT+/8OAAAABmJLR0QA/wD/AP+gvaeTAAAAfklEQVQImS3LoQ5BARgF4O/OVU1gFI9gNtUm2H0CiRcwNi/hETyCoF9ZMrtBcqvGJmiCol3hl87Zt3OSyaqsYNzJQfI+dCvYXpcgbZ4yoBGRrIu8gtaxjEX53IHMIOD8WICNS8D+Nopz7w+fWS2giEjr+Txaexjw7U8DXnfwA+UOHSJWYM0tAAAAAElFTkSuQmCC"></image>
+    <image transform="translate(40,370) scale(1,-1)" width="580" height="350" preserveAspectRatio="none" image-rendering="pixelated" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAKCAYAAACT+/8OAAAABmJLR0QA/wD/AP+gvaeTAAAAgUlEQVQImSXMoQ4BYQAA4O84kZkJ2GRJsGnazRMg8AJG8BAewSMIZKJolCuoGpugCYp2wt+/fVEyv2XQLW5LEH32tQxW11kL4vKxD5Q0IF4MR6ByuNQhvr3WINEO4vScgmUuDWJz74WjmQbxHedBds6CKOwmQVQ7QfzaAxC9H3X4A6NvHjBYBJ3iAAAAAElFTkSuQmCC"></image>
   </g>
 </svg>
