@@ -43,12 +43,21 @@ export function Legend(props: LegendProps) {
   return <div className="plot-legend">{jsx}</div>;
 }
 
-// Auto-legends for a plot: mirrors createLegends() (src/legends.js) detection —
-// iterate the legend scales in registry order (symbol, color, opacity), render
-// each whose `legend` option is truthy, and suppress a standalone color legend
-// when the symbol legend already encodes color. Renders via the React legend
-// components (no PlotContext needed; the scaleDescriptors are passed directly),
-// so it can be used both inside <Plot> and by the imperative plot() entry.
+// Standalone legend (Plot.legend(options)): dispatches the same swatches/ramp
+// shapes as the <Legend> façade but returns the bare element (no plot-legend
+// wrapper), matching the imperative legend() output. Returns null for identity
+// or otherwise unrenderable scales; throws (at render time) for invalid swatches
+// requests, mirroring the d3 legend builders.
+export function renderStandaloneLegend(props: LegendScales): React.ReactElement | null {
+  // Swatches() normalizes the scale internally, so call it directly (rather
+  // than gating on isSwatchesLegend, which inspects the raw, un-normalized
+  // type and misses e.g. {color: {domain: [...]}} ordinal scales). Fall back
+  // to the ramp path when it declines.
+  const swatches = Swatches(props);
+  if (swatches != null) return swatches;
+  return rampJSX(props as any);
+}
+
 // Renders a single named-scale legend (color/opacity/symbol) to a React
 // element, mirroring exposeLegends() (src/legends.js): the per-call `options`
 // override the plot's per-key defaults. Returns null for unknown/absent scales.
