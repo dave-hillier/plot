@@ -243,6 +243,7 @@ function SwatchesContainer({
       {scale.domain.map((d: any, i: number) => {
         const label = tf.call(null, d, i);
         return columns != null ? (
+          // d3's .text()/.attr("title") clear on a null value, so omit text/title.
           <div key={i} className={`${cls}-swatch`}>
             {renderSwatch(d, swatchWidth, swatchHeight)}
             <div className={`${cls}-swatch-label`} title={label != null ? `${label}` : undefined}>
@@ -250,9 +251,10 @@ function SwatchesContainer({
             </div>
           </div>
         ) : (
+          // Mirrors `createTextNode(tickFormat(...))`, which coerces null to "null".
           <span key={i} className={`${cls}-swatch`}>
             {renderSwatch(d, swatchWidth, swatchHeight)}
-            {label != null ? `${label}` : null}
+            {`${label}`}
           </span>
         );
       })}
