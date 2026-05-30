@@ -2,12 +2,7 @@ import {line as shapeLine} from "d3";
 import {createElement as h, Fragment, type ReactNode} from "react";
 import {markerToJSX} from "../react/Markers.js";
 import type {ChannelValue, ChannelValueDenseBinSpec, ChannelValueSpec} from "../channel.js";
-import {
-  directStyleProps,
-  groupChannelStyleProps,
-  indirectStyleProps,
-  transformProp
-} from "../react/styles.js";
+import {directStyleProps, groupChannelStyleProps, indirectStyleProps, transformProp} from "../react/styles.js";
 import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
 // @ts-ignore — runtime exports from ../curve.js not declared in its .d.ts
 import {curveAuto, maybeCurveAuto} from "../curve.js";
@@ -18,7 +13,7 @@ import type {Data, MarkOptions} from "../mark.js";
 import {markers} from "../marker.js";
 import type {MarkerOptions} from "../marker.js";
 // @ts-ignore — runtime exports from ../options.js not declared in its .d.ts
-import {coerceNumbers, indexOf, identity, maybeTuple, maybeZ} from "../options.js";
+import {coerceNumbers, indexOf, identity, keyof, maybeTuple, maybeZ} from "../options.js";
 import {
   // @ts-ignore — runtime exports from ../style.js not declared in its .d.ts
   groupIndex
@@ -161,34 +156,58 @@ export class Line extends Mark {
             .x((i: number) => X[i])
             .y((i: number) => Y[i]);
     const markerDefs = new Map<string, ReactNode>();
-    const markerAttrsFor = (color: any) => {
-      const out: Record<string, string> = {};
-      for (const [opt, attr] of [
-        [this.markerStart, "markerStart"],
-        [this.markerMid, "markerMid"],
-        [this.markerEnd, "markerEnd"]
-      ] as const) {
-        if (!opt) continue;
-        const m = markerToJSX(opt, color);
-        if (!m) continue;
-        if (!markerDefs.has(m.id)) markerDefs.set(m.id, m.defJSX);
-        out[attr] = m.urlRef;
-      }
-      return out;
+    const markerUrl = (marker: any, color: any): string | null => {
+      if (!marker) return null;
+      const m = markerToJSX(marker, color);
+      if (!m) return null;
+      if (!markerDefs.has(m.id)) markerDefs.set(m.id, m.defJSX);
+      return m.urlRef;
     };
     const groups = [...groupIndex(index, [X, Y], this, channels)] as number[][];
+    // Grouped-marker orientation (mirrors getGroupedOrientation in marker.js):
+    // when a series (z) is split into several path segments, only the first
+    // segment of the series gets marker-start and only the last gets
+    // marker-end; interior segment joints take marker-mid. Without a z channel,
+    // every path takes marker-start/mid/end directly.
+    const Z = (channels as any).z;
+    const START = new Array(groups.length).fill(false);
+    const END = new Array(groups.length).fill(false);
+    if (Z) {
+      const multi = groups.map((_, k) => k).filter((k) => groups[k].length > 1);
+      const UNSET = {};
+      let z: any = UNSET;
+      for (const k of multi) if (z !== (z = keyof(Z[groups[k][0]]))) START[k] = true;
+      z = UNSET;
+      for (let j = multi.length - 1; j >= 0; --j) {
+        const k = multi[j];
+        if (z !== (z = keyof(Z[groups[k][0]]))) END[k] = true;
+      }
+    }
     const paths = groups.map((G, k) => {
       const channel = groupChannelStyleProps(G, channels);
       const i = G[0];
       const color = S ? S[i] : this.stroke;
-      const markerAttrs = markerAttrsFor(color);
+      const markerAttrs: Record<string, string> = {};
+      const startUrl = !Z || START[k] ? markerUrl(this.markerStart, color) : markerUrl(this.markerMid, color);
+      if (startUrl) markerAttrs.markerStart = startUrl;
+      const midUrl = markerUrl(this.markerMid, color);
+      if (midUrl) markerAttrs.markerMid = midUrl;
+      if (!Z || END[k]) {
+        const endUrl = markerUrl(this.markerEnd, color);
+        if (endUrl) markerAttrs.markerEnd = endUrl;
+      }
       const titled = withTitleChild(channels, i, null);
       const pathEl = h("path", {key: k, ...direct, ...channel, ...markerAttrs, d: dOf(G)}, titled);
       return withHrefWrap(channels, this.target, i, pathEl);
     });
-    const defs = markerDefs.size > 0
-      ? h("defs", {key: "__defs"}, ...Array.from(markerDefs.entries()).map(([id, def]) => h(Fragment, {key: id}, def)))
-      : null;
+    const defs =
+      markerDefs.size > 0
+        ? h(
+            "defs",
+            {key: "__defs"},
+            ...Array.from(markerDefs.entries()).map(([id, def]) => h(Fragment, {key: id}, def))
+          )
+        : null;
     return h("g", {...indirect, ...transform}, defs, ...paths);
   }
 }
@@ -264,7 +283,13 @@ export function line(data?: Data, {x, y, ...options}: LineOptions = {}): Line {
  * ```
  */
 export function lineX(data?: Data, options: LineXOptions = {}): Line {
-  const {x = identity, y = indexOf, stroke, z = stroke === x ? null : undefined, ...rest} = maybeDenseIntervalY(options);
+  const {
+    x = identity,
+    y = indexOf,
+    stroke,
+    z = stroke === x ? null : undefined,
+    ...rest
+  } = maybeDenseIntervalY(options);
   return new Line(data, {...rest, x, y, z, stroke});
 }
 
@@ -288,6 +313,12 @@ export function lineX(data?: Data, options: LineXOptions = {}): Line {
  * ```
  */
 export function lineY(data?: Data, options: LineYOptions = {}): Line {
-  const {x = indexOf, y = identity, stroke, z = stroke === y ? null : undefined, ...rest} = maybeDenseIntervalX(options);
+  const {
+    x = indexOf,
+    y = identity,
+    stroke,
+    z = stroke === y ? null : undefined,
+    ...rest
+  } = maybeDenseIntervalX(options);
   return new Line(data, {...rest, x, y, z, stroke});
 }
