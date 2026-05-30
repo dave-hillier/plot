@@ -182,271 +182,226 @@
   <g aria-label="bar">
     <rect fill="#d73027" x="95" y="23" width="16.916" height="14"><title>Very Unfavorable 4%</title></rect>
     <rect fill="#fc8d59" x="111.916" y="23" width="25.373" height="14"><title>Somewhat Unfavorable 6%</title></rect>
-    <rect fill="#fee090" x="137.289" y="23" width="0" height="14"><title>Don't know undefined%</title></rect>
     <rect fill="#e0f3f8" x="137.289" y="23" width="12.687" height="14"><title>Have not heard of them 3%</title></rect>
     <rect fill="#91bfdb" x="149.976" y="23" width="109.952" height="14"><title>Somewhat Favorable 26%</title></rect>
     <rect fill="#4575b4" x="259.928" y="23" width="186.072" height="14"><title>Very Favorable 44%</title></rect>
     <rect fill="#d73027" x="95" y="38" width="22.645" height="14"><title>Very Unfavorable 4%</title></rect>
     <rect fill="#fc8d59" x="117.645" y="38" width="39.629" height="14"><title>Somewhat Unfavorable 7%</title></rect>
-    <rect fill="#fee090" x="157.274" y="38" width="0" height="14"><title>Don't know undefined%</title></rect>
     <rect fill="#e0f3f8" x="157.274" y="38" width="28.306" height="14"><title>Have not heard of them 5%</title></rect>
     <rect fill="#91bfdb" x="185.581" y="38" width="169.839" height="14"><title>Somewhat Favorable 30%</title></rect>
     <rect fill="#4575b4" x="355.419" y="38" width="90.581" height="14"><title>Very Favorable 16%</title></rect>
     <rect fill="#d73027" x="95" y="53" width="22.5" height="14"><title>Very Unfavorable 5%</title></rect>
     <rect fill="#fc8d59" x="117.5" y="53" width="45" height="14"><title>Somewhat Unfavorable 10%</title></rect>
-    <rect fill="#fee090" x="162.5" y="53" width="0" height="14"><title>Don't know undefined%</title></rect>
     <rect fill="#e0f3f8" x="162.5" y="53" width="4.5" height="14"><title>Have not heard of them 1%</title></rect>
     <rect fill="#91bfdb" x="167" y="53" width="153" height="14"><title>Somewhat Favorable 34%</title></rect>
     <rect fill="#4575b4" x="320" y="53" width="126" height="14"><title>Very Favorable 28%</title></rect>
     <rect fill="#d73027" x="95" y="68" width="24.632" height="14"><title>Very Unfavorable 4%</title></rect>
     <rect fill="#fc8d59" x="119.632" y="68" width="30.789" height="14"><title>Somewhat Unfavorable 5%</title></rect>
-    <rect fill="#fee090" x="150.421" y="68" width="0" height="14"><title>Don't know undefined%</title></rect>
     <rect fill="#e0f3f8" x="150.421" y="68" width="55.421" height="14"><title>Have not heard of them 9%</title></rect>
     <rect fill="#91bfdb" x="205.842" y="68" width="166.263" height="14"><title>Somewhat Favorable 27%</title></rect>
     <rect fill="#4575b4" x="372.105" y="68" width="73.895" height="14"><title>Very Favorable 12%</title></rect>
     <rect fill="#d73027" x="95" y="83" width="27.529" height="14"><title>Very Unfavorable 4%</title></rect>
     <rect fill="#fc8d59" x="122.529" y="83" width="55.059" height="14"><title>Somewhat Unfavorable 8%</title></rect>
-    <rect fill="#fee090" x="177.588" y="83" width="0" height="14"><title>Don't know undefined%</title></rect>
     <rect fill="#e0f3f8" x="177.588" y="83" width="68.824" height="14"><title>Have not heard of them 10%</title></rect>
     <rect fill="#91bfdb" x="246.412" y="83" width="144.529" height="14"><title>Somewhat Favorable 21%</title></rect>
     <rect fill="#4575b4" x="390.941" y="83" width="55.059" height="14"><title>Very Favorable 8%</title></rect>
     <rect fill="#d73027" x="95" y="98" width="23.797" height="14"><title>Very Unfavorable 4%</title></rect>
     <rect fill="#fc8d59" x="118.797" y="98" width="29.746" height="14"><title>Somewhat Unfavorable 5%</title></rect>
-    <rect fill="#fee090" x="148.542" y="98" width="0" height="14"><title>Don't know undefined%</title></rect>
     <rect fill="#e0f3f8" x="148.542" y="98" width="35.695" height="14"><title>Have not heard of them 6%</title></rect>
     <rect fill="#91bfdb" x="184.237" y="98" width="184.424" height="14"><title>Somewhat Favorable 31%</title></rect>
     <rect fill="#4575b4" x="368.661" y="98" width="77.339" height="14"><title>Very Favorable 13%</title></rect>
     <rect fill="#d73027" x="95" y="113" width="87.75" height="14"><title>Very Unfavorable 17%</title></rect>
     <rect fill="#fc8d59" x="182.75" y="113" width="61.941" height="14"><title>Somewhat Unfavorable 12%</title></rect>
-    <rect fill="#fee090" x="244.691" y="113" width="0" height="14"><title>Don't know undefined%</title></rect>
     <rect fill="#e0f3f8" x="244.691" y="113" width="25.809" height="14"><title>Have not heard of them 5%</title></rect>
     <rect fill="#91bfdb" x="270.5" y="113" width="118.721" height="14"><title>Somewhat Favorable 23%</title></rect>
     <rect fill="#4575b4" x="389.221" y="113" width="56.779" height="14"><title>Very Favorable 11%</title></rect>
     <rect fill="#d73027" x="95" y="128" width="29.872" height="14"><title>Very Unfavorable 4%</title></rect>
     <rect fill="#fc8d59" x="124.872" y="128" width="74.681" height="14"><title>Somewhat Unfavorable 10%</title></rect>
-    <rect fill="#fee090" x="199.553" y="128" width="0" height="14"><title>Don't know undefined%</title></rect>
     <rect fill="#e0f3f8" x="199.553" y="128" width="134.426" height="14"><title>Have not heard of them 18%</title></rect>
     <rect fill="#91bfdb" x="333.979" y="128" width="89.617" height="14"><title>Somewhat Favorable 12%</title></rect>
     <rect fill="#4575b4" x="423.596" y="128" width="22.404" height="14"><title>Very Favorable 3%</title></rect>
     <rect fill="#d73027" x="95" y="143" width="38.152" height="14"><title>Very Unfavorable 5%</title></rect>
     <rect fill="#fc8d59" x="133.152" y="143" width="68.674" height="14"><title>Somewhat Unfavorable 9%</title></rect>
-    <rect fill="#fee090" x="201.826" y="143" width="0" height="14"><title>Don't know undefined%</title></rect>
     <rect fill="#e0f3f8" x="201.826" y="143" width="106.826" height="14"><title>Have not heard of them 14%</title></rect>
     <rect fill="#91bfdb" x="308.652" y="143" width="114.457" height="14"><title>Somewhat Favorable 15%</title></rect>
     <rect fill="#4575b4" x="423.109" y="143" width="22.891" height="14"><title>Very Favorable 3%</title></rect>
     <rect fill="#d73027" x="95" y="158" width="28.653" height="14"><title>Very Unfavorable 4%</title></rect>
     <rect fill="#fc8d59" x="123.653" y="158" width="71.633" height="14"><title>Somewhat Unfavorable 10%</title></rect>
-    <rect fill="#fee090" x="195.286" y="158" width="0" height="14"><title>Don't know undefined%</title></rect>
     <rect fill="#e0f3f8" x="195.286" y="158" width="150.429" height="14"><title>Have not heard of them 21%</title></rect>
     <rect fill="#91bfdb" x="345.714" y="158" width="78.796" height="14"><title>Somewhat Favorable 11%</title></rect>
     <rect fill="#4575b4" x="424.51" y="158" width="21.49" height="14"><title>Very Favorable 3%</title></rect>
     <rect fill="#d73027" x="95" y="173" width="61.043" height="14"><title>Very Unfavorable 8%</title></rect>
     <rect fill="#fc8d59" x="156.043" y="173" width="68.674" height="14"><title>Somewhat Unfavorable 9%</title></rect>
-    <rect fill="#fee090" x="224.717" y="173" width="0" height="14"><title>Don't know undefined%</title></rect>
     <rect fill="#e0f3f8" x="224.717" y="173" width="99.196" height="14"><title>Have not heard of them 13%</title></rect>
     <rect fill="#91bfdb" x="323.913" y="173" width="91.565" height="14"><title>Somewhat Favorable 12%</title></rect>
     <rect fill="#4575b4" x="415.478" y="173" width="30.522" height="14"><title>Very Favorable 4%</title></rect>
     <rect fill="#d73027" x="95" y="188" width="22.404" height="14"><title>Very Unfavorable 3%</title></rect>
     <rect fill="#fc8d59" x="117.404" y="188" width="74.681" height="14"><title>Somewhat Unfavorable 10%</title></rect>
-    <rect fill="#fee090" x="192.085" y="188" width="0" height="14"><title>Don't know undefined%</title></rect>
     <rect fill="#e0f3f8" x="192.085" y="188" width="134.426" height="14"><title>Have not heard of them 18%</title></rect>
     <rect fill="#91bfdb" x="326.511" y="188" width="104.553" height="14"><title>Somewhat Favorable 14%</title></rect>
     <rect fill="#4575b4" x="431.064" y="188" width="14.936" height="14"><title>Very Favorable 2%</title></rect>
     <rect fill="#d73027" x="95" y="203" width="38.152" height="14"><title>Very Unfavorable 5%</title></rect>
     <rect fill="#fc8d59" x="133.152" y="203" width="68.674" height="14"><title>Somewhat Unfavorable 9%</title></rect>
-    <rect fill="#fee090" x="201.826" y="203" width="0" height="14"><title>Don't know undefined%</title></rect>
     <rect fill="#e0f3f8" x="201.826" y="203" width="160.239" height="14"><title>Have not heard of them 21%</title></rect>
     <rect fill="#91bfdb" x="362.065" y="203" width="76.304" height="14"><title>Somewhat Favorable 10%</title></rect>
     <rect fill="#4575b4" x="438.37" y="203" width="7.63" height="14"><title>Very Favorable 1%</title></rect>
     <rect fill="#d73027" x="95" y="218" width="36.563" height="14"><title>Very Unfavorable 5%</title></rect>
     <rect fill="#fc8d59" x="131.563" y="218" width="73.125" height="14"><title>Somewhat Unfavorable 10%</title></rect>
-    <rect fill="#fee090" x="204.688" y="218" width="0" height="14"><title>Don't know undefined%</title></rect>
     <rect fill="#e0f3f8" x="204.688" y="218" width="131.625" height="14"><title>Have not heard of them 18%</title></rect>
     <rect fill="#91bfdb" x="336.313" y="218" width="87.75" height="14"><title>Somewhat Favorable 12%</title></rect>
     <rect fill="#4575b4" x="424.063" y="218" width="21.938" height="14"><title>Very Favorable 3%</title></rect>
     <rect fill="#d73027" x="95" y="233" width="63.18" height="14"><title>Very Unfavorable 9%</title></rect>
     <rect fill="#fc8d59" x="158.18" y="233" width="84.24" height="14"><title>Somewhat Unfavorable 12%</title></rect>
-    <rect fill="#fee090" x="242.42" y="233" width="0" height="14"><title>Don't know undefined%</title></rect>
     <rect fill="#e0f3f8" x="242.42" y="233" width="98.28" height="14"><title>Have not heard of them 14%</title></rect>
     <rect fill="#91bfdb" x="340.7" y="233" width="84.24" height="14"><title>Somewhat Favorable 12%</title></rect>
     <rect fill="#4575b4" x="424.94" y="233" width="21.06" height="14"><title>Very Favorable 3%</title></rect>
     <rect fill="#d73027" x="95" y="248" width="11.7" height="14"><title>Very Unfavorable 3%</title></rect>
     <rect fill="#fc8d59" x="106.7" y="248" width="23.4" height="14"><title>Somewhat Unfavorable 6%</title></rect>
-    <rect fill="#fee090" x="130.1" y="248" width="0" height="14"><title>Don't know undefined%</title></rect>
     <rect fill="#e0f3f8" x="130.1" y="248" width="3.9" height="14"><title>Have not heard of them 1%</title></rect>
     <rect fill="#91bfdb" x="134" y="248" width="93.6" height="14"><title>Somewhat Favorable 24%</title></rect>
     <rect fill="#4575b4" x="227.6" y="248" width="218.4" height="14"><title>Very Favorable 56%</title></rect>
     <rect fill="#d73027" x="95" y="263" width="75.214" height="14"><title>Very Unfavorable 12%</title></rect>
     <rect fill="#fc8d59" x="170.214" y="263" width="81.482" height="14"><title>Somewhat Unfavorable 13%</title></rect>
-    <rect fill="#fee090" x="251.696" y="263" width="0" height="14"><title>Don't know undefined%</title></rect>
     <rect fill="#e0f3f8" x="251.696" y="263" width="50.143" height="14"><title>Have not heard of them 8%</title></rect>
     <rect fill="#91bfdb" x="301.839" y="263" width="106.554" height="14"><title>Somewhat Favorable 17%</title></rect>
     <rect fill="#4575b4" x="408.393" y="263" width="37.607" height="14"><title>Very Favorable 6%</title></rect>
     <rect fill="#d73027" x="95" y="278" width="31.909" height="14"><title>Very Unfavorable 6%</title></rect>
     <rect fill="#fc8d59" x="126.909" y="278" width="47.864" height="14"><title>Somewhat Unfavorable 9%</title></rect>
-    <rect fill="#fee090" x="174.773" y="278" width="0" height="14"><title>Don't know undefined%</title></rect>
     <rect fill="#e0f3f8" x="174.773" y="278" width="37.227" height="14"><title>Have not heard of them 7%</title></rect>
     <rect fill="#91bfdb" x="212" y="278" width="159.545" height="14"><title>Somewhat Favorable 30%</title></rect>
     <rect fill="#4575b4" x="371.545" y="278" width="74.455" height="14"><title>Very Favorable 14%</title></rect>
     <rect fill="#d73027" x="95" y="293" width="45.783" height="14"><title>Very Unfavorable 6%</title></rect>
     <rect fill="#fc8d59" x="140.783" y="293" width="68.674" height="14"><title>Somewhat Unfavorable 9%</title></rect>
-    <rect fill="#fee090" x="209.457" y="293" width="0" height="14"><title>Don't know undefined%</title></rect>
     <rect fill="#e0f3f8" x="209.457" y="293" width="99.196" height="14"><title>Have not heard of them 13%</title></rect>
     <rect fill="#91bfdb" x="308.652" y="293" width="106.826" height="14"><title>Somewhat Favorable 14%</title></rect>
     <rect fill="#4575b4" x="415.478" y="293" width="30.522" height="14"><title>Very Favorable 4%</title></rect>
     <rect fill="#d73027" x="95" y="308" width="38.152" height="14"><title>Very Unfavorable 5%</title></rect>
     <rect fill="#fc8d59" x="133.152" y="308" width="68.674" height="14"><title>Somewhat Unfavorable 9%</title></rect>
-    <rect fill="#fee090" x="201.826" y="308" width="0" height="14"><title>Don't know undefined%</title></rect>
     <rect fill="#e0f3f8" x="201.826" y="308" width="91.565" height="14"><title>Have not heard of them 12%</title></rect>
     <rect fill="#91bfdb" x="293.391" y="308" width="122.087" height="14"><title>Somewhat Favorable 16%</title></rect>
     <rect fill="#4575b4" x="415.478" y="308" width="30.522" height="14"><title>Very Favorable 4%</title></rect>
     <rect fill="#d73027" x="95" y="323" width="33.113" height="14"><title>Very Unfavorable 5%</title></rect>
     <rect fill="#fc8d59" x="128.113" y="323" width="52.981" height="14"><title>Somewhat Unfavorable 8%</title></rect>
-    <rect fill="#fee090" x="181.094" y="323" width="0" height="14"><title>Don't know undefined%</title></rect>
     <rect fill="#e0f3f8" x="181.094" y="323" width="178.811" height="14"><title>Have not heard of them 27%</title></rect>
     <rect fill="#91bfdb" x="359.906" y="323" width="66.226" height="14"><title>Somewhat Favorable 10%</title></rect>
     <rect fill="#4575b4" x="426.132" y="323" width="19.868" height="14"><title>Very Favorable 3%</title></rect>
     <rect fill="#d73027" x="95" y="338" width="39.736" height="14"><title>Very Unfavorable 6%</title></rect>
     <rect fill="#fc8d59" x="134.736" y="338" width="79.472" height="14"><title>Somewhat Unfavorable 12%</title></rect>
-    <rect fill="#fee090" x="214.208" y="338" width="0" height="14"><title>Don't know undefined%</title></rect>
     <rect fill="#e0f3f8" x="214.208" y="338" width="92.717" height="14"><title>Have not heard of them 14%</title></rect>
     <rect fill="#91bfdb" x="306.925" y="338" width="112.585" height="14"><title>Somewhat Favorable 17%</title></rect>
     <rect fill="#4575b4" x="419.509" y="338" width="26.491" height="14"><title>Very Favorable 4%</title></rect>
     <rect fill="#d73027" x="95" y="353" width="31.2" height="14"><title>Very Unfavorable 4%</title></rect>
     <rect fill="#fc8d59" x="126.2" y="353" width="78" height="14"><title>Somewhat Unfavorable 10%</title></rect>
-    <rect fill="#fee090" x="204.2" y="353" width="0" height="14"><title>Don't know undefined%</title></rect>
     <rect fill="#e0f3f8" x="204.2" y="353" width="117" height="14"><title>Have not heard of them 15%</title></rect>
     <rect fill="#91bfdb" x="321.2" y="353" width="101.4" height="14"><title>Somewhat Favorable 13%</title></rect>
     <rect fill="#4575b4" x="422.6" y="353" width="23.4" height="14"><title>Very Favorable 3%</title></rect>
     <rect fill="#d73027" x="95" y="368" width="29.872" height="14"><title>Very Unfavorable 4%</title></rect>
     <rect fill="#fc8d59" x="124.872" y="368" width="82.149" height="14"><title>Somewhat Unfavorable 11%</title></rect>
-    <rect fill="#fee090" x="207.021" y="368" width="0" height="14"><title>Don't know undefined%</title></rect>
     <rect fill="#e0f3f8" x="207.021" y="368" width="104.553" height="14"><title>Have not heard of them 14%</title></rect>
     <rect fill="#91bfdb" x="311.574" y="368" width="119.489" height="14"><title>Somewhat Favorable 16%</title></rect>
     <rect fill="#4575b4" x="431.064" y="368" width="14.936" height="14"><title>Very Favorable 2%</title></rect>
     <rect fill="#d73027" x="95" y="383" width="18.234" height="14"><title>Very Unfavorable 4%</title></rect>
     <rect fill="#fc8d59" x="113.234" y="383" width="36.468" height="14"><title>Somewhat Unfavorable 8%</title></rect>
-    <rect fill="#fee090" x="149.701" y="383" width="0" height="14"><title>Don't know undefined%</title></rect>
     <rect fill="#e0f3f8" x="149.701" y="383" width="13.675" height="14"><title>Have not heard of them 3%</title></rect>
     <rect fill="#91bfdb" x="163.377" y="383" width="168.662" height="14"><title>Somewhat Favorable 37%</title></rect>
     <rect fill="#4575b4" x="332.039" y="383" width="113.961" height="14"><title>Very Favorable 25%</title></rect>
     <rect fill="#d73027" x="95" y="398" width="43.875" height="14"><title>Very Unfavorable 6%</title></rect>
     <rect fill="#fc8d59" x="138.875" y="398" width="95.062" height="14"><title>Somewhat Unfavorable 13%</title></rect>
-    <rect fill="#fee090" x="233.937" y="398" width="0" height="14"><title>Don't know undefined%</title></rect>
     <rect fill="#e0f3f8" x="233.937" y="398" width="58.5" height="14"><title>Have not heard of them 8%</title></rect>
     <rect fill="#91bfdb" x="292.438" y="398" width="131.625" height="14"><title>Somewhat Favorable 18%</title></rect>
     <rect fill="#4575b4" x="424.063" y="398" width="21.938" height="14"><title>Very Favorable 3%</title></rect>
     <rect fill="#d73027" x="95" y="413" width="63.295" height="14"><title>Very Unfavorable 11%</title></rect>
     <rect fill="#fc8d59" x="158.295" y="413" width="80.557" height="14"><title>Somewhat Unfavorable 14%</title></rect>
-    <rect fill="#fee090" x="238.852" y="413" width="0" height="14"><title>Don't know undefined%</title></rect>
     <rect fill="#e0f3f8" x="238.852" y="413" width="23.016" height="14"><title>Have not heard of them 4%</title></rect>
     <rect fill="#91bfdb" x="261.869" y="413" width="143.852" height="14"><title>Somewhat Favorable 25%</title></rect>
     <rect fill="#4575b4" x="405.721" y="413" width="40.279" height="14"><title>Very Favorable 7%</title></rect>
     <rect fill="#d73027" x="95" y="428" width="71.5" height="14"><title>Very Unfavorable 11%</title></rect>
     <rect fill="#fc8d59" x="166.5" y="428" width="78" height="14"><title>Somewhat Unfavorable 12%</title></rect>
-    <rect fill="#fee090" x="244.5" y="428" width="0" height="14"><title>Don't know undefined%</title></rect>
     <rect fill="#e0f3f8" x="244.5" y="428" width="104" height="14"><title>Have not heard of them 16%</title></rect>
     <rect fill="#91bfdb" x="348.5" y="428" width="78" height="14"><title>Somewhat Favorable 12%</title></rect>
     <rect fill="#4575b4" x="426.5" y="428" width="19.5" height="14"><title>Very Favorable 3%</title></rect>
     <rect fill="#d73027" x="95" y="443" width="52.981" height="14"><title>Very Unfavorable 8%</title></rect>
     <rect fill="#fc8d59" x="147.981" y="443" width="72.849" height="14"><title>Somewhat Unfavorable 11%</title></rect>
-    <rect fill="#fee090" x="220.83" y="443" width="0" height="14"><title>Don't know undefined%</title></rect>
     <rect fill="#e0f3f8" x="220.83" y="443" width="66.226" height="14"><title>Have not heard of them 10%</title></rect>
     <rect fill="#91bfdb" x="287.057" y="443" width="119.208" height="14"><title>Somewhat Favorable 18%</title></rect>
     <rect fill="#4575b4" x="406.264" y="443" width="39.736" height="14"><title>Very Favorable 6%</title></rect>
     <rect fill="#d73027" x="95" y="458" width="78" height="14"><title>Very Unfavorable 14%</title></rect>
     <rect fill="#fc8d59" x="173" y="458" width="89.143" height="14"><title>Somewhat Unfavorable 16%</title></rect>
-    <rect fill="#fee090" x="262.143" y="458" width="0" height="14"><title>Don't know undefined%</title></rect>
     <rect fill="#e0f3f8" x="262.143" y="458" width="44.571" height="14"><title>Have not heard of them 8%</title></rect>
     <rect fill="#91bfdb" x="306.714" y="458" width="111.429" height="14"><title>Somewhat Favorable 20%</title></rect>
     <rect fill="#4575b4" x="418.143" y="458" width="27.857" height="14"><title>Very Favorable 5%</title></rect>
     <rect fill="#d73027" x="95" y="473" width="36" height="14"><title>Very Unfavorable 8%</title></rect>
     <rect fill="#fc8d59" x="131" y="473" width="40.5" height="14"><title>Somewhat Unfavorable 9%</title></rect>
-    <rect fill="#fee090" x="171.5" y="473" width="0" height="14"><title>Don't know undefined%</title></rect>
     <rect fill="#e0f3f8" x="171.5" y="473" width="13.5" height="14"><title>Have not heard of them 3%</title></rect>
     <rect fill="#91bfdb" x="185" y="473" width="144" height="14"><title>Somewhat Favorable 32%</title></rect>
     <rect fill="#4575b4" x="329" y="473" width="117" height="14"><title>Very Favorable 26%</title></rect>
     <rect fill="#d73027" x="95" y="488" width="20.057" height="14"><title>Very Unfavorable 4%</title></rect>
     <rect fill="#fc8d59" x="115.057" y="488" width="50.143" height="14"><title>Somewhat Unfavorable 10%</title></rect>
-    <rect fill="#fee090" x="165.2" y="488" width="0" height="14"><title>Don't know undefined%</title></rect>
     <rect fill="#e0f3f8" x="165.2" y="488" width="25.071" height="14"><title>Have not heard of them 5%</title></rect>
     <rect fill="#91bfdb" x="190.271" y="488" width="170.486" height="14"><title>Somewhat Favorable 34%</title></rect>
     <rect fill="#4575b4" x="360.757" y="488" width="85.243" height="14"><title>Very Favorable 17%</title></rect>
     <rect fill="#d73027" x="95" y="503" width="18.474" height="14"><title>Very Unfavorable 4%</title></rect>
     <rect fill="#fc8d59" x="113.474" y="503" width="32.329" height="14"><title>Somewhat Unfavorable 7%</title></rect>
-    <rect fill="#fee090" x="145.803" y="503" width="0" height="14"><title>Don't know undefined%</title></rect>
     <rect fill="#e0f3f8" x="145.803" y="503" width="32.329" height="14"><title>Have not heard of them 7%</title></rect>
     <rect fill="#91bfdb" x="178.132" y="503" width="166.263" height="14"><title>Somewhat Favorable 36%</title></rect>
     <rect fill="#4575b4" x="344.395" y="503" width="101.605" height="14"><title>Very Favorable 22%</title></rect>
     <rect fill="#d73027" x="95" y="518" width="15.775" height="14"><title>Very Unfavorable 4%</title></rect>
     <rect fill="#fc8d59" x="110.775" y="518" width="39.438" height="14"><title>Somewhat Unfavorable 10%</title></rect>
-    <rect fill="#fee090" x="150.213" y="518" width="0" height="14"><title>Don't know undefined%</title></rect>
     <rect fill="#e0f3f8" x="150.213" y="518" width="7.888" height="14"><title>Have not heard of them 2%</title></rect>
     <rect fill="#91bfdb" x="158.101" y="518" width="149.865" height="14"><title>Somewhat Favorable 38%</title></rect>
     <rect fill="#4575b4" x="307.966" y="518" width="138.034" height="14"><title>Very Favorable 35%</title></rect>
     <rect fill="#d73027" x="95" y="533" width="75.532" height="14"><title>Very Unfavorable 17%</title></rect>
     <rect fill="#fc8d59" x="170.532" y="533" width="79.975" height="14"><title>Somewhat Unfavorable 18%</title></rect>
-    <rect fill="#fee090" x="250.506" y="533" width="0" height="14"><title>Don't know undefined%</title></rect>
     <rect fill="#e0f3f8" x="250.506" y="533" width="31.101" height="14"><title>Have not heard of them 7%</title></rect>
     <rect fill="#91bfdb" x="281.608" y="533" width="124.405" height="14"><title>Somewhat Favorable 28%</title></rect>
     <rect fill="#4575b4" x="406.013" y="533" width="39.987" height="14"><title>Very Favorable 9%</title></rect>
     <rect fill="#d73027" x="95" y="548" width="137.172" height="14"><title>Very Unfavorable 34%</title></rect>
     <rect fill="#fc8d59" x="232.172" y="548" width="92.793" height="14"><title>Somewhat Unfavorable 23%</title></rect>
-    <rect fill="#fee090" x="324.966" y="548" width="0" height="14"><title>Don't know undefined%</title></rect>
     <rect fill="#e0f3f8" x="324.966" y="548" width="12.103" height="14"><title>Have not heard of them 3%</title></rect>
     <rect fill="#91bfdb" x="337.069" y="548" width="76.655" height="14"><title>Somewhat Favorable 19%</title></rect>
     <rect fill="#4575b4" x="413.724" y="548" width="32.276" height="14"><title>Very Favorable 8%</title></rect>
     <rect fill="#d73027" x="95" y="563" width="37.44" height="14"><title>Very Unfavorable 8%</title></rect>
     <rect fill="#fc8d59" x="132.44" y="563" width="102.96" height="14"><title>Somewhat Unfavorable 22%</title></rect>
-    <rect fill="#fee090" x="235.4" y="563" width="0" height="14"><title>Don't know undefined%</title></rect>
     <rect fill="#e0f3f8" x="235.4" y="563" width="18.72" height="14"><title>Have not heard of them 4%</title></rect>
     <rect fill="#91bfdb" x="254.12" y="563" width="159.12" height="14"><title>Somewhat Favorable 34%</title></rect>
     <rect fill="#4575b4" x="413.24" y="563" width="32.76" height="14"><title>Very Favorable 7%</title></rect>
     <rect fill="#d73027" x="95" y="578" width="85.61" height="14"><title>Very Unfavorable 20%</title></rect>
     <rect fill="#fc8d59" x="180.61" y="578" width="51.366" height="14"><title>Somewhat Unfavorable 12%</title></rect>
-    <rect fill="#fee090" x="231.976" y="578" width="0" height="14"><title>Don't know undefined%</title></rect>
     <rect fill="#e0f3f8" x="231.976" y="578" width="21.402" height="14"><title>Have not heard of them 5%</title></rect>
     <rect fill="#91bfdb" x="253.378" y="578" width="94.171" height="14"><title>Somewhat Favorable 22%</title></rect>
     <rect fill="#4575b4" x="347.549" y="578" width="98.451" height="14"><title>Very Favorable 23%</title></rect>
     <rect fill="#d73027" x="95" y="593" width="67.807" height="14"><title>Very Unfavorable 17%</title></rect>
     <rect fill="#fc8d59" x="162.807" y="593" width="55.841" height="14"><title>Somewhat Unfavorable 14%</title></rect>
-    <rect fill="#fee090" x="218.648" y="593" width="0" height="14"><title>Don't know undefined%</title></rect>
     <rect fill="#e0f3f8" x="218.648" y="593" width="11.966" height="14"><title>Have not heard of them 3%</title></rect>
     <rect fill="#91bfdb" x="230.614" y="593" width="91.739" height="14"><title>Somewhat Favorable 23%</title></rect>
     <rect fill="#4575b4" x="322.352" y="593" width="123.648" height="14"><title>Very Favorable 31%</title></rect>
     <rect fill="#d73027" x="95" y="608" width="67.045" height="14"><title>Very Unfavorable 17%</title></rect>
     <rect fill="#fc8d59" x="162.045" y="608" width="106.483" height="14"><title>Somewhat Unfavorable 27%</title></rect>
-    <rect fill="#fee090" x="268.528" y="608" width="0" height="14"><title>Don't know undefined%</title></rect>
     <rect fill="#e0f3f8" x="268.528" y="608" width="3.944" height="14"><title>Have not heard of them 1%</title></rect>
     <rect fill="#91bfdb" x="272.472" y="608" width="130.146" height="14"><title>Somewhat Favorable 33%</title></rect>
     <rect fill="#4575b4" x="402.618" y="608" width="43.382" height="14"><title>Very Favorable 11%</title></rect>
     <rect fill="#d73027" x="95" y="623" width="86.764" height="14"><title>Very Unfavorable 22%</title></rect>
     <rect fill="#fc8d59" x="181.764" y="623" width="78.876" height="14"><title>Somewhat Unfavorable 20%</title></rect>
-    <rect fill="#fee090" x="260.64" y="623" width="0" height="14"><title>Don't know undefined%</title></rect>
     <rect fill="#e0f3f8" x="260.64" y="623" width="7.888" height="14"><title>Have not heard of them 2%</title></rect>
     <rect fill="#91bfdb" x="268.528" y="623" width="118.315" height="14"><title>Somewhat Favorable 30%</title></rect>
     <rect fill="#4575b4" x="386.843" y="623" width="59.157" height="14"><title>Very Favorable 15%</title></rect>
     <rect fill="#d73027" x="95" y="638" width="74.933" height="14"><title>Very Unfavorable 19%</title></rect>
     <rect fill="#fc8d59" x="169.933" y="638" width="94.652" height="14"><title>Somewhat Unfavorable 24%</title></rect>
-    <rect fill="#fee090" x="264.584" y="638" width="0" height="14"><title>Don't know undefined%</title></rect>
     <rect fill="#e0f3f8" x="264.584" y="638" width="15.775" height="14"><title>Have not heard of them 4%</title></rect>
     <rect fill="#91bfdb" x="280.36" y="638" width="126.202" height="14"><title>Somewhat Favorable 32%</title></rect>
     <rect fill="#4575b4" x="406.562" y="638" width="39.438" height="14"><title>Very Favorable 10%</title></rect>
     <rect fill="#d73027" x="95" y="653" width="113.344" height="14"><title>Very Unfavorable 31%</title></rect>
     <rect fill="#fc8d59" x="208.344" y="653" width="36.562" height="14"><title>Somewhat Unfavorable 10%</title></rect>
-    <rect fill="#fee090" x="244.906" y="653" width="0" height="14"><title>Don't know undefined%</title></rect>
     <rect fill="#e0f3f8" x="244.906" y="653" width="3.656" height="14"><title>Have not heard of them 1%</title></rect>
     <rect fill="#91bfdb" x="248.563" y="653" width="65.813" height="14"><title>Somewhat Favorable 18%</title></rect>
     <rect fill="#4575b4" x="314.375" y="653" width="131.625" height="14"><title>Very Favorable 36%</title></rect>
     <rect fill="#d73027" x="95" y="668" width="175.5" height="14"><title>Very Unfavorable 47%</title></rect>
     <rect fill="#fc8d59" x="270.5" y="668" width="26.138" height="14"><title>Somewhat Unfavorable 7%</title></rect>
-    <rect fill="#fee090" x="296.638" y="668" width="0" height="14"><title>Don't know undefined%</title></rect>
     <rect fill="#e0f3f8" x="296.638" y="668" width="3.734" height="14"><title>Have not heard of them 1%</title></rect>
     <rect fill="#91bfdb" x="300.372" y="668" width="59.745" height="14"><title>Somewhat Favorable 16%</title></rect>
     <rect fill="#4575b4" x="360.117" y="668" width="85.883" height="14"><title>Very Favorable 23%</title></rect>
     <rect fill="#d73027" x="95" y="683" width="132.097" height="14"><title>Very Unfavorable 35%</title></rect>
     <rect fill="#fc8d59" x="227.097" y="683" width="33.968" height="14"><title>Somewhat Unfavorable 9%</title></rect>
-    <rect fill="#fee090" x="261.065" y="683" width="0" height="14"><title>Don't know undefined%</title></rect>
     <rect fill="#e0f3f8" x="261.065" y="683" width="7.548" height="14"><title>Have not heard of them 2%</title></rect>
     <rect fill="#91bfdb" x="268.613" y="683" width="79.258" height="14"><title>Somewhat Favorable 21%</title></rect>
     <rect fill="#4575b4" x="347.871" y="683" width="98.129" height="14"><title>Very Favorable 26%</title></rect>
