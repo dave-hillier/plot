@@ -58,17 +58,17 @@
     <path transform="translate(620,370)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
-    <text transform="translate(40,370)" y="0.71em">2,000</text>
-    <text transform="translate(98,370)" y="0.71em">2,001</text>
-    <text transform="translate(156,370)" y="0.71em">2,002</text>
-    <text transform="translate(214,370)" y="0.71em">2,003</text>
-    <text transform="translate(272,370)" y="0.71em">2,004</text>
-    <text transform="translate(330,370)" y="0.71em">2,005</text>
-    <text transform="translate(388,370)" y="0.71em">2,006</text>
-    <text transform="translate(446,370)" y="0.71em">2,007</text>
-    <text transform="translate(504,370)" y="0.71em">2,008</text>
-    <text transform="translate(562,370)" y="0.71em">2,009</text>
-    <text transform="translate(620,370)" y="0.71em">2,010</text>
+    <text transform="translate(40,370)" y="0.71em">2000</text>
+    <text transform="translate(98,370)" y="0.71em">2001</text>
+    <text transform="translate(156,370)" y="0.71em">2002</text>
+    <text transform="translate(214,370)" y="0.71em">2003</text>
+    <text transform="translate(272,370)" y="0.71em">2004</text>
+    <text transform="translate(330,370)" y="0.71em">2005</text>
+    <text transform="translate(388,370)" y="0.71em">2006</text>
+    <text transform="translate(446,370)" y="0.71em">2007</text>
+    <text transform="translate(504,370)" y="0.71em">2008</text>
+    <text transform="translate(562,370)" y="0.71em">2009</text>
+    <text transform="translate(620,370)" y="0.71em">2010</text>
   </g>
   <g aria-label="x-axis label" text-anchor="end" transform="translate(17,27)">
     <text transform="translate(620,370)">year →</text>
