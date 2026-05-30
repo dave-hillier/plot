@@ -4,7 +4,7 @@ import {createContext} from "./context.js";
 import {createDimensions} from "./dimensions.js";
 import {createFacets, recreateFacets, facetExclude, facetGroups, facetTranslator, facetFilter} from "./facet.js";
 import {pointer, pointerX, pointerY} from "./interactions/pointer.js";
-import {createLegends, exposeLegends} from "./legends.js";
+import {buildAutoLegends, renderLegendElement} from "./react/legends/Legend.js";
 import {Mark} from "./mark.js";
 import {axisFx, axisFy, axisX, axisY, gridFx, gridFy, gridX, gridY} from "./marks/axis.js";
 import {frame} from "./marks/frame.js";
@@ -305,8 +305,14 @@ export function plot(options: any = {}) {
 
   figureHolder.current = svg;
 
-  // Wrap the plot in a figure, if needed.
-  const legends = createLegends(scaleDescriptors, context, options);
+  // Wrap the plot in a figure, if needed. Auto-legends render via the React
+  // legend components (no d3-selection); serialize each to a DOM node in the
+  // target document, matching the former createLegends output.
+  const legends = buildAutoLegends(scaleDescriptors, context, options).map((el) => {
+    const h = document.createElement("div");
+    h.innerHTML = renderToStaticMarkup(el);
+    return h.firstElementChild;
+  });
   const {figure: figured = title != null || subtitle != null || caption != null || legends.length > 0} = options;
   if (figured) {
     const fig: any = document.createElement("figure");
@@ -321,7 +327,20 @@ export function plot(options: any = {}) {
   }
 
   figureHolder.current.scale = exposeScales(scales.scales);
-  figureHolder.current.legend = exposeLegends(scaleDescriptors, context, options);
+  // The .legend(key, options) method renders via the React legend components
+  // (no d3-selection); serialize to a DOM node in the target document.
+  figureHolder.current.legend = (key: string, legendOptions: any = {}) => {
+    if (key !== "color" && key !== "opacity" && key !== "symbol") throw new Error(`unknown legend type: ${key}`);
+    if (!(key in scaleDescriptors)) return;
+    const el = renderLegendElement(key, legendOptions, scaleDescriptors, context, options);
+    if (el == null) return;
+    // Render into the per-call document option if given (e.g. a separate jsdom
+    // window), else the plot's document.
+    const targetDoc = legendOptions?.document ?? document;
+    const h = targetDoc.createElement("div");
+    h.innerHTML = renderToStaticMarkup(el);
+    return h.firstElementChild;
+  };
 
   return figureHolder.current;
 }

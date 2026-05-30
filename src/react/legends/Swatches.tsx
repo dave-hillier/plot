@@ -57,7 +57,8 @@ export function Swatches(props: LegendScales): React.ReactElement | null {
     const computedStroke = stroke === undefined && isScaleOptions(color) ? "color" : stroke;
     const hint = {fill, stroke: computedStroke};
     const scale = normalizeScale("symbol", symbol, hint);
-    const resolve = (key: string) => (isScaleOptions((props as any)[key]) ? normalizeScale(key, (props as any)[key]) : null);
+    const resolve = (key: string) =>
+      isScaleOptions((props as any)[key]) ? normalizeScale(key, (props as any)[key]) : null;
     return <SymbolSwatches scale={scale} fill={fill} stroke={computedStroke} resolve={resolve} {...rest} />;
   }
 
@@ -66,7 +67,12 @@ export function Swatches(props: LegendScales): React.ReactElement | null {
     const {color, legend, ...rest} = props as any;
     const scale = normalizeScale("color", color);
     if (scale.domain === undefined) return null;
-    const kind = legend === undefined || legend === true ? (scale.type === "ordinal" ? "swatches" : "ramp") : `${legend}`.toLowerCase();
+    const kind =
+      legend === undefined || legend === true
+        ? scale.type === "ordinal"
+          ? "swatches"
+          : "ramp"
+        : `${legend}`.toLowerCase();
     if (kind !== "swatches") return null;
     return <ColorSwatches scale={scale} {...rest} />;
   }
@@ -239,14 +245,14 @@ function SwatchesContainer({
         return columns != null ? (
           <div key={i} className={`${cls}-swatch`}>
             {renderSwatch(d, swatchWidth, swatchHeight)}
-            <div className={`${cls}-swatch-label`} title={label}>
-              {label}
+            <div className={`${cls}-swatch-label`} title={label != null ? `${label}` : undefined}>
+              {label != null ? `${label}` : null}
             </div>
           </div>
         ) : (
           <span key={i} className={`${cls}-swatch`}>
             {renderSwatch(d, swatchWidth, swatchHeight)}
-            {label}
+            {label != null ? `${label}` : null}
           </span>
         );
       })}

@@ -43,6 +43,47 @@ export function Legend(props: LegendProps) {
   return <div className="plot-legend">{jsx}</div>;
 }
 
+// Auto-legends for a plot: mirrors createLegends() (src/legends.js) detection —
+// iterate the legend scales in registry order (symbol, color, opacity), render
+// each whose `legend` option is truthy, and suppress a standalone color legend
+// when the symbol legend already encodes color. Renders via the React legend
+// components (no PlotContext needed; the scaleDescriptors are passed directly),
+// so it can be used both inside <Plot> and by the imperative plot() entry.
+// Renders a single named-scale legend (color/opacity/symbol) to a React
+// element, mirroring exposeLegends() (src/legends.js): the per-call `options`
+// override the plot's per-key defaults. Returns null for unknown/absent scales.
+export function renderLegendElement(
+  key: string,
+  options: Record<string, any>,
+  scaleDescriptors: any,
+  context: any,
+  plotOptions: any
+): React.ReactElement | null {
+  return renderPlotScopedLegend(key, {...options}, {scaleDescriptors, context, plotOptions} as PlotContextValue);
+}
+
+export function buildAutoLegends(scaleDescriptors: any, context: any, plotOptions: any): React.ReactElement[] {
+  const out: React.ReactElement[] = [];
+  if (!scaleDescriptors) return out;
+  const ctx = {scaleDescriptors, context, plotOptions} as PlotContextValue;
+  let hasColor = false;
+  for (const key of ["symbol", "color", "opacity"] as const) {
+    if (!(key in scaleDescriptors)) continue;
+    if (key === "color" && hasColor) continue;
+    const o = inherit(plotOptions?.[key], {legend: plotOptions?.legend});
+    if (!o.legend) continue;
+    const el = renderPlotScopedLegend(key, {legend: o.legend}, ctx);
+    if (el == null) continue;
+    // A symbol legend whose stroke is bound to the color scale (the default
+    // when fill is unset and a color scale exists) doubles as the color legend.
+    if (key === "symbol" && plotOptions?.fill === undefined && isScaleOptions(plotOptions?.color)) hasColor = true;
+    // Return the bare legend element (no plot-legend wrapper) to match the
+    // imperative createLegends output, which appends svgs directly to <figure>.
+    out.push(React.cloneElement(el, {key}));
+  }
+  return out;
+}
+
 // True when the legend props describe a swatches-style legend that the JSX
 // `<Swatches>` component can render: any symbol scale, an ordinal-or-explicit
 // "swatches" color scale, or an ordinal/threshold opacity scale (default
@@ -79,7 +120,8 @@ function colorRampJSX(props: Record<string, any>): React.ReactElement | null {
   const normalized = normalizeScale("color", colorOpts);
   if (normalized.domain === undefined) return null; // no identity legend
   const legendKind = props.legend ?? true;
-  const kind = legendKind === true ? (normalized.type === "ordinal" ? "swatches" : "ramp") : `${legendKind}`.toLowerCase();
+  const kind =
+    legendKind === true ? (normalized.type === "ordinal" ? "swatches" : "ramp") : `${legendKind}`.toLowerCase();
   if (kind !== "ramp") return null;
   return rampElement(props, normalized, colorOpts);
 }
@@ -113,7 +155,11 @@ function rampElement(
 ): React.ReactElement {
   const context = createContext(props);
   const {className, ...ctxRest} = context as any;
-  const merged = inherit(props, {className, ...ctxRest}, {label: opts.label, ticks: opts.ticks, tickFormat: opts.tickFormat}) as any;
+  const merged = inherit(
+    props,
+    {className, ...ctxRest},
+    {label: opts.label, ticks: opts.ticks, tickFormat: opts.tickFormat}
+  ) as any;
   const {legend: _legend, color: _color, opacity: _opacity, ...options} = merged;
   return <Ramp scale={normalized} {...options} filterColor={extra.filterColor} />;
 }

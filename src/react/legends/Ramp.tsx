@@ -105,7 +105,11 @@ export function Ramp(props: RampProps) {
   } else if (type === "threshold") {
     const thresholds = domain;
     const thresholdFormat =
-      tickFormat === undefined ? (d: any) => d : typeof tickFormat === "string" ? format(tickFormat) : (tickFormat as any);
+      tickFormat === undefined
+        ? (d: any) => d
+        : typeof tickFormat === "string"
+        ? format(tickFormat)
+        : (tickFormat as any);
     x = applyRange(scaleLinear().domain([-1, range.length - 1]), [marginLeft, width - marginRight]);
     body = (
       <g fillOpacity={opacity ?? undefined}>
@@ -173,15 +177,12 @@ export function Ramp(props: RampProps) {
         </filter>
       ) : null}
       {filterId ? <g filter={`url(#${filterId})`}>{body}</g> : body}
-      <g
-        transform={`translate(0,${tickAxisY})`}
-        fontVariant={impliedString(fontVariant, "normal") as any}
-      >
+      <g transform={`translate(0,${tickAxisY})`} fontVariant={impliedString(fontVariant, "normal") as any}>
         {tickElements}
       </g>
-      {label !== undefined ? (
+      {label != null ? (
         <text x={marginLeft} y={marginTop - 6} fill="currentColor" fontWeight="bold">
-          {label}
+          {`${label}`}
         </text>
       ) : null}
     </svg>
@@ -218,18 +219,8 @@ function canvasDataURL(interpolator: (t: number) => string, context: any): strin
 // Replicates the tick markup that d3-axis (axisBottom) emits, minus the
 // .domain path (which the imperative ramp removes). Each tick is a
 // <g class="tick" transform="translate(x,0)"> with a <line> and <text>.
-function renderTicks(
-  x: any,
-  ticks: any,
-  tickFormat: any,
-  tickSize: number,
-  tickLineY1: number
-): React.ReactNode {
-  const values: any[] = Array.isArray(ticks)
-    ? ticks
-    : typeof x.ticks === "function"
-    ? x.ticks(ticks)
-    : x.domain();
+function renderTicks(x: any, ticks: any, tickFormat: any, tickSize: number, tickLineY1: number): React.ReactNode {
+  const values: any[] = Array.isArray(ticks) ? ticks : typeof x.ticks === "function" ? x.ticks(ticks) : x.domain();
   const fmt: (d: any, i: number) => any =
     typeof tickFormat === "function"
       ? tickFormat

@@ -4,6 +4,7 @@ import {consumeWarnings} from "../warnings.js";
 import {PlotContext} from "./PlotContext.js";
 import type {MarkFactory} from "./useMark.js";
 import {PointerRoot, PointerContext} from "./interactions/PointerContext.js";
+import {buildAutoLegends} from "./legends/Legend.js";
 
 // <Plot> renders a JSX <svg> populated entirely by each mark's renderJSX();
 // there is no imperative (d3-selection) render fallback.
@@ -181,7 +182,11 @@ export function Plot({children, title, subtitle, caption, figure, onValue, class
     plotOptions: options
   };
 
-  const wantsFigure = figure ?? Boolean(title || subtitle || caption);
+  // Auto-legends (color/opacity/symbol scales with legend requested) render
+  // via the React legend components and force figure mode, matching the
+  // imperative plot()'s createLegends behavior.
+  const autoLegends = resolved?.scaleDescriptors ? buildAutoLegends(resolved.scaleDescriptors, resolved.context, options) : [];
+  const wantsFigure = figure ?? Boolean(title || subtitle || caption || autoLegends.length > 0);
 
   // In figure mode, wrap the plot in a div.plot-host inside the figure to
   // match the imperative API's structure (figure > h2/h3 > div.plot-host > svg
@@ -218,6 +223,7 @@ export function Plot({children, title, subtitle, caption, figure, onValue, class
       <figure style={{maxWidth: 640, margin: "0 auto"}}>
         {title != null && <SlotHeader as="h2" content={title} style={{fontSize: "16px", fontWeight: "bold", margin: "0 0 4px"}} />}
         {subtitle != null && <SlotHeader as="h3" content={subtitle} style={{fontSize: "12px", fontWeight: "normal", color: "#666", margin: "0 0 8px"}} />}
+        {autoLegends}
         {mode.kind === "jsx" ? <div className="plot-host">{plotElement}</div> : plotElement}
         {caption != null && <SlotHeader as="figcaption" content={caption} style={{fontSize: "12px", color: "#666", marginTop: "4px"}} />}
         {hiddenChildren}

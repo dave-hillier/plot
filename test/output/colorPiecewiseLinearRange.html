@@ -1,55 +1,99 @@
-<div class="plot-host"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<figure style="max-width: 640px; margin: 0px auto;"><svg class="plot-ramp" font-family="system-ui, sans-serif" font-size="10" width="240" height="50" viewBox="0 0 240 50" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <style>
-      :where(.plot) {
-        --plot-background: white;
+      :where(.plot-ramp) {
         display: block;
         height: auto;
         height: intrinsic;
         max-width: 100%;
+        overflow: visible;
       }
 
-      :where(.plot text),
-      :where(.plot tspan) {
+      :where(.plot-ramp text) {
         white-space: pre;
       }
     </style>
-    <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(25,0)">
-      <path transform="translate(26,30)" d="M0,0L0,6"></path>
-      <path transform="translate(80,30)" d="M0,0L0,6"></path>
-      <path transform="translate(134,30)" d="M0,0L0,6"></path>
-      <path transform="translate(188,30)" d="M0,0L0,6"></path>
-      <path transform="translate(242,30)" d="M0,0L0,6"></path>
-      <path transform="translate(296,30)" d="M0,0L0,6"></path>
-      <path transform="translate(350,30)" d="M0,0L0,6"></path>
-      <path transform="translate(404,30)" d="M0,0L0,6"></path>
-      <path transform="translate(458,30)" d="M0,0L0,6"></path>
-      <path transform="translate(512,30)" d="M0,0L0,6"></path>
-      <path transform="translate(566,30)" d="M0,0L0,6"></path>
+    <image x="0" y="18" width="240" height="10" preserveAspectRatio="none" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAABCAYAAAAxWXB3AAAABmJLR0QA/wD/AP+gvaeTAAAAIElEQVQ4jWP8z8Dw/x8DE8MoHpn4PyMDAwPjv1E8QjEAncEAkBlnMcQAAAAASUVORK5CYII="></image>
+    <g transform="translate(0,28)" font-variant="tabular-nums">
+      <g class="tick" opacity="1" transform="translate(0.5,0)">
+        <line stroke="currentColor" y1="-10" y2="6"></line>
+        <text fill="currentColor" y="9" dy="0.71em" text-anchor="middle">0</text>
+      </g>
+      <g class="tick" opacity="1" transform="translate(48.5,0)">
+        <line stroke="currentColor" y1="-10" y2="6"></line>
+        <text fill="currentColor" y="9" dy="0.71em" text-anchor="middle">2</text>
+      </g>
+      <g class="tick" opacity="1" transform="translate(96.5,0)">
+        <line stroke="currentColor" y1="-10" y2="6"></line>
+        <text fill="currentColor" y="9" dy="0.71em" text-anchor="middle">4</text>
+      </g>
+      <g class="tick" opacity="1" transform="translate(144.5,0)">
+        <line stroke="currentColor" y1="-10" y2="6"></line>
+        <text fill="currentColor" y="9" dy="0.71em" text-anchor="middle">6</text>
+      </g>
+      <g class="tick" opacity="1" transform="translate(192.5,0)">
+        <line stroke="currentColor" y1="-10" y2="6"></line>
+        <text fill="currentColor" y="9" dy="0.71em" text-anchor="middle">8</text>
+      </g>
+      <g class="tick" opacity="1" transform="translate(240.5,0)">
+        <line stroke="currentColor" y1="-10" y2="6"></line>
+        <text fill="currentColor" y="9" dy="0.71em" text-anchor="middle">10</text>
+      </g>
     </g>
-    <g aria-label="x-axis tick label" transform="translate(25,9.5)">
-      <text y="0.71em" transform="translate(26,30)">0</text>
-      <text y="0.71em" transform="translate(80,30)">1</text>
-      <text y="0.71em" transform="translate(134,30)">2</text>
-      <text y="0.71em" transform="translate(188,30)">3</text>
-      <text y="0.71em" transform="translate(242,30)">4</text>
-      <text y="0.71em" transform="translate(296,30)">5</text>
-      <text y="0.71em" transform="translate(350,30)">6</text>
-      <text y="0.71em" transform="translate(404,30)">7</text>
-      <text y="0.71em" transform="translate(458,30)">8</text>
-      <text y="0.71em" transform="translate(512,30)">9</text>
-      <text y="0.71em" transform="translate(566,30)">10</text>
-    </g>
-    <g aria-label="cell">
-      <rect x="26" width="49" y="0" height="30" fill="rgb(255, 0, 0)"></rect>
-      <rect x="80" width="49" y="0" height="30" fill="rgb(204, 0, 51)"></rect>
-      <rect x="134" width="49" y="0" height="30" fill="rgb(153, 0, 102)"></rect>
-      <rect x="188" width="49" y="0" height="30" fill="rgb(102, 0, 153)"></rect>
-      <rect x="242" width="49" y="0" height="30" fill="rgb(51, 0, 204)"></rect>
-      <rect x="296" width="49" y="0" height="30" fill="rgb(0, 0, 255)"></rect>
-      <rect x="350" width="49" y="0" height="30" fill="rgb(0, 26, 204)"></rect>
-      <rect x="404" width="49" y="0" height="30" fill="rgb(0, 51, 153)"></rect>
-      <rect x="458" width="49" y="0" height="30" fill="rgb(0, 77, 102)"></rect>
-      <rect x="512" width="49" y="0" height="30" fill="rgb(0, 102, 51)"></rect>
-      <rect x="566" width="49" y="0" height="30" fill="rgb(0, 128, 0)"></rect>
-    </g>
-  </svg></div>
+  </svg>
+  <div class="plot-host"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <style>
+        :where(.plot) {
+          --plot-background: white;
+          display: block;
+          height: auto;
+          height: intrinsic;
+          max-width: 100%;
+        }
+
+        :where(.plot text),
+        :where(.plot tspan) {
+          white-space: pre;
+        }
+      </style>
+      <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(24.5,-0.5)">
+        <path transform="translate(26,30)" d="M0,0L0,6"></path>
+        <path transform="translate(80,30)" d="M0,0L0,6"></path>
+        <path transform="translate(134,30)" d="M0,0L0,6"></path>
+        <path transform="translate(188,30)" d="M0,0L0,6"></path>
+        <path transform="translate(242,30)" d="M0,0L0,6"></path>
+        <path transform="translate(296,30)" d="M0,0L0,6"></path>
+        <path transform="translate(350,30)" d="M0,0L0,6"></path>
+        <path transform="translate(404,30)" d="M0,0L0,6"></path>
+        <path transform="translate(458,30)" d="M0,0L0,6"></path>
+        <path transform="translate(512,30)" d="M0,0L0,6"></path>
+        <path transform="translate(566,30)" d="M0,0L0,6"></path>
+      </g>
+      <g aria-label="x-axis tick label" transform="translate(24.5,9)">
+        <text transform="translate(26,30)" y="0.71em">0</text>
+        <text transform="translate(80,30)" y="0.71em">1</text>
+        <text transform="translate(134,30)" y="0.71em">2</text>
+        <text transform="translate(188,30)" y="0.71em">3</text>
+        <text transform="translate(242,30)" y="0.71em">4</text>
+        <text transform="translate(296,30)" y="0.71em">5</text>
+        <text transform="translate(350,30)" y="0.71em">6</text>
+        <text transform="translate(404,30)" y="0.71em">7</text>
+        <text transform="translate(458,30)" y="0.71em">8</text>
+        <text transform="translate(512,30)" y="0.71em">9</text>
+        <text transform="translate(566,30)" y="0.71em">10</text>
+      </g>
+      <g aria-label="cell">
+        <rect fill="rgb(255, 0, 0)" x="26" y="0" width="49" height="30"></rect>
+        <rect fill="rgb(204, 0, 51)" x="80" y="0" width="49" height="30"></rect>
+        <rect fill="rgb(153, 0, 102)" x="134" y="0" width="49" height="30"></rect>
+        <rect fill="rgb(102, 0, 153)" x="188" y="0" width="49" height="30"></rect>
+        <rect fill="rgb(51, 0, 204)" x="242" y="0" width="49" height="30"></rect>
+        <rect fill="rgb(0, 0, 255)" x="296" y="0" width="49" height="30"></rect>
+        <rect fill="rgb(0, 26, 204)" x="350" y="0" width="49" height="30"></rect>
+        <rect fill="rgb(0, 51, 153)" x="404" y="0" width="49" height="30"></rect>
+        <rect fill="rgb(0, 77, 102)" x="458" y="0" width="49" height="30"></rect>
+        <rect fill="rgb(0, 102, 51)" x="512" y="0" width="49" height="30"></rect>
+        <rect fill="rgb(0, 128, 0)" x="566" y="0" width="49" height="30"></rect>
+      </g>
+    </svg></div>
+  <div style="display: none;"></div>
+</figure>
