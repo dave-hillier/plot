@@ -212,8 +212,12 @@ export function area(data?: Data, options?: AreaOptions): Area {
  * time-series area chart where time goes up↑.
  */
 export function areaX(data?: Data, options?: AreaXOptions): Area {
-  const {x, y = indexOf, color, stroke = color, fill = color, z = x === fill || x === stroke ? null : undefined, ...rest} = maybeDenseIntervalY(options) as any;
-  return new Area(data, maybeStackX(maybeIdentityX({...rest, x, y1: y, y2: undefined, z, stroke, fill}, y === indexOf ? "x2" : "x")));
+  // Apply the y=indexOf default and the implicit identity-x transform before
+  // binning, so that maybeDenseIntervalY emits the binned y1/y2 edges (and the
+  // reduced x channel) rather than overwriting them downstream.
+  const {y = indexOf, ...denseRest} = (options ?? {}) as any;
+  const {x, y: yOut, color, stroke = color, fill = color, z = x === fill || x === stroke ? null : undefined, ...rest} = maybeDenseIntervalY({y, ...maybeIdentityX(denseRest)}) as any;
+  return new Area(data, maybeStackX({...rest, x, y1: yOut, y2: undefined, z, stroke, fill}));
 }
 
 /**
@@ -222,6 +226,10 @@ export function areaX(data?: Data, options?: AreaXOptions): Area {
  * time-series area chart where time goes right→.
  */
 export function areaY(data?: Data, options?: AreaYOptions): Area {
-  const {x = indexOf, y, color, stroke = color, fill = color, z = y === fill || y === stroke ? null : undefined, ...rest} = maybeDenseIntervalX(options) as any;
-  return new Area(data, maybeStackY(maybeIdentityY({...rest, x1: x, x2: undefined, y, z, stroke, fill}, x === indexOf ? "y2" : "y")));
+  // Apply the x=indexOf default and the implicit identity-y transform before
+  // binning, so that maybeDenseIntervalX emits the binned x1/x2 edges (and the
+  // reduced y channel) rather than overwriting them downstream.
+  const {x = indexOf, ...denseRest} = (options ?? {}) as any;
+  const {x: xOut, y, color, stroke = color, fill = color, z = y === fill || y === stroke ? null : undefined, ...rest} = maybeDenseIntervalX({x, ...maybeIdentityY(denseRest)}) as any;
+  return new Area(data, maybeStackY({...rest, x1: xOut, x2: undefined, y, z, stroke, fill}));
 }
