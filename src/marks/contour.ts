@@ -5,8 +5,6 @@ import {channelStyleProps, directStyleProps, indirectStyleProps, transformProp} 
 import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
 // @ts-expect-error — runtime export missing from channel.d.ts
 import {createChannels} from "../channel.js";
-// @ts-expect-error — runtime export missing from context.d.ts
-import {create} from "../context.js";
 import type {RangeInterval} from "../interval.js";
 import type {Data} from "../mark.js";
 // @ts-expect-error — runtime exports missing from options.d.ts
@@ -14,7 +12,7 @@ import {labelof, identity, arrayify, map} from "../options.js";
 // @ts-expect-error — runtime export missing from projection.d.ts
 import {applyPosition} from "../projection.js";
 // @ts-expect-error — runtime exports missing from style.d.ts
-import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, styles} from "../style.js";
+import {styles} from "../style.js";
 import {initializer} from "../transforms/basic.js";
 import type {Thresholds} from "../transforms/bin.js";
 // @ts-expect-error — runtime export missing from transforms/bin.d.ts
@@ -133,23 +131,6 @@ export class Contour extends AbstractRaster {
     // x, y, and value channels must be filtered by the initializer itself.
     // @ts-expect-error — Mark.filter missing from mark.d.ts
     return super.filter(index, channels, values);
-  }
-  render(index: any, scales: any, channels: any, dimensions: any, context: any) {
-    const {geometry: G} = channels;
-    const path = geoPath();
-    return create("svg:g", context)
-      .call(applyIndirectStyles, this, dimensions, context)
-      .call(applyTransform, this, scales)
-      .call((g) => {
-        g.selectAll()
-          .data(index)
-          .enter()
-          .append("path")
-          .call(applyDirectStyles, this)
-          .attr("d", (i: any) => path(G[i]))
-          .call(applyChannelStyles, this, channels);
-      })
-      .node();
   }
   renderJSX(this: any, index: any, scales: any, channels: any, dimensions: any, context: any): ReactNode {
     const {geometry: G} = channels;

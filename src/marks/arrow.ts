@@ -1,15 +1,11 @@
 import {ascending, descending} from "d3";
 import {createElement as h, type ReactNode} from "react";
 import type {ChannelValueSpec} from "../channel.js";
-// @ts-expect-error — runtime export missing from context.d.ts
-import {create} from "../context.js";
 import type {Data, MarkOptions} from "../mark.js";
 import {Mark} from "../mark.js";
 import {radians} from "../math.js";
 // @ts-expect-error — runtime exports missing from options.d.ts
 import {constant, keyword} from "../options.js";
-// @ts-expect-error — runtime exports missing from style.d.ts
-import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 import {channelStyleProps, directStyleProps, indirectStyleProps, transformProp} from "../react/styles.js";
 import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
 import {maybeSameValue} from "./link.js";
@@ -160,110 +156,6 @@ export class Arrow extends Mark {
     this.insetStart = +insetStart;
     this.insetEnd = +insetEnd;
     this.sweep = maybeSweep(sweep);
-  }
-  render(index, scales, channels, dimensions, context) {
-    const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1, SW} = channels;
-    const {strokeWidth, bend, headAngle, headLength, insetStart, insetEnd} = this as any;
-    const sw = SW ? (i) => SW[i] : constant(strokeWidth === undefined ? 1 : strokeWidth);
-
-    // The angle between the arrow’s shaft and one of the wings; the “head”
-    // angle between the wings is twice this value.
-    const wingAngle = (headAngle * radians) / 2;
-
-    // The length of the arrowhead’s “wings” (the line segments that extend from
-    // the end point) relative to the stroke width.
-    const wingScale = headLength / 1.5;
-
-    return create("svg:g", context)
-      .call(applyIndirectStyles, this, dimensions, context)
-      .call(applyTransform, this, scales)
-      .call((g) =>
-        g
-          .selectAll()
-          .data(index)
-          .enter()
-          .append("path")
-          .call(applyDirectStyles, this)
-          .attr("d", (i) => {
-            // The start ⟨x1,y1⟩ and end ⟨x2,y2⟩ points may be inset, and the
-            // ending line angle may be altered for inset swoopy arrows.
-            let x1 = X1[i],
-              y1 = Y1[i],
-              x2 = X2[i],
-              y2 = Y2[i];
-            const lineLength = Math.hypot(x2 - x1, y2 - y1);
-            if (lineLength <= insetStart + insetEnd) return null;
-            let lineAngle = Math.atan2(y2 - y1, x2 - x1);
-
-            // We don’t allow the wing length to be too large relative to the
-            // length of the arrow. (Plot.vector allows arbitrarily large
-            // wings, but that’s okay since vectors are usually small.)
-            const headLength = Math.min(wingScale * sw(i), lineLength / 3);
-
-            // When bending, the offset between the straight line between the two points
-            // and the outgoing tangent from the start point. (Also the negative
-            // incoming tangent to the end point.) This must be within ±π/2. A positive
-            // angle will produce a clockwise curve; a negative angle will produce a
-            // counterclockwise curve; zero will produce a straight line.
-            const bendAngle = this.sweep(x1, y1, x2, y2) * bend * radians;
-
-            // The radius of the circle that intersects with the two endpoints
-            // and has the specified bend angle.
-            const r = Math.hypot(lineLength / Math.tan(bendAngle), lineLength) / 2;
-
-            // Apply insets.
-            if (insetStart || insetEnd) {
-              if (r < 1e5) {
-                // For inset swoopy arrows, compute the circle-circle
-                // intersection between a circle centered around the
-                // respective arrow endpoint and the center of the circle
-                // segment that forms the shaft of the arrow.
-                const sign = Math.sign(bendAngle);
-                const [cx, cy] = pointPointCenter([x1, y1], [x2, y2], r, sign);
-                if (insetStart) {
-                  [x1, y1] = circleCircleIntersect([cx, cy, r], [x1, y1, insetStart], -sign * Math.sign(insetStart));
-                }
-                // For the end inset, rotate the arrowhead so that it aligns
-                // with the truncated end of the arrow. Since the arrow is a
-                // segment of the circle centered at ⟨cx,cy⟩, we can compute
-                // the angular difference to the new endpoint.
-                if (insetEnd) {
-                  const [x, y] = circleCircleIntersect([cx, cy, r], [x2, y2, insetEnd], sign * Math.sign(insetEnd));
-                  lineAngle += Math.atan2(y - cy, x - cx) - Math.atan2(y2 - cy, x2 - cx);
-                  (x2 = x), (y2 = y);
-                }
-              } else {
-                // For inset straight arrows, offset along the straight line.
-                const dx = x2 - x1,
-                  dy = y2 - y1,
-                  d = Math.hypot(dx, dy);
-                if (insetStart) (x1 += (dx / d) * insetStart), (y1 += (dy / d) * insetStart);
-                if (insetEnd) (x2 -= (dx / d) * insetEnd), (y2 -= (dy / d) * insetEnd);
-              }
-            }
-
-            // The angle of the arrow as it approaches the endpoint, and the
-            // angles of the adjacent wings. Here “left” refers to if the
-            // arrow is pointing up.
-            const endAngle = lineAngle + bendAngle;
-            const leftAngle = endAngle + wingAngle;
-            const rightAngle = endAngle - wingAngle;
-
-            // The endpoints of the two wings.
-            const x3 = x2 - headLength * Math.cos(leftAngle);
-            const y3 = y2 - headLength * Math.sin(leftAngle);
-            const x4 = x2 - headLength * Math.cos(rightAngle);
-            const y4 = y2 - headLength * Math.sin(rightAngle);
-
-            // If the radius is very large (or even infinite, as when the bend
-            // angle is zero), then render a straight line.
-            const a = r < 1e5 ? `A${r},${r} 0,0,${bendAngle > 0 ? 1 : 0} ` : `L`;
-            const head = headLength ? `M${x3},${y3}L${x2},${y2}L${x4},${y4}` : "";
-            return `M${x1},${y1}${a}${x2},${y2}${head}`;
-          })
-          .call(applyChannelStyles, this, channels)
-      )
-      .node();
   }
   renderJSX(this: any, index, scales, channels, dimensions, _context): ReactNode {
     const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1, SW} = channels;

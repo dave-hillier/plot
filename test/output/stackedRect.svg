@@ -1,0 +1,64 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,-0.5)">
+    <path transform="translate(20,30)" d="M0,0L0,6"></path>
+    <path transform="translate(80,30)" d="M0,0L0,6"></path>
+    <path transform="translate(140,30)" d="M0,0L0,6"></path>
+    <path transform="translate(200,30)" d="M0,0L0,6"></path>
+    <path transform="translate(260,30)" d="M0,0L0,6"></path>
+    <path transform="translate(320,30)" d="M0,0L0,6"></path>
+    <path transform="translate(380,30)" d="M0,0L0,6"></path>
+    <path transform="translate(440,30)" d="M0,0L0,6"></path>
+    <path transform="translate(500,30)" d="M0,0L0,6"></path>
+    <path transform="translate(560,30)" d="M0,0L0,6"></path>
+    <path transform="translate(620,30)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
+    <text transform="translate(20,30)" y="0.71em">0%</text>
+    <text transform="translate(80,30)" y="0.71em">10%</text>
+    <text transform="translate(140,30)" y="0.71em">20%</text>
+    <text transform="translate(200,30)" y="0.71em">30%</text>
+    <text transform="translate(260,30)" y="0.71em">40%</text>
+    <text transform="translate(320,30)" y="0.71em">50%</text>
+    <text transform="translate(380,30)" y="0.71em">60%</text>
+    <text transform="translate(440,30)" y="0.71em">70%</text>
+    <text transform="translate(500,30)" y="0.71em">80%</text>
+    <text transform="translate(560,30)" y="0.71em">90%</text>
+    <text transform="translate(620,30)" y="0.71em">100%</text>
+  </g>
+  <g aria-label="rect">
+    <rect fill="rgb(35, 23, 27)" x="21" y="0" width="0" height="30"></rect>
+    <rect fill="rgb(71, 56, 158)" x="21" y="0" width="2.158" height="30"></rect>
+    <rect fill="rgb(73, 92, 225)" x="24.158" y="0" width="5.316" height="30"></rect>
+    <rect fill="rgb(59, 129, 248)" x="30.474" y="0" width="8.474" height="30"></rect>
+    <rect fill="rgb(44, 164, 242)" x="39.947" y="0" width="11.632" height="30"></rect>
+    <rect fill="rgb(37, 196, 218)" x="52.579" y="0" width="14.789" height="30"></rect>
+    <rect fill="rgb(42, 222, 186)" x="68.368" y="0" width="17.947" height="30"></rect>
+    <rect fill="rgb(60, 241, 151)" x="87.316" y="0" width="21.105" height="30"></rect>
+    <rect fill="rgb(90, 251, 119)" x="109.421" y="0" width="24.263" height="30"></rect>
+    <rect fill="rgb(128, 253, 92)" x="134.684" y="0" width="27.421" height="30"></rect>
+    <rect fill="rgb(169, 246, 71)" x="163.105" y="0" width="30.579" height="30"></rect>
+    <rect fill="rgb(208, 230, 55)" x="194.684" y="0" width="33.737" height="30"></rect>
+    <rect fill="rgb(240, 205, 44)" x="229.421" y="0" width="36.895" height="30"></rect>
+    <rect fill="rgb(255, 175, 37)" x="267.316" y="0" width="40.053" height="30"></rect>
+    <rect fill="rgb(255, 139, 31)" x="308.368" y="0" width="43.211" height="30"></rect>
+    <rect fill="rgb(250, 102, 25)" x="352.579" y="0" width="46.368" height="30"></rect>
+    <rect fill="rgb(224, 66, 18)" x="399.947" y="0" width="49.526" height="30"></rect>
+    <rect fill="rgb(190, 36, 9)" x="450.474" y="0" width="52.684" height="30"></rect>
+    <rect fill="rgb(158, 16, 1)" x="504.158" y="0" width="55.842" height="30"></rect>
+    <rect fill="rgb(144, 12, 0)" x="561" y="0" width="59" height="30"></rect>
+  </g>
+</svg>

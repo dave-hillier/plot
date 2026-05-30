@@ -1,18 +1,15 @@
 import {pathRound as path} from "d3";
 import {createElement as h, type ReactNode} from "react";
 import type {ChannelValue, ChannelValueSpec} from "../channel.js";
-// @ts-expect-error — runtime export missing from context.d.ts
-import {create} from "../context.js";
 import type {Data, FrameAnchor, MarkOptions} from "../mark.js";
 import {Mark} from "../mark.js";
 import {identity} from "../options.js";
 // @ts-expect-error — runtime exports missing from options.d.ts
 import {maybeFrameAnchor, maybeNumberChannel, maybeTuple, keyword} from "../options.js";
 // @ts-expect-error — runtime exports missing from style.d.ts
-import {applyChannelStyles, applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform} from "../style.js";
+import {applyFrameAnchor} from "../style.js";
 import {channelStyleProps, directStyleProps, indirectStyleProps, transformProp} from "../react/styles.js";
 import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
-import {template} from "../template.js";
 
 /**
  * The built-in vector shape implementations; one of:
@@ -172,55 +169,6 @@ export class Vector extends Mark {
     this.shape = maybeShape(shape);
     this.anchor = keyword(anchor, "anchor", ["start", "middle", "end"]);
     this.frameAnchor = maybeFrameAnchor(frameAnchor);
-  }
-  render(index, scales, channels, dimensions, context) {
-    const {x, y} = scales;
-    const {x: X, y: Y, length: L, rotate: A} = channels;
-    const {length, rotate, anchor, shape, r} = this;
-    const [cx, cy] = applyFrameAnchor(this, dimensions);
-    return create("svg:g", context)
-      .call(applyIndirectStyles, this, dimensions, context)
-      .call(applyTransform, this, {x: X && x, y: Y && y})
-      .call((g) =>
-        g
-          .selectAll()
-          .data(index)
-          .enter()
-          .append("path")
-          .call(applyDirectStyles, this)
-          .attr(
-            "transform",
-            template`translate(${X ? (i) => X[i] : cx},${Y ? (i) => Y[i] : cy})${
-              A ? (i) => ` rotate(${A[i]})` : rotate ? ` rotate(${rotate})` : ``
-            }${
-              anchor === "start"
-                ? ``
-                : anchor === "end"
-                ? L
-                  ? (i) => ` translate(0,${L[i]})`
-                  : ` translate(0,${length})`
-                : L
-                ? (i) => ` translate(0,${L[i] / 2})`
-                : ` translate(0,${length / 2})`
-            }`
-          )
-          .attr(
-            "d",
-            L
-              ? (i) => {
-                  const p = path();
-                  shape.draw(p as unknown as CanvasPath, L[i], r);
-                  return p;
-                }
-              : (() => {
-                  const p = path();
-                  shape.draw(p as unknown as CanvasPath, length, r);
-                  return p;
-                })()
-          )
-          .call(applyChannelStyles, this, channels)
-      )
-      .node();
   }
   renderJSX(this: any, index, scales, channels, dimensions, _context): ReactNode {
     const {x, y} = scales;

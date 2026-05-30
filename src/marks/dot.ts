@@ -3,30 +3,15 @@ import {createElement as h, type ReactNode} from "react";
 import {channelStyleProps, directStyleProps, indirectStyleProps, transformProp, computeFrameAnchor} from "../react/styles.js";
 import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
 import type {ChannelValue, ChannelValueIntervalSpec, ChannelValueSpec} from "../channel.js";
-// @ts-expect-error not yet exported in context.d.ts
-import {create} from "../context.js";
 import {negative, positive} from "../defined.js";
 import type {Interval} from "../interval.js";
 import type {Data, FrameAnchor, MarkOptions, RenderableMark} from "../mark.js";
 import {Mark} from "../mark.js";
 // @ts-expect-error not yet exported in options.d.ts
 import {identity, maybeFrameAnchor, maybeNumberChannel, maybeTuple} from "../options.js";
-import {
-  // @ts-expect-error not yet exported in style.d.ts
-  applyChannelStyles,
-  // @ts-expect-error not yet exported in style.d.ts
-  applyDirectStyles,
-  // @ts-expect-error not yet exported in style.d.ts
-  applyFrameAnchor,
-  // @ts-expect-error not yet exported in style.d.ts
-  applyIndirectStyles,
-  // @ts-expect-error not yet exported in style.d.ts
-  applyTransform
-} from "../style.js";
 import type {SymbolType} from "../symbol.js";
 // @ts-expect-error not yet exported in symbol.d.ts
 import {maybeSymbolChannel} from "../symbol.js";
-import {template} from "../template.js";
 import {sort} from "../transforms/basic.js";
 import {maybeIntervalMidX, maybeIntervalMidY} from "../transforms/interval.js";
 
@@ -180,73 +165,6 @@ export class Dot extends (Mark as unknown as new (...args: any[]) => RenderableM
           : this.stroke ?? "none"
       };
     }
-  }
-  // @ts-expect-error parent declares render as a property; we override it as a method
-  render(index: any, scales: any, channels: any, dimensions: any, context: any): any {
-    const {x, y} = scales;
-    const {x: X, y: Y, r: R, rotate: A, symbol: S} = channels;
-    const {r, rotate, symbol} = this;
-    const [cx, cy] = applyFrameAnchor(this, dimensions);
-    const circle = symbol === symbolCircle;
-    const size = R ? undefined : r * r * Math.PI;
-    if (negative(r)) index = [];
-    return create("svg:g", context)
-      .call(applyIndirectStyles, this, dimensions, context)
-      .call(applyTransform, this, {x: X && x, y: Y && y})
-      .call((g: any) =>
-        g
-          .selectAll()
-          .data(index)
-          .enter()
-          .append(circle ? "circle" : "path")
-          .call(applyDirectStyles, this)
-          .call(
-            circle
-              ? (selection: any) => {
-                  selection
-                    .attr("cx", X ? (i: any) => X[i] : cx)
-                    .attr("cy", Y ? (i: any) => Y[i] : cy)
-                    .attr("r", R ? (i: any) => R[i] : r);
-                }
-              : (selection: any) => {
-                  selection
-                    .attr(
-                      "transform",
-                      template`translate(${X ? (i: any) => X[i] : cx},${Y ? (i: any) => Y[i] : cy})${
-                        A ? (i: any) => ` rotate(${A[i]})` : rotate ? ` rotate(${rotate})` : ``
-                      }`
-                    )
-                    .attr(
-                      "d",
-                      R && S
-                        ? (i: any) => {
-                            const p = path();
-                            S[i].draw(p, R[i] * R[i] * Math.PI);
-                            return p;
-                          }
-                        : R
-                        ? (i: any) => {
-                            const p = path();
-                            symbol.draw(p, R[i] * R[i] * Math.PI);
-                            return p;
-                          }
-                        : S
-                        ? (i: any) => {
-                            const p = path();
-                            S[i].draw(p, size);
-                            return p;
-                          }
-                        : (() => {
-                            const p = path();
-                            symbol.draw(p, size);
-                            return p;
-                          })()
-                    );
-                }
-          )
-          .call(applyChannelStyles, this, channels)
-      )
-      .node();
   }
   renderJSX(this: any, index: any, scales: any, channels: any, dimensions: any, _context: any): ReactNode {
     const {x: X, y: Y, r: R, rotate: A, symbol: S} = channels;

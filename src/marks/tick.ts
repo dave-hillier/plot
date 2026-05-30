@@ -1,12 +1,11 @@
-import {create} from "../context.js";
 import {identity, number} from "../options.js";
 import type {ChannelValueSpec} from "../channel.js";
 import type {InsetOptions} from "../inset.js";
 import type {Data, MarkOptions} from "../mark.js";
 import {Mark} from "../mark.js";
 import type {MarkerOptions} from "../marker.js";
-import {applyMarkers, markers} from "../marker.js";
-import {applyDirectStyles, applyIndirectStyles, applyTransform, applyChannelStyles, offset} from "../style.js";
+import {markers} from "../marker.js";
+import {applyTransform, offset} from "../style.js";
 import {channelStyleProps, directStyleProps, indirectStyleProps, transformProp} from "../react/styles.js";
 import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
 import {createElement as h, Fragment, type ReactNode} from "react";
@@ -60,26 +59,6 @@ class AbstractTick extends Mark {
   constructor(data: any, channels: any, options: any) {
     super(data, channels, options, defaults);
     markers(this, options);
-  }
-  render(index: any, scales: any, channels: any, dimensions: any, context: any): any {
-    return create("svg:g", context)
-      .call(applyIndirectStyles, this, dimensions, context)
-      .call((this as any)._transform, this, scales)
-      .call((g) =>
-        g
-          .selectAll()
-          .data(index)
-          .enter()
-          .append("line")
-          .call(applyDirectStyles, this)
-          .attr("x1", (this as any)._x1(scales, channels, dimensions))
-          .attr("x2", (this as any)._x2(scales, channels, dimensions))
-          .attr("y1", (this as any)._y1(scales, channels, dimensions))
-          .attr("y2", (this as any)._y2(scales, channels, dimensions))
-          .call(applyChannelStyles, this, channels)
-          .call(applyMarkers, this, channels, context)
-      )
-      .node();
   }
   renderJSX(this: any, index: any, scales: any, channels: any, dimensions: any, _context: any): ReactNode {
     const {stroke: S} = channels;

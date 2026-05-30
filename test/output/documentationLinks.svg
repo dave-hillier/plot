@@ -1,0 +1,187 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="560" viewBox="0 0 640 560" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(-0.5,9)">
+    <path transform="translate(140,26)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,46)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,66)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,86)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,106)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,126)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,146)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,166)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,186)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,206)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,226)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,246)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,266)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,286)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,306)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,326)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,346)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,366)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,386)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,406)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,426)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,446)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,466)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,486)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,506)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-9,9)">
+    <text transform="translate(140,26)" y="0.32em">Observable Plot</text>
+    <text transform="translate(140,46)" y="0.32em">Marks</text>
+    <text transform="translate(140,66)" y="0.32em">Scales</text>
+    <text transform="translate(140,86)" y="0.32em">Transforms</text>
+    <text transform="translate(140,106)" y="0.32em">Facets</text>
+    <text transform="translate(140,126)" y="0.32em">Area Mark</text>
+    <text transform="translate(140,146)" y="0.32em">Bar Mark</text>
+    <text transform="translate(140,166)" y="0.32em">Cell Mark</text>
+    <text transform="translate(140,186)" y="0.32em">Dot Mark</text>
+    <text transform="translate(140,206)" y="0.32em">Image Mark</text>
+    <text transform="translate(140,226)" y="0.32em">Line Mark</text>
+    <text transform="translate(140,246)" y="0.32em">Link Mark</text>
+    <text transform="translate(140,266)" y="0.32em">Rect Mark</text>
+    <text transform="translate(140,286)" y="0.32em">Rule Mark</text>
+    <text transform="translate(140,306)" y="0.32em">Text Mark</text>
+    <text transform="translate(140,326)" y="0.32em">Tick Mark</text>
+    <text transform="translate(140,346)" y="0.32em">Frame Mark</text>
+    <text transform="translate(140,366)" y="0.32em">Group Transform</text>
+    <text transform="translate(140,386)" y="0.32em">Bin Transform</text>
+    <text transform="translate(140,406)" y="0.32em">Stack Transform</text>
+    <text transform="translate(140,426)" y="0.32em">Map Transform</text>
+    <text transform="translate(140,446)" y="0.32em">Window Transform</text>
+    <text transform="translate(140,466)" y="0.32em">Select Transform</text>
+    <text transform="translate(140,486)" y="0.32em">Interval Transform</text>
+    <text transform="translate(140,506)" y="0.32em">Legends</text>
+  </g>
+  <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <line x1="140" x2="140" y1="20" y2="530"></line>
+    <line x1="198.537" x2="198.537" y1="20" y2="530"></line>
+    <line x1="257.073" x2="257.073" y1="20" y2="530"></line>
+    <line x1="315.61" x2="315.61" y1="20" y2="530"></line>
+    <line x1="374.146" x2="374.146" y1="20" y2="530"></line>
+    <line x1="432.683" x2="432.683" y1="20" y2="530"></line>
+    <line x1="491.22" x2="491.22" y1="20" y2="530"></line>
+    <line x1="549.756" x2="549.756" y1="20" y2="530"></line>
+    <line x1="608.293" x2="608.293" y1="20" y2="530"></line>
+  </g>
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,-0.5)">
+    <path transform="translate(140,530)" d="M0,0L0,6"></path>
+    <path transform="translate(198.537,530)" d="M0,0L0,6"></path>
+    <path transform="translate(257.073,530)" d="M0,0L0,6"></path>
+    <path transform="translate(315.61,530)" d="M0,0L0,6"></path>
+    <path transform="translate(374.146,530)" d="M0,0L0,6"></path>
+    <path transform="translate(432.683,530)" d="M0,0L0,6"></path>
+    <path transform="translate(491.22,530)" d="M0,0L0,6"></path>
+    <path transform="translate(549.756,530)" d="M0,0L0,6"></path>
+    <path transform="translate(608.293,530)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
+    <text transform="translate(140,530)" y="0.71em">0</text>
+    <text transform="translate(198.537,530)" y="0.71em">5</text>
+    <text transform="translate(257.073,530)" y="0.71em">10</text>
+    <text transform="translate(315.61,530)" y="0.71em">15</text>
+    <text transform="translate(374.146,530)" y="0.71em">20</text>
+    <text transform="translate(432.683,530)" y="0.71em">25</text>
+    <text transform="translate(491.22,530)" y="0.71em">30</text>
+    <text transform="translate(549.756,530)" y="0.71em">35</text>
+    <text transform="translate(608.293,530)" y="0.71em">40</text>
+  </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17,27)">
+    <text transform="translate(620,530)">likes →</text>
+  </g>
+  <g aria-label="bar"><a href="https://observablehq.com/@observablehq/plot" fill="inherit" target="_blank">
+      <rect href="https://observablehq.com/@observablehq/plot" x="140" y="26" width="480" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-marks" fill="inherit" target="_blank">
+      <rect href="https://observablehq.com/@observablehq/plot-marks" x="140" y="46" width="187.317" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-scales" fill="inherit" target="_blank">
+      <rect href="https://observablehq.com/@observablehq/plot-scales" x="140" y="66" width="210.732" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-transforms" fill="inherit" target="_blank">
+      <rect href="https://observablehq.com/@observablehq/plot-transforms" x="140" y="86" width="70.244" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-facets" fill="inherit" target="_blank">
+      <rect href="https://observablehq.com/@observablehq/plot-facets" x="140" y="106" width="117.073" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-area" fill="inherit" target="_blank">
+      <rect href="https://observablehq.com/@observablehq/plot-area" x="140" y="126" width="35.122" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-bar" fill="inherit" target="_blank">
+      <rect href="https://observablehq.com/@observablehq/plot-bar" x="140" y="146" width="105.366" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-cell" fill="inherit" target="_blank">
+      <rect href="https://observablehq.com/@observablehq/plot-cell" x="140" y="166" width="199.024" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-dot" fill="inherit" target="_blank">
+      <rect href="https://observablehq.com/@observablehq/plot-dot" x="140" y="186" width="58.537" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-image" fill="inherit" target="_blank">
+      <rect href="https://observablehq.com/@observablehq/plot-image" x="140" y="206" width="128.78" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-line" fill="inherit" target="_blank">
+      <rect href="https://observablehq.com/@observablehq/plot-line" x="140" y="226" width="93.659" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-link" fill="inherit" target="_blank">
+      <rect href="https://observablehq.com/@observablehq/plot-link" x="140" y="246" width="23.415" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-rect" fill="inherit" target="_blank">
+      <rect href="https://observablehq.com/@observablehq/plot-rect" x="140" y="266" width="23.415" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-rule" fill="inherit" target="_blank">
+      <rect href="https://observablehq.com/@observablehq/plot-rule" x="140" y="286" width="46.829" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-text" fill="inherit" target="_blank">
+      <rect href="https://observablehq.com/@observablehq/plot-text" x="140" y="306" width="58.537" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-tick" fill="inherit" target="_blank">
+      <rect href="https://observablehq.com/@observablehq/plot-tick" x="140" y="326" width="11.707" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-frame" fill="inherit" target="_blank">
+      <rect href="https://observablehq.com/@observablehq/plot-frame" x="140" y="346" width="35.122" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-group" fill="inherit" target="_blank">
+      <rect href="https://observablehq.com/@observablehq/plot-group" x="140" y="366" width="81.951" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-bin" fill="inherit" target="_blank">
+      <rect href="https://observablehq.com/@observablehq/plot-bin" x="140" y="386" width="140.488" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-stack" fill="inherit" target="_blank">
+      <rect href="https://observablehq.com/@observablehq/plot-stack" x="140" y="406" width="152.195" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-map" fill="inherit" target="_blank">
+      <rect href="https://observablehq.com/@observablehq/plot-map" x="140" y="426" width="70.244" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-window" fill="inherit" target="_blank">
+      <rect href="https://observablehq.com/@observablehq/plot-window" x="140" y="446" width="35.122" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-select" fill="inherit" target="_blank">
+      <rect href="https://observablehq.com/@observablehq/plot-select" x="140" y="466" width="70.244" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-interval" fill="inherit" target="_blank">
+      <rect href="https://observablehq.com/@observablehq/plot-interval" x="140" y="486" width="81.951" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-legends" fill="inherit" target="_blank">
+      <rect href="https://observablehq.com/@observablehq/plot-legends" x="140" y="506" width="210.732" height="18"></rect>
+    </a></g>
+  <g aria-label="text" fill="white" text-anchor="end" transform="translate(-3,9)">
+    <text transform="translate(620,26)" y="0.32em">⚡︎ 296</text>
+    <text transform="translate(327.317,46)" y="0.32em"> 16</text>
+    <text transform="translate(350.732,66)" y="0.32em"> 18</text>
+    <text transform="translate(210.244,86)" y="0.32em"> 6</text>
+    <text transform="translate(257.073,106)" y="0.32em"> 10</text>
+    <text transform="translate(175.122,126)" y="0.32em"> 3</text>
+    <text transform="translate(245.366,146)" y="0.32em"> 9</text>
+    <text transform="translate(339.024,166)" y="0.32em"> 17</text>
+    <text transform="translate(198.537,186)" y="0.32em"> 5</text>
+    <text transform="translate(268.78,206)" y="0.32em"> 11</text>
+    <text transform="translate(233.659,226)" y="0.32em"> 8</text>
+    <text transform="translate(163.415,246)" y="0.32em"> 2</text>
+    <text transform="translate(163.415,266)" y="0.32em"> 2</text>
+    <text transform="translate(186.829,286)" y="0.32em"> 4</text>
+    <text transform="translate(198.537,306)" y="0.32em"> 5</text>
+    <text transform="translate(151.707,326)" y="0.32em"> 1</text>
+    <text transform="translate(175.122,346)" y="0.32em"> 3</text>
+    <text transform="translate(221.951,366)" y="0.32em"> 7</text>
+    <text transform="translate(280.488,386)" y="0.32em"> 12</text>
+    <text transform="translate(292.195,406)" y="0.32em"> 13</text>
+    <text transform="translate(210.244,426)" y="0.32em"> 6</text>
+    <text transform="translate(175.122,446)" y="0.32em"> 3</text>
+    <text transform="translate(210.244,466)" y="0.32em"> 6</text>
+    <text transform="translate(221.951,486)" y="0.32em"> 7</text>
+    <text transform="translate(350.732,506)" y="0.32em"> 18</text>
+  </g>
+  <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
+    <line x1="140" x2="140" y1="20" y2="530"></line>
+  </g>
+</svg>

@@ -2,8 +2,6 @@ import {line as shapeLine} from "d3";
 import {createElement as h, Fragment, type ReactNode} from "react";
 import {markerToJSX} from "../react/Markers.js";
 import type {ChannelValue, ChannelValueDenseBinSpec, ChannelValueSpec} from "../channel.js";
-// @ts-ignore — runtime exports from ../context.js not declared in its .d.ts
-import {create} from "../context.js";
 import {
   directStyleProps,
   groupChannelStyleProps,
@@ -17,20 +15,12 @@ import type {CurveAutoOptions} from "../curve.js";
 import {Mark} from "../mark.js";
 import type {Data, MarkOptions} from "../mark.js";
 // @ts-ignore — runtime exports from ../marker.js not declared in its .d.ts
-import {applyGroupedMarkers, markers} from "../marker.js";
+import {markers} from "../marker.js";
 import type {MarkerOptions} from "../marker.js";
 // @ts-ignore — runtime exports from ../options.js not declared in its .d.ts
 import {coerceNumbers, indexOf, identity, maybeTuple, maybeZ} from "../options.js";
 import {
   // @ts-ignore — runtime exports from ../style.js not declared in its .d.ts
-  applyDirectStyles,
-  // @ts-ignore
-  applyIndirectStyles,
-  // @ts-ignore
-  applyTransform,
-  // @ts-ignore
-  applyGroupedChannelStyles,
-  // @ts-ignore
   groupIndex
 } from "../style.js";
 // @ts-ignore — runtime exports from ../transforms/bin.js not declared in its .d.ts
@@ -155,34 +145,6 @@ export class Line extends Mark {
       // @ts-ignore — Mark.project not declared in .d.ts surface
       super.project(channels, values, context);
     }
-  }
-  render(index: any, scales: any, channels: any, dimensions: any, context: any) {
-    const {x: X, y: Y} = channels;
-    const {curve} = this;
-    return create("svg:g", context)
-      .call(applyIndirectStyles, this, dimensions, context)
-      .call(applyTransform, this, scales)
-      .call((g) =>
-        g
-          .selectAll()
-          .data(groupIndex(index, [X, Y], this, channels))
-          .enter()
-          .append("path")
-          .call(applyDirectStyles, this)
-          .call(applyGroupedChannelStyles, this, channels)
-          .call(applyGroupedMarkers, this, channels, context)
-          .attr(
-            "d",
-            curve === curveAuto && context.projection
-              ? sphereLine(context.path(), X, Y)
-              : shapeLine<any>()
-                  .curve(curve)
-                  .defined((i) => i >= 0)
-                  .x((i) => X[i])
-                  .y((i) => Y[i])
-          )
-      )
-      .node();
   }
   renderJSX(this: any, index: any, scales: any, channels: any, dimensions: any, context: any): ReactNode {
     const {x: X, y: Y, stroke: S} = channels;

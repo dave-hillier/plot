@@ -1,0 +1,61 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(-0.5,0)">
+    <path transform="translate(40,370)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,335)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,300)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,265)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,230)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,195)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,160)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,125)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,90)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,55)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,20)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
+    <text transform="translate(40,370)" y="0.32em">0</text>
+    <text transform="translate(40,335)" y="0.32em">2</text>
+    <text transform="translate(40,300)" y="0.32em">4</text>
+    <text transform="translate(40,265)" y="0.32em">6</text>
+    <text transform="translate(40,230)" y="0.32em">8</text>
+    <text transform="translate(40,195)" y="0.32em">10</text>
+    <text transform="translate(40,160)" y="0.32em">12</text>
+    <text transform="translate(40,125)" y="0.32em">14</text>
+    <text transform="translate(40,90)" y="0.32em">16</text>
+    <text transform="translate(40,55)" y="0.32em">18</text>
+    <text transform="translate(40,20)" y="0.32em">20</text>
+  </g>
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,-0.5)">
+    <path transform="translate(60,370)" d="M0,0L0,6"></path>
+    <path transform="translate(155.294,370)" d="M0,0L0,6"></path>
+    <path transform="translate(250.588,370)" d="M0,0L0,6"></path>
+    <path transform="translate(345.882,370)" d="M0,0L0,6"></path>
+    <path transform="translate(441.176,370)" d="M0,0L0,6"></path>
+    <path transform="translate(536.471,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
+    <text transform="translate(60,370)" y="0.71em">2002</text>
+    <text transform="translate(155.294,370)" y="0.71em">2005</text>
+    <text transform="translate(250.588,370)" y="0.71em">2008</text>
+    <text transform="translate(345.882,370)" y="0.71em">2011</text>
+    <text transform="translate(441.176,370)" y="0.71em">2014</text>
+    <text transform="translate(536.471,370)" y="0.71em">2017</text>
+  </g>
+  <g aria-label="line" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M60,212.5L91.765,72.5L123.529,160L155.294,282.5L187.059,160L218.824,55L250.588,90L282.353,177.5L314.118,212.5L345.882,230L377.647,212.5L600,20"></path>
+  </g>
+</svg>

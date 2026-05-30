@@ -1,0 +1,169 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(-0.5,0)">
+    <path transform="translate(40,370)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,344.95)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,319.901)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,294.851)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,269.801)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,244.751)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,219.702)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,194.652)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,169.602)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,144.552)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,119.503)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,94.453)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,69.403)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,44.353)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
+    <text transform="translate(40,370)" y="0.32em">0.00</text>
+    <text transform="translate(40,344.95)" y="0.32em">0.01</text>
+    <text transform="translate(40,319.901)" y="0.32em">0.02</text>
+    <text transform="translate(40,294.851)" y="0.32em">0.03</text>
+    <text transform="translate(40,269.801)" y="0.32em">0.04</text>
+    <text transform="translate(40,244.751)" y="0.32em">0.05</text>
+    <text transform="translate(40,219.702)" y="0.32em">0.06</text>
+    <text transform="translate(40,194.652)" y="0.32em">0.07</text>
+    <text transform="translate(40,169.602)" y="0.32em">0.08</text>
+    <text transform="translate(40,144.552)" y="0.32em">0.09</text>
+    <text transform="translate(40,119.503)" y="0.32em">0.10</text>
+    <text transform="translate(40,94.453)" y="0.32em">0.11</text>
+    <text transform="translate(40,69.403)" y="0.32em">0.12</text>
+    <text transform="translate(40,44.353)" y="0.32em">0.13</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-37,-17)">
+    <text transform="translate(40,20)" y="0.71em">↑ frequency</text>
+  </g>
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(10,-0.5)">
+    <path transform="translate(45,370)" d="M0,0L0,6"></path>
+    <path transform="translate(67,370)" d="M0,0L0,6"></path>
+    <path transform="translate(89,370)" d="M0,0L0,6"></path>
+    <path transform="translate(111,370)" d="M0,0L0,6"></path>
+    <path transform="translate(133,370)" d="M0,0L0,6"></path>
+    <path transform="translate(155,370)" d="M0,0L0,6"></path>
+    <path transform="translate(177,370)" d="M0,0L0,6"></path>
+    <path transform="translate(199,370)" d="M0,0L0,6"></path>
+    <path transform="translate(221,370)" d="M0,0L0,6"></path>
+    <path transform="translate(243,370)" d="M0,0L0,6"></path>
+    <path transform="translate(265,370)" d="M0,0L0,6"></path>
+    <path transform="translate(287,370)" d="M0,0L0,6"></path>
+    <path transform="translate(309,370)" d="M0,0L0,6"></path>
+    <path transform="translate(331,370)" d="M0,0L0,6"></path>
+    <path transform="translate(353,370)" d="M0,0L0,6"></path>
+    <path transform="translate(375,370)" d="M0,0L0,6"></path>
+    <path transform="translate(397,370)" d="M0,0L0,6"></path>
+    <path transform="translate(419,370)" d="M0,0L0,6"></path>
+    <path transform="translate(441,370)" d="M0,0L0,6"></path>
+    <path transform="translate(463,370)" d="M0,0L0,6"></path>
+    <path transform="translate(485,370)" d="M0,0L0,6"></path>
+    <path transform="translate(507,370)" d="M0,0L0,6"></path>
+    <path transform="translate(529,370)" d="M0,0L0,6"></path>
+    <path transform="translate(551,370)" d="M0,0L0,6"></path>
+    <path transform="translate(573,370)" d="M0,0L0,6"></path>
+    <path transform="translate(595,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" transform="translate(10,9)">
+    <text transform="translate(45,370)" y="0.71em">E</text>
+    <text transform="translate(67,370)" y="0.71em">T</text>
+    <text transform="translate(89,370)" y="0.71em">A</text>
+    <text transform="translate(111,370)" y="0.71em">O</text>
+    <text transform="translate(133,370)" y="0.71em">I</text>
+    <text transform="translate(155,370)" y="0.71em">N</text>
+    <text transform="translate(177,370)" y="0.71em">S</text>
+    <text transform="translate(199,370)" y="0.71em">H</text>
+    <text transform="translate(221,370)" y="0.71em">R</text>
+    <text transform="translate(243,370)" y="0.71em">D</text>
+    <text transform="translate(265,370)" y="0.71em">L</text>
+    <text transform="translate(287,370)" y="0.71em">C</text>
+    <text transform="translate(309,370)" y="0.71em">U</text>
+    <text transform="translate(331,370)" y="0.71em">M</text>
+    <text transform="translate(353,370)" y="0.71em">W</text>
+    <text transform="translate(375,370)" y="0.71em">F</text>
+    <text transform="translate(397,370)" y="0.71em">G</text>
+    <text transform="translate(419,370)" y="0.71em">Y</text>
+    <text transform="translate(441,370)" y="0.71em">P</text>
+    <text transform="translate(463,370)" y="0.71em">B</text>
+    <text transform="translate(485,370)" y="0.71em">V</text>
+    <text transform="translate(507,370)" y="0.71em">K</text>
+    <text transform="translate(529,370)" y="0.71em">J</text>
+    <text transform="translate(551,370)" y="0.71em">X</text>
+    <text transform="translate(573,370)" y="0.71em">Q</text>
+    <text transform="translate(595,370)" y="0.71em">Z</text>
+  </g>
+  <g aria-label="x-axis label" transform="translate(0,27)">
+    <text transform="translate(330,370)">letter</text>
+  </g>
+  <g aria-label="bar" fill="steelblue">
+    <rect x="45" y="51.818" width="20" height="318.182"></rect>
+    <rect x="67" y="143.15" width="20" height="226.85"></rect>
+    <rect x="89" y="165.419" width="20" height="204.581"></rect>
+    <rect x="111" y="181.952" width="20" height="188.048"></rect>
+    <rect x="133" y="195.503" width="20" height="174.497"></rect>
+    <rect x="155" y="200.939" width="20" height="169.061"></rect>
+    <rect x="177" y="211.51" width="20" height="158.49"></rect>
+    <rect x="199" y="217.347" width="20" height="152.653"></rect>
+    <rect x="221" y="220.027" width="20" height="149.973"></rect>
+    <rect x="243" y="263.463" width="20" height="106.537"></rect>
+    <rect x="265" y="269.175" width="20" height="100.825"></rect>
+    <rect x="287" y="300.312" width="20" height="69.688"></rect>
+    <rect x="309" y="300.913" width="20" height="69.087"></rect>
+    <rect x="331" y="309.73" width="20" height="60.27"></rect>
+    <rect x="353" y="310.883" width="20" height="59.117"></rect>
+    <rect x="375" y="312.686" width="20" height="57.314"></rect>
+    <rect x="397" y="319.525" width="20" height="50.475"></rect>
+    <rect x="419" y="320.552" width="20" height="49.448"></rect>
+    <rect x="441" y="321.679" width="20" height="48.321"></rect>
+    <rect x="463" y="332.626" width="20" height="37.374"></rect>
+    <rect x="485" y="345.501" width="20" height="24.499"></rect>
+    <rect x="507" y="350.662" width="20" height="19.338"></rect>
+    <rect x="529" y="366.167" width="20" height="3.833"></rect>
+    <rect x="551" y="366.243" width="20" height="3.757"></rect>
+    <rect x="573" y="367.62" width="20" height="2.38"></rect>
+    <rect x="595" y="368.146" width="20" height="1.854"></rect>
+  </g>
+  <g aria-label="rule" stroke="currentColor" transform="translate(10.5,0)">
+    <line x1="45" x2="45" y1="83.636" y2="20"></line>
+    <line x1="67" x2="67" y1="165.835" y2="120.464"></line>
+    <line x1="89" x2="89" y1="185.877" y2="144.961"></line>
+    <line x1="111" x2="111" y1="200.756" y2="163.147"></line>
+    <line x1="133" x2="133" y1="212.953" y2="178.054"></line>
+    <line x1="155" x2="155" y1="217.845" y2="184.033"></line>
+    <line x1="177" x2="177" y1="227.359" y2="195.661"></line>
+    <line x1="199" x2="199" y1="232.612" y2="202.082"></line>
+    <line x1="221" x2="221" y1="235.024" y2="205.03"></line>
+    <line x1="243" x2="243" y1="274.117" y2="252.81"></line>
+    <line x1="265" x2="265" y1="279.257" y2="259.092"></line>
+    <line x1="287" x2="287" y1="307.28" y2="293.343"></line>
+    <line x1="309" x2="309" y1="307.822" y2="294.004"></line>
+    <line x1="331" x2="331" y1="315.757" y2="303.703"></line>
+    <line x1="353" x2="353" y1="316.794" y2="304.971"></line>
+    <line x1="375" x2="375" y1="318.418" y2="306.955"></line>
+    <line x1="397" x2="397" y1="324.572" y2="314.477"></line>
+    <line x1="419" x2="419" y1="325.497" y2="315.607"></line>
+    <line x1="441" x2="441" y1="326.511" y2="316.847"></line>
+    <line x1="463" x2="463" y1="336.363" y2="328.888"></line>
+    <line x1="485" x2="485" y1="347.951" y2="343.051"></line>
+    <line x1="507" x2="507" y1="352.595" y2="348.728"></line>
+    <line x1="529" x2="529" y1="366.551" y2="365.784"></line>
+    <line x1="551" x2="551" y1="366.618" y2="365.867"></line>
+    <line x1="573" x2="573" y1="367.858" y2="367.382"></line>
+    <line x1="595" x2="595" y1="368.332" y2="367.961"></line>
+  </g>
+  <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
+    <line x1="40" x2="620" y1="370" y2="370"></line>
+  </g>
+</svg>

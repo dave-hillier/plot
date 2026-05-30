@@ -1,8 +1,6 @@
 import {createElement as h, type ReactNode} from "react";
 import type {ChannelValue, ChannelValueSpec} from "../channel.js";
 import type {Data, FrameAnchor, MarkOptions} from "../mark.js";
-// @ts-ignore
-import {create} from "../context.js";
 import {positive} from "../defined.js";
 import {Mark} from "../mark.js";
 // @ts-ignore
@@ -11,23 +9,11 @@ import {channelStyleProps, directStyleProps, indirectStyleProps, transformProp} 
 import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
 import {
   // @ts-ignore
-  applyAttr,
-  // @ts-ignore
-  applyChannelStyles,
-  // @ts-ignore
-  applyDirectStyles,
-  // @ts-ignore
   applyFrameAnchor,
-  // @ts-ignore
-  applyIndirectStyles,
-  // @ts-ignore
-  applyTransform,
   impliedString
 } from "../style.js";
 // @ts-ignore
 import {withDefaultSort} from "./dot.js";
-// @ts-ignore
-import {template} from "../template.js";
 
 /** Options for the image mark. */
 export interface ImageOptions extends MarkOptions {
@@ -186,37 +172,6 @@ export class Image extends Mark {
     this.crossOrigin = string(crossOrigin);
     this.frameAnchor = maybeFrameAnchor(frameAnchor);
     this.imageRendering = impliedString(imageRendering, "auto");
-  }
-  render(index: any, scales: any, channels: any, dimensions: any, context: any) {
-    const {x, y} = scales;
-    const {x: X, y: Y, width: W, height: H, r: R, rotate: A, src: S} = channels;
-    const {r, width, height, rotate} = this;
-    const [cx, cy] = applyFrameAnchor(this, dimensions);
-    return create("svg:g", context)
-      .call(applyIndirectStyles, this, dimensions, context)
-      .call(applyTransform, this, {x: X && x, y: Y && y})
-      .call((g: any) =>
-        g
-          .selectAll()
-          .data(index)
-          .enter()
-          .append("image")
-          .call(applyDirectStyles, this)
-          .attr("x", position(X, W, R, cx, width, r))
-          .attr("y", position(Y, H, R, cy, height, r))
-          .attr("width", W ? (i: number) => W[i] : width !== undefined ? width : R ? (i: number) => R[i] * 2 : r * 2)
-          .attr("height", H ? (i: number) => H[i] : height !== undefined ? height : R ? (i: number) => R[i] * 2 : r * 2)
-          // TODO: combine x, y, rotate and transform-origin into a single transform
-          .attr("transform", A ? (i: number) => `rotate(${A[i]})` : rotate ? `rotate(${rotate})` : null)
-          .attr("transform-origin", A || rotate ? template`${X ? (i: number) => X[i] : cx}px ${Y ? (i: number) => Y[i] : cy}px` : null)
-          .call(applyAttr, "href", S ? (i: number) => S[i] : this.src)
-          .call(applyAttr, "preserveAspectRatio", this.preserveAspectRatio)
-          .call(applyAttr, "crossorigin", this.crossOrigin)
-          .call(applyAttr, "image-rendering", this.imageRendering)
-          .call(applyAttr, "clip-path", R ? (i: number) => `circle(${R[i]}px)` : r !== undefined ? `circle(${r}px)` : null)
-          .call(applyChannelStyles, this, channels)
-      )
-      .node();
   }
   renderJSX(this: any, index: any, scales: any, channels: any, dimensions: any, _context: any): ReactNode {
     const {x, y} = scales;

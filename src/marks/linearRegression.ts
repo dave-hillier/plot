@@ -1,8 +1,6 @@
-import {extent, range, sum, area as shapeArea, namespaces} from "d3";
+import {extent, range, sum, area as shapeArea} from "d3";
 import {createElement as h, type ReactNode} from "react";
 import type {ChannelValue, ChannelValueDenseBinSpec, ChannelValueSpec} from "../channel.js";
-// @ts-ignore — create is exported by context.js but not declared in context.d.ts
-import {create} from "../context.js";
 import type {Data, MarkOptions, RenderableMark} from "../mark.js";
 import {Mark} from "../mark.js";
 // @ts-ignore — these helpers are exported by options.js but not declared in options.d.ts
@@ -11,7 +9,7 @@ import {directStyleProps, groupChannelStyleProps, indirectStyleProps, transformP
 import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
 import {qt} from "../stats.js";
 // @ts-ignore — these helpers are exported by style.js but not declared in style.d.ts
-import {applyDirectStyles, applyGroupedChannelStyles, applyIndirectStyles, applyTransform, groupZ} from "../style.js";
+import {groupZ} from "../style.js";
 import type {BinOptions, BinReducer} from "../transforms/bin.js";
 // @ts-ignore — maybeDenseIntervalX/Y are exported by bin.js but not declared in bin.d.ts
 import {maybeDenseIntervalX, maybeDenseIntervalY} from "../transforms/bin.js";
@@ -121,44 +119,6 @@ class LinearRegression extends Mark {
     if (!(0 <= this.ci && this.ci < 1)) throw new Error(`invalid ci; not in [0, 1): ${ci}`);
     if (!(this.precision > 0)) throw new Error(`invalid precision: ${precision}`);
   }
-  render(index: any, scales: any, channels: any, dimensions: any, context: any) {
-    const {x: X, y: Y, z: Z} = channels;
-    const {ci} = this;
-    return create("svg:g", context)
-      .call(applyIndirectStyles, this, dimensions, context)
-      .call(applyTransform, this, scales)
-      .call((g) =>
-        g
-          .selectAll()
-          .data(Z ? groupZ(index, Z, this.z) : [index])
-          .enter()
-          .call((enter) =>
-            enter
-              .append("path")
-              .attr("fill", "none")
-              .call(applyDirectStyles, this)
-              .call(applyGroupedChannelStyles, this, {...channels, fill: null, fillOpacity: null})
-              .attr("d", (I) => (this as any)._renderLine(I, X, Y))
-              .call(
-                ci && !isNone((this as any).fill)
-                  ? (path) =>
-                      path
-                        .select(pathBefore)
-                        .attr("stroke", "none")
-                        .call(applyDirectStyles, this)
-                        .call(applyGroupedChannelStyles, this, {
-                          ...channels,
-                          stroke: null,
-                          strokeOpacity: null,
-                          strokeWidth: null
-                        })
-                        .attr("d", (I) => (this as any)._renderBand(I, X, Y))
-                  : () => {}
-              )
-          )
-      )
-      .node();
-  }
   renderJSX(this: any, index: any, scales: any, channels: any, _dimensions: any, _context: any): ReactNode {
     const {x: X, y: Y, z: Z} = channels;
     const {ci} = this;
@@ -183,10 +143,6 @@ class LinearRegression extends Mark {
     });
     return h("g", {...indirect, ...transform}, elements);
   }
-}
-
-function pathBefore() {
-  return this.parentNode.insertBefore(this.ownerDocument.createElementNS(namespaces.svg, "path"), this);
 }
 
 class LinearRegressionX extends LinearRegression {

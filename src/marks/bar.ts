@@ -1,6 +1,4 @@
 import type {ChannelValueIntervalSpec, ChannelValueSpec} from "../channel.js";
-// @ts-ignore — runtime export not present in hand-written .d.ts
-import {create} from "../context.js";
 import type {InsetOptions} from "../inset.js";
 import type {Interval} from "../interval.js";
 import type {Data, MarkOptions} from "../mark.js";
@@ -10,14 +8,14 @@ import {hasXY, identity, indexOf} from "../options.js";
 // @ts-ignore — runtime export not present in hand-written .d.ts
 import {isCollapsed} from "../scales.js";
 // @ts-ignore — runtime exports not present in hand-written .d.ts
-import {applyAttr, applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
+import {applyTransform} from "../style.js";
 import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
 import {maybeIntervalX, maybeIntervalY} from "../transforms/interval.js";
 import type {StackOptions} from "../transforms/stack.js";
 // @ts-ignore — runtime exports not present in hand-written .d.ts
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
 import type {RectCornerOptions} from "./rect.js";
-import {applyRoundedRect, rectInsets, rectRadii, roundedRectPath} from "./rect.js";
+import {rectInsets, rectRadii, roundedRectPath} from "./rect.js";
 import {createElement as h, type ReactNode} from "react";
 import {channelStyleProps, directStyleProps, indirectStyleProps, transformProp} from "../react/styles.js";
 import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
@@ -157,43 +155,6 @@ export class AbstractBar extends Mark {
     super(data, channels, options, defaults);
     rectInsets(this, options);
     rectRadii(this, options);
-  }
-  render(index: any, scales: any, channels: any, dimensions: any, context: any): any {
-    const {rx, ry, rx1y1, rx1y2, rx2y1, rx2y2} = this;
-    const x = this._x(scales, channels, dimensions);
-    const y = this._y(scales, channels, dimensions);
-    const w = this._width(scales, channels, dimensions);
-    const h = this._height(scales, channels, dimensions);
-    return create("svg:g", context)
-      .call(applyIndirectStyles, this, dimensions, context)
-      .call(this._transform, this, scales)
-      .call((g: any) =>
-        g
-          .selectAll()
-          .data(index)
-          .enter()
-          .call(
-            rx1y1 || rx1y2 || rx2y1 || rx2y2
-              ? (g: any) =>
-                  g
-                    .append("path")
-                    .call(applyDirectStyles, this)
-                    .call(applyRoundedRect, x, y, add(x, w), add(y, h), this)
-                    .call(applyChannelStyles, this, channels)
-              : (g: any) =>
-                  g
-                    .append("rect")
-                    .call(applyDirectStyles, this)
-                    .attr("x", x)
-                    .attr("width", w)
-                    .attr("y", y)
-                    .attr("height", h)
-                    .call(applyAttr, "rx", rx)
-                    .call(applyAttr, "ry", ry)
-                    .call(applyChannelStyles, this, channels)
-          )
-      )
-      .node();
   }
   renderJSX(this: any, index: any, scales: any, channels: any, dimensions: any, _context: any): ReactNode {
     const {rx, ry, rx1y1, rx1y2, rx2y1, rx2y2} = this;

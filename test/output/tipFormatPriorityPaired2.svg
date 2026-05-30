@@ -1,0 +1,43 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="90" viewBox="0 0 640 90" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,-0.5)">
+    <path transform="translate(20,60)" d="M0,0L0,6"></path>
+    <path transform="translate(80,60)" d="M0,0L0,6"></path>
+    <path transform="translate(140,60)" d="M0,0L0,6"></path>
+    <path transform="translate(200,60)" d="M0,0L0,6"></path>
+    <path transform="translate(260,60)" d="M0,0L0,6"></path>
+    <path transform="translate(320,60)" d="M0,0L0,6"></path>
+    <path transform="translate(380,60)" d="M0,0L0,6"></path>
+    <path transform="translate(440,60)" d="M0,0L0,6"></path>
+    <path transform="translate(500,60)" d="M0,0L0,6"></path>
+    <path transform="translate(560,60)" d="M0,0L0,6"></path>
+    <path transform="translate(620,60)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
+    <text transform="translate(20,60)" y="0.71em">0.0</text>
+    <text transform="translate(80,60)" y="0.71em">0.1</text>
+    <text transform="translate(140,60)" y="0.71em">0.2</text>
+    <text transform="translate(200,60)" y="0.71em">0.3</text>
+    <text transform="translate(260,60)" y="0.71em">0.4</text>
+    <text transform="translate(320,60)" y="0.71em">0.5</text>
+    <text transform="translate(380,60)" y="0.71em">0.6</text>
+    <text transform="translate(440,60)" y="0.71em">0.7</text>
+    <text transform="translate(500,60)" y="0.71em">0.8</text>
+    <text transform="translate(560,60)" y="0.71em">0.9</text>
+    <text transform="translate(620,60)" y="0.71em">1.0</text>
+  </g>
+  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start"></g>
+</svg>

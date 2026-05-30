@@ -1,15 +1,11 @@
 import type {GeoPermissibleObjects} from "d3";
 import {geoGraticule10} from "d3";
 import type {ChannelValue, ChannelValueSpec} from "../channel.js";
-// @ts-expect-error — runtime export missing from context.d.ts
-import {create} from "../context.js";
 import {negative, positive} from "../defined.js";
 import type {Data, MarkOptions} from "../mark.js";
 import {Mark} from "../mark.js";
 // @ts-expect-error — runtime exports missing from options.d.ts
 import {identity, maybeNumberChannel} from "../options.js";
-// @ts-expect-error — runtime exports missing from style.d.ts
-import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 import {createElement as h, type ReactNode} from "react";
 import {channelStyleProps, directStyleProps, indirectStyleProps, transformProp} from "../react/styles.js";
 import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
@@ -81,26 +77,6 @@ export class Geo extends Mark {
       defaults
     );
     this.r = cr;
-  }
-  render(index: any, scales: any, channels: any, dimensions: any, context: any) {
-    const {geometry: G, r: R} = channels;
-    const path = context.path();
-    const {r} = this;
-    if (negative(r)) index = [];
-    else if (r !== undefined) path.pointRadius(r);
-    return create("svg:g", context)
-      .call(applyIndirectStyles, this, dimensions, context)
-      .call(applyTransform, this, scales)
-      .call((g) => {
-        g.selectAll()
-          .data(index)
-          .enter()
-          .append("path")
-          .call(applyDirectStyles, this)
-          .attr("d", R ? (i: any) => path.pointRadius(R[i])(G[i]) : (i: any) => path(G[i]))
-          .call(applyChannelStyles, this, channels);
-      })
-      .node();
   }
   renderJSX(this: any, index: any, scales: any, channels: any, _dimensions: any, context: any): ReactNode {
     const {geometry: G, r: R} = channels;

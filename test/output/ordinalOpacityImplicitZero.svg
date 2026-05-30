@@ -1,0 +1,46 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(33.5,-0.5)">
+    <path transform="translate(28,30)" d="M0,0L0,6"></path>
+    <path transform="translate(102,30)" d="M0,0L0,6"></path>
+    <path transform="translate(176,30)" d="M0,0L0,6"></path>
+    <path transform="translate(250,30)" d="M0,0L0,6"></path>
+    <path transform="translate(324,30)" d="M0,0L0,6"></path>
+    <path transform="translate(398,30)" d="M0,0L0,6"></path>
+    <path transform="translate(472,30)" d="M0,0L0,6"></path>
+    <path transform="translate(546,30)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" transform="translate(33.5,9)">
+    <text transform="translate(28,30)" y="0.71em">0</text>
+    <text transform="translate(102,30)" y="0.71em">1</text>
+    <text transform="translate(176,30)" y="0.71em">2</text>
+    <text transform="translate(250,30)" y="0.71em">3</text>
+    <text transform="translate(324,30)" y="0.71em">4</text>
+    <text transform="translate(398,30)" y="0.71em">5</text>
+    <text transform="translate(472,30)" y="0.71em">6</text>
+    <text transform="translate(546,30)" y="0.71em">7</text>
+  </g>
+  <g aria-label="cell" fill="red">
+    <rect opacity="0.125" x="28" y="0" width="67" height="30"></rect>
+    <rect opacity="0.25" x="102" y="0" width="67" height="30"></rect>
+    <rect opacity="0.375" x="176" y="0" width="67" height="30"></rect>
+    <rect opacity="0.5" x="250" y="0" width="67" height="30"></rect>
+    <rect opacity="0.625" x="324" y="0" width="67" height="30"></rect>
+    <rect opacity="0.75" x="398" y="0" width="67" height="30"></rect>
+    <rect opacity="0.875" x="472" y="0" width="67" height="30"></rect>
+    <rect opacity="1" x="546" y="0" width="67" height="30"></rect>
+  </g>
+</svg>

@@ -2,8 +2,6 @@ import {pathRound as path} from "d3";
 import {createElement as h, Fragment, type ReactNode} from "react";
 import {markerToJSX} from "../react/Markers.js";
 import type {ChannelValueSpec} from "../channel.js";
-// @ts-expect-error — runtime export missing from context.d.ts
-import {create} from "../context.js";
 import type {CurveAutoOptions} from "../curve.js";
 import {maybeCurveAuto} from "../curve.js";
 // @ts-expect-error — runtime export missing from curve.d.ts
@@ -12,11 +10,9 @@ import type {Data, MarkOptions} from "../mark.js";
 import {Mark} from "../mark.js";
 import type {MarkerOptions} from "../marker.js";
 // @ts-expect-error — runtime exports missing from marker.d.ts
-import {markers, applyMarkers} from "../marker.js";
+import {markers} from "../marker.js";
 // @ts-expect-error — runtime export missing from options.d.ts
 import {coerceNumbers} from "../options.js";
-// @ts-expect-error — runtime exports missing from style.d.ts
-import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 import {channelStyleProps, directStyleProps, indirectStyleProps, transformProp} from "../react/styles.js";
 import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
 
@@ -107,38 +103,6 @@ export class Link extends Mark {
       // @ts-expect-error — Mark.project missing from mark.d.ts
       super.project(channels, values, context);
     }
-  }
-  render(index, scales, channels, dimensions, context) {
-    const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1} = channels;
-    const {curve} = this;
-    return create("svg:g", context)
-      .call(applyIndirectStyles, this, dimensions, context)
-      .call(applyTransform, this, scales)
-      .call((g) =>
-        g
-          .selectAll()
-          .data(index)
-          .enter()
-          .append("path")
-          .call(applyDirectStyles, this)
-          .attr(
-            "d",
-            curve === curveAuto && context.projection
-              ? sphereLink(context.path(), X1, Y1, X2, Y2)
-              : (i) => {
-                  const p = path();
-                  const c = curve(p);
-                  c.lineStart();
-                  c.point(X1[i], Y1[i]);
-                  c.point(X2[i], Y2[i]);
-                  c.lineEnd();
-                  return p;
-                }
-          )
-          .call(applyChannelStyles, this, channels)
-          .call(applyMarkers, this, channels, context)
-      )
-      .node();
   }
   renderJSX(this: any, index, scales, channels, dimensions, context): ReactNode {
     const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1, stroke: S} = channels;

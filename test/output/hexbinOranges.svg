@@ -1,0 +1,264 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(-0.5,0)">
+    <path transform="translate(40,337.2)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,313.2)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,289.2)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,265.2)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,241.2)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,217.2)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,193.2)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,169.2)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,145.2)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,121.2)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,97.2)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,73.2)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,49.2)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
+    <text transform="translate(40,337.2)" y="0.32em">34</text>
+    <text transform="translate(40,313.2)" y="0.32em">36</text>
+    <text transform="translate(40,289.2)" y="0.32em">38</text>
+    <text transform="translate(40,265.2)" y="0.32em">40</text>
+    <text transform="translate(40,241.2)" y="0.32em">42</text>
+    <text transform="translate(40,217.2)" y="0.32em">44</text>
+    <text transform="translate(40,193.2)" y="0.32em">46</text>
+    <text transform="translate(40,169.2)" y="0.32em">48</text>
+    <text transform="translate(40,145.2)" y="0.32em">50</text>
+    <text transform="translate(40,121.2)" y="0.32em">52</text>
+    <text transform="translate(40,97.2)" y="0.32em">54</text>
+    <text transform="translate(40,73.2)" y="0.32em">56</text>
+    <text transform="translate(40,49.2)" y="0.32em">58</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-37,-17)">
+    <text transform="translate(40,20)" y="0.71em">↑ culmen_length_mm</text>
+  </g>
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,-0.5)">
+    <path transform="translate(110,370)" d="M0,0L0,6"></path>
+    <path transform="translate(176.667,370)" d="M0,0L0,6"></path>
+    <path transform="translate(243.333,370)" d="M0,0L0,6"></path>
+    <path transform="translate(310,370)" d="M0,0L0,6"></path>
+    <path transform="translate(376.667,370)" d="M0,0L0,6"></path>
+    <path transform="translate(443.333,370)" d="M0,0L0,6"></path>
+    <path transform="translate(510,370)" d="M0,0L0,6"></path>
+    <path transform="translate(576.667,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
+    <text transform="translate(110,370)" y="0.71em">14</text>
+    <text transform="translate(176.667,370)" y="0.71em">15</text>
+    <text transform="translate(243.333,370)" y="0.71em">16</text>
+    <text transform="translate(310,370)" y="0.71em">17</text>
+    <text transform="translate(376.667,370)" y="0.71em">18</text>
+    <text transform="translate(443.333,370)" y="0.71em">19</text>
+    <text transform="translate(510,370)" y="0.71em">20</text>
+    <text transform="translate(576.667,370)" y="0.71em">21</text>
+  </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17,27)">
+    <text transform="translate(620,370)">culmen_depth_mm →</text>
+  </g>
+  <rect aria-label="frame" fill="none" stroke="currentColor" x="40" y="20" width="580" height="350"></rect>
+  <g aria-label="dot" fill="none">
+    <circle fill="rgb(251, 141, 61)" cx="420.5" cy="277.128" r="10"></circle>
+    <circle fill="rgb(253, 185, 126)" cx="340.5" cy="277.128" r="10"></circle>
+    <circle fill="rgb(253, 185, 126)" cx="370.5" cy="259.808" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="460.5" cy="311.769" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="540.5" cy="277.128" r="10"></circle>
+    <circle fill="rgb(232, 94, 14)" cx="360.5" cy="277.128" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="480.5" cy="277.128" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="390.5" cy="329.09" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="520.5" cy="242.487" r="10"></circle>
+    <circle fill="rgb(251, 141, 61)" cx="310.5" cy="294.449" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="330.5" cy="294.449" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="350.5" cy="259.808" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="580.5" cy="277.128" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="590.5" cy="329.09" r="10"></circle>
+    <circle fill="rgb(253, 185, 126)" cx="360.5" cy="311.769" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="440.5" cy="277.128" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="560.5" cy="242.487" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="410.5" cy="329.09" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="610.5" cy="190.526" r="10"></circle>
+    <circle fill="rgb(251, 141, 61)" cx="390.5" cy="294.449" r="10"></circle>
+    <circle fill="rgb(253, 185, 126)" cx="430.5" cy="294.449" r="10"></circle>
+    <circle fill="rgb(251, 141, 61)" cx="320.5" cy="277.128" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="430.5" cy="329.09" r="10"></circle>
+    <circle fill="rgb(251, 141, 61)" cx="410.5" cy="259.808" r="10"></circle>
+    <circle fill="rgb(183, 60, 2)" cx="410.5" cy="294.449" r="10"></circle>
+    <circle fill="rgb(183, 60, 2)" cx="430.5" cy="259.808" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="280.5" cy="277.128" r="10"></circle>
+    <circle fill="rgb(253, 185, 126)" cx="300.5" cy="311.769" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="500.5" cy="277.128" r="10"></circle>
+    <circle fill="rgb(251, 141, 61)" cx="400.5" cy="242.487" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="470.5" cy="294.449" r="10"></circle>
+    <circle fill="rgb(253, 185, 126)" cx="450.5" cy="259.808" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="380.5" cy="311.769" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="400.5" cy="311.769" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="490.5" cy="225.167" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="440.5" cy="242.487" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="580.5" cy="242.487" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="370.5" cy="329.09" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="480.5" cy="242.487" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="420.5" cy="242.487" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="280.5" cy="311.769" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="450.5" cy="294.449" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="390.5" cy="259.808" r="10"></circle>
+    <circle fill="rgb(251, 141, 61)" cx="320.5" cy="311.769" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="380.5" cy="242.487" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="260.5" cy="311.769" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="460.5" cy="242.487" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="440.5" cy="346.41" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="400.5" cy="277.128" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="430.5" cy="190.526" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="340.5" cy="311.769" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="410.5" cy="225.167" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="290.5" cy="259.808" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="240.5" cy="311.769" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="330.5" cy="329.09" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="350.5" cy="225.167" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="470.5" cy="329.09" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="370.5" cy="294.449" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="530.5" cy="259.808" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="480.5" cy="311.769" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="460.5" cy="277.128" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="310.5" cy="329.09" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="380.5" cy="277.128" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="240.5" cy="346.41" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="510.5" cy="259.808" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="250.5" cy="294.449" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="510.5" cy="294.449" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="450.5" cy="225.167" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="270.5" cy="294.449" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="530.5" cy="190.526" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="560.5" cy="277.128" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="390.5" cy="225.167" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="300.5" cy="277.128" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="550.5" cy="294.449" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="490.5" cy="294.449" r="10"></circle>
+    <circle fill="rgb(253, 185, 126)" cx="310.5" cy="259.808" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="230.5" cy="329.09" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="380.5" cy="207.846" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="350.5" cy="294.449" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="340.5" cy="242.487" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="330.5" cy="259.808" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="210.5" cy="363.731" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="290.5" cy="294.449" r="10"></circle>
+    <circle fill="rgb(251, 141, 61)" cx="370.5" cy="190.526" r="10"></circle>
+    <circle fill="rgb(253, 185, 126)" cx="480.5" cy="138.564" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="460.5" cy="138.564" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="420.5" cy="207.846" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="500.5" cy="103.923" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="360.5" cy="207.846" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="390.5" cy="190.526" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="390.5" cy="121.244" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="500.5" cy="138.564" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="530.5" cy="121.244" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="330.5" cy="190.526" r="10"></circle>
+    <circle fill="rgb(253, 185, 126)" cx="310.5" cy="190.526" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="370.5" cy="51.962" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="410.5" cy="190.526" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="390.5" cy="155.885" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="320.5" cy="242.487" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="350.5" cy="155.885" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="290.5" cy="225.167" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="450.5" cy="121.244" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="400.5" cy="138.564" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="450.5" cy="155.885" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="510.5" cy="121.244" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="560.5" cy="103.923" r="10"></circle>
+    <circle fill="rgb(253, 185, 126)" cx="420.5" cy="138.564" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="410.5" cy="155.885" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="300.5" cy="173.205" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="400.5" cy="173.205" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="550.5" cy="121.244" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="280.5" cy="173.205" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="470.5" cy="155.885" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="350.5" cy="190.526" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="440.5" cy="138.564" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="360.5" cy="138.564" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="490.5" cy="155.885" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="430.5" cy="121.244" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="330.5" cy="155.885" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="260.5" cy="173.205" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="330.5" cy="225.167" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="280.5" cy="207.846" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="510.5" cy="155.885" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="470.5" cy="190.526" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="470.5" cy="121.244" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="270.5" cy="190.526" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="500.5" cy="69.282" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="50.5" cy="190.526" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="260.5" cy="138.564" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="110.5" cy="155.885" r="10"></circle>
+    <circle fill="rgb(251, 141, 61)" cx="180.5" cy="138.564" r="10"></circle>
+    <circle fill="rgb(253, 185, 126)" cx="140.5" cy="173.205" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="70.5" cy="190.526" r="10"></circle>
+    <circle fill="rgb(232, 94, 14)" cx="150.5" cy="190.526" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="190.5" cy="190.526" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="70.5" cy="225.167" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="210.5" cy="190.526" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="90.5" cy="259.808" r="10"></circle>
+    <circle fill="rgb(127, 39, 4)" cx="250.5" cy="155.885" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="90.5" cy="190.526" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="150.5" cy="155.885" r="10"></circle>
+    <circle fill="rgb(253, 185, 126)" cx="230.5" cy="155.885" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="80.5" cy="242.487" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="190.5" cy="155.885" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="120.5" cy="138.564" r="10"></circle>
+    <circle fill="rgb(251, 141, 61)" cx="140.5" cy="207.846" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="230.5" cy="190.526" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="50.5" cy="225.167" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="120.5" cy="207.846" r="10"></circle>
+    <circle fill="rgb(251, 141, 61)" cx="180.5" cy="173.205" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="120.5" cy="173.205" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="200.5" cy="138.564" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="200.5" cy="173.205" r="10"></circle>
+    <circle fill="rgb(253, 185, 126)" cx="130.5" cy="225.167" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="300.5" cy="34.641" r="10"></circle>
+    <circle fill="rgb(251, 141, 61)" cx="170.5" cy="155.885" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="90.5" cy="225.167" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="320.5" cy="207.846" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="80.5" cy="207.846" r="10"></circle>
+    <circle fill="rgb(251, 141, 61)" cx="240.5" cy="138.564" r="10"></circle>
+    <circle fill="rgb(253, 185, 126)" cx="110.5" cy="225.167" r="10"></circle>
+    <circle fill="rgb(251, 141, 61)" cx="100.5" cy="207.846" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="60.5" cy="207.846" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="220.5" cy="207.846" r="10"></circle>
+    <circle fill="rgb(232, 94, 14)" cx="130.5" cy="190.526" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="200.5" cy="207.846" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="180.5" cy="207.846" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="150.5" cy="225.167" r="10"></circle>
+    <circle fill="rgb(253, 185, 126)" cx="170.5" cy="190.526" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="110.5" cy="190.526" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="230.5" cy="86.603" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="300.5" cy="138.564" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="220.5" cy="173.205" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="260.5" cy="207.846" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="210.5" cy="121.244" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="320.5" cy="138.564" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="100.5" cy="173.205" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="310.5" cy="121.244" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="160.5" cy="207.846" r="10"></circle>
+    <circle fill="rgb(254, 222, 191)" cx="220.5" cy="138.564" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="280.5" cy="138.564" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="300.5" cy="69.282" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="250.5" cy="190.526" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="160.5" cy="242.487" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="220.5" cy="103.923" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="190.5" cy="225.167" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="270.5" cy="121.244" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="250.5" cy="86.603" r="10"></circle>
+    <circle fill="rgb(255, 245, 235)" cx="80.5" cy="173.205" r="10"></circle>
+  </g>
+</svg>

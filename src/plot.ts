@@ -1,4 +1,4 @@
-import {creator, geoPath, select} from "d3";
+import {creator, geoPath} from "d3";
 import {createChannel, inferChannelScale} from "./channel.js";
 import {createContext} from "./context.js";
 import {createDimensions} from "./dimensions.js";
@@ -10,14 +10,16 @@ import {axisFx, axisFy, axisX, axisY, gridFx, gridFy, gridX, gridY} from "./mark
 import {frame} from "./marks/frame.js";
 import {tip} from "./marks/tip.js";
 import {isColor, isIterable, isNone, isScaleOptions} from "./options.js";
-import {dataify, lengthof, map, yes, maybeIntervalTransform, subarray} from "./options.js";
+import {dataify, lengthof, map, yes, maybeIntervalTransform} from "./options.js";
 import {createProjection, getGeometryChannels, hasProjection, xyProjection} from "./projection.js";
 import {createScales, createScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
 import {innerDimensions, outerDimensions} from "./scales.js";
 import {isPosition, registry as scaleRegistry} from "./scales/index.js";
-import {applyInlineStyles, maybeClassName} from "./style.js";
+import {maybeClassName} from "./style.js";
 import {initializer} from "./transforms/basic.js";
 import {consumeWarnings, warn} from "./warnings.js";
+import {renderToStaticMarkup} from "react-dom/server";
+import {buildStaticPlotSvg} from "./react/renderStatic.js";
 
 // Returns the pre-render state needed by both the imperative DOM build path
 // (used by `plot()` below) and the React JSX path (used by `<Plot>` in
@@ -278,106 +280,30 @@ export function computePlot(options: any = {}): any {
 
 export function plot(options: any = {}) {
   const computed: any = computePlot(options);
-  const {
-    className,
-    ariaLabel,
-    ariaDescription,
-    marks,
-    stateByMark,
-    facetStateByMark,
-    scales,
-    scaleDescriptors,
-    dimensions,
-    superdimensions,
-    subdimensions,
-    context,
-    facets,
-    facetDomains,
-    facetTranslate,
-    svg
-  } = computed;
+  const {className, scales, scaleDescriptors, context} = computed;
   const {style, title, subtitle, caption} = options;
   const document = context.document;
   const figureHolder: {current: any} = context.figureHolder;
-  const {width, height} = dimensions;
 
-  select(svg)
-    .attr("class", className)
-    .attr("fill", "currentColor")
-    .attr("font-family", "system-ui, sans-serif")
-    .attr("font-size", 10)
-    .attr("text-anchor", "middle")
-    .attr("width", width)
-    .attr("height", height)
-    .attr("viewBox", `0 0 ${width} ${height}`)
-    .attr("aria-label", ariaLabel)
-    .attr("aria-description", ariaDescription)
-    .call((svg) =>
-      // Warning: if you edit this, change defaultClassName.
-      svg.append("style").text(
-        `:where(.${className}) {
-  --plot-background: white;
-  display: block;
-  height: auto;
-  height: intrinsic;
-  max-width: 100%;
-}
-:where(.${className} text),
-:where(.${className} tspan) {
-  white-space: pre;
-}`
-      )
-    )
-    .call(applyInlineStyles, style);
+  // Drain warnings emitted during computePlot so the ⚠️ indicator renders and
+  // the warn() dedupe state is reset (matching the React <Plot> path).
+  const warnings = consumeWarnings();
 
-  // Render marks.
-  for (const mark of marks) {
-    const {channels, values, facets: indexes} = stateByMark.get(mark);
+  // Render the marks to a detached <svg> via React's renderJSX — no
+  // d3-selection. The same renderMarksWith/renderJSX code powers <Plot>, so
+  // the imperative and JSX outputs stay in lockstep. We serialize to markup
+  // and reparse into the target document (which may be a custom jsdom doc).
+  const markup = renderToStaticMarkup(buildStaticPlotSvg(computed, warnings, options.className));
+  const holder = document.createElement("div");
+  holder.innerHTML = markup;
+  const svg: any = holder.firstElementChild;
 
-    // Render a non-faceted mark.
-    if (facets === undefined || mark.facet === "super") {
-      let index = null;
-      if (indexes) {
-        index = indexes[0];
-        index = mark.filter(index, channels, values);
-        if (index.length === 0) continue;
-      }
-      const node = mark.render(index, scales, values, superdimensions, context);
-      if (node == null) continue;
-      svg.appendChild(node);
-    }
+  // Apply the plot-level style option (string or object), mirroring
+  // applyInlineStyles on the former imperative path.
+  if (typeof style === "string") svg.setAttribute("style", style);
+  else if (style != null) Object.assign(svg.style, style);
 
-    // Render a faceted mark.
-    else {
-      let g;
-      for (const f of facets) {
-        if (!(mark.facetAnchor?.(facets, facetDomains, f) ?? !f.empty)) continue;
-        let index = null;
-        if (indexes) {
-          const faceted = facetStateByMark.has(mark);
-          index = indexes[faceted ? f.i : 0];
-          index = mark.filter(index, channels, values);
-          if (index.length === 0) continue;
-          if (!faceted && index === indexes[0]) index = subarray(index); // copy before assigning fx, fy, fi
-          (index.fx = f.x), (index.fy = f.y), (index.fi = f.i);
-        }
-        const node = mark.render(index, scales, values, subdimensions, context);
-        if (node == null) continue;
-        // Lazily construct the shared group (to drop empty marks).
-        (g ??= select(svg).append("g")).append(() => node).datum(f);
-        // Promote ARIA attributes and mark transform to avoid repetition on
-        // each facet; this assumes that these attributes are consistent across
-        // facets, but that should be the case!
-        for (const name of ["aria-label", "aria-description", "aria-hidden", "transform"]) {
-          if (node.hasAttribute(name)) {
-            g.attr(name, node.getAttribute(name));
-            node.removeAttribute(name);
-          }
-        }
-      }
-      g?.selectChildren().each(facetTranslate);
-    }
-  }
+  figureHolder.current = svg;
 
   // Wrap the plot in a figure, if needed.
   const legends = createLegends(scaleDescriptors, context, options);
@@ -396,20 +322,6 @@ export function plot(options: any = {}) {
 
   figureHolder.current.scale = exposeScales(scales.scales);
   figureHolder.current.legend = exposeLegends(scaleDescriptors, context, options);
-
-  const w = consumeWarnings();
-  if (w > 0) {
-    select(svg)
-      .append("text")
-      .attr("x", width)
-      .attr("y", 20)
-      .attr("dy", "-1em")
-      .attr("text-anchor", "end")
-      .attr("font-family", "initial") // fix emoji rendering in Chrome
-      .text("\u26a0\ufe0f") // emoji variation selector
-      .append("title")
-      .text(`${w.toLocaleString("en-US")} warning${w === 1 ? "" : "s"}. Please check the console.`);
-  }
 
   return figureHolder.current;
 }
@@ -435,16 +347,18 @@ function flatMarks(marks) {
 }
 
 function markify(mark) {
-  return typeof mark.render === "function" ? mark : new Render(mark);
+  return mark instanceof Mark || typeof mark.renderJSX === "function" ? mark : new Render(mark);
 }
 
+// Wraps a bare function-as-mark. Such marks supply a renderJSX returning a
+// React element (the imperative render() path has been removed).
 class Render extends Mark {
-  constructor(render) {
-    if (typeof render !== "function") throw new TypeError("invalid mark; missing render function");
+  constructor(renderJSX) {
+    if (typeof renderJSX !== "function") throw new TypeError("invalid mark; missing renderJSX function");
     super();
-    this.render = render;
+    this.renderJSX = renderJSX;
   }
-  render() {}
+  renderJSX() {}
 }
 
 // Note: mutates channel.value to apply the scale transform, if any.

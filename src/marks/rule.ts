@@ -3,12 +3,11 @@ import type {InsetOptions} from "../inset.js";
 import type {Interval} from "../interval.js";
 import type {Data, MarkOptions} from "../mark.js";
 import type {MarkerOptions} from "../marker.js";
-import {create} from "../context.js";
 import {Mark, withTip} from "../mark.js";
-import {applyMarkers, markers} from "../marker.js";
+import {markers} from "../marker.js";
 import {identity, number} from "../options.js";
 import {isCollapsed} from "../scales.js";
-import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
+import {offset} from "../style.js";
 import {channelStyleProps, directStyleProps, indirectStyleProps, transformProp} from "../react/styles.js";
 import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
 import {maybeIntervalX, maybeIntervalY} from "../transforms/interval.js";
@@ -126,37 +125,6 @@ export class RuleX extends Mark {
     this.insetBottom = number(insetBottom);
     markers(this, options);
   }
-  render(index, scales, channels, dimensions, context) {
-    const {x, y} = scales;
-    const {x: X, y1: Y1, y2: Y2} = channels;
-    const {width, height, marginTop, marginRight, marginLeft, marginBottom} = dimensions;
-    const {insetTop, insetBottom} = this;
-    return create("svg:g", context)
-      .call(applyIndirectStyles, this, dimensions, context)
-      .call(applyTransform, this, {x: X && x}, offset, 0)
-      .call((g) =>
-        g
-          .selectAll()
-          .data(index)
-          .enter()
-          .append("line")
-          .call(applyDirectStyles, this)
-          .attr("x1", X ? (i) => X[i] : (marginLeft + width - marginRight) / 2)
-          .attr("x2", X ? (i) => X[i] : (marginLeft + width - marginRight) / 2)
-          .attr("y1", Y1 && !isCollapsed(y) ? (i) => Y1[i] + insetTop : marginTop + insetTop)
-          .attr(
-            "y2",
-            Y2 && !isCollapsed(y)
-              ? y.bandwidth
-                ? (i) => Y2[i] + y.bandwidth() - insetBottom
-                : (i) => Y2[i] - insetBottom
-              : height - marginBottom - insetBottom
-          )
-          .call(applyChannelStyles, this, channels)
-          .call(applyMarkers, this, channels, context)
-      )
-      .node();
-  }
   renderJSX(this: any, index, scales, channels, dimensions, context): ReactNode {
     const {x, y} = scales;
     const {x: X, y1: Y1, y2: Y2, stroke: S} = channels;
@@ -229,37 +197,6 @@ export class RuleY extends Mark {
     this.insetRight = number(insetRight);
     this.insetLeft = number(insetLeft);
     markers(this, options);
-  }
-  render(index, scales, channels, dimensions, context) {
-    const {x, y} = scales;
-    const {y: Y, x1: X1, x2: X2} = channels;
-    const {width, height, marginTop, marginRight, marginLeft, marginBottom} = dimensions;
-    const {insetLeft, insetRight} = this;
-    return create("svg:g", context)
-      .call(applyIndirectStyles, this, dimensions, context)
-      .call(applyTransform, this, {y: Y && y}, 0, offset)
-      .call((g) =>
-        g
-          .selectAll()
-          .data(index)
-          .enter()
-          .append("line")
-          .call(applyDirectStyles, this)
-          .attr("x1", X1 && !isCollapsed(x) ? (i) => X1[i] + insetLeft : marginLeft + insetLeft)
-          .attr(
-            "x2",
-            X2 && !isCollapsed(x)
-              ? x.bandwidth
-                ? (i) => X2[i] + x.bandwidth() - insetRight
-                : (i) => X2[i] - insetRight
-              : width - marginRight - insetRight
-          )
-          .attr("y1", Y ? (i) => Y[i] : (marginTop + height - marginBottom) / 2)
-          .attr("y2", Y ? (i) => Y[i] : (marginTop + height - marginBottom) / 2)
-          .call(applyChannelStyles, this, channels)
-          .call(applyMarkers, this, channels, context)
-      )
-      .node();
   }
   renderJSX(this: any, index, scales, channels, dimensions, context): ReactNode {
     const {x, y} = scales;

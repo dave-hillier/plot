@@ -1,0 +1,142 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(6.733,-0.5)">
+    <path transform="translate(21.496,30)" d="M0,0L0,6"></path>
+    <path transform="translate(36.459,30)" d="M0,0L0,6"></path>
+    <path transform="translate(51.421,30)" d="M0,0L0,6"></path>
+    <path transform="translate(66.384,30)" d="M0,0L0,6"></path>
+    <path transform="translate(81.347,30)" d="M0,0L0,6"></path>
+    <path transform="translate(96.309,30)" d="M0,0L0,6"></path>
+    <path transform="translate(111.272,30)" d="M0,0L0,6"></path>
+    <path transform="translate(126.234,30)" d="M0,0L0,6"></path>
+    <path transform="translate(141.197,30)" d="M0,0L0,6"></path>
+    <path transform="translate(156.16,30)" d="M0,0L0,6"></path>
+    <path transform="translate(171.122,30)" d="M0,0L0,6"></path>
+    <path transform="translate(186.085,30)" d="M0,0L0,6"></path>
+    <path transform="translate(201.047,30)" d="M0,0L0,6"></path>
+    <path transform="translate(216.01,30)" d="M0,0L0,6"></path>
+    <path transform="translate(230.973,30)" d="M0,0L0,6"></path>
+    <path transform="translate(245.935,30)" d="M0,0L0,6"></path>
+    <path transform="translate(260.898,30)" d="M0,0L0,6"></path>
+    <path transform="translate(275.86,30)" d="M0,0L0,6"></path>
+    <path transform="translate(290.823,30)" d="M0,0L0,6"></path>
+    <path transform="translate(305.786,30)" d="M0,0L0,6"></path>
+    <path transform="translate(320.748,30)" d="M0,0L0,6"></path>
+    <path transform="translate(335.711,30)" d="M0,0L0,6"></path>
+    <path transform="translate(350.673,30)" d="M0,0L0,6"></path>
+    <path transform="translate(365.636,30)" d="M0,0L0,6"></path>
+    <path transform="translate(380.599,30)" d="M0,0L0,6"></path>
+    <path transform="translate(395.561,30)" d="M0,0L0,6"></path>
+    <path transform="translate(410.524,30)" d="M0,0L0,6"></path>
+    <path transform="translate(425.486,30)" d="M0,0L0,6"></path>
+    <path transform="translate(440.449,30)" d="M0,0L0,6"></path>
+    <path transform="translate(455.411,30)" d="M0,0L0,6"></path>
+    <path transform="translate(470.374,30)" d="M0,0L0,6"></path>
+    <path transform="translate(485.337,30)" d="M0,0L0,6"></path>
+    <path transform="translate(500.299,30)" d="M0,0L0,6"></path>
+    <path transform="translate(515.262,30)" d="M0,0L0,6"></path>
+    <path transform="translate(530.224,30)" d="M0,0L0,6"></path>
+    <path transform="translate(545.187,30)" d="M0,0L0,6"></path>
+    <path transform="translate(560.15,30)" d="M0,0L0,6"></path>
+    <path transform="translate(575.112,30)" d="M0,0L0,6"></path>
+    <path transform="translate(590.075,30)" d="M0,0L0,6"></path>
+    <path transform="translate(605.037,30)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" transform="translate(6.733,9)">
+    <text transform="translate(21.496,30)" y="0.71em">0</text>
+    <text transform="translate(36.459,30)" y="0.71em">1</text>
+    <text transform="translate(51.421,30)" y="0.71em">2</text>
+    <text transform="translate(66.384,30)" y="0.71em">3</text>
+    <text transform="translate(81.347,30)" y="0.71em">4</text>
+    <text transform="translate(96.309,30)" y="0.71em">5</text>
+    <text transform="translate(111.272,30)" y="0.71em">6</text>
+    <text transform="translate(126.234,30)" y="0.71em">7</text>
+    <text transform="translate(141.197,30)" y="0.71em">8</text>
+    <text transform="translate(156.16,30)" y="0.71em">9</text>
+    <text transform="translate(171.122,30)" y="0.71em">10</text>
+    <text transform="translate(186.085,30)" y="0.71em">11</text>
+    <text transform="translate(201.047,30)" y="0.71em">12</text>
+    <text transform="translate(216.01,30)" y="0.71em">13</text>
+    <text transform="translate(230.973,30)" y="0.71em">14</text>
+    <text transform="translate(245.935,30)" y="0.71em">15</text>
+    <text transform="translate(260.898,30)" y="0.71em">16</text>
+    <text transform="translate(275.86,30)" y="0.71em">17</text>
+    <text transform="translate(290.823,30)" y="0.71em">18</text>
+    <text transform="translate(305.786,30)" y="0.71em">19</text>
+    <text transform="translate(320.748,30)" y="0.71em">20</text>
+    <text transform="translate(335.711,30)" y="0.71em">21</text>
+    <text transform="translate(350.673,30)" y="0.71em">22</text>
+    <text transform="translate(365.636,30)" y="0.71em">23</text>
+    <text transform="translate(380.599,30)" y="0.71em">24</text>
+    <text transform="translate(395.561,30)" y="0.71em">25</text>
+    <text transform="translate(410.524,30)" y="0.71em">26</text>
+    <text transform="translate(425.486,30)" y="0.71em">27</text>
+    <text transform="translate(440.449,30)" y="0.71em">28</text>
+    <text transform="translate(455.411,30)" y="0.71em">29</text>
+    <text transform="translate(470.374,30)" y="0.71em">30</text>
+    <text transform="translate(485.337,30)" y="0.71em">31</text>
+    <text transform="translate(500.299,30)" y="0.71em">32</text>
+    <text transform="translate(515.262,30)" y="0.71em">33</text>
+    <text transform="translate(530.224,30)" y="0.71em">34</text>
+    <text transform="translate(545.187,30)" y="0.71em">35</text>
+    <text transform="translate(560.15,30)" y="0.71em">36</text>
+    <text transform="translate(575.112,30)" y="0.71em">37</text>
+    <text transform="translate(590.075,30)" y="0.71em">38</text>
+    <text transform="translate(605.037,30)" y="0.71em">39</text>
+  </g>
+  <g aria-label="cell">
+    <rect fill="rgb(236, 209, 46)" x="21.496" y="0" width="13.466" height="30"></rect>
+    <rect fill="rgb(255, 150, 33)" x="36.459" y="0" width="13.466" height="30"></rect>
+    <rect fill="rgb(255, 150, 33)" x="51.421" y="0" width="13.466" height="30"></rect>
+    <rect fill="rgb(255, 124, 28)" x="66.384" y="0" width="13.466" height="30"></rect>
+    <rect fill="rgb(248, 98, 24)" x="81.347" y="0" width="13.466" height="30"></rect>
+    <rect fill="rgb(244, 92, 23)" x="96.309" y="0" width="13.466" height="30"></rect>
+    <rect fill="rgb(255, 132, 30)" x="111.272" y="0" width="13.466" height="30"></rect>
+    <rect fill="rgb(243, 91, 23)" x="126.234" y="0" width="13.466" height="30"></rect>
+    <rect fill="rgb(206, 49, 13)" x="141.197" y="0" width="13.466" height="30"></rect>
+    <rect fill="rgb(162, 18, 2)" x="156.16" y="0" width="13.466" height="30"></rect>
+    <rect fill="rgb(207, 50, 14)" x="171.122" y="0" width="13.466" height="30"></rect>
+    <rect fill="rgb(144, 12, 0)" x="186.085" y="0" width="13.466" height="30"></rect>
+    <rect fill="rgb(149, 12, 0)" x="201.047" y="0" width="13.466" height="30"></rect>
+    <rect fill="rgb(176, 27, 6)" x="216.01" y="0" width="13.466" height="30"></rect>
+    <rect fill="rgb(176, 27, 6)" x="230.973" y="0" width="13.466" height="30"></rect>
+    <rect fill="rgb(177, 28, 6)" x="245.935" y="0" width="13.466" height="30"></rect>
+    <rect fill="rgb(245, 93, 23)" x="260.898" y="0" width="13.466" height="30"></rect>
+    <rect fill="rgb(255, 165, 35)" x="275.86" y="0" width="13.466" height="30"></rect>
+    <rect fill="rgb(236, 209, 46)" x="290.823" y="0" width="13.466" height="30"></rect>
+    <rect fill="rgb(100, 253, 111)" x="305.786" y="0" width="13.466" height="30"></rect>
+    <rect fill="rgb(141, 252, 85)" x="320.748" y="0" width="13.466" height="30"></rect>
+    <rect fill="rgb(151, 250, 79)" x="335.711" y="0" width="13.466" height="30"></rect>
+    <rect fill="rgb(114, 254, 101)" x="350.673" y="0" width="13.466" height="30"></rect>
+    <rect fill="rgb(54, 140, 249)" x="365.636" y="0" width="13.466" height="30"></rect>
+    <rect fill="rgb(35, 23, 27)" x="380.599" y="0" width="13.466" height="30"></rect>
+    <rect fill="rgb(47, 230, 172)" x="395.561" y="0" width="13.466" height="30"></rect>
+    <rect fill="rgb(42, 172, 238)" x="410.524" y="0" width="13.466" height="30"></rect>
+    <rect fill="rgb(74, 82, 212)" x="425.486" y="0" width="13.466" height="30"></rect>
+    <rect fill="rgb(62, 123, 247)" x="440.449" y="0" width="13.466" height="30"></rect>
+    <rect fill="rgb(38, 210, 202)" x="455.411" y="0" width="13.466" height="30"></rect>
+    <rect fill="rgb(47, 229, 173)" x="470.374" y="0" width="13.466" height="30"></rect>
+    <rect fill="rgb(228, 216, 48)" x="485.337" y="0" width="13.466" height="30"></rect>
+    <rect fill="rgb(255, 155, 33)" x="500.299" y="0" width="13.466" height="30"></rect>
+    <rect fill="rgb(255, 163, 35)" x="515.262" y="0" width="13.466" height="30"></rect>
+    <rect fill="rgb(255, 142, 31)" x="530.224" y="0" width="13.466" height="30"></rect>
+    <rect fill="rgb(255, 170, 36)" x="545.187" y="0" width="13.466" height="30"></rect>
+    <rect fill="rgb(255, 117, 27)" x="560.15" y="0" width="13.466" height="30"></rect>
+    <rect fill="rgb(202, 45, 12)" x="575.112" y="0" width="13.466" height="30"></rect>
+    <rect fill="rgb(145, 12, 0)" x="590.075" y="0" width="13.466" height="30"></rect>
+    <rect fill="rgb(144, 12, 0)" x="605.037" y="0" width="13.466" height="30"></rect>
+  </g>
+</svg>

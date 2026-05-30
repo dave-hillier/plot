@@ -1,8 +1,6 @@
 import {contourDensity, geoPath} from "d3";
 import {createElement as h, type ReactNode} from "react";
 import type {ChannelValue, ChannelValueSpec} from "../channel.js";
-// @ts-ignore - internal helper not in .d.ts
-import {create} from "../context.js";
 import type {Data, MarkOptions} from "../mark.js";
 import {Mark as MarkBase} from "../mark.js";
 // @ts-ignore - internal helpers not in .d.ts
@@ -11,7 +9,7 @@ import {TypedArray, coerceNumbers, maybeTuple, maybeZ} from "../options.js";
 import {applyPosition} from "../projection.js";
 // @ts-ignore - internal helpers not in .d.ts
 // prettier-ignore
-import {applyChannelStyles, applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform, groupZ} from "../style.js";
+import {applyFrameAnchor, groupZ} from "../style.js";
 // @ts-ignore - internal helper not in .d.ts
 import {initializer} from "../transforms/basic.js";
 import {channelStyleProps, directStyleProps, indirectStyleProps, transformProp} from "../react/styles.js";
@@ -92,24 +90,6 @@ export class Density extends Mark {
   }
   filter(index: any): any {
     return index; // don’t filter contours constructed by initializer
-  }
-  render(index: any, scales: any, channels: any, dimensions: any, context: any): any {
-    const {contours} = channels;
-    const path = geoPath();
-    return create("svg:g", context)
-      .call(applyIndirectStyles, this, dimensions, context)
-      .call(applyTransform, this, {})
-      .call((g) =>
-        g
-          .selectAll()
-          .data(index)
-          .enter()
-          .append("path")
-          .call(applyDirectStyles, this)
-          .call(applyChannelStyles, this, channels)
-          .attr("d", (i: any) => path(contours[i]))
-      )
-      .node();
   }
   renderJSX(this: any, index: any, scales: any, channels: any, dimensions: any, context: any): ReactNode {
     const {contours} = channels;

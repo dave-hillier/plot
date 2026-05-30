@@ -1,8 +1,6 @@
 import {namespaces} from "d3";
 import {createElement as h, type ReactNode} from "react";
 import type {ChannelValue, ChannelValueIntervalSpec, ChannelValueSpec} from "../channel.js";
-// @ts-expect-error — runtime export not present in hand-written .d.ts
-import {create} from "../context.js";
 import {nonempty} from "../defined.js";
 import {formatDefault} from "../format.js";
 import {channelStyleProps, directStyleProps, indirectStyleProps, transformProp} from "../react/styles.js";
@@ -36,20 +34,11 @@ import {
 } from "../options.js";
 import {
   // @ts-expect-error — runtime export not present in hand-written .d.ts
-  applyChannelStyles,
-  // @ts-expect-error — runtime export not present in hand-written .d.ts
-  applyDirectStyles,
-  // @ts-expect-error — runtime export not present in hand-written .d.ts
-  applyIndirectStyles,
-  // @ts-expect-error — runtime export not present in hand-written .d.ts
   applyAttr,
-  // @ts-expect-error — runtime export not present in hand-written .d.ts
-  applyTransform,
   impliedString,
   // @ts-expect-error — runtime export not present in hand-written .d.ts
   applyFrameAnchor
 } from "../style.js";
-import {template} from "../template.js";
 import {maybeIntervalMidX, maybeIntervalMidY} from "../transforms/interval.js";
 
 /** Options for styling text (independent of anchor position). */
@@ -310,41 +299,10 @@ export class Text extends Mark {
     this.splitLines = splitter(this);
     this.clipLine = clipper(this);
   }
-  render(index: any, scales: any, channels: any, dimensions: any, context: any) {
-    const {x, y} = scales;
-    const {x: X, y: Y, rotate: R, text: T, title: TL, fontSize: FS} = channels;
-    const {rotate} = this;
-    const [cx, cy] = applyFrameAnchor(this, dimensions);
-    return create("svg:g", context)
-      .call(applyIndirectStyles, this, dimensions, context)
-      .call(applyIndirectTextStyles, this, T, dimensions)
-      .call(applyTransform, this, {x: X && x, y: Y && y})
-      .call((g: any) =>
-        g
-          .selectAll()
-          .data(index)
-          .enter()
-          .append("text")
-          .call(applyDirectStyles, this)
-          .call(applyMultilineText, this, T, TL)
-          .attr(
-            "transform",
-            template`translate(${X ? (i: any) => X[i] : cx},${Y ? (i: any) => Y[i] : cy})${
-              R ? (i: any) => ` rotate(${R[i]})` : rotate ? ` rotate(${rotate})` : ``
-            }`
-          )
-          .call(applyAttr, "font-size", FS && ((i: any) => FS[i]))
-          .call(applyChannelStyles, this, channels)
-      )
-      .node();
-  }
   renderJSX(this: any, index: any, scales: any, channels: any, dimensions: any, context: any): ReactNode {
     const {x, y} = scales;
     const {x: X, y: Y, rotate: R, text: T, title: TL, fontSize: FS} = channels;
-    const {rotate, lineAnchor, lineHeight, lineWidth, textOverflow, splitLines, clipLine} = this;
-    if (lineWidth !== Infinity && textOverflow == null) {
-      throw new Error("Text.renderJSX: lineWidth wrapping (without textOverflow) not yet supported; use render()");
-    }
+    const {rotate, lineAnchor, lineHeight, textOverflow, splitLines, clipLine} = this;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     const indirect = indirectStyleProps(this);
     const indirectText = {

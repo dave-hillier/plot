@@ -1,7 +1,5 @@
 import {createElement as h, type ReactNode} from "react";
 import type {ChannelValueIntervalSpec, ChannelValueSpec} from "../channel.js";
-// @ts-ignore — runtime export not present in hand-written .d.ts
-import {create} from "../context.js";
 import type {InsetOptions} from "../inset.js";
 import type {Interval} from "../interval.js";
 import type {Data, MarkOptions} from "../mark.js";
@@ -10,8 +8,6 @@ import {Mark} from "../mark.js";
 import {constant, hasXY, identity, indexOf, number} from "../options.js";
 // @ts-ignore — runtime export not present in hand-written .d.ts
 import {isCollapsed} from "../scales.js";
-// @ts-ignore — runtime exports not present in hand-written .d.ts
-import {applyAttr, applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 import {impliedString} from "../style.js";
 import {channelStyleProps, directStyleProps, indirectStyleProps, transformProp} from "../react/styles.js";
 import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
@@ -268,99 +264,6 @@ export class Rect extends Mark {
     );
     rectInsets(this, options);
     rectRadii(this, options);
-  }
-  render(index: any, scales: any, channels: any, dimensions: any, context: any): any {
-    const {x, y} = scales;
-    let {x1: X1, y1: Y1, x2: X2, y2: Y2} = channels;
-    const {marginTop, marginRight, marginBottom, marginLeft, width, height} = dimensions;
-    const {projection} = context;
-    const {insetTop, insetRight, insetBottom, insetLeft} = this;
-    const {rx, ry, rx1y1, rx1y2, rx2y1, rx2y2} = this;
-    if ((X1 || X2) && !projection && isCollapsed(x)) X1 = X2 = null; // ignore if collapsed
-    if ((Y1 || Y2) && !projection && isCollapsed(y)) Y1 = Y2 = null; // ignore if collapsed
-    const bx = x?.bandwidth ? x.bandwidth() : 0;
-    const by = y?.bandwidth ? y.bandwidth() : 0;
-    return create("svg:g", context)
-      .call(applyIndirectStyles, this, dimensions, context)
-      .call(applyTransform, this, {}, 0, 0)
-      .call((g: any) =>
-        g
-          .selectAll()
-          .data(index)
-          .enter()
-          .call(
-            rx1y1 || rx1y2 || rx2y1 || rx2y2
-              ? (g: any) =>
-                  g
-                    .append("path")
-                    .call(applyDirectStyles, this)
-                    .call(
-                      applyRoundedRect,
-                      X1 && X2
-                        ? (i: number) => X1[i] + (X2[i] < X1[i] ? -insetRight : insetLeft)
-                        : X1
-                        ? (i: number) => X1[i] + insetLeft
-                        : marginLeft + insetLeft,
-                      Y1 && Y2
-                        ? (i: number) => Y1[i] + (Y2[i] < Y1[i] ? -insetBottom : insetTop)
-                        : Y1
-                        ? (i: number) => Y1[i] + insetTop
-                        : marginTop + insetTop,
-                      X1 && X2
-                        ? (i: number) => X2[i] - (X2[i] < X1[i] ? -insetLeft : insetRight)
-                        : X1
-                        ? (i: number) => X1[i] + bx - insetRight
-                        : width - marginRight - insetRight,
-                      Y1 && Y2
-                        ? (i: number) => Y2[i] - (Y2[i] < Y1[i] ? -insetTop : insetBottom)
-                        : Y1
-                        ? (i: number) => Y1[i] + by - insetBottom
-                        : height - marginBottom - insetBottom,
-                      this
-                    )
-                    .call(applyChannelStyles, this, channels)
-              : (g: any) =>
-                  g
-                    .append("rect")
-                    .call(applyDirectStyles, this)
-                    .attr(
-                      "x",
-                      X1
-                        ? X2
-                          ? (i: number) => Math.min(X1[i], X2[i]) + insetLeft
-                          : (i: number) => X1[i] + insetLeft
-                        : marginLeft + insetLeft
-                    )
-                    .attr(
-                      "y",
-                      Y1
-                        ? Y2
-                          ? (i: number) => Math.min(Y1[i], Y2[i]) + insetTop
-                          : (i: number) => Y1[i] + insetTop
-                        : marginTop + insetTop
-                    )
-                    .attr(
-                      "width",
-                      X1
-                        ? X2
-                          ? (i: number) => Math.max(0, Math.abs(X2[i] - X1[i]) + bx - insetLeft - insetRight)
-                          : bx - insetLeft - insetRight
-                        : width - marginRight - marginLeft - insetRight - insetLeft
-                    )
-                    .attr(
-                      "height",
-                      Y1
-                        ? Y2
-                          ? (i: number) => Math.max(0, Math.abs(Y1[i] - Y2[i]) + by - insetTop - insetBottom)
-                          : by - insetTop - insetBottom
-                        : height - marginTop - marginBottom - insetTop - insetBottom
-                    )
-                    .call(applyAttr, "rx", rx)
-                    .call(applyAttr, "ry", ry)
-                    .call(applyChannelStyles, this, channels)
-          )
-      )
-      .node();
   }
   renderJSX(this: any, index: any, scales: any, channels: any, dimensions: any, context: any): ReactNode {
     const {x, y} = scales;

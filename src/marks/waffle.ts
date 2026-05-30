@@ -1,18 +1,13 @@
 import type {Data} from "../mark.js";
 import type {BarXOptions, BarYOptions} from "./bar.js";
-import {extent, namespaces} from "d3";
+import {extent} from "d3";
 // @ts-ignore
 import {valueObject} from "../channel.js";
 // @ts-ignore
-import {create} from "../context.js";
-// @ts-ignore
-import {composeRender} from "../mark.js";
-// @ts-ignore
 import {hasXY, identity, indexOf, isObject} from "../options.js";
 // @ts-ignore
-import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, getPatternId} from "../style.js";
+import {getPatternId} from "../style.js";
 // @ts-ignore
-import {template} from "../template.js";
 import {initializer} from "../transforms/basic.js";
 // @ts-ignore
 import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
@@ -143,7 +138,7 @@ function wafflePolygon(y: "x" | "y", options: any) {
   const x = y === "y" ? "x" : "y";
   const y1 = `${y}1`;
   const y2 = `${y}2`;
-  return initializer(waffleRender(options), function (this: any, data: any, facets: any, channels: any, scales: any, dimensions: any) {
+  return initializer(options, function (this: any, data: any, facets: any, channels: any, scales: any, dimensions: any) {
     const {round, unit} = this;
     const Y1 = channels[y1].value;
     const Y2 = channels[y2].value;
@@ -198,61 +193,6 @@ function wafflePolygon(y: "x" | "y", options: any) {
   });
 }
 
-function waffleRender({render, ...options}: any) {
-  return {
-    ...options,
-    render: composeRender(render, function (this: any, index: any, scales: any, values: any, dimensions: any, context: any) {
-      const {gap, rx, ry} = this;
-      const {channels, ariaLabel, href, title, ...visualValues} = values;
-      const {document} = context;
-      const polygon = channels.polygon.value;
-      const [cx, x0] = channels.cx.value;
-      const [cy, y0] = channels.cy.value;
-
-      // Create a base pattern with shared attributes for cloning.
-      const patternId = getPatternId();
-      const basePattern = document.createElementNS(namespaces.svg, "pattern");
-      basePattern.setAttribute("width", cx);
-      basePattern.setAttribute("height", cy);
-      basePattern.setAttribute("patternUnits", "userSpaceOnUse");
-      const basePatternRect = basePattern.appendChild(document.createElementNS(namespaces.svg, "rect"));
-      basePatternRect.setAttribute("x", gap / 2);
-      basePatternRect.setAttribute("y", gap / 2);
-      basePatternRect.setAttribute("width", cx - gap);
-      basePatternRect.setAttribute("height", cy - gap);
-      if (rx != null) basePatternRect.setAttribute("rx", rx);
-      if (ry != null) basePatternRect.setAttribute("ry", ry);
-
-      return create("svg:g", context)
-        .call(applyIndirectStyles, this, dimensions, context)
-        .call(this._transform, this, scales)
-        .call((g: any) =>
-          g
-            .selectAll()
-            .data(index)
-            .enter()
-            .append(() => basePattern.cloneNode(true))
-            .attr("id", (i: number) => `${patternId}-${i}`)
-            .select("rect")
-            .call(applyDirectStyles, this)
-            .call(applyChannelStyles, this, visualValues)
-        )
-        .call((g: any) =>
-          g
-            .selectAll()
-            .data(index)
-            .enter()
-            .append("path")
-            .attr("transform", template`translate(${x0},${y0})`)
-            .attr("d", (i: number) => `M${polygon[i].join("L")}Z`)
-            .attr("fill", (i: number) => `url(#${patternId}-${i})`)
-            .attr("stroke", this.stroke == null ? null : "none")
-            .call(applyChannelStyles, this, {ariaLabel, href, title})
-        )
-        .node();
-    })
-  };
-}
 
 // A waffle is approximately a rectangular shape, but may have one or two corner
 // cuts if the starting or ending value is not an even multiple of the number of

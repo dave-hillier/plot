@@ -2,8 +2,6 @@ import {area as shapeArea} from "d3";
 import {createElement as h, type ReactNode} from "react";
 import type {ChannelValue, ChannelValueDenseBinSpec, ChannelValueSpec} from "../channel.js";
 // @ts-ignore — runtime helper not exposed in companion .d.ts
-import {create} from "../context.js";
-// @ts-ignore — runtime helper not exposed in companion .d.ts
 import {maybeCurve} from "../curve.js";
 import type {CurveOptions} from "../curve.js";
 import {Mark} from "../mark.js";
@@ -11,7 +9,7 @@ import type {Data, MarkOptions} from "../mark.js";
 // @ts-ignore — runtime helpers not exposed in companion .d.ts
 import {first, indexOf, maybeZ, second} from "../options.js";
 // @ts-ignore — runtime helpers not exposed in companion .d.ts
-import {applyDirectStyles, applyIndirectStyles, applyTransform, applyGroupedChannelStyles, groupIndex} from "../style.js";
+import {groupIndex} from "../style.js";
 import {groupChannelStyleProps, indirectStyleProps, directStyleProps, transformProp} from "../react/styles.js";
 import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
 // @ts-ignore — runtime helpers not exposed in companion .d.ts
@@ -171,32 +169,6 @@ export class Area extends Mark {
   }
   filter(index: any): any {
     return index;
-  }
-  render(index: any, scales: any, channels: any, dimensions: any, context: any): any {
-    const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1} = channels;
-    return create("svg:g", context)
-      .call(applyIndirectStyles, this, dimensions, context)
-      .call(applyTransform, this, scales, 0, 0)
-      .call((g: any) =>
-        g
-          .selectAll()
-          .data(groupIndex(index, [X1, Y1, X2, Y2], this, channels))
-          .enter()
-          .append("path")
-          .call(applyDirectStyles, this)
-          .call(applyGroupedChannelStyles, this, channels)
-          .attr(
-            "d",
-            shapeArea()
-              .curve(this.curve)
-              .defined((i: any) => i >= 0)
-              .x0((i: any) => X1[i])
-              .y0((i: any) => Y1[i])
-              .x1((i: any) => X2[i])
-              .y1((i: any) => Y2[i])
-          )
-      )
-      .node();
   }
   renderJSX(this: any, index: any, scales: any, channels: any, _dimensions: any, _context: any): ReactNode {
     const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1} = channels;

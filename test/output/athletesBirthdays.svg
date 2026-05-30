@@ -1,0 +1,94 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="300" viewBox="0 0 640 300" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(-0.5,9)">
+    <path transform="translate(40,26)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,46)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,66)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,86)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,106)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,126)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,146)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,166)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,186)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,206)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,226)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,246)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-9,9)">
+    <text transform="translate(40,26)" y="0.32em">Jan</text>
+    <text transform="translate(40,46)" y="0.32em">Feb</text>
+    <text transform="translate(40,66)" y="0.32em">Mar</text>
+    <text transform="translate(40,86)" y="0.32em">Apr</text>
+    <text transform="translate(40,106)" y="0.32em">May</text>
+    <text transform="translate(40,126)" y="0.32em">Jun</text>
+    <text transform="translate(40,146)" y="0.32em">Jul</text>
+    <text transform="translate(40,166)" y="0.32em">Aug</text>
+    <text transform="translate(40,186)" y="0.32em">Sep</text>
+    <text transform="translate(40,206)" y="0.32em">Oct</text>
+    <text transform="translate(40,226)" y="0.32em">Nov</text>
+    <text transform="translate(40,246)" y="0.32em">Dec</text>
+  </g>
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,-0.5)">
+    <path transform="translate(40,270)" d="M0,0L0,6"></path>
+    <path transform="translate(142.004,270)" d="M0,0L0,6"></path>
+    <path transform="translate(244.007,270)" d="M0,0L0,6"></path>
+    <path transform="translate(346.011,270)" d="M0,0L0,6"></path>
+    <path transform="translate(448.015,270)" d="M0,0L0,6"></path>
+    <path transform="translate(550.018,270)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
+    <text transform="translate(40,270)" y="0.71em">0</text>
+    <text transform="translate(142.004,270)" y="0.71em">200</text>
+    <text transform="translate(244.007,270)" y="0.71em">400</text>
+    <text transform="translate(346.011,270)" y="0.71em">600</text>
+    <text transform="translate(448.015,270)" y="0.71em">800</text>
+    <text transform="translate(550.018,270)" y="0.71em">1,000</text>
+  </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(37,27)">
+    <text transform="translate(600,270)">Frequency →</text>
+  </g>
+  <g aria-label="bar">
+    <rect x="40" y="206" width="433.005" height="18"></rect>
+    <rect x="40" y="186" width="490.128" height="18"></rect>
+    <rect x="40" y="106" width="524.299" height="18"></rect>
+    <rect x="40" y="26" width="560" height="18"></rect>
+    <rect x="40" y="226" width="421.785" height="18"></rect>
+    <rect x="40" y="126" width="490.128" height="18"></rect>
+    <rect x="40" y="246" width="457.486" height="18"></rect>
+    <rect x="40" y="146" width="503.898" height="18"></rect>
+    <rect x="40" y="86" width="490.638" height="18"></rect>
+    <rect x="40" y="46" width="487.577" height="18"></rect>
+    <rect x="40" y="66" width="521.239" height="18"></rect>
+    <rect x="40" y="166" width="504.408" height="18"></rect>
+  </g>
+  <g aria-label="text" text-anchor="start" font-variant="tabular-nums" transform="translate(4,9)">
+    <text transform="translate(473.005,206)" y="0.32em">849</text>
+    <text transform="translate(530.128,186)" y="0.32em">961</text>
+    <text transform="translate(564.299,106)" y="0.32em">1,028</text>
+    <text transform="translate(600,26)" y="0.32em">1,098</text>
+    <text transform="translate(461.785,226)" y="0.32em">827</text>
+    <text transform="translate(530.128,126)" y="0.32em">961</text>
+    <text transform="translate(497.486,246)" y="0.32em">897</text>
+    <text transform="translate(543.898,146)" y="0.32em">988</text>
+    <text transform="translate(530.638,86)" y="0.32em">962</text>
+    <text transform="translate(527.577,46)" y="0.32em">956</text>
+    <text transform="translate(561.239,66)" y="0.32em">1,022</text>
+    <text transform="translate(544.408,166)" y="0.32em">989</text>
+  </g>
+  <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
+    <line x1="40" x2="40" y1="20" y2="270"></line>
+  </g>
+</svg>

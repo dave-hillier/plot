@@ -1,0 +1,106 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(-0.5,0)">
+    <path transform="translate(40,343.182)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,293.788)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,244.394)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,195)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,145.606)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,96.212)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,46.818)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
+    <text transform="translate(40,343.182)" y="0.32em">−60</text>
+    <text transform="translate(40,293.788)" y="0.32em">−40</text>
+    <text transform="translate(40,244.394)" y="0.32em">−20</text>
+    <text transform="translate(40,195)" y="0.32em">0</text>
+    <text transform="translate(40,145.606)" y="0.32em">20</text>
+    <text transform="translate(40,96.212)" y="0.32em">40</text>
+    <text transform="translate(40,46.818)" y="0.32em">60</text>
+  </g>
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(43,-0.5)">
+    <path transform="translate(50,370)" d="M0,0L0,6"></path>
+    <path transform="translate(145,370)" d="M0,0L0,6"></path>
+    <path transform="translate(240,370)" d="M0,0L0,6"></path>
+    <path transform="translate(335,370)" d="M0,0L0,6"></path>
+    <path transform="translate(430,370)" d="M0,0L0,6"></path>
+    <path transform="translate(525,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" transform="translate(43,9)">
+    <text transform="translate(50,370)" y="0.71em">0</text>
+    <text transform="translate(145,370)" y="0.71em">1</text>
+    <text transform="translate(240,370)" y="0.71em">2</text>
+    <text transform="translate(335,370)" y="0.71em">3</text>
+    <text transform="translate(430,370)" y="0.71em">4</text>
+    <text transform="translate(525,370)" y="0.71em">5</text>
+  </g>
+  <g aria-label="waffle">
+    <defs>
+      <pattern id="plot-pattern-1" width="8.6" height="24.697" patternUnits="userSpaceOnUse">
+        <rect x="0.5" y="0.5" width="7.6" height="23.697"></rect>
+      </pattern>
+      <pattern id="plot-pattern-2" width="8.6" height="24.697" patternUnits="userSpaceOnUse">
+        <rect x="0.5" y="0.5" width="7.6" height="23.697"></rect>
+      </pattern>
+      <pattern id="plot-pattern-3" width="8.6" height="24.697" patternUnits="userSpaceOnUse">
+        <rect x="0.5" y="0.5" width="7.6" height="23.697"></rect>
+      </pattern>
+      <pattern id="plot-pattern-4" width="8.6" height="24.697" patternUnits="userSpaceOnUse">
+        <rect x="0.5" y="0.5" width="7.6" height="23.697"></rect>
+      </pattern>
+      <pattern id="plot-pattern-5" width="8.6" height="24.697" patternUnits="userSpaceOnUse">
+        <rect x="0.5" y="0.5" width="7.6" height="23.697"></rect>
+      </pattern>
+      <pattern id="plot-pattern-6" width="8.6" height="24.697" patternUnits="userSpaceOnUse">
+        <rect x="0.5" y="0.5" width="7.6" height="23.697"></rect>
+      </pattern>
+    </defs>
+    <path d="M0,0L0,0L0,0L0,0L0,0L34.4,0L34.4,0L34.4,0L34.4,-24.697L0,-24.697Z" transform="translate(50,195)" fill="url(#plot-pattern-1)"></path>
+    <path d="M0,0L0,0L0,0L0,0L0,0L77.4,0L77.4,0L77.4,0L77.4,-24.697L0,-24.697Z" transform="translate(145,195)" fill="url(#plot-pattern-2)"></path>
+    <path d="M0,0L0,0L0,0L0,0L0,0L86,0L86,-49.394L34.4,-49.394L34.4,-49.394L34.4,-49.394L34.4,-74.091L0,-74.091Z" transform="translate(240,195)" fill="url(#plot-pattern-3)"></path>
+    <path d="M0,0L0,0L0,0L0,0L0,0L86,0L86,-98.788L51.6,-98.788L51.6,-98.788L51.6,-98.788L51.6,-123.485L0,-123.485Z" transform="translate(335,195)" fill="url(#plot-pattern-4)"></path>
+    <path d="M0,0L0,0L0,0L0,0L0,0L86,0L86,-148.182L51.6,-148.182L51.6,-148.182L51.6,-148.182L51.6,-172.879L0,-172.879Z" transform="translate(430,195)" fill="url(#plot-pattern-5)"></path>
+    <path d="M0,0L0,0L0,0L0,0L0,0L60.2,0L60.2,0L60.2,0L60.2,-24.697L0,-24.697Z" transform="translate(525,195)" fill="url(#plot-pattern-6)"></path>
+  </g>
+  <g aria-label="waffle" fill="red">
+    <defs>
+      <pattern id="plot-pattern-7" width="8.6" height="24.697" patternUnits="userSpaceOnUse">
+        <rect x="0.5" y="0.5" width="7.6" height="23.697"></rect>
+      </pattern>
+      <pattern id="plot-pattern-8" width="8.6" height="24.697" patternUnits="userSpaceOnUse">
+        <rect x="0.5" y="0.5" width="7.6" height="23.697"></rect>
+      </pattern>
+      <pattern id="plot-pattern-9" width="8.6" height="24.697" patternUnits="userSpaceOnUse">
+        <rect x="0.5" y="0.5" width="7.6" height="23.697"></rect>
+      </pattern>
+      <pattern id="plot-pattern-10" width="8.6" height="24.697" patternUnits="userSpaceOnUse">
+        <rect x="0.5" y="0.5" width="7.6" height="23.697"></rect>
+      </pattern>
+      <pattern id="plot-pattern-11" width="8.6" height="24.697" patternUnits="userSpaceOnUse">
+        <rect x="0.5" y="0.5" width="7.6" height="23.697"></rect>
+      </pattern>
+      <pattern id="plot-pattern-12" width="8.6" height="24.697" patternUnits="userSpaceOnUse">
+        <rect x="0.5" y="0.5" width="7.6" height="23.697"></rect>
+      </pattern>
+    </defs>
+    <path d="M51.6,0L51.6,24.697L51.6,24.697L51.6,24.697L86,24.697L86,0L0,0L0,0L0,0Z" transform="translate(50,195)" fill="url(#plot-pattern-7)"></path>
+    <path d="M8.6,0L8.6,24.697L8.6,24.697L8.6,24.697L86,24.697L86,0L0,0L0,0L0,0Z" transform="translate(145,195)" fill="url(#plot-pattern-8)"></path>
+    <path d="M0,49.394L51.6,49.394L51.6,74.091L51.6,74.091L51.6,74.091L86,74.091L86,0L0,0L0,0L0,0Z" transform="translate(240,195)" fill="url(#plot-pattern-9)"></path>
+    <path d="M0,98.788L34.4,98.788L34.4,123.485L34.4,123.485L34.4,123.485L86,123.485L86,0L0,0L0,0L0,0Z" transform="translate(335,195)" fill="url(#plot-pattern-10)"></path>
+    <path d="M0,148.182L34.4,148.182L34.4,172.879L34.4,172.879L34.4,172.879L86,172.879L86,0L0,0L0,0L0,0Z" transform="translate(430,195)" fill="url(#plot-pattern-11)"></path>
+    <path d="M25.8,0L25.8,24.697L25.8,24.697L25.8,24.697L86,24.697L86,0L0,0L0,0L0,0Z" transform="translate(525,195)" fill="url(#plot-pattern-12)"></path>
+  </g>
+</svg>

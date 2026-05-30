@@ -1,0 +1,33 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="245" height="60" viewBox="0 0 245 60" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,-0.5)">
+    <path transform="translate(20,30)" d="M0,0L0,6"></path>
+    <path transform="translate(122.5,30)" d="M0,0L0,6"></path>
+    <path transform="translate(225,30)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
+    <text transform="translate(20,30)" y="0.71em">0.0</text>
+    <text transform="translate(122.5,30)" y="0.71em">0.5</text>
+    <text transform="translate(225,30)" y="0.71em">1.0</text>
+  </g>
+  <g aria-label="dot">
+    <circle fill="rgb(35, 23, 27)" cx="20" cy="15" r="10"></circle>
+    <circle fill="rgb(74, 88, 221)" cx="40.5" cy="15" r="10"></circle>
+    <circle fill="rgb(39, 215, 196)" cx="81.5" cy="15" r="10"></circle>
+    <circle fill="rgb(144, 12, 0)" cx="225" cy="15" r="10"></circle>
+  </g>
+  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start"></g>
+</svg>

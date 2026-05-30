@@ -1,10 +1,8 @@
-import {select, format as numberFormat, utcFormat} from "d3";
+import {format as numberFormat, utcFormat} from "d3";
 import {createElement as h, type ReactNode} from "react";
 import type {ChannelName, ChannelValueSpec} from "../channel.js";
 // @ts-ignore -- getSource is declared only in channel.js, not channel.d.ts
 import {getSource} from "../channel.js";
-// @ts-ignore -- create is declared only in context.js, not context.d.ts
-import {create} from "../context.js";
 import {defined} from "../defined.js";
 import {formatDefault} from "../format.js";
 // @ts-ignore -- anchorX/anchorY are declared only in pointer.js, not pointer.d.ts
@@ -14,13 +12,13 @@ import {Mark} from "../mark.js";
 // @ts-ignore -- these helpers are declared only in options.js, not options.d.ts
 import {maybeAnchor, maybeFrameAnchor, maybeTuple, number, string} from "../options.js";
 // @ts-ignore -- these helpers are declared only in style.js, not style.d.ts
-import {applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform, impliedString} from "../style.js";
+import {applyFrameAnchor, impliedString} from "../style.js";
 // @ts-ignore -- these helpers are declared only in options.js, not options.d.ts
 import {identity, isIterable, isTemporal, isTextual} from "../options.js";
 // @ts-ignore -- inferTickFormat is declared only in axis.js, not axis.d.ts
 import {inferTickFormat} from "./axis.js";
 // @ts-ignore -- these helpers are declared only in text.js, not text.d.ts
-import {applyIndirectTextStyles, defaultWidth, ellipsis, monospaceWidth} from "./text.js";
+import {defaultWidth, ellipsis, monospaceWidth} from "./text.js";
 import type {TextStyles} from "./text.js";
 // @ts-ignore -- these helpers are declared only in text.js, not text.d.ts
 import {cut, clipper, splitter, maybeTextOverflow} from "./text.js";
@@ -217,175 +215,6 @@ export class Tip extends (Mark as { new (...args: any[]): Mark }) {
     this.splitLines = splitter(this);
     this.clipLine = clipper(this);
     this.format = typeof format === "string" || typeof format === "function" ? {title: format} : {...format}; // defensive copy before mutate; also promote nullish to empty
-  }
-  render(index: any, scales: any, values: any, dimensions: any, context: any): any {
-    const mark = this;
-    const {x, y, fx, fy} = scales;
-    const {ownerSVGElement: svg, document} = context;
-    const {anchor, monospace, lineHeight, lineWidth} = this;
-    const {textPadding: r, pointerSize: m, pathFilter} = this;
-    const {marginTop, marginLeft} = dimensions;
-
-    // The anchor position is the middle of x1 & y1 and x2 & y2, if available,
-    // or x & y; the former is considered more specific because it’s how we
-    // disable the implicit stack and interval transforms. If any dimension is
-    // unspecified, we fallback to the frame anchor. We also need to know the
-    // facet offsets to detect when the tip would draw outside the plot, and
-    // thus we need to change the orientation.
-    const {x1: X1, y1: Y1, x2: X2, y2: Y2, x: X = X1 ?? X2, y: Y = Y1 ?? Y2} = values;
-    const ox = fx ? fx(index.fx) - marginLeft : 0;
-    const oy = fy ? fy(index.fy) - marginTop : 0;
-
-    // The order of precedence for the anchor position is: the middle of x1 & y1
-    // and x2 & y2; or x1 & y1 (e.g., area); or lastly x & y. If a dimension is
-    // unspecified, the frame anchor is used.
-    const [cx, cy] = applyFrameAnchor(this, dimensions);
-    const px = anchorX(values, cx);
-    const py = anchorY(values, cy);
-
-    // Resolve the text metric implementation. We may need an ellipsis for text
-    // truncation, so we optimistically compute the ellipsis width.
-    const widthof = monospace ? monospaceWidth : defaultWidth;
-    const ee = widthof(ellipsis);
-
-    // If there’s a title channel, display that as-is; otherwise, show multiple
-    // channels as name-value pairs.
-    let sources, format;
-    if ("title" in values) {
-      sources = getSourceChannels.call(this, {title: values.channels.title}, scales);
-      format = formatTitle;
-    } else {
-      sources = getSourceChannels.call(this, values.channels, scales);
-      format = formatChannels;
-    }
-
-    // We don’t call applyChannelStyles because we only use the channels to
-    // derive the content of the tip, not its aesthetics.
-    const g = create("svg:g", context)
-      .call(applyIndirectStyles, this, dimensions, context)
-      .call(applyIndirectTextStyles, this)
-      .call(applyTransform, this, {x: X && x, y: Y && y})
-      .call((g: any) =>
-        g
-          .selectAll()
-          .data(index)
-          .enter()
-          .append("g")
-          .attr("transform", (i: any) => `translate(${Math.round(px(i))},${Math.round(py(i))})`) // crisp edges
-          .call(applyDirectStyles, this)
-          .call((g: any) => g.append("path").attr("filter", pathFilter))
-          .call((g: any) =>
-            g.append("text").each(function (this: any, i: any) {
-              const that = select(this);
-              // prevent style inheritance (from path)
-              this.setAttribute("fill", "currentColor");
-              this.setAttribute("fill-opacity", 1);
-              this.setAttribute("stroke", "none");
-              // iteratively render each channel value
-              const lines = format.call(mark, i, index, sources, scales, values);
-              if (typeof lines === "string") {
-                for (const line of mark.splitLines(lines)) {
-                  renderLine(that, {value: mark.clipLine(line)});
-                }
-              } else {
-                const labels = new Set();
-                for (const line of lines) {
-                  const {label = ""} = line;
-                  if (label && labels.has(label)) continue;
-                  else labels.add(label);
-                  renderLine(that, line);
-                }
-              }
-            })
-          )
-      );
-
-    // Renders a single line (a name-value pair) to the tip, truncating the text
-    // as needed, and adding a title if the text is truncated. Note that this is
-    // just the initial layout of the text; in postrender we will compute the
-    // exact text metrics and translate the text as needed once we know the
-    // tip’s orientation (anchor).
-    function renderLine(selection: any, {label, value, color, opacity}: any) {
-      (label ??= ""), (value ??= "");
-      const swatch = color != null || opacity != null;
-      let title;
-      let w = lineWidth * 100;
-      const [j] = cut(label, w, widthof, ee);
-      if (j >= 0) {
-        // label is truncated
-        label = label.slice(0, j).trimEnd() + ellipsis;
-        title = value.trim();
-        value = "";
-      } else {
-        if (label || (!value && !swatch)) value = " " + value;
-        const [k] = cut(value, w - widthof(label), widthof, ee);
-        if (k >= 0) {
-          // value is truncated
-          title = value.trim();
-          value = value.slice(0, k).trimEnd() + ellipsis;
-        }
-      }
-      const line = selection.append("tspan").attr("x", 0).attr("dy", `${lineHeight}em`).text("​"); // zwsp for double-click
-      if (label) line.append("tspan").attr("font-weight", "bold").text(label);
-      if (value) line.append(() => document.createTextNode(value));
-      if (swatch) line.append("tspan").text(" ■").attr("fill", color).attr("fill-opacity", opacity).style("user-select", "none"); // prettier-ignore
-      if (title) line.append("title").text(title);
-    }
-
-    // Only after the plot is attached to the page can we compute the exact text
-    // metrics needed to determine the tip size and orientation (anchor).
-    function postrender(this: any) {
-      const {width, height} = dimensions.facet ?? dimensions;
-      g.selectChildren().each(function (this: any, i: any) {
-        let {x: tx, width: w, height: h} = this.getBBox();
-        (w = Math.round(w)), (h = Math.round(h)); // crisp edges
-        let a = anchor; // use the specified anchor, if any
-        if (a === undefined) {
-          const x = px(i) + ox;
-          const y = py(i) + oy;
-          const fitLeft = x + w + m + r * 2 < width;
-          const fitRight = x - w - m - r * 2 > 0;
-          const fitTop = y + h + m + r * 2 < height;
-          const fitBottom = y - h - m - r * 2 > 0;
-          a =
-            fitLeft && fitRight
-              ? fitTop && fitBottom
-                ? mark.preferredAnchor
-                : fitBottom
-                ? "bottom"
-                : "top"
-              : fitTop && fitBottom
-              ? fitLeft
-                ? "left"
-                : "right"
-              : (fitLeft || fitRight) && (fitTop || fitBottom)
-              ? `${fitBottom ? "bottom" : "top"}-${fitLeft ? "left" : "right"}`
-              : mark.preferredAnchor;
-        }
-        const path = this.firstChild; // note: assumes exactly two children!
-        const text = this.lastChild; // note: assumes exactly two children!
-        path.setAttribute("d", getPath(a, m, r, w, h));
-        if (tx) for (const t of text.childNodes) t.setAttribute("x", -tx);
-        text.setAttribute("y", `${+getLineOffset(a, text.childNodes.length, lineHeight).toFixed(6)}em`);
-        text.setAttribute("transform", `translate(${getTextTranslate(a, m, r, w, h)})`);
-      });
-      g.attr("visibility", null);
-    }
-
-    // Wait until the plot is inserted into the page so that we can use getBBox
-    // to compute the exact text dimensions. If the SVG is already connected, as
-    // when the pointer interaction triggers the re-render, use a faster
-    // microtask instead of an animation frame; if this SSR (e.g., JSDOM), skip
-    // this step. Perhaps this could be done synchronously; getting the
-    // dimensions of the SVG is easy, and although accurate text metrics are
-    // hard, we could use approximate heuristics.
-    if (index.length) {
-      g.attr("visibility", "hidden"); // hide until postrender
-      if (svg.isConnected) Promise.resolve().then(postrender);
-      else if (typeof requestAnimationFrame !== "undefined") requestAnimationFrame(postrender);
-    }
-
-    return g.node();
   }
   renderJSX(this: any, index: any, scales: any, values: any, dimensions: any, _context: any): ReactNode {
     const mark = this;

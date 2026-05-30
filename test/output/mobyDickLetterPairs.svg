@@ -1,0 +1,482 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="600" viewBox="0 0 640 600" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(-0.5,9)">
+    <path transform="translate(40,31)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,51)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,71)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,91)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,111)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,131)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,151)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,171)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,191)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,211)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,231)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,251)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,271)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,291)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,311)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,331)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,351)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,371)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,391)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,411)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,431)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,451)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,471)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,491)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,511)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,531)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,551)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-9,9)">
+    <text transform="translate(40,31)" y="0.32em">*</text>
+    <text transform="translate(40,51)" y="0.32em">A</text>
+    <text transform="translate(40,71)" y="0.32em">B</text>
+    <text transform="translate(40,91)" y="0.32em">C</text>
+    <text transform="translate(40,111)" y="0.32em">D</text>
+    <text transform="translate(40,131)" y="0.32em">E</text>
+    <text transform="translate(40,151)" y="0.32em">F</text>
+    <text transform="translate(40,171)" y="0.32em">G</text>
+    <text transform="translate(40,191)" y="0.32em">H</text>
+    <text transform="translate(40,211)" y="0.32em">I</text>
+    <text transform="translate(40,231)" y="0.32em">J</text>
+    <text transform="translate(40,251)" y="0.32em">K</text>
+    <text transform="translate(40,271)" y="0.32em">L</text>
+    <text transform="translate(40,291)" y="0.32em">M</text>
+    <text transform="translate(40,311)" y="0.32em">N</text>
+    <text transform="translate(40,331)" y="0.32em">O</text>
+    <text transform="translate(40,351)" y="0.32em">P</text>
+    <text transform="translate(40,371)" y="0.32em">Q</text>
+    <text transform="translate(40,391)" y="0.32em">R</text>
+    <text transform="translate(40,411)" y="0.32em">S</text>
+    <text transform="translate(40,431)" y="0.32em">T</text>
+    <text transform="translate(40,451)" y="0.32em">U</text>
+    <text transform="translate(40,471)" y="0.32em">V</text>
+    <text transform="translate(40,491)" y="0.32em">W</text>
+    <text transform="translate(40,511)" y="0.32em">X</text>
+    <text transform="translate(40,531)" y="0.32em">Y</text>
+    <text transform="translate(40,551)" y="0.32em">Z</text>
+  </g>
+  <g aria-label="bar">
+    <rect x="40" y="91" width="335.44" height="18"></rect>
+    <rect x="40" y="51" width="575.04" height="18"></rect>
+    <rect x="40" y="271" width="431.28" height="18"></rect>
+    <rect x="40" y="31" width="599" height="18"></rect>
+    <rect x="40" y="291" width="287.52" height="18"></rect>
+    <rect x="40" y="131" width="575.04" height="18"></rect>
+    <rect x="40" y="211" width="479.2" height="18"></rect>
+    <rect x="40" y="411" width="455.24" height="18"></rect>
+    <rect x="40" y="191" width="311.48" height="18"></rect>
+    <rect x="40" y="331" width="527.12" height="18"></rect>
+    <rect x="40" y="531" width="239.6" height="18"></rect>
+    <rect x="40" y="391" width="551.08" height="18"></rect>
+    <rect x="40" y="171" width="335.44" height="18"></rect>
+    <rect x="40" y="311" width="527.12" height="18"></rect>
+    <rect x="40" y="471" width="95.84" height="18"></rect>
+    <rect x="40" y="111" width="311.48" height="18"></rect>
+    <rect x="40" y="491" width="263.56" height="18"></rect>
+    <rect x="40" y="351" width="311.48" height="18"></rect>
+    <rect x="40" y="431" width="383.36" height="18"></rect>
+    <rect x="40" y="451" width="407.32" height="18"></rect>
+    <rect x="40" y="71" width="287.52" height="18"></rect>
+    <rect x="40" y="151" width="287.52" height="18"></rect>
+    <rect x="40" y="551" width="95.84" height="18"></rect>
+    <rect x="40" y="371" width="23.96" height="18"></rect>
+    <rect x="40" y="251" width="143.76" height="18"></rect>
+    <rect x="40" y="511" width="143.76" height="18"></rect>
+    <rect x="40" y="231" width="47.92" height="18"></rect>
+  </g>
+  <g aria-label="text" fill="white" transform="translate(0,9)">
+    <text transform="translate(51.98,271)" y="0.32em">*</text>
+    <text transform="translate(51.98,131)" y="0.32em">*</text>
+    <text transform="translate(51.98,31)" y="0.32em">*</text>
+    <text transform="translate(51.98,411)" y="0.32em">*</text>
+    <text transform="translate(51.98,331)" y="0.32em">*</text>
+    <text transform="translate(51.98,391)" y="0.32em">*</text>
+    <text transform="translate(51.98,111)" y="0.32em">*</text>
+    <text transform="translate(51.98,491)" y="0.32em">*</text>
+    <text transform="translate(51.98,171)" y="0.32em">*</text>
+    <text transform="translate(51.98,531)" y="0.32em">*</text>
+    <text transform="translate(51.98,311)" y="0.32em">*</text>
+    <text transform="translate(51.98,431)" y="0.32em">*</text>
+    <text transform="translate(51.98,211)" y="0.32em">*</text>
+    <text transform="translate(51.98,51)" y="0.32em">*</text>
+    <text transform="translate(51.98,151)" y="0.32em">*</text>
+    <text transform="translate(51.98,291)" y="0.32em">*</text>
+    <text transform="translate(51.98,191)" y="0.32em">*</text>
+    <text transform="translate(51.98,351)" y="0.32em">*</text>
+    <text transform="translate(51.98,451)" y="0.32em">*</text>
+    <text transform="translate(51.98,251)" y="0.32em">*</text>
+    <text transform="translate(51.98,91)" y="0.32em">*</text>
+    <text transform="translate(51.98,511)" y="0.32em">*</text>
+    <text transform="translate(51.98,71)" y="0.32em">*</text>
+    <text transform="translate(75.94,91)" y="0.32em">A</text>
+    <text transform="translate(75.94,291)" y="0.32em">A</text>
+    <text transform="translate(75.94,131)" y="0.32em">A</text>
+    <text transform="translate(75.94,31)" y="0.32em">A</text>
+    <text transform="translate(75.94,191)" y="0.32em">A</text>
+    <text transform="translate(75.94,351)" y="0.32em">A</text>
+    <text transform="translate(75.94,271)" y="0.32em">A</text>
+    <text transform="translate(75.94,411)" y="0.32em">A</text>
+    <text transform="translate(75.94,491)" y="0.32em">A</text>
+    <text transform="translate(75.94,111)" y="0.32em">A</text>
+    <text transform="translate(75.94,431)" y="0.32em">A</text>
+    <text transform="translate(75.94,391)" y="0.32em">A</text>
+    <text transform="translate(75.94,211)" y="0.32em">A</text>
+    <text transform="translate(75.94,71)" y="0.32em">A</text>
+    <text transform="translate(75.94,171)" y="0.32em">A</text>
+    <text transform="translate(75.94,311)" y="0.32em">A</text>
+    <text transform="translate(75.94,151)" y="0.32em">A</text>
+    <text transform="translate(51.98,471)" y="0.32em">A</text>
+    <text transform="translate(75.94,331)" y="0.32em">A</text>
+    <text transform="translate(75.94,251)" y="0.32em">A</text>
+    <text transform="translate(75.94,531)" y="0.32em">A</text>
+    <text transform="translate(75.94,451)" y="0.32em">A</text>
+    <text transform="translate(75.94,511)" y="0.32em">A</text>
+    <text transform="translate(75.94,51)" y="0.32em">B</text>
+    <text transform="translate(99.9,291)" y="0.32em">B</text>
+    <text transform="translate(99.9,31)" y="0.32em">B</text>
+    <text transform="translate(99.9,211)" y="0.32em">B</text>
+    <text transform="translate(99.9,451)" y="0.32em">B</text>
+    <text transform="translate(99.9,331)" y="0.32em">B</text>
+    <text transform="translate(99.9,71)" y="0.32em">B</text>
+    <text transform="translate(99.9,531)" y="0.32em">B</text>
+    <text transform="translate(99.9,391)" y="0.32em">B</text>
+    <text transform="translate(99.9,311)" y="0.32em">B</text>
+    <text transform="translate(99.9,131)" y="0.32em">C</text>
+    <text transform="translate(123.86,211)" y="0.32em">C</text>
+    <text transform="translate(123.86,31)" y="0.32em">C</text>
+    <text transform="translate(123.86,391)" y="0.32em">C</text>
+    <text transform="translate(123.86,451)" y="0.32em">C</text>
+    <text transform="translate(123.86,311)" y="0.32em">C</text>
+    <text transform="translate(123.86,331)" y="0.32em">C</text>
+    <text transform="translate(99.9,51)" y="0.32em">C</text>
+    <text transform="translate(99.9,91)" y="0.32em">C</text>
+    <text transform="translate(99.9,411)" y="0.32em">C</text>
+    <text transform="translate(99.9,431)" y="0.32em">C</text>
+    <text transform="translate(99.9,271)" y="0.32em">C</text>
+    <text transform="translate(147.82,311)" y="0.32em">D</text>
+    <text transform="translate(123.86,271)" y="0.32em">D</text>
+    <text transform="translate(147.82,31)" y="0.32em">D</text>
+    <text transform="translate(147.82,331)" y="0.32em">D</text>
+    <text transform="translate(147.82,391)" y="0.32em">D</text>
+    <text transform="translate(123.86,131)" y="0.32em">D</text>
+    <text transform="translate(99.9,491)" y="0.32em">D</text>
+    <text transform="translate(123.86,51)" y="0.32em">D</text>
+    <text transform="translate(99.9,111)" y="0.32em">D</text>
+    <text transform="translate(147.82,211)" y="0.32em">D</text>
+    <text transform="translate(147.82,451)" y="0.32em">D</text>
+    <text transform="translate(123.86,291)" y="0.32em">E</text>
+    <text transform="translate(147.82,51)" y="0.32em">E</text>
+    <text transform="translate(123.86,531)" y="0.32em">E</text>
+    <text transform="translate(171.78,311)" y="0.32em">E</text>
+    <text transform="translate(75.94,471)" y="0.32em">E</text>
+    <text transform="translate(171.78,391)" y="0.32em">E</text>
+    <text transform="translate(123.86,411)" y="0.32em">E</text>
+    <text transform="translate(147.82,271)" y="0.32em">E</text>
+    <text transform="translate(123.86,431)" y="0.32em">E</text>
+    <text transform="translate(147.82,131)" y="0.32em">E</text>
+    <text transform="translate(99.9,191)" y="0.32em">E</text>
+    <text transform="translate(123.86,71)" y="0.32em">E</text>
+    <text transform="translate(171.78,31)" y="0.32em">E</text>
+    <text transform="translate(99.9,351)" y="0.32em">E</text>
+    <text transform="translate(99.9,171)" y="0.32em">E</text>
+    <text transform="translate(123.86,111)" y="0.32em">E</text>
+    <text transform="translate(171.78,211)" y="0.32em">E</text>
+    <text transform="translate(99.9,251)" y="0.32em">E</text>
+    <text transform="translate(99.9,151)" y="0.32em">E</text>
+    <text transform="translate(123.86,91)" y="0.32em">E</text>
+    <text transform="translate(171.78,331)" y="0.32em">E</text>
+    <text transform="translate(51.98,551)" y="0.32em">E</text>
+    <text transform="translate(123.86,491)" y="0.32em">E</text>
+    <text transform="translate(99.9,511)" y="0.32em">E</text>
+    <text transform="translate(171.78,451)" y="0.32em">E</text>
+    <text transform="translate(195.74,331)" y="0.32em">F</text>
+    <text transform="translate(123.86,151)" y="0.32em">F</text>
+    <text transform="translate(195.74,31)" y="0.32em">F</text>
+    <text transform="translate(171.78,271)" y="0.32em">F</text>
+    <text transform="translate(171.78,131)" y="0.32em">F</text>
+    <text transform="translate(195.74,211)" y="0.32em">F</text>
+    <text transform="translate(195.74,391)" y="0.32em">F</text>
+    <text transform="translate(171.78,51)" y="0.32em">F</text>
+    <text transform="translate(195.74,451)" y="0.32em">F</text>
+    <text transform="translate(195.74,311)" y="0.32em">F</text>
+    <text transform="translate(147.82,111)" y="0.32em">F</text>
+    <text transform="translate(147.82,431)" y="0.32em">F</text>
+    <text transform="translate(147.82,411)" y="0.32em">F</text>
+    <text transform="translate(147.82,291)" y="0.32em">F</text>
+    <text transform="translate(195.74,51)" y="0.32em">G</text>
+    <text transform="translate(219.7,311)" y="0.32em">G</text>
+    <text transform="translate(219.7,451)" y="0.32em">G</text>
+    <text transform="translate(195.74,131)" y="0.32em">G</text>
+    <text transform="translate(219.7,31)" y="0.32em">G</text>
+    <text transform="translate(219.7,211)" y="0.32em">G</text>
+    <text transform="translate(123.86,171)" y="0.32em">G</text>
+    <text transform="translate(171.78,111)" y="0.32em">G</text>
+    <text transform="translate(219.7,331)" y="0.32em">G</text>
+    <text transform="translate(147.82,151)" y="0.32em">G</text>
+    <text transform="translate(171.78,411)" y="0.32em">G</text>
+    <text transform="translate(195.74,411)" y="0.32em">H</text>
+    <text transform="translate(243.66,31)" y="0.32em">H</text>
+    <text transform="translate(171.78,431)" y="0.32em">H</text>
+    <text transform="translate(147.82,171)" y="0.32em">H</text>
+    <text transform="translate(147.82,491)" y="0.32em">H</text>
+    <text transform="translate(219.7,131)" y="0.32em">H</text>
+    <text transform="translate(147.82,91)" y="0.32em">H</text>
+    <text transform="translate(123.86,351)" y="0.32em">H</text>
+    <text transform="translate(243.66,311)" y="0.32em">H</text>
+    <text transform="translate(219.7,391)" y="0.32em">H</text>
+    <text transform="translate(219.7,51)" y="0.32em">H</text>
+    <text transform="translate(267.62,31)" y="0.32em">I</text>
+    <text transform="translate(171.78,291)" y="0.32em">I</text>
+    <text transform="translate(171.78,91)" y="0.32em">I</text>
+    <text transform="translate(99.9,471)" y="0.32em">I</text>
+    <text transform="translate(195.74,271)" y="0.32em">I</text>
+    <text transform="translate(123.86,191)" y="0.32em">I</text>
+    <text transform="translate(195.74,431)" y="0.32em">I</text>
+    <text transform="translate(243.66,51)" y="0.32em">I</text>
+    <text transform="translate(243.66,391)" y="0.32em">I</text>
+    <text transform="translate(171.78,151)" y="0.32em">I</text>
+    <text transform="translate(171.78,491)" y="0.32em">I</text>
+    <text transform="translate(219.7,411)" y="0.32em">I</text>
+    <text transform="translate(171.78,171)" y="0.32em">I</text>
+    <text transform="translate(243.66,451)" y="0.32em">I</text>
+    <text transform="translate(147.82,351)" y="0.32em">I</text>
+    <text transform="translate(195.74,111)" y="0.32em">I</text>
+    <text transform="translate(123.86,251)" y="0.32em">I</text>
+    <text transform="translate(243.66,131)" y="0.32em">I</text>
+    <text transform="translate(267.62,311)" y="0.32em">I</text>
+    <text transform="translate(243.66,331)" y="0.32em">I</text>
+    <text transform="translate(147.82,71)" y="0.32em">I</text>
+    <text transform="translate(147.82,531)" y="0.32em">I</text>
+    <text transform="translate(123.86,511)" y="0.32em">I</text>
+    <text transform="translate(291.58,31)" y="0.32em">J</text>
+    <text transform="translate(291.58,311)" y="0.32em">J</text>
+    <text transform="translate(267.62,51)" y="0.32em">J</text>
+    <text transform="translate(315.54,31)" y="0.32em">K</text>
+    <text transform="translate(195.74,91)" y="0.32em">K</text>
+    <text transform="translate(291.58,51)" y="0.32em">K</text>
+    <text transform="translate(267.62,331)" y="0.32em">K</text>
+    <text transform="translate(243.66,211)" y="0.32em">K</text>
+    <text transform="translate(267.62,391)" y="0.32em">K</text>
+    <text transform="translate(267.62,131)" y="0.32em">K</text>
+    <text transform="translate(243.66,411)" y="0.32em">K</text>
+    <text transform="translate(315.54,311)" y="0.32em">K</text>
+    <text transform="translate(219.7,271)" y="0.32em">K</text>
+    <text transform="translate(315.54,51)" y="0.32em">L</text>
+    <text transform="translate(243.66,271)" y="0.32em">L</text>
+    <text transform="translate(291.58,131)" y="0.32em">L</text>
+    <text transform="translate(339.5,31)" y="0.32em">L</text>
+    <text transform="translate(219.7,431)" y="0.32em">L</text>
+    <text transform="translate(267.62,451)" y="0.32em">L</text>
+    <text transform="translate(267.62,211)" y="0.32em">L</text>
+    <text transform="translate(291.58,391)" y="0.32em">L</text>
+    <text transform="translate(171.78,351)" y="0.32em">L</text>
+    <text transform="translate(75.94,551)" y="0.32em">L</text>
+    <text transform="translate(291.58,331)" y="0.32em">L</text>
+    <text transform="translate(195.74,151)" y="0.32em">L</text>
+    <text transform="translate(267.62,411)" y="0.32em">L</text>
+    <text transform="translate(171.78,71)" y="0.32em">L</text>
+    <text transform="translate(219.7,91)" y="0.32em">L</text>
+    <text transform="translate(195.74,171)" y="0.32em">L</text>
+    <text transform="translate(339.5,311)" y="0.32em">L</text>
+    <text transform="translate(219.7,111)" y="0.32em">L</text>
+    <text transform="translate(195.74,491)" y="0.32em">L</text>
+    <text transform="translate(147.82,191)" y="0.32em">L</text>
+    <text transform="translate(363.46,31)" y="0.32em">M</text>
+    <text transform="translate(171.78,191)" y="0.32em">M</text>
+    <text transform="translate(315.54,331)" y="0.32em">M</text>
+    <text transform="translate(291.58,211)" y="0.32em">M</text>
+    <text transform="translate(339.5,51)" y="0.32em">M</text>
+    <text transform="translate(315.54,131)" y="0.32em">M</text>
+    <text transform="translate(267.62,271)" y="0.32em">M</text>
+    <text transform="translate(195.74,291)" y="0.32em">M</text>
+    <text transform="translate(291.58,451)" y="0.32em">M</text>
+    <text transform="translate(291.58,411)" y="0.32em">M</text>
+    <text transform="translate(315.54,391)" y="0.32em">M</text>
+    <text transform="translate(219.7,171)" y="0.32em">M</text>
+    <text transform="translate(243.66,431)" y="0.32em">M</text>
+    <text transform="translate(363.46,311)" y="0.32em">M</text>
+    <text transform="translate(387.42,31)" y="0.32em">N</text>
+    <text transform="translate(315.54,211)" y="0.32em">N</text>
+    <text transform="translate(339.5,331)" y="0.32em">N</text>
+    <text transform="translate(363.46,51)" y="0.32em">N</text>
+    <text transform="translate(339.5,131)" y="0.32em">N</text>
+    <text transform="translate(315.54,451)" y="0.32em">N</text>
+    <text transform="translate(147.82,251)" y="0.32em">N</text>
+    <text transform="translate(219.7,491)" y="0.32em">N</text>
+    <text transform="translate(339.5,391)" y="0.32em">N</text>
+    <text transform="translate(243.66,171)" y="0.32em">N</text>
+    <text transform="translate(387.42,311)" y="0.32em">N</text>
+    <text transform="translate(315.54,411)" y="0.32em">N</text>
+    <text transform="translate(339.5,411)" y="0.32em">O</text>
+    <text transform="translate(267.62,171)" y="0.32em">O</text>
+    <text transform="translate(195.74,191)" y="0.32em">O</text>
+    <text transform="translate(291.58,271)" y="0.32em">O</text>
+    <text transform="translate(411.38,31)" y="0.32em">O</text>
+    <text transform="translate(411.38,311)" y="0.32em">O</text>
+    <text transform="translate(219.7,291)" y="0.32em">O</text>
+    <text transform="translate(267.62,431)" y="0.32em">O</text>
+    <text transform="translate(243.66,491)" y="0.32em">O</text>
+    <text transform="translate(195.74,71)" y="0.32em">O</text>
+    <text transform="translate(339.5,211)" y="0.32em">O</text>
+    <text transform="translate(363.46,391)" y="0.32em">O</text>
+    <text transform="translate(123.86,471)" y="0.32em">O</text>
+    <text transform="translate(219.7,151)" y="0.32em">O</text>
+    <text transform="translate(243.66,91)" y="0.32em">O</text>
+    <text transform="translate(195.74,351)" y="0.32em">O</text>
+    <text transform="translate(363.46,131)" y="0.32em">O</text>
+    <text transform="translate(363.46,331)" y="0.32em">O</text>
+    <text transform="translate(171.78,531)" y="0.32em">O</text>
+    <text transform="translate(243.66,111)" y="0.32em">O</text>
+    <text transform="translate(51.98,231)" y="0.32em">O</text>
+    <text transform="translate(435.34,31)" y="0.32em">P</text>
+    <text transform="translate(363.46,411)" y="0.32em">P</text>
+    <text transform="translate(243.66,291)" y="0.32em">P</text>
+    <text transform="translate(339.5,451)" y="0.32em">P</text>
+    <text transform="translate(195.74,531)" y="0.32em">P</text>
+    <text transform="translate(219.7,351)" y="0.32em">P</text>
+    <text transform="translate(363.46,211)" y="0.32em">P</text>
+    <text transform="translate(387.42,131)" y="0.32em">P</text>
+    <text transform="translate(387.42,331)" y="0.32em">P</text>
+    <text transform="translate(387.42,391)" y="0.32em">P</text>
+    <text transform="translate(147.82,511)" y="0.32em">P</text>
+    <text transform="translate(387.42,51)" y="0.32em">P</text>
+    <text transform="translate(435.34,311)" y="0.32em">P</text>
+    <text transform="translate(315.54,271)" y="0.32em">P</text>
+    <text transform="translate(411.38,131)" y="0.32em">Q</text>
+    <text transform="translate(459.3,31)" y="0.32em">Q</text>
+    <text transform="translate(411.38,391)" y="0.32em">Q</text>
+    <text transform="translate(411.38,51)" y="0.32em">R</text>
+    <text transform="translate(435.34,131)" y="0.32em">R</text>
+    <text transform="translate(243.66,351)" y="0.32em">R</text>
+    <text transform="translate(411.38,331)" y="0.32em">R</text>
+    <text transform="translate(363.46,451)" y="0.32em">R</text>
+    <text transform="translate(267.62,111)" y="0.32em">R</text>
+    <text transform="translate(483.26,31)" y="0.32em">R</text>
+    <text transform="translate(387.42,211)" y="0.32em">R</text>
+    <text transform="translate(291.58,171)" y="0.32em">R</text>
+    <text transform="translate(219.7,71)" y="0.32em">R</text>
+    <text transform="translate(291.58,431)" y="0.32em">R</text>
+    <text transform="translate(243.66,151)" y="0.32em">R</text>
+    <text transform="translate(219.7,191)" y="0.32em">R</text>
+    <text transform="translate(435.34,391)" y="0.32em">R</text>
+    <text transform="translate(267.62,91)" y="0.32em">R</text>
+    <text transform="translate(219.7,531)" y="0.32em">R</text>
+    <text transform="translate(411.38,211)" y="0.32em">S</text>
+    <text transform="translate(507.22,31)" y="0.32em">S</text>
+    <text transform="translate(459.3,391)" y="0.32em">S</text>
+    <text transform="translate(459.3,131)" y="0.32em">S</text>
+    <text transform="translate(243.66,531)" y="0.32em">S</text>
+    <text transform="translate(387.42,451)" y="0.32em">S</text>
+    <text transform="translate(435.34,331)" y="0.32em">S</text>
+    <text transform="translate(315.54,431)" y="0.32em">S</text>
+    <text transform="translate(435.34,51)" y="0.32em">S</text>
+    <text transform="translate(243.66,71)" y="0.32em">S</text>
+    <text transform="translate(267.62,491)" y="0.32em">S</text>
+    <text transform="translate(267.62,291)" y="0.32em">S</text>
+    <text transform="translate(315.54,171)" y="0.32em">S</text>
+    <text transform="translate(291.58,111)" y="0.32em">S</text>
+    <text transform="translate(459.3,311)" y="0.32em">S</text>
+    <text transform="translate(267.62,151)" y="0.32em">S</text>
+    <text transform="translate(339.5,271)" y="0.32em">S</text>
+    <text transform="translate(171.78,251)" y="0.32em">S</text>
+    <text transform="translate(267.62,351)" y="0.32em">S</text>
+    <text transform="translate(387.42,411)" y="0.32em">S</text>
+    <text transform="translate(243.66,191)" y="0.32em">S</text>
+    <text transform="translate(291.58,91)" y="0.32em">S</text>
+    <text transform="translate(435.34,211)" y="0.32em">T</text>
+    <text transform="translate(339.5,431)" y="0.32em">T</text>
+    <text transform="translate(459.3,331)" y="0.32em">T</text>
+    <text transform="translate(483.26,391)" y="0.32em">T</text>
+    <text transform="translate(531.18,31)" y="0.32em">T</text>
+    <text transform="translate(483.26,311)" y="0.32em">T</text>
+    <text transform="translate(411.38,411)" y="0.32em">T</text>
+    <text transform="translate(267.62,191)" y="0.32em">T</text>
+    <text transform="translate(411.38,451)" y="0.32em">T</text>
+    <text transform="translate(459.3,51)" y="0.32em">T</text>
+    <text transform="translate(483.26,131)" y="0.32em">T</text>
+    <text transform="translate(363.46,271)" y="0.32em">T</text>
+    <text transform="translate(291.58,151)" y="0.32em">T</text>
+    <text transform="translate(171.78,511)" y="0.32em">T</text>
+    <text transform="translate(315.54,91)" y="0.32em">T</text>
+    <text transform="translate(291.58,351)" y="0.32em">T</text>
+    <text transform="translate(267.62,531)" y="0.32em">T</text>
+    <text transform="translate(267.62,71)" y="0.32em">T</text>
+    <text transform="translate(315.54,351)" y="0.32em">U</text>
+    <text transform="translate(339.5,91)" y="0.32em">U</text>
+    <text transform="translate(483.26,331)" y="0.32em">U</text>
+    <text transform="translate(339.5,171)" y="0.32em">U</text>
+    <text transform="translate(387.42,271)" y="0.32em">U</text>
+    <text transform="translate(483.26,51)" y="0.32em">U</text>
+    <text transform="translate(555.14,31)" y="0.32em">U</text>
+    <text transform="translate(315.54,151)" y="0.32em">U</text>
+    <text transform="translate(435.34,411)" y="0.32em">U</text>
+    <text transform="translate(51.98,371)" y="0.32em">U</text>
+    <text transform="translate(363.46,431)" y="0.32em">U</text>
+    <text transform="translate(291.58,71)" y="0.32em">U</text>
+    <text transform="translate(291.58,291)" y="0.32em">U</text>
+    <text transform="translate(75.94,231)" y="0.32em">U</text>
+    <text transform="translate(507.22,311)" y="0.32em">U</text>
+    <text transform="translate(507.22,391)" y="0.32em">U</text>
+    <text transform="translate(291.58,191)" y="0.32em">U</text>
+    <text transform="translate(315.54,111)" y="0.32em">U</text>
+    <text transform="translate(291.58,491)" y="0.32em">U</text>
+    <text transform="translate(507.22,131)" y="0.32em">V</text>
+    <text transform="translate(507.22,51)" y="0.32em">V</text>
+    <text transform="translate(459.3,211)" y="0.32em">V</text>
+    <text transform="translate(507.22,331)" y="0.32em">V</text>
+    <text transform="translate(531.18,311)" y="0.32em">V</text>
+    <text transform="translate(579.1,31)" y="0.32em">V</text>
+    <text transform="translate(531.18,391)" y="0.32em">V</text>
+    <text transform="translate(411.38,271)" y="0.32em">V</text>
+    <text transform="translate(531.18,331)" y="0.32em">W</text>
+    <text transform="translate(603.06,31)" y="0.32em">W</text>
+    <text transform="translate(459.3,411)" y="0.32em">W</text>
+    <text transform="translate(531.18,131)" y="0.32em">W</text>
+    <text transform="translate(555.14,391)" y="0.32em">W</text>
+    <text transform="translate(315.54,191)" y="0.32em">W</text>
+    <text transform="translate(435.34,271)" y="0.32em">W</text>
+    <text transform="translate(531.18,51)" y="0.32em">W</text>
+    <text transform="translate(387.42,431)" y="0.32em">W</text>
+    <text transform="translate(555.14,131)" y="0.32em">X</text>
+    <text transform="translate(483.26,211)" y="0.32em">X</text>
+    <text transform="translate(555.14,51)" y="0.32em">X</text>
+    <text transform="translate(627.02,31)" y="0.32em">Y</text>
+    <text transform="translate(459.3,271)" y="0.32em">Y</text>
+    <text transform="translate(579.1,131)" y="0.32em">Y</text>
+    <text transform="translate(315.54,291)" y="0.32em">Y</text>
+    <text transform="translate(579.1,391)" y="0.32em">Y</text>
+    <text transform="translate(579.1,51)" y="0.32em">Y</text>
+    <text transform="translate(339.5,191)" y="0.32em">Y</text>
+    <text transform="translate(411.38,431)" y="0.32em">Y</text>
+    <text transform="translate(315.54,71)" y="0.32em">Y</text>
+    <text transform="translate(339.5,111)" y="0.32em">Y</text>
+    <text transform="translate(555.14,311)" y="0.32em">Y</text>
+    <text transform="translate(555.14,331)" y="0.32em">Y</text>
+    <text transform="translate(339.5,351)" y="0.32em">Y</text>
+    <text transform="translate(99.9,551)" y="0.32em">Y</text>
+    <text transform="translate(435.34,451)" y="0.32em">Y</text>
+    <text transform="translate(363.46,171)" y="0.32em">Y</text>
+    <text transform="translate(363.46,91)" y="0.32em">Y</text>
+    <text transform="translate(483.26,411)" y="0.32em">Y</text>
+    <text transform="translate(507.22,211)" y="0.32em">Z</text>
+    <text transform="translate(123.86,551)" y="0.32em">Z</text>
+    <text transform="translate(603.06,131)" y="0.32em">Z</text>
+    <text transform="translate(603.06,51)" y="0.32em">Z</text>
+  </g>
+</svg>

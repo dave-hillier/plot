@@ -1,0 +1,356 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="640" viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(-0.5,11)">
+    <path transform="translate(40,30)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,52)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,74)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,96)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,118)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,140)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,162)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,184)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,206)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,228)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,250)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,272)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,294)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,316)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,338)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,360)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,382)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,404)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,426)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,448)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,470)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,492)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,514)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,536)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,558)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,580)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-9,11)">
+    <text transform="translate(40,30)" y="0.32em">A</text>
+    <text transform="translate(40,52)" y="0.32em">B</text>
+    <text transform="translate(40,74)" y="0.32em">C</text>
+    <text transform="translate(40,96)" y="0.32em">D</text>
+    <text transform="translate(40,118)" y="0.32em">E</text>
+    <text transform="translate(40,140)" y="0.32em">F</text>
+    <text transform="translate(40,162)" y="0.32em">G</text>
+    <text transform="translate(40,184)" y="0.32em">H</text>
+    <text transform="translate(40,206)" y="0.32em">I</text>
+    <text transform="translate(40,228)" y="0.32em">J</text>
+    <text transform="translate(40,250)" y="0.32em">K</text>
+    <text transform="translate(40,272)" y="0.32em">L</text>
+    <text transform="translate(40,294)" y="0.32em">M</text>
+    <text transform="translate(40,316)" y="0.32em">N</text>
+    <text transform="translate(40,338)" y="0.32em">O</text>
+    <text transform="translate(40,360)" y="0.32em">P</text>
+    <text transform="translate(40,382)" y="0.32em">Q</text>
+    <text transform="translate(40,404)" y="0.32em">R</text>
+    <text transform="translate(40,426)" y="0.32em">S</text>
+    <text transform="translate(40,448)" y="0.32em">T</text>
+    <text transform="translate(40,470)" y="0.32em">U</text>
+    <text transform="translate(40,492)" y="0.32em">V</text>
+    <text transform="translate(40,514)" y="0.32em">W</text>
+    <text transform="translate(40,536)" y="0.32em">X</text>
+    <text transform="translate(40,558)" y="0.32em">Y</text>
+    <text transform="translate(40,580)" y="0.32em">Z</text>
+  </g>
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(20.5,0.5)">
+    <path transform="translate(40,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(81,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(122,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(163,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(204,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(245,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(286,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(327,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(368,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(409,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(450,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(491,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(532,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(573,30)" d="M0,0L0,-6"></path>
+  </g>
+  <g aria-label="x-axis tick label" transform="translate(20.5,-9)">
+    <text transform="translate(40,30)">0</text>
+    <text transform="translate(81,30)">1</text>
+    <text transform="translate(122,30)">2</text>
+    <text transform="translate(163,30)">3</text>
+    <text transform="translate(204,30)">4</text>
+    <text transform="translate(245,30)">5</text>
+    <text transform="translate(286,30)">6</text>
+    <text transform="translate(327,30)">7</text>
+    <text transform="translate(368,30)">8</text>
+    <text transform="translate(409,30)">9</text>
+    <text transform="translate(450,30)">10</text>
+    <text transform="translate(491,30)">11</text>
+    <text transform="translate(532,30)">12</text>
+    <text transform="translate(573,30)">13</text>
+  </g>
+  <g aria-label="x-axis label" transform="translate(0,-27)">
+    <text transform="translate(330,30)" y="0.71em">Position within word</text>
+  </g>
+  <g aria-label="cell">
+    <rect fill="rgb(203, 223, 241)" x="40.5" y="74.5" width="40" height="21"></rect>
+    <rect fill="rgb(230, 240, 250)" x="163.5" y="74.5" width="40" height="21"></rect>
+    <rect fill="rgb(239, 246, 253)" x="245.5" y="74.5" width="40" height="21"></rect>
+    <rect fill="rgb(235, 243, 251)" x="204.5" y="74.5" width="40" height="21"></rect>
+    <rect fill="rgb(226, 237, 248)" x="122.5" y="74.5" width="40" height="21"></rect>
+    <rect fill="rgb(244, 249, 254)" x="327.5" y="74.5" width="40" height="21"></rect>
+    <rect fill="rgb(240, 247, 253)" x="81.5" y="74.5" width="40" height="21"></rect>
+    <rect fill="rgb(246, 250, 255)" x="450.5" y="74.5" width="40" height="21"></rect>
+    <rect fill="rgb(245, 250, 254)" x="286.5" y="74.5" width="40" height="21"></rect>
+    <rect fill="rgb(246, 250, 255)" x="409.5" y="74.5" width="40" height="21"></rect>
+    <rect fill="rgb(245, 250, 254)" x="368.5" y="74.5" width="40" height="21"></rect>
+    <rect fill="rgb(83, 157, 204)" x="81.5" y="30.5" width="40" height="21"></rect>
+    <rect fill="rgb(226, 237, 248)" x="204.5" y="30.5" width="40" height="21"></rect>
+    <rect fill="rgb(136, 190, 220)" x="122.5" y="30.5" width="40" height="21"></rect>
+    <rect fill="rgb(41, 120, 184)" x="40.5" y="30.5" width="40" height="21"></rect>
+    <rect fill="rgb(242, 248, 253)" x="368.5" y="30.5" width="40" height="21"></rect>
+    <rect fill="rgb(230, 240, 250)" x="245.5" y="30.5" width="40" height="21"></rect>
+    <rect fill="rgb(238, 245, 252)" x="286.5" y="30.5" width="40" height="21"></rect>
+    <rect fill="rgb(219, 233, 246)" x="163.5" y="30.5" width="40" height="21"></rect>
+    <rect fill="rgb(242, 248, 253)" x="327.5" y="30.5" width="40" height="21"></rect>
+    <rect fill="rgb(246, 251, 255)" x="491.5" y="30.5" width="40" height="21"></rect>
+    <rect fill="rgb(246, 250, 255)" x="450.5" y="30.5" width="40" height="21"></rect>
+    <rect fill="rgb(244, 249, 254)" x="409.5" y="30.5" width="40" height="21"></rect>
+    <rect fill="rgb(202, 222, 240)" x="122.5" y="272.5" width="40" height="21"></rect>
+    <rect fill="rgb(201, 222, 240)" x="163.5" y="272.5" width="40" height="21"></rect>
+    <rect fill="rgb(236, 244, 252)" x="286.5" y="272.5" width="40" height="21"></rect>
+    <rect fill="rgb(221, 234, 246)" x="40.5" y="272.5" width="40" height="21"></rect>
+    <rect fill="rgb(236, 244, 252)" x="327.5" y="272.5" width="40" height="21"></rect>
+    <rect fill="rgb(221, 234, 246)" x="204.5" y="272.5" width="40" height="21"></rect>
+    <rect fill="rgb(231, 241, 250)" x="245.5" y="272.5" width="40" height="21"></rect>
+    <rect fill="rgb(243, 249, 254)" x="491.5" y="272.5" width="40" height="21"></rect>
+    <rect fill="rgb(243, 248, 254)" x="368.5" y="272.5" width="40" height="21"></rect>
+    <rect fill="rgb(243, 248, 254)" x="450.5" y="272.5" width="40" height="21"></rect>
+    <rect fill="rgb(244, 249, 254)" x="409.5" y="272.5" width="40" height="21"></rect>
+    <rect fill="rgb(247, 251, 255)" x="532.5" y="272.5" width="40" height="21"></rect>
+    <rect fill="rgb(213, 229, 244)" x="81.5" y="272.5" width="40" height="21"></rect>
+    <rect fill="rgb(170, 207, 229)" x="40.5" y="294.5" width="40" height="21"></rect>
+    <rect fill="rgb(227, 238, 248)" x="163.5" y="294.5" width="40" height="21"></rect>
+    <rect fill="rgb(216, 231, 245)" x="122.5" y="294.5" width="40" height="21"></rect>
+    <rect fill="rgb(242, 248, 253)" x="204.5" y="294.5" width="40" height="21"></rect>
+    <rect fill="rgb(243, 248, 254)" x="245.5" y="294.5" width="40" height="21"></rect>
+    <rect fill="rgb(246, 250, 255)" x="327.5" y="294.5" width="40" height="21"></rect>
+    <rect fill="rgb(240, 246, 253)" x="81.5" y="294.5" width="40" height="21"></rect>
+    <rect fill="rgb(242, 248, 253)" x="286.5" y="294.5" width="40" height="21"></rect>
+    <rect fill="rgb(247, 251, 255)" x="409.5" y="294.5" width="40" height="21"></rect>
+    <rect fill="rgb(247, 251, 255)" x="368.5" y="294.5" width="40" height="21"></rect>
+    <rect fill="rgb(41, 120, 184)" x="81.5" y="118.5" width="40" height="21"></rect>
+    <rect fill="rgb(193, 218, 237)" x="245.5" y="118.5" width="40" height="21"></rect>
+    <rect fill="rgb(81, 156, 204)" x="163.5" y="118.5" width="40" height="21"></rect>
+    <rect fill="rgb(16, 89, 161)" x="122.5" y="118.5" width="40" height="21"></rect>
+    <rect fill="rgb(217, 231, 245)" x="286.5" y="118.5" width="40" height="21"></rect>
+    <rect fill="rgb(123, 183, 217)" x="204.5" y="118.5" width="40" height="21"></rect>
+    <rect fill="rgb(235, 243, 251)" x="368.5" y="118.5" width="40" height="21"></rect>
+    <rect fill="rgb(224, 236, 248)" x="40.5" y="118.5" width="40" height="21"></rect>
+    <rect fill="rgb(242, 248, 253)" x="409.5" y="118.5" width="40" height="21"></rect>
+    <rect fill="rgb(232, 241, 250)" x="327.5" y="118.5" width="40" height="21"></rect>
+    <rect fill="rgb(247, 251, 255)" x="573.5" y="118.5" width="40" height="21"></rect>
+    <rect fill="rgb(244, 249, 254)" x="450.5" y="118.5" width="40" height="21"></rect>
+    <rect fill="rgb(246, 250, 255)" x="491.5" y="118.5" width="40" height="21"></rect>
+    <rect fill="rgb(246, 250, 255)" x="532.5" y="118.5" width="40" height="21"></rect>
+    <rect fill="rgb(82, 156, 204)" x="40.5" y="206.5" width="40" height="21"></rect>
+    <rect fill="rgb(149, 197, 224)" x="81.5" y="206.5" width="40" height="21"></rect>
+    <rect fill="rgb(211, 228, 243)" x="204.5" y="206.5" width="40" height="21"></rect>
+    <rect fill="rgb(213, 229, 244)" x="163.5" y="206.5" width="40" height="21"></rect>
+    <rect fill="rgb(191, 217, 236)" x="122.5" y="206.5" width="40" height="21"></rect>
+    <rect fill="rgb(240, 246, 253)" x="327.5" y="206.5" width="40" height="21"></rect>
+    <rect fill="rgb(243, 248, 254)" x="368.5" y="206.5" width="40" height="21"></rect>
+    <rect fill="rgb(247, 251, 255)" x="450.5" y="206.5" width="40" height="21"></rect>
+    <rect fill="rgb(224, 236, 248)" x="245.5" y="206.5" width="40" height="21"></rect>
+    <rect fill="rgb(234, 243, 251)" x="286.5" y="206.5" width="40" height="21"></rect>
+    <rect fill="rgb(246, 250, 255)" x="409.5" y="206.5" width="40" height="21"></rect>
+    <rect fill="rgb(247, 251, 255)" x="491.5" y="206.5" width="40" height="21"></rect>
+    <rect fill="rgb(209, 227, 243)" x="81.5" y="426.5" width="40" height="21"></rect>
+    <rect fill="rgb(103, 170, 211)" x="40.5" y="426.5" width="40" height="21"></rect>
+    <rect fill="rgb(209, 227, 243)" x="204.5" y="426.5" width="40" height="21"></rect>
+    <rect fill="rgb(210, 227, 243)" x="245.5" y="426.5" width="40" height="21"></rect>
+    <rect fill="rgb(199, 221, 239)" x="163.5" y="426.5" width="40" height="21"></rect>
+    <rect fill="rgb(218, 233, 246)" x="286.5" y="426.5" width="40" height="21"></rect>
+    <rect fill="rgb(201, 222, 240)" x="122.5" y="426.5" width="40" height="21"></rect>
+    <rect fill="rgb(230, 240, 250)" x="327.5" y="426.5" width="40" height="21"></rect>
+    <rect fill="rgb(240, 247, 253)" x="409.5" y="426.5" width="40" height="21"></rect>
+    <rect fill="rgb(234, 243, 251)" x="368.5" y="426.5" width="40" height="21"></rect>
+    <rect fill="rgb(246, 250, 255)" x="491.5" y="426.5" width="40" height="21"></rect>
+    <rect fill="rgb(246, 250, 255)" x="450.5" y="426.5" width="40" height="21"></rect>
+    <rect fill="rgb(247, 251, 255)" x="532.5" y="426.5" width="40" height="21"></rect>
+    <rect fill="rgb(240, 247, 253)" x="122.5" y="184.5" width="40" height="21"></rect>
+    <rect fill="rgb(197, 220, 238)" x="40.5" y="184.5" width="40" height="21"></rect>
+    <rect fill="rgb(215, 230, 244)" x="163.5" y="184.5" width="40" height="21"></rect>
+    <rect fill="rgb(8, 64, 130)" x="81.5" y="184.5" width="40" height="21"></rect>
+    <rect fill="rgb(236, 244, 251)" x="245.5" y="184.5" width="40" height="21"></rect>
+    <rect fill="rgb(233, 242, 251)" x="204.5" y="184.5" width="40" height="21"></rect>
+    <rect fill="rgb(246, 251, 255)" x="368.5" y="184.5" width="40" height="21"></rect>
+    <rect fill="rgb(246, 251, 255)" x="327.5" y="184.5" width="40" height="21"></rect>
+    <rect fill="rgb(245, 250, 254)" x="286.5" y="184.5" width="40" height="21"></rect>
+    <rect fill="rgb(8, 60, 124)" x="81.5" y="338.5" width="40" height="21"></rect>
+    <rect fill="rgb(169, 206, 229)" x="122.5" y="338.5" width="40" height="21"></rect>
+    <rect fill="rgb(136, 190, 220)" x="40.5" y="338.5" width="40" height="21"></rect>
+    <rect fill="rgb(246, 250, 255)" x="409.5" y="338.5" width="40" height="21"></rect>
+    <rect fill="rgb(224, 236, 248)" x="163.5" y="338.5" width="40" height="21"></rect>
+    <rect fill="rgb(241, 247, 253)" x="245.5" y="338.5" width="40" height="21"></rect>
+    <rect fill="rgb(228, 239, 249)" x="204.5" y="338.5" width="40" height="21"></rect>
+    <rect fill="rgb(239, 246, 253)" x="286.5" y="338.5" width="40" height="21"></rect>
+    <rect fill="rgb(242, 248, 253)" x="327.5" y="338.5" width="40" height="21"></rect>
+    <rect fill="rgb(245, 250, 254)" x="368.5" y="338.5" width="40" height="21"></rect>
+    <rect fill="rgb(247, 251, 255)" x="450.5" y="338.5" width="40" height="21"></rect>
+    <rect fill="rgb(227, 238, 248)" x="40.5" y="558.5" width="40" height="21"></rect>
+    <rect fill="rgb(244, 249, 254)" x="368.5" y="558.5" width="40" height="21"></rect>
+    <rect fill="rgb(235, 244, 251)" x="204.5" y="558.5" width="40" height="21"></rect>
+    <rect fill="rgb(230, 240, 249)" x="81.5" y="558.5" width="40" height="21"></rect>
+    <rect fill="rgb(241, 247, 253)" x="245.5" y="558.5" width="40" height="21"></rect>
+    <rect fill="rgb(224, 236, 248)" x="122.5" y="558.5" width="40" height="21"></rect>
+    <rect fill="rgb(240, 247, 253)" x="286.5" y="558.5" width="40" height="21"></rect>
+    <rect fill="rgb(246, 250, 255)" x="532.5" y="558.5" width="40" height="21"></rect>
+    <rect fill="rgb(244, 249, 254)" x="409.5" y="558.5" width="40" height="21"></rect>
+    <rect fill="rgb(245, 250, 254)" x="491.5" y="558.5" width="40" height="21"></rect>
+    <rect fill="rgb(235, 243, 251)" x="163.5" y="558.5" width="40" height="21"></rect>
+    <rect fill="rgb(243, 249, 254)" x="327.5" y="558.5" width="40" height="21"></rect>
+    <rect fill="rgb(247, 251, 255)" x="450.5" y="558.5" width="40" height="21"></rect>
+    <rect fill="rgb(202, 222, 240)" x="163.5" y="404.5" width="40" height="21"></rect>
+    <rect fill="rgb(209, 226, 243)" x="204.5" y="404.5" width="40" height="21"></rect>
+    <rect fill="rgb(188, 215, 235)" x="81.5" y="404.5" width="40" height="21"></rect>
+    <rect fill="rgb(152, 198, 224)" x="122.5" y="404.5" width="40" height="21"></rect>
+    <rect fill="rgb(244, 249, 254)" x="409.5" y="404.5" width="40" height="21"></rect>
+    <rect fill="rgb(223, 236, 247)" x="40.5" y="404.5" width="40" height="21"></rect>
+    <rect fill="rgb(238, 245, 252)" x="327.5" y="404.5" width="40" height="21"></rect>
+    <rect fill="rgb(225, 237, 248)" x="245.5" y="404.5" width="40" height="21"></rect>
+    <rect fill="rgb(235, 244, 251)" x="286.5" y="404.5" width="40" height="21"></rect>
+    <rect fill="rgb(242, 248, 253)" x="368.5" y="404.5" width="40" height="21"></rect>
+    <rect fill="rgb(247, 251, 255)" x="450.5" y="404.5" width="40" height="21"></rect>
+    <rect fill="rgb(246, 251, 255)" x="491.5" y="404.5" width="40" height="21"></rect>
+    <rect fill="rgb(244, 249, 254)" x="81.5" y="162.5" width="40" height="21"></rect>
+    <rect fill="rgb(236, 244, 252)" x="163.5" y="162.5" width="40" height="21"></rect>
+    <rect fill="rgb(238, 245, 252)" x="245.5" y="162.5" width="40" height="21"></rect>
+    <rect fill="rgb(230, 240, 249)" x="286.5" y="162.5" width="40" height="21"></rect>
+    <rect fill="rgb(227, 238, 248)" x="204.5" y="162.5" width="40" height="21"></rect>
+    <rect fill="rgb(231, 241, 250)" x="122.5" y="162.5" width="40" height="21"></rect>
+    <rect fill="rgb(245, 250, 254)" x="409.5" y="162.5" width="40" height="21"></rect>
+    <rect fill="rgb(221, 234, 246)" x="40.5" y="162.5" width="40" height="21"></rect>
+    <rect fill="rgb(243, 248, 254)" x="327.5" y="162.5" width="40" height="21"></rect>
+    <rect fill="rgb(244, 249, 254)" x="368.5" y="162.5" width="40" height="21"></rect>
+    <rect fill="rgb(246, 250, 255)" x="450.5" y="162.5" width="40" height="21"></rect>
+    <rect fill="rgb(247, 251, 255)" x="573.5" y="162.5" width="40" height="21"></rect>
+    <rect fill="rgb(247, 251, 255)" x="491.5" y="162.5" width="40" height="21"></rect>
+    <rect fill="rgb(222, 235, 247)" x="40.5" y="316.5" width="40" height="21"></rect>
+    <rect fill="rgb(190, 216, 236)" x="122.5" y="316.5" width="40" height="21"></rect>
+    <rect fill="rgb(228, 239, 249)" x="204.5" y="316.5" width="40" height="21"></rect>
+    <rect fill="rgb(84, 158, 205)" x="81.5" y="316.5" width="40" height="21"></rect>
+    <rect fill="rgb(213, 229, 244)" x="245.5" y="316.5" width="40" height="21"></rect>
+    <rect fill="rgb(239, 246, 253)" x="368.5" y="316.5" width="40" height="21"></rect>
+    <rect fill="rgb(245, 250, 254)" x="450.5" y="316.5" width="40" height="21"></rect>
+    <rect fill="rgb(178, 210, 232)" x="163.5" y="316.5" width="40" height="21"></rect>
+    <rect fill="rgb(230, 240, 249)" x="286.5" y="316.5" width="40" height="21"></rect>
+    <rect fill="rgb(235, 244, 251)" x="327.5" y="316.5" width="40" height="21"></rect>
+    <rect fill="rgb(241, 247, 253)" x="409.5" y="316.5" width="40" height="21"></rect>
+    <rect fill="rgb(246, 251, 255)" x="491.5" y="316.5" width="40" height="21"></rect>
+    <rect fill="rgb(247, 251, 255)" x="532.5" y="316.5" width="40" height="21"></rect>
+    <rect fill="rgb(231, 241, 250)" x="122.5" y="492.5" width="40" height="21"></rect>
+    <rect fill="rgb(238, 245, 252)" x="163.5" y="492.5" width="40" height="21"></rect>
+    <rect fill="rgb(243, 249, 254)" x="245.5" y="492.5" width="40" height="21"></rect>
+    <rect fill="rgb(238, 245, 252)" x="81.5" y="492.5" width="40" height="21"></rect>
+    <rect fill="rgb(239, 246, 252)" x="40.5" y="492.5" width="40" height="21"></rect>
+    <rect fill="rgb(243, 248, 254)" x="204.5" y="492.5" width="40" height="21"></rect>
+    <rect fill="rgb(245, 250, 254)" x="286.5" y="492.5" width="40" height="21"></rect>
+    <rect fill="rgb(245, 250, 254)" x="327.5" y="492.5" width="40" height="21"></rect>
+    <rect fill="rgb(215, 230, 245)" x="163.5" y="96.5" width="40" height="21"></rect>
+    <rect fill="rgb(183, 213, 234)" x="122.5" y="96.5" width="40" height="21"></rect>
+    <rect fill="rgb(228, 239, 249)" x="204.5" y="96.5" width="40" height="21"></rect>
+    <rect fill="rgb(215, 230, 245)" x="40.5" y="96.5" width="40" height="21"></rect>
+    <rect fill="rgb(225, 237, 248)" x="245.5" y="96.5" width="40" height="21"></rect>
+    <rect fill="rgb(238, 245, 252)" x="327.5" y="96.5" width="40" height="21"></rect>
+    <rect fill="rgb(245, 250, 254)" x="368.5" y="96.5" width="40" height="21"></rect>
+    <rect fill="rgb(239, 246, 252)" x="286.5" y="96.5" width="40" height="21"></rect>
+    <rect fill="rgb(246, 251, 255)" x="81.5" y="96.5" width="40" height="21"></rect>
+    <rect fill="rgb(247, 251, 255)" x="450.5" y="96.5" width="40" height="21"></rect>
+    <rect fill="rgb(233, 242, 251)" x="122.5" y="514.5" width="40" height="21"></rect>
+    <rect fill="rgb(153, 199, 225)" x="40.5" y="514.5" width="40" height="21"></rect>
+    <rect fill="rgb(238, 245, 252)" x="163.5" y="514.5" width="40" height="21"></rect>
+    <rect fill="rgb(246, 250, 255)" x="204.5" y="514.5" width="40" height="21"></rect>
+    <rect fill="rgb(241, 247, 253)" x="81.5" y="514.5" width="40" height="21"></rect>
+    <rect fill="rgb(244, 249, 254)" x="245.5" y="514.5" width="40" height="21"></rect>
+    <rect fill="rgb(246, 251, 255)" x="286.5" y="514.5" width="40" height="21"></rect>
+    <rect fill="rgb(192, 217, 237)" x="40.5" y="360.5" width="40" height="21"></rect>
+    <rect fill="rgb(235, 244, 251)" x="81.5" y="360.5" width="40" height="21"></rect>
+    <rect fill="rgb(229, 239, 249)" x="163.5" y="360.5" width="40" height="21"></rect>
+    <rect fill="rgb(240, 246, 253)" x="122.5" y="360.5" width="40" height="21"></rect>
+    <rect fill="rgb(245, 250, 254)" x="286.5" y="360.5" width="40" height="21"></rect>
+    <rect fill="rgb(241, 247, 253)" x="204.5" y="360.5" width="40" height="21"></rect>
+    <rect fill="rgb(245, 250, 254)" x="327.5" y="360.5" width="40" height="21"></rect>
+    <rect fill="rgb(247, 251, 255)" x="368.5" y="360.5" width="40" height="21"></rect>
+    <rect fill="rgb(246, 250, 255)" x="245.5" y="360.5" width="40" height="21"></rect>
+    <rect fill="rgb(153, 199, 225)" x="122.5" y="448.5" width="40" height="21"></rect>
+    <rect fill="rgb(157, 201, 226)" x="163.5" y="448.5" width="40" height="21"></rect>
+    <rect fill="rgb(8, 48, 107)" x="40.5" y="448.5" width="40" height="21"></rect>
+    <rect fill="rgb(236, 244, 252)" x="327.5" y="448.5" width="40" height="21"></rect>
+    <rect fill="rgb(227, 238, 248)" x="286.5" y="448.5" width="40" height="21"></rect>
+    <rect fill="rgb(212, 228, 244)" x="204.5" y="448.5" width="40" height="21"></rect>
+    <rect fill="rgb(206, 225, 242)" x="81.5" y="448.5" width="40" height="21"></rect>
+    <rect fill="rgb(241, 247, 253)" x="368.5" y="448.5" width="40" height="21"></rect>
+    <rect fill="rgb(230, 240, 249)" x="245.5" y="448.5" width="40" height="21"></rect>
+    <rect fill="rgb(247, 251, 255)" x="532.5" y="448.5" width="40" height="21"></rect>
+    <rect fill="rgb(244, 249, 254)" x="409.5" y="448.5" width="40" height="21"></rect>
+    <rect fill="rgb(246, 251, 255)" x="450.5" y="448.5" width="40" height="21"></rect>
+    <rect fill="rgb(204, 224, 241)" x="81.5" y="470.5" width="40" height="21"></rect>
+    <rect fill="rgb(242, 248, 253)" x="286.5" y="470.5" width="40" height="21"></rect>
+    <rect fill="rgb(226, 237, 248)" x="163.5" y="470.5" width="40" height="21"></rect>
+    <rect fill="rgb(210, 227, 243)" x="122.5" y="470.5" width="40" height="21"></rect>
+    <rect fill="rgb(238, 245, 252)" x="204.5" y="470.5" width="40" height="21"></rect>
+    <rect fill="rgb(243, 249, 254)" x="245.5" y="470.5" width="40" height="21"></rect>
+    <rect fill="rgb(231, 241, 250)" x="40.5" y="470.5" width="40" height="21"></rect>
+    <rect fill="rgb(245, 250, 254)" x="327.5" y="470.5" width="40" height="21"></rect>
+    <rect fill="rgb(247, 251, 255)" x="409.5" y="470.5" width="40" height="21"></rect>
+    <rect fill="rgb(244, 249, 254)" x="368.5" y="470.5" width="40" height="21"></rect>
+    <rect fill="rgb(241, 247, 253)" x="81.5" y="52.5" width="40" height="21"></rect>
+    <rect fill="rgb(246, 250, 255)" x="245.5" y="52.5" width="40" height="21"></rect>
+    <rect fill="rgb(197, 220, 238)" x="40.5" y="52.5" width="40" height="21"></rect>
+    <rect fill="rgb(244, 249, 254)" x="204.5" y="52.5" width="40" height="21"></rect>
+    <rect fill="rgb(241, 247, 253)" x="122.5" y="52.5" width="40" height="21"></rect>
+    <rect fill="rgb(246, 250, 255)" x="368.5" y="52.5" width="40" height="21"></rect>
+    <rect fill="rgb(244, 249, 254)" x="163.5" y="52.5" width="40" height="21"></rect>
+    <rect fill="rgb(247, 251, 255)" x="327.5" y="52.5" width="40" height="21"></rect>
+    <rect fill="rgb(246, 251, 255)" x="286.5" y="52.5" width="40" height="21"></rect>
+    <rect fill="rgb(247, 251, 255)" x="409.5" y="52.5" width="40" height="21"></rect>
+    <rect fill="rgb(246, 250, 255)" x="450.5" y="52.5" width="40" height="21"></rect>
+    <rect fill="rgb(189, 216, 236)" x="81.5" y="140.5" width="40" height="21"></rect>
+    <rect fill="rgb(237, 245, 252)" x="122.5" y="140.5" width="40" height="21"></rect>
+    <rect fill="rgb(213, 229, 244)" x="40.5" y="140.5" width="40" height="21"></rect>
+    <rect fill="rgb(243, 248, 254)" x="245.5" y="140.5" width="40" height="21"></rect>
+    <rect fill="rgb(241, 247, 253)" x="163.5" y="140.5" width="40" height="21"></rect>
+    <rect fill="rgb(246, 251, 255)" x="286.5" y="140.5" width="40" height="21"></rect>
+    <rect fill="rgb(245, 250, 254)" x="204.5" y="140.5" width="40" height="21"></rect>
+    <rect fill="rgb(246, 250, 255)" x="327.5" y="140.5" width="40" height="21"></rect>
+    <rect fill="rgb(246, 251, 255)" x="163.5" y="580.5" width="40" height="21"></rect>
+    <rect fill="rgb(246, 251, 255)" x="204.5" y="580.5" width="40" height="21"></rect>
+    <rect fill="rgb(246, 250, 255)" x="122.5" y="580.5" width="40" height="21"></rect>
+    <rect fill="rgb(246, 251, 255)" x="122.5" y="382.5" width="40" height="21"></rect>
+    <rect fill="rgb(244, 249, 254)" x="40.5" y="382.5" width="40" height="21"></rect>
+    <rect fill="rgb(247, 251, 255)" x="163.5" y="382.5" width="40" height="21"></rect>
+    <rect fill="rgb(243, 249, 254)" x="40.5" y="250.5" width="40" height="21"></rect>
+    <rect fill="rgb(243, 248, 254)" x="204.5" y="250.5" width="40" height="21"></rect>
+    <rect fill="rgb(238, 245, 252)" x="122.5" y="250.5" width="40" height="21"></rect>
+    <rect fill="rgb(237, 245, 252)" x="163.5" y="250.5" width="40" height="21"></rect>
+    <rect fill="rgb(247, 251, 255)" x="286.5" y="250.5" width="40" height="21"></rect>
+    <rect fill="rgb(244, 249, 254)" x="81.5" y="536.5" width="40" height="21"></rect>
+    <rect fill="rgb(246, 250, 255)" x="122.5" y="536.5" width="40" height="21"></rect>
+    <rect fill="rgb(247, 251, 255)" x="327.5" y="536.5" width="40" height="21"></rect>
+    <rect fill="rgb(243, 248, 254)" x="40.5" y="228.5" width="40" height="21"></rect>
+    <rect fill="rgb(246, 251, 255)" x="122.5" y="228.5" width="40" height="21"></rect>
+  </g>
+</svg>

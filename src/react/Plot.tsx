@@ -1,20 +1,17 @@
-import React, {createElement, useContext, useEffect, useLayoutEffect, useRef, useState, type ReactNode} from "react";
-import {plot as imperativePlot, computePlot} from "../plot.js";
+import React, {useContext, useEffect, useLayoutEffect, useRef, useState, type ReactNode} from "react";
+import {computePlot} from "../plot.js";
+import {consumeWarnings} from "../warnings.js";
 import {PlotContext} from "./PlotContext.js";
 import type {MarkFactory} from "./useMark.js";
 import {PointerRoot, PointerContext} from "./interactions/PointerContext.js";
 
-// <Plot> renders a JSX <svg> populated by each mark's renderJSX(). For marks
-// whose renderJSX throws or is missing, we fall back to mounting the
-// imperative render() output via a ref + appendChild so existing
-// imperative-only marks keep working during the migration.
+// <Plot> renders a JSX <svg> populated entirely by each mark's renderJSX();
+// there is no imperative (d3-selection) render fallback.
 //
 // Children's <Mark> components register their factories into marksRef during
 // render; a useLayoutEffect then runs computePlot and stores the result in
 // state. The component re-renders with <PlotSvg> as a normal React child so
 // the JSX tree participates in the parent root's act() scope under JSDOM.
-// Imperative escape hatches (Tip pointer plumbing, computePlot failures)
-// mount their SVG into a separate ref-managed host div.
 export interface PlotProps {
   children?: ReactNode;
   width?: number;
@@ -75,8 +72,7 @@ interface ResolvedScales {
 
 type Mode =
   | {kind: "empty"}
-  | {kind: "jsx"; computed: any; onSvgRef: (svg: SVGSVGElement | null) => void; onInput: ((e: Event) => void) | null; pointerEnabled: boolean}
-  | {kind: "imperative"; svg: SVGSVGElement};
+  | {kind: "jsx"; computed: any; onSvgRef: (svg: SVGSVGElement | null) => void; onInput: ((e: Event) => void) | null; pointerEnabled: boolean; warnings: number};
 
 export function Plot({children, title, subtitle, caption, figure, onValue, className: classNameProp, style, ...options}: PlotProps) {
   const marksRef = useRef<Map<string, Registration>>(new Map());
@@ -85,7 +81,6 @@ export function Plot({children, title, subtitle, caption, figure, onValue, class
   const [, setVersion] = useState(0);
   const [resolved, setResolved] = useState<ResolvedScales | null>(null);
   const [mode, setMode] = useState<Mode>({kind: "empty"});
-  const imperativeHostRef = useRef<HTMLDivElement>(null);
 
   seenRef.current = new Set();
 
@@ -143,20 +138,28 @@ export function Plot({children, title, subtitle, caption, figure, onValue, class
     try {
       computed = computePlot({...options, marks: flat, style});
     } catch (e) {
-      console.warn("Plot: computePlot failed, falling back to imperative.", e);
-      const svg = imperativePlot({...options, marks: flat, figure: false, style}) as SVGSVGElement;
-      if (classNameProp) svg.classList.add(classNameProp);
-      setMode({kind: "imperative", svg});
+      console.error("Plot: computePlot failed.", e);
+      setMode((prev) => (prev.kind === "empty" ? prev : {kind: "empty"}));
       return;
     }
 
     publishResolved({scaleDescriptors: computed.scaleDescriptors, context: computed.context});
+
+    // Drain the global warning counter just as the imperative plot() does, so
+    // the warn() dedupe state (lastMessage) doesn't leak across plots and we
+    // can render the ⚠️ indicator. computePlot emits warnings during mark
+    // initialization above.
+    const warnings = consumeWarnings();
 
     const onSvgRef = (svg: SVGSVGElement | null) => {
       if (!svg) return;
       // Expose scale on the svg, matching imperative API.
       (svg as any).scale = computed.scales?.scales ?? null;
       if (classNameProp) svg.classList.add(classNameProp);
+      // Apply the plot-level style option to the <svg>, mirroring
+      // applyInlineStyles on the imperative path (string or object).
+      if (typeof style === "string") svg.setAttribute("style", style);
+      else if (style != null) Object.assign(svg.style, style as any);
     };
 
     const onInput = onValue
@@ -167,23 +170,9 @@ export function Plot({children, title, subtitle, caption, figure, onValue, class
       : null;
 
     const pointerEnabled = computed.marks.some(isPointerConsumer);
-    setMode({kind: "jsx", computed, onSvgRef, onInput, pointerEnabled});
+    setMode({kind: "jsx", computed, onSvgRef, onInput, pointerEnabled, warnings});
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [optionsKey, onValue, classNameProp, style]);
-
-  // Mount the imperatively-built SVG into the host div when in imperative
-  // mode. We deliberately do NOT clear children in cleanup: the test harness
-  // captures `container.firstElementChild` and reads `outerHTML` after the
-  // root unmounts, which would race with a cleanup that empties the host.
-  // React's reconciler clears the host's children when transitioning out of
-  // imperative mode (the conditional renders different JSX for the next
-  // mode), and host children are also dropped naturally on unmount.
-  useLayoutEffect(() => {
-    if (mode.kind !== "imperative") return;
-    const host = imperativeHostRef.current;
-    if (!host) return;
-    host.replaceChildren(mode.svg);
-  }, [mode]);
 
   const ctx = {
     registerMark,
@@ -207,9 +196,8 @@ export function Plot({children, title, subtitle, caption, figure, onValue, class
         className={classNameProp}
         onInput={mode.onInput}
         pointerEnabled={mode.pointerEnabled}
+        warnings={mode.warnings}
       />
-    ) : mode.kind === "imperative" ? (
-      <div ref={imperativeHostRef} className="plot-host" />
     ) : (
       <div className="plot-host" />
     );
@@ -239,7 +227,7 @@ export function Plot({children, title, subtitle, caption, figure, onValue, class
 }
 
 // Renders the whole plot as a JSX <svg> tree.
-function PlotSvg({computed, svgRef, className: classNameProp, onInput, pointerEnabled}: any) {
+function PlotSvg({computed, svgRef, className: classNameProp, onInput, pointerEnabled, warnings}: any) {
   const {className, ariaLabel, ariaDescription, dimensions} = computed;
   const {width, height} = dimensions;
   const internalSvgRef = useRef<SVGSVGElement | null>(null);
@@ -258,10 +246,20 @@ function PlotSvg({computed, svgRef, className: classNameProp, onInput, pointerEn
 :where(.${className} tspan) {
   white-space: pre;
 }`;
+  // Render the ⚠️ warning indicator after the marks, matching the imperative
+  // plot() (font-family="initial" fixes emoji rendering in Chrome).
+  const warningIndicator =
+    warnings > 0 ? (
+      <text x={width} y={20} dy="-1em" textAnchor="end" fontFamily="initial">
+        {"⚠️"}
+        <title>{`${warnings.toLocaleString("en-US")} warning${warnings === 1 ? "" : "s"}. Please check the console.`}</title>
+      </text>
+    ) : null;
   const inner = (
     <>
       <style>{styleText}</style>
       {renderMarks(computed)}
+      {warningIndicator}
     </>
   );
   return (
@@ -286,7 +284,37 @@ function PlotSvg({computed, svgRef, className: classNameProp, onInput, pointerEn
   );
 }
 
-function renderMarks(computed: any): ReactNode[] {
+// Computes the per-facet transform string by invoking the imperative
+// facetTranslator against a minimal element shim (it sets a "transform"
+// attribute for <g> hosts). Returns undefined when there is no offset.
+function facetTransform(facetTranslate: any, f: any): string | undefined {
+  if (typeof facetTranslate !== "function") return undefined;
+  let transform: string | undefined;
+  facetTranslate.call(
+    {tagName: "g", setAttribute: (k: string, v: string) => {if (k === "transform") transform = v;}},
+    f
+  );
+  return transform;
+}
+
+// A callback that renders one mark instance (a mark at a given facet/index)
+// to a ReactNode. Shared between the interactive React path (<MarkSlot>) and
+// the static renderer used by the imperative plot() entry point.
+export type RenderOne = (
+  mark: any,
+  index: any,
+  values: any,
+  dims: any,
+  scales: any,
+  context: any,
+  key: string
+) => ReactNode;
+
+// Walks the computed marks, resolving each mark's per-facet index and (for
+// faceted marks) wrapping each facet in a <g transform> at its cell. The
+// per-mark rendering is delegated to `renderOne` so the interactive and
+// static paths share identical structure.
+export function renderMarksWith(computed: any, renderOne: RenderOne): ReactNode[] {
   const {marks, stateByMark, facetStateByMark, scales, superdimensions, subdimensions, context, facets, facetDomains, facetTranslate} = computed;
   const out: ReactNode[] = [];
   marks.forEach((mark: any, i: number) => {
@@ -298,7 +326,8 @@ function renderMarks(computed: any): ReactNode[] {
         index = mark.filter(index, channels, values);
         if (index.length === 0) return;
       }
-      out.push(<MarkSlot key={i} mark={mark} index={index} scales={scales} values={values} dims={superdimensions} context={context} />);
+      const node = renderOne(mark, index, values, superdimensions, scales, context, `${i}`);
+      if (node != null) out.push(node);
     } else {
       const facetMarks: ReactNode[] = [];
       for (const f of facets) {
@@ -312,7 +341,16 @@ function renderMarks(computed: any): ReactNode[] {
           if (!faceted && index === indexes[0]) index = subarray(index);
           (index.fx = f.x), (index.fy = f.y), (index.fi = f.i);
         }
-        facetMarks.push(<MarkSlot key={f.i} mark={mark} index={index} scales={scales} values={values} dims={subdimensions} context={context} facet={f} facetTranslate={facetTranslate} />);
+        const inner = renderOne(mark, index, values, subdimensions, scales, context, `${i}-${f.i}`);
+        if (inner == null) continue;
+        // Translate each facet's marks to its cell, mirroring the imperative
+        // pipeline's per-facet <g transform> (facetTranslator). Without this
+        // wrapper every facet would render at the same origin (overlapping).
+        facetMarks.push(
+          <g key={f.i} transform={facetTransform(facetTranslate, f)}>
+            {inner}
+          </g>
+        );
       }
       if (facetMarks.length > 0) {
         out.push(<g key={i}>{facetMarks}</g>);
@@ -322,12 +360,16 @@ function renderMarks(computed: any): ReactNode[] {
   return out;
 }
 
-// Renders one mark, preferring renderJSX and falling back to mounting
-// imperative render() output via a ref. Pointer-consumer marks (Tip,
-// crosshair sub-marks) render with an empty index by default; PointerRoot
-// will override this on hover to render only the selected datum.
-function MarkSlot({mark, index, scales, values, dims, context, facet, facetTranslate}: any) {
-  const groupRef = useRef<SVGGElement | null>(null);
+function renderMarks(computed: any): ReactNode[] {
+  return renderMarksWith(computed, (mark, index, values, dims, scales, context, key) => (
+    <MarkSlot key={key} mark={mark} index={index} scales={scales} values={values} dims={dims} context={context} />
+  ));
+}
+
+// Renders one mark via its renderJSX into pure React SVG. Pointer-consumer
+// marks (Tip, crosshair sub-marks) render with an empty index by default;
+// PointerRoot will override this on hover to render only the selected datum.
+function MarkSlot({mark, index, scales, values, dims, context}: any) {
   const pointerCtx = useContext(PointerContext);
   const pointerConsumer = isPointerConsumer(mark);
 
@@ -356,55 +398,17 @@ function MarkSlot({mark, index, scales, values, dims, context, facet, facetTrans
     }
   }
 
-  // Try renderJSX first.
-  let jsx: ReactNode = null;
-  let useFallback = false;
-  if (typeof mark.renderJSX === "function") {
-    try {
-      // Coerce index to a plain Array. Marks call (index as number[]).map(...)
-      // but `index` is often a TypedArray (e.g. Uint32Array); its .map()
-      // coerces returned React elements back to numbers, corrupting output.
-      const arrayIndex = renderIndex == null || !ArrayBuffer.isView(renderIndex)
-        ? renderIndex
-        : Object.assign(Array.from(renderIndex as any), {fx: (renderIndex as any).fx, fy: (renderIndex as any).fy, fi: (renderIndex as any).fi});
-      jsx = mark.renderJSX(arrayIndex, scales, values, dims, context);
-    } catch (e) {
-      useFallback = true;
-    }
-  } else {
-    useFallback = true;
-  }
-
-  useLayoutEffect(() => {
-    if (!useFallback) return;
-    const g = groupRef.current;
-    if (!g) return;
-    g.replaceChildren();
-    const node = mark.render(renderIndex, scales, values, dims, context);
-    if (node != null) {
-      // Move attributes from the rendered <g> onto our slot, then re-parent
-      // its children — matching the imperative pipeline's behavior of using
-      // a single <g> per mark.
-      if ((node as Element).tagName === "g") {
-        for (const a of Array.from((node as Element).attributes)) {
-          g.setAttribute(a.name, a.value);
-        }
-        while ((node as Element).firstChild) g.appendChild((node as Element).firstChild!);
-      } else {
-        g.appendChild(node);
-      }
-    }
-    if (facet && facetTranslate) facetTranslate.call(g, facet);
-    return () => {
-      if (g) g.replaceChildren();
-    };
-  });
-
-  if (useFallback) return <g ref={groupRef as any} />;
-  // Return the JSX directly. Most marks' renderJSX returns a <g> wrapper
-  // already; we don't add another to keep the DOM structure identical to
-  // the imperative output.
-  return <>{jsx}</>;
+  if (typeof mark.renderJSX !== "function") return null;
+  // Coerce index to a plain Array. Marks call (index as number[]).map(...)
+  // but `index` is often a TypedArray (e.g. Uint32Array); its .map() coerces
+  // returned React elements back to numbers, corrupting output.
+  const arrayIndex =
+    renderIndex == null || !ArrayBuffer.isView(renderIndex)
+      ? renderIndex
+      : Object.assign(Array.from(renderIndex as any), {fx: (renderIndex as any).fx, fy: (renderIndex as any).fy, fi: (renderIndex as any).fi});
+  // renderJSX usually returns its own <g> wrapper; we don't add another, to
+  // keep the DOM structure identical to the imperative output.
+  return <>{mark.renderJSX(arrayIndex, scales, values, dims, context)}</>;
 }
 
 // Marks driven by the pointer interaction. Their render is wrapped by
@@ -420,7 +424,7 @@ function pointerRegistrationId(mark: any, fi: number | null): string {
   return `${mark.ariaLabel ?? mark.constructor?.name ?? "?"}#${fi ?? "-"}`;
 }
 
-function isPointerConsumer(mark: any): boolean {
+export function isPointerConsumer(mark: any): boolean {
   if (mark == null) return false;
   if (mark.constructor?.name === "Tip") return true;
   if (mark.ariaLabel === "tip") return true;

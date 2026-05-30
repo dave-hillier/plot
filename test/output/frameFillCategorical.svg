@@ -1,0 +1,20 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <rect aria-label="frame" fill="#ff725c" x="0" y="0" width="639" height="59"></rect>
+  <rect aria-label="frame" fill="#4269d0" x="5" y="5" width="629" height="49"></rect>
+  <rect aria-label="frame" fill="#efb118" x="10" y="10" width="619" height="39"></rect>
+  <rect aria-label="frame" fill="white" x="15" y="15" width="609" height="29"></rect>
+</svg>

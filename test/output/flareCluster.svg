@@ -1,0 +1,1283 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="2400" viewBox="0 0 640 2400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="link" fill="none" stroke-width="1.5" stroke-opacity="0.5" stroke-miterlimit="1">
+    <path stroke="#636363" d="M30,780.03C152.25,780.03,152.25,70.641,274.5,70.641"></path>
+    <path stroke="#636363" d="M30,780.03C152.25,780.03,152.25,256.452,274.5,256.452"></path>
+    <path stroke="#636363" d="M30,780.03C152.25,780.03,152.25,416.496,274.5,416.496"></path>
+    <path stroke="#636363" d="M30,780.03C213.375,780.03,213.375,481.135,396.75,481.135"></path>
+    <path stroke="#636363" d="M30,780.03C213.375,780.03,213.375,513.788,396.75,513.788"></path>
+    <path stroke="#636363" d="M30,780.03C213.375,780.03,213.375,565.1,396.75,565.1"></path>
+    <path stroke="#636363" d="M30,780.03C152.25,780.03,152.25,858.494,274.5,858.494"></path>
+    <path stroke="#636363" d="M30,780.03C213.375,780.03,213.375,1246.147,396.75,1246.147"></path>
+    <path stroke="#636363" d="M30,780.03C152.25,780.03,152.25,1439.364,274.5,1439.364"></path>
+    <path stroke="#636363" d="M30,780.03C91.125,780.03,91.125,1952.685,152.25,1952.685"></path>
+    <path stroke="#636363" d="M274.5,70.641C335.625,70.641,335.625,23.994,396.75,23.994"></path>
+    <path stroke="#636363" d="M274.5,70.641C335.625,70.641,335.625,75.306,396.75,75.306"></path>
+    <path stroke="#636363" d="M274.5,70.641C335.625,70.641,335.625,112.624,396.75,112.624"></path>
+    <path stroke="#bdbdbd" d="M274.5,256.452C396.75,256.452,396.75,131.282,519,131.282"></path>
+    <path stroke="#bdbdbd" d="M274.5,256.452C396.75,256.452,396.75,140.612,519,140.612"></path>
+    <path stroke="#636363" d="M274.5,256.452C335.625,256.452,335.625,196.588,396.75,196.588"></path>
+    <path stroke="#bdbdbd" d="M274.5,256.452C396.75,256.452,396.75,252.565,519,252.565"></path>
+    <path stroke="#bdbdbd" d="M274.5,256.452C396.75,256.452,396.75,261.894,519,261.894"></path>
+    <path stroke="#bdbdbd" d="M274.5,256.452C396.75,256.452,396.75,271.224,519,271.224"></path>
+    <path stroke="#bdbdbd" d="M274.5,256.452C396.75,256.452,396.75,280.553,519,280.553"></path>
+    <path stroke="#bdbdbd" d="M274.5,256.452C396.75,256.452,396.75,289.882,519,289.882"></path>
+    <path stroke="#bdbdbd" d="M274.5,256.452C396.75,256.452,396.75,299.212,519,299.212"></path>
+    <path stroke="#bdbdbd" d="M274.5,256.452C396.75,256.452,396.75,308.541,519,308.541"></path>
+    <path stroke="#bdbdbd" d="M274.5,256.452C396.75,256.452,396.75,317.871,519,317.871"></path>
+    <path stroke="#bdbdbd" d="M274.5,256.452C396.75,256.452,396.75,327.2,519,327.2"></path>
+    <path stroke="#636363" d="M274.5,416.496C335.625,416.496,335.625,364.518,396.75,364.518"></path>
+    <path stroke="#bdbdbd" d="M274.5,416.496C396.75,416.496,396.75,401.835,519,401.835"></path>
+    <path stroke="#bdbdbd" d="M274.5,416.496C396.75,416.496,396.75,411.165,519,411.165"></path>
+    <path stroke="#bdbdbd" d="M274.5,416.496C396.75,416.496,396.75,420.494,519,420.494"></path>
+    <path stroke="#bdbdbd" d="M274.5,416.496C396.75,416.496,396.75,429.824,519,429.824"></path>
+    <path stroke="#bdbdbd" d="M274.5,416.496C396.75,416.496,396.75,439.153,519,439.153"></path>
+    <path stroke="#bdbdbd" d="M274.5,416.496C396.75,416.496,396.75,448.482,519,448.482"></path>
+    <path stroke="#bdbdbd" d="M396.75,481.135C457.875,481.135,457.875,467.141,519,467.141"></path>
+    <path stroke="#bdbdbd" d="M396.75,481.135C457.875,481.135,457.875,476.471,519,476.471"></path>
+    <path stroke="#bdbdbd" d="M396.75,481.135C457.875,481.135,457.875,485.8,519,485.8"></path>
+    <path stroke="#bdbdbd" d="M396.75,481.135C457.875,481.135,457.875,495.129,519,495.129"></path>
+    <path stroke="#bdbdbd" d="M396.75,513.788C457.875,513.788,457.875,513.788,519,513.788"></path>
+    <path stroke="#bdbdbd" d="M396.75,565.1C457.875,565.1,457.875,532.447,519,532.447"></path>
+    <path stroke="#bdbdbd" d="M396.75,565.1C457.875,565.1,457.875,541.776,519,541.776"></path>
+    <path stroke="#bdbdbd" d="M396.75,565.1C457.875,565.1,457.875,551.106,519,551.106"></path>
+    <path stroke="#bdbdbd" d="M396.75,565.1C457.875,565.1,457.875,560.435,519,560.435"></path>
+    <path stroke="#bdbdbd" d="M396.75,565.1C457.875,565.1,457.875,569.765,519,569.765"></path>
+    <path stroke="#bdbdbd" d="M396.75,565.1C457.875,565.1,457.875,579.094,519,579.094"></path>
+    <path stroke="#bdbdbd" d="M396.75,565.1C457.875,565.1,457.875,588.424,519,588.424"></path>
+    <path stroke="#bdbdbd" d="M396.75,565.1C457.875,565.1,457.875,597.753,519,597.753"></path>
+    <path stroke="#bdbdbd" d="M274.5,858.494C396.75,858.494,396.75,616.412,519,616.412"></path>
+    <path stroke="#bdbdbd" d="M274.5,858.494C396.75,858.494,396.75,625.741,519,625.741"></path>
+    <path stroke="#bdbdbd" d="M274.5,858.494C396.75,858.494,396.75,635.071,519,635.071"></path>
+    <path stroke="#bdbdbd" d="M274.5,858.494C396.75,858.494,396.75,644.4,519,644.4"></path>
+    <path stroke="#bdbdbd" d="M274.5,858.494C396.75,858.494,396.75,653.729,519,653.729"></path>
+    <path stroke="#bdbdbd" d="M274.5,858.494C396.75,858.494,396.75,663.059,519,663.059"></path>
+    <path stroke="#bdbdbd" d="M274.5,858.494C396.75,858.494,396.75,672.388,519,672.388"></path>
+    <path stroke="#bdbdbd" d="M274.5,858.494C396.75,858.494,396.75,681.718,519,681.718"></path>
+    <path stroke="#bdbdbd" d="M274.5,858.494C396.75,858.494,396.75,691.047,519,691.047"></path>
+    <path stroke="#bdbdbd" d="M274.5,858.494C396.75,858.494,396.75,700.376,519,700.376"></path>
+    <path stroke="#bdbdbd" d="M274.5,858.494C396.75,858.494,396.75,709.706,519,709.706"></path>
+    <path stroke="#bdbdbd" d="M274.5,858.494C396.75,858.494,396.75,719.035,519,719.035"></path>
+    <path stroke="#bdbdbd" d="M274.5,858.494C396.75,858.494,396.75,728.365,519,728.365"></path>
+    <path stroke="#bdbdbd" d="M274.5,858.494C396.75,858.494,396.75,737.694,519,737.694"></path>
+    <path stroke="#bdbdbd" d="M274.5,858.494C396.75,858.494,396.75,747.024,519,747.024"></path>
+    <path stroke="#bdbdbd" d="M274.5,858.494C396.75,858.494,396.75,756.353,519,756.353"></path>
+    <path stroke="#bdbdbd" d="M274.5,858.494C396.75,858.494,396.75,765.682,519,765.682"></path>
+    <path stroke="#bdbdbd" d="M274.5,858.494C396.75,858.494,396.75,775.012,519,775.012"></path>
+    <path stroke="#636363" d="M274.5,858.494C335.625,858.494,335.625,938.276,396.75,938.276"></path>
+    <path stroke="#bdbdbd" d="M274.5,858.494C396.75,858.494,396.75,1101.541,519,1101.541"></path>
+    <path stroke="#bdbdbd" d="M274.5,858.494C396.75,858.494,396.75,1110.871,519,1110.871"></path>
+    <path stroke="#bdbdbd" d="M274.5,858.494C396.75,858.494,396.75,1120.2,519,1120.2"></path>
+    <path stroke="#bdbdbd" d="M274.5,858.494C396.75,858.494,396.75,1129.529,519,1129.529"></path>
+    <path stroke="#bdbdbd" d="M274.5,858.494C396.75,858.494,396.75,1138.859,519,1138.859"></path>
+    <path stroke="#bdbdbd" d="M274.5,858.494C396.75,858.494,396.75,1148.188,519,1148.188"></path>
+    <path stroke="#bdbdbd" d="M274.5,858.494C396.75,858.494,396.75,1157.518,519,1157.518"></path>
+    <path stroke="#bdbdbd" d="M274.5,858.494C396.75,858.494,396.75,1166.847,519,1166.847"></path>
+    <path stroke="#bdbdbd" d="M274.5,858.494C396.75,858.494,396.75,1176.176,519,1176.176"></path>
+    <path stroke="#bdbdbd" d="M274.5,858.494C396.75,858.494,396.75,1185.506,519,1185.506"></path>
+    <path stroke="#bdbdbd" d="M396.75,1246.147C457.875,1246.147,457.875,1204.165,519,1204.165"></path>
+    <path stroke="#bdbdbd" d="M396.75,1246.147C457.875,1246.147,457.875,1213.494,519,1213.494"></path>
+    <path stroke="#bdbdbd" d="M396.75,1246.147C457.875,1246.147,457.875,1222.824,519,1222.824"></path>
+    <path stroke="#bdbdbd" d="M396.75,1246.147C457.875,1246.147,457.875,1232.153,519,1232.153"></path>
+    <path stroke="#bdbdbd" d="M396.75,1246.147C457.875,1246.147,457.875,1241.482,519,1241.482"></path>
+    <path stroke="#bdbdbd" d="M396.75,1246.147C457.875,1246.147,457.875,1250.812,519,1250.812"></path>
+    <path stroke="#bdbdbd" d="M396.75,1246.147C457.875,1246.147,457.875,1260.141,519,1260.141"></path>
+    <path stroke="#bdbdbd" d="M396.75,1246.147C457.875,1246.147,457.875,1269.471,519,1269.471"></path>
+    <path stroke="#bdbdbd" d="M396.75,1246.147C457.875,1246.147,457.875,1278.8,519,1278.8"></path>
+    <path stroke="#bdbdbd" d="M396.75,1246.147C457.875,1246.147,457.875,1288.129,519,1288.129"></path>
+    <path stroke="#bdbdbd" d="M274.5,1439.364C396.75,1439.364,396.75,1306.788,519,1306.788"></path>
+    <path stroke="#bdbdbd" d="M274.5,1439.364C396.75,1439.364,396.75,1316.118,519,1316.118"></path>
+    <path stroke="#bdbdbd" d="M274.5,1439.364C396.75,1439.364,396.75,1325.447,519,1325.447"></path>
+    <path stroke="#bdbdbd" d="M274.5,1439.364C396.75,1439.364,396.75,1334.776,519,1334.776"></path>
+    <path stroke="#bdbdbd" d="M274.5,1439.364C396.75,1439.364,396.75,1344.106,519,1344.106"></path>
+    <path stroke="#bdbdbd" d="M274.5,1439.364C396.75,1439.364,396.75,1353.435,519,1353.435"></path>
+    <path stroke="#636363" d="M274.5,1439.364C335.625,1439.364,335.625,1376.759,396.75,1376.759"></path>
+    <path stroke="#bdbdbd" d="M274.5,1439.364C396.75,1439.364,396.75,1400.082,519,1400.082"></path>
+    <path stroke="#bdbdbd" d="M274.5,1439.364C396.75,1439.364,396.75,1409.412,519,1409.412"></path>
+    <path stroke="#bdbdbd" d="M274.5,1439.364C396.75,1439.364,396.75,1418.741,519,1418.741"></path>
+    <path stroke="#636363" d="M274.5,1439.364C335.625,1439.364,335.625,1446.729,396.75,1446.729"></path>
+    <path stroke="#bdbdbd" d="M274.5,1439.364C396.75,1439.364,396.75,1474.718,519,1474.718"></path>
+    <path stroke="#bdbdbd" d="M274.5,1439.364C396.75,1439.364,396.75,1484.047,519,1484.047"></path>
+    <path stroke="#636363" d="M274.5,1439.364C335.625,1439.364,335.625,1516.7,396.75,1516.7"></path>
+    <path stroke="#bdbdbd" d="M274.5,1439.364C396.75,1439.364,396.75,1549.353,519,1549.353"></path>
+    <path stroke="#bdbdbd" d="M274.5,1439.364C396.75,1439.364,396.75,1558.682,519,1558.682"></path>
+    <path stroke="#bdbdbd" d="M274.5,1439.364C396.75,1439.364,396.75,1568.012,519,1568.012"></path>
+    <path stroke="#bdbdbd" d="M274.5,1439.364C396.75,1439.364,396.75,1577.341,519,1577.341"></path>
+    <path stroke="#bdbdbd" d="M274.5,1439.364C396.75,1439.364,396.75,1586.671,519,1586.671"></path>
+    <path stroke="#636363" d="M152.25,1952.685C274.5,1952.685,274.5,1623.988,396.75,1623.988"></path>
+    <path stroke="#636363" d="M152.25,1952.685C274.5,1952.685,274.5,1707.953,396.75,1707.953"></path>
+    <path stroke="#636363" d="M152.25,1952.685C213.375,1952.685,213.375,1828.717,274.5,1828.717"></path>
+    <path stroke="#636363" d="M152.25,1952.685C274.5,1952.685,274.5,1927.194,396.75,1927.194"></path>
+    <path stroke="#636363" d="M152.25,1952.685C274.5,1952.685,274.5,1969.176,396.75,1969.176"></path>
+    <path stroke="#636363" d="M152.25,1952.685C213.375,1952.685,213.375,2222.767,274.5,2222.767"></path>
+    <path stroke="#bdbdbd" d="M152.25,1952.685C335.625,1952.685,335.625,2389,519,2389"></path>
+    <path stroke="#bdbdbd" d="M396.75,23.994C457.875,23.994,457.875,10,519,10"></path>
+    <path stroke="#bdbdbd" d="M396.75,23.994C457.875,23.994,457.875,19.329,519,19.329"></path>
+    <path stroke="#bdbdbd" d="M396.75,23.994C457.875,23.994,457.875,28.659,519,28.659"></path>
+    <path stroke="#bdbdbd" d="M396.75,23.994C457.875,23.994,457.875,37.988,519,37.988"></path>
+    <path stroke="#bdbdbd" d="M396.75,75.306C457.875,75.306,457.875,56.647,519,56.647"></path>
+    <path stroke="#bdbdbd" d="M396.75,75.306C457.875,75.306,457.875,65.976,519,65.976"></path>
+    <path stroke="#bdbdbd" d="M396.75,75.306C457.875,75.306,457.875,75.306,519,75.306"></path>
+    <path stroke="#bdbdbd" d="M396.75,75.306C457.875,75.306,457.875,84.635,519,84.635"></path>
+    <path stroke="#bdbdbd" d="M396.75,75.306C457.875,75.306,457.875,93.965,519,93.965"></path>
+    <path stroke="#bdbdbd" d="M396.75,112.624C457.875,112.624,457.875,112.624,519,112.624"></path>
+    <path stroke="#bdbdbd" d="M396.75,196.588C457.875,196.588,457.875,159.271,519,159.271"></path>
+    <path stroke="#bdbdbd" d="M396.75,196.588C457.875,196.588,457.875,168.6,519,168.6"></path>
+    <path stroke="#bdbdbd" d="M396.75,196.588C457.875,196.588,457.875,177.929,519,177.929"></path>
+    <path stroke="#bdbdbd" d="M396.75,196.588C457.875,196.588,457.875,187.259,519,187.259"></path>
+    <path stroke="#bdbdbd" d="M396.75,196.588C457.875,196.588,457.875,196.588,519,196.588"></path>
+    <path stroke="#bdbdbd" d="M396.75,196.588C457.875,196.588,457.875,205.918,519,205.918"></path>
+    <path stroke="#bdbdbd" d="M396.75,196.588C457.875,196.588,457.875,215.247,519,215.247"></path>
+    <path stroke="#bdbdbd" d="M396.75,196.588C457.875,196.588,457.875,224.576,519,224.576"></path>
+    <path stroke="#bdbdbd" d="M396.75,196.588C457.875,196.588,457.875,233.906,519,233.906"></path>
+    <path stroke="#bdbdbd" d="M396.75,364.518C457.875,364.518,457.875,345.859,519,345.859"></path>
+    <path stroke="#bdbdbd" d="M396.75,364.518C457.875,364.518,457.875,355.188,519,355.188"></path>
+    <path stroke="#bdbdbd" d="M396.75,364.518C457.875,364.518,457.875,364.518,519,364.518"></path>
+    <path stroke="#bdbdbd" d="M396.75,364.518C457.875,364.518,457.875,373.847,519,373.847"></path>
+    <path stroke="#bdbdbd" d="M396.75,364.518C457.875,364.518,457.875,383.176,519,383.176"></path>
+    <path stroke="#bdbdbd" d="M396.75,938.276C457.875,938.276,457.875,793.671,519,793.671"></path>
+    <path stroke="#bdbdbd" d="M396.75,938.276C457.875,938.276,457.875,803,519,803"></path>
+    <path stroke="#bdbdbd" d="M396.75,938.276C457.875,938.276,457.875,812.329,519,812.329"></path>
+    <path stroke="#bdbdbd" d="M396.75,938.276C457.875,938.276,457.875,821.659,519,821.659"></path>
+    <path stroke="#bdbdbd" d="M396.75,938.276C457.875,938.276,457.875,830.988,519,830.988"></path>
+    <path stroke="#bdbdbd" d="M396.75,938.276C457.875,938.276,457.875,840.318,519,840.318"></path>
+    <path stroke="#bdbdbd" d="M396.75,938.276C457.875,938.276,457.875,849.647,519,849.647"></path>
+    <path stroke="#bdbdbd" d="M396.75,938.276C457.875,938.276,457.875,858.976,519,858.976"></path>
+    <path stroke="#bdbdbd" d="M396.75,938.276C457.875,938.276,457.875,868.306,519,868.306"></path>
+    <path stroke="#bdbdbd" d="M396.75,938.276C457.875,938.276,457.875,877.635,519,877.635"></path>
+    <path stroke="#bdbdbd" d="M396.75,938.276C457.875,938.276,457.875,886.965,519,886.965"></path>
+    <path stroke="#bdbdbd" d="M396.75,938.276C457.875,938.276,457.875,896.294,519,896.294"></path>
+    <path stroke="#bdbdbd" d="M396.75,938.276C457.875,938.276,457.875,905.624,519,905.624"></path>
+    <path stroke="#bdbdbd" d="M396.75,938.276C457.875,938.276,457.875,914.953,519,914.953"></path>
+    <path stroke="#bdbdbd" d="M396.75,938.276C457.875,938.276,457.875,924.282,519,924.282"></path>
+    <path stroke="#bdbdbd" d="M396.75,938.276C457.875,938.276,457.875,933.612,519,933.612"></path>
+    <path stroke="#bdbdbd" d="M396.75,938.276C457.875,938.276,457.875,942.941,519,942.941"></path>
+    <path stroke="#bdbdbd" d="M396.75,938.276C457.875,938.276,457.875,952.271,519,952.271"></path>
+    <path stroke="#bdbdbd" d="M396.75,938.276C457.875,938.276,457.875,961.6,519,961.6"></path>
+    <path stroke="#bdbdbd" d="M396.75,938.276C457.875,938.276,457.875,970.929,519,970.929"></path>
+    <path stroke="#bdbdbd" d="M396.75,938.276C457.875,938.276,457.875,980.259,519,980.259"></path>
+    <path stroke="#bdbdbd" d="M396.75,938.276C457.875,938.276,457.875,989.588,519,989.588"></path>
+    <path stroke="#bdbdbd" d="M396.75,938.276C457.875,938.276,457.875,998.918,519,998.918"></path>
+    <path stroke="#bdbdbd" d="M396.75,938.276C457.875,938.276,457.875,1008.247,519,1008.247"></path>
+    <path stroke="#bdbdbd" d="M396.75,938.276C457.875,938.276,457.875,1017.576,519,1017.576"></path>
+    <path stroke="#bdbdbd" d="M396.75,938.276C457.875,938.276,457.875,1026.906,519,1026.906"></path>
+    <path stroke="#bdbdbd" d="M396.75,938.276C457.875,938.276,457.875,1036.235,519,1036.235"></path>
+    <path stroke="#bdbdbd" d="M396.75,938.276C457.875,938.276,457.875,1045.565,519,1045.565"></path>
+    <path stroke="#bdbdbd" d="M396.75,938.276C457.875,938.276,457.875,1054.894,519,1054.894"></path>
+    <path stroke="#bdbdbd" d="M396.75,938.276C457.875,938.276,457.875,1064.224,519,1064.224"></path>
+    <path stroke="#bdbdbd" d="M396.75,938.276C457.875,938.276,457.875,1073.553,519,1073.553"></path>
+    <path stroke="#bdbdbd" d="M396.75,938.276C457.875,938.276,457.875,1082.882,519,1082.882"></path>
+    <path stroke="#bdbdbd" d="M396.75,1376.759C457.875,1376.759,457.875,1372.094,519,1372.094"></path>
+    <path stroke="#bdbdbd" d="M396.75,1376.759C457.875,1376.759,457.875,1381.424,519,1381.424"></path>
+    <path stroke="#bdbdbd" d="M396.75,1446.729C457.875,1446.729,457.875,1437.4,519,1437.4"></path>
+    <path stroke="#bdbdbd" d="M396.75,1446.729C457.875,1446.729,457.875,1446.729,519,1446.729"></path>
+    <path stroke="#bdbdbd" d="M396.75,1446.729C457.875,1446.729,457.875,1456.059,519,1456.059"></path>
+    <path stroke="#bdbdbd" d="M396.75,1516.7C457.875,1516.7,457.875,1502.706,519,1502.706"></path>
+    <path stroke="#bdbdbd" d="M396.75,1516.7C457.875,1516.7,457.875,1512.035,519,1512.035"></path>
+    <path stroke="#bdbdbd" d="M396.75,1516.7C457.875,1516.7,457.875,1521.365,519,1521.365"></path>
+    <path stroke="#bdbdbd" d="M396.75,1516.7C457.875,1516.7,457.875,1530.694,519,1530.694"></path>
+    <path stroke="#bdbdbd" d="M396.75,1623.988C457.875,1623.988,457.875,1605.329,519,1605.329"></path>
+    <path stroke="#bdbdbd" d="M396.75,1623.988C457.875,1623.988,457.875,1614.659,519,1614.659"></path>
+    <path stroke="#bdbdbd" d="M396.75,1623.988C457.875,1623.988,457.875,1623.988,519,1623.988"></path>
+    <path stroke="#bdbdbd" d="M396.75,1623.988C457.875,1623.988,457.875,1633.318,519,1633.318"></path>
+    <path stroke="#bdbdbd" d="M396.75,1623.988C457.875,1623.988,457.875,1642.647,519,1642.647"></path>
+    <path stroke="#bdbdbd" d="M396.75,1707.953C457.875,1707.953,457.875,1661.306,519,1661.306"></path>
+    <path stroke="#bdbdbd" d="M396.75,1707.953C457.875,1707.953,457.875,1670.635,519,1670.635"></path>
+    <path stroke="#bdbdbd" d="M396.75,1707.953C457.875,1707.953,457.875,1679.965,519,1679.965"></path>
+    <path stroke="#bdbdbd" d="M396.75,1707.953C457.875,1707.953,457.875,1689.294,519,1689.294"></path>
+    <path stroke="#bdbdbd" d="M396.75,1707.953C457.875,1707.953,457.875,1698.624,519,1698.624"></path>
+    <path stroke="#bdbdbd" d="M396.75,1707.953C457.875,1707.953,457.875,1707.953,519,1707.953"></path>
+    <path stroke="#bdbdbd" d="M396.75,1707.953C457.875,1707.953,457.875,1717.282,519,1717.282"></path>
+    <path stroke="#bdbdbd" d="M396.75,1707.953C457.875,1707.953,457.875,1726.612,519,1726.612"></path>
+    <path stroke="#bdbdbd" d="M396.75,1707.953C457.875,1707.953,457.875,1735.941,519,1735.941"></path>
+    <path stroke="#bdbdbd" d="M396.75,1707.953C457.875,1707.953,457.875,1745.271,519,1745.271"></path>
+    <path stroke="#bdbdbd" d="M396.75,1707.953C457.875,1707.953,457.875,1754.6,519,1754.6"></path>
+    <path stroke="#bdbdbd" d="M274.5,1828.717C396.75,1828.717,396.75,1773.259,519,1773.259"></path>
+    <path stroke="#bdbdbd" d="M274.5,1828.717C396.75,1828.717,396.75,1782.588,519,1782.588"></path>
+    <path stroke="#bdbdbd" d="M274.5,1828.717C396.75,1828.717,396.75,1791.918,519,1791.918"></path>
+    <path stroke="#bdbdbd" d="M274.5,1828.717C396.75,1828.717,396.75,1801.247,519,1801.247"></path>
+    <path stroke="#bdbdbd" d="M274.5,1828.717C396.75,1828.717,396.75,1810.576,519,1810.576"></path>
+    <path stroke="#636363" d="M274.5,1828.717C335.625,1828.717,335.625,1843.229,396.75,1843.229"></path>
+    <path stroke="#bdbdbd" d="M274.5,1828.717C396.75,1828.717,396.75,1875.882,519,1875.882"></path>
+    <path stroke="#bdbdbd" d="M274.5,1828.717C396.75,1828.717,396.75,1885.212,519,1885.212"></path>
+    <path stroke="#bdbdbd" d="M274.5,1828.717C396.75,1828.717,396.75,1894.541,519,1894.541"></path>
+    <path stroke="#bdbdbd" d="M396.75,1927.194C457.875,1927.194,457.875,1913.2,519,1913.2"></path>
+    <path stroke="#bdbdbd" d="M396.75,1927.194C457.875,1927.194,457.875,1922.529,519,1922.529"></path>
+    <path stroke="#bdbdbd" d="M396.75,1927.194C457.875,1927.194,457.875,1931.859,519,1931.859"></path>
+    <path stroke="#bdbdbd" d="M396.75,1927.194C457.875,1927.194,457.875,1941.188,519,1941.188"></path>
+    <path stroke="#bdbdbd" d="M396.75,1969.176C457.875,1969.176,457.875,1959.847,519,1959.847"></path>
+    <path stroke="#bdbdbd" d="M396.75,1969.176C457.875,1969.176,457.875,1969.176,519,1969.176"></path>
+    <path stroke="#bdbdbd" d="M396.75,1969.176C457.875,1969.176,457.875,1978.506,519,1978.506"></path>
+    <path stroke="#636363" d="M274.5,2222.767C335.625,2222.767,335.625,2006.494,396.75,2006.494"></path>
+    <path stroke="#636363" d="M274.5,2222.767C335.625,2222.767,335.625,2053.141,396.75,2053.141"></path>
+    <path stroke="#636363" d="M274.5,2222.767C335.625,2222.767,335.625,2099.788,396.75,2099.788"></path>
+    <path stroke="#bdbdbd" d="M274.5,2222.767C396.75,2222.767,396.75,2127.776,519,2127.776"></path>
+    <path stroke="#636363" d="M274.5,2222.767C335.625,2222.767,335.625,2155.765,396.75,2155.765"></path>
+    <path stroke="#636363" d="M274.5,2222.767C335.625,2222.767,335.625,2249.059,396.75,2249.059"></path>
+    <path stroke="#bdbdbd" d="M274.5,2222.767C396.75,2222.767,396.75,2333.024,519,2333.024"></path>
+    <path stroke="#bdbdbd" d="M274.5,2222.767C396.75,2222.767,396.75,2342.353,519,2342.353"></path>
+    <path stroke="#bdbdbd" d="M274.5,2222.767C396.75,2222.767,396.75,2351.682,519,2351.682"></path>
+    <path stroke="#bdbdbd" d="M274.5,2222.767C396.75,2222.767,396.75,2361.012,519,2361.012"></path>
+    <path stroke="#bdbdbd" d="M274.5,2222.767C396.75,2222.767,396.75,2370.341,519,2370.341"></path>
+    <path stroke="#bdbdbd" d="M396.75,1843.229C457.875,1843.229,457.875,1829.235,519,1829.235"></path>
+    <path stroke="#bdbdbd" d="M396.75,1843.229C457.875,1843.229,457.875,1838.565,519,1838.565"></path>
+    <path stroke="#bdbdbd" d="M396.75,1843.229C457.875,1843.229,457.875,1847.894,519,1847.894"></path>
+    <path stroke="#bdbdbd" d="M396.75,1843.229C457.875,1843.229,457.875,1857.224,519,1857.224"></path>
+    <path stroke="#bdbdbd" d="M396.75,2006.494C457.875,2006.494,457.875,1997.165,519,1997.165"></path>
+    <path stroke="#bdbdbd" d="M396.75,2006.494C457.875,2006.494,457.875,2006.494,519,2006.494"></path>
+    <path stroke="#bdbdbd" d="M396.75,2006.494C457.875,2006.494,457.875,2015.824,519,2015.824"></path>
+    <path stroke="#bdbdbd" d="M396.75,2053.141C457.875,2053.141,457.875,2034.482,519,2034.482"></path>
+    <path stroke="#bdbdbd" d="M396.75,2053.141C457.875,2053.141,457.875,2043.812,519,2043.812"></path>
+    <path stroke="#bdbdbd" d="M396.75,2053.141C457.875,2053.141,457.875,2053.141,519,2053.141"></path>
+    <path stroke="#bdbdbd" d="M396.75,2053.141C457.875,2053.141,457.875,2062.471,519,2062.471"></path>
+    <path stroke="#bdbdbd" d="M396.75,2053.141C457.875,2053.141,457.875,2071.8,519,2071.8"></path>
+    <path stroke="#bdbdbd" d="M396.75,2099.788C457.875,2099.788,457.875,2090.459,519,2090.459"></path>
+    <path stroke="#bdbdbd" d="M396.75,2099.788C457.875,2099.788,457.875,2099.788,519,2099.788"></path>
+    <path stroke="#bdbdbd" d="M396.75,2099.788C457.875,2099.788,457.875,2109.118,519,2109.118"></path>
+    <path stroke="#bdbdbd" d="M396.75,2155.765C457.875,2155.765,457.875,2146.435,519,2146.435"></path>
+    <path stroke="#bdbdbd" d="M396.75,2155.765C457.875,2155.765,457.875,2155.765,519,2155.765"></path>
+    <path stroke="#bdbdbd" d="M396.75,2155.765C457.875,2155.765,457.875,2165.094,519,2165.094"></path>
+    <path stroke="#bdbdbd" d="M396.75,2249.059C457.875,2249.059,457.875,2183.753,519,2183.753"></path>
+    <path stroke="#bdbdbd" d="M396.75,2249.059C457.875,2249.059,457.875,2193.082,519,2193.082"></path>
+    <path stroke="#bdbdbd" d="M396.75,2249.059C457.875,2249.059,457.875,2202.412,519,2202.412"></path>
+    <path stroke="#bdbdbd" d="M396.75,2249.059C457.875,2249.059,457.875,2211.741,519,2211.741"></path>
+    <path stroke="#bdbdbd" d="M396.75,2249.059C457.875,2249.059,457.875,2221.071,519,2221.071"></path>
+    <path stroke="#bdbdbd" d="M396.75,2249.059C457.875,2249.059,457.875,2230.4,519,2230.4"></path>
+    <path stroke="#bdbdbd" d="M396.75,2249.059C457.875,2249.059,457.875,2239.729,519,2239.729"></path>
+    <path stroke="#bdbdbd" d="M396.75,2249.059C457.875,2249.059,457.875,2249.059,519,2249.059"></path>
+    <path stroke="#bdbdbd" d="M396.75,2249.059C457.875,2249.059,457.875,2258.388,519,2258.388"></path>
+    <path stroke="#bdbdbd" d="M396.75,2249.059C457.875,2249.059,457.875,2267.718,519,2267.718"></path>
+    <path stroke="#bdbdbd" d="M396.75,2249.059C457.875,2249.059,457.875,2277.047,519,2277.047"></path>
+    <path stroke="#bdbdbd" d="M396.75,2249.059C457.875,2249.059,457.875,2286.376,519,2286.376"></path>
+    <path stroke="#bdbdbd" d="M396.75,2249.059C457.875,2249.059,457.875,2295.706,519,2295.706"></path>
+    <path stroke="#bdbdbd" d="M396.75,2249.059C457.875,2249.059,457.875,2305.035,519,2305.035"></path>
+    <path stroke="#bdbdbd" d="M396.75,2249.059C457.875,2249.059,457.875,2314.365,519,2314.365"></path>
+  </g>
+  <g aria-label="dot">
+    <g>
+      <circle fill="#636363" cx="30" cy="780.03" r="3"></circle><title>/flare</title>
+    </g>
+    <g>
+      <circle fill="#636363" cx="274.5" cy="70.641" r="3"></circle><title>/flare/analytics</title>
+    </g>
+    <g>
+      <circle fill="#636363" cx="274.5" cy="256.452" r="3"></circle><title>/flare/animate</title>
+    </g>
+    <g>
+      <circle fill="#636363" cx="274.5" cy="416.496" r="3"></circle><title>/flare/data</title>
+    </g>
+    <g>
+      <circle fill="#636363" cx="396.75" cy="481.135" r="3"></circle><title>/flare/display</title>
+    </g>
+    <g>
+      <circle fill="#636363" cx="396.75" cy="513.788" r="3"></circle><title>/flare/flex</title>
+    </g>
+    <g>
+      <circle fill="#636363" cx="396.75" cy="565.1" r="3"></circle><title>/flare/physics</title>
+    </g>
+    <g>
+      <circle fill="#636363" cx="274.5" cy="858.494" r="3"></circle><title>/flare/query</title>
+    </g>
+    <g>
+      <circle fill="#636363" cx="396.75" cy="1246.147" r="3"></circle><title>/flare/scale</title>
+    </g>
+    <g>
+      <circle fill="#636363" cx="274.5" cy="1439.364" r="3"></circle><title>/flare/util</title>
+    </g>
+    <g>
+      <circle fill="#636363" cx="152.25" cy="1952.685" r="3"></circle><title>/flare/vis</title>
+    </g>
+    <g>
+      <circle fill="#636363" cx="396.75" cy="23.994" r="3"></circle><title>/flare/analytics/cluster</title>
+    </g>
+    <g>
+      <circle fill="#636363" cx="396.75" cy="75.306" r="3"></circle><title>/flare/analytics/graph</title>
+    </g>
+    <g>
+      <circle fill="#636363" cx="396.75" cy="112.624" r="3"></circle><title>/flare/analytics/optimization</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="131.282" r="3"></circle><title>/flare/animate/Easing</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="140.612" r="3"></circle><title>/flare/animate/FunctionSequence</title>
+    </g>
+    <g>
+      <circle fill="#636363" cx="396.75" cy="196.588" r="3"></circle><title>/flare/animate/interpolate</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="252.565" r="3"></circle><title>/flare/animate/ISchedulable</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="261.894" r="3"></circle><title>/flare/animate/Parallel</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="271.224" r="3"></circle><title>/flare/animate/Pause</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="280.553" r="3"></circle><title>/flare/animate/Scheduler</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="289.882" r="3"></circle><title>/flare/animate/Sequence</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="299.212" r="3"></circle><title>/flare/animate/Transition</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="308.541" r="3"></circle><title>/flare/animate/Transitioner</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="317.871" r="3"></circle><title>/flare/animate/TransitionEvent</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="327.2" r="3"></circle><title>/flare/animate/Tween</title>
+    </g>
+    <g>
+      <circle fill="#636363" cx="396.75" cy="364.518" r="3"></circle><title>/flare/data/converters</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="401.835" r="3"></circle><title>/flare/data/DataField</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="411.165" r="3"></circle><title>/flare/data/DataSchema</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="420.494" r="3"></circle><title>/flare/data/DataSet</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="429.824" r="3"></circle><title>/flare/data/DataSource</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="439.153" r="3"></circle><title>/flare/data/DataTable</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="448.482" r="3"></circle><title>/flare/data/DataUtil</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="467.141" r="3"></circle><title>/flare/display/DirtySprite</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="476.471" r="3"></circle><title>/flare/display/LineSprite</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="485.8" r="3"></circle><title>/flare/display/RectSprite</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="495.129" r="3"></circle><title>/flare/display/TextSprite</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="513.788" r="3"></circle><title>/flare/flex/FlareVis</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="532.447" r="3"></circle><title>/flare/physics/DragForce</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="541.776" r="3"></circle><title>/flare/physics/GravityForce</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="551.106" r="3"></circle><title>/flare/physics/IForce</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="560.435" r="3"></circle><title>/flare/physics/NBodyForce</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="569.765" r="3"></circle><title>/flare/physics/Particle</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="579.094" r="3"></circle><title>/flare/physics/Simulation</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="588.424" r="3"></circle><title>/flare/physics/Spring</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="597.753" r="3"></circle><title>/flare/physics/SpringForce</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="616.412" r="3"></circle><title>/flare/query/AggregateExpression</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="625.741" r="3"></circle><title>/flare/query/And</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="635.071" r="3"></circle><title>/flare/query/Arithmetic</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="644.4" r="3"></circle><title>/flare/query/Average</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="653.729" r="3"></circle><title>/flare/query/BinaryExpression</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="663.059" r="3"></circle><title>/flare/query/Comparison</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="672.388" r="3"></circle><title>/flare/query/CompositeExpression</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="681.718" r="3"></circle><title>/flare/query/Count</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="691.047" r="3"></circle><title>/flare/query/DateUtil</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="700.376" r="3"></circle><title>/flare/query/Distinct</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="709.706" r="3"></circle><title>/flare/query/Expression</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="719.035" r="3"></circle><title>/flare/query/ExpressionIterator</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="728.365" r="3"></circle><title>/flare/query/Fn</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="737.694" r="3"></circle><title>/flare/query/If</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="747.024" r="3"></circle><title>/flare/query/IsA</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="756.353" r="3"></circle><title>/flare/query/Literal</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="765.682" r="3"></circle><title>/flare/query/Match</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="775.012" r="3"></circle><title>/flare/query/Maximum</title>
+    </g>
+    <g>
+      <circle fill="#636363" cx="396.75" cy="938.276" r="3"></circle><title>/flare/query/methods</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1101.541" r="3"></circle><title>/flare/query/Minimum</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1110.871" r="3"></circle><title>/flare/query/Not</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1120.2" r="3"></circle><title>/flare/query/Or</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1129.529" r="3"></circle><title>/flare/query/Query</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1138.859" r="3"></circle><title>/flare/query/Range</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1148.188" r="3"></circle><title>/flare/query/StringUtil</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1157.518" r="3"></circle><title>/flare/query/Sum</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1166.847" r="3"></circle><title>/flare/query/Variable</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1176.176" r="3"></circle><title>/flare/query/Variance</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1185.506" r="3"></circle><title>/flare/query/Xor</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1204.165" r="3"></circle><title>/flare/scale/IScaleMap</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1213.494" r="3"></circle><title>/flare/scale/LinearScale</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1222.824" r="3"></circle><title>/flare/scale/LogScale</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1232.153" r="3"></circle><title>/flare/scale/OrdinalScale</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1241.482" r="3"></circle><title>/flare/scale/QuantileScale</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1250.812" r="3"></circle><title>/flare/scale/QuantitativeScale</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1260.141" r="3"></circle><title>/flare/scale/RootScale</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1269.471" r="3"></circle><title>/flare/scale/Scale</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1278.8" r="3"></circle><title>/flare/scale/ScaleType</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1288.129" r="3"></circle><title>/flare/scale/TimeScale</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1306.788" r="3"></circle><title>/flare/util/Arrays</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1316.118" r="3"></circle><title>/flare/util/Colors</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1325.447" r="3"></circle><title>/flare/util/Dates</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1334.776" r="3"></circle><title>/flare/util/Displays</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1344.106" r="3"></circle><title>/flare/util/Filter</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1353.435" r="3"></circle><title>/flare/util/Geometry</title>
+    </g>
+    <g>
+      <circle fill="#636363" cx="396.75" cy="1376.759" r="3"></circle><title>/flare/util/heap</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1400.082" r="3"></circle><title>/flare/util/IEvaluable</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1409.412" r="3"></circle><title>/flare/util/IPredicate</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1418.741" r="3"></circle><title>/flare/util/IValueProxy</title>
+    </g>
+    <g>
+      <circle fill="#636363" cx="396.75" cy="1446.729" r="3"></circle><title>/flare/util/math</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1474.718" r="3"></circle><title>/flare/util/Maths</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1484.047" r="3"></circle><title>/flare/util/Orientation</title>
+    </g>
+    <g>
+      <circle fill="#636363" cx="396.75" cy="1516.7" r="3"></circle><title>/flare/util/palette</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1549.353" r="3"></circle><title>/flare/util/Property</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1558.682" r="3"></circle><title>/flare/util/Shapes</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1568.012" r="3"></circle><title>/flare/util/Sort</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1577.341" r="3"></circle><title>/flare/util/Stats</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1586.671" r="3"></circle><title>/flare/util/Strings</title>
+    </g>
+    <g>
+      <circle fill="#636363" cx="396.75" cy="1623.988" r="3"></circle><title>/flare/vis/axis</title>
+    </g>
+    <g>
+      <circle fill="#636363" cx="396.75" cy="1707.953" r="3"></circle><title>/flare/vis/controls</title>
+    </g>
+    <g>
+      <circle fill="#636363" cx="274.5" cy="1828.717" r="3"></circle><title>/flare/vis/data</title>
+    </g>
+    <g>
+      <circle fill="#636363" cx="396.75" cy="1927.194" r="3"></circle><title>/flare/vis/events</title>
+    </g>
+    <g>
+      <circle fill="#636363" cx="396.75" cy="1969.176" r="3"></circle><title>/flare/vis/legend</title>
+    </g>
+    <g>
+      <circle fill="#636363" cx="274.5" cy="2222.767" r="3"></circle><title>/flare/vis/operator</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="2389" r="3"></circle><title>/flare/vis/Visualization</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="10" r="3"></circle><title>/flare/analytics/cluster/AgglomerativeCluster</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="19.329" r="3"></circle><title>/flare/analytics/cluster/CommunityStructure</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="28.659" r="3"></circle><title>/flare/analytics/cluster/HierarchicalCluster</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="37.988" r="3"></circle><title>/flare/analytics/cluster/MergeEdge</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="56.647" r="3"></circle><title>/flare/analytics/graph/BetweennessCentrality</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="65.976" r="3"></circle><title>/flare/analytics/graph/LinkDistance</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="75.306" r="3"></circle><title>/flare/analytics/graph/MaxFlowMinCut</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="84.635" r="3"></circle><title>/flare/analytics/graph/ShortestPaths</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="93.965" r="3"></circle><title>/flare/analytics/graph/SpanningTree</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="112.624" r="3"></circle><title>/flare/analytics/optimization/AspectRatioBanker</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="159.271" r="3"></circle><title>/flare/animate/interpolate/ArrayInterpolator</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="168.6" r="3"></circle><title>/flare/animate/interpolate/ColorInterpolator</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="177.929" r="3"></circle><title>/flare/animate/interpolate/DateInterpolator</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="187.259" r="3"></circle><title>/flare/animate/interpolate/Interpolator</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="196.588" r="3"></circle><title>/flare/animate/interpolate/MatrixInterpolator</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="205.918" r="3"></circle><title>/flare/animate/interpolate/NumberInterpolator</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="215.247" r="3"></circle><title>/flare/animate/interpolate/ObjectInterpolator</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="224.576" r="3"></circle><title>/flare/animate/interpolate/PointInterpolator</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="233.906" r="3"></circle><title>/flare/animate/interpolate/RectangleInterpolator</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="345.859" r="3"></circle><title>/flare/data/converters/Converters</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="355.188" r="3"></circle><title>/flare/data/converters/DelimitedTextConverter</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="364.518" r="3"></circle><title>/flare/data/converters/GraphMLConverter</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="373.847" r="3"></circle><title>/flare/data/converters/IDataConverter</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="383.176" r="3"></circle><title>/flare/data/converters/JSONConverter</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="793.671" r="3"></circle><title>/flare/query/methods/add</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="803" r="3"></circle><title>/flare/query/methods/and</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="812.329" r="3"></circle><title>/flare/query/methods/average</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="821.659" r="3"></circle><title>/flare/query/methods/count</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="830.988" r="3"></circle><title>/flare/query/methods/distinct</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="840.318" r="3"></circle><title>/flare/query/methods/div</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="849.647" r="3"></circle><title>/flare/query/methods/eq</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="858.976" r="3"></circle><title>/flare/query/methods/fn</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="868.306" r="3"></circle><title>/flare/query/methods/gt</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="877.635" r="3"></circle><title>/flare/query/methods/gte</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="886.965" r="3"></circle><title>/flare/query/methods/iff</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="896.294" r="3"></circle><title>/flare/query/methods/isa</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="905.624" r="3"></circle><title>/flare/query/methods/lt</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="914.953" r="3"></circle><title>/flare/query/methods/lte</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="924.282" r="3"></circle><title>/flare/query/methods/max</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="933.612" r="3"></circle><title>/flare/query/methods/min</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="942.941" r="3"></circle><title>/flare/query/methods/mod</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="952.271" r="3"></circle><title>/flare/query/methods/mul</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="961.6" r="3"></circle><title>/flare/query/methods/neq</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="970.929" r="3"></circle><title>/flare/query/methods/not</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="980.259" r="3"></circle><title>/flare/query/methods/or</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="989.588" r="3"></circle><title>/flare/query/methods/orderby</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="998.918" r="3"></circle><title>/flare/query/methods/range</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1008.247" r="3"></circle><title>/flare/query/methods/select</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1017.576" r="3"></circle><title>/flare/query/methods/stddev</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1026.906" r="3"></circle><title>/flare/query/methods/sub</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1036.235" r="3"></circle><title>/flare/query/methods/sum</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1045.565" r="3"></circle><title>/flare/query/methods/update</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1054.894" r="3"></circle><title>/flare/query/methods/variance</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1064.224" r="3"></circle><title>/flare/query/methods/where</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1073.553" r="3"></circle><title>/flare/query/methods/xor</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1082.882" r="3"></circle><title>/flare/query/methods/_</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1372.094" r="3"></circle><title>/flare/util/heap/FibonacciHeap</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1381.424" r="3"></circle><title>/flare/util/heap/HeapNode</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1437.4" r="3"></circle><title>/flare/util/math/DenseMatrix</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1446.729" r="3"></circle><title>/flare/util/math/IMatrix</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1456.059" r="3"></circle><title>/flare/util/math/SparseMatrix</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1502.706" r="3"></circle><title>/flare/util/palette/ColorPalette</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1512.035" r="3"></circle><title>/flare/util/palette/Palette</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1521.365" r="3"></circle><title>/flare/util/palette/ShapePalette</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1530.694" r="3"></circle><title>/flare/util/palette/SizePalette</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1605.329" r="3"></circle><title>/flare/vis/axis/Axes</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1614.659" r="3"></circle><title>/flare/vis/axis/Axis</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1623.988" r="3"></circle><title>/flare/vis/axis/AxisGridLine</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1633.318" r="3"></circle><title>/flare/vis/axis/AxisLabel</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1642.647" r="3"></circle><title>/flare/vis/axis/CartesianAxes</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1661.306" r="3"></circle><title>/flare/vis/controls/AnchorControl</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1670.635" r="3"></circle><title>/flare/vis/controls/ClickControl</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1679.965" r="3"></circle><title>/flare/vis/controls/Control</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1689.294" r="3"></circle><title>/flare/vis/controls/ControlList</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1698.624" r="3"></circle><title>/flare/vis/controls/DragControl</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1707.953" r="3"></circle><title>/flare/vis/controls/ExpandControl</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1717.282" r="3"></circle><title>/flare/vis/controls/HoverControl</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1726.612" r="3"></circle><title>/flare/vis/controls/IControl</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1735.941" r="3"></circle><title>/flare/vis/controls/PanZoomControl</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1745.271" r="3"></circle><title>/flare/vis/controls/SelectionControl</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1754.6" r="3"></circle><title>/flare/vis/controls/TooltipControl</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1773.259" r="3"></circle><title>/flare/vis/data/Data</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1782.588" r="3"></circle><title>/flare/vis/data/DataList</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1791.918" r="3"></circle><title>/flare/vis/data/DataSprite</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1801.247" r="3"></circle><title>/flare/vis/data/EdgeSprite</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1810.576" r="3"></circle><title>/flare/vis/data/NodeSprite</title>
+    </g>
+    <g>
+      <circle fill="#636363" cx="396.75" cy="1843.229" r="3"></circle><title>/flare/vis/data/render</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1875.882" r="3"></circle><title>/flare/vis/data/ScaleBinding</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1885.212" r="3"></circle><title>/flare/vis/data/Tree</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1894.541" r="3"></circle><title>/flare/vis/data/TreeBuilder</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1913.2" r="3"></circle><title>/flare/vis/events/DataEvent</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1922.529" r="3"></circle><title>/flare/vis/events/SelectionEvent</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1931.859" r="3"></circle><title>/flare/vis/events/TooltipEvent</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1941.188" r="3"></circle><title>/flare/vis/events/VisualizationEvent</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1959.847" r="3"></circle><title>/flare/vis/legend/Legend</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1969.176" r="3"></circle><title>/flare/vis/legend/LegendItem</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1978.506" r="3"></circle><title>/flare/vis/legend/LegendRange</title>
+    </g>
+    <g>
+      <circle fill="#636363" cx="396.75" cy="2006.494" r="3"></circle><title>/flare/vis/operator/distortion</title>
+    </g>
+    <g>
+      <circle fill="#636363" cx="396.75" cy="2053.141" r="3"></circle><title>/flare/vis/operator/encoder</title>
+    </g>
+    <g>
+      <circle fill="#636363" cx="396.75" cy="2099.788" r="3"></circle><title>/flare/vis/operator/filter</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="2127.776" r="3"></circle><title>/flare/vis/operator/IOperator</title>
+    </g>
+    <g>
+      <circle fill="#636363" cx="396.75" cy="2155.765" r="3"></circle><title>/flare/vis/operator/label</title>
+    </g>
+    <g>
+      <circle fill="#636363" cx="396.75" cy="2249.059" r="3"></circle><title>/flare/vis/operator/layout</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="2333.024" r="3"></circle><title>/flare/vis/operator/Operator</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="2342.353" r="3"></circle><title>/flare/vis/operator/OperatorList</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="2351.682" r="3"></circle><title>/flare/vis/operator/OperatorSequence</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="2361.012" r="3"></circle><title>/flare/vis/operator/OperatorSwitch</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="2370.341" r="3"></circle><title>/flare/vis/operator/SortOperator</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1829.235" r="3"></circle><title>/flare/vis/data/render/ArrowType</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1838.565" r="3"></circle><title>/flare/vis/data/render/EdgeRenderer</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1847.894" r="3"></circle><title>/flare/vis/data/render/IRenderer</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1857.224" r="3"></circle><title>/flare/vis/data/render/ShapeRenderer</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="1997.165" r="3"></circle><title>/flare/vis/operator/distortion/BifocalDistortion</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="2006.494" r="3"></circle><title>/flare/vis/operator/distortion/Distortion</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="2015.824" r="3"></circle><title>/flare/vis/operator/distortion/FisheyeDistortion</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="2034.482" r="3"></circle><title>/flare/vis/operator/encoder/ColorEncoder</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="2043.812" r="3"></circle><title>/flare/vis/operator/encoder/Encoder</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="2053.141" r="3"></circle><title>/flare/vis/operator/encoder/PropertyEncoder</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="2062.471" r="3"></circle><title>/flare/vis/operator/encoder/ShapeEncoder</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="2071.8" r="3"></circle><title>/flare/vis/operator/encoder/SizeEncoder</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="2090.459" r="3"></circle><title>/flare/vis/operator/filter/FisheyeTreeFilter</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="2099.788" r="3"></circle><title>/flare/vis/operator/filter/GraphDistanceFilter</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="2109.118" r="3"></circle><title>/flare/vis/operator/filter/VisibilityFilter</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="2146.435" r="3"></circle><title>/flare/vis/operator/label/Labeler</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="2155.765" r="3"></circle><title>/flare/vis/operator/label/RadialLabeler</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="2165.094" r="3"></circle><title>/flare/vis/operator/label/StackedAreaLabeler</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="2183.753" r="3"></circle><title>/flare/vis/operator/layout/AxisLayout</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="2193.082" r="3"></circle><title>/flare/vis/operator/layout/BundledEdgeRouter</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="2202.412" r="3"></circle><title>/flare/vis/operator/layout/CircleLayout</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="2211.741" r="3"></circle><title>/flare/vis/operator/layout/CirclePackingLayout</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="2221.071" r="3"></circle><title>/flare/vis/operator/layout/DendrogramLayout</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="2230.4" r="3"></circle><title>/flare/vis/operator/layout/ForceDirectedLayout</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="2239.729" r="3"></circle><title>/flare/vis/operator/layout/IcicleTreeLayout</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="2249.059" r="3"></circle><title>/flare/vis/operator/layout/IndentedTreeLayout</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="2258.388" r="3"></circle><title>/flare/vis/operator/layout/Layout</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="2267.718" r="3"></circle><title>/flare/vis/operator/layout/NodeLinkTreeLayout</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="2277.047" r="3"></circle><title>/flare/vis/operator/layout/PieLayout</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="2286.376" r="3"></circle><title>/flare/vis/operator/layout/RadialTreeLayout</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="2295.706" r="3"></circle><title>/flare/vis/operator/layout/RandomLayout</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="2305.035" r="3"></circle><title>/flare/vis/operator/layout/StackedAreaLayout</title>
+    </g>
+    <g>
+      <circle fill="#bdbdbd" cx="519" cy="2314.365" r="3"></circle><title>/flare/vis/operator/layout/TreeMapLayout</title>
+    </g>
+  </g>
+  <g aria-label="text" stroke="var(--plot-background)" stroke-width="3" stroke-linejoin="round" paint-order="stroke" text-anchor="start" transform="translate(6,0)">
+    <text transform="translate(519,131.282)" y="0.32em">Easing<title>/flare/animate/Easing</title></text>
+    <text transform="translate(519,140.612)" y="0.32em">FunctionSequence<title>/flare/animate/FunctionSequence</title></text>
+    <text transform="translate(519,252.565)" y="0.32em">ISchedulable<title>/flare/animate/ISchedulable</title></text>
+    <text transform="translate(519,261.894)" y="0.32em">Parallel<title>/flare/animate/Parallel</title></text>
+    <text transform="translate(519,271.224)" y="0.32em">Pause<title>/flare/animate/Pause</title></text>
+    <text transform="translate(519,280.553)" y="0.32em">Scheduler<title>/flare/animate/Scheduler</title></text>
+    <text transform="translate(519,289.882)" y="0.32em">Sequence<title>/flare/animate/Sequence</title></text>
+    <text transform="translate(519,299.212)" y="0.32em">Transition<title>/flare/animate/Transition</title></text>
+    <text transform="translate(519,308.541)" y="0.32em">Transitioner<title>/flare/animate/Transitioner</title></text>
+    <text transform="translate(519,317.871)" y="0.32em">TransitionEvent<title>/flare/animate/TransitionEvent</title></text>
+    <text transform="translate(519,327.2)" y="0.32em">Tween<title>/flare/animate/Tween</title></text>
+    <text transform="translate(519,401.835)" y="0.32em">DataField<title>/flare/data/DataField</title></text>
+    <text transform="translate(519,411.165)" y="0.32em">DataSchema<title>/flare/data/DataSchema</title></text>
+    <text transform="translate(519,420.494)" y="0.32em">DataSet<title>/flare/data/DataSet</title></text>
+    <text transform="translate(519,429.824)" y="0.32em">DataSource<title>/flare/data/DataSource</title></text>
+    <text transform="translate(519,439.153)" y="0.32em">DataTable<title>/flare/data/DataTable</title></text>
+    <text transform="translate(519,448.482)" y="0.32em">DataUtil<title>/flare/data/DataUtil</title></text>
+    <text transform="translate(519,467.141)" y="0.32em">DirtySprite<title>/flare/display/DirtySprite</title></text>
+    <text transform="translate(519,476.471)" y="0.32em">LineSprite<title>/flare/display/LineSprite</title></text>
+    <text transform="translate(519,485.8)" y="0.32em">RectSprite<title>/flare/display/RectSprite</title></text>
+    <text transform="translate(519,495.129)" y="0.32em">TextSprite<title>/flare/display/TextSprite</title></text>
+    <text transform="translate(519,513.788)" y="0.32em">FlareVis<title>/flare/flex/FlareVis</title></text>
+    <text transform="translate(519,532.447)" y="0.32em">DragForce<title>/flare/physics/DragForce</title></text>
+    <text transform="translate(519,541.776)" y="0.32em">GravityForce<title>/flare/physics/GravityForce</title></text>
+    <text transform="translate(519,551.106)" y="0.32em">IForce<title>/flare/physics/IForce</title></text>
+    <text transform="translate(519,560.435)" y="0.32em">NBodyForce<title>/flare/physics/NBodyForce</title></text>
+    <text transform="translate(519,569.765)" y="0.32em">Particle<title>/flare/physics/Particle</title></text>
+    <text transform="translate(519,579.094)" y="0.32em">Simulation<title>/flare/physics/Simulation</title></text>
+    <text transform="translate(519,588.424)" y="0.32em">Spring<title>/flare/physics/Spring</title></text>
+    <text transform="translate(519,597.753)" y="0.32em">SpringForce<title>/flare/physics/SpringForce</title></text>
+    <text transform="translate(519,616.412)" y="0.32em">AggregateExpression<title>/flare/query/AggregateExpression</title></text>
+    <text transform="translate(519,625.741)" y="0.32em">And<title>/flare/query/And</title></text>
+    <text transform="translate(519,635.071)" y="0.32em">Arithmetic<title>/flare/query/Arithmetic</title></text>
+    <text transform="translate(519,644.4)" y="0.32em">Average<title>/flare/query/Average</title></text>
+    <text transform="translate(519,653.729)" y="0.32em">BinaryExpression<title>/flare/query/BinaryExpression</title></text>
+    <text transform="translate(519,663.059)" y="0.32em">Comparison<title>/flare/query/Comparison</title></text>
+    <text transform="translate(519,672.388)" y="0.32em">CompositeExpression<title>/flare/query/CompositeExpression</title></text>
+    <text transform="translate(519,681.718)" y="0.32em">Count<title>/flare/query/Count</title></text>
+    <text transform="translate(519,691.047)" y="0.32em">DateUtil<title>/flare/query/DateUtil</title></text>
+    <text transform="translate(519,700.376)" y="0.32em">Distinct<title>/flare/query/Distinct</title></text>
+    <text transform="translate(519,709.706)" y="0.32em">Expression<title>/flare/query/Expression</title></text>
+    <text transform="translate(519,719.035)" y="0.32em">ExpressionIterator<title>/flare/query/ExpressionIterator</title></text>
+    <text transform="translate(519,728.365)" y="0.32em">Fn<title>/flare/query/Fn</title></text>
+    <text transform="translate(519,737.694)" y="0.32em">If<title>/flare/query/If</title></text>
+    <text transform="translate(519,747.024)" y="0.32em">IsA<title>/flare/query/IsA</title></text>
+    <text transform="translate(519,756.353)" y="0.32em">Literal<title>/flare/query/Literal</title></text>
+    <text transform="translate(519,765.682)" y="0.32em">Match<title>/flare/query/Match</title></text>
+    <text transform="translate(519,775.012)" y="0.32em">Maximum<title>/flare/query/Maximum</title></text>
+    <text transform="translate(519,1101.541)" y="0.32em">Minimum<title>/flare/query/Minimum</title></text>
+    <text transform="translate(519,1110.871)" y="0.32em">Not<title>/flare/query/Not</title></text>
+    <text transform="translate(519,1120.2)" y="0.32em">Or<title>/flare/query/Or</title></text>
+    <text transform="translate(519,1129.529)" y="0.32em">Query<title>/flare/query/Query</title></text>
+    <text transform="translate(519,1138.859)" y="0.32em">Range<title>/flare/query/Range</title></text>
+    <text transform="translate(519,1148.188)" y="0.32em">StringUtil<title>/flare/query/StringUtil</title></text>
+    <text transform="translate(519,1157.518)" y="0.32em">Sum<title>/flare/query/Sum</title></text>
+    <text transform="translate(519,1166.847)" y="0.32em">Variable<title>/flare/query/Variable</title></text>
+    <text transform="translate(519,1176.176)" y="0.32em">Variance<title>/flare/query/Variance</title></text>
+    <text transform="translate(519,1185.506)" y="0.32em">Xor<title>/flare/query/Xor</title></text>
+    <text transform="translate(519,1204.165)" y="0.32em">IScaleMap<title>/flare/scale/IScaleMap</title></text>
+    <text transform="translate(519,1213.494)" y="0.32em">LinearScale<title>/flare/scale/LinearScale</title></text>
+    <text transform="translate(519,1222.824)" y="0.32em">LogScale<title>/flare/scale/LogScale</title></text>
+    <text transform="translate(519,1232.153)" y="0.32em">OrdinalScale<title>/flare/scale/OrdinalScale</title></text>
+    <text transform="translate(519,1241.482)" y="0.32em">QuantileScale<title>/flare/scale/QuantileScale</title></text>
+    <text transform="translate(519,1250.812)" y="0.32em">QuantitativeScale<title>/flare/scale/QuantitativeScale</title></text>
+    <text transform="translate(519,1260.141)" y="0.32em">RootScale<title>/flare/scale/RootScale</title></text>
+    <text transform="translate(519,1269.471)" y="0.32em">Scale<title>/flare/scale/Scale</title></text>
+    <text transform="translate(519,1278.8)" y="0.32em">ScaleType<title>/flare/scale/ScaleType</title></text>
+    <text transform="translate(519,1288.129)" y="0.32em">TimeScale<title>/flare/scale/TimeScale</title></text>
+    <text transform="translate(519,1306.788)" y="0.32em">Arrays<title>/flare/util/Arrays</title></text>
+    <text transform="translate(519,1316.118)" y="0.32em">Colors<title>/flare/util/Colors</title></text>
+    <text transform="translate(519,1325.447)" y="0.32em">Dates<title>/flare/util/Dates</title></text>
+    <text transform="translate(519,1334.776)" y="0.32em">Displays<title>/flare/util/Displays</title></text>
+    <text transform="translate(519,1344.106)" y="0.32em">Filter<title>/flare/util/Filter</title></text>
+    <text transform="translate(519,1353.435)" y="0.32em">Geometry<title>/flare/util/Geometry</title></text>
+    <text transform="translate(519,1400.082)" y="0.32em">IEvaluable<title>/flare/util/IEvaluable</title></text>
+    <text transform="translate(519,1409.412)" y="0.32em">IPredicate<title>/flare/util/IPredicate</title></text>
+    <text transform="translate(519,1418.741)" y="0.32em">IValueProxy<title>/flare/util/IValueProxy</title></text>
+    <text transform="translate(519,1474.718)" y="0.32em">Maths<title>/flare/util/Maths</title></text>
+    <text transform="translate(519,1484.047)" y="0.32em">Orientation<title>/flare/util/Orientation</title></text>
+    <text transform="translate(519,1549.353)" y="0.32em">Property<title>/flare/util/Property</title></text>
+    <text transform="translate(519,1558.682)" y="0.32em">Shapes<title>/flare/util/Shapes</title></text>
+    <text transform="translate(519,1568.012)" y="0.32em">Sort<title>/flare/util/Sort</title></text>
+    <text transform="translate(519,1577.341)" y="0.32em">Stats<title>/flare/util/Stats</title></text>
+    <text transform="translate(519,1586.671)" y="0.32em">Strings<title>/flare/util/Strings</title></text>
+    <text transform="translate(519,2389)" y="0.32em">Visualization<title>/flare/vis/Visualization</title></text>
+    <text transform="translate(519,10)" y="0.32em">AgglomerativeCluster<title>/flare/analytics/cluster/AgglomerativeCluster</title></text>
+    <text transform="translate(519,19.329)" y="0.32em">CommunityStructure<title>/flare/analytics/cluster/CommunityStructure</title></text>
+    <text transform="translate(519,28.659)" y="0.32em">HierarchicalCluster<title>/flare/analytics/cluster/HierarchicalCluster</title></text>
+    <text transform="translate(519,37.988)" y="0.32em">MergeEdge<title>/flare/analytics/cluster/MergeEdge</title></text>
+    <text transform="translate(519,56.647)" y="0.32em">BetweennessCentrality<title>/flare/analytics/graph/BetweennessCentrality</title></text>
+    <text transform="translate(519,65.976)" y="0.32em">LinkDistance<title>/flare/analytics/graph/LinkDistance</title></text>
+    <text transform="translate(519,75.306)" y="0.32em">MaxFlowMinCut<title>/flare/analytics/graph/MaxFlowMinCut</title></text>
+    <text transform="translate(519,84.635)" y="0.32em">ShortestPaths<title>/flare/analytics/graph/ShortestPaths</title></text>
+    <text transform="translate(519,93.965)" y="0.32em">SpanningTree<title>/flare/analytics/graph/SpanningTree</title></text>
+    <text transform="translate(519,112.624)" y="0.32em">AspectRatioBanker<title>/flare/analytics/optimization/AspectRatioBanker</title></text>
+    <text transform="translate(519,159.271)" y="0.32em">ArrayInterpolator<title>/flare/animate/interpolate/ArrayInterpolator</title></text>
+    <text transform="translate(519,168.6)" y="0.32em">ColorInterpolator<title>/flare/animate/interpolate/ColorInterpolator</title></text>
+    <text transform="translate(519,177.929)" y="0.32em">DateInterpolator<title>/flare/animate/interpolate/DateInterpolator</title></text>
+    <text transform="translate(519,187.259)" y="0.32em">Interpolator<title>/flare/animate/interpolate/Interpolator</title></text>
+    <text transform="translate(519,196.588)" y="0.32em">MatrixInterpolator<title>/flare/animate/interpolate/MatrixInterpolator</title></text>
+    <text transform="translate(519,205.918)" y="0.32em">NumberInterpolator<title>/flare/animate/interpolate/NumberInterpolator</title></text>
+    <text transform="translate(519,215.247)" y="0.32em">ObjectInterpolator<title>/flare/animate/interpolate/ObjectInterpolator</title></text>
+    <text transform="translate(519,224.576)" y="0.32em">PointInterpolator<title>/flare/animate/interpolate/PointInterpolator</title></text>
+    <text transform="translate(519,233.906)" y="0.32em">RectangleInterpolator<title>/flare/animate/interpolate/RectangleInterpolator</title></text>
+    <text transform="translate(519,345.859)" y="0.32em">Converters<title>/flare/data/converters/Converters</title></text>
+    <text transform="translate(519,355.188)" y="0.32em">DelimitedTextConverter<title>/flare/data/converters/DelimitedTextConverter</title></text>
+    <text transform="translate(519,364.518)" y="0.32em">GraphMLConverter<title>/flare/data/converters/GraphMLConverter</title></text>
+    <text transform="translate(519,373.847)" y="0.32em">IDataConverter<title>/flare/data/converters/IDataConverter</title></text>
+    <text transform="translate(519,383.176)" y="0.32em">JSONConverter<title>/flare/data/converters/JSONConverter</title></text>
+    <text transform="translate(519,793.671)" y="0.32em">add<title>/flare/query/methods/add</title></text>
+    <text transform="translate(519,803)" y="0.32em">and<title>/flare/query/methods/and</title></text>
+    <text transform="translate(519,812.329)" y="0.32em">average<title>/flare/query/methods/average</title></text>
+    <text transform="translate(519,821.659)" y="0.32em">count<title>/flare/query/methods/count</title></text>
+    <text transform="translate(519,830.988)" y="0.32em">distinct<title>/flare/query/methods/distinct</title></text>
+    <text transform="translate(519,840.318)" y="0.32em">div<title>/flare/query/methods/div</title></text>
+    <text transform="translate(519,849.647)" y="0.32em">eq<title>/flare/query/methods/eq</title></text>
+    <text transform="translate(519,858.976)" y="0.32em">fn<title>/flare/query/methods/fn</title></text>
+    <text transform="translate(519,868.306)" y="0.32em">gt<title>/flare/query/methods/gt</title></text>
+    <text transform="translate(519,877.635)" y="0.32em">gte<title>/flare/query/methods/gte</title></text>
+    <text transform="translate(519,886.965)" y="0.32em">iff<title>/flare/query/methods/iff</title></text>
+    <text transform="translate(519,896.294)" y="0.32em">isa<title>/flare/query/methods/isa</title></text>
+    <text transform="translate(519,905.624)" y="0.32em">lt<title>/flare/query/methods/lt</title></text>
+    <text transform="translate(519,914.953)" y="0.32em">lte<title>/flare/query/methods/lte</title></text>
+    <text transform="translate(519,924.282)" y="0.32em">max<title>/flare/query/methods/max</title></text>
+    <text transform="translate(519,933.612)" y="0.32em">min<title>/flare/query/methods/min</title></text>
+    <text transform="translate(519,942.941)" y="0.32em">mod<title>/flare/query/methods/mod</title></text>
+    <text transform="translate(519,952.271)" y="0.32em">mul<title>/flare/query/methods/mul</title></text>
+    <text transform="translate(519,961.6)" y="0.32em">neq<title>/flare/query/methods/neq</title></text>
+    <text transform="translate(519,970.929)" y="0.32em">not<title>/flare/query/methods/not</title></text>
+    <text transform="translate(519,980.259)" y="0.32em">or<title>/flare/query/methods/or</title></text>
+    <text transform="translate(519,989.588)" y="0.32em">orderby<title>/flare/query/methods/orderby</title></text>
+    <text transform="translate(519,998.918)" y="0.32em">range<title>/flare/query/methods/range</title></text>
+    <text transform="translate(519,1008.247)" y="0.32em">select<title>/flare/query/methods/select</title></text>
+    <text transform="translate(519,1017.576)" y="0.32em">stddev<title>/flare/query/methods/stddev</title></text>
+    <text transform="translate(519,1026.906)" y="0.32em">sub<title>/flare/query/methods/sub</title></text>
+    <text transform="translate(519,1036.235)" y="0.32em">sum<title>/flare/query/methods/sum</title></text>
+    <text transform="translate(519,1045.565)" y="0.32em">update<title>/flare/query/methods/update</title></text>
+    <text transform="translate(519,1054.894)" y="0.32em">variance<title>/flare/query/methods/variance</title></text>
+    <text transform="translate(519,1064.224)" y="0.32em">where<title>/flare/query/methods/where</title></text>
+    <text transform="translate(519,1073.553)" y="0.32em">xor<title>/flare/query/methods/xor</title></text>
+    <text transform="translate(519,1082.882)" y="0.32em">_<title>/flare/query/methods/_</title></text>
+    <text transform="translate(519,1372.094)" y="0.32em">FibonacciHeap<title>/flare/util/heap/FibonacciHeap</title></text>
+    <text transform="translate(519,1381.424)" y="0.32em">HeapNode<title>/flare/util/heap/HeapNode</title></text>
+    <text transform="translate(519,1437.4)" y="0.32em">DenseMatrix<title>/flare/util/math/DenseMatrix</title></text>
+    <text transform="translate(519,1446.729)" y="0.32em">IMatrix<title>/flare/util/math/IMatrix</title></text>
+    <text transform="translate(519,1456.059)" y="0.32em">SparseMatrix<title>/flare/util/math/SparseMatrix</title></text>
+    <text transform="translate(519,1502.706)" y="0.32em">ColorPalette<title>/flare/util/palette/ColorPalette</title></text>
+    <text transform="translate(519,1512.035)" y="0.32em">Palette<title>/flare/util/palette/Palette</title></text>
+    <text transform="translate(519,1521.365)" y="0.32em">ShapePalette<title>/flare/util/palette/ShapePalette</title></text>
+    <text transform="translate(519,1530.694)" y="0.32em">SizePalette<title>/flare/util/palette/SizePalette</title></text>
+    <text transform="translate(519,1605.329)" y="0.32em">Axes<title>/flare/vis/axis/Axes</title></text>
+    <text transform="translate(519,1614.659)" y="0.32em">Axis<title>/flare/vis/axis/Axis</title></text>
+    <text transform="translate(519,1623.988)" y="0.32em">AxisGridLine<title>/flare/vis/axis/AxisGridLine</title></text>
+    <text transform="translate(519,1633.318)" y="0.32em">AxisLabel<title>/flare/vis/axis/AxisLabel</title></text>
+    <text transform="translate(519,1642.647)" y="0.32em">CartesianAxes<title>/flare/vis/axis/CartesianAxes</title></text>
+    <text transform="translate(519,1661.306)" y="0.32em">AnchorControl<title>/flare/vis/controls/AnchorControl</title></text>
+    <text transform="translate(519,1670.635)" y="0.32em">ClickControl<title>/flare/vis/controls/ClickControl</title></text>
+    <text transform="translate(519,1679.965)" y="0.32em">Control<title>/flare/vis/controls/Control</title></text>
+    <text transform="translate(519,1689.294)" y="0.32em">ControlList<title>/flare/vis/controls/ControlList</title></text>
+    <text transform="translate(519,1698.624)" y="0.32em">DragControl<title>/flare/vis/controls/DragControl</title></text>
+    <text transform="translate(519,1707.953)" y="0.32em">ExpandControl<title>/flare/vis/controls/ExpandControl</title></text>
+    <text transform="translate(519,1717.282)" y="0.32em">HoverControl<title>/flare/vis/controls/HoverControl</title></text>
+    <text transform="translate(519,1726.612)" y="0.32em">IControl<title>/flare/vis/controls/IControl</title></text>
+    <text transform="translate(519,1735.941)" y="0.32em">PanZoomControl<title>/flare/vis/controls/PanZoomControl</title></text>
+    <text transform="translate(519,1745.271)" y="0.32em">SelectionControl<title>/flare/vis/controls/SelectionControl</title></text>
+    <text transform="translate(519,1754.6)" y="0.32em">TooltipControl<title>/flare/vis/controls/TooltipControl</title></text>
+    <text transform="translate(519,1773.259)" y="0.32em">Data<title>/flare/vis/data/Data</title></text>
+    <text transform="translate(519,1782.588)" y="0.32em">DataList<title>/flare/vis/data/DataList</title></text>
+    <text transform="translate(519,1791.918)" y="0.32em">DataSprite<title>/flare/vis/data/DataSprite</title></text>
+    <text transform="translate(519,1801.247)" y="0.32em">EdgeSprite<title>/flare/vis/data/EdgeSprite</title></text>
+    <text transform="translate(519,1810.576)" y="0.32em">NodeSprite<title>/flare/vis/data/NodeSprite</title></text>
+    <text transform="translate(519,1875.882)" y="0.32em">ScaleBinding<title>/flare/vis/data/ScaleBinding</title></text>
+    <text transform="translate(519,1885.212)" y="0.32em">Tree<title>/flare/vis/data/Tree</title></text>
+    <text transform="translate(519,1894.541)" y="0.32em">TreeBuilder<title>/flare/vis/data/TreeBuilder</title></text>
+    <text transform="translate(519,1913.2)" y="0.32em">DataEvent<title>/flare/vis/events/DataEvent</title></text>
+    <text transform="translate(519,1922.529)" y="0.32em">SelectionEvent<title>/flare/vis/events/SelectionEvent</title></text>
+    <text transform="translate(519,1931.859)" y="0.32em">TooltipEvent<title>/flare/vis/events/TooltipEvent</title></text>
+    <text transform="translate(519,1941.188)" y="0.32em">VisualizationEvent<title>/flare/vis/events/VisualizationEvent</title></text>
+    <text transform="translate(519,1959.847)" y="0.32em">Legend<title>/flare/vis/legend/Legend</title></text>
+    <text transform="translate(519,1969.176)" y="0.32em">LegendItem<title>/flare/vis/legend/LegendItem</title></text>
+    <text transform="translate(519,1978.506)" y="0.32em">LegendRange<title>/flare/vis/legend/LegendRange</title></text>
+    <text transform="translate(519,2127.776)" y="0.32em">IOperator<title>/flare/vis/operator/IOperator</title></text>
+    <text transform="translate(519,2333.024)" y="0.32em">Operator<title>/flare/vis/operator/Operator</title></text>
+    <text transform="translate(519,2342.353)" y="0.32em">OperatorList<title>/flare/vis/operator/OperatorList</title></text>
+    <text transform="translate(519,2351.682)" y="0.32em">OperatorSequence<title>/flare/vis/operator/OperatorSequence</title></text>
+    <text transform="translate(519,2361.012)" y="0.32em">OperatorSwitch<title>/flare/vis/operator/OperatorSwitch</title></text>
+    <text transform="translate(519,2370.341)" y="0.32em">SortOperator<title>/flare/vis/operator/SortOperator</title></text>
+    <text transform="translate(519,1829.235)" y="0.32em">ArrowType<title>/flare/vis/data/render/ArrowType</title></text>
+    <text transform="translate(519,1838.565)" y="0.32em">EdgeRenderer<title>/flare/vis/data/render/EdgeRenderer</title></text>
+    <text transform="translate(519,1847.894)" y="0.32em">IRenderer<title>/flare/vis/data/render/IRenderer</title></text>
+    <text transform="translate(519,1857.224)" y="0.32em">ShapeRenderer<title>/flare/vis/data/render/ShapeRenderer</title></text>
+    <text transform="translate(519,1997.165)" y="0.32em">BifocalDistortion<title>/flare/vis/operator/distortion/BifocalDistortion</title></text>
+    <text transform="translate(519,2006.494)" y="0.32em">Distortion<title>/flare/vis/operator/distortion/Distortion</title></text>
+    <text transform="translate(519,2015.824)" y="0.32em">FisheyeDistortion<title>/flare/vis/operator/distortion/FisheyeDistortion</title></text>
+    <text transform="translate(519,2034.482)" y="0.32em">ColorEncoder<title>/flare/vis/operator/encoder/ColorEncoder</title></text>
+    <text transform="translate(519,2043.812)" y="0.32em">Encoder<title>/flare/vis/operator/encoder/Encoder</title></text>
+    <text transform="translate(519,2053.141)" y="0.32em">PropertyEncoder<title>/flare/vis/operator/encoder/PropertyEncoder</title></text>
+    <text transform="translate(519,2062.471)" y="0.32em">ShapeEncoder<title>/flare/vis/operator/encoder/ShapeEncoder</title></text>
+    <text transform="translate(519,2071.8)" y="0.32em">SizeEncoder<title>/flare/vis/operator/encoder/SizeEncoder</title></text>
+    <text transform="translate(519,2090.459)" y="0.32em">FisheyeTreeFilter<title>/flare/vis/operator/filter/FisheyeTreeFilter</title></text>
+    <text transform="translate(519,2099.788)" y="0.32em">GraphDistanceFilter<title>/flare/vis/operator/filter/GraphDistanceFilter</title></text>
+    <text transform="translate(519,2109.118)" y="0.32em">VisibilityFilter<title>/flare/vis/operator/filter/VisibilityFilter</title></text>
+    <text transform="translate(519,2146.435)" y="0.32em">Labeler<title>/flare/vis/operator/label/Labeler</title></text>
+    <text transform="translate(519,2155.765)" y="0.32em">RadialLabeler<title>/flare/vis/operator/label/RadialLabeler</title></text>
+    <text transform="translate(519,2165.094)" y="0.32em">StackedAreaLabeler<title>/flare/vis/operator/label/StackedAreaLabeler</title></text>
+    <text transform="translate(519,2183.753)" y="0.32em">AxisLayout<title>/flare/vis/operator/layout/AxisLayout</title></text>
+    <text transform="translate(519,2193.082)" y="0.32em">BundledEdgeRouter<title>/flare/vis/operator/layout/BundledEdgeRouter</title></text>
+    <text transform="translate(519,2202.412)" y="0.32em">CircleLayout<title>/flare/vis/operator/layout/CircleLayout</title></text>
+    <text transform="translate(519,2211.741)" y="0.32em">CirclePackingLayout<title>/flare/vis/operator/layout/CirclePackingLayout</title></text>
+    <text transform="translate(519,2221.071)" y="0.32em">DendrogramLayout<title>/flare/vis/operator/layout/DendrogramLayout</title></text>
+    <text transform="translate(519,2230.4)" y="0.32em">ForceDirectedLayout<title>/flare/vis/operator/layout/ForceDirectedLayout</title></text>
+    <text transform="translate(519,2239.729)" y="0.32em">IcicleTreeLayout<title>/flare/vis/operator/layout/IcicleTreeLayout</title></text>
+    <text transform="translate(519,2249.059)" y="0.32em">IndentedTreeLayout<title>/flare/vis/operator/layout/IndentedTreeLayout</title></text>
+    <text transform="translate(519,2258.388)" y="0.32em">Layout<title>/flare/vis/operator/layout/Layout</title></text>
+    <text transform="translate(519,2267.718)" y="0.32em">NodeLinkTreeLayout<title>/flare/vis/operator/layout/NodeLinkTreeLayout</title></text>
+    <text transform="translate(519,2277.047)" y="0.32em">PieLayout<title>/flare/vis/operator/layout/PieLayout</title></text>
+    <text transform="translate(519,2286.376)" y="0.32em">RadialTreeLayout<title>/flare/vis/operator/layout/RadialTreeLayout</title></text>
+    <text transform="translate(519,2295.706)" y="0.32em">RandomLayout<title>/flare/vis/operator/layout/RandomLayout</title></text>
+    <text transform="translate(519,2305.035)" y="0.32em">StackedAreaLayout<title>/flare/vis/operator/layout/StackedAreaLayout</title></text>
+    <text transform="translate(519,2314.365)" y="0.32em">TreeMapLayout<title>/flare/vis/operator/layout/TreeMapLayout</title></text>
+  </g>
+  <g aria-label="text" stroke="var(--plot-background)" stroke-width="3" stroke-linejoin="round" paint-order="stroke" text-anchor="end" transform="translate(-6,0)">
+    <text transform="translate(30,780.03)" y="0.32em">flare<title>/flare</title></text>
+    <text transform="translate(274.5,70.641)" y="0.32em">analytics<title>/flare/analytics</title></text>
+    <text transform="translate(274.5,256.452)" y="0.32em">animate<title>/flare/animate</title></text>
+    <text transform="translate(274.5,416.496)" y="0.32em">data<title>/flare/data</title></text>
+    <text transform="translate(396.75,481.135)" y="0.32em">display<title>/flare/display</title></text>
+    <text transform="translate(396.75,513.788)" y="0.32em">flex<title>/flare/flex</title></text>
+    <text transform="translate(396.75,565.1)" y="0.32em">physics<title>/flare/physics</title></text>
+    <text transform="translate(274.5,858.494)" y="0.32em">query<title>/flare/query</title></text>
+    <text transform="translate(396.75,1246.147)" y="0.32em">scale<title>/flare/scale</title></text>
+    <text transform="translate(274.5,1439.364)" y="0.32em">util<title>/flare/util</title></text>
+    <text transform="translate(152.25,1952.685)" y="0.32em">vis<title>/flare/vis</title></text>
+    <text transform="translate(396.75,23.994)" y="0.32em">cluster<title>/flare/analytics/cluster</title></text>
+    <text transform="translate(396.75,75.306)" y="0.32em">graph<title>/flare/analytics/graph</title></text>
+    <text transform="translate(396.75,112.624)" y="0.32em">optimization<title>/flare/analytics/optimization</title></text>
+    <text transform="translate(396.75,196.588)" y="0.32em">interpolate<title>/flare/animate/interpolate</title></text>
+    <text transform="translate(396.75,364.518)" y="0.32em">converters<title>/flare/data/converters</title></text>
+    <text transform="translate(396.75,938.276)" y="0.32em">methods<title>/flare/query/methods</title></text>
+    <text transform="translate(396.75,1376.759)" y="0.32em">heap<title>/flare/util/heap</title></text>
+    <text transform="translate(396.75,1446.729)" y="0.32em">math<title>/flare/util/math</title></text>
+    <text transform="translate(396.75,1516.7)" y="0.32em">palette<title>/flare/util/palette</title></text>
+    <text transform="translate(396.75,1623.988)" y="0.32em">axis<title>/flare/vis/axis</title></text>
+    <text transform="translate(396.75,1707.953)" y="0.32em">controls<title>/flare/vis/controls</title></text>
+    <text transform="translate(274.5,1828.717)" y="0.32em">data<title>/flare/vis/data</title></text>
+    <text transform="translate(396.75,1927.194)" y="0.32em">events<title>/flare/vis/events</title></text>
+    <text transform="translate(396.75,1969.176)" y="0.32em">legend<title>/flare/vis/legend</title></text>
+    <text transform="translate(274.5,2222.767)" y="0.32em">operator<title>/flare/vis/operator</title></text>
+    <text transform="translate(396.75,1843.229)" y="0.32em">render<title>/flare/vis/data/render</title></text>
+    <text transform="translate(396.75,2006.494)" y="0.32em">distortion<title>/flare/vis/operator/distortion</title></text>
+    <text transform="translate(396.75,2053.141)" y="0.32em">encoder<title>/flare/vis/operator/encoder</title></text>
+    <text transform="translate(396.75,2099.788)" y="0.32em">filter<title>/flare/vis/operator/filter</title></text>
+    <text transform="translate(396.75,2155.765)" y="0.32em">label<title>/flare/vis/operator/label</title></text>
+    <text transform="translate(396.75,2249.059)" y="0.32em">layout<title>/flare/vis/operator/layout</title></text>
+  </g>
+</svg>

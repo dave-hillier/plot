@@ -1,0 +1,67 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="200" viewBox="0 0 640 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(-0.5,9.5)">
+    <path transform="translate(40,23)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,44)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,65)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,86)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,107)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,128)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,149)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-9,9.5)">
+    <text transform="translate(40,23)" y="0.32em">Ava</text>
+    <text transform="translate(40,44)" y="0.32em">Emma</text>
+    <text transform="translate(40,65)" y="0.32em">Jacob</text>
+    <text transform="translate(40,86)" y="0.32em">Mason</text>
+    <text transform="translate(40,107)" y="0.32em">Mia</text>
+    <text transform="translate(40,128)" y="0.32em">Noah</text>
+    <text transform="translate(40,149)" y="0.32em">Olivia</text>
+  </g>
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(36.5,-0.5)">
+    <path transform="translate(51,170)" d="M0,0L0,6"></path>
+    <path transform="translate(132,170)" d="M0,0L0,6"></path>
+    <path transform="translate(213,170)" d="M0,0L0,6"></path>
+    <path transform="translate(294,170)" d="M0,0L0,6"></path>
+    <path transform="translate(375,170)" d="M0,0L0,6"></path>
+    <path transform="translate(456,170)" d="M0,0L0,6"></path>
+    <path transform="translate(537,170)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" transform="translate(36.5,9)">
+    <text transform="translate(51,170)" y="0.71em">Ava</text>
+    <text transform="translate(132,170)" y="0.71em">Emma</text>
+    <text transform="translate(213,170)" y="0.71em">Jacob</text>
+    <text transform="translate(294,170)" y="0.71em">Mason</text>
+    <text transform="translate(375,170)" y="0.71em">Mia</text>
+    <text transform="translate(456,170)" y="0.71em">Noah</text>
+    <text transform="translate(537,170)" y="0.71em">Olivia</text>
+  </g>
+  <g aria-label="cell">
+    <rect x="213" y="149" width="73" height="19"></rect>
+    <rect x="375" y="128" width="73" height="19"></rect>
+    <rect x="456" y="23" width="73" height="19"></rect>
+    <rect x="51" y="86" width="73" height="19"></rect>
+    <rect x="537" y="128" width="73" height="19"></rect>
+    <rect x="213" y="44" width="73" height="19"></rect>
+    <rect x="51" y="128" width="73" height="19"></rect>
+    <rect x="456" y="65" width="73" height="19"></rect>
+    <rect x="537" y="23" width="73" height="19"></rect>
+    <rect x="294" y="44" width="73" height="19"></rect>
+    <rect x="213" y="107" width="73" height="19"></rect>
+    <rect x="375" y="65" width="73" height="19"></rect>
+    <rect x="132" y="65" width="73" height="19"></rect>
+  </g>
+</svg>

@@ -1,0 +1,75 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(-0.5,0)">
+    <path transform="translate(40,370)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,331.215)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,292.429)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,253.644)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,214.858)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,176.073)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,137.287)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,98.502)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,59.716)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,20.931)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
+    <text transform="translate(40,370)" y="0.32em">0</text>
+    <text transform="translate(40,331.215)" y="0.32em">500</text>
+    <text transform="translate(40,292.429)" y="0.32em">1,000</text>
+    <text transform="translate(40,253.644)" y="0.32em">1,500</text>
+    <text transform="translate(40,214.858)" y="0.32em">2,000</text>
+    <text transform="translate(40,176.073)" y="0.32em">2,500</text>
+    <text transform="translate(40,137.287)" y="0.32em">3,000</text>
+    <text transform="translate(40,98.502)" y="0.32em">3,500</text>
+    <text transform="translate(40,59.716)" y="0.32em">4,000</text>
+    <text transform="translate(40,20.931)" y="0.32em">4,500</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-37,-17)">
+    <text transform="translate(40,20)" y="0.71em">↑ Frequency</text>
+  </g>
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(23.5,-0.5)">
+    <path transform="translate(47,370)" d="M0,0L0,6"></path>
+    <path transform="translate(151,370)" d="M0,0L0,6"></path>
+    <path transform="translate(255,370)" d="M0,0L0,6"></path>
+    <path transform="translate(359,370)" d="M0,0L0,6"></path>
+    <path transform="translate(463,370)" d="M0,0L0,6"></path>
+    <path transform="translate(567,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(23.5,9)">
+    <text transform="translate(47,370)" y="0.71em">1950</text>
+    <text transform="translate(151,370)" y="0.71em">1960</text>
+    <text transform="translate(255,370)" y="0.71em">1970</text>
+    <text transform="translate(359,370)" y="0.71em">1980</text>
+    <text transform="translate(463,370)" y="0.71em">1990</text>
+    <text transform="translate(567,370)" y="0.71em">2000</text>
+  </g>
+  <g aria-label="x-axis label" transform="translate(0,27)">
+    <text transform="translate(330,370)">date_of_birth →</text>
+  </g>
+  <g aria-label="bar">
+    <rect x="203" y="366.587" width="47" height="3.413"></rect>
+    <rect x="411" y="94.856" width="47" height="275.144"></rect>
+    <rect x="463" y="20" width="47" height="350"></rect>
+    <rect x="515" y="246.895" width="47" height="123.105"></rect>
+    <rect x="151" y="367.673" width="47" height="2.327"></rect>
+    <rect x="359" y="264.814" width="47" height="105.186"></rect>
+    <rect x="567" y="365.346" width="47" height="4.654"></rect>
+    <rect x="307" y="346.418" width="47" height="23.582"></rect>
+    <rect x="255" y="363.096" width="47" height="6.904"></rect>
+    <rect x="99" y="369.457" width="47" height="0.543"></rect>
+    <rect x="47" y="369.845" width="47" height="0.155"></rect>
+  </g>
+</svg>

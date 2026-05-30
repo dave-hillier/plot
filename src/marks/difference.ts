@@ -1,14 +1,13 @@
 import {Children, cloneElement, createElement as h, isValidElement, type ReactElement, type ReactNode} from "react";
 import type {ChannelValue, ChannelValueSpec} from "../channel.js";
 // @ts-ignore - internal helper not in .d.ts
-import {create} from "../context.js";
 import {indirectStyleProps, directStyleProps, transformProp, groupChannelStyleProps} from "../react/styles.js";
 import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
 import type {CurveOptions} from "../curve.js";
 import type {CompoundMark, Data, MarkOptions} from "../mark.js";
 import {marks} from "../mark.js";
 // @ts-ignore - internal helpers not in .d.ts
-import {composeRender, withTip} from "../mark.js";
+import {withTip} from "../mark.js";
 import {identity, indexOf} from "../options.js";
 // @ts-ignore - internal helpers not in .d.ts
 import {isNoneish, labelof, maybeColorChannel, maybeValue, valueof} from "../options.js";
@@ -138,7 +137,6 @@ function differenceK(
     z = maybeColorChannel(stroke)[0],
     clip, // optional additional clip for area
     tip,
-    render,
     ...options
   }: any = {}
 ): CompoundMark {
@@ -160,7 +158,6 @@ function differenceK(
             z,
             fill: positiveFill,
             fillOpacity: positiveFillOpacity,
-            render: composeRender(render, clipDifference(k, true)),
             renderJSX: clipDifferenceJSX(k, true),
             clip,
             ...options
@@ -178,7 +175,6 @@ function differenceK(
             z,
             fill: negativeFill,
             fillOpacity: negativeFillOpacity,
-            render: composeRender(render, clipDifference(k, false)),
             renderJSX: clipDifferenceJSX(k, false),
             clip,
             ...options
@@ -268,29 +264,3 @@ function clipDifferenceJSX(k: "x" | "y", positive: boolean) {
   };
 }
 
-function clipDifference(k: "x" | "y", positive: boolean) {
-  const f = k === "x" ? "y" : "x"; // f is the flipped dimension
-  const f1 = `${f}1`;
-  const f2 = `${f}2`;
-  const k1 = `${k}1`;
-  const k2 = `${k}2`;
-  return (index: any, scales: any, channels: any, dimensions: any, context: any, next: any) => {
-    const {[f1]: F1, [f2]: F2} = channels;
-    const K1 = new Float32Array(F1.length);
-    const K2 = new Float32Array(F2.length);
-    const m = dimensions[k === "y" ? "height" : "width"];
-    (positive === inferScaleOrder(scales[k]) < 0 ? K1 : K2).fill(m);
-    const oc = next(index, scales, {...channels, [f2]: F1, [k2]: K2}, dimensions, context);
-    const og = next(index, scales, {...channels, [f1]: F2, [k1]: K1}, dimensions, context);
-    const c = oc.querySelector("g") ?? oc; // applyClip
-    const g = og.querySelector("g") ?? og; // applyClip
-    for (let i = 0; c.firstChild; i += 2) {
-      const id = getClipId();
-      const clipPath = create("svg:clipPath", context).attr("id", id).node();
-      clipPath.appendChild(c.firstChild);
-      g.childNodes[i].setAttribute("clip-path", `url(#${id})`);
-      g.insertBefore(clipPath, g.childNodes[i]);
-    }
-    return og;
-  };
-}

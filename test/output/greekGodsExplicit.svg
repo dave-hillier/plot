@@ -1,0 +1,45 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="link" fill="none" stroke-width="1.5" stroke-opacity="0.5" stroke-miterlimit="1">
+    <path stroke="#bdbdbd" d="M10,154.625C137.25,154.625,137.25,20,264.5,20"></path>
+    <path stroke="#bdbdbd" d="M10,154.625C137.25,154.625,137.25,109.75,264.5,109.75"></path>
+    <path stroke="#bdbdbd" d="M10,154.625C137.25,154.625,137.25,199.5,264.5,199.5"></path>
+    <path stroke="#636363" d="M10,154.625C137.25,154.625,137.25,289.25,264.5,289.25"></path>
+    <path stroke="#bdbdbd" d="M264.5,289.25C391.75,289.25,391.75,199.5,519,199.5"></path>
+    <path stroke="#bdbdbd" d="M264.5,289.25C391.75,289.25,391.75,289.25,519,289.25"></path>
+    <path stroke="#bdbdbd" d="M264.5,289.25C391.75,289.25,391.75,379,519,379"></path>
+  </g>
+  <g aria-label="dot">
+    <circle fill="#636363" cx="10" cy="154.625" r="3"></circle>
+    <circle fill="#bdbdbd" cx="264.5" cy="20" r="3"></circle>
+    <circle fill="#bdbdbd" cx="264.5" cy="109.75" r="3"></circle>
+    <circle fill="#bdbdbd" cx="264.5" cy="199.5" r="3"></circle>
+    <circle fill="#636363" cx="264.5" cy="289.25" r="3"></circle>
+    <circle fill="#bdbdbd" cx="519" cy="199.5" r="3"></circle>
+    <circle fill="#bdbdbd" cx="519" cy="289.25" r="3"></circle>
+    <circle fill="#bdbdbd" cx="519" cy="379" r="3"></circle>
+  </g>
+  <g aria-label="text" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke" text-anchor="start" transform="translate(6,0)">
+    <text transform="translate(10,154.625)" y="0.32em">Chaos</text>
+    <text transform="translate(264.5,20)" y="0.32em">Eros</text>
+    <text transform="translate(264.5,109.75)" y="0.32em">Erebus</text>
+    <text transform="translate(264.5,199.5)" y="0.32em">Tartarus</text>
+    <text transform="translate(264.5,289.25)" y="0.32em">Gaia</text>
+    <text transform="translate(519,199.5)" y="0.32em">Mountains</text>
+    <text transform="translate(519,289.25)" y="0.32em">Pontus</text>
+    <text transform="translate(519,379)" y="0.32em">Uranus</text>
+  </g>
+</svg>
