@@ -1,4 +1,4 @@
-import {creator, geoPath} from "d3";
+import {geoPath} from "d3";
 import {createChannel, inferChannelScale} from "./channel.js";
 import {createContext} from "./context.js";
 import {createDimensions} from "./dimensions.js";
@@ -160,12 +160,12 @@ export function computePlot(options: any = {}): any {
   // Initialize the context.
   const context = createContext(options);
   const document = context.document;
-  const svg = creator("svg").call(document.documentElement);
-  // Holder mutated by plot() when it wraps svg in a <figure>; the
-  // dispatchValue closure below reads through this so it tracks the latest.
-  const figureHolder: {current: any} = {current: svg};
+  // The figure/svg is produced by the imperative plot() entry (which renders
+  // the marks via React). computePlot only provides a holder that plot()
+  // mutates; the dispatchValue closure below reads through it so it tracks the
+  // latest figure.
+  const figureHolder: {current: any} = {current: null};
   context.figureHolder = figureHolder;
-  context.ownerSVGElement = svg;
   context.className = className;
   context.projection = createProjection(options, subdimensions);
 
@@ -189,7 +189,7 @@ export function computePlot(options: any = {}): any {
   // Allows e.g. the pointer transform to support viewof.
   context.dispatchValue = (value) => {
     const figure = figureHolder.current;
-    if (figure.value === value) return;
+    if (figure == null || figure.value === value) return;
     figure.value = value;
     figure.dispatchEvent(new context.document.defaultView.Event("input", {bubbles: true}));
   };
@@ -273,8 +273,7 @@ export function computePlot(options: any = {}): any {
     context,
     facets,
     facetDomains,
-    facetTranslate,
-    svg
+    facetTranslate
   };
 }
 
