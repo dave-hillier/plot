@@ -1,31 +1,44 @@
-<figure style="max-width: 640px; margin: 0px auto;">
-  <div class="plot-swatches plot-swatches-wrap" style="font-variant: tabular-nums;">
+<figure style="max-width: 640px; margin: 0px auto;"><svg class="plot-ramp" font-family="system-ui, sans-serif" font-size="10" width="240" height="50" viewBox="0 0 240 50" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <style>
-      :where(.plot-swatches) {
-        font-family: system-ui, sans-serif;
-        font-size: 10px;
-        margin-bottom: 0.5em;
-      }
-
-      :where(.plot-swatch > svg) {
-        margin-right: 0.5em;
+      :where(.plot-ramp) {
+        display: block;
+        height: auto;
+        height: intrinsic;
+        max-width: 100%;
         overflow: visible;
       }
 
-      :where(.plot-swatches-wrap) {
-        display: flex;
-        align-items: center;
-        min-height: 33px;
-        flex-wrap: wrap;
+      :where(.plot-ramp text) {
+        white-space: pre;
       }
-
-      :where(.plot-swatches-wrap .plot-swatch) {
-        display: inline-flex;
-        align-items: center;
-        margin-right: 1em;
-      }
-    </style>NaNNaNNaN
-  </div>
+    </style>
+    <filter id="plot-filter-plot-rid-1">
+      <feFlood flood-color="rgb(0, 0, 0)"></feFlood>
+      <feComposite in2="SourceGraphic" operator="in"></feComposite>
+    </filter>
+    <g filter="url(#plot-filter-plot-rid-1)">
+      <g>
+        <rect x="0" y="18" width="60" height="10" fill="0.2"></rect>
+        <rect x="60" y="18" width="60" height="10" fill="0.4"></rect>
+        <rect x="120" y="18" width="60" height="10" fill="0.6"></rect>
+        <rect x="180" y="18" width="60" height="10" fill="0.8"></rect>
+      </g>
+    </g>
+    <g transform="translate(0,28)" font-variant="tabular-nums">
+      <g class="tick" opacity="1" transform="translate(60.5,0)">
+        <line stroke="currentColor" y1="-10" y2="6"></line>
+        <text fill="currentColor" y="9" dy="0.71em" text-anchor="middle">2</text>
+      </g>
+      <g class="tick" opacity="1" transform="translate(120.5,0)">
+        <line stroke="currentColor" y1="-10" y2="6"></line>
+        <text fill="currentColor" y="9" dy="0.71em" text-anchor="middle">5</text>
+      </g>
+      <g class="tick" opacity="1" transform="translate(180.5,0)">
+        <line stroke="currentColor" y1="-10" y2="6"></line>
+        <text fill="currentColor" y="9" dy="0.71em" text-anchor="middle">8</text>
+      </g>
+    </g>
+  </svg>
   <div class="plot-host"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
       <style>
         :where(.plot) {
