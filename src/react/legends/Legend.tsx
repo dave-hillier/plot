@@ -111,7 +111,11 @@ function isSwatchesLegend(props: LegendScales): boolean {
     const t = p.opacity.type;
     if (t !== "ordinal" && t !== "threshold") return false;
     const explicit = p.legend !== undefined && p.legend !== true ? `${p.legend}`.toLowerCase() : null;
-    return explicit === null || explicit === "swatches";
+    // Mirror legendOpacity: only ordinal opacity defaults to swatches; threshold
+    // defaults to the ramp (handled by opacityRampJSX). Explicit "swatches" still
+    // routes here for either type.
+    if (explicit === "swatches") return true;
+    return explicit === null && t === "ordinal";
   }
   return false;
 }
@@ -139,10 +143,13 @@ function opacityRampJSX(props: Record<string, any>): React.ReactElement | null {
   const opacityOpts = props.opacity;
   const {type} = opacityOpts;
   const isBanded = type === "ordinal" || type === "threshold";
-  // Banded opacity defaults to swatches (caught by isSwatchesLegend); this path
-  // requires explicit `legend: "ramp"`. Continuous opacity defaults to "ramp".
+  // Mirror legendOpacity: ordinal opacity defaults to swatches (caught by
+  // isSwatchesLegend), so the ordinal ramp requires explicit `legend: "ramp"`.
+  // Threshold and continuous opacity default to the ramp.
   const explicit = props.legend !== undefined && props.legend !== true ? `${props.legend}`.toLowerCase() : null;
-  if (isBanded ? explicit !== "ramp" : explicit !== null && explicit !== "ramp") return null;
+  const ordinalNeedsExplicit = type === "ordinal" && explicit !== "ramp";
+  const wrongExplicit = explicit !== null && explicit !== "ramp";
+  if (ordinalNeedsExplicit || wrongExplicit) return null;
   const normalized = normalizeScale("opacity", opacityOpts);
   if (normalized.domain === undefined) return null;
   // Mirror legendOpacity: continuous opacity becomes a color scale with an
@@ -213,7 +220,9 @@ function renderPlotScopedLegend(
   const {type, interpolate} = scale;
   const {legend = true, color = rgb(0, 0, 0), ...rest2} = merged;
   if (type === "ordinal" || type === "threshold") {
-    const kind = legend === true ? "swatches" : `${legend}`.toLowerCase();
+    // Mirror legendOpacity (src/legends.js): only ordinal defaults to
+    // "swatches"; threshold defaults to the (filtered) ramp.
+    const kind = legend === true ? (type === "ordinal" ? "swatches" : "ramp") : `${legend}`.toLowerCase();
     if (kind === "swatches") return <ColorSwatches scale={{...scale, color, key: "opacity"}} {...rest2} />;
     if (kind === "ramp") return <Ramp scale={scale} {...rest2} filterColor={`${rgb(color)}`} />;
     return null;
