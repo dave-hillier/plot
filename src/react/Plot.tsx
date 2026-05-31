@@ -14,6 +14,7 @@ import type {MarkFactory} from "./useMark.js";
 import {PointerRoot, PointerContext} from "./interactions/PointerContext.js";
 import {buildAutoLegends, Legend} from "./legends/Legend.js";
 import {createClipRegistry, registerClips, type ClipRegistry} from "./clip.js";
+import {FigureLayout} from "./FigureLayout.js";
 
 // <Plot> renders a JSX <svg> populated entirely by each mark's renderJSX();
 // there is no imperative (d3-selection) render fallback.
@@ -65,7 +66,11 @@ export interface PlotProps {
   title?: string;
   subtitle?: string;
   caption?: string;
-  figure?: boolean;
+  // Controls the <figure> wrapper. "auto" (default) wraps only when there's a
+  // title/subtitle/caption/legend to show; "always" forces it; "never"
+  // suppresses it even when those are present. Booleans are accepted as
+  // legacy aliases for "always"/"never".
+  figure?: boolean | "auto" | "always" | "never";
   onValue?: (value: any) => void;
   [key: string]: any;
 }
@@ -234,8 +239,11 @@ export function Plot({
     }
   });
 
+  // "always"/true forces a figure; "never"/false suppresses it; "auto" (or
+  // undefined) infers it from whether there's anything to wrap.
+  const autoFigure = Boolean(title || subtitle || caption || autoLegends.length > 0 || explicitLegends.length > 0);
   const wantsFigure =
-    figure ?? Boolean(title || subtitle || caption || autoLegends.length > 0 || explicitLegends.length > 0);
+    figure === "always" || figure === true ? true : figure === "never" || figure === false ? false : autoFigure;
 
   // In figure mode, wrap the plot in a div.plot-host inside the figure to
   // match the imperative API's structure (figure > h2/h3 > div.plot-host > svg
@@ -270,25 +278,16 @@ export function Plot({
 
   return (
     <PlotContext.Provider value={ctx}>
-      <figure style={{maxWidth: 640, margin: "0 auto"}}>
-        {title != null && (
-          <SlotHeader as="h2" content={title} style={{fontSize: "16px", fontWeight: "bold", margin: "0 0 4px"}} />
-        )}
-        {subtitle != null && (
-          <SlotHeader
-            as="h3"
-            content={subtitle}
-            style={{fontSize: "12px", fontWeight: "normal", color: "#666", margin: "0 0 8px"}}
-          />
-        )}
-        {autoLegends}
-        {explicitLegends}
-        {mode.kind === "jsx" ? <div className="plot-host">{plotElement}</div> : plotElement}
-        {caption != null && (
-          <SlotHeader as="figcaption" content={caption} style={{fontSize: "12px", color: "#666", marginTop: "4px"}} />
-        )}
-        {hiddenChildren}
-      </figure>
+      <FigureLayout
+        title={title}
+        subtitle={subtitle}
+        caption={caption}
+        autoLegends={autoLegends}
+        explicitLegends={explicitLegends}
+        plotElement={plotElement}
+        hiddenChildren={hiddenChildren}
+        isJsx={mode.kind === "jsx"}
+      />
     </PlotContext.Provider>
   );
 }
@@ -555,26 +554,6 @@ function sameScaleKeys(a: Record<string, any> | undefined, b: Record<string, any
 
 function subarray(index: any): any {
   return index.slice ? index.slice() : Array.from(index);
-}
-
-function SlotHeader({as: Tag, content, style: styleProp}: {as: any; content: any; style?: any}) {
-  const ref = useRef<HTMLElement | null>(null);
-  useLayoutEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    if (content && typeof (content as any).nodeType === "number") {
-      el.replaceChildren(content as Node);
-    } else {
-      el.replaceChildren();
-      if (content != null) el.appendChild(document.createTextNode(String(content)));
-    }
-  }, [content]);
-  const isNode = content && typeof (content as any).nodeType === "number";
-  return (
-    <Tag ref={ref} style={styleProp}>
-      {isNode ? null : content}
-    </Tag>
-  );
 }
 
 function stableKey(options: Record<string, any>): string {
