@@ -93,4 +93,32 @@
   <g aria-label="x-axis label" text-anchor="end" transform="translate(17,27)">
     <text transform="translate(620,550)">frequency →</text>
   </g>
+  <g aria-label="bar" fill="light-dark(steelblue, orange)">
+    <rect x="40" y="26" width="580" height="18"></rect>
+    <rect x="40" y="46" width="413.516" height="18"></rect>
+    <rect x="40" y="66" width="372.922" height="18"></rect>
+    <rect x="40" y="86" width="342.785" height="18"></rect>
+    <rect x="40" y="106" width="318.082" height="18"></rect>
+    <rect x="40" y="126" width="308.174" height="18"></rect>
+    <rect x="40" y="146" width="288.904" height="18"></rect>
+    <rect x="40" y="166" width="278.265" height="18"></rect>
+    <rect x="40" y="186" width="273.379" height="18"></rect>
+    <rect x="40" y="206" width="194.201" height="18"></rect>
+    <rect x="40" y="226" width="183.79" height="18"></rect>
+    <rect x="40" y="246" width="127.032" height="18"></rect>
+    <rect x="40" y="266" width="125.936" height="18"></rect>
+    <rect x="40" y="286" width="109.863" height="18"></rect>
+    <rect x="40" y="306" width="107.763" height="18"></rect>
+    <rect x="40" y="326" width="104.475" height="18"></rect>
+    <rect x="40" y="346" width="92.009" height="18"></rect>
+    <rect x="40" y="366" width="90.137" height="18"></rect>
+    <rect x="40" y="386" width="88.082" height="18"></rect>
+    <rect x="40" y="406" width="68.128" height="18"></rect>
+    <rect x="40" y="426" width="44.658" height="18"></rect>
+    <rect x="40" y="446" width="35.251" height="18"></rect>
+    <rect x="40" y="466" width="6.986" height="18"></rect>
+    <rect x="40" y="486" width="6.849" height="18"></rect>
+    <rect x="40" y="506" width="4.338" height="18"></rect>
+    <rect x="40" y="526" width="3.379" height="18"></rect>
+  </g>
 </svg>
