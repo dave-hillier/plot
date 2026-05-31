@@ -12,7 +12,7 @@ import {consumeWarnings} from "../warnings.js";
 import {PlotContext} from "./PlotContext.js";
 import type {MarkFactory} from "./useMark.js";
 import {PointerRoot, PointerContext} from "./interactions/PointerContext.js";
-import {buildAutoLegends} from "./legends/Legend.js";
+import {buildAutoLegends, Legend} from "./legends/Legend.js";
 import {createClipRegistry, registerClips, type ClipRegistry} from "./clip.js";
 
 // <Plot> renders a JSX <svg> populated entirely by each mark's renderJSX();
@@ -218,7 +218,24 @@ export function Plot({
   const autoLegends = resolved?.scaleDescriptors
     ? buildAutoLegends(resolved.scaleDescriptors, resolved.context, options)
     : [];
-  const wantsFigure = figure ?? Boolean(title || subtitle || caption || autoLegends.length > 0);
+
+  // Explicit <Legend> children (e.g. <Legend scale="color">) are promoted out
+  // of the hidden children div and rendered visibly inside the figure, matching
+  // the imperative plot()'s createLegends/exposeLegends placement above the
+  // <svg>. Any present explicit legend forces figure mode; the remaining
+  // children (marks) stay in the hidden div for registration.
+  const explicitLegends: ReactElement[] = [];
+  const otherChildren: ReactNode[] = [];
+  React.Children.forEach(children, (child, i) => {
+    if (React.isValidElement(child) && child.type === Legend) {
+      explicitLegends.push(React.cloneElement(child as ReactElement, {key: `legend-${i}`}));
+    } else {
+      otherChildren.push(child);
+    }
+  });
+
+  const wantsFigure =
+    figure ?? Boolean(title || subtitle || caption || autoLegends.length > 0 || explicitLegends.length > 0);
 
   // In figure mode, wrap the plot in a div.plot-host inside the figure to
   // match the imperative API's structure (figure > h2/h3 > div.plot-host > svg
@@ -239,11 +256,12 @@ export function Plot({
       <div className="plot-host" />
     );
 
-  const hiddenChildren = <div style={{display: "none"}}>{children}</div>;
+  const hiddenChildren = <div style={{display: "none"}}>{otherChildren}</div>;
 
   if (!wantsFigure) {
     return (
       <PlotContext.Provider value={ctx}>
+        {explicitLegends}
         {plotElement}
         {hiddenChildren}
       </PlotContext.Provider>
@@ -264,6 +282,7 @@ export function Plot({
           />
         )}
         {autoLegends}
+        {explicitLegends}
         {mode.kind === "jsx" ? <div className="plot-host">{plotElement}</div> : plotElement}
         {caption != null && (
           <SlotHeader as="figcaption" content={caption} style={{fontSize: "12px", color: "#666", marginTop: "4px"}} />
