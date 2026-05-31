@@ -156,16 +156,20 @@ export function Plot({
       if (Array.isArray(m)) flat.push(...m);
       else flat.push(m);
     }
-    if (!flat.length) {
+    let computed: any;
+    try {
+      // Always run computePlot, even with zero marks: declared position scales
+      // (e.g. x={{type: "log", …}}) infer implicit axis marks, so a markless
+      // <Plot> can still render axes — matching the imperative plot().
+      computed = computePlot({...options, marks: flat, style});
+    } catch (e) {
+      console.error("Plot: computePlot failed.", e);
       setMode((prev) => (prev.kind === "empty" ? prev : {kind: "empty"}));
       return;
     }
 
-    let computed: any;
-    try {
-      computed = computePlot({...options, marks: flat, style});
-    } catch (e) {
-      console.error("Plot: computePlot failed.", e);
+    // Nothing to render (no marks and no inferred axes); keep the empty host.
+    if (!computed.marks.length) {
       setMode((prev) => (prev.kind === "empty" ? prev : {kind: "empty"}));
       return;
     }
