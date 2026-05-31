@@ -25,6 +25,36 @@
     <text transform="translate(395,30)">between</text>
     <text transform="translate(545,30)">no name</text>
   </g>
-  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start"></g>
-  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start"></g>
+  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start">
+    <g>
+      <g transform="translate(95,35)">
+        <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M0,0l6,6h17v46h-46v-46h17z"></path>
+        <text fill="currentColor" fill-opacity="1" stroke="none" y="-0.06em" transform="translate(-15,14)"><tspan x="0" dy="1em">​Hello</tspan><tspan x="0" dy="1em">​ </tspan><tspan x="0" dy="1em">​ </tspan></text>
+      </g><title>Hello
+
+      </title>
+    </g>
+    <g>
+      <g transform="translate(245,35)">
+        <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M0,0l6,6h19v46h-50v-46h19z"></path>
+        <text fill="currentColor" fill-opacity="1" stroke="none" y="-0.06em" transform="translate(-17,14)"><tspan x="0" dy="1em">​ </tspan><tspan x="0" dy="1em">​ </tspan><tspan x="0" dy="1em">​World</tspan></text>
+      </g><title>
+
+        World</title>
+    </g>
+    <g>
+      <g transform="translate(395,35)">
+        <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M0,0l6,6h8v46h-28v-46h8z"></path>
+        <text fill="currentColor" fill-opacity="1" stroke="none" y="-0.06em" transform="translate(-6,14)"><tspan x="0" dy="1em">​{</tspan><tspan x="0" dy="1em">​ </tspan><tspan x="0" dy="1em">​}</tspan></text>
+      </g><title>{
+
+        }</title>
+    </g>
+  </g>
+  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start">
+    <g transform="translate(545,35)">
+      <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M0,0l6,-6h29.5v-56h-71v56h29.5z"></path>
+      <text fill="currentColor" fill-opacity="1" stroke="none" y="-4.29em" transform="translate(-27.5,-14)"><tspan x="0" dy="1em">​<tspan font-weight="bold">a</tspan> first</tspan><tspan x="0" dy="1em">​<tspan font-weight="bold">b</tspan> second</tspan><tspan x="0" dy="1em">​ </tspan><tspan x="0" dy="1em">​<tspan font-weight="bold">x</tspan> no name</tspan></text>
+    </g>
+  </g>
 </svg>

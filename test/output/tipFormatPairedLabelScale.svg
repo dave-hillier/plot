@@ -42,5 +42,10 @@
   <g aria-label="x-axis label" text-anchor="end" transform="translate(17,27)">
     <text transform="translate(620,60)">Intensity →</text>
   </g>
-  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start"></g>
+  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start">
+    <g transform="translate(320,60)">
+      <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M0,0l6,-6h35.5v-26h-83v26h35.5z"></path>
+      <text fill="currentColor" fill-opacity="1" stroke="none" y="-1.29em" transform="translate(-33.5,-14)"><tspan x="0" dy="1em">​<tspan font-weight="bold">Intensity</tspan> 0–1</tspan></text>
+    </g>
+  </g>
 </svg>

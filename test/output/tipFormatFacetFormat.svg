@@ -51,10 +51,20 @@
   </g>
   <g>
     <g transform="translate(1,0)">
-      <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start"></g>
+      <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start">
+        <g transform="translate(162,80)">
+          <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M0,0l6,-6h23.5v-36h-59v36h23.5z"></path>
+          <text fill="currentColor" fill-opacity="1" stroke="none" y="-2.29em" transform="translate(-21.5,-14)"><tspan x="0" dy="1em">​<tspan font-weight="bold">fx</tspan> Jan 1</tspan><tspan x="0" dy="1em">​<tspan font-weight="bold">x</tspan> 0</tspan></text>
+        </g>
+      </g>
     </g>
     <g transform="translate(316,0)">
-      <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start"></g>
+      <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start">
+        <g transform="translate(162,80)">
+          <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M0,0l6,-6h24v-36h-60v36h24z"></path>
+          <text fill="currentColor" fill-opacity="1" stroke="none" y="-2.29em" transform="translate(-22,-14)"><tspan x="0" dy="1em">​<tspan font-weight="bold">fx</tspan> Jan 2</tspan><tspan x="0" dy="1em">​<tspan font-weight="bold">x</tspan> 0</tspan></text>
+        </g>
+      </g>
     </g>
   </g>
 </svg>
