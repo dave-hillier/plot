@@ -21,6 +21,8 @@ import {
 // @ts-ignore — runtime exports from ../transforms/bin.js not declared in its .d.ts
 import {maybeDenseIntervalX, maybeDenseIntervalY} from "../transforms/bin.js";
 import type {BinOptions, BinReducer} from "../transforms/bin.js";
+// @ts-ignore — runtime helpers not exposed in companion .d.ts
+import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
 
 /** Options for the line mark. */
 export interface LineOptions extends MarkOptions, MarkerOptions, CurveAutoOptions {
@@ -283,14 +285,18 @@ export function line(data?: Data, {x, y, ...options}: LineOptions = {}): Line {
  * ```
  */
 export function lineX(data?: Data, options: LineXOptions = {}): Line {
+  // Apply the y=indexOf default and the implicit identity-x transform before
+  // binning, so that maybeDenseIntervalY emits the binned x edges (and the
+  // reduced y channel) rather than overwriting them downstream.
+  const {y = indexOf, ...denseRest} = options as any;
   const {
     x = identity,
-    y = indexOf,
+    y: yOut,
     stroke,
     z = stroke === x ? null : undefined,
     ...rest
-  } = maybeDenseIntervalY(options);
-  return new Line(data, {...rest, x, y, z, stroke});
+  } = maybeDenseIntervalY({y, ...maybeIdentityX(denseRest)}) as any;
+  return new Line(data, {...rest, x, y: yOut, z, stroke});
 }
 
 /**
@@ -313,12 +319,16 @@ export function lineX(data?: Data, options: LineXOptions = {}): Line {
  * ```
  */
 export function lineY(data?: Data, options: LineYOptions = {}): Line {
+  // Apply the x=indexOf default and the implicit identity-y transform before
+  // binning, so that maybeDenseIntervalX emits the binned y edges (and the
+  // reduced x channel) rather than overwriting them downstream.
+  const {x = indexOf, ...denseRest} = options as any;
   const {
-    x = indexOf,
+    x: xOut,
     y = identity,
     stroke,
     z = stroke === y ? null : undefined,
     ...rest
-  } = maybeDenseIntervalX(options);
-  return new Line(data, {...rest, x, y, z, stroke});
+  } = maybeDenseIntervalX({x, ...maybeIdentityY(denseRest)}) as any;
+  return new Line(data, {...rest, x: xOut, y, z, stroke});
 }
