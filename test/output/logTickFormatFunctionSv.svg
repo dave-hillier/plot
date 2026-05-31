@@ -1,0 +1,82 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,-0.5)">
+    <path transform="translate(20,30)" d="M0,0L0,6"></path>
+    <path transform="translate(69.85,30)" d="M0,0L0,6"></path>
+    <path transform="translate(99.01,30)" d="M0,0L0,6"></path>
+    <path transform="translate(119.699,30)" d="M0,0L0,6"></path>
+    <path transform="translate(135.747,30)" d="M0,0L0,6"></path>
+    <path transform="translate(148.86,30)" d="M0,0L0,6"></path>
+    <path transform="translate(159.946,30)" d="M0,0L0,6"></path>
+    <path transform="translate(169.549,30)" d="M0,0L0,6"></path>
+    <path transform="translate(178.02,30)" d="M0,0L0,6"></path>
+    <path transform="translate(185.597,30)" d="M0,0L0,6"></path>
+    <path transform="translate(235.447,30)" d="M0,0L0,6"></path>
+    <path transform="translate(264.607,30)" d="M0,0L0,6"></path>
+    <path transform="translate(285.297,30)" d="M0,0L0,6"></path>
+    <path transform="translate(301.345,30)" d="M0,0L0,6"></path>
+    <path transform="translate(314.457,30)" d="M0,0L0,6"></path>
+    <path transform="translate(325.543,30)" d="M0,0L0,6"></path>
+    <path transform="translate(335.146,30)" d="M0,0L0,6"></path>
+    <path transform="translate(343.617,30)" d="M0,0L0,6"></path>
+    <path transform="translate(351.194,30)" d="M0,0L0,6"></path>
+    <path transform="translate(401.044,30)" d="M0,0L0,6"></path>
+    <path transform="translate(430.204,30)" d="M0,0L0,6"></path>
+    <path transform="translate(450.894,30)" d="M0,0L0,6"></path>
+    <path transform="translate(466.942,30)" d="M0,0L0,6"></path>
+    <path transform="translate(480.054,30)" d="M0,0L0,6"></path>
+    <path transform="translate(491.14,30)" d="M0,0L0,6"></path>
+    <path transform="translate(500.744,30)" d="M0,0L0,6"></path>
+    <path transform="translate(509.214,30)" d="M0,0L0,6"></path>
+    <path transform="translate(516.792,30)" d="M0,0L0,6"></path>
+    <path transform="translate(566.641,30)" d="M0,0L0,6"></path>
+    <path transform="translate(595.802,30)" d="M0,0L0,6"></path>
+    <path transform="translate(616.491,30)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
+    <text transform="translate(20,30)" y="0.71em">1</text>
+    <text transform="translate(69.85,30)" y="0.71em">2</text>
+    <text transform="translate(99.01,30)" y="0.71em"></text>
+    <text transform="translate(119.699,30)" y="0.71em"></text>
+    <text transform="translate(135.747,30)" y="0.71em"></text>
+    <text transform="translate(148.86,30)" y="0.71em"></text>
+    <text transform="translate(159.946,30)" y="0.71em"></text>
+    <text transform="translate(169.549,30)" y="0.71em"></text>
+    <text transform="translate(178.02,30)" y="0.71em"></text>
+    <text transform="translate(185.597,30)" y="0.71em">10</text>
+    <text transform="translate(235.447,30)" y="0.71em">20</text>
+    <text transform="translate(264.607,30)" y="0.71em"></text>
+    <text transform="translate(285.297,30)" y="0.71em"></text>
+    <text transform="translate(301.345,30)" y="0.71em"></text>
+    <text transform="translate(314.457,30)" y="0.71em"></text>
+    <text transform="translate(325.543,30)" y="0.71em"></text>
+    <text transform="translate(335.146,30)" y="0.71em"></text>
+    <text transform="translate(343.617,30)" y="0.71em"></text>
+    <text transform="translate(351.194,30)" y="0.71em">100</text>
+    <text transform="translate(401.044,30)" y="0.71em">200</text>
+    <text transform="translate(430.204,30)" y="0.71em"></text>
+    <text transform="translate(450.894,30)" y="0.71em"></text>
+    <text transform="translate(466.942,30)" y="0.71em"></text>
+    <text transform="translate(480.054,30)" y="0.71em"></text>
+    <text transform="translate(491.14,30)" y="0.71em"></text>
+    <text transform="translate(500.744,30)" y="0.71em"></text>
+    <text transform="translate(509.214,30)" y="0.71em"></text>
+    <text transform="translate(516.792,30)" y="0.71em">1 000</text>
+    <text transform="translate(566.641,30)" y="0.71em">2 000</text>
+    <text transform="translate(595.802,30)" y="0.71em"></text>
+    <text transform="translate(616.491,30)" y="0.71em"></text>
+  </g>
+</svg>
