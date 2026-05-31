@@ -534,8 +534,6 @@ function pointerRegistrationId(mark: any, fi: number | null): string {
 
 export function isPointerConsumer(mark: any): boolean {
   if (mark == null) return false;
-  if (mark.constructor?.name === "Tip") return true;
-  if (mark.ariaLabel === "tip") return true;
   if (typeof mark.ariaLabel === "string" && mark.ariaLabel.startsWith("crosshair ")) return true;
   // Pointer-wrapped marks (Plot.pointer/pointerX/pointerY) tag their render
   // function; such marks render only the pointer-selected datum, so they start
