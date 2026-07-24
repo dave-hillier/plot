@@ -140,61 +140,67 @@ function wafflePolygon(y: "x" | "y", options: any) {
   const x = y === "y" ? "x" : "y";
   const y1 = `${y}1`;
   const y2 = `${y}2`;
-  return initializer(options, function (this: any, data: any, facets: any, channels: any, scales: any, dimensions: any) {
-    const {round, unit} = this;
-    const Y1 = channels[y1].value;
-    const Y2 = channels[y2].value;
+  return initializer(
+    options,
+    function (this: any, data: any, facets: any, channels: any, scales: any, dimensions: any) {
+      const {round, unit} = this;
+      const Y1 = channels[y1].value;
+      const Y2 = channels[y2].value;
 
-    // We might not use all the available bandwidth if the cells don’t fit evenly.
-    const xy = valueObject({...(x in channels && {[x]: channels[x]}), [y1]: channels[y1], [y2]: channels[y2]}, scales);
-    const barwidth = this[y === "y" ? "_width" : "_height"](scales, xy, dimensions);
-    const barx = this[y === "y" ? "_x" : "_y"](scales, xy, dimensions);
+      // We might not use all the available bandwidth if the cells don’t fit evenly.
+      const xy = valueObject(
+        {...(x in channels && {[x]: channels[x]}), [y1]: channels[y1], [y2]: channels[y2]},
+        scales
+      );
+      const barwidth = this[y === "y" ? "_width" : "_height"](scales, xy, dimensions);
+      const barx = this[y === "y" ? "_x" : "_y"](scales, xy, dimensions);
 
-    // The length of a unit along y in pixels.
-    const scale = unit * scaleof(scales.scales[y]);
+      // The length of a unit along y in pixels.
+      const scale = unit * scaleof(scales.scales[y]);
 
-    // The number of cells on each row (or column) of the waffle.
-    const {multiple = Math.max(1, Math.floor(Math.sqrt(barwidth / scale)))} = this;
+      // The number of cells on each row (or column) of the waffle.
+      const {multiple = Math.max(1, Math.floor(Math.sqrt(barwidth / scale)))} = this;
 
-    // The outer size of each square cell, in pixels, including the gap.
-    const cx = Math.min(barwidth / multiple, scale * multiple);
-    const cy = scale * multiple;
+      // The outer size of each square cell, in pixels, including the gap.
+      const cx = Math.min(barwidth / multiple, scale * multiple);
+      const cy = scale * multiple;
 
-    // The reference position.
-    const tx = (barwidth - multiple * cx) / 2;
-    const x0 = typeof barx === "function" ? (i: number) => barx(i) + tx : barx + tx;
-    const y0 = scales[y](0);
+      // The reference position.
+      const tx = (barwidth - multiple * cx) / 2;
+      const x0 = typeof barx === "function" ? (i: number) => barx(i) + tx : barx + tx;
+      const y0 = scales[y](0);
 
-    // TODO insets?
-    const transform = y === "y" ? ([x, y]: [number, number]) => [x * cx, -y * cy] : ([x, y]: [number, number]) => [y * cy, x * cx];
-    const mx = typeof x0 === "function" ? (i: number) => x0(i) - barwidth / 2 : () => x0;
-    const [ix, iy] = y === "y" ? [0, 1] : [1, 0];
+      // TODO insets?
+      const transform =
+        y === "y" ? ([x, y]: [number, number]) => [x * cx, -y * cy] : ([x, y]: [number, number]) => [y * cy, x * cx];
+      const mx = typeof x0 === "function" ? (i: number) => x0(i) - barwidth / 2 : () => x0;
+      const [ix, iy] = y === "y" ? [0, 1] : [1, 0];
 
-    const n = Y2.length;
-    const P = new Array(n);
-    const X = new Float64Array(n);
-    const Y = new Float64Array(n);
+      const n = Y2.length;
+      const P = new Array(n);
+      const X = new Float64Array(n);
+      const Y = new Float64Array(n);
 
-    for (let i = 0; i < n; ++i) {
-      P[i] = wafflePoints(round(Y1[i] / unit), round(Y2[i] / unit), multiple).map(transform);
-      const c = P[i].pop(); // extract the transformed centroid
-      X[i] = c[ix] + mx(i);
-      Y[i] = c[iy] + y0;
-    }
-
-    return {
-      channels: {
-        polygon: {value: P, source: null, filter: null},
-        [`c${x}`]: {value: [cx, x0], source: null, filter: null},
-        [`c${y}`]: {value: [cy, y0], source: null, filter: null},
-        [x]: {value: X, scale: null, source: null},
-        [y1]: {value: Y, scale: null, source: channels[y1]},
-        [y2]: {value: Y, scale: null, source: channels[y2]}
+      for (let i = 0; i < n; ++i) {
+        P[i] = wafflePoints(round(Y1[i] / unit), round(Y2[i] / unit), multiple).map(transform);
+        const c = P[i].pop(); // extract the transformed centroid
+        X[i] = c[ix] + mx(i);
+        Y[i] = c[iy] + y0;
       }
-    };
-  });
-}
 
+      return {
+        channels: {
+          polygon: {value: P, source: null, filter: null},
+          [`c${x}`]: {value: [cx, x0], source: null, filter: null},
+          [`c${y}`]: {value: [cy, y0], source: null, filter: null},
+          [x]: {value: X, scale: null, source: null},
+          [y1]: {value: Y, scale: null, source: channels[y1]},
+          [y2]: {value: Y, scale: null, source: channels[y2]}
+        }
+      };
+    }
+  );
+}
 
 // A waffle is approximately a rectangular shape, but may have one or two corner
 // cuts if the starting or ending value is not an even multiple of the number of

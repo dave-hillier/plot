@@ -138,7 +138,8 @@ export class Image extends Mark {
   frameAnchor: any;
   imageRendering: any;
   constructor(data?: Data, options: ImageOptions = {}) {
-    let {x, y, r, width, height, rotate, src, preserveAspectRatio, crossOrigin, frameAnchor, imageRendering} = options as any;
+    let {x, y, r, width, height, rotate, src, preserveAspectRatio, crossOrigin, frameAnchor, imageRendering} =
+      options as any;
     if (r == null) r = undefined;
     if (r === undefined && width === undefined && height === undefined) width = height = 16;
     else if (width === undefined && height !== undefined) width = height;

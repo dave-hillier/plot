@@ -131,7 +131,7 @@ const defaults = {
 const ignoreChannels = new Set(["geometry", "href", "src", "ariaLabel", "scales"]);
 
 /** The tip mark. */
-export class Tip extends (Mark as { new (...args: any[]): Mark }) {
+export class Tip extends (Mark as {new (...args: any[]): Mark}) {
   anchor: any;
   preferredAnchor: any;
   frameAnchor: any;
@@ -337,9 +337,7 @@ export class Tip extends (Mark as { new (...args: any[]): Mark }) {
       const pathEl = h("path", {filter: pathFilter, d});
       const tspans: ReactNode[] = [];
       for (let li = 0; li < n; li++) {
-        tspans.push(
-          h("tspan", {key: li, x: 0, dy: `${lineHeight}em`}, ...lines[li].tspans)
-        );
+        tspans.push(h("tspan", {key: li, x: 0, dy: `${lineHeight}em`}, ...lines[li].tspans));
       }
       const textEl = h(
         "text",

@@ -175,9 +175,14 @@ class DelaunayLink extends MarkBase {
     } else {
       children = buildLinks(index);
     }
-    const defs = markerDefs.size > 0
-      ? h("defs", {key: "__defs"}, ...Array.from(markerDefs.entries()).map(([id, def]) => h(Fragment, {key: id}, def)))
-      : null;
+    const defs =
+      markerDefs.size > 0
+        ? h(
+            "defs",
+            {key: "__defs"},
+            ...Array.from(markerDefs.entries()).map(([id, def]) => h(Fragment, {key: id}, def))
+          )
+        : null;
     return h("g", {...indirect, ...transform}, defs, children);
   }
 }
@@ -259,27 +264,30 @@ class Voronoi extends MarkBase {
         y: {value: y, scale: "y", optional: true},
         z: {value: z, optional: true}
       },
-      initializer(options, function (this: any, data: any, facets: any, channels: any, scales: any, dimensions: any, context: any) {
-        let {x: X, y: Y, z: Z} = channels;
-        ({x: X, y: Y} = applyPosition(channels, scales, context));
-        Z = Z?.value;
-        const C = new Array((X ?? Y).length).fill(null);
-        const [cx, cy] = applyFrameAnchor(this, dimensions);
-        const xi = X ? (i: number) => X[i] : constant(cx);
-        const yi = Y ? (i: number) => Y[i] : constant(cy);
-        for (let I of facets) {
-          if (X) I = I.filter((i: number) => defined(xi(i)));
-          if (Y) I = I.filter((i: number) => defined(yi(i)));
-          for (const [, J] of maybeGroup(I, Z)) {
-            const delaunay = Delaunay.from(J, xi, yi);
-            const voronoi = voronoiof(delaunay, dimensions);
-            for (let i = 0, n = J.length; i < n; ++i) {
-              C[J[i]] = voronoi.renderCell(i);
+      initializer(
+        options,
+        function (this: any, data: any, facets: any, channels: any, scales: any, dimensions: any, context: any) {
+          let {x: X, y: Y, z: Z} = channels;
+          ({x: X, y: Y} = applyPosition(channels, scales, context));
+          Z = Z?.value;
+          const C = new Array((X ?? Y).length).fill(null);
+          const [cx, cy] = applyFrameAnchor(this, dimensions);
+          const xi = X ? (i: number) => X[i] : constant(cx);
+          const yi = Y ? (i: number) => Y[i] : constant(cy);
+          for (let I of facets) {
+            if (X) I = I.filter((i: number) => defined(xi(i)));
+            if (Y) I = I.filter((i: number) => defined(yi(i)));
+            for (const [, J] of maybeGroup(I, Z)) {
+              const delaunay = Delaunay.from(J, xi, yi);
+              const voronoi = voronoiof(delaunay, dimensions);
+              for (let i = 0, n = J.length; i < n; ++i) {
+                C[J[i]] = voronoi.renderCell(i);
+              }
             }
           }
+          return {data, facets, channels: {cells: {value: C}}};
         }
-        return {data, facets, channels: {cells: {value: C}}};
-      }),
+      ),
       voronoiDefaults
     );
   }

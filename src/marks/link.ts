@@ -128,7 +128,11 @@ export class Link extends Mark {
     const markerAttrs = (i: number) => {
       const color = S ? S[i] : this.stroke;
       const out: Record<string, string> = {};
-      for (const [opt, attr] of [[this.markerStart, "markerStart"], [this.markerMid, "markerMid"], [this.markerEnd, "markerEnd"]] as const) {
+      for (const [opt, attr] of [
+        [this.markerStart, "markerStart"],
+        [this.markerMid, "markerMid"],
+        [this.markerEnd, "markerEnd"]
+      ] as const) {
         if (!opt) continue;
         const m = markerToJSX(opt, color);
         if (!m) continue;
@@ -141,14 +145,17 @@ export class Link extends Mark {
       const channel = channelStyleProps(i, channels);
       const markers = markerAttrs(i);
       const titled = withTitleChild(channels, i, null);
-      const pathEl = h(
-        "path",
-        {key: k, ...direct, ...channel, ...markers, d: dOf(i)},
-        titled
-      );
+      const pathEl = h("path", {key: k, ...direct, ...channel, ...markers, d: dOf(i)}, titled);
       return withHrefWrap(channels, this.target, i, pathEl);
     });
-    const defs = markerDefs.size > 0 ? h("defs", {key: "__defs"}, ...Array.from(markerDefs.entries()).map(([id, def]) => h(Fragment, {key: id}, def))) : null;
+    const defs =
+      markerDefs.size > 0
+        ? h(
+            "defs",
+            {key: "__defs"},
+            ...Array.from(markerDefs.entries()).map(([id, def]) => h(Fragment, {key: id}, def))
+          )
+        : null;
     return h("g", {...indirect, ...transform}, defs, ...paths);
   }
 }

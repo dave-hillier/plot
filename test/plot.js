@@ -12,7 +12,11 @@ import * as plots from "./plots/index.ts"; // TODO index.js
 
 // Detect if a value is a React element
 function isReactElement(value) {
-  return value != null && typeof value === "object" && (value.$$typeof != null || (value.type != null && value.props != null));
+  return (
+    value != null &&
+    typeof value === "object" &&
+    (value.$$typeof != null || (value.type != null && value.props != null))
+  );
 }
 
 // Render a React element to a DOM node using ReactDOM with act() for two-phase rendering

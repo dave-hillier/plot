@@ -263,4 +263,3 @@ function clipDifferenceJSX(k: "x" | "y", positive: boolean) {
     return cloneElement(gNode, gNode.props as any, ...out);
   };
 }
-

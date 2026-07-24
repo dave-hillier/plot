@@ -101,7 +101,10 @@
   let currentRoot = null;
 
   async function render() {
-    if (currentRoot) { currentRoot.unmount(); currentRoot = null; }
+    if (currentRoot) {
+      currentRoot.unmount();
+      currentRoot = null;
+    }
     const newChart = document.createElement("DIV");
     currentChart.replaceWith(newChart);
     currentChart = newChart;

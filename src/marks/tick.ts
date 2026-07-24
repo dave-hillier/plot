@@ -103,9 +103,14 @@ class AbstractTick extends Mark {
       );
       return withHrefWrap(channels, this.target, i, lineEl);
     });
-    const defs = markerDefs.size > 0
-      ? h("defs", {key: "__defs"}, ...Array.from(markerDefs.entries()).map(([id, def]) => h(Fragment, {key: id}, def)))
-      : null;
+    const defs =
+      markerDefs.size > 0
+        ? h(
+            "defs",
+            {key: "__defs"},
+            ...Array.from(markerDefs.entries()).map(([id, def]) => h(Fragment, {key: id}, def))
+          )
+        : null;
     return h("g", {...indirect, ...transform}, defs, ...lines);
   }
 }

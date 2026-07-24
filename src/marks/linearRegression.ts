@@ -108,11 +108,16 @@ class LinearRegression extends Mark {
   constructor(data: any, options: any = {}) {
     const {x, y, z, ci = 0.95, precision = 4} = options;
     // @ts-ignore — Mark constructor signature is not declared in mark.d.ts
-    super(data, {
-      x: {value: x, scale: "x"},
-      y: {value: y, scale: "y"},
-      z: {value: maybeZ(options), optional: true}
-    }, options, defaults);
+    super(
+      data,
+      {
+        x: {value: x, scale: "x"},
+        y: {value: y, scale: "y"},
+        z: {value: maybeZ(options), optional: true}
+      },
+      options,
+      defaults
+    );
     this.z = z;
     this.ci = +ci;
     this.precision = +precision;
@@ -129,16 +134,19 @@ class LinearRegression extends Mark {
     const direct = directStyleProps(this);
     const transform = transformProp(this, scales);
     const showBand = ci && !isNone(this.fill);
-    const groups = index.length
-      ? Array.from((Z ? groupZ(index, Z, this.z) : [index]) as Iterable<number[]>)
-      : [];
+    const groups = index.length ? Array.from((Z ? groupZ(index, Z, this.z) : [index]) as Iterable<number[]>) : [];
     const elements: ReactNode[] = [];
     groups.forEach((G, k) => {
       const lineChannel = groupChannelStyleProps(G, {...channels, fill: null, fillOpacity: null});
       const lineTitled = withTitleChild(channels, G[0], null);
       const dLine = (this as any)._renderLine(G, X, Y);
       if (showBand) {
-        const bandChannel = groupChannelStyleProps(G, {...channels, stroke: null, strokeOpacity: null, strokeWidth: null});
+        const bandChannel = groupChannelStyleProps(G, {
+          ...channels,
+          stroke: null,
+          strokeOpacity: null,
+          strokeWidth: null
+        });
         const dBand = (this as any)._renderBand(G, X, Y);
         const bandEl = h("path", {key: `b${k}`, stroke: "none", ...direct, ...bandChannel, d: dBand});
         elements.push(withHrefWrap(channels, this.target, G[0], bandEl));
@@ -200,9 +208,18 @@ class LinearRegressionY extends LinearRegression {
  */
 export function linearRegressionX(
   data?: Data,
-  {y = indexOf, x = identity, stroke, fill = isNoneish(stroke) ? "currentColor" : stroke, ...options}: LinearRegressionXOptions = {} as LinearRegressionXOptions
+  {
+    y = indexOf,
+    x = identity,
+    stroke,
+    fill = isNoneish(stroke) ? "currentColor" : stroke,
+    ...options
+  }: LinearRegressionXOptions = {} as LinearRegressionXOptions
 ): RenderableMark {
-  return new LinearRegressionX(data, maybeDenseIntervalY({...options, x, y, fill, stroke})) as unknown as RenderableMark;
+  return new LinearRegressionX(
+    data,
+    maybeDenseIntervalY({...options, x, y, fill, stroke})
+  ) as unknown as RenderableMark;
 }
 
 /**
@@ -229,9 +246,18 @@ export function linearRegressionX(
  */
 export function linearRegressionY(
   data?: Data,
-  {x = indexOf, y = identity, stroke, fill = isNoneish(stroke) ? "currentColor" : stroke, ...options}: LinearRegressionYOptions = {} as LinearRegressionYOptions
+  {
+    x = indexOf,
+    y = identity,
+    stroke,
+    fill = isNoneish(stroke) ? "currentColor" : stroke,
+    ...options
+  }: LinearRegressionYOptions = {} as LinearRegressionYOptions
 ): RenderableMark {
-  return new LinearRegressionY(data, maybeDenseIntervalX({...options, x, y, fill, stroke})) as unknown as RenderableMark;
+  return new LinearRegressionY(
+    data,
+    maybeDenseIntervalX({...options, x, y, fill, stroke})
+  ) as unknown as RenderableMark;
 }
 
 function linearRegressionF(I: any, X: any, Y: any) {

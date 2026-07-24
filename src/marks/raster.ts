@@ -413,31 +413,34 @@ export function rasterBounds({x1, y1, x2, y2}: any, scales: any, dimensions: any
 export function sampler(name: string, options: any = {}) {
   const {[name]: value} = options;
   if (typeof value !== "function") throw new Error(`invalid ${name}: not a function`);
-  return initializer({...options, [name]: undefined}, function (this: any, data: any, facets: any, channels: any, scales: any, dimensions: any, context: any) {
-    const {x, y} = scales;
-    // TODO Allow projections, if invertible.
-    if (!x) throw new Error("missing scale: x");
-    if (!y) throw new Error("missing scale: y");
-    const [x1, y1, x2, y2] = rasterBounds(channels, scales, dimensions, context);
-    const dx = x2 - x1;
-    const dy = y2 - y1;
-    const {pixelSize: k} = this;
-    // Note: this must exactly match the defaults in render above!
-    const {width: w = Math.round(Math.abs(dx) / k), height: h = Math.round(Math.abs(dy) / k)} = options;
-    // TODO Hint to use a typed array when possible?
-    const V = new Array(w * h * (facets ? facets.length : 1));
-    const kx = dx / w;
-    const ky = dy / h;
-    let i = 0;
-    for (const facet of facets ?? [undefined]) {
-      for (let yi = 0.5; yi < h; ++yi) {
-        for (let xi = 0.5; xi < w; ++xi, ++i) {
-          V[i] = value(x.invert(x1 + xi * kx), y.invert(y1 + yi * ky), facet);
+  return initializer(
+    {...options, [name]: undefined},
+    function (this: any, data: any, facets: any, channels: any, scales: any, dimensions: any, context: any) {
+      const {x, y} = scales;
+      // TODO Allow projections, if invertible.
+      if (!x) throw new Error("missing scale: x");
+      if (!y) throw new Error("missing scale: y");
+      const [x1, y1, x2, y2] = rasterBounds(channels, scales, dimensions, context);
+      const dx = x2 - x1;
+      const dy = y2 - y1;
+      const {pixelSize: k} = this;
+      // Note: this must exactly match the defaults in render above!
+      const {width: w = Math.round(Math.abs(dx) / k), height: h = Math.round(Math.abs(dy) / k)} = options;
+      // TODO Hint to use a typed array when possible?
+      const V = new Array(w * h * (facets ? facets.length : 1));
+      const kx = dx / w;
+      const ky = dy / h;
+      let i = 0;
+      for (const facet of facets ?? [undefined]) {
+        for (let yi = 0.5; yi < h; ++yi) {
+          for (let xi = 0.5; xi < w; ++xi, ++i) {
+            V[i] = value(x.invert(x1 + xi * kx), y.invert(y1 + yi * ky), facet);
+          }
         }
       }
+      return {data: V, facets, channels: {[name]: {value: V, scale: "auto"}}};
     }
-    return {data: V, facets, channels: {[name]: {value: V, scale: "auto"}}};
-  });
+  );
 }
 
 function maybeInterpolate(interpolate: any): RasterInterpolateFunction | null {
@@ -477,7 +480,9 @@ export function interpolateNone(index: any, width: any, height: any, X: any, Y: 
  * and interpolates the values associated with the triangle’s vertices using
  * barycentric coordinates.
  */
-export function interpolatorBarycentric({random = randomLcg(42)}: {random?: RandomSource} = {}): RasterInterpolateFunction {
+export function interpolatorBarycentric({
+  random = randomLcg(42)
+}: {random?: RandomSource} = {}): RasterInterpolateFunction {
   return (index, width, height, X, Y, V) => {
     // Interpolate the interior of all triangles with barycentric coordinates
     const {points, triangles, hull} = Delaunay.from(
@@ -532,7 +537,18 @@ export function interpolatorBarycentric({random = randomLcg(42)}: {random?: Rand
 }
 
 // Extrapolate by finding the closest point on the hull.
-function extrapolateBarycentric(W: any, S: any, X: any, Y: any, V: any, width: any, height: any, hull: any, index: any, mix: any) {
+function extrapolateBarycentric(
+  W: any,
+  S: any,
+  X: any,
+  Y: any,
+  V: any,
+  width: any,
+  height: any,
+  hull: any,
+  index: any,
+  mix: any
+) {
   X = Float64Array.from(hull, (i: any) => X[index[i]]);
   Y = Float64Array.from(hull, (i: any) => Y[index[i]]);
   V = Array.from(hull, (i: any) => V[index[i]]);

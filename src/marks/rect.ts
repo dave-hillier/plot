@@ -309,11 +309,7 @@ export class Rect extends Mark {
               ? (i: number) => Y1[i] + by - insetBottom
               : () => height - marginBottom - insetBottom;
           return (i: number, key: number, props: Record<string, any>, children: ReactNode) =>
-            h(
-              "path",
-              {key, ...props, d: roundedRectPath(x1Of(i), y1Of(i), x2Of(i), y2Of(i), this)},
-              children
-            );
+            h("path", {key, ...props, d: roundedRectPath(x1Of(i), y1Of(i), x2Of(i), y2Of(i), this)}, children);
         })()
       : (() => {
           const xOf = X1

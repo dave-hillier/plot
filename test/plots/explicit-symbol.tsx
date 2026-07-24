@@ -6,7 +6,10 @@ export async function explicitSymbol() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return (
     <Plot height={220} symbol={{legend: true}}>
-      <Dot data={penguins} {...dodgeY({x: "culmen_length_mm", symbol: (d: any) => (d.sex === "FEMALE" ? "square" : "star"), tip: true})} />
+      <Dot
+        data={penguins}
+        {...dodgeY({x: "culmen_length_mm", symbol: (d: any) => (d.sex === "FEMALE" ? "square" : "star"), tip: true})}
+      />
     </Plot>
   );
 }

@@ -142,11 +142,12 @@ export class RuleX extends Mark {
     const y1Const = marginTop + insetTop;
     const y1Of = Y1 && !yCollapsed ? (i) => Y1[i] + insetTop : () => y1Const;
     const y2Const = height - marginBottom - insetBottom;
-    const y2Of = Y2 && !yCollapsed
-      ? y.bandwidth
-        ? (i) => Y2[i] + y.bandwidth() - insetBottom
-        : (i) => Y2[i] - insetBottom
-      : () => y2Const;
+    const y2Of =
+      Y2 && !yCollapsed
+        ? y.bandwidth
+          ? (i) => Y2[i] + y.bandwidth() - insetBottom
+          : (i) => Y2[i] - insetBottom
+        : () => y2Const;
     const markerDefs = new Map<string, ReactNode>();
     const markerAttrsFor = (color: any) => {
       const out: Record<string, string> = {};
@@ -175,9 +176,14 @@ export class RuleX extends Mark {
       );
       return withHrefWrap(channels, this.target, i, lineEl);
     });
-    const defs = markerDefs.size > 0
-      ? h("defs", {key: "__defs"}, ...Array.from(markerDefs.entries()).map(([id, def]) => h(Fragment, {key: id}, def)))
-      : null;
+    const defs =
+      markerDefs.size > 0
+        ? h(
+            "defs",
+            {key: "__defs"},
+            ...Array.from(markerDefs.entries()).map(([id, def]) => h(Fragment, {key: id}, def))
+          )
+        : null;
     return h("g", {...indirect, ...transform}, defs, ...lines);
   }
 }
@@ -214,11 +220,12 @@ export class RuleY extends Mark {
     const x1Const = marginLeft + insetLeft;
     const x1Of = X1 && !xCollapsed ? (i) => X1[i] + insetLeft : () => x1Const;
     const x2Const = width - marginRight - insetRight;
-    const x2Of = X2 && !xCollapsed
-      ? x.bandwidth
-        ? (i) => X2[i] + x.bandwidth() - insetRight
-        : (i) => X2[i] - insetRight
-      : () => x2Const;
+    const x2Of =
+      X2 && !xCollapsed
+        ? x.bandwidth
+          ? (i) => X2[i] + x.bandwidth() - insetRight
+          : (i) => X2[i] - insetRight
+        : () => x2Const;
     const yMid = (marginTop + height - marginBottom) / 2;
     const yOf = (i) => (Y ? Y[i] : yMid);
     const markerDefs = new Map<string, ReactNode>();
@@ -249,9 +256,14 @@ export class RuleY extends Mark {
       );
       return withHrefWrap(channels, this.target, i, lineEl);
     });
-    const defs = markerDefs.size > 0
-      ? h("defs", {key: "__defs"}, ...Array.from(markerDefs.entries()).map(([id, def]) => h(Fragment, {key: id}, def)))
-      : null;
+    const defs =
+      markerDefs.size > 0
+        ? h(
+            "defs",
+            {key: "__defs"},
+            ...Array.from(markerDefs.entries()).map(([id, def]) => h(Fragment, {key: id}, def))
+          )
+        : null;
     return h("g", {...indirect, ...transform}, defs, ...lines);
   }
 }

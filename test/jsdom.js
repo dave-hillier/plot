@@ -18,10 +18,20 @@ jsdomit.only = (description, run) => {
 // Do NOT include queueMicrotask or MessageChannel — Node.js provides them
 // natively, and JSDOM's versions cause infinite recursion when assigned to global.
 const REACT_GLOBALS = [
-  "window", "document", "Event", "Node", "NodeList", "HTMLCollection",
-  "HTMLElement", "SVGElement", "MutationObserver", "navigator",
-  "requestAnimationFrame", "cancelAnimationFrame",
-  "CustomEvent", "getComputedStyle"
+  "window",
+  "document",
+  "Event",
+  "Node",
+  "NodeList",
+  "HTMLCollection",
+  "HTMLElement",
+  "SVGElement",
+  "MutationObserver",
+  "navigator",
+  "requestAnimationFrame",
+  "cancelAnimationFrame",
+  "CustomEvent",
+  "getComputedStyle"
 ];
 
 function withJsdom(run) {

@@ -1,6 +1,12 @@
 import {pathRound as path, symbolCircle} from "d3";
 import {createElement as h, type ReactNode} from "react";
-import {channelStyleProps, directStyleProps, indirectStyleProps, transformProp, computeFrameAnchor} from "../react/styles.js";
+import {
+  channelStyleProps,
+  directStyleProps,
+  indirectStyleProps,
+  transformProp,
+  computeFrameAnchor
+} from "../react/styles.js";
 import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
 import type {ChannelValue, ChannelValueIntervalSpec, ChannelValueSpec} from "../channel.js";
 import {negative, positive} from "../defined.js";

@@ -177,14 +177,20 @@ export class AbstractBar extends Mark {
       const wi = at(w, i);
       const hi = at(hh, i);
       const rectEl = rounded
-        ? h(
-            "path",
-            {key: k, ...direct, ...channel, d: roundedRectPath(xi, yi, xi + wi, yi + hi, this)},
-            titled
-          )
+        ? h("path", {key: k, ...direct, ...channel, d: roundedRectPath(xi, yi, xi + wi, yi + hi, this)}, titled)
         : h(
             "rect",
-            {key: k, ...direct, ...channel, x: xi, y: yi, width: wi, height: hi, rx: rx ?? undefined, ry: ry ?? undefined},
+            {
+              key: k,
+              ...direct,
+              ...channel,
+              x: xi,
+              y: yi,
+              width: wi,
+              height: hi,
+              rx: rx ?? undefined,
+              ry: ry ?? undefined
+            },
             titled
           );
       return withHrefWrap(channels, this.target, i, rectEl);

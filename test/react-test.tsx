@@ -243,7 +243,6 @@ describe("Style utilities", () => {
   });
 });
 
-
 // --- New <Plot> contract validation (Unit 1) ---
 // Renders the new façade through JSDOM + ReactDOM to confirm the imperative
 // mount path produces real SVG output via the imperative `plot()` factory.
@@ -984,8 +983,8 @@ describe("withHrefWrap", () => {
     const wrapped = withHrefWrap({href: ["https://example.com"]}, "_blank", 0, node);
     const html = renderToStaticMarkup(<g>{wrapped}</g>);
     assert.ok(html.includes("<a"), `got ${html}`);
-    assert.ok(html.includes("href=\"https://example.com\""), `got ${html}`);
-    assert.ok(html.includes("target=\"_blank\""), `got ${html}`);
+    assert.ok(html.includes('href="https://example.com"'), `got ${html}`);
+    assert.ok(html.includes('target="_blank"'), `got ${html}`);
   });
   it("skips entries with null href", () => {
     const node = <line x1={0} x2={10} y1={0} y2={0} />;

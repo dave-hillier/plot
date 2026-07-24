@@ -41,7 +41,7 @@ const defaults = {
 };
 
 /** The cell mark. */
-export class Cell extends (AbstractBar as { new (...args: any[]): RenderableMark }) {
+export class Cell extends (AbstractBar as {new (...args: any[]): RenderableMark}) {
   constructor(data?: Data, {x, y, ...options}: CellOptions = {}) {
     super(
       data,
@@ -78,26 +78,22 @@ export class Cell extends (AbstractBar as { new (...args: any[]): RenderableMark
       const w = at(wOf, i);
       const h2 = at(hOf, i);
       const rect = rounded
-        ? h(
-            "path",
-            {key: k, ...direct, ...channel, d: roundedRectPath(x, y, x + w, y + h2, this)},
-            titled
-          )
+        ? h("path", {key: k, ...direct, ...channel, d: roundedRectPath(x, y, x + w, y + h2, this)}, titled)
         : h(
-        "rect",
-        {
-          key: k,
-          ...direct,
-          ...channel,
-          x,
-          y,
-          width: w,
-          height: h2,
-          rx: rx ?? undefined,
-          ry: ry ?? undefined
-        },
-        titled
-      );
+            "rect",
+            {
+              key: k,
+              ...direct,
+              ...channel,
+              x,
+              y,
+              width: w,
+              height: h2,
+              rx: rx ?? undefined,
+              ry: ry ?? undefined
+            },
+            titled
+          );
       return withHrefWrap(channels, this.target, i, rect);
     });
     return h("g", {...indirect, ...transform}, rects);

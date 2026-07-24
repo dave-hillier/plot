@@ -191,11 +191,7 @@ export class Vector extends Mark {
       shape.draw(p as unknown as CanvasPath, len, r);
       const channel = channelStyleProps(i, channels);
       const titled = withTitleChild(channels, i, null);
-      const pathEl = h(
-        "path",
-        {key: k, ...direct, ...channel, transform: t, d: `${p}`},
-        titled
-      );
+      const pathEl = h("path", {key: k, ...direct, ...channel, transform: t, d: `${p}`}, titled);
       return withHrefWrap(channels, this.target, i, pathEl);
     });
     return h("g", {...indirect, ...transform}, paths);

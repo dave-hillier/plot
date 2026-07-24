@@ -142,7 +142,9 @@ export function PointerRoot({svgRef, children}: PointerRootProps) {
       if (stickyRef.current) return;
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
       rafRef.current = 0;
-      setState((prev) => (prev.winnerId == null ? prev : {winnerId: null, winnerI: null, winnerFi: null, sticky: false}));
+      setState((prev) =>
+        prev.winnerId == null ? prev : {winnerId: null, winnerI: null, winnerFi: null, sticky: false}
+      );
     };
 
     const onDown = (event: PointerEvent) => {
@@ -167,7 +169,5 @@ export function PointerRoot({svgRef, children}: PointerRootProps) {
     };
   }, [svgRef]);
 
-  return (
-    <PointerContext.Provider value={{register, selectionFor}}>{children}</PointerContext.Provider>
-  );
+  return <PointerContext.Provider value={{register, selectionFor}}>{children}</PointerContext.Provider>;
 }

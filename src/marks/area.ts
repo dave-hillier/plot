@@ -218,7 +218,15 @@ export function areaX(data?: Data, options?: AreaXOptions): Area {
   // binning, so that maybeDenseIntervalY emits the binned y1/y2 edges (and the
   // reduced x channel) rather than overwriting them downstream.
   const {y = indexOf, ...denseRest} = (options ?? {}) as any;
-  const {x, y: yOut, color, stroke = color, fill = color, z = x === fill || x === stroke ? null : undefined, ...rest} = maybeDenseIntervalY({y, ...maybeIdentityX(denseRest)}) as any;
+  const {
+    x,
+    y: yOut,
+    color,
+    stroke = color,
+    fill = color,
+    z = x === fill || x === stroke ? null : undefined,
+    ...rest
+  } = maybeDenseIntervalY({y, ...maybeIdentityX(denseRest)}) as any;
   return new Area(data, maybeStackX({...rest, x, y1: yOut, y2: undefined, z, stroke, fill}));
 }
 
@@ -232,6 +240,14 @@ export function areaY(data?: Data, options?: AreaYOptions): Area {
   // binning, so that maybeDenseIntervalX emits the binned x1/x2 edges (and the
   // reduced y channel) rather than overwriting them downstream.
   const {x = indexOf, ...denseRest} = (options ?? {}) as any;
-  const {x: xOut, y, color, stroke = color, fill = color, z = y === fill || y === stroke ? null : undefined, ...rest} = maybeDenseIntervalX({x, ...maybeIdentityY(denseRest)}) as any;
+  const {
+    x: xOut,
+    y,
+    color,
+    stroke = color,
+    fill = color,
+    z = y === fill || y === stroke ? null : undefined,
+    ...rest
+  } = maybeDenseIntervalX({x, ...maybeIdentityY(denseRest)}) as any;
   return new Area(data, maybeStackY({...rest, x1: xOut, x2: undefined, y, z, stroke, fill}));
 }

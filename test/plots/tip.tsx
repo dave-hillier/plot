@@ -1,5 +1,35 @@
 import React, {useEffect, useRef} from "react";
-import {Plot, AreaY, Dot, DotX, LineX, LineY, RectY, RuleX, Tip, Frame, Geo, Raster, Cell, BarX, BarY, BoxX, Hexagon, Crosshair, CrosshairX, binX, groupY, groupX, group, dodgeY, hexbin, centroid, geoCentroid, pointer, identity} from "../../src/react/index.js";
+import {
+  Plot,
+  AreaY,
+  Dot,
+  DotX,
+  LineX,
+  LineY,
+  RectY,
+  RuleX,
+  Tip,
+  Frame,
+  Geo,
+  Raster,
+  Cell,
+  BarX,
+  BarY,
+  BoxX,
+  Hexagon,
+  Crosshair,
+  CrosshairX,
+  binX,
+  groupY,
+  groupX,
+  group,
+  dodgeY,
+  hexbin,
+  centroid,
+  geoCentroid,
+  pointer,
+  identity
+} from "../../src/react/index.js";
 import * as d3 from "d3";
 import {feature, mesh} from "topojson-client";
 
@@ -10,7 +40,9 @@ function DispatchPointerMove({x, y, children}: {x: number; y: number; children: 
       const svg = ref.current?.querySelector("svg");
       if (!svg) return;
       const r = svg.getBoundingClientRect();
-      svg.dispatchEvent(new PointerEvent("pointermove", {pointerType: "mouse", clientX: r.left + x, clientY: r.top + y, bubbles: true}));
+      svg.dispatchEvent(
+        new PointerEvent("pointermove", {pointerType: "mouse", clientX: r.left + x, clientY: r.top + y, bubbles: true})
+      );
     }, 50);
     return () => window.clearTimeout(id);
   }, [x, y]);
@@ -19,25 +51,57 @@ function DispatchPointerMove({x, y, children}: {x: number; y: number; children: 
 
 export async function tipDispatch() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
-  return React.createElement(DispatchPointerMove, {x: 200, y: 200},
-    React.createElement(Plot, {},
-      React.createElement(Dot, {data: penguins, x: "culmen_length_mm", y: "culmen_depth_mm", title: "island", tip: true})
+  return React.createElement(
+    DispatchPointerMove,
+    {x: 200, y: 200},
+    React.createElement(
+      Plot,
+      {},
+      React.createElement(Dot, {
+        data: penguins,
+        x: "culmen_length_mm",
+        y: "culmen_depth_mm",
+        title: "island",
+        tip: true
+      })
     )
   );
 }
 
 export async function tipNull() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
-  return React.createElement(DispatchPointerMove, {x: 200, y: 200},
-    React.createElement(Plot, {},
-      React.createElement(Dot, {data: penguins, x: "culmen_length_mm", y: "culmen_depth_mm", title: (d: any) => (d.island === "Torgersen" ? null : d.island), tip: true})
+  return React.createElement(
+    DispatchPointerMove,
+    {x: 200, y: 200},
+    React.createElement(
+      Plot,
+      {},
+      React.createElement(Dot, {
+        data: penguins,
+        x: "culmen_length_mm",
+        y: "culmen_depth_mm",
+        title: (d: any) => (d.island === "Torgersen" ? null : d.island),
+        tip: true
+      })
     )
   );
 }
 
 export async function tipAnchors() {
-  const anchors = ["top", "right", "bottom", "left", "top-left", "top-right", "bottom-right", "bottom-left", "middle"] as const;
-  return React.createElement(Plot, {style: "overflow: visible;", height: 160},
+  const anchors = [
+    "top",
+    "right",
+    "bottom",
+    "left",
+    "top-left",
+    "top-right",
+    "bottom-right",
+    "bottom-left",
+    "middle"
+  ] as const;
+  return React.createElement(
+    Plot,
+    {style: "overflow: visible;", height: 160},
     React.createElement(Frame, {strokeOpacity: 0.2}),
     ...anchors.flatMap((anchor) => [
       React.createElement(Dot, {data: {length: 1}, frameAnchor: anchor, fill: "blue"}),
@@ -48,14 +112,14 @@ export async function tipAnchors() {
 
 export async function tipBoxX() {
   const morley = await d3.csv<any>("data/morley.csv", d3.autoType);
-  return React.createElement(Plot, {},
-    React.createElement(BoxX, {data: morley, x: "Speed", y: "Expt", tip: true})
-  );
+  return React.createElement(Plot, {}, React.createElement(BoxX, {data: morley, x: "Speed", y: "Expt", tip: true}));
 }
 
 export async function tipCrosshair() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
-  return React.createElement(Plot, {y: {grid: true}},
+  return React.createElement(
+    Plot,
+    {y: {grid: true}},
     React.createElement(LineY, {data: aapl, x: "Date", y: "Close", tip: true}),
     React.createElement(CrosshairX, {data: aapl, x: "Date", y: "Close"})
   );
@@ -63,7 +127,9 @@ export async function tipCrosshair() {
 
 export async function tipCrosshairFacet() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
-  return React.createElement(Plot, {grid: true},
+  return React.createElement(
+    Plot,
+    {grid: true},
     React.createElement(Dot, {data: penguins, x: "culmen_length_mm", y: "culmen_depth_mm", fy: "species"}),
     React.createElement(Crosshair, {data: penguins, x: "culmen_length_mm", y: "culmen_depth_mm", fy: "species"})
   );
@@ -71,17 +137,34 @@ export async function tipCrosshairFacet() {
 
 export async function tipPool() {
   const cars = await d3.csv<any>("data/cars.csv", d3.autoType);
-  return React.createElement(Plot, {},
-    React.createElement(Hexagon, {data: cars, ...hexbin({fill: "count"}, {x: "power (hp)", y: "economy (mpg)", tip: true})}),
+  return React.createElement(
+    Plot,
+    {},
+    React.createElement(Hexagon, {
+      data: cars,
+      ...hexbin({fill: "count"}, {x: "power (hp)", y: "economy (mpg)", tip: true})
+    }),
     React.createElement(Dot, {data: cars, x: "power (hp)", y: "economy (mpg)", tip: true})
   );
 }
 
 export async function tipPoolFacet() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
-  return React.createElement(Plot, {grid: true},
-    React.createElement(Dot, {data: penguins, ...hexbin({}, {x: "culmen_length_mm", y: "culmen_depth_mm", fy: "species", tip: true})}),
-    React.createElement(Dot, {data: penguins, x: "culmen_length_mm", y: "culmen_depth_mm", fy: "species", fill: "sex", tip: true})
+  return React.createElement(
+    Plot,
+    {grid: true},
+    React.createElement(Dot, {
+      data: penguins,
+      ...hexbin({}, {x: "culmen_length_mm", y: "culmen_depth_mm", fy: "species", tip: true})
+    }),
+    React.createElement(Dot, {
+      data: penguins,
+      x: "culmen_length_mm",
+      y: "culmen_depth_mm",
+      fy: "species",
+      fill: "sex",
+      tip: true
+    })
   );
 }
 
@@ -184,15 +267,7 @@ export async function tipDotFacets() {
         interval: "10 years"
       }}
     >
-      <Dot
-        data={athletes}
-        x="weight"
-        y="height"
-        fx="sex"
-        fy="date_of_birth"
-        stroke="#aaa"
-        filter={(d) => !d.info}
-      />
+      <Dot data={athletes} x="weight" y="height" fx="sex" fy="date_of_birth" stroke="#aaa" filter={(d) => !d.info} />
       <Dot
         data={athletes}
         x="weight"
@@ -321,11 +396,7 @@ export async function tipLongText() {
 
 export async function tipNewLines() {
   return (
-    <Plot
-      height={40}
-      style="overflow: visible;"
-      x={{axis: "top", label: null}}
-    >
+    <Plot height={40} style="overflow: visible;" x={{axis: "top", label: null}}>
       <Tip
         data={[
           {x: "after", label: `Hello\n\n`},
@@ -336,11 +407,7 @@ export async function tipNewLines() {
         anchor="top"
         title="label"
       />
-      <Tip
-        data={[{x: "no name"}]}
-        x="x"
-        channels={{a: ["first"], b: ["second"], "": [""]}}
-      />
+      <Tip data={[{x: "no name"}]} x="x" channels={{a: ["first"], b: ["second"], "": [""]}} />
     </Plot>
   );
 }
@@ -349,12 +416,7 @@ export async function tipRaster() {
   const ca55 = await d3.csv<any>("data/ca55-south.csv", d3.autoType);
   const domain = {type: "MultiPoint", coordinates: ca55.map((d) => [d.GRID_EAST, d.GRID_NORTH])} as const;
   return (
-    <Plot
-      width={640}
-      height={484}
-      projection={{type: "reflect-y", inset: 3, domain}}
-      color={{type: "diverging"}}
-    >
+    <Plot width={640} height={484} projection={{type: "reflect-y", inset: 3, domain}} color={{type: "diverging"}}>
       <Raster data={ca55} x="GRID_EAST" y="GRID_NORTH" fill="MAG_IGRF90" interpolate="nearest" tip={true} />
     </Plot>
   );

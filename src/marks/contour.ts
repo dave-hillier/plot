@@ -155,77 +155,80 @@ export class Contour extends AbstractRaster {
 
 function contourGeometry({thresholds, interval, ...options}: any) {
   thresholds = maybeThresholds(thresholds, interval, thresholdSturges);
-  return initializer(options, function (this: any, data: any, facets: any, channels: any, scales: any, dimensions: any, context: any) {
-    const [x1, y1, x2, y2] = rasterBounds(channels, scales, dimensions, context);
-    const dx = x2 - x1;
-    const dy = y2 - y1;
-    const {pixelSize: k, width: w = Math.round(Math.abs(dx) / k), height: h = Math.round(Math.abs(dy) / k)} = this;
-    const kx = w / dx;
-    const ky = h / dy;
-    const V = channels.value.value;
-    const VV: any[] = []; // V per facet
+  return initializer(
+    options,
+    function (this: any, data: any, facets: any, channels: any, scales: any, dimensions: any, context: any) {
+      const [x1, y1, x2, y2] = rasterBounds(channels, scales, dimensions, context);
+      const dx = x2 - x1;
+      const dy = y2 - y1;
+      const {pixelSize: k, width: w = Math.round(Math.abs(dx) / k), height: h = Math.round(Math.abs(dy) / k)} = this;
+      const kx = w / dx;
+      const ky = h / dy;
+      const V = channels.value.value;
+      const VV: any[] = []; // V per facet
 
-    // Interpolate the raster grid, as needed.
-    if (this.interpolate) {
-      const {x: X, y: Y} = applyPosition(channels, scales, context);
-      // Convert scaled (screen) coordinates to grid (canvas) coordinates.
-      const IX = (map as any)(X, (x: any) => (x - x1) * kx, Float64Array);
-      const IY = (map as any)(Y, (y: any) => (y - y1) * ky, Float64Array);
-      // The contour mark normally skips filtering on x, y, and value, so here
-      // we’re careful to use different names (0, 1, 2) when filtering.
-      const ichannels = [channels.x, channels.y, channels.value];
-      const ivalues = [IX, IY, V];
-      for (const facet of facets) {
-        const index = this.filter(facet, ichannels, ivalues);
-        VV.push(this.interpolate(index, w, h, IX, IY, V));
+      // Interpolate the raster grid, as needed.
+      if (this.interpolate) {
+        const {x: X, y: Y} = applyPosition(channels, scales, context);
+        // Convert scaled (screen) coordinates to grid (canvas) coordinates.
+        const IX = (map as any)(X, (x: any) => (x - x1) * kx, Float64Array);
+        const IY = (map as any)(Y, (y: any) => (y - y1) * ky, Float64Array);
+        // The contour mark normally skips filtering on x, y, and value, so here
+        // we’re careful to use different names (0, 1, 2) when filtering.
+        const ichannels = [channels.x, channels.y, channels.value];
+        const ivalues = [IX, IY, V];
+        for (const facet of facets) {
+          const index = this.filter(facet, ichannels, ivalues);
+          VV.push(this.interpolate(index, w, h, IX, IY, V));
+        }
       }
-    }
 
-    // Otherwise, chop up the existing dense raster grid into facets, if needed.
-    // V must be a dense grid in projected coordinates; if there are multiple
-    // facets, then V must be laid out vertically as facet 0, 1, 2… etc.
-    else if (facets) {
-      const n = w * h;
-      const m = facets.length;
-      for (let i = 0; i < m; ++i) VV.push(V.slice(i * n, i * n + n));
-    } else {
-      VV.push(V);
-    }
+      // Otherwise, chop up the existing dense raster grid into facets, if needed.
+      // V must be a dense grid in projected coordinates; if there are multiple
+      // facets, then V must be laid out vertically as facet 0, 1, 2… etc.
+      else if (facets) {
+        const n = w * h;
+        const m = facets.length;
+        for (let i = 0; i < m; ++i) VV.push(V.slice(i * n, i * n + n));
+      } else {
+        VV.push(V);
+      }
 
-    // Blur the raster grid, if desired.
-    if (this.blur > 0) for (const V of VV) blur2({data: V, width: w, height: h}, this.blur);
+      // Blur the raster grid, if desired.
+      if (this.blur > 0) for (const V of VV) blur2({data: V, width: w, height: h}, this.blur);
 
-    // Compute the contour thresholds.
-    const T = maybeTicks(thresholds, V, ...finiteExtent(VV));
-    if (T === null) throw new Error(`unsupported thresholds: ${thresholds}`);
+      // Compute the contour thresholds.
+      const T = maybeTicks(thresholds, V, ...finiteExtent(VV));
+      if (T === null) throw new Error(`unsupported thresholds: ${thresholds}`);
 
-    // Compute the (maybe faceted) contours.
-    const {contour} = contours().size([w, h]).smooth(this.smooth);
-    const contourData: any[] = [];
-    const contourFacets: any[] = [];
-    for (const V of VV) {
-      contourFacets.push(range(contourData.length, contourData.push(...map(T, (t: any) => contour(V, t)))));
-    }
+      // Compute the (maybe faceted) contours.
+      const {contour} = contours().size([w, h]).smooth(this.smooth);
+      const contourData: any[] = [];
+      const contourFacets: any[] = [];
+      for (const V of VV) {
+        contourFacets.push(range(contourData.length, contourData.push(...map(T, (t: any) => contour(V, t)))));
+      }
 
-    // Rescale the contour multipolygon from grid to screen coordinates.
-    for (const {coordinates} of contourData) {
-      for (const rings of coordinates) {
-        for (const ring of rings) {
-          for (const point of ring) {
-            point[0] = point[0] / kx + x1;
-            point[1] = point[1] / ky + y1;
+      // Rescale the contour multipolygon from grid to screen coordinates.
+      for (const {coordinates} of contourData) {
+        for (const rings of coordinates) {
+          for (const ring of rings) {
+            for (const point of ring) {
+              point[0] = point[0] / kx + x1;
+              point[1] = point[1] / ky + y1;
+            }
           }
         }
       }
-    }
 
-    // Compute the deferred channels.
-    return {
-      data: contourData,
-      facets: contourFacets,
-      channels: createChannels(this.contourChannels, contourData)
-    };
-  });
+      // Compute the deferred channels.
+      return {
+        data: contourData,
+        facets: contourFacets,
+        channels: createChannels(this.contourChannels, contourData)
+      };
+    }
+  );
 }
 
 // Apply the thresholds interval, function, or count, and return an array of

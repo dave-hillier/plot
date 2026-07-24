@@ -39,14 +39,7 @@ function bars(groups, title) {
         labelAnchor: "top"
       }}
     >
-      <BarX
-        data={groups}
-        x={([, value]) => value}
-        y={([key]) => key}
-        fill="steelblue"
-        insetTop={1}
-        sort={{y: "-x"}}
-      />
+      <BarX data={groups} x={([, value]) => value} y={([key]) => key} fill="steelblue" insetTop={1} sort={{y: "-x"}} />
       <RuleX data={[0]} />
     </Plot>
   );

@@ -15,7 +15,10 @@ export async function offsets() {
       marks: [
         axisX({fill: color, stroke: color}),
         axisY({fill: color, stroke: color}),
-        rect(penguins, bin({fillOpacity: "count"}, {x: "culmen_depth_mm", y: "culmen_length_mm", fill: color, thresholds: 50}))
+        rect(
+          penguins,
+          bin({fillOpacity: "count"}, {x: "culmen_depth_mm", y: "culmen_length_mm", fill: color, thresholds: 50})
+        )
       ]
     });
     wrap.appendChild(svg as Node);
