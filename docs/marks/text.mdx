@@ -1,4 +1,4 @@
-import {BarY, Frame, Line, Plot, RuleX, RuleY, SelectFirst, StackX2, Text} from "replot/react";
+import {BarY, Frame, identity, Line, Plot, RuleX, RuleY, SelectFirst, StackX2, Text} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import alphabet from "../data/alphabet.ts";
@@ -55,7 +55,7 @@ A text mark can also be used to visualize data directly, similar to a [dot mark]
 <Plot width={240} axis={null} x={{type: "point"}} y={{type: "point", domain: d3.range(4, 25)}} color={{domain: "NLB", range: ["currentColor", "peru", "brown"], legend: true}}>
   <Text data={[[0.5, 4]]} text={["Northbound"]} textAnchor="start" dx={16} />
   <Text data={[[-0.5, 4]]} text={["Southbound"]} textAnchor="end" dx={-16} />
-  <Text data={d3.range(5, 25)} x={0} y={Plot.identity} text={(y) => `${y % 12 || 12}${y % 24 >= 12 ? "p": "a"}`} />
+  <Text data={d3.range(5, 25)} x={0} y={identity} text={(y) => `${y % 12 || 12}${y % 24 >= 12 ? "p": "a"}`} />
   <StackX2>
     <Text data={caltrain} x={(d) => d.orientation === "N" ? 1 : -1} y="hours" fill="type" text="minutes" />
   </StackX2>

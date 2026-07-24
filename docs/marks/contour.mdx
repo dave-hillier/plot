@@ -1,4 +1,4 @@
-import {Contour, Dot, Plot, Sphere, Text} from "replot/react";
+import {Contour, Dot, identity, Plot, Sphere, Text} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import volcano from "../data/volcano.ts";
@@ -25,7 +25,7 @@ Whereas the **value** option produces isolines suitable for stroking, the **fill
     legend: true,
     label: "Elevation (m)"
   }}>
-  <Contour data={volcano.values} width={volcano.width} height={volcano.height} fill={Plot.identity} stroke="black" />
+  <Contour data={volcano.values} width={volcano.width} height={volcano.height} fill={identity} stroke="black" />
 </Plot>
 
 
@@ -54,14 +54,14 @@ grid = ({
 We can visualize this small grid directly with a [text mark](./text.md) using the same color encoding. Notice that the image below is flipped vertically relative to the data: the first row of the data is the *bottom* of the image because below *y* points up↑.
 
 <Plot grid x={{domain: [0, grid.width], label: "column"}} y={{domain: [0, grid.height], label: "row"}}>
-  <Text data={grid.values} text={Plot.identity} fill={Plot.identity} x={(d, i) => i % grid.width + 0.5} y={(d, i) => Math.floor(i / grid.width) + 0.5} />
+  <Text data={grid.values} text={identity} fill={identity} x={(d, i) => i % grid.width + 0.5} y={(d, i) => Math.floor(i / grid.width) + 0.5} />
 </Plot>
 
 Also notice that the grid points are offset by 0.5: they represent the *middle* of each pixel rather than the corner. Below, the contour mark is laid under the text mark to show filled contours.
 
 <Plot>
-  <Contour data={grid.values} width={grid.width} height={grid.height} fill={Plot.identity} interval={5} />
-  <Text data={grid.values} text={Plot.identity} fill="white" x={(d, i) => i % grid.width + 0.5} y={(d, i) => Math.floor(i / grid.width) + 0.5} />
+  <Contour data={grid.values} width={grid.width} height={grid.height} fill={identity} interval={5} />
+  <Text data={grid.values} text={identity} fill="white" x={(d, i) => i % grid.width + 0.5} y={(d, i) => Math.floor(i / grid.width) + 0.5} />
 </Plot>
 
 Similar to the [bin transform](../transforms/bin.md), contour levels can be specified either with the **interval** option (above, a contour at each multiple of 5) or with the **thresholds** option (either a count of thresholds or an explicit array of values).
@@ -106,7 +106,7 @@ The contour mark supports Plot’s [projection system](../features/projections.m
     legend: true,
     label: "Water vapor (cm)"
   }}>
-  <Contour data={vapor} fill={Plot.identity} width={360} height={180} x1={-180} y1={90} x2={180} y2={-90} blur={1} stroke="black" strokeWidth={0.5} clip="sphere" />
+  <Contour data={vapor} fill={identity} width={360} height={180} x1={-180} y1={90} x2={180} y2={-90} blur={1} stroke="black" strokeWidth={0.5} clip="sphere" />
   <Sphere stroke="black" />
 </Plot>
 

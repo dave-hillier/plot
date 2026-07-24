@@ -1,4 +1,4 @@
-import {Bin, BinX, Plot, Rect, RectY, RuleY, StackX} from "replot/react";
+import {Bin, BinX, formatMonth, Plot, Rect, RectY, RuleY, StackX} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import * as topojson from "topojson-client";
@@ -97,7 +97,7 @@ Below we recreate an uncommon [chart by Max Roser](https://ourworldindata.org/po
 
 The [interval transform](../transforms/interval.md) may be used to convert a single value in **x** or **y** (or both) into an extent. (Unlike the bin transform, the interval transform will produce overlapping rects if multiple points have the same position.) The chart below shows the observed daily maximum temperature in Seattle for the year 2015. The day-in-month and month-in-year numbers are expanded to unit intervals by setTing the **interval** option to 1.
 
-<Plot aspectRatio={1} y={{ticks: 12, tickFormat: Plot.formatMonth("en", "narrow")}}>
+<Plot aspectRatio={1} y={{ticks: 12, tickFormat: formatMonth("en", "narrow")}}>
   <Rect data={seattle.filter((d) => d.date.getUTCFullYear() === 2015)} x={(d) => d.date.getUTCDate()} y={(d) => d.date.getUTCMonth()} interval={1} fill="temp_max" inset={0.5} />
 </Plot>
 

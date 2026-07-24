@@ -1,4 +1,4 @@
-import {BollingerX, BollingerY, LineY, MapY, Plot, RuleX} from "replot/react";
+import {bollinger, BollingerX, BollingerY, LineY, MapY, Plot, RuleX} from "replot/react";
 import * as d3 from "d3";
 import {useState} from "react";
 import aapl from "../data/aapl.ts";
@@ -38,10 +38,10 @@ Plot.bollingerY(aapl, {x: "Date", y: "Close", n: {n}, k: {{k}}}).plot()
 For more control, you can also use the [bollinger map method](#bollinger) directly with the [map transform](../transforms/map.md).
 
 <Plot>
-  <MapY map={Plot.bollinger({n: 20, k: -2})}>
+  <MapY map={bollinger({n: 20, k: -2})}>
     <LineY data={aapl} x="Date" y="Close" stroke="red" />
   </MapY>
-  <MapY map={Plot.bollinger({n: 20, k: 2})}>
+  <MapY map={bollinger({n: 20, k: 2})}>
     <LineY data={aapl} x="Date" y="Close" stroke="green" />
   </MapY>
   <LineY data={aapl} x="Date" y="Close" />
@@ -104,7 +104,7 @@ Returns a bollinger mark for when time goes right→ (or ←left). If the **y** 
 
 ## bollinger(*options*)
 ```js
-Plot.lineY(data, Plot.map({y: Plot.bollinger({n: 20})}, {x: "Date", y: "Close"}))
+Plot.lineY(data, Plot.map({y: bollinger({n: 20})}, {x: "Date", y: "Close"}))
 ```
 
 Returns a bollinger map method for use with the [map transform](../transforms/map.md). The **k** option here defaults to zero instead of two.

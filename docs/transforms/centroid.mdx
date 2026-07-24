@@ -1,4 +1,4 @@
-import {Centroid, Dot, Geo, GeoCentroid, Hexbin, Plot, Text, Tip, Voronoi} from "replot/react";
+import {centroid, Centroid, Dot, Geo, GeoCentroid, Hexbin, Plot, pointer, Text, Tip, Voronoi} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import * as topojson from "topojson-client";
@@ -64,7 +64,7 @@ Combined with the [pointer transform](../interactions/pointer.md), the centroid 
   <Centroid>
     <Dot data={states} fill="red" stroke="var(--vp-c-bg-alt)" />
   </Centroid>
-  <Tip data={states} {...Plot.pointer(Plot.centroid({title: (d) => d.properties.name}))} />
+  <Tip data={states} {...pointer(centroid({title: (d) => d.properties.name}))} />
 </Plot>
 
 ## centroid(*options*)

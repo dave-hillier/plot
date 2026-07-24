@@ -158,7 +158,7 @@ In addition, a reducer may be specified as:
 * a function to be passed the array of values for each bin and the center of the bin
 * an object with a *reduceIndex* method
 
-In the last case, the **reduceIndex** method is repeatedly passed three arguments: the index for each bin (an array of integers), the input channel’s array of values, and the center of the bin (an object {data, x, y}); it must then return the corresponding aggregate value for the bin.
+In the last case, the **reduceIndex** method is repeatedly passed three arguments: the index for each bin (an array of integers), the input channel’s array of values, and the center of the bin (an object `{data, x, y}`); it must then return the corresponding aggregate value for the bin.
 
 Most reducers require binding the output channel to an input channel; for example, if you want the **y** output channel to be a *sum* (not merely a count), there should be a corresponding **y** input channel specifying which values to sum. If there is not, *sum* will be equivalent to *count*.
 

@@ -231,7 +231,7 @@ In addition, a reducer may be specified as:
 * a function to be passed the array of values for each group and the extent of the group
 * an object with a **reduceIndex** method, an optionally a **scope**
 
-In the last case, the **reduceIndex** method is repeatedly passed three arguments: the index for each group (an array of integers), the input channel’s array of values, and the extent of the group (an object {data, x, y}); it must then return the corresponding aggregate value for the group.
+In the last case, the **reduceIndex** method is repeatedly passed three arguments: the index for each group (an array of integers), the input channel’s array of values, and the extent of the group (an object `{data, x, y}`); it must then return the corresponding aggregate value for the group.
 
 If the reducer object’s **scope** is *data*, then the **reduceIndex** method is first invoked for the full data; the return value of the **reduceIndex** method is then made available as a third argument (making the extent the fourth argument). Similarly if the **scope** is *facet*, then the **reduceIndex** method is invoked for each facet, and the resulting reduce value is made available while reducing the facet’s groups. (This optional **scope** is used by the *proportion* and *proportion-facet* reducers.)
 

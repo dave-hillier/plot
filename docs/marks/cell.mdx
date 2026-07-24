@@ -1,4 +1,4 @@
-import {Cell, Group, Plot, Text} from "replot/react";
+import {Cell, formatMonth, formatWeekday, Group, Plot, Text} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import alphabet from "../data/alphabet.ts";
@@ -23,13 +23,13 @@ For example, the heatmap below shows the decline of *The Simpsons* after Season 
 
 With [faceting](../features/facets.md), we can produce a calendar of multiple years, where **x** represents week-of-year and **y** represents day-of-week. Below shows almost twenty years of daily changes of the Dow Jones Industrial Average.
 
-<Plot padding={0} x={{axis: null}} y={{tickFormat: Plot.formatWeekday("en", "narrow"), tickSize: 0}} fy={{tickFormat: ""}} color={{scheme: "PiYG"}}>
+<Plot padding={0} x={{axis: null}} y={{tickFormat: formatWeekday("en", "narrow"), tickSize: 0}} fy={{tickFormat: ""}} color={{scheme: "PiYG"}}>
   <Cell data={dji} x={(d) => d3.utcWeek.count(d3.utcYear(d.Date), d.Date)} y={(d) => d.Date.getUTCDay()} fy={(d) => d.Date.getUTCFullYear()} fill={(d, i) => i > 0 ? (d.Close - dji[i - 1].Close) / dji[i - 1].Close : NaN} title={(d, i) => i > 0 ? ((d.Close - dji[i - 1].Close) / dji[i - 1].Close * 100).toFixed(1) : NaN} inset={0.5} />
 </Plot>
 
 The cell mark can be combined with the [group transform](../transforms/group.md), which groups data by ordinal value. (The [bin transform](../transforms/bin.md), on the other hand, is intended for quantitative data and is typically paired with the [rect mark](./rect.md).) The heatmap below shows the maximum observed temperature by month (**y**) and date (**x**) in Seattle from 2012 through 2015.
 
-<Plot padding={0} y={{tickFormat: Plot.formatMonth("en", "short")}}>
+<Plot padding={0} y={{tickFormat: formatMonth("en", "short")}}>
   <Group fill="max">
     <Cell data={seattle} x={(d) => d.date.getUTCDate()} y={(d) => d.date.getUTCMonth()} fill="temp_max" inset={0.5} />
   </Group>

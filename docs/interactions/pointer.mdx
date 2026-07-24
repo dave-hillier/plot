@@ -1,4 +1,4 @@
-import {BinX, Dot, LineY, Plot, RectY, RuleX, RuleY, StackY, Text} from "replot/react";
+import {BinX, Dot, formatIsoDate, LineY, Plot, pointer, pointerX, RectY, RuleX, RuleY, StackY, Text} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import aapl from "../data/aapl.ts";
@@ -26,7 +26,7 @@ To demonstrate, below the pointer transform filters a filled <span style={{borde
 </div>
 
 <Plot>
-  <Dot data={penguins} {...(pointered ? Plot.pointer : (o) => o)({x: "culmen_length_mm", y: "culmen_depth_mm", fill: "red", r: 8})} />
+  <Dot data={penguins} {...(pointered ? pointer : (o) => o)({x: "culmen_length_mm", y: "culmen_depth_mm", fill: "red", r: 8})} />
   <Dot data={penguins} x="culmen_length_mm" y="culmen_depth_mm" />
 </Plot>
 
@@ -101,9 +101,9 @@ The **px** and **py** channels may be used to specify pointing target positions 
 
 <Plot height={160} y={{axis: "right", grid: true, nice: true}}>
   <LineY data={aapl} x="Date" y="Close" />
-  <RuleX data={aapl} {...Plot.pointerX({x: "Date", py: "Close", stroke: "red"})} />
-  <Dot data={aapl} {...Plot.pointerX({x: "Date", y: "Close", stroke: "red"})} />
-  <Text data={aapl} {...Plot.pointerX({px: "Date", py: "Close", dy: -17, frameAnchor: "top-left", fontVariant: "tabular-nums", text: (d) => [`Date ${Plot.formatIsoDate(d.Date)}`, `Close ${d.Close.toFixed(2)}`].join("   ")})} />
+  <RuleX data={aapl} {...pointerX({x: "Date", py: "Close", stroke: "red"})} />
+  <Dot data={aapl} {...pointerX({x: "Date", y: "Close", stroke: "red"})} />
+  <Text data={aapl} {...pointerX({px: "Date", py: "Close", dy: -17, frameAnchor: "top-left", fontVariant: "tabular-nums", text: (d) => [`Date ${formatIsoDate(d.Date)}`, `Close ${d.Close.toFixed(2)}`].join("   ")})} />
 </Plot>
 
 As the above chart shows, a plot can have multiple pointer transforms. Each pointer transform functions independently (with the exception of *click-to-stick*, described next), though we recommend configuring them with the same target positions and pointing mode so that the same point is focused across marks.
@@ -154,7 +154,7 @@ Applies the pointer render transform to the specified *options* to filter the ma
 
 ## pointerX(*options*)
 ```js
-Plot.tip(aapl, Plot.pointerX({x: "Date", y: "Close"}))
+Plot.tip(aapl, pointerX({x: "Date", y: "Close"}))
 ```
 
 Like [pointer](#pointer), except the determination of the closest point considers mostly the *x* (horizontal↔︎) position; this should be used for plots where *x* is the dominant dimension, such as time in a time-series chart, the binned quantitative dimension in a histogram, or the categorical dimension of a bar chart.

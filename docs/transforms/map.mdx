@@ -1,4 +1,4 @@
-import {AreaY, LineY, MapY, Plot, RuleY, WindowY, map} from "replot/react";
+import {AreaY, bollinger, LineY, map, MapY, Plot, RuleY, WindowY} from "replot/react";
 import * as d3 from "d3";
 import {useState} from "react";
 import aapl from "../data/aapl.ts";
@@ -65,8 +65,8 @@ As a more practical example, we can use the map transform to construct [Bollinge
 <Plot y={{
     grid: true
   }}>
-  <AreaY data={aapl} {...map({y1: Plot.bollinger({n, k: -k}), y2: Plot.bollinger({n, k})}, {x: "Date", y: "Close", fillOpacity: 0.2})} />
-  <LineY data={aapl} {...map({y: Plot.bollinger({n})}, {x: "Date", y: "Close", stroke: "blue"})} />
+  <AreaY data={aapl} {...map({y1: bollinger({n, k: -k}), y2: bollinger({n, k})}, {x: "Date", y: "Close", fillOpacity: 0.2})} />
+  <LineY data={aapl} {...map({y: bollinger({n})}, {x: "Date", y: "Close", stroke: "blue"})} />
   <LineY data={aapl} x="Date" y="Close" strokeWidth={1} />
 </Plot>
 

@@ -10,8 +10,7 @@ The **interval transform** turns a quantitative or temporal *value* into a conti
 
 The interval transform is often used for time-series bar charts. For example, consider the chart below of the daily trade volume of Apple stock. Because of the [barY mark](../marks/bar.md), the *x* scale is ordinal (*band*). And because the regularity of the data is not specified (*i.e.*, because Plot has no way of knowing that this is daily data), every distinct value must have its own label, leading to crowding. If a day were missing data, it would be difficult to spot! 👓
 
-<Plot marginBottom={80} x={{type: "band"}}>
-  y={{
+<Plot marginBottom={80} x={{type: "band"}} y={{
     transform: (d) => d / 1e6,
     label: "Daily trade volume (millions)"
   }}>
@@ -34,8 +33,7 @@ In contrast, a [rectY mark](../marks/rect.md) with the **interval** option and t
 The interval transform is not a standalone transform, but an option on marks and scales.
 The meaning of the **interval** mark option depends on the associated mark, such as line, bar, rect, or dot. For example, for the [barY mark](../marks/bar.md), the **interval** option affects converts a singular *y* value into an interval [*y1*, *y2*]. In the contrived example below, notice that the vertical↕︎ extent of each bar spans an interval of 5 million, rather than extending to *y* = 0.
 
-<Plot marginBottom={80} x={{type: "band"}}>
-  y={{
+<Plot marginBottom={80} x={{type: "band"}} y={{
     grid: true,
     transform: (d) => d / 1e6,
     label: "Daily trade volume (millions)"
