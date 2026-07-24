@@ -61,6 +61,8 @@ class AbstractTick extends Mark {
     markers(this, options);
   }
   renderJSX(this: any, index: any, scales: any, channels: any, dimensions: any, _context: any): ReactNode {
+    // A mark whose data is null has no index; render nothing rather than crash.
+    if (index == null) index = [];
     const {stroke: S} = channels;
     const indirect = indirectStyleProps(this);
     const transform = (this as any)._transformProp(scales);

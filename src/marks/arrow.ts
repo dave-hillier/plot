@@ -158,6 +158,8 @@ export class Arrow extends Mark {
     this.sweep = maybeSweep(sweep);
   }
   renderJSX(this: any, index, scales, channels, dimensions, _context): ReactNode {
+    // A mark whose data is null has no index; render nothing rather than crash.
+    if (index == null) index = [];
     const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1, SW} = channels;
     const {strokeWidth, bend, headAngle, headLength, insetStart, insetEnd} = this;
     const sw = SW ? (i: number) => SW[i] : constant(strokeWidth === undefined ? 1 : strokeWidth);

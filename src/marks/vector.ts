@@ -171,6 +171,8 @@ export class Vector extends Mark {
     this.frameAnchor = maybeFrameAnchor(frameAnchor);
   }
   renderJSX(this: any, index, scales, channels, dimensions, _context): ReactNode {
+    // A mark whose data is null has no index; render nothing rather than crash.
+    if (index == null) index = [];
     const {x, y} = scales;
     const {x: X, y: Y, length: L, rotate: A} = channels;
     const {length, rotate, anchor, shape, r} = this;

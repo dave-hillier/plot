@@ -58,6 +58,8 @@ export class Cell extends (AbstractBar as { new (...args: any[]): RenderableMark
     selection.call(applyTransform, mark, {}, 0, 0);
   }
   renderJSX(this: any, index: any, scales: any, channels: any, dimensions: any, _context: any): ReactNode {
+    // A mark whose data is null has no index; render nothing rather than crash.
+    if (index == null) index = [];
     const {rx, ry, rx1y1, rx1y2, rx2y1, rx2y2} = this;
     const rounded = rx1y1 || rx1y2 || rx2y1 || rx2y2;
     const xOf = this._x(scales, channels, dimensions);

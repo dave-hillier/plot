@@ -266,6 +266,8 @@ export class Rect extends Mark {
     rectRadii(this, options);
   }
   renderJSX(this: any, index: any, scales: any, channels: any, dimensions: any, context: any): ReactNode {
+    // A mark whose data is null has no index; render nothing rather than crash.
+    if (index == null) index = [];
     const {x, y} = scales;
     let {x1: X1, y1: Y1, x2: X2, y2: Y2} = channels;
     const {marginTop, marginRight, marginBottom, marginLeft, width, height} = dimensions;

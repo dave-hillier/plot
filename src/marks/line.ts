@@ -144,6 +144,8 @@ export class Line extends Mark {
     }
   }
   renderJSX(this: any, index: any, scales: any, channels: any, dimensions: any, context: any): ReactNode {
+    // A mark whose data is null has no index; render nothing rather than crash.
+    if (index == null) index = [];
     const {x: X, y: Y, stroke: S} = channels;
     const {curve} = this;
     const indirect = indirectStyleProps(this, dimensions);

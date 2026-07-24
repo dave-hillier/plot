@@ -133,6 +133,8 @@ export class Contour extends AbstractRaster {
     return super.filter(index, channels, values);
   }
   renderJSX(this: any, index: any, scales: any, channels: any, dimensions: any, context: any): ReactNode {
+    // A mark whose data is null has no index; render nothing rather than crash.
+    if (index == null) index = [];
     const {geometry: G} = channels;
     const path = geoPath();
     const indirect = indirectStyleProps(this, dimensions);

@@ -94,6 +94,8 @@ class DelaunayLink extends MarkBase {
     markers(this, options);
   }
   renderJSX(this: any, index: any, scales: any, channels: any, dimensions: any, _context: any): ReactNode {
+    // A mark whose data is null has no index; render nothing rather than crash.
+    if (index == null) index = [];
     const {x, y} = scales;
     const {x: X, y: Y, z: Z} = channels;
     const {curve} = this;
@@ -195,6 +197,9 @@ class AbstractDelaunayMark extends MarkBase {
     );
   }
   renderJSX(this: any, index: any, scales: any, channels: any, dimensions: any, _context: any): ReactNode {
+    // A mark whose data is null has no index; render nothing rather than crash
+    // (an empty triangulation would otherwise render a degenerate path).
+    if (index == null) index = [];
     const {x, y} = scales;
     const {x: X, y: Y, z: Z} = channels;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
@@ -219,7 +224,7 @@ class AbstractDelaunayMark extends MarkBase {
       const groups = Array.from(group(index, (i: number) => Z[i]).values()) as any[];
       children = groups.map((sub, gi) => h("g", {key: gi}, buildPath(sub, 0)));
     } else {
-      children = buildPath(index, 0);
+      children = index.length ? buildPath(index, 0) : null;
     }
     return h("g", {...indirect, ...transform}, children);
   }
@@ -279,6 +284,8 @@ class Voronoi extends MarkBase {
     );
   }
   renderJSX(this: any, index: any, scales: any, channels: any, dimensions: any, _context: any): ReactNode {
+    // A mark whose data is null has no index; render nothing rather than crash.
+    if (index == null) index = [];
     const {x, y} = scales;
     const {x: X, y: Y, cells: C} = channels;
     const indirect = indirectStyleProps(this);

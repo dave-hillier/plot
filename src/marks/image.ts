@@ -174,6 +174,8 @@ export class Image extends Mark {
     this.imageRendering = impliedString(imageRendering, "auto");
   }
   renderJSX(this: any, index: any, scales: any, channels: any, dimensions: any, _context: any): ReactNode {
+    // A mark whose data is null has no index; render nothing rather than crash.
+    if (index == null) index = [];
     const {x, y} = scales;
     const {x: X, y: Y, width: W, height: H, r: R, rotate: A, src: S} = channels;
     const {r, width, height, rotate} = this;

@@ -120,13 +120,18 @@ class LinearRegression extends Mark {
     if (!(this.precision > 0)) throw new Error(`invalid precision: ${precision}`);
   }
   renderJSX(this: any, index: any, scales: any, channels: any, _dimensions: any, _context: any): ReactNode {
+    // A mark whose data is null has no index; render nothing rather than crash
+    // on the degenerate regression of an empty group.
+    if (index == null) index = [];
     const {x: X, y: Y, z: Z} = channels;
     const {ci} = this;
     const indirect = indirectStyleProps(this);
     const direct = directStyleProps(this);
     const transform = transformProp(this, scales);
     const showBand = ci && !isNone(this.fill);
-    const groups = Array.from((Z ? groupZ(index, Z, this.z) : [index]) as Iterable<number[]>);
+    const groups = index.length
+      ? Array.from((Z ? groupZ(index, Z, this.z) : [index]) as Iterable<number[]>)
+      : [];
     const elements: ReactNode[] = [];
     groups.forEach((G, k) => {
       const lineChannel = groupChannelStyleProps(G, {...channels, fill: null, fillOpacity: null});

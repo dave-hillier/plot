@@ -105,6 +105,8 @@ export class Link extends Mark {
     }
   }
   renderJSX(this: any, index, scales, channels, dimensions, context): ReactNode {
+    // A mark whose data is null has no index; render nothing rather than crash.
+    if (index == null) index = [];
     const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1, stroke: S} = channels;
     const {curve} = this;
     const indirect = indirectStyleProps(this);

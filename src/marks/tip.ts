@@ -217,6 +217,8 @@ export class Tip extends (Mark as { new (...args: any[]): Mark }) {
     this.format = typeof format === "string" || typeof format === "function" ? {title: format} : {...format}; // defensive copy before mutate; also promote nullish to empty
   }
   renderJSX(this: any, index: any, scales: any, values: any, dimensions: any, _context: any): ReactNode {
+    // A mark whose data is null has no index; render nothing rather than crash.
+    if (index == null) index = [];
     const mark = this;
     const {x, y} = scales;
     const {anchor, monospace, lineHeight, lineWidth} = this;

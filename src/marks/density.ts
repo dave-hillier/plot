@@ -92,6 +92,8 @@ export class Density extends Mark {
     return index; // don’t filter contours constructed by initializer
   }
   renderJSX(this: any, index: any, scales: any, channels: any, dimensions: any, context: any): ReactNode {
+    // A mark whose data is null has no index; render nothing rather than crash.
+    if (index == null) index = [];
     const {contours} = channels;
     const path = geoPath();
     const indirect = indirectStyleProps(this);

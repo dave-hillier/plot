@@ -81,6 +81,8 @@ export class WaffleY extends BarY {
 }
 
 function waffleRenderJSX(mark: any, index: any, scales: any, values: any, dimensions: any): ReactNode {
+  // A mark whose data is null has no index; render nothing rather than crash.
+  if (index == null) index = [];
   const {gap, rx, ry} = mark;
   const {channels} = values;
   const polygon = channels.polygon.value;

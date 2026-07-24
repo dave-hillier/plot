@@ -300,6 +300,8 @@ export class Text extends Mark {
     this.clipLine = clipper(this);
   }
   renderJSX(this: any, index: any, scales: any, channels: any, dimensions: any, context: any): ReactNode {
+    // A mark whose data is null has no index; render nothing rather than crash.
+    if (index == null) index = [];
     const {x, y} = scales;
     const {x: X, y: Y, rotate: R, text: T, title: TL, fontSize: FS} = channels;
     const {rotate, lineAnchor, lineHeight, textOverflow, splitLines, clipLine} = this;

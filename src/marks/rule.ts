@@ -126,6 +126,8 @@ export class RuleX extends Mark {
     markers(this, options);
   }
   renderJSX(this: any, index, scales, channels, dimensions, context): ReactNode {
+    // A mark whose data is null has no index; render nothing rather than crash.
+    if (index == null) index = [];
     const {x, y} = scales;
     const {x: X, y1: Y1, y2: Y2, stroke: S} = channels;
     const {width, height, marginTop, marginRight, marginLeft, marginBottom} = dimensions;
@@ -199,6 +201,8 @@ export class RuleY extends Mark {
     markers(this, options);
   }
   renderJSX(this: any, index, scales, channels, dimensions, context): ReactNode {
+    // A mark whose data is null has no index; render nothing rather than crash.
+    if (index == null) index = [];
     const {x, y} = scales;
     const {y: Y, x1: X1, x2: X2, stroke: S} = channels;
     const {width, height, marginTop, marginRight, marginLeft, marginBottom} = dimensions;

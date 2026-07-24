@@ -171,6 +171,8 @@ export class Area extends Mark {
     return index;
   }
   renderJSX(this: any, index: any, scales: any, channels: any, _dimensions: any, _context: any): ReactNode {
+    // A mark whose data is null has no index; render nothing rather than crash.
+    if (index == null) index = [];
     const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1} = channels;
     const indirect = indirectStyleProps(this);
     const direct = directStyleProps(this);
