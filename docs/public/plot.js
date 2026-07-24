@@ -1,1 +1,1 @@
-../../dist/plot.umd.js
+../../dist/replot.umd.js

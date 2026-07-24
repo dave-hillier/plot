@@ -41,14 +41,16 @@
     "test:lint": "eslint src test",
     "test:prettier": "prettier --check src test",
     "test:tsc": "tsc",
-    "prepublishOnly": "rm -rf dist && rollup -c",
+    "bundle": "vite build --config vite.bundle.config.ts && MINIFY=1 vite build --config vite.bundle.config.ts",
+    "prepublishOnly": "rm -rf dist && yarn bundle",
     "dev": "vite",
-    "docs:dev": "vite --config docs/vite.docs.config.ts",
-    "docs:build": "vite build --config docs/vite.docs.config.ts",
+    "docs:dev": "tsx docs/scripts/build-api-data.ts && vite --config docs/vite.docs.config.ts",
+    "docs:build": "yarn bundle && tsx docs/scripts/build-api-data.ts && vite build --config docs/vite.docs.config.ts",
     "docs:preview": "vite preview --config docs/vite.docs.config.ts"
   },
   "sideEffects": [
-    "./src/index.js"
+    "./src/index.js",
+    "./src/index.ts"
   ],
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",

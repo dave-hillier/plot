@@ -79,6 +79,8 @@ export class Geo extends Mark {
     this.r = cr;
   }
   renderJSX(this: any, index: any, scales: any, channels: any, _dimensions: any, context: any): ReactNode {
+    // A mark whose data is null has no index; render nothing rather than crash.
+    if (index == null) index = [];
     const {geometry: G, r: R} = channels;
     const path = context.path();
     const {r} = this;

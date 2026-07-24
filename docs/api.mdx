@@ -1,21 +1,31 @@
-import {data} from "./data/api.data";
+import data from "./data/api-index.json";
 
 # API index
 
 ## Methods
 
 <ul className="oneline">
-  <li>
-    <span><a href={`${href}#${name}`}>{ name }</a> - { comment }</span>
-  </li>
+  {data.methods.map(({name, comment, href}) => (
+    <li key={`${href}#${name}`}>
+      <span>
+        <a href={`/${href}#${name}`}>{name}</a> - {comment}
+      </span>
+    </li>
+  ))}
 </ul>
 
 ## Options
 
 <ul>
-  <li>
-    <b>{ name }</b> - <span><a href={href}>{ context }</a><span>, </span></span>
-  </li>
+  {data.options.map(([name, contexts]) => (
+    <li key={name}>
+      <b>{name}</b> -{" "}
+      {contexts.map(({name: contextName, href}, i) => (
+        <span key={href + contextName}>
+          <a href={`/${href}`}>{contextName}</a>
+          {i < contexts.length - 1 ? ", " : ""}
+        </span>
+      ))}
+    </li>
+  ))}
 </ul>
-
-

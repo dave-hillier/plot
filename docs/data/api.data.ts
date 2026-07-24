@@ -2,6 +2,26 @@ import {rollup, sort} from "d3";
 import {FunctionDeclaration, Node, Project, VariableStatement} from "ts-morph";
 import {readMarkdownFiles, readMarkdownSource, getAnchors} from "../components/links.js";
 
+// Internal plumbing exported for the React renderer's benefit (shared scale,
+// channel, projection, and dimension computation), not user-facing API.
+function isInternalMethod(name: string): boolean {
+  return (
+    name === "autoScaleRange" ||
+    name === "basic" ||
+    name === "createChannel" ||
+    name === "createDimensions" ||
+    name === "createProjection" ||
+    name === "createScaleFunctions" ||
+    name === "createScales" ||
+    name === "formatDefault" ||
+    name === "getGeometryChannels" ||
+    name === "hasProjection" ||
+    name === "inferChannelScale" ||
+    name === "innerDimensions" ||
+    name === "maybeCurveAuto"
+  );
+}
+
 // These interfaces tend to represent things that Plot constructs internally,
 // rather than objects that the user is expected to provide.
 function isInternalInterface(name) {
@@ -36,7 +56,7 @@ function getDescription(node: FunctionDeclaration | VariableStatement): string {
 // this function up-to-date, and try to generalize patterns so that we
 // automatically generate correct links. (TODO Verify that the links are valid.)
 function getHref(name: string, path: string): string {
-  path = path.replace(/\.d\.ts$/, ""); // drop trailing .d.ts
+  path = path.replace(/\.(d\.)?ts$/, ""); // drop trailing .ts or .d.ts
   path = path.replace(/([a-z0-9])([A-Z])/, (_, a, b) => `${a}-${b.toLowerCase()}`); // camel case conversion
   if (path.split("/").length === 1) path = `features/${path}`; // top-level declarations are features
   switch (path) {
@@ -94,10 +114,14 @@ export default {
   async load() {
     // Parse the TypeScript declarations to get exported symbols.
     const project = new Project({tsConfigFilePath: "tsconfig.json"});
+    // The tsconfig's include may omit the hand-written declaration files the
+    // index is generated from; load them explicitly.
+    project.addSourceFilesAtPaths("src/**/*.d.ts");
     const allMethods: {name: string; comment: string; href: string}[] = [];
     const allOptions: {name: string; context: {name: string; href: string}}[] = [];
     const index = project.getSourceFile("src/index.d.ts")!;
     for (const [name, declarations] of index.getExportedDeclarations()) {
+      if (isInternalMethod(name)) continue;
       for (const declaration of declarations) {
         if (Node.isInterfaceDeclaration(declaration)) {
           if (isInternalInterface(name)) continue;
