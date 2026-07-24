@@ -1,4 +1,4 @@
-import {AreaY, LineY, Plot, RuleY, WindowY, map, window as plotWindow} from "replot/react";
+import {AreaY, LineY, Plot, RuleY, WindowY, mapTransform, windowMap} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import sftemp from "../data/sf-temperatures.ts";
@@ -108,8 +108,8 @@ While the windowY transform derives **y** (and **y1** and **y2**), and the windo
 
 <Plot y={{grid: true}} color={{scheme: "BuYlRd", domain: [-0.5, 0.5]}}>
   <RuleY data={[0]} />
-  <LineY data={bls} {...map(
-        {stroke: plotWindow({k: 2, reduce: "difference"})},
+  <LineY data={bls} {...mapTransform(
+        {stroke: windowMap({k: 2, reduce: "difference"})},
         {x: "date", y: "unemployment", z: "division", stroke: "unemployment"}
       )} />
 </Plot>

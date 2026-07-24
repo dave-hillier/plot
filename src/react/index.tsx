@@ -215,16 +215,28 @@ export {Centroid, GeoCentroid} from "./transforms/Centroid.js";
 export type {CentroidProps, GeoCentroidProps} from "./transforms/Centroid.js";
 
 // Re-export ALL transforms (pure functions, shared with imperative API)
-export {filter, reverse, sort, shuffle, basic as transform, initializer} from "../transforms/basic.js";
+// Bare `filter`, `map`, and `window` shadow the JS/DOM globals when imported
+// unaliased; they stay exported for Observable Plot compatibility, but the
+// aliases `filterTransform`, `mapTransform`, and `windowMap` are preferred
+// from this entry point.
+export {
+  filter,
+  filter as filterTransform,
+  reverse,
+  sort,
+  shuffle,
+  basic as transform,
+  initializer
+} from "../transforms/basic.js";
 export {bin, binX, binY} from "../transforms/bin.js";
 export {centroid, geoCentroid} from "../transforms/centroid.js";
 export {dodgeX, dodgeY} from "../transforms/dodge.js";
 export {group, groupX, groupY, groupZ, find} from "../transforms/group.js";
 export {hexbin} from "../transforms/hexbin.js";
 export {normalize, normalizeX, normalizeY} from "../transforms/normalize.js";
-export {map, mapX, mapY} from "../transforms/map.js";
+export {map, map as mapTransform, mapX, mapY} from "../transforms/map.js";
 export {shiftX, shiftY} from "../transforms/shift.js";
-export {window, windowX, windowY} from "../transforms/window.js";
+export {window, window as windowMap, windowX, windowY} from "../transforms/window.js";
 export {select, selectFirst, selectLast, selectMaxX, selectMaxY, selectMinX, selectMinY} from "../transforms/select.js";
 export {stackX, stackX1, stackX2, stackY, stackY1, stackY2} from "../transforms/stack.js";
 export {treeNode, treeLink} from "../transforms/tree.js";

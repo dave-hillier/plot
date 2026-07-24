@@ -7,6 +7,7 @@ import jsdomit from "./jsdom.js";
 import {
   Plot,
   BarY,
+  LineY,
   Rect,
   RectX,
   RectY,
@@ -19,7 +20,13 @@ import {
   bin,
   binX,
   binY,
-  groupX
+  groupX,
+  filter,
+  filterTransform,
+  map,
+  mapTransform,
+  window as windowFn,
+  windowMap
 } from "../src/react/index.js";
 
 const sales = [
@@ -191,6 +198,54 @@ describe("transform wrapper equivalence", () => {
       </Plot>
     );
     assert.strictEqual(normalize(nested), normalize(spread));
+  });
+});
+
+describe("preferred transform aliases", () => {
+  it("aliases the bare filter, map, and window exports", () => {
+    assert.strictEqual(filterTransform, filter);
+    assert.strictEqual(mapTransform, map);
+    assert.strictEqual(windowMap, windowFn);
+  });
+
+  jsdomit("mapTransform with a windowMap method matches the bare map/window form", async () => {
+    const aliased = await renderSvg(
+      <Plot width={400} height={300}>
+        <LineY
+          data={sales}
+          {...mapTransform(
+            {stroke: windowMap({k: 2, reduce: "difference"})},
+            {x: "date", y: "units", z: "fruit", stroke: "units"}
+          )}
+        />
+      </Plot>
+    );
+    const bare = await renderSvg(
+      <Plot width={400} height={300}>
+        <LineY
+          data={sales}
+          {...map(
+            {stroke: windowFn({k: 2, reduce: "difference"})},
+            {x: "date", y: "units", z: "fruit", stroke: "units"}
+          )}
+        />
+      </Plot>
+    );
+    assert.strictEqual(normalize(aliased), normalize(bare));
+  });
+
+  jsdomit("filterTransform matches the bare filter form", async () => {
+    const aliased = await renderSvg(
+      <Plot width={400} height={300}>
+        <BarY data={sales} {...filterTransform((d) => d.units > 15, {x: "date", y: "units"})} />
+      </Plot>
+    );
+    const bare = await renderSvg(
+      <Plot width={400} height={300}>
+        <BarY data={sales} {...filter((d) => d.units > 15, {x: "date", y: "units"})} />
+      </Plot>
+    );
+    assert.strictEqual(normalize(aliased), normalize(bare));
   });
 });
 
