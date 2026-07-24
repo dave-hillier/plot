@@ -1,11 +1,13 @@
 import {useMark} from "../useMark.js";
+import type {MarkProps} from "../markProps.js";
 import {tip} from "../../marks/tip.js";
+import type {TipOptions} from "../../marks/tip.js";
 import {formatDefault} from "../../core/index.js";
 
-export interface TipProps {
-  data?: any;
-  [key: string]: any;
-}
+// Mark-specific options come from the imperative options interface; the
+// shared MarkProps base contributes data and keeps the surface open (see
+// markProps.ts for the openness rationale).
+export interface TipProps extends MarkProps, TipOptions {}
 
 // Registers the imperative Tip mark with the enclosing <Plot>; Plot's
 // MarkSlot detects pointer-consumer marks and routes their rendering
