@@ -81,7 +81,7 @@ Plot.plot({
 When an ordinal scale domain has high cardinality, the **ticks** scale option can be used to specify which ticks to label. Alternatively, consider using a quantitative or temporal scale instead, as by switching to a [bar mark](./bar.md).
 ## Cell options
 
-In addition to the [standard mark options](../features/marks.md#mark-options), including [insetS](../features/marks.md#insetS) and [rounded corners](../features/marks.md#rounded-corners), the following optional channels are supported:
+In addition to the [standard mark options](../features/marks.md#mark-options), including [insets](../features/marks.md#insets) and [rounded corners](../features/marks.md#rounded-corners), the following optional channels are supported:
 
 * **x** - the horizontal position; bound to the *x* scale, which must be *band*
 * **y** - the vertical position; bound to the *y* scale, which must be *band*
@@ -90,21 +90,21 @@ If **x** is not specified, the cell will span the full horizontal extent of the 
 
 The **stroke** defaults to *none*. The **fill** defaults to *currentColor* if the stroke is *none*, and to *none* otherwise.
 
-## cell(*data*, *options*)
+## cell(*data*, *options*) {/* {#cell} */}
 ```js
 Plot.cell(simpsons, {x: "number_in_season", y: "season", fill: "imdb_rating"})
 ```
 
 Returns a new cell with the given *data* and *options*. If neither the **x** nor **y** options are specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
-## cellX(*data*, *options*)
+## cellX(*data*, *options*) {/* {#cellX} */}
 ```js
 Plot.cellX(simpsons.map((d) => d.imdb_rating))
 ```
 
 Equivalent to [cell](#cell), except that if the **x** option is not specified, it defaults to [0, 1, 2, …], and if the **fill** option is not specified and **stroke** is not a channel, the fill defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
 
-## cellY(*data*, *options*)
+## cellY(*data*, *options*) {/* {#cellY} */}
 ```js
 Plot.cellY(simpsons.map((d) => d.imdb_rating))
 ```

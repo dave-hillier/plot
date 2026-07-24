@@ -77,14 +77,14 @@ The **basis** option specifies how to normalize the series values; it is one of:
 * a function to be passed an array of values, returning the desired basis
 * a function to be passed an index and channel value array, returning the desired basis
 
-## normalize(*basis*) <VersionBadge version="0.2.3" />
+## normalize(*basis*) <VersionBadge version="0.2.3" /> {/* {#normalize} */}
 ```js
 Plot.map({y: Plot.normalize("first")}, {x: "Date", y: "Close", stroke: "Symbol"})
 ```
 
 Returns a normalize map method for the given *basis*, suitable for use with the [map transform](./map.md).
 
-## normalizeX(*basis*, *options*)
+## normalizeX(*basis*, *options*) {/* {#normalizeX} */}
 ```js
 Plot.normalizeX("first", {y: "Date", x: "Close", stroke: "Symbol"})
 ```
@@ -97,7 +97,7 @@ Plot.normalizeX({basis: "first", y: "Date", x: "Close", stroke: "Symbol"})
 
 If not specified, the *basis* defaults to *first*.
 
-## normalizeY(*basis*, *options*)
+## normalizeY(*basis*, *options*) {/* {#normalizeY} */}
 ```js
 Plot.normalizeY("first", {x: "Date", y: "Close", stroke: "Symbol"})
 ```

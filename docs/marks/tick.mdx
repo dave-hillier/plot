@@ -52,9 +52,9 @@ Ticks are also used by the [box mark](./box.md) to denote the median value for e
 
 ## Tick options
 
-For the required channels, see [tickX](#tickX) and [tickY](#tickY). The tick mark supports the [standard mark options](../features/marks.md#mark-options), including insetS, and [marker options](../features/markers.md) to add a marker (such as a dot or an arrowhead) to the start or end of the rule. The **stroke** defaults to *currentColor*.
+For the required channels, see [tickX](#tickX) and [tickY](#tickY). The tick mark supports the [standard mark options](../features/marks.md#mark-options), including insets, and [marker options](../features/markers.md) to add a marker (such as a dot or an arrowhead) to the start or end of the rule. The **stroke** defaults to *currentColor*.
 
-## tickX(*data*, *options*)
+## tickX(*data*, *options*) {/* {#tickX} */}
 ```js
 Plot.tickX(stateage, {x: "population", y: "age"})
 ```
@@ -69,7 +69,7 @@ The following optional channels are supported:
 
 If the **y** channel is not specified, the tick will span the full vertical extent of the frame.
 
-## tickY(*data*, *options*)
+## tickY(*data*, *options*) {/* {#tickY} */}
 ```js
 Plot.tickY(stateage, {y: "population", x: "age"})
 ```

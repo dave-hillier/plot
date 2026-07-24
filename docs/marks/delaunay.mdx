@@ -69,7 +69,7 @@ The [Delaunay marks](../marks/delaunay.md) also work with Plot’s [projection s
 
 
 Distances between projected points are not exactly proportional to the corresponding distances on the sphere. This [creates a discrepancy](https://observablehq.com/@observablehq/planar-vs-spherical-voronoi) between the planar Voronoi diagram and its spherical counterpart. For greater accuracy, use [d3-geo-voronoi](https://github.com/Fil/d3-geo-voronoi) with the [geo mark](../marks/geo.md).
-## delaunayLink(*data*, *options*)
+## delaunayLink(*data*, *options*) {/* {#delaunayLink} */}
 ```js
 Plot.delaunayLink(penguins, {x: "culmen_depth_mm", y: "culmen_length_mm"})
 ```
@@ -78,7 +78,7 @@ Draws links for each edge of the Delaunay triangulation of the points given by t
 
 If a **z** channel is specified, the input points are grouped by *z*, and separate Delaunay triangulations are constructed for each group.
 
-## delaunayMesh(*data*, *options*)
+## delaunayMesh(*data*, *options*) {/* {#delaunayMesh} */}
 ```js
 Plot.delaunayMesh(penguins, {x: "culmen_depth_mm", y: "culmen_length_mm"})
 ```
@@ -87,7 +87,7 @@ Draws a mesh of the Delaunay triangulation of the points given by the **x** and 
 
 If a **z** channel is specified, the input points are grouped by *z*, and separate Delaunay triangulations are constructed for each group.
 
-## hull(*data*, *options*)
+## hull(*data*, *options*) {/* {#hull} */}
 ```js
 Plot.hull(penguins, {x: "culmen_depth_mm", y: "culmen_length_mm"})
 ```
@@ -96,7 +96,7 @@ Draws a convex hull around the points given by the **x** and **y** channels. The
 
 If a **z** channel is specified, the input points are grouped by *z*, and separate convex hulls are constructed for each group. If the **z** channel is not specified, it defaults to either the **fill** channel, if any, or the **stroke** channel, if any.
 
-## voronoi(*data*, *options*)
+## voronoi(*data*, *options*) {/* {#voronoi} */}
 ```js
 Plot.voronoi(penguins, {x: "culmen_depth_mm", y: "culmen_length_mm"})
 ```
@@ -105,7 +105,7 @@ Draws polygons for each cell of the Voronoi tessellation of the points given by 
 
 If a **z** channel is specified, the input points are grouped by *z*, and separate Voronoi tessellations are constructed for each group.
 
-## voronoiMesh(*data*, *options*)
+## voronoiMesh(*data*, *options*) {/* {#voronoiMesh} */}
 ```js
 Plot.voronoiMesh(penguins, {x: "culmen_depth_mm", y: "culmen_length_mm"})
 ```

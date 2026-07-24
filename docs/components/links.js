@@ -1,8 +1,15 @@
 import {readdir, readFile, stat} from "fs/promises";
 
+// MDX pages carry import/export statements and JSX tags that are not prose;
+// remove them so header, anchor, and link extraction sees only the markdown.
+// Explicit anchors written as {/* {#name} */} comments survive tag removal.
+function stripMdx(text) {
+  return text.replace(/^(?:import|export) [^\n]*\n/gm, "").replace(/<\/?[A-Za-z][^<>]*>/g, "");
+}
+
 // Anchors can be derived from headers, or explicitly written as {#names}.
 export function getAnchors(text) {
-  text = text.replace(/<(?:Version)?Badge[^/]*\/>/g, ""); // ignore badges
+  text = stripMdx(text);
   const anchors = [];
   for (const [, header] of text.matchAll(/^#+ ([*\w][*().,\w\d -]+)\n/gm)) {
     anchors.push(
@@ -21,6 +28,7 @@ export function getAnchors(text) {
 
 // Internal links.
 export function getLinks(file, text) {
+  text = stripMdx(text);
   const links = [];
   for (const match of text.matchAll(/\[[^\]]+\]\(([^)]+)\)/g)) {
     const [, link] = match;
@@ -36,12 +44,12 @@ export async function readMarkdownSource(f) {
   return (await readFile(f, "utf8")).replaceAll(/<!-- .*? -->/gs, "");
 }
 
-// Recursively find all md files in the directory.
-export async function* readMarkdownFiles(root, subpath = "/") {
+// Recursively find all files with the given extension in the directory.
+export async function* readMarkdownFiles(root, extension = ".md", subpath = "/") {
   for (const fname of await readdir(root + subpath)) {
     if (!fname.includes(".") && (await stat(root + subpath + fname)).isDirectory()) {
-      yield* readMarkdownFiles(root, subpath + fname + "/");
-    } else if (fname.endsWith(".md")) {
+      yield* readMarkdownFiles(root, extension, subpath + fname + "/");
+    } else if (fname.endsWith(extension)) {
       yield subpath + fname;
     }
   }

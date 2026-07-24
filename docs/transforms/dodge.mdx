@@ -154,14 +154,14 @@ The dodge transforms accept the following options:
 
 The **anchor** option may one of *middle*, *right*, and *left* for dodgeX, and one of *middle*, *top*, and *bottom* for dodgeY. With the *middle* anchor the piles will grow from the center in both directions; with the other anchors, the piles will grow from the specified anchor towards the opposite direction.
 
-## dodgeY(*dodgeOptions*, *options*)
+## dodgeY(*dodgeOptions*, *options*) {/* {#dodgeY} */}
 ```js
 Plot.dodgeY({x: "date"})
 ```
 
 Given marks arranged along the *x* axis, the dodgeY transform piles them vertically by defining a *y* position channel that avoids overlapping. The *x* position channel is unchanged.
 
-## dodgeX(*dodgeOptions*, *options*)
+## dodgeX(*dodgeOptions*, *options*) {/* {#dodgeX} */}
 ```js
 Plot.dodgeX({y: "value"})
 ```

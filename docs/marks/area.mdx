@@ -191,7 +191,7 @@ Points along the baseline and topline are connected in input order. Likewise, if
 
 The area mark supports [curve options](../features/curves.md) to control interpolation between points. If any of the **x1**, **y1**, **x2**, or **y2** values are invalid (undefined, null, or NaN), the baseline and topline will be interrupted, resulting in a break that divides the area shape into multiple segments. (See [d3-shape’s *area*.defined](https://d3js.org/d3-shape/area#area_defined) for more.) If an area segment consists of only a single point, it may appear invisible unless rendered with rounded or square line caps. In addition, some curves such as *cardinal-open* only render a visible segment if it contains multiple points.
 
-## areaY(*data*, *options*)
+## areaY(*data*, *options*) {/* {#areaY} */}
 ```js
 Plot.areaY(aapl, {x: "Date", y: "Close"})
 ```
@@ -208,7 +208,7 @@ The **interval** option is recommended to “regularize” sampled data; for exa
 
 The **areaY** mark draws the region between a baseline (*y1*) and a topline (*y2*) as in an area chart. When the baseline is *y* = 0, the *y* channel can be specified instead of *y1* and *y2*.
 
-## areaX(*data*, *options*)
+## areaX(*data*, *options*) {/* {#areaX} */}
 ```js
 Plot.areaX(aapl, {y: "Date", x: "Close"})
 ```
@@ -223,7 +223,7 @@ Plot.areaX(observations, {y: "date", x: "temperature", interval: "day"})
 
 The **interval** option is recommended to “regularize” sampled data; for example, if your data represents timestamped temperature measurements and you expect one sample per day, use "day" as the interval.
 
-## area(*data*, *options*)
+## area(*data*, *options*) {/* {#area} */}
 ```js
 Plot.area(aapl, {x1: "Date", y1: 0, y2: "Close"})
 ```

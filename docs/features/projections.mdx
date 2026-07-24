@@ -167,7 +167,7 @@ The following built-in named projections are supported:
 * *reflect-y* - like the identity projection, but *y* points up
 * null (default) - the null projection for pre-projected geometry in screen coordinates
 
-In addition to these named projections, the **projection** option may be specified as a [D3 projection](https://d3js.org/d3-geo/projection), or any custom projection that implements [*projection*.stream](https://d3js.org/d3-geo/stream), or a function that receives a configuration object (\{*width*, *height*, ...*options*\}) and returns such a projection. In the last case, the width and height represent the frame dimensions minus any insetS.
+In addition to these named projections, the **projection** option may be specified as a [D3 projection](https://d3js.org/d3-geo/projection), or any custom projection that implements [*projection*.stream](https://d3js.org/d3-geo/stream), or a function that receives a configuration object (\{*width*, *height*, ...*options*\}) and returns such a projection. In the last case, the width and height represent the frame dimensions minus any insets.
 
 If the **projection** option is specified as an object, the following additional projection options are supported:
 
@@ -185,7 +185,7 @@ If the **projection** option is specified as an object, the following additional
 
 The following projection clipping methods are supported for **clip**:
 
-* *frame* or true (default) - clip to the extent of the frame (including margins but not insetS)
+* *frame* or true (default) - clip to the extent of the frame (including margins but not insets)
 * a number - clip to a great circle of the given radius in degrees centered around the origin
 * null or false - do not clip
 

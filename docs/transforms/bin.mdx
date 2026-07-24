@@ -137,7 +137,7 @@ The bin transform works with Plot’s [faceting system](../features/facets.md), 
   </BinX>
 </Plot>
 
-The bin transform setS default insetS for a one-pixel gap between rects. You can set explicit insetS if you prefer, say if you want the rects to touch. In this case we recommend rounding on the _x_ scale to avoid antialiasing artifacts between rects. (This example uses the functional spread form, `{...binX(outputs, options)}`, which remains equivalent to the nested wrapper form used above.)
+The bin transform setS default insets for a one-pixel gap between rects. You can set explicit insets if you prefer, say if you want the rects to touch. In this case we recommend rounding on the _x_ scale to avoid antialiasing artifacts between rects. (This example uses the functional spread form, `{...binX(outputs, options)}`, which remains equivalent to the nested wrapper form used above.)
 
 <Plot x={{round: true}} y={{grid: true}}>
   <RectY data={olympians} {...binX({y: "count"}, {x: "weight", inset: 0})} />
@@ -267,23 +267,23 @@ The bin transform supports grouping in addition to binning: you can subdivide bi
 Plot.binX({y: "count"}, {x: "body_mass_g", fill: "species"})
 ```
 
-Lastly, the bin transform changes the default [mark insetS](../features/marks.md#mark-options): binX changes the defaults for **insetLeft** and **insetRight**; binY changes the defaults for **insetTop** and **insetBottom**; bin changes all four.
+Lastly, the bin transform changes the default [mark insets](../features/marks.md#insets): binX changes the defaults for **insetLeft** and **insetRight**; binY changes the defaults for **insetTop** and **insetBottom**; bin changes all four.
 
-## bin(*outputs*, *options*)
+## bin(*outputs*, *options*) {/* {#bin} */}
 ```js
 Plot.rect(olympians, Plot.bin({fill: "count"}, {x: "weight", y: "height"}))
 ```
 
 Bins on **x** and **y**. Also groups on the first channel of **z**, **fill**, or **stroke**, if any.
 
-## binX(*outputs*, *options*)
+## binX(*outputs*, *options*) {/* {#binX} */}
 ```js
 Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight"}))
 ```
 
 Bins on **x**. Also groups on **y** and the first channel of **z**, **fill**, or **stroke**, if any.
 
-## binY(*outputs*, *options*)
+## binY(*outputs*, *options*) {/* {#binY} */}
 ```js
 Plot.rectX(olympians, Plot.binY({x: "count"}, {y: "weight"}))
 ```

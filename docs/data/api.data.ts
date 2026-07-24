@@ -153,26 +153,26 @@ export default {
         }
       }
     }
-    // Parse the Markdown files to get all known anchors.
+    // Parse the shipped MDX pages to get all known anchors.
     const root = "docs";
     const anchors = new Map();
-    for await (const file of readMarkdownFiles(root)) {
+    for await (const file of readMarkdownFiles(root, ".mdx")) {
       const text = await readMarkdownSource(root + file);
       anchors.set(file, getAnchors(text));
     }
     // Cross-reference the generated links.
     for (const {name, href} of allMethods) {
-      if (!anchors.has(`/${href}.md`)) {
+      if (!anchors.has(`/${href}.mdx`)) {
         throw new Error(`file not found: ${href}`);
       }
-      if (!anchors.get(`/${href}.md`).includes(name)) {
+      if (!anchors.get(`/${href}.mdx`).includes(name)) {
         throw new Error(`anchor not found: ${href}#${name}`);
       }
     }
     for (const {
       context: {href}
     } of allOptions) {
-      if (!anchors.has(`/${href}.md`)) {
+      if (!anchors.has(`/${href}.mdx`)) {
         throw new Error(`file not found: ${href}`);
       }
     }

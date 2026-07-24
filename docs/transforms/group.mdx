@@ -263,35 +263,35 @@ If any of **z**, **fill**, or **stroke** is a channel, the first of these channe
 
 The default reducer for the **title** channel returns a summary list of the top 5 values with the corresponding number of occurrences.
 
-## group(*outputs*, *options*)
+## group(*outputs*, *options*) {/* {#group} */}
 ```js
 Plot.group({fill: "count"}, {x: "island", y: "species"})
 ```
 
 Groups on **x**, **y**, and the first channel of **z**, **fill**, or **stroke**, if any.
 
-## groupX(*outputs*, *options*)
+## groupX(*outputs*, *options*) {/* {#groupX} */}
 ```js
 Plot.groupX({y: "sum"}, {x: "species", y: "body_mass_g"})
 ```
 
 Groups on **x** and the first channel of **z**, **fill**, or **stroke**, if any.
 
-## groupY(*outputs*, *options*)
+## groupY(*outputs*, *options*) {/* {#groupY} */}
 ```js
 Plot.groupY({x: "sum"}, {y: "species", x: "body_mass_g"})
 ```
 
 Groups on **y** and the first channel of **z**, **fill**, or **stroke**, if any.
 
-## groupZ(*outputs*, *options*)
+## groupZ(*outputs*, *options*) {/* {#groupZ} */}
 ```js
 Plot.groupZ({x: "proportion"}, {fill: "species"})
 ```
 
 Groups on the first channel of **z**, **fill**, or **stroke**, if any. If none of **z**, **fill**, or **stroke** are channels, then all data (within each facet) is placed into a single group.
 
-## find(*test*) <VersionBadge version="0.6.12" pr="1914" />
+## find(*test*) <VersionBadge version="0.6.12" pr="1914" /> {/* {#find} */}
 ```js
 Plot.groupX(
   {y1: Plot.find((d) => d.sex === "F"), y2: Plot.find((d) => d.sex === "M")},

@@ -88,21 +88,21 @@ The bollinger mark supports the following special options:
 
 Any additional options are passed through to the underlying [line mark](./line.md), [area mark](./area.md), and [window transform](../transforms/window.md). Unlike the window transform, the **strict** option defaults to true, and the **anchor** option defaults to *end* (which assumes that the data is in chronological order).
 
-## bollingerX(*data*, *options*)
+## bollingerX(*data*, *options*) {/* {#bollingerX} */}
 ```js
 Plot.bollingerX(aapl, {y: "Date", x: "Close"})
 ```
 
 Returns a bollinger mark for when time goes up↑ (or down↓). If the **x** option is not specified, it defaults to the identity function, as when *data* is an array of numbers [*x₀*, *x₁*, *x₂*, …]. If the **y** option is not specified, it defaults to [0, 1, 2, …].
 
-## bollingerY(*data*, *options*)
+## bollingerY(*data*, *options*) {/* {#bollingerY} */}
 ```js
 Plot.bollingerY(aapl, {x: "Date", y: "Close"})
 ```
 
 Returns a bollinger mark for when time goes right→ (or ←left). If the **y** option is not specified, it defaults to the identity function, as when *data* is an array of numbers [*y₀*, *y₁*, *y₂*, …]. If the **x** option is not specified, it defaults to [0, 1, 2, …].
 
-## bollinger(*options*)
+## bollinger(*options*) {/* {#bollinger} */}
 ```js
 Plot.lineY(data, Plot.map({y: bollinger({n: 20})}, {x: "Date", y: "Close"}))
 ```

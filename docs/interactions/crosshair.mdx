@@ -56,21 +56,21 @@ The following options are supported:
 
 The crosshair mark supports faceting, but most other mark options are ignored.
 
-## crosshair(*data*, *options*)
+## crosshair(*data*, *options*) {/* {#crosshair} */}
 ```js
 Plot.crosshair(cars, {x: "economy (mpg)", y: "cylinders"})
 ```
 
 Returns a new crosshair for the given *data* and *options*, drawing horizontal and vertical rules. The corresponding **x** and **y** values are also drawn just outside the bottom and left sides of the frame, respectively, typically on top of the axes. If either **x** or **y** is not specified, the crosshair will be one-dimensional.
 
-## crosshairX(*data*, *options*)
+## crosshairX(*data*, *options*) {/* {#crosshairX} */}
 ```js
 Plot.crosshairX(aapl, {x: "Date", y: "Close"})
 ```
 
 Like crosshair, but using [pointerX](./pointer.md#pointerX) when *x* is the dominant dimension, like time in a time-series chart.
 
-## crosshairY(*data*, *options*)
+## crosshairY(*data*, *options*) {/* {#crosshairY} */}
 ```js
 Plot.crosshairY(aapl, {x: "Date", y: "Close"})
 ```

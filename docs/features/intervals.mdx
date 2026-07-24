@@ -31,21 +31,21 @@ The *interval*.**ceil** method returns the value representing the least interval
 Plot.utcInterval("day").ceil(new Date("2013-04-12T12:34:56Z")) // 2013-04-13
 ```
 
-## numberInterval(*period*)
+## numberInterval(*period*) {/* {#numberInterval} */}
 ```js
 Plot.numberInterval(2)
 ```
 
 Given a number *period*, returns a corresponding range interval implementation. If *period* is a negative number, the resulting interval uses 1 / -*period*; this allows more precise results when *period* is a negative integer. The returned interval implements the *interval*.range, *interval*.floor, and *interval*.offset methods.
 
-## timeInterval(*period*)
+## timeInterval(*period*) {/* {#timeInterval} */}
 ```js
 Plot.timeInterval("2 days")
 ```
 
 Given a string *period* describing a local time interval, returns a corresponding nice interval implementation. The period can be *second*, *minute*, *hour*, *day*, *week*, *month*, *quarter*, *half*, *year*, *monday*, *tuesday*, *wednesday*, *thursday*, *friday*, *saturday*, or *sunday*, or a skip interval consisting of a number followed by the interval name (possibly pluralized), such as *3 months* or *10 years*. The returned interval implements the *interval*.range, *interval*.floor, *interval*.ceil, and *interval*.offset methods.
 
-## utcInterval(*period*)
+## utcInterval(*period*) {/* {#utcInterval} */}
 ```js
 Plot.utcInterval("2 days")
 ```

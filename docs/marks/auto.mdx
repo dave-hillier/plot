@@ -166,14 +166,14 @@ The auto mark chooses the mark type automatically based on several simple heuris
 
 The chosen mark type depends both on the options you provide (*e.g.*, whether you specified **x** or **y** or both) and the inferred type of the corresponding data values (whether the associated dimension of data is quantitative, categorical, monotonic, *etc.*).
 
-## auto(*data*, *options*)
+## auto(*data*, *options*) {/* {#auto} */}
 ```js
 Plot.auto(olympians, {x: "weight", y: "height", color: "count"}) // equivalent to rect + bin, say
 ```
 
 Returns an automatically-chosen mark with the given *data* and *options*, suitable for a quick view of the data.
 
-## autoSpec(*data*, *options*) <VersionBadge version="0.6.4" />
+## autoSpec(*data*, *options*) <VersionBadge version="0.6.4" /> {/* {#autoSpec} */}
 ```js
 Plot.autoSpec(olympians, {x: "weight", y: "height", color: "count"})
 ```

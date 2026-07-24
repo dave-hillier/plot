@@ -145,21 +145,21 @@ To resolve the horizontal target position, the pointer transform applies the fol
 
 The same precedence applies to the **py**, **y**, **y1**, and **y2** channels.
 
-## pointer(*options*)
+## pointer(*options*) {/* {#pointer} */}
 ```js
 Plot.tip(penguins, Plot.pointer({x: "culmen_length_mm", y: "culmen_depth_mm"}))
 ```
 
 Applies the pointer render transform to the specified *options* to filter the mark index such that only the point closest to the pointer is rendered; the mark will re-render interactively in response to pointer events.
 
-## pointerX(*options*)
+## pointerX(*options*) {/* {#pointerX} */}
 ```js
 Plot.tip(aapl, pointerX({x: "Date", y: "Close"}))
 ```
 
 Like [pointer](#pointer), except the determination of the closest point considers mostly the *x* (horizontal↔︎) position; this should be used for plots where *x* is the dominant dimension, such as time in a time-series chart, the binned quantitative dimension in a histogram, or the categorical dimension of a bar chart.
 
-## pointerY(*options*)
+## pointerY(*options*) {/* {#pointerY} */}
 ```js
 Plot.tip(alphabet, Plot.pointerY({x: "frequency", y: "letter"}))
 ```
