@@ -23,7 +23,13 @@ export type {PlotContextValue, Dimensions} from "./PlotContext.js";
 
 // Core hook (for building custom marks)
 export {useMark, stampOptions} from "./useMark.js";
-export type {UseMarkOptions, MarkFactory} from "./useMark.js";
+export type {
+  UseMarkOptions,
+  MarkFactory,
+  MarkEventHandlers,
+  MarkMouseEventHandler,
+  MarkPointerEventHandler
+} from "./useMark.js";
 
 // Style utilities (for building custom marks)
 export {

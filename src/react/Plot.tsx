@@ -1,8 +1,19 @@
-import {useContext, useEffect, useLayoutEffect, useRef, useState, type ReactNode, type ReactElement} from "react";
+import {
+  Children,
+  cloneElement,
+  isValidElement,
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type ReactNode,
+  type ReactElement
+} from "react";
 import {computePlot} from "../plot.js";
 import {consumeWarnings} from "../warnings.js";
 import {PlotContext} from "./PlotContext.js";
-import type {MarkFactory} from "./useMark.js";
+import {markEventNames, type MarkEventHandlers, type MarkFactory} from "./useMark.js";
 import {PointerRoot, PointerContext} from "./interactions/PointerContext.js";
 import {buildAutoLegends, LegendDisplay} from "./legends/Legend.js";
 import {createClipRegistry, registerClips, type ClipRegistry} from "./clip.js";
@@ -70,6 +81,9 @@ export interface PlotProps {
 interface Registration {
   stamp: string;
   factory: MarkFactory;
+  // Handler identities are excluded from the stamp; same-stamp re-registration
+  // refreshes them in place so event closures always call the latest ones.
+  handlers?: MarkEventHandlers;
 }
 
 interface LegendRegistration {
@@ -105,6 +119,7 @@ export function Plot({
   ...options
 }: PlotProps) {
   const marksRef = useRef<Map<string, Registration>>(new Map());
+  const registrationByMarkRef = useRef<Map<any, Registration>>(new Map());
   const dirtyRef = useRef(false);
   const computedRef = useRef(false);
   const legendsRef = useRef<Map<string, LegendRegistration>>(new Map());
@@ -126,13 +141,14 @@ export function Plot({
     }
   };
 
-  const registerMark = (id: string, stamp: string, factory: MarkFactory) => {
+  const registerMark = (id: string, stamp: string, factory: MarkFactory, handlers?: MarkEventHandlers) => {
     const prev = marksRef.current.get(id);
     if (!prev || prev.stamp !== stamp) {
-      marksRef.current.set(id, {stamp, factory});
+      marksRef.current.set(id, {stamp, factory, handlers});
       dirtyRef.current = true;
     } else {
       prev.factory = factory;
+      prev.handlers = handlers;
     }
   };
 
@@ -145,6 +161,13 @@ export function Plot({
   const unregisterMark = useRef((id: string) => {
     if (marksRef.current.delete(id)) setVersion((v) => v + 1);
   }).current;
+
+  // Reads the CURRENT handlers for a built mark instance. Stable identity so
+  // passing it down doesn't churn props; event closures call it at dispatch
+  // time, so a handler-identity update takes effect without any rebuild.
+  const getMarkHandlers = useRef(
+    (mark: any): MarkEventHandlers | undefined => registrationByMarkRef.current.get(mark)?.handlers
+  ).current;
 
   // Legends register from a layout effect (unlike marks, which register
   // during render): StrictMode's simulated unmount/remount re-registers after
@@ -232,11 +255,19 @@ export function Plot({
     if (inputsKey === lastInputsRef.current) return;
     lastInputsRef.current = inputsKey;
     const flat: any[] = [];
-    for (const {factory} of marksRef.current.values()) {
-      const m = factory();
-      if (Array.isArray(m)) flat.push(...m);
-      else flat.push(m);
+    // Maps each built mark instance to its registration so <MarkSlot> can read
+    // the registration's CURRENT handlers at render and event time (handler
+    // identity changes refresh the registration without a recompute, so the
+    // instances — and this map — stay valid).
+    const registrationByMark = new Map<any, Registration>();
+    for (const registration of marksRef.current.values()) {
+      const m = registration.factory();
+      for (const one of Array.isArray(m) ? m : [m]) {
+        flat.push(one);
+        if (registration.handlers) registrationByMark.set(one, registration);
+      }
     }
+    registrationByMarkRef.current = registrationByMark;
     let computed: any;
     try {
       // Always run computePlot, even with zero marks: declared position scales
@@ -338,6 +369,7 @@ export function Plot({
         onInput={mode.onInput}
         pointerEnabled={mode.pointerEnabled}
         warnings={mode.warnings}
+        getHandlers={getMarkHandlers}
       />
     ) : (
       <div className="plot-host" />
@@ -372,7 +404,7 @@ export function Plot({
 }
 
 // Renders the whole plot as a JSX <svg> tree.
-function PlotSvg({computed, svgRef, className: classNameProp, onInput, pointerEnabled, warnings}: any) {
+function PlotSvg({computed, svgRef, className: classNameProp, onInput, pointerEnabled, warnings, getHandlers}: any) {
   const {className, ariaLabel, ariaDescription, dimensions} = computed;
   const {width, height} = dimensions;
   const internalSvgRef = useRef<SVGSVGElement | null>(null);
@@ -410,7 +442,7 @@ function PlotSvg({computed, svgRef, className: classNameProp, onInput, pointerEn
     <>
       <style>{styleText}</style>
       {clipReg.defs}
-      {renderMarks(computed, clipReg)}
+      {renderMarks(computed, clipReg, getHandlers)}
       {warningIndicator}
     </>
   );
@@ -528,7 +560,11 @@ export function renderMarksWith(computed: any, renderOne: RenderOne): ReactNode[
   return out;
 }
 
-function renderMarks(computed: any, clipReg: ClipRegistry): ReactNode[] {
+function renderMarks(
+  computed: any,
+  clipReg: ClipRegistry,
+  getHandlers?: (mark: any) => MarkEventHandlers | undefined
+): ReactNode[] {
   return renderMarksWith(computed, (mark, index, values, dims, scales, context, key) => (
     <MarkSlot
       key={key}
@@ -539,6 +575,8 @@ function renderMarks(computed: any, clipReg: ClipRegistry): ReactNode[] {
       dims={dims}
       context={context}
       clipReg={clipReg}
+      getHandlers={getHandlers}
+      markData={getHandlers?.(mark) ? computed.stateByMark.get(mark)?.data : undefined}
     />
   ));
 }
@@ -546,7 +584,7 @@ function renderMarks(computed: any, clipReg: ClipRegistry): ReactNode[] {
 // Renders one mark via its renderJSX into pure React SVG. Pointer-consumer
 // marks (Tip, crosshair sub-marks) render with an empty index by default;
 // PointerRoot will override this on hover to render only the selected datum.
-function MarkSlot({mark, index, scales, values, dims, context, clipReg}: any) {
+function MarkSlot({mark, index, scales, values, dims, context, clipReg, getHandlers, markData}: any) {
   const pointerCtx = useContext(PointerContext);
   const pointerConsumer = isPointerConsumer(mark);
 
@@ -593,8 +631,61 @@ function MarkSlot({mark, index, scales, values, dims, context, clipReg}: any) {
   // renderJSX usually returns its own <g> wrapper; we don't add another, to
   // keep the DOM structure identical to the imperative output. Clip wrapping
   // (frame/geo) is applied via the clip registry.
-  const jsx = mark.renderJSX(arrayIndex, scales, values, dims, context) as ReactElement;
+  let jsx = mark.renderJSX(arrayIndex, scales, values, dims, context) as ReactElement;
+  // Per-mark event handlers attach as React event props (no DOM-structure
+  // change): per element when the mark renders one element per datum,
+  // mark-level otherwise. Presence changes rebuild the plot (stamped), so
+  // this render-time decision stays in sync with the registration.
+  const handlers = getHandlers?.(mark);
+  if (handlers) jsx = attachMarkHandlers(jsx, arrayIndex, markData, handlers, () => getHandlers(mark));
   return <>{clipReg ? clipReg.wrap(jsx, mark, dims, context) : jsx}</>;
+}
+
+// Attaches the registered handlers to a mark's rendered JSX. Marks that
+// render one element per datum (dot, bar, rect, cell, text, tick, …) emit
+// their per-datum elements as the direct children of the mark's root <g>, in
+// filtered-index order — so when the child count matches the index length,
+// each child gets handlers with its datum index closed over. Otherwise
+// (grouped marks like line/area render one path per series, and some marks
+// nest further) the handlers attach at the mark level with datum/index
+// undefined. Handler identity is read through `live` at dispatch time, so
+// identity-only updates (which don't rebuild the plot) still take effect.
+function attachMarkHandlers(
+  jsx: ReactElement,
+  index: number[] | null,
+  data: any,
+  attached: MarkEventHandlers,
+  live: () => MarkEventHandlers | undefined
+): ReactElement {
+  if (!isValidElement(jsx)) return jsx;
+  const children = Children.toArray((jsx.props as any).children);
+  if (index != null && children.length === index.length && children.every((c) => isValidElement(c))) {
+    return cloneElement(
+      jsx,
+      undefined,
+      children.map((child, k) =>
+        cloneElement(child as ReactElement, handlerProps(attached, live, data?.[index[k]], index[k]))
+      )
+    );
+  }
+  return cloneElement(jsx, handlerProps(attached, live, undefined, undefined));
+}
+
+function handlerProps(
+  attached: MarkEventHandlers,
+  live: () => MarkEventHandlers | undefined,
+  datum: unknown,
+  i: number | undefined
+): Record<string, (event: any) => void> {
+  const props: Record<string, (event: any) => void> = {};
+  for (const type of markEventNames) {
+    if (typeof attached[type] !== "function") continue;
+    props[type] = (event: any) => {
+      const handler = live()?.[type];
+      if (typeof handler === "function") handler(event, datum, i);
+    };
+  }
+  return props;
 }
 
 // Marks driven by the pointer interaction. Their render is wrapped by

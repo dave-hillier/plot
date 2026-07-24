@@ -1,9 +1,35 @@
 import {useId, useLayoutEffect, useRef} from "react";
+import type {MouseEvent as ReactMouseEvent, PointerEvent as ReactPointerEvent} from "react";
 import {usePlotContext} from "./PlotContext.js";
 import {useTransformContext} from "./TransformContext.js";
 import type {Mark} from "../mark.js";
 
 export type MarkFactory = () => Mark | Mark[];
+
+// Per-mark event handlers. `datum` is the mark's (transformed) data element at
+// the rendered index; both are undefined when the handler is attached at the
+// mark level because per-element recovery isn't possible (e.g. grouped marks
+// rendering one path per series).
+export type MarkMouseEventHandler = (
+  event: ReactMouseEvent<Element>,
+  datum: unknown,
+  index: number | undefined
+) => void;
+
+export type MarkPointerEventHandler = (
+  event: ReactPointerEvent<Element>,
+  datum: unknown,
+  index: number | undefined
+) => void;
+
+export interface MarkEventHandlers {
+  onClick?: MarkMouseEventHandler;
+  onPointerEnter?: MarkPointerEventHandler;
+  onPointerLeave?: MarkPointerEventHandler;
+  onPointerMove?: MarkPointerEventHandler;
+}
+
+export const markEventNames = ["onClick", "onPointerEnter", "onPointerLeave", "onPointerMove"] as const;
 
 export interface UseMarkOptions {
   // Mark name folded into the stamp (e.g. "dot").
@@ -31,8 +57,21 @@ export function useMark({name, data, options, create}: UseMarkOptions): void {
   // identity with a sequence number: any new reference bumps the stamp.
   const dataRef = useRef({data, seq: 0});
   if (dataRef.current.data !== data) dataRef.current = {data, seq: dataRef.current.seq + 1};
+  // Event handler props are stripped before the options reach the imperative
+  // mark factory (and any transform wrappers); they travel through the
+  // registration instead. The stamp is taken over the FULL options, so handler
+  // presence (stamped as "function", never identity) forces a rebuild that
+  // lets <Plot> attach or detach the handlers.
+  let handlers: MarkEventHandlers | undefined;
+  let markOptions = options;
+  for (const key of markEventNames) {
+    if (typeof options[key] !== "function") continue;
+    if (!handlers) (handlers = {}), (markOptions = {...options});
+    (handlers as Record<string, unknown>)[key] = options[key];
+    delete markOptions[key];
+  }
   const stamp = `${transform.stamp}${stampOptions(name, data, options)}|d${dataRef.current.seq}`;
-  registerMark(id, stamp, () => create(data, transform.wrap(options)));
+  registerMark(id, stamp, () => create(data, transform.wrap(markOptions)), handlers);
   // Registration happens during render (above) so <Plot> sees the mark before
   // its compute effect; removal is unmount-driven — <Plot> can't infer it,
   // because bailed-out children don't re-register.

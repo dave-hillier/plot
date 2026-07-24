@@ -1,4 +1,5 @@
 import type {Data, MarkOptions} from "../mark.js";
+import type {MarkEventHandlers} from "./useMark.js";
 
 // Shared base props for every mark component. MarkOptions (src/mark.d.ts)
 // already carries the full shared surface — channel props (fill, stroke,
@@ -19,7 +20,13 @@ import type {Data, MarkOptions} from "../mark.js";
 // arrays, accessor functions, intervals, and nested spec objects. The
 // tradeoff — misspelled prop names are not flagged — is accepted; values of
 // every declared prop are still type-checked.
-export interface MarkProps extends MarkOptions {
+//
+// MarkEventHandlers contributes the per-mark event handler props (onClick,
+// onPointerEnter, onPointerLeave, onPointerMove). useMark strips them from
+// the imperative mark options and routes them through the registration so
+// <Plot> can attach them to the rendered elements with the datum index
+// closed over.
+export interface MarkProps extends MarkOptions, MarkEventHandlers {
   data?: Data;
   [option: string]: unknown;
 }

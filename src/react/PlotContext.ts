@@ -1,5 +1,5 @@
 import {createContext, useContext} from "react";
-import type {MarkFactory} from "./useMark.js";
+import type {MarkEventHandlers, MarkFactory} from "./useMark.js";
 
 export interface Dimensions {
   width: number;
@@ -20,7 +20,10 @@ export interface Dimensions {
 // factories that build imperative Mark instances; <Plot> calls the imperative
 // `plot()` to do all rendering.
 export interface PlotContextValue {
-  registerMark: (id: string, stamp: string, factory: MarkFactory) => void;
+  // Per-mark event handlers ride alongside the factory; their identities are
+  // excluded from the stamp (like all functions), so a handler-identity
+  // change refreshes the registration without a rebuild.
+  registerMark: (id: string, stamp: string, factory: MarkFactory, handlers?: MarkEventHandlers) => void;
   // Removes a mark's registration; called from useMark's unmount cleanup.
   // Identity is stable across <Plot> renders.
   unregisterMark: (id: string) => void;
