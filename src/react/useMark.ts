@@ -43,8 +43,10 @@ export function useMark({name, data, options, create}: UseMarkOptions): void {
 // primitives (string/number/boolean) are included by value so e.g. a
 // thresholds or field-name change forces a rebuild; arrays contribute their
 // element values (recursively) so e.g. an explicit thresholds or domain array
-// change forces a rebuild too. Plain objects contribute shape only, and
-// function identities are EXCLUDED so inline accessors don't force a
+// change forces a rebuild too. Plain objects contribute their entries
+// (recursively, up to the depth and entry caps below, past which they fall
+// back to shape only) so e.g. a sort or tip-format change forces a rebuild.
+// Function identities are EXCLUDED so inline accessors don't force a
 // rebuild — the factory closure already captures the latest functions.
 export function stampOptions(name: string, data: unknown, options: Record<string, unknown>): string {
   const dataKey = data == null ? "null" : typeof data === "object" ? "obj" : String(data);
@@ -55,14 +57,39 @@ export function stampOptions(name: string, data: unknown, options: Record<string
   return `${name}|${dataKey}|${shape}`;
 }
 
-function stampValue(v: unknown): string {
+// Stamps run every render for every mark, so nested-object stamping is capped:
+// past this depth, or for objects with more entries than the cap, the stamp
+// degrades to shape only rather than walking arbitrarily large structures.
+const stampDepthCap = 3;
+const stampEntryCap = 32;
+
+function stampValue(v: unknown, depth = 0): string {
   return v == null
     ? "null"
     : Array.isArray(v)
-    ? `[${v.map(stampValue).join(",")}]`
+    ? `[${v.map((d) => stampValue(d, depth + 1)).join(",")}]`
     : typeof v === "string" || typeof v === "number" || typeof v === "boolean"
     ? JSON.stringify(v)
     : v instanceof Date
     ? `date${+v}`
+    : isPlainObject(v)
+    ? stampObject(v as Record<string, unknown>, depth)
     : typeof v;
+}
+
+function stampObject(v: Record<string, unknown>, depth: number): string {
+  const keys = Object.keys(v);
+  if (depth >= stampDepthCap || keys.length > stampEntryCap) return "object";
+  return `{${keys
+    .sort()
+    .map((k) => `${k}:${stampValue(v[k], depth + 1)}`)
+    .join(",")}}`;
+}
+
+// Only plain objects are walked; class instances (scales, intervals, typed
+// arrays' buffers, etc.) keep the shape-only stamp since their entries aren't
+// guaranteed to be cheap or enumerable-stable.
+function isPlainObject(v: unknown): boolean {
+  const proto = Object.getPrototypeOf(v);
+  return proto === Object.prototype || proto === null;
 }
