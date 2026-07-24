@@ -13,7 +13,6 @@ export interface FigureLayoutProps {
   autoLegends: ReactNode;
   explicitLegends: ReactNode;
   plotElement: ReactNode;
-  hiddenChildren: ReactNode;
   // When the plot rendered as a JSX <svg>, wrap it in div.plot-host to match
   // the imperative structure; the imperatively-mounted host is already a div.
   isJsx: boolean;
@@ -26,7 +25,6 @@ export function FigureLayout({
   autoLegends,
   explicitLegends,
   plotElement,
-  hiddenChildren,
   isJsx
 }: FigureLayoutProps) {
   return (
@@ -47,7 +45,12 @@ export function FigureLayout({
       {caption != null && (
         <SlotHeader as="figcaption" content={caption} style={{fontSize: "12px", color: "#666", marginTop: "4px"}} />
       )}
-      {hiddenChildren}
+      {/* The figure's trailing hidden div is part of its established DOM
+          shape (asserted by the rendering snapshots). The registration
+          children themselves live OUTSIDE the figure, at a stable position
+          in <Plot>, so that figure-mode changes don't remount them; this
+          placeholder stays empty. */}
+      <div style={{display: "none"}} />
     </figure>
   );
 }

@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useId, useLayoutEffect} from "react";
 import {rgb} from "d3";
 import {type LegendScales} from "../../legends.js";
 // These helpers live in the JS sources but aren't part of the public .d.ts.
@@ -9,6 +9,7 @@ import {inherit, isScaleOptions} from "../../options.js";
 // @ts-expect-error untyped JS export
 import {normalizeScale} from "../../scales.js";
 import {PlotContext, type PlotContextValue} from "../PlotContext.js";
+import {stampOptions} from "../useMark.js";
 import {Ramp} from "./Ramp.js";
 import {ColorSwatches, Swatches, SymbolSwatches} from "./Swatches.js";
 
@@ -22,6 +23,32 @@ import {ColorSwatches, Swatches, SymbolSwatches} from "./Swatches.js";
 export type LegendProps = LegendScales;
 
 export function Legend(props: LegendProps) {
+  const ctx = useContext(PlotContext);
+  const id = useId();
+  const register = ctx?.registerLegend;
+  const unregister = ctx?.unregisterLegend;
+  // Inside a <Plot>, register instead of rendering: the Plot renders the
+  // visible <LegendDisplay> in its figure slot, so a Legend is promoted no
+  // matter how it's composed (memo, wrapper components, fragments).
+  // Registration is effect-based, NOT render-phase: StrictMode's simulated
+  // unmount runs the cleanup below without re-rendering, so a render-phase
+  // registration would be lost; this depless effect re-registers every
+  // commit, idempotently under the stable useId.
+  useLayoutEffect(() => {
+    if (register) register(id, stampOptions("legend", null, props as Record<string, unknown>), props);
+  });
+  useLayoutEffect(() => {
+    if (!unregister) return;
+    return () => unregister(id);
+  }, [unregister, id]);
+  if (register) return null;
+  return <LegendDisplay {...props} />;
+}
+
+// Visible half of <Legend>: dispatches to the JSX legend components. Rendered
+// by <Plot> for registered legends and directly for standalone usage; it must
+// not register, or the figure slot would recurse.
+export function LegendDisplay(props: LegendProps) {
   const ctx = useContext(PlotContext);
 
   // If we're inside a Plot and the legend refers to a named scale, resolve
@@ -242,12 +269,4 @@ function legendOptions(context: any, scale: any, options: any): any {
   const {className, ...rest} = context;
   const {label, ticks, tickFormat} = (scale ?? {}) as Record<string, any>;
   return inherit(options, {className, ...rest}, {label, ticks, tickFormat});
-}
-
-function stableKey(options: Record<string, any>): string {
-  try {
-    return JSON.stringify(options, (_k, v) => (typeof v === "function" ? "[fn]" : v));
-  } catch {
-    return String(Math.random());
-  }
 }

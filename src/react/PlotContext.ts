@@ -24,6 +24,14 @@ export interface PlotContextValue {
   // Removes a mark's registration; called from useMark's unmount cleanup.
   // Identity is stable across <Plot> renders.
   unregisterMark: (id: string) => void;
+  // Explicit <Legend> descendants register their props here (like marks via
+  // registerMark) so <Plot> can render them visibly in the figure slot no
+  // matter how they're composed (memo, wrapper components, fragments).
+  // Absent outside <Plot>, where <Legend> renders standalone.
+  registerLegend?: (id: string, stamp: string, props: Record<string, any>) => void;
+  // Removes a legend's registration; called from Legend's unmount cleanup.
+  // Identity is stable across <Plot> renders.
+  unregisterLegend?: (id: string) => void;
   // Resolved scale descriptors and render context from the parent Plot's
   // computePlot() pass. Populated after the first render; descendants like
   // <Legend scale="color"> read named scales out of this map.

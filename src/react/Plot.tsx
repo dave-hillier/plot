@@ -1,18 +1,10 @@
-import React, {
-  useContext,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-  type ReactNode,
-  type ReactElement
-} from "react";
+import {useContext, useEffect, useLayoutEffect, useRef, useState, type ReactNode, type ReactElement} from "react";
 import {computePlot} from "../plot.js";
 import {consumeWarnings} from "../warnings.js";
 import {PlotContext} from "./PlotContext.js";
 import type {MarkFactory} from "./useMark.js";
 import {PointerRoot, PointerContext} from "./interactions/PointerContext.js";
-import {buildAutoLegends, Legend} from "./legends/Legend.js";
+import {buildAutoLegends, LegendDisplay} from "./legends/Legend.js";
 import {createClipRegistry, registerClips, type ClipRegistry} from "./clip.js";
 import {FigureLayout} from "./FigureLayout.js";
 
@@ -80,6 +72,11 @@ interface Registration {
   factory: MarkFactory;
 }
 
+interface LegendRegistration {
+  stamp: string;
+  props: Record<string, any>;
+}
+
 interface ResolvedScales {
   scaleDescriptors: Record<string, any>;
   context: any;
@@ -110,7 +107,10 @@ export function Plot({
   const marksRef = useRef<Map<string, Registration>>(new Map());
   const dirtyRef = useRef(false);
   const computedRef = useRef(false);
+  const legendsRef = useRef<Map<string, LegendRegistration>>(new Map());
+  const pendingLegendOrderRef = useRef<string[]>([]);
   const [version, setVersion] = useState(0);
+  const [, setLegendsVersion] = useState(0);
   const [resolved, setResolved] = useState<ResolvedScales | null>(null);
   const [mode, setMode] = useState<Mode>({kind: "empty"});
 
@@ -146,7 +146,59 @@ export function Plot({
     if (marksRef.current.delete(id)) setVersion((v) => v + 1);
   }).current;
 
+  // Legends register from a layout effect (unlike marks, which register
+  // during render): StrictMode's simulated unmount/remount re-registers after
+  // its cleanup unregistered, and effect-phase registration may set state
+  // directly — so a legend mounted later by a wrapper component (without
+  // <Plot> itself re-rendering) still becomes visible. Legend registrations
+  // don't feed computePlot, so they bump their own version. A changed stamp
+  // stores a fresh registration; same-stamp re-registration only refreshes
+  // the stored props (function identities are excluded from the stamp). Each
+  // call also records this commit's registration order, which the layout
+  // effect below reconciles against the registry: Map insertion order alone
+  // would freeze legends at mount order, because React moves keyed instances
+  // without remounting them. Last-wins dedupe keeps the order correct under
+  // StrictMode double-invocation and heals stale entries from partial
+  // commits that <Plot>'s effect never observed.
+  const registerLegend = (id: string, stamp: string, props: Record<string, any>) => {
+    const pending = pendingLegendOrderRef.current;
+    const at = pending.indexOf(id);
+    if (at !== -1) pending.splice(at, 1);
+    pending.push(id);
+    const prev = legendsRef.current.get(id);
+    if (!prev || prev.stamp !== stamp) {
+      legendsRef.current.set(id, {stamp, props});
+      setLegendsVersion((v) => v + 1);
+    } else {
+      prev.props = props;
+    }
+  };
+
+  // Unmount-driven removal with stable identity, mirroring unregisterMark.
+  const unregisterLegend = useRef((id: string) => {
+    if (legendsRef.current.delete(id)) setLegendsVersion((v) => v + 1);
+  }).current;
+
   useLayoutEffect(() => {
+    // Child effects run before this one, so the recorded legend registration
+    // order is complete for this commit. When every registered legend
+    // re-registered (a full re-render of the children), adopt that order —
+    // this is what makes reordering keyed <Legend> children reorder the
+    // output. Partial commits (a lone legend re-rendered or mounted by its
+    // wrapper) can't reveal sibling order, so they keep the existing order,
+    // appending new registrations.
+    const pendingOrder = pendingLegendOrderRef.current;
+    if (pendingOrder.length > 0) {
+      pendingLegendOrderRef.current = [];
+      const registry = legendsRef.current;
+      if (pendingOrder.length === registry.size && pendingOrder.every((id) => registry.has(id))) {
+        const ordered = [...registry.keys()];
+        if (pendingOrder.some((id, i) => id !== ordered[i])) {
+          legendsRef.current = new Map(pendingOrder.map((id) => [id, registry.get(id)!]));
+          setLegendsVersion((v) => v + 1);
+        }
+      }
+    }
     if (dirtyRef.current) {
       dirtyRef.current = false;
       // The compute effect below re-runs when version changes, picking up the
@@ -240,6 +292,8 @@ export function Plot({
   const ctx = {
     registerMark,
     unregisterMark,
+    registerLegend,
+    unregisterLegend,
     scaleDescriptors: resolved?.scaleDescriptors,
     context: resolved?.context,
     plotOptions: options
@@ -252,20 +306,17 @@ export function Plot({
     ? buildAutoLegends(resolved.scaleDescriptors, resolved.context, options)
     : [];
 
-  // Explicit <Legend> children (e.g. <Legend scale="color">) are promoted out
-  // of the hidden children div and rendered visibly inside the figure, matching
-  // the imperative plot()'s createLegends/exposeLegends placement above the
-  // <svg>. Any present explicit legend forces figure mode; the remaining
-  // children (marks) stay in the hidden div for registration.
-  const explicitLegends: ReactElement[] = [];
-  const otherChildren: ReactNode[] = [];
-  React.Children.forEach(children, (child, i) => {
-    if (React.isValidElement(child) && child.type === Legend) {
-      explicitLegends.push(React.cloneElement(child as ReactElement, {key: `legend-${i}`}));
-    } else {
-      otherChildren.push(child);
-    }
-  });
+  // Explicit <Legend> descendants register via PlotContext (like marks via
+  // useMark) and render visibly here as <LegendDisplay>, matching the
+  // imperative plot()'s createLegends/exposeLegends placement above the
+  // <svg>. The <Legend> instances themselves render null inside the hidden
+  // children div, so any composition (memo, wrapper components, fragments)
+  // still surfaces the legend. Any registered legend forces figure mode.
+  // Registry order tracks the children's render order via the layout-effect
+  // reconciliation above, so keyed reorders update the visible order.
+  const explicitLegends: ReactElement[] = [...legendsRef.current.entries()].map(([id, r]) => (
+    <LegendDisplay key={id} {...r.props} />
+  ));
 
   // "always"/true forces a figure; "never"/false suppresses it; "auto" (or
   // undefined) infers it from whether there's anything to wrap.
@@ -292,30 +343,30 @@ export function Plot({
       <div className="plot-host" />
     );
 
-  const hiddenChildren = <div style={{display: "none"}}>{otherChildren}</div>;
-
-  if (!wantsFigure) {
-    return (
-      <PlotContext.Provider value={ctx}>
-        {explicitLegends}
-        {plotElement}
-        {hiddenChildren}
-      </PlotContext.Provider>
-    );
-  }
-
+  // The hidden registration div keeps a stable position in the tree across
+  // figure-mode changes: if it moved inside <FigureLayout> when a figure
+  // appears, React would remount the children subtree, wiping descendant
+  // state — a legend mounted by a stateful wrapper would flip figure mode,
+  // remount (and so reset) that wrapper, and immediately unregister itself.
   return (
     <PlotContext.Provider value={ctx}>
-      <FigureLayout
-        title={title}
-        subtitle={subtitle}
-        caption={caption}
-        autoLegends={autoLegends}
-        explicitLegends={explicitLegends}
-        plotElement={plotElement}
-        hiddenChildren={hiddenChildren}
-        isJsx={mode.kind === "jsx"}
-      />
+      {wantsFigure ? (
+        <FigureLayout
+          title={title}
+          subtitle={subtitle}
+          caption={caption}
+          autoLegends={autoLegends}
+          explicitLegends={explicitLegends}
+          plotElement={plotElement}
+          isJsx={mode.kind === "jsx"}
+        />
+      ) : (
+        <>
+          {explicitLegends}
+          {plotElement}
+        </>
+      )}
+      <div style={{display: "none"}}>{children}</div>
     </PlotContext.Provider>
   );
 }
