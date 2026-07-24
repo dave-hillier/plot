@@ -1,4 +1,4 @@
-import {Dot, LineY, Plot, RectY, RuleX, RuleY, Text, binX, stackY} from "replot/react";
+import {BinX, Dot, LineY, Plot, RectY, RuleX, RuleY, StackY, Text} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import aapl from "../data/aapl.ts";
@@ -81,8 +81,14 @@ One-dimensional pointing makes even small bars or rects easily hoverable. If you
 </div>
 
 <Plot x={{label: "Daily volume (log₁₀)"}}>
-  <RectY data={aapl} {...binX({y: "count"}, {x: (d) => Math.log10(d.Volume), thresholds: 40, tip: recttip})} />
-  <Dot data={aapl} {...stackY(Plot.binX({y: "count"}, {x: (d) => Math.log10(d.Volume), thresholds: 40, stroke: "red"}))} />
+  <BinX y="count" thresholds={40}>
+    <RectY data={aapl} x={(d) => Math.log10(d.Volume)} tip={recttip} />
+  </BinX>
+  <StackY>
+    <BinX y="count" thresholds={40}>
+      <Dot data={aapl} x={(d) => Math.log10(d.Volume)} stroke="red" />
+    </BinX>
+  </StackY>
 </Plot>
 
 This reveals an important caveat: the pointer transform understands only points and not the arbitrary geometry of marks. By default, the pointer transform only focuses the closest point if it is within 40 pixels of the pointer (in either one or two dimensions, depending on the pointing mode). With large marks, there may be “dead spots” that do not trigger pointing even when the pointer is within the displayed mark. You can mitigate dead spots either by switching to one-dimensional pointing, if appropriate, or by setTing the **maxRadius** option to increase the pointing distance cutoff.

@@ -1,4 +1,4 @@
-import {AreaY, BarX, BarY, Dot, Plot, RectY, RuleX, RuleY, TextX, groupZ, stackX, stackY, stackY2, scale} from "replot/react";
+import {AreaY, BarX, BarY, Dot, GroupZ, Plot, RectY, RuleX, RuleY, StackX, StackY, StackY2, TextX, stackY, scale} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import alphabet from "../data/alphabet.ts";
@@ -84,8 +84,10 @@ The [**interval** scale option](../features/scales.md#scale-transforms) specifie
 The stackY transform also outputs **y** representing the midpoint of **y1** and **y2**, and likewise stackX outputs **x** representing the midpoint of **x1** and **x2**. This is useful for point-based marks such as [text](../marks/text.md) and [dot](../marks/dot.md). Below, a single stacked horizontal [bar](../marks/bar.md) shows the relative frequency of English letters; this form is a compact alternative to a pie 🥧 or donut 🍩 chart.
 
 <Plot x={{percent: true}}>
-  <BarX data={alphabet} {...stackX({x: "frequency", fillOpacity: 0.3, inset: 0.5})} />
-  <TextX data={alphabet} {...stackX({x: "frequency", text: "letter", inset: 0.5})} />
+  <StackX>
+    <BarX data={alphabet} x="frequency" fillOpacity={0.3} inset={0.5} />
+    <TextX data={alphabet} x="frequency" text="letter" inset={0.5} />
+  </StackX>
   <RuleX data={[0, 1]} />
 </Plot>
 
@@ -135,7 +137,7 @@ The **reverse** option reverses the order of layers. In conjunction with the *ap
 </Plot>
 
 
-The **reverse** option is also used by the [sort transform](./sort.md). To disambiguate, pass the *stack* options separately using the two-argument form of the stack transform as above.
+The **reverse** option is also used by the [sort transform](./sort.md). To disambiguate, pass the *stack* options separately using the two-argument form of the stack transform, as in the functional spread form above. (The nested `<StackY order="appearance" reverse={reverse}>` wrapper form needs no disambiguation, since the stack options live on the wrapper while the mark options stay on the mark.)
 The *value* **order** is worth special mention: it sorts each stack by value independently such that the order of layers can change, emphasizing the changing ranks of layers. This is sometimes called a “ribbon” chart. (In fact, the default null **order** supports changing order of layers, too! But most often data comes already sorted by series.)
 
 <Plot y={{
@@ -176,7 +178,9 @@ The *normalize* **offset** is again worth special mention: it scales stacks to f
     label: "Annual revenue (%)",
     percent: true
   }}>
-  <AreaY data={riaa} {...stackY({offset: "normalize", order: "group", reverse: true}, {x: "year", y: "revenue", z: "format", fill: "group"})} />
+  <StackY offset="normalize" order="group" reverse>
+    <AreaY data={riaa} x="year" y="revenue" z="format" fill="group" />
+  </StackY>
   <RuleY data={[0, 1]} />
 </Plot>
 
@@ -188,12 +192,15 @@ When the provided length (typically **y**) is negative, in conjunction with the 
     labelAnchor: "center",
     tickFormat: Math.abs
   }}>
-  <Dot data={congress} {...stackY2({
-        x: (d) => 2023 - d.birthday.getUTCFullYear(),
-        y: (d) => d.gender === "M" ? 1 : -1,
-        fill: "gender",
-        title: "full_name"
-      })} />
+  <StackY2>
+    <Dot
+      data={congress}
+      x={(d) => 2023 - d.birthday.getUTCFullYear()}
+      y={(d) => d.gender === "M" ? 1 : -1}
+      fill="gender"
+      title="full_name"
+    />
+  </StackY2>
   <RuleY data={[0]} />
 </Plot>
 
@@ -202,7 +209,9 @@ The stackY2 transform places each dot at the upper bound of the associated stack
 When visualizing [Likert scale](https:
 
 <Plot x={{tickFormat: Math.abs}} color={{domain: likert.order, scheme: "RdBu", legend: true}}>
-  <BarX data={survey} {...groupZ({x: "count"}, {fy: "Question", fill: "Response", ...likert})} />
+  <GroupZ x="count">
+    <BarX data={survey} fy="Question" fill="Response" {...likert} />
+  </GroupZ>
   <RuleX data={[0]} />
 </Plot>
 

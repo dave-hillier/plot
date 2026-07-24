@@ -1,4 +1,4 @@
-import {AreaY, LineY, Plot, RuleY, map, mapY, windowY} from "replot/react";
+import {AreaY, LineY, MapY, Plot, RuleY, WindowY, map} from "replot/react";
 import * as d3 from "d3";
 import {useState} from "react";
 import aapl from "../data/aapl.ts";
@@ -14,15 +14,23 @@ The **map transform** groups data into series and then transforms each series’
 
 <Plot>
   <RuleY data={[0]} />
-  <LineY data={{length: 600}} {...mapY("cumsum", {y: d3.randomNormal.source(d3.randomLcg(42))()})} />
+  <MapY map="cumsum">
+    <LineY data={{length: 600}} y={d3.randomNormal.source(d3.randomLcg(42))()} />
+  </MapY>
 </Plot>
 
 As another example, we can map the daily trading volume of Apple stock to a [*p*-quantile](https://en.wikipedia.org/wiki/Quantile) in [0, 1] using the *quantile* map method, where 0 represents the minimum daily trade volume and 1 represents the maximum, and then apply a 30-day rolling mean with the [window transform](./window.md) to smooth out the noise.
 
 <Plot>
   <RuleY data={[0, 1]} />
-  <LineY data={aapl} {...mapY("quantile", {x: "Date", y: "Volume", strokeOpacity: 0.2})} />
-  <LineY data={aapl} {...windowY(30, Plot.mapY("quantile", {x: "Date", y: "Volume"}))} />
+  <MapY map="quantile">
+    <LineY data={aapl} x="Date" y="Volume" strokeOpacity={0.2} />
+  </MapY>
+  <WindowY k={30}>
+    <MapY map="quantile">
+      <LineY data={aapl} x="Date" y="Volume" />
+    </MapY>
+  </WindowY>
 </Plot>
 
 The [mapY transform](#mapY) above is shorthand for applying the given map method to all *y* channels. There’s also a less-common [mapX transform](#mapX) for *x* channels.

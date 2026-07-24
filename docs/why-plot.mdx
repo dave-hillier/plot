@@ -1,4 +1,4 @@
-import {AreaY, BarX, BoxX, Dot, Frame, LineY, Plot, RuleX, RuleY, groupY} from "replot/react";
+import {AreaY, BarX, BoxX, Dot, Frame, GroupY, LineY, Plot, RuleX, RuleY} from "replot/react";
 import * as d3 from "d3";
 import aapl from "./data/aapl.ts";
 import penguins from "./data/penguins.ts";
@@ -35,21 +35,27 @@ The beauty of defaults is that you can override them as needed. This is ideal fo
 Munging data, not visualizing it, is often most of the work of data analysis. Plot’s [transforms](./features/transforms.md) let you aggregate and derive data *within* your plot specification, reducing the time spent preparing data. For example, if you have a dataset of penguins, you can quickly count their frequency by *species* with the [group transform](./transforms/group.md).
 
 <Plot marginLeft={80} marginRight={80}>
-  <BarX data={penguins} {...groupY({x: "count"}, {y: "species"})} />
+  <GroupY x="count">
+    <BarX data={penguins} y="species" />
+  </GroupY>
   <RuleX data={[0]} />
 </Plot>
 
 Because transforms are integrated into Plot, they work automatically with other Plot features such as [faceting](./features/facets.md). For example, to breakdown the chart above by *island*, we just add the **fy** (vertical facet) option.
 
 <Plot marginLeft={80} marginRight={80}>
-  <BarX data={penguins} {...groupY({x: "count"}, {fy: "island", y: "species"})} />
+  <GroupY x="count">
+    <BarX data={penguins} fy="island" y="species" />
+  </GroupY>
   <RuleX data={[0]} />
 </Plot>
 
 And to color by *sex*, too? Add **fill**; the [bar mark](./marks/bar.md) then applies an implicit [stack transform](./transforms/stack.md).
 
 <Plot marginLeft={80} marginRight={80} color={{legend: true}}>
-  <BarX data={penguins} {...groupY({x: "count"}, {fy: "island", y: "species", fill: "sex"})} />
+  <GroupY x="count">
+    <BarX data={penguins} fy="island" y="species" fill="sex" />
+  </GroupY>
   <RuleX data={[0]} />
 </Plot>
 

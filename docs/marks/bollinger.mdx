@@ -1,4 +1,4 @@
-import {BollingerX, BollingerY, LineY, Plot, RuleX, mapY} from "replot/react";
+import {BollingerX, BollingerY, LineY, MapY, Plot, RuleX} from "replot/react";
 import * as d3 from "d3";
 import {useState} from "react";
 import aapl from "../data/aapl.ts";
@@ -38,8 +38,12 @@ Plot.bollingerY(aapl, {x: "Date", y: "Close", n: {n}, k: {{k}}}).plot()
 For more control, you can also use the [bollinger map method](#bollinger) directly with the [map transform](../transforms/map.md).
 
 <Plot>
-  <LineY data={aapl} {...mapY(Plot.bollinger({n: 20, k: -2}), {x: "Date", y: "Close", stroke: "red"})} />
-  <LineY data={aapl} {...mapY(Plot.bollinger({n: 20, k: 2}), {x: "Date", y: "Close", stroke: "green"})} />
+  <MapY map={Plot.bollinger({n: 20, k: -2})}>
+    <LineY data={aapl} x="Date" y="Close" stroke="red" />
+  </MapY>
+  <MapY map={Plot.bollinger({n: 20, k: 2})}>
+    <LineY data={aapl} x="Date" y="Close" stroke="green" />
+  </MapY>
   <LineY data={aapl} x="Date" y="Close" />
 </Plot>
 

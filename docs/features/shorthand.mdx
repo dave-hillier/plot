@@ -1,4 +1,4 @@
-import {Area, AreaY, BarY, BoxX, Cell, CellX, Dot, DotX, Line, LineY, Plot, RectY, RuleX, Text, TextX, TickX, Vector, VectorX, binX, dodgeY, groupX} from "replot/react";
+import {Area, AreaY, BarY, BinX, BoxX, Cell, CellX, Dot, DotX, DodgeY, GroupX, Line, LineY, Plot, RectY, RuleX, Text, TextX, TickX, Vector, VectorX} from "replot/react";
 import * as d3 from "d3";
 
 export const numbers = [
@@ -151,26 +151,32 @@ For a more formal method of summarizing a one-dimensional distribution, we can u
   <BoxX data={numbers} />
 </Plot>
 
-Some of Plot’s transforms support shorthand syntax, too. For example, we can use Plot.rectY with [Plot.binX](../transforms/bin.md) to generate a histogram — another common way to visualize a one-dimensional distribution.
+Some of Plot’s transforms support shorthand syntax, too. For example, a bare `<BinX>` around a rectY mark generates a histogram, defaulting to a *count* of the binned values — another common way to visualize a one-dimensional distribution.
 
 <Plot>
-  <RectY data={numbers} {...binX()} />
+  <BinX>
+    <RectY data={numbers} />
+  </BinX>
 </Plot>
 
-Similarly [Plot.groupX](../transforms/group.md) can be used to group and count ordinal data, such as the frequency of bases in a random DNA sequence.
+Similarly a bare [`<GroupX>`](../transforms/group.md) groups and counts ordinal data, such as the frequency of bases in a random DNA sequence.
 
 ```js
 gene = "AAAAGAGTGAAGATGCTGGAGACGAGTGAAGCATTCACTTTAGGGAAAGCGAGGCAAGAGCGTTTCAGAAGACGAAACCTGGTAGGTGCACTCACCACAG"
 ```
 
 <Plot>
-  <BarY data={gene} {...groupX()} />
+  <GroupX>
+    <BarY data={gene} />
+  </GroupX>
 </Plot>
 
 And here’s the [dodge transform](../transforms/dodge.md) for a beeswarm plot:
 
 <Plot>
-  <DotX data={numbers} {...dodgeY()} />
+  <DodgeY>
+    <DotX data={numbers} />
+  </DodgeY>
 </Plot>
 
 ## Two dimensions

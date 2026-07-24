@@ -1,4 +1,4 @@
-import {Dot, DotX, Geo, Plot, RuleX, RuleY, Text, bin, geoCentroid, groupY, identity, normalizeX, selectMinX, stackY2} from "replot/react";
+import {Bin, Dot, DotX, Geo, GeoCentroid, GroupY, Plot, RuleX, RuleY, SelectMinX, StackY2, Text, identity, normalizeX} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import * as topojson from "topojson-client";
@@ -65,7 +65,9 @@ Dots also support an **r** channel allowing dot size to represent quantitative v
 With the [bin transform](../transforms/bin.md), sized dots can also be used as an alternative to a [rect-based](./rect.md) heatmap to show a two-dimensional distribution.
 
 <Plot height={640} marginLeft={60} grid x={{label: "Carats"}} y={{label: "Price ($)"}} r={{range: [0, 20]}}>
-  <Dot data={diamonds} {...bin({r: "count"}, {x: "carat", y: "price", thresholds: 100})} />
+  <Bin r="count" thresholds={100}>
+    <Dot data={diamonds} x="carat" y="price" />
+  </Bin>
 </Plot>
 
 
@@ -95,9 +97,13 @@ A dot may have an ordinal dimension on either **x** and **y**, as in the plot be
     legend: true
   }}>
   <RuleX data={[0]} />
-  <RuleY data={stateage} {...groupY({x1: "min", x2: "max"}, {...xy, sort: {y: "x1"}})} />
+  <GroupY x1="min" x2="max">
+    <RuleY data={stateage} {...xy} sort={{y: "x1"}} />
+  </GroupY>
   <Dot data={stateage} {...xy} fill="age" title="age" />
-  <Text data={stateage} {...selectMinX({...xy, textAnchor: "end", dx: -6, text: "state"})} />
+  <SelectMinX>
+    <Text data={stateage} {...xy} textAnchor="end" dx={-6} text="state" />
+  </SelectMinX>
 </Plot>
 
 ```js
@@ -134,12 +140,9 @@ The dot mark can be combined with the [stack transform](../transforms/stack.md).
     labelAnchor: "center",
     tickFormat: Math.abs
   }}>
-  <Dot data={congress} {...stackY2({
-        x: (d) => 2023 - d.birthday.getUTCFullYear(),
-        y: (d) => d.gender === "M" ? 1 : -1,
-        fill: "gender",
-        title: "full_name"
-      })} />
+  <StackY2>
+    <Dot data={congress} x={(d) => 2023 - d.birthday.getUTCFullYear()} y={(d) => d.gender === "M" ? 1 : -1} fill="gender" title="full_name" />
+  </StackY2>
   <RuleY data={[0]} />
 </Plot>
 
@@ -158,13 +161,9 @@ Dots are sorted by descending radius by default <VersionBadge version="0.5.0" />
 
 <Plot projection="albers-usa">
   <Geo data={statemesh} strokeOpacity={0.4} />
-  <Dot data={counties} {...geoCentroid({
-      r: (d) => d.properties.population,
-      fill: "currentColor",
-      stroke: "var(--vp-c-bg)",
-      strokeWidth: 1,
-      sort: sorted ? undefined : null
-    })} />
+  <GeoCentroid>
+    <Dot data={counties} r={(d) => d.properties.population} fill="currentColor" stroke="var(--vp-c-bg)" strokeWidth={1} sort={sorted ? undefined : null} />
+  </GeoCentroid>
 </Plot>
 
 The dot mark can also be used to construct a [quantile-quantile (QQ) plot](https://observablehq.com/@observablehq/qq-plot) for comparing two univariate distributions.

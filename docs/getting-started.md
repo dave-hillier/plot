@@ -170,22 +170,26 @@ The `<Plot>` component handles scale inference, axis generation, and layout auto
 
 ### With transforms
 
-Transforms like `binX`, `groupX`, and `stackY` are pure functions that return props you can spread onto mark components:
+Transforms such as binning, grouping, and stacking are available as wrapper components: nest a mark inside the wrapper, with the transform options as props on the wrapper and the input channels on the mark.
 
 :::code-group
 ```jsx [Histogram.jsx]
-import {Plot, BarY, RuleY, binX} from "replot/react";
+import {Plot, BarY, RuleY, BinX} from "replot/react";
 
 export default function Histogram({data}) {
   return (
     <Plot>
-      <BarY data={data} {...binX({y: "count"}, {x: "value", fill: "steelblue"})} />
+      <BinX y="count">
+        <BarY data={data} x="value" fill="steelblue" />
+      </BinX>
       <RuleY data={[0]} />
     </Plot>
   );
 }
 ```
 :::
+
+Transforms are also available as pure functions (`binX`, `groupX`, `stackY`, …) whose result you can spread onto a mark: `<BarY data={data} {...binX({y: "count"}, {x: "value"})} />`.
 
 ### With scale options
 

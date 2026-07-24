@@ -1,4 +1,4 @@
-import {Plot, RectY, binX} from "replot/react";
+import {BinX, Plot, RectY} from "replot/react";
 import * as d3 from "d3";
 
 # Getting started
@@ -10,7 +10,9 @@ Replot supports a variety of environments, including a first-class [React compon
 The fastest way to get started (and get help) with Replot is on [Observable](https://observablehq.com)! Plot is available by default in notebooks as part of Observable’s standard library. To use Plot, simply return the generated plot from a cell like so:
 
 <Plot>
-  <RectY data={{length: 10000}} {...binX({y: "count"}, {x: d3.randomNormal.source(d3.randomLcg(42))()})} />
+  <BinX y="count">
+    <RectY data={{length: 10000}} x={d3.randomNormal.source(d3.randomLcg(42))()} />
+  </BinX>
 </Plot>
 
 Observable includes a variety of Plot snippets when you click **+** to add a cell, as well as convenient [sample datasetS](https://observablehq.com/@observablehq/sample-datasetS) to try out Plot features. Or upload a CSV or JSON file to start playing with your data. You can even use [Observable’s chart cell](https://observablehq.com/@observablehq/chart-cell), which uses Plot’s [auto mark](./marks/auto.md) under the hood, to create quick charts without writing code! You can then eject to JavaScript by clicking **+** to see the equivalent Plot code.
@@ -149,20 +151,24 @@ The `<Plot>` component handles scale inference, axis generation, and layout auto
 
 ### With transforms
 
-Transforms like `binX`, `groupX`, and `stackY` are pure functions that return props you can spread onto mark components:
+Transforms such as binning, grouping, and stacking are available as wrapper components: nest a mark inside the wrapper, with the transform options as props on the wrapper and the input channels on the mark.
 
 ```jsx [Histogram.jsx]
-import {Plot, BarY, RuleY, binX} from "replot/react";
+import {Plot, BarY, RuleY, BinX} from "replot/react";
 
 export default function Histogram({data}) {
   return (
     <Plot>
-      <BarY data={data} {...binX({y: "count"}, {x: "value", fill: "steelblue"})} />
+      <BinX y="count">
+        <BarY data={data} x="value" fill="steelblue" />
+      </BinX>
       <RuleY data={[0]} />
     </Plot>
   );
 }
 ```
+
+Transforms are also available as pure functions (`binX`, `groupX`, `stackY`, …) whose result you can spread onto a mark: `<BarY data={data} {...binX({y: "count"}, {x: "value"})} />`.
 ### With scale options
 
 Configure scales by passing options directly to `<Plot>`:

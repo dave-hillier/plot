@@ -1,4 +1,4 @@
-import {Geo, Plot, Spike, Vector, centroid, geoCentroid} from "replot/react";
+import {Centroid, Geo, GeoCentroid, Plot, Spike, Vector} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import * as topojson from "topojson-client";
@@ -29,12 +29,9 @@ Vectors can be used with Plot’s [projection system](../features/projections.md
 <Plot projection="albers-usa" length={{type: "sqrt", transform: Math.abs}}>
   <Geo data={statemesh} strokeWidth={0.5} />
   <Geo data={nation} />
-  <Vector data={counties} {...centroid({
-        anchor: "start",
-        length: (d) => d.properties.margin2020 * d.properties.votes,
-        stroke: (d) => d.properties.margin2020 > 0 ? "red" : "blue",
-        rotate: (d) => d.properties.margin2020 > 0 ? 60 : -60
-      })} />
+  <Centroid>
+    <Vector data={counties} anchor="start" length={(d) => d.properties.margin2020 * d.properties.votes} stroke={(d) => d.properties.margin2020 > 0 ? "red" : "blue"} rotate={(d) => d.properties.margin2020 > 0 ? 60 : -60} />
+  </Centroid>
 </Plot>
 
 The **shape** option <VersionBadge version="0.6.2" /> controls the vector’s appearance, while the **anchor** option positions the vector relative to its anchor point specified in **x** and **y**. The [spike constructor](#spike) setS the **shape** to *spike* and the **anchor** to *start*. For example, this can be used to produce a [spike map](https:
@@ -42,7 +39,9 @@ The **shape** option <VersionBadge version="0.6.2" /> controls the vector’s ap
 <Plot width={688} projection="albers-usa" length={{range: [0, 200]}}>
   <Geo data={statemesh} strokeOpacity={0.5} />
   <Geo data={nation} />
-  <Spike data={counties} {...geoCentroid({length: (d) => d.properties.population, stroke: "green"})} />
+  <GeoCentroid>
+    <Spike data={counties} length={(d) => d.properties.population} stroke="green" />
+  </GeoCentroid>
 </Plot>
 
 You can even implement a custom **shape** by supplying an object with a **draw** method. This method takes a *context* for drawing paths and the *length* of the vector. See the [moon phase calendar](https://observablehq.com/@observablehq/plot-phases-of-the-moon) for an example.

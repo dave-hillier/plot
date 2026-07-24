@@ -1,4 +1,4 @@
-import {Density, Dot, Plot, Rect, RectY, RuleY, Tree, bin, binX} from "replot/react";
+import {Bin, BinX, Density, Dot, Plot, Rect, RectY, RuleY} from "replot/react";
 import * as d3 from "d3";
 import olympians from "./data/olympians.ts";
 
@@ -19,7 +19,9 @@ A plot specification assigns columns of data (*weight*, *height*, and *sex*) to 
 This scatterplot suffers from overplotting: many dots are drawn in the same spot, so it’s hard to perceive density. We can fix this by applying a [bin transform](./transforms/bin.md) to group athletes of similar height and weight (and sex), and then use opacity to encode the number of athletes in the bin.
 
 <Plot>
-  <Rect data={olympians} {...bin({fillOpacity: "count"}, {x: "weight", y: "height", fill: "sex", inset: 0})} />
+  <Bin fillOpacity="count">
+    <Rect data={olympians} x="weight" y="height" fill="sex" inset={0} />
+  </Bin>
 </Plot>
 
 Or we could try the [density mark](./marks/density.md).
@@ -31,13 +33,17 @@ Or we could try the [density mark](./marks/density.md).
 A simpler take on this data is to focus on one dimension: weight. We can use the bin transform again to make a histogram with weight on the *x*-axis and frequency on the *y*-axis. This plot uses a [rect mark](./marks/rect.md) and an implicit [stack transform](./transforms/stack.md).
 
 <Plot>
-  <RectY data={olympians} {...binX({y: "count"}, {x: "weight", fill: "sex"})} />
+  <BinX y="count">
+    <RectY data={olympians} x="weight" fill="sex" />
+  </BinX>
 </Plot>
 
 Or if we’d prefer to show the two distributions separately as small multiples, we can [facet](./features/facets.md) the data along *y* (keeping the *fill* encoding for consistency, and adding grid lines and a rule at *y* = 0 to improve readability).
 
 <Plot grid>
-  <RectY data={olympians} {...binX({y: "count"}, {x: "weight", fill: "sex", fy: "sex"})} />
+  <BinX y="count">
+    <RectY data={olympians} x="weight" fill="sex" fy="sex" />
+  </BinX>
   <RuleY data={[0]} />
 </Plot>
 

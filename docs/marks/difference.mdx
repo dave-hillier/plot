@@ -1,4 +1,4 @@
-import {AxisY, DifferenceY, Plot, RuleY, groupX, find, shiftX, windowY} from "replot/react";
+import {AxisY, DifferenceY, GroupX, Plot, RuleY, ShiftX, WindowY, find} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import aapl from "../data/aapl.ts";
@@ -22,7 +22,9 @@ In the simplest case, the difference mark compares a metric to a constant. For e
 A 24-month [moving average](../transforms/window.md) improves readability by smoothing out the noise.
 
 <Plot y={{grid: true}}>
-  <DifferenceY data={gistemp} {...windowY(12 * 2, {x: "Date", y: "Anomaly", positiveFill: "red", negativeFill: "blue", tip: true})} />
+  <WindowY k={12 * 2}>
+    <DifferenceY data={gistemp} x="Date" y="Anomaly" positiveFill="red" negativeFill="blue" tip />
+  </WindowY>
 </Plot>
 
 More powerfully, the difference mark compares two metrics. For example, the plot below shows the number of travelers per day through TSA checkpoints in 2020 compared to 2019. (This in effect compares a metric against itself, but as the data represents each year as a separate column, it is equivalent to two metrics.) In the first two months of 2020, there were on average <span style={{borderBottom: "solid #01ab63 3px"}}>more travelers</span> per day than 2019; yet when COVID-19 hit, there were many <span style={{borderBottom: "solid #4269d0 3px"}}>fewer travelers</span> per day, dropping almost to zero.
@@ -37,26 +39,19 @@ If the data is “tall” rather than “wide” — that is, if the two metrics
 
 <Plot x={{tickFormat: "%b"}} y={{grid: true}}>
   <RuleY data={[32]} />
-  <DifferenceY data={temperature} {...windowY(
-        14,
-        groupX(
-          {
-            y1: find((d) => d.station === "SJ"),
-            y2: find((d) => d.station === "SF")
-          },
-          {
-            x: "date",
-            y: "tmin",
-            tip: true
-          }
-        )
-      )} />
+  <WindowY k={14}>
+    <GroupX y1={find((d) => d.station === "SJ")} y2={find((d) => d.station === "SF")}>
+      <DifferenceY data={temperature} x="date" y="tmin" tip />
+    </GroupX>
+  </WindowY>
 </Plot>
 
 The difference mark can also be used to compare a metric to itself using the [shift transform](../transforms/shift.md). The chart below shows year-over-year growth in the price of Apple stock.
 
 <Plot y={{grid: true}}>
-  <DifferenceY data={aapl} {...shiftX("+1 year", {x: "Date", y: "Close"})} />
+  <ShiftX interval="+1 year">
+    <DifferenceY data={aapl} x="Date" y="Close" />
+  </ShiftX>
 </Plot>
 
 For most of the covered time period, you would have <span style={{borderBottom: "solid #01ab63 3px"}}>made a profit</span> by holding Apple stock for a year; however, if you bought in 2015 and sold in 2016, you would likely have <span style={{borderBottom: "solid #4269d0 3px"}}>lost money</span>.

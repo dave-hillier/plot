@@ -1,4 +1,4 @@
-import {Dot, Frame, Image, Plot, RuleX, RuleY, dodgeY} from "replot/react";
+import {Dot, DodgeY, Frame, Image, Plot, RuleX, RuleY} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import penguins from "../data/penguins.ts";
@@ -28,13 +28,9 @@ You can also use the **r** channel as a size encoding, and the **rotate** channe
 The **r** option works well with the [dodge transform](../transforms/dodge.md) for an image beeswarm plot. This chart isn’t particularly interesting because new presidents are inaugurated at a fairly consistent rate, but at least it avoids overlapping portraits.
 
 <Plot inset={20} height={280}>
-  <Image data={presidents} {...dodgeY({
-        x: "First Inauguration Date",
-        r: 20, // clip to a circle
-        preserveAspectRatio: "xMidYMin slice", // try not to clip heads
-        src: "Portrait URL",
-        title: "Name"
-      })} />
+  <DodgeY>
+    <Image data={presidents} x="First Inauguration Date" r={20 /* clip to a circle */} preserveAspectRatio="xMidYMin slice" src="Portrait URL" title="Name" />
+  </DodgeY>
 </Plot>
 
 The default size of an image is only 16×16 pixels. This may be acceptable if the image is a small glyph, such as a categorical symbol in a scatterplot. But often you will want to set **width**, **height**, or **r** to increase the image size.

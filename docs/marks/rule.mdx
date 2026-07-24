@@ -1,4 +1,4 @@
-import {BarY, Dot, Line, LineY, Plot, RuleX, RuleY, groupX, normalizeY} from "replot/react";
+import {BarY, Dot, GroupX, Line, LineY, NormalizeY, Plot, RuleX, RuleY} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import aapl from "../data/aapl.ts";
@@ -29,7 +29,9 @@ As annotations, rules often have a hard-coded array of literal values as data. T
     tickFormat: ((f) => (d) => f((d - 1) * 100))(d3.format("+d"))
   }}>
   <RuleY data={[1]} stroke="red" />
-  <Line data={aapl} {...normalizeY("first", {x: "Date", y: "Close"})} />
+  <NormalizeY basis="first">
+    <Line data={aapl} x="Date" y="Close" />
+  </NormalizeY>
 </Plot>
 
 Yet rules can also be used to visualize data. Below, a random normal distribution is plotted with rules, looking a bit like the [emission spectrum of Hydrogen](https://en.wikipedia.org/wiki/Hydrogen_spectral_series).
@@ -57,9 +59,13 @@ In the dense [candlestick chart](https://observablehq.com/@observablehq/observab
 Rules can be used to connect graphical elements, such as in the [dot plot](./dot.md) below showing the decline of *The Simpsons*. The rules indicate the extent (minimum and maximum) for each season, computed via the [group transform](../transforms/group.md), while a red line shows the median rating trend.
 
 <Plot>
-  <RuleX data={simpsons} {...groupX({y1: "min", y2: "max"}, {x: "season", y: "imdb_rating"})} />
+  <GroupX y1="min" y2="max">
+    <RuleX data={simpsons} x="season" y="imdb_rating" />
+  </GroupX>
   <Dot data={simpsons} x="season" y="imdb_rating" fill="currentColor" stroke="var(--vp-c-bg)" />
-  <LineY data={simpsons} {...groupX({y: "median"}, {x: "season", y: "imdb_rating", stroke: "red"})} />
+  <GroupX y="median">
+    <LineY data={simpsons} x="season" y="imdb_rating" stroke="red" />
+  </GroupX>
 </Plot>
 
 Rules can indicate uncertainty or error by setTing the [**marker** option](../features/markers.md) to *tick*; this draws a small perpendicular line at the start and end of the rule. For example, to simulate ±10% error:

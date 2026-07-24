@@ -1,4 +1,4 @@
-import {Dot, Frame, Geo, LineY, Plot, RectY, Tip, binX, geoCentroid} from "replot/react";
+import {BinX, Dot, Frame, Geo, GeoCentroid, LineY, Plot, RectY, Tip} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import * as topojson from "topojson-client";
@@ -65,13 +65,17 @@ If a channel is bound to the *color* or *opacity* scale, the tip mark displays a
 The tip mark recognizes that **x1** & **x2** and **y1** & **y2** are paired channels. Below, observe that the *weight* shown in the tip is a range such as 64–66 kg; however, the *frequency* is shown as the difference between the **y1** and **y2** channels. The latter is achieved by the stack transform setTing a channel hint to indicate that **y1** and **y2** represent a length.
 
 <Plot>
-  <RectY data={olympians} {...binX({y: "count"}, {x: "weight", fill: "sex", tip: true})} />
+  <BinX y="count">
+    <RectY data={olympians} x="weight" fill="sex" tip />
+  </BinX>
 </Plot>
 
 This even works when stacking negative values, say to mirror the histogram instead of stacking it. (The tip displays negative frequency, but this is consistent with the *y* axis.)
 
 <Plot y={{label: "Frequency"}}>
-  <RectY data={olympians} {...binX({y: "sum"}, {x: "weight", y: (d) => d.sex === "male" ? 1 : -1, fill: "sex", tip: true})} />
+  <BinX y="sum">
+    <RectY data={olympians} x="weight" y={(d) => d.sex === "male" ? 1 : -1} fill="sex" tip />
+  </BinX>
 </Plot>
 
 The order and formatting of channels in the tip can be customized with the **format** option <VersionBadge version="0.6.11" pr="1823" />, which accepts a key-value object mapping channel names to formats. Each [format](../features/formats.md) can be a string (for number or time formats), a function that receives the value as input and returns a string, true to use the default format, and null or false to suppress. The order of channels in the tip follows their order in the format object followed by any additional channels. When using the **title** channel, the **format** option may be specified as a string or a function; the given format will then apply to the **title** channel. <VersionBadge version="0.6.15" pr="2074" />
@@ -98,7 +102,9 @@ The tip mark is compatible with transforms that derive **x** and **y** dynamical
 
 <Plot projection="albers-usa">
   <Geo data={states} />
-  <Tip data={states} {...geoCentroid({title: (d) => d.properties.name, anchor: "bottom", textPadding: 3})} />
+  <GeoCentroid>
+    <Tip data={states} title={(d) => d.properties.name} anchor="bottom" textPadding={3} />
+  </GeoCentroid>
 </Plot>
 
 

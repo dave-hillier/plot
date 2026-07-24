@@ -1,4 +1,4 @@
-import {AreaY, Arrow, BarX, BoxX, Dot, Frame, Line, Plot, Text, groupY, normalizeY, scale} from "replot/react";
+import {AreaY, Arrow, BarX, BoxX, Dot, Frame, GroupY, Line, NormalizeY, Plot, Text, scale} from "replot/react";
 import * as d3 from "d3";
 import {useEffect} from "react";
 import anscombe from "../data/anscombe.ts";
@@ -28,18 +28,10 @@ The chart above reveals a likely data collection error: the years appear to be r
 
 <Plot height={800} marginLeft={110} grid x={{nice: true}} y={{inset: 5}} color={{scheme: "spectral", label: "Change in yield", tickFormat: "+f", legend: true}} facet={{marginRight: 90}}>
   <Frame />
-  <Arrow data={barley} {...groupY({
-      x1: "first",
-      x2: "last",
-      stroke: ([x1, x2]) => x2 - x1 // year-over-year difference
-    }, {
-      x: "yield",
-      y: "variety",
-      fy: "site",
-      stroke: "yield",
-      strokeWidth: 2,
-      sort: {y: "-x1", fy: "-x1", reduce: "median"}
-    })} />
+  {/* the stroke reducer computes the year-over-year difference */}
+  <GroupY x1="first" x2="last" stroke={([x1, x2]) => x2 - x1}>
+    <Arrow data={barley} x="yield" y="variety" fy="site" stroke="yield" strokeWidth={2} sort={{y: "-x1", fy: "-x1", reduce: "median"}} />
+  </GroupY>
 </Plot>
 
 
@@ -81,25 +73,29 @@ When there are many facets, facets may be small and hard to read; you may need t
   const industryNames = [...new Set(industries.map((d) => d.industry))];
   return (
     <Plot height={industryNames.length / columns * 120} axis={null} y={{insetTop: 4}} fx={{padding: 0.03}} fy={{padding: 0.03}}>
-      <AreaY data={industries} {...normalizeY("extent", {
-        x: "date",
-        y: "unemployment",
-        fy: (d) => Math.floor(industryNames.indexOf(d.industry) / columns),
-        fx: (d) => industryNames.indexOf(d.industry) % columns,
-        z: "industry",
-        fillOpacity: 0.5
-      })} />
-      <Text data={industries} {...normalizeY("extent", {
-        x: "date",
-        y: "unemployment",
-        fy: (d) => Math.floor(industryNames.indexOf(d.industry) / columns),
-        fx: (d) => industryNames.indexOf(d.industry) % columns,
-        z: "industry",
-        text: ((d, i, data) => i === 0 ? d.industry : null),
-        frameAnchor: "top-left",
-        dx: 6,
-        dy: 6
-      })} />
+      <NormalizeY basis="extent">
+        <AreaY
+          data={industries}
+          x="date"
+          y="unemployment"
+          fy={(d) => Math.floor(industryNames.indexOf(d.industry) / columns)}
+          fx={(d) => industryNames.indexOf(d.industry) % columns}
+          z="industry"
+          fillOpacity={0.5}
+        />
+        <Text
+          data={industries}
+          x="date"
+          y="unemployment"
+          fy={(d) => Math.floor(industryNames.indexOf(d.industry) / columns)}
+          fx={(d) => industryNames.indexOf(d.industry) % columns}
+          z="industry"
+          text={(d, i, data) => i === 0 ? d.industry : null}
+          frameAnchor="top-left"
+          dx={6}
+          dy={6}
+        />
+      </NormalizeY>
       <Frame />
     </Plot>
   );
@@ -112,7 +108,9 @@ This example uses an [immediately-invoked function expression (IIFE)](https://de
 The above chart also demonstrates faceted annotations, using a [text mark](../marks/text.md) to label the facet in lieu of facet axes. Below, we apply a single text annotation to the *Adelie* facet by setTing the **fy** channel to a single-element array parallel to the data.
 
 <Plot marginLeft={60} marginRight={60} grid y={{label: null}} fy={{label: null}} color={{legend: true}}>
-  <BarX data={penguins} {...groupY({x: "count"}, {fy: "species", y: "island", fill: "sex"})} />
+  <GroupY x="count">
+    <BarX data={penguins} fy="species" y="island" fill="sex" />
+  </GroupY>
   <Text data={[`While Chinstrap and Gentoo penguins were each observed on only one island, Adelie penguins were observed on all three islands.`]} fy={["Adelie"]} frameAnchor="top-right" lineWidth={18} dx={-6} dy={6} />
   <Frame />
 </Plot>

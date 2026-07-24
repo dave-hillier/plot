@@ -1,4 +1,4 @@
-import {AxisFx, Plot, Text, WaffleX, WaffleY, groupX, groupZ} from "replot/react";
+import {AxisFx, GroupX, GroupZ, Plot, Text, WaffleX, WaffleY} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import olympians from "../data/olympians.ts";
@@ -25,7 +25,9 @@ The **waffle mark** is similar to the [bar mark](./bar.md) in that it displays a
 The waffle mark is often used with the [group transform](../transforms/group.md) to compute counts. The chart below compares the number of female and male athletes in the 2012 Olympics.
 
 <Plot x={{label: null}}>
-  <WaffleY data={olympians} {...groupX({y: "count"}, {x: "sex"})} />
+  <GroupX y="count">
+    <WaffleY data={olympians} x="sex" />
+  </GroupX>
 </Plot>
 
 
@@ -46,7 +48,9 @@ The **unit** option determines the quantity each waffle cell represents; it defa
 </p>
 
 <Plot fx={{interval: "5 years", label: null}}>
-  <WaffleY data={olympians} {...groupZ({y: "count"}, {fx: "date_of_birth", unit})} />
+  <GroupZ y="count">
+    <WaffleY data={olympians} fx="date_of_birth" unit={unit} />
+  </GroupZ>
 </Plot>
 
 
@@ -56,7 +60,9 @@ While waffles typically represent integer quantities, say to count people or day
 Like bars, waffles can be [stacked](../transforms/stack.md), and implicitly apply the stack transform when only a single quantitative channel is supplied.
 
 <Plot fx={{interval: 10}} color={{legend: true}}>
-  <WaffleY data={olympians} {...groupZ({y: "count"}, {fill: "sex", sort: "sex", fx: "weight", unit: 10})} />
+  <GroupZ y="count">
+    <WaffleY data={olympians} fill="sex" sort="sex" fx="weight" unit={10} />
+  </GroupZ>
 </Plot>
 
 Waffles can also be used to highlight a proportion of the whole. The chart below recreates a graphic of survey responses from [“Teens in Syria”](https://www.economist.com/graphic-detail/2015/08/19/teens-in-syria) by _The Economist_ (August 19, 2015); positive responses are in orange, while negative responses are in gray. The **rx** option is used to produce circles instead of squares.

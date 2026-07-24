@@ -1,4 +1,4 @@
-import {Dot, Hexgrid, Plot, hexbin} from "replot/react";
+import {Dot, Hexbin, Hexgrid, Plot} from "replot/react";
 import * as d3 from "d3";
 import penguins from "../data/penguins.ts";
 
@@ -8,7 +8,9 @@ The **hexgrid mark** draws a hexagonal grid spanning the frame. It can be used w
 
 <Plot>
   <Hexgrid />
-  <Dot data={penguins} {...hexbin({r: "count"}, {x: "culmen_length_mm", y: "culmen_depth_mm", fill: "currentColor"})} />
+  <Hexbin r="count">
+    <Dot data={penguins} x="culmen_length_mm" y="culmen_depth_mm" fill="currentColor" />
+  </Hexbin>
 </Plot>
 
 ## Hexgrid options

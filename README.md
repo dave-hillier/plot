@@ -30,6 +30,33 @@ function Chart({data}) {
 - **No manual DOM management** — No need for refs, effects, or manual cleanup.
 - **Built on Observable Plot** — All the power of Observable Plot's scales, transforms, and mark system.
 
+### Design principles
+
+Replot aims to translate Observable Plot's grammar into React idioms, not
+merely rename its options:
+
+- What Plot expresses by **wrapping** — transforms such as `binX`, `stackY`,
+  `groupX` — is expressed by **nesting components**, so JSX structure
+  mirrors the functional composition `binX(outputs, stackY(options))`:
+
+  ```jsx
+  <BinX y="count">
+    <StackY>
+      <RectY data={data} x="value" fill="sex" />
+    </StackY>
+  </BinX>
+  ```
+
+- What Plot expresses as **options** — channels like `x`/`y`/`fill`, styles,
+  scale configuration — stays as **props**.
+- Layered marks are sibling components, matching Plot's `marks: [...]` array.
+- The functional transform form (`{...binX({y: "count"}, {x: "value"})}`)
+  remains supported; both forms run the same transform functions and produce
+  identical output.
+
+See [PLAN.md](./PLAN.md) for the design rationale behind the transform
+components.
+
 ### API overview
 
 | Imperative API (Observable Plot) | React Component API (Replot) |
@@ -60,12 +87,14 @@ function Scatterplot({data}) {
 **Histogram with binning:**
 
 ```jsx
-import {Plot, BarY, RuleY, binX} from "replot/react";
+import {Plot, BarY, BinX, RuleY} from "replot/react";
 
 function Histogram({data}) {
   return (
     <Plot>
-      <BarY data={data} {...binX({y: "count"}, {x: "value"})} />
+      <BinX y="count">
+        <BarY data={data} x="value" />
+      </BinX>
       <RuleY data={[0]} />
     </Plot>
   );
@@ -103,12 +132,14 @@ function FacetedPlot({data}) {
 **Stacked area chart:**
 
 ```jsx
-import {Plot, AreaY, stackY} from "replot/react";
+import {Plot, AreaY, StackY} from "replot/react";
 
 function StackedArea({data}) {
   return (
     <Plot>
-      <AreaY data={data} x="date" y="value" fill="category" {...stackY()} />
+      <StackY>
+        <AreaY data={data} x="date" y="value" fill="category" />
+      </StackY>
     </Plot>
   );
 }

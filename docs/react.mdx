@@ -4,10 +4,10 @@ import penguins from "./data/penguins.ts";
 
 Replot provides a native React component API. Instead of the imperative `Plot.plot()` function, you compose charts declaratively with JSX using the `<Plot>` root component and mark components like `<Dot>`, `<Line>`, `<BarY>`, and others.
 
-All components are imported from `replot/react`. Transforms such as `binX`, `groupX`, and `stackY` are re-exported from the same entry point.
+All components are imported from `replot/react`. Transforms are components too — `<BinX>`, `<GroupX>`, `<StackY>`, and friends wrap marks to transform them; the underlying transform functions (`binX`, `groupX`, `stackY`, ...) are also re-exported from the same entry point.
 
 ```jsx
-import {Plot, Dot, Line, BarY, binX} from "replot/react";
+import {Plot, Dot, Line, BarY, BinX, StackY} from "replot/react";
 ```
 
 ## Scatterplot
@@ -96,7 +96,7 @@ Plot.plot({
 
 ## Histogram
 
-A histogram using the `binX` transform with `<BarY>`. Spread the transform result onto the mark component.
+A histogram using the `<BinX>` transform component with `<BarY>`. Nest the mark inside the wrapper; output reducers such as `y="count"` go on the wrapper, input channels stay on the mark.
 
 ```jsx [Imperative]
 Plot.plot({
@@ -109,7 +109,9 @@ Plot.plot({
 
 ```jsx [React]
 <Plot>
-  <BarY data={data} {...binX({y: "count"}, {x: "value", fill: "steelblue"})} />
+  <BinX y="count">
+    <BarY data={data} x="value" fill="steelblue" />
+  </BinX>
   <RuleY data={[0]} />
 </Plot>
 ```
@@ -117,7 +119,7 @@ Plot.plot({
 
 ## Grouped bar chart
 
-Use the `groupX` transform to aggregate data by category.
+Use the `<GroupX>` transform component to aggregate data by category.
 
 ```jsx [Imperative]
 Plot.plot({
@@ -132,14 +134,16 @@ Plot.plot({
 
 ```jsx [React]
 <Plot x={{label: "Category"}} y={{label: "Count"}} color={{legend: true}}>
-  <BarY data={data} {...groupX({y: "count"}, {x: "category", fill: "group"})} />
+  <GroupX y="count">
+    <BarY data={data} x="category" fill="group" />
+  </GroupX>
 </Plot>
 ```
 
 
 ## Stacked area chart
 
-Use the `stackY` transform with `<AreaY>` to create stacked areas.
+Use the `<StackY>` transform component with `<AreaY>` to create stacked areas.
 
 ```jsx [Imperative]
 Plot.plot({
@@ -151,7 +155,9 @@ Plot.plot({
 
 ```jsx [React]
 <Plot>
-  <AreaY data={data} x="date" y="value" fill="category" {...stackY()} />
+  <StackY>
+    <AreaY data={data} x="date" y="value" fill="category" />
+  </StackY>
 </Plot>
 ```
 
@@ -318,7 +324,9 @@ Plot.plot({
 
 ```jsx [React]
 <Plot color={{scheme: "ylgnbu"}}>
-  <Rect data={data} {...bin({fill: "count"}, {x: "x", y: "y"})} />
+  <Bin fill="count">
+    <Rect data={data} x="x" y="y" />
+  </Bin>
 </Plot>
 ```
 
@@ -449,7 +457,7 @@ All mark components accept the same options as their imperative counterparts, pa
 |---|---|---|
 | `Plot.plot({marks: [...]})` | `<Plot>...</Plot>` | Marks are children, scale options are props |
 | `Plot.dot(data, {x, y})` | `<Dot data={data} x="x" y="y" />` | All options become props |
-| `Plot.binX({y: "count"}, opts)` | `{...binX({y: "count"}, opts)}` | Spread transform result as props |
+| `Plot.binX({y: "count"}, opts)` | `<BinX y="count">...</BinX>` | Transforms nest as wrapper components |
 | `Plot.line(data, {...})` | `<Line data={data} ... />` | Same pattern for all marks |
 
 ### Available mark components
@@ -465,3 +473,19 @@ All mark components accept the same options as their imperative counterparts, pa
 **Interactions:** `Tip`, `Crosshair`, `CrosshairX`, `CrosshairY`
 
 **Legends:** `Legend`
+
+### Transform components
+
+Transforms nest as wrapper components around marks, so element structure mirrors the functional call structure: `<BinX y="count"><StackY><RectY ... /></StackY></BinX>` is equivalent to `binX({y: "count"}, stackY(options))`. The inner wrapper applies first, and each mark inside a wrapper gets the transform applied independently.
+
+**Stack:** `StackX`, `StackX1`, `StackX2`, `StackY`, `StackY1`, `StackY2`
+
+**Bin and group:** `BinX`, `Group`, `GroupX`, `GroupY`, `GroupZ`
+
+**Series:** `WindowX`, `WindowY`, `NormalizeX`, `NormalizeY`, `MapX`, `MapY`, `ShiftX`, `ShiftY`
+
+**Select:** `SelectFirst`, `SelectLast`, `SelectMinX`, `SelectMinY`, `SelectMaxX`, `SelectMaxY`
+
+**Initializers:** `DodgeX`, `DodgeY`, `Hexbin`, `Centroid`, `GeoCentroid`
+
+The functional spread form remains supported: `<BarY data={data} {...binX({y: "count"}, {x: "value"})} />` produces the same output as the nested form.

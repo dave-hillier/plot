@@ -1,4 +1,4 @@
-import {Cell, Plot, Text, group} from "replot/react";
+import {Cell, Group, Plot, Text} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import alphabet from "../data/alphabet.ts";
@@ -30,12 +30,9 @@ With [faceting](../features/facets.md), we can produce a calendar of multiple ye
 The cell mark can be combined with the [group transform](../transforms/group.md), which groups data by ordinal value. (The [bin transform](../transforms/bin.md), on the other hand, is intended for quantitative data and is typically paired with the [rect mark](./rect.md).) The heatmap below shows the maximum observed temperature by month (**y**) and date (**x**) in Seattle from 2012 through 2015.
 
 <Plot padding={0} y={{tickFormat: Plot.formatMonth("en", "short")}}>
-  <Cell data={seattle} {...group({fill: "max"}, {
-      x: (d) => d.date.getUTCDate(),
-      y: (d) => d.date.getUTCMonth(),
-      fill: "temp_max",
-      inset: 0.5
-    })} />
+  <Group fill="max">
+    <Cell data={seattle} x={(d) => d.date.getUTCDate()} y={(d) => d.date.getUTCMonth()} fill="temp_max" inset={0.5} />
+  </Group>
 </Plot>
 
 A one-dimensional cell is produced by specifying only **x** or only **y**. The plot below collapses the history of *The Simpsons* to a single line.

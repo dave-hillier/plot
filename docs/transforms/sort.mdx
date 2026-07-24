@@ -1,4 +1,4 @@
-import {Dot, DotX, Geo, Line, Plot, RuleY, dodgeY, geoCentroid} from "replot/react";
+import {Dot, DotX, DodgeY, Geo, GeoCentroid, Line, Plot, RuleY} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import * as topojson from "topojson-client";
@@ -26,13 +26,9 @@ The **sort transform** sorts a mark’s index to change the effective order of d
 
 <Plot projection="albers-usa">
   <Geo data={statemesh} strokeOpacity={0.4} />
-  <Dot data={counties} {...geoCentroid({
-      r: (d) => d.properties.population,
-      fill: "currentColor",
-      stroke: "var(--vp-c-bg)",
-      strokeWidth: 1,
-      sort: sorted ? {channel: "-r"} : null
-    })} />
+  <GeoCentroid>
+    <Dot data={counties} r={(d) => d.properties.population} fill="currentColor" stroke="var(--vp-c-bg)" strokeWidth={1} sort={sorted ? {channel: "-r"} : null} />
+  </GeoCentroid>
 </Plot>
 
 
@@ -65,12 +61,9 @@ The index order also affects the behavior of certain transforms such as [stack](
 </p>
 
 <Plot height={180}>
-  <DotX data={cars} {...dodgeY({
-      x: "weight (lb)",
-      title: "name",
-      fill: "currentColor",
-      sort: {channel: "x", order}
-    })} />
+  <DodgeY>
+    <DotX data={cars} x="weight (lb)" title="name" fill="currentColor" sort={{channel: "x", order}} />
+  </DodgeY>
 </Plot>
 
 The closely-related [reverse transform](#reverse) likewise reverses the mark index, while the [shuffle transform](#shuffle) for randomizes the mark index’s order.

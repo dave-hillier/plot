@@ -1,4 +1,4 @@
-import {DifferenceY, Plot, shiftX} from "replot/react";
+import {DifferenceY, Plot, ShiftX} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import aapl from "../data/aapl.ts";
@@ -19,7 +19,9 @@ The **shift transform** is a specialized [map transform](./map.md) that derives 
 </p>
 
 <Plot y={{grid: true}}>
-  <DifferenceY data={aapl} {...shiftX(`${shift} days`, {x: "Date", y: "Close"})} />
+  <ShiftX interval={`${shift} days`}>
+    <DifferenceY data={aapl} x="Date" y="Close" />
+  </ShiftX>
 </Plot>
 
 ```js-vue

@@ -1,4 +1,4 @@
-import {AxisX, AxisY, Circle, Dot, Geo, Hexgrid, Plot, Text, hexbin, scale} from "replot/react";
+import {AxisX, AxisY, Circle, Dot, Geo, Hexbin, Hexgrid, Plot, Text, scale} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import * as topojson from "topojson-client";
@@ -19,7 +19,9 @@ The **hexbin transform** groups two-dimensional quantitative or temporal data �
 For example, the heatmap below shows the weights and heights of Olympic athletes. The color of each hexagon represents the number (*count*) of athletes with similar weight and height.
 
 <Plot color={{scheme: "turbo"}}>
-  <Dot data={olympians} {...hexbin({fill: "count"}, {x: "weight", y: "height"})} />
+  <Hexbin fill="count">
+    <Dot data={olympians} x="weight" y="height" />
+  </Hexbin>
 </Plot>
 
 Whereas the [bin transform](./bin.md) produces rectangular bins and operates on abstract data, the hexbin transform produces hexagonal bins and operates in “screen space” (_i.e._, pixel coordinates) after the *x* and *y* scales have been applied to the data. And whereas the bin transform produces **x1**, **y1**, **x2**, **y2** representing rectangular extents, the hexbin transform produces **x** and **y** representing hexagon centers.
@@ -35,13 +37,17 @@ To produce an areal encoding as in a bubble map, output **r**. In this case, the
 </p>
 
 <Plot>
-  <Dot data={olympians} {...hexbin({r: "count"}, {x: "weight", y: "height", binWidth})} />
+  <Hexbin r="count" binWidth={binWidth}>
+    <Dot data={olympians} x="weight" y="height" />
+  </Hexbin>
 </Plot>
 
 If desired, you can output both **fill** and **r** for a redundant encoding.
 
 <Plot color={{scheme: "turbo"}}>
-  <Dot data={olympians} {...hexbin({fill: "count", r: "count"}, {x: "weight", y: "height", stroke: "currentColor"})} />
+  <Hexbin fill="count" r="count">
+    <Dot data={olympians} x="weight" y="height" stroke="currentColor" />
+  </Hexbin>
 </Plot>
 
 
@@ -49,19 +55,25 @@ Setting a **stroke** ensures that the smallest hexagons are visible.
 Alternatively, the **fill** and **r** channels can encode independent (or “bivariate”) dimensions of data. Below, the **r** channel uses *count* as before, while the **fill** channel uses *mode* to show the most frequent sex of athletes in each hexagon. The larger athletes are more likely to be <span style={{borderBottom: "solid 2px #efb118"}}>male</span>, while the smaller athletes are more likely to be <span style={{borderBottom: "solid 2px #4269d0"}}>female</span>.
 
 <Plot>
-  <Dot data={olympians} {...hexbin({fill: "mode", r: "count"}, {x: "weight", y: "height", fill: "sex"})} />
+  <Hexbin fill="mode" r="count">
+    <Dot data={olympians} x="weight" y="height" fill="sex" />
+  </Hexbin>
 </Plot>
 
 Using **z**, the hexbin transform will partition hexagons by ordinal value. If **z** is not specified, it defaults to **fill** (if there is no **fill** output channel) or **stroke** (if there is no **stroke** output channel). Setting **z** to *sex* in the chart above, and switching to **stroke** instead of **fill**, produces separate overlapping hexagons for each sex.
 
 <Plot>
-  <Dot data={olympians} {...hexbin({stroke: "mode", r: "count"}, {x: "weight", y: "height", z: "sex", stroke: "sex"})} />
+  <Hexbin stroke="mode" r="count">
+    <Dot data={olympians} x="weight" y="height" z="sex" stroke="sex" />
+  </Hexbin>
 </Plot>
 
 The hexbin transform can be paired with any mark that supports **x** and **y** channels (which is almost all of them). The [text mark](../marks/text.md) is useful for labelling. By setTing the **text** output channel, you can derive the text from the binned contents.
 
 <Plot>
-  <Text data={olympians} {...hexbin({text: "count"}, {x: "weight", y: "height"})} />
+  <Hexbin text="count">
+    <Text data={olympians} x="weight" y="height" />
+  </Hexbin>
 </Plot>
 
 The hexbin transform also works with Plot’s [projection system](../features/projections.md). Below, hexagon size represents the number of nearby Walmart stores, while color represents the date the first nearby Walmart store opened. (The first Walmart opened in Rogers, Arkansas.)
@@ -69,7 +81,9 @@ The hexbin transform also works with Plot’s [projection system](../features/pr
 <Plot projection="albers" r={{range: [0, 16]}} color={{scheme: "spectral", label: "First year opened", legend: true}}>
   <Geo data={statemesh} strokeOpacity={0.5} />
   <Geo data={nation} />
-  <Dot data={walmarts} {...hexbin({r: "count", fill: "min"}, {x: "longitude", y: "latitude", fill: "date"})} />
+  <Hexbin r="count" fill="min">
+    <Dot data={walmarts} x="longitude" y="latitude" fill="date" />
+  </Hexbin>
 </Plot>
 
 
@@ -78,19 +92,25 @@ The [hexgrid mark](../marks/hexgrid.md) draws the base hexagonal grid as a mesh.
 
 <Plot>
   <Hexgrid />
-  <Dot data={olympians} {...hexbin({r: "count"}, {x: "weight", y: "height", fill: "currentColor"})} />
+  <Hexbin r="count">
+    <Dot data={olympians} x="weight" y="height" fill="currentColor" />
+  </Hexbin>
 </Plot>
 
 The hexbin transform defaults the **symbol** option to *hexagon*, but you can override it. The [circle constructor](../marks/dot.md#circle) changes it to *circle*.
 
 <Plot>
-  <Circle data={olympians} {...hexbin({r: "count"}, {x: "weight", y: "height"})} />
+  <Hexbin r="count">
+    <Circle data={olympians} x="weight" y="height" />
+  </Hexbin>
 </Plot>
 
 Hexbins work best when there is an interesting density of dots in the center of the chart, but sometimes hexagons “escape” the edge of the frame and cover the axes. To prevent this, you can use the **inset** [scale option](../features/scales.md) to reserve space on the edges of the frame.
 
 <Plot inset={10} color={{scheme: "turbo"}}>
-  <Dot data={olympians} {...hexbin({fill: "count"}, {x: "weight", y: "height"})} />
+  <Hexbin fill="count">
+    <Dot data={olympians} x="weight" y="height" />
+  </Hexbin>
 </Plot>
 
 
@@ -98,7 +118,9 @@ You can also set the dot’s **clip** option to true to prevent the hexagons fro
 Alternatively, use the [axis mark](../marks/axis.md) to draw axes on top of the hexagons.
 
 <Plot color={{scheme: "turbo"}}>
-  <Dot data={olympians} {...hexbin({fill: "count"}, {x: "weight", y: "height"})} />
+  <Hexbin fill="count">
+    <Dot data={olympians} x="weight" y="height" />
+  </Hexbin>
   <AxisX />
   <AxisY />
 </Plot>

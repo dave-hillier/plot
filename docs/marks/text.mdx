@@ -1,4 +1,4 @@
-import {BarY, Frame, Line, Plot, RuleX, RuleY, Text, selectFirst, stackX2} from "replot/react";
+import {BarY, Frame, Line, Plot, RuleX, RuleY, SelectFirst, StackX2, Text} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import alphabet from "../data/alphabet.ts";
@@ -42,8 +42,10 @@ For line charts with multiple series, you may wish to label only the start or en
   <RuleY data={[0]} />
   <Line data={travelers} x="date" y="previous" strokeOpacity={0.5} />
   <Line data={travelers} x="date" y="current" />
-  <Text data={travelers} {...selectFirst({x: "date", y: "previous", text: ["2019"], fillOpacity: 0.5, lineAnchor: "bottom", dy: -6})} />
-  <Text data={travelers} {...selectFirst({x: "date", y: "current", text: ["2020"], lineAnchor: "top", dy: 6})} />
+  <SelectFirst>
+    <Text data={travelers} x="date" y="previous" text={["2019"]} fillOpacity={0.5} lineAnchor="bottom" dy={-6} />
+    <Text data={travelers} x="date" y="current" text={["2020"]} lineAnchor="top" dy={6} />
+  </SelectFirst>
 </Plot>
 
 
@@ -54,7 +56,9 @@ A text mark can also be used to visualize data directly, similar to a [dot mark]
   <Text data={[[0.5, 4]]} text={["Northbound"]} textAnchor="start" dx={16} />
   <Text data={[[-0.5, 4]]} text={["Southbound"]} textAnchor="end" dx={-16} />
   <Text data={d3.range(5, 25)} x={0} y={Plot.identity} text={(y) => `${y % 12 || 12}${y % 24 >= 12 ? "p": "a"}`} />
-  <Text data={caltrain} {...stackX2({x: (d) => d.orientation === "N" ? 1 : -1, y: "hours", fill: "type", text: "minutes"})} />
+  <StackX2>
+    <Text data={caltrain} x={(d) => d.orientation === "N" ? 1 : -1} y="hours" fill="type" text="minutes" />
+  </StackX2>
   <RuleX data={[-0.5, 0.5]} />
 </Plot>
 

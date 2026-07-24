@@ -1,4 +1,4 @@
-import {Plot, Rect, RectY, RuleY, bin, binX, stackX} from "replot/react";
+import {Bin, BinX, Plot, Rect, RectY, RuleY, StackX} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import * as topojson from "topojson-client";
@@ -39,20 +39,26 @@ d3.bin uses *x0* and *x1* to represent the lower and upper bound of each bin, wh
 More commonly, the rect mark is paired with the [bin transform](../transforms/bin.md) to bin quantitative values automatically. As an added bonus, this setS default [inset options](../features/marks.md#mark-options) for a 1px gap separating adjacent rects, improving readability.
 
 <Plot>
-  <RectY data={d3.range(1000).map(d3.randomNormal.source(d3.randomLcg(42))())} {...binX()} />
+  <BinX y="count">
+    <RectY data={d3.range(1000).map(d3.randomNormal.source(d3.randomLcg(42))())} />
+  </BinX>
 </Plot>
 
 Like the [bar mark](./bar.md), the rect mark has two convenience constructors for common orientations: [rectX](#rectX) is for horizontal→ rects with an implicit [stackX transform](../transforms/stack.md#stackX), while [rectY](#rectY) is for vertical↑ rects with an implicit [stackY transform](../transforms/stack.md#stackY).
 
 <Plot color={{legend: true}}>
-  <RectY data={olympians} {...binX({y: "count"}, {x: "weight", fill: "sex"})} />
+  <BinX y="count">
+    <RectY data={olympians} x="weight" fill="sex" />
+  </BinX>
   <RuleY data={[0]} />
 </Plot>
 
 For overlapping rects, you can opt-out of the implicit stack transform by specifying either **x1** or **x2** for rectX, and likewise either **y1** or **y2** for rectY.
 
 <Plot round color={{legend: true}}>
-  <RectY data={olympians} {...binX({y2: "count"}, {x: "weight", fill: "sex", mixBlendMode: "multiply"})} />
+  <BinX y2="count">
+    <RectY data={olympians} x="weight" fill="sex" mixBlendMode="multiply" />
+  </BinX>
   <RuleY data={[0]} />
 </Plot>
 
@@ -61,7 +67,9 @@ While the **mixBlendMode** option is useful for mitigating occlusion, it can be 
 The rect mark and bin transform naturally support [faceting](../features/facets.md), too.
 
 <Plot>
-  <RectY data={olympians} {...binX({y: "count"}, {x: "weight", fy: "sex"})} />
+  <BinX y="count">
+    <RectY data={olympians} x="weight" fy="sex" />
+  </BinX>
   <RuleY data={[0]} />
 </Plot>
 
@@ -71,7 +79,9 @@ The [rect constructor](#rect), again with the [bin transform](../transforms/bin.
     scheme: "turbo",
     type: "symlog"
   }}>
-  <Rect data={diamonds} {...bin({fill: "count"}, {x: "carat", y: "price", thresholds: 100})} />
+  <Bin fill="count" thresholds={100}>
+    <Rect data={diamonds} x="carat" y="price" />
+  </Bin>
 </Plot>
 
 
@@ -79,16 +89,9 @@ A similar plot can be made with the [dot mark](./dot.md), if you’d prefer a si
 Below we recreate an uncommon [chart by Max Roser](https://ourworldindata.org/poverty-minimum-growth-needed) that visualizes global poverty. Each rect represents a country: *x* encodes the country’s population, while *y* encodes the proportion of that population living in poverty; hence area represents the number of people living in poverty. Rects are [stacked](../transforms/stack.md) along *x* in order of descending *y*.
 
 <Plot x={{label: "Population (millions)"}} y={{percent: true, label: "Proportion living on less than $30 per day (%)"}}>
-  <RectY data={povcalnet} {...stackX({
-      filter: (d) => ["N", "A"].includes(d.CoverageType),
-      x: "ReqYearPopulation",
-      order: "HeadCount",
-      reverse: true,
-      y2: "HeadCount", // y2 to avoid stacking by y
-      title: (d) => `${d.CountryName}\n${(d.HeadCount * 100).toFixed(1)}%`,
-      insetLeft: 0.2,
-      insetRight: 0.2
-    })} />
+  <StackX order="HeadCount" reverse>
+    <RectY data={povcalnet} filter={(d) => ["N", "A"].includes(d.CoverageType)} x="ReqYearPopulation" y2={"HeadCount" /* y2 to avoid stacking by y */} title={(d) => `${d.CountryName}\n${(d.HeadCount * 100).toFixed(1)}%`} insetLeft={0.2} insetRight={0.2} />
+  </StackX>
   <RuleY data={[0]} />
 </Plot>
 
@@ -111,7 +114,9 @@ To round corners, use the **r** option. If the combined corner radii exceed the 
 </p>
 
 <Plot>
-  <RectY data={olympians} {...binX({y: "count"}, {x: "weight", r, thresholds: 10})} />
+  <BinX y="count" thresholds={10}>
+    <RectY data={olympians} x="weight" r={r} />
+  </BinX>
   <RuleY data={[0]} />
 </Plot>
 
@@ -127,14 +132,18 @@ Plot.plot({
 To round corners on a specific side, use the **rx1**, **ry1**, **rx2**, or **ry2** options. When stacking rounded rects vertically, use a positive **ry2** and a corresponding negative **ry1**; likewise for stacking rounded rects horizontally, use a positive **rx2** and a negative **rx1**. Use the **clip** option to hide the “wings” below zero.
 
 <Plot color={{legend: true}}>
-  <RectY data={olympians} {...binX({y: "count"}, {x: "weight", fill: "sex", ry2: 4, ry1: -4, clip: "frame"})} />
+  <BinX y="count">
+    <RectY data={olympians} x="weight" fill="sex" ry2={4} ry1={-4} clip="frame" />
+  </BinX>
   <RuleY data={[0]} />
 </Plot>
 
 You can even round specific corners using the **rx1y1**, **rx2y1**, **rx2y2**, and **rx1y2** options.
 
 <Plot color={{legend: true}}>
-  <RectY data={olympians} {...binX({y: "count"}, {x: "weight", fill: "sex", rx1y2: 10, rx1y1: -10, clip: "frame"})} />
+  <BinX y="count">
+    <RectY data={olympians} x="weight" fill="sex" rx1y2={10} rx1y1={-10} clip="frame" />
+  </BinX>
   <RuleY data={[0]} />
 </Plot>
 

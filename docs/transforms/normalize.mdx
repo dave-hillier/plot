@@ -1,4 +1,4 @@
-import {Dot, Line, Plot, RuleX, RuleY, Text, groupY, normalizeX, normalizeY, selectLast, selectMinX} from "replot/react";
+import {Dot, GroupY, Line, NormalizeY, Plot, RuleX, RuleY, SelectLast, SelectMinX, Text, normalizeX} from "replot/react";
 import * as d3 from "d3";
 import {useState} from "react";
 
@@ -17,19 +17,14 @@ The **normalize transform** is a specialized [map transform](./map.md) that norm
     tickFormat: ((f) => (x) => f((x - 1) * 100))(d3.format("+d"))
   }}>
   <RuleY data={[1]} />
-  <Line data={stocks} {...normalizeY({
-      x: "Date",
-      y: "Close",
-      stroke: "Symbol"
-    })} />
-  <Text data={stocks} {...selectLast(normalizeY({
-      x: "Date",
-      y: "Close",
-      z: "Symbol",
-      text: "Symbol",
-      textAnchor: "start",
-      dx: 3
-    }))} />
+  <NormalizeY>
+    <Line data={stocks} x="Date" y="Close" stroke="Symbol" />
+  </NormalizeY>
+  <SelectLast>
+    <NormalizeY>
+      <Text data={stocks} x="Date" y="Close" z="Symbol" text="Symbol" textAnchor="start" dx={3} />
+    </NormalizeY>
+  </SelectLast>
 </Plot>
 
 
@@ -50,9 +45,13 @@ As another example, the normalize transform can be used to compute proportional 
     legend: true
   }}>
   <RuleX data={[0]} />
-  <RuleY data={stateage} {...groupY({x1: "min", x2: "max"}, {...xy, sort: {y: "x1"}})} />
+  <GroupY x1="min" x2="max">
+    <RuleY data={stateage} {...xy} sort={{y: "x1"}} />
+  </GroupY>
   <Dot data={stateage} {...xy} fill="age" title="age" />
-  <Text data={stateage} {...selectMinX({...xy, textAnchor: "end", dx: -6, text: "state"})} />
+  <SelectMinX>
+    <Text data={stateage} {...xy} textAnchor="end" dx={-6} text="state" />
+  </SelectMinX>
 </Plot>
 
 ```js

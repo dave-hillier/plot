@@ -1,4 +1,4 @@
-import {BarX, BarY, Cell, Dot, Link, Plot, RuleX, RuleY, Text, filter, group, groupX, groupY, groupZ, stackX, scale} from "replot/react";
+import {BarX, BarY, Cell, Dot, Group, GroupX, GroupY, Link, Plot, RuleX, RuleY, Text, filter, groupZ, stackX, scale} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import olympians from "../data/olympians.ts";
@@ -14,13 +14,15 @@ The **group transform** groups ordinal or nominal data — discrete values such
 For example, the bar chart below shows a distribution of Olympic athletes by sport.
 
 <Plot marginBottom={100} x={{label: null, tickRotate: 90}} y={{grid: true}}>
-  <BarY data={olympians} {...groupX({y: "count"}, {x: "sport"})} />
+  <GroupX y="count">
+    <BarY data={olympians} x="sport" />
+  </GroupX>
   <RuleY data={[0]} />
 </Plot>
 
 
 Ordinal domains are sorted naturally (alphabetically) by default. Either set the [scale **domain**](../features/scales.md) explicitly to change the order, or use the mark [**sort** option](../features/scales.md#sort-mark-option) to derive the scale domain from a channel.
-The groupX transform groups on **x**. The *outputs* argument (here `{y: "count"}`) declares desired output channels (**y**) and the associated reducer (*count*). Hence the height of each bar above represents the number of Olympic athletes by sport.
+The GroupX transform groups on the mark’s **x** channel. The output reducers (here `y="count"` on the wrapper) declare desired output channels (**y**) and the associated reducer (*count*). Hence the height of each bar above represents the number of Olympic athletes by sport.
 
 {/* For example, to sort **x** by descending **y**: */}
 
@@ -32,25 +34,33 @@ The groupX transform groups on **x**. The *outputs* argument (here `{y: "count"}
 While the groupX transform is often used to generate **y**, it can output to any channel. For example, by declaring **r** in *outputs*, we can generate dots of size proportional to the number of athletes in each sport.
 
 <Plot marginBottom={100} x={{label: null, tickRotate: 90}} r={{range: [0, 14]}}>
-  <Dot data={olympians} {...groupX({r: "count"}, {x: "sport"})} />
+  <GroupX r="count">
+    <Dot data={olympians} x="sport" />
+  </GroupX>
 </Plot>
 
 The **fill** channel meanwhile will produce a one-dimensional heatmap. Since there is no **y** channel below, we use a [cell](../marks/cell.md) instead of a bar.
 
 <Plot marginBottom={80} x={{tickRotate: 90}} color={{scheme: "turbo"}}>
-  <Cell data={olympians} {...groupX({fill: "count"}, {x: "sport"})} />
+  <GroupX fill="count">
+    <Cell data={olympians} x="sport" />
+  </GroupX>
 </Plot>
 
 We aren’t limited to the *count* reducer. We can use the *mode* reducer, for example, to show which sex is more prevalent in each sport: <span style={{borderBottom: "solid 2px #efb118"}}>men</span> are represented more often than <span style={{borderBottom: "solid 2px #4269d0"}}>women</span> in every sport except gymnastics and fencing.
 
 <Plot marginBottom={80} x={{tickRotate: 90}}>
-  <Cell data={olympians} {...groupX({fill: "mode"}, {fill: "sex", x: "sport"})} />
+  <GroupX fill="mode">
+    <Cell data={olympians} fill="sex" x="sport" />
+  </GroupX>
 </Plot>
 
 You can partition groups using **z**. If **z** is undefined, it defaults to **fill** or **stroke**, if any. In conjunction with the barY mark’s implicit [stackY transform](./stack.md), this will produce stacked bars.
 
 <Plot marginBottom={100} x={{label: null, tickRotate: 90}} y={{grid: true}} color={{legend: true}}>
-  <BarY data={olympians} {...groupX({y: "count"}, {x: "sport", fill: "sex"})} />
+  <GroupX y="count">
+    <BarY data={olympians} x="sport" fill="sex" />
+  </GroupX>
   <RuleY data={[0]} />
 </Plot>
 
@@ -59,7 +69,9 @@ You can invoke the stack transform explicitly as `Plot.stackY(Plot.groupX({y: "c
 You can opt-out of the implicit stackY transform by having groupX generate **y1** or **y2** instead of **y** (and similarly **x1** or **x2** for stackX and groupY). When overlapping marks, use either opacity or blending to make the overlap visible.
 
 <Plot marginBottom={100} x={{label: null, tickRotate: 90}} y={{grid: true}} color={{legend: true}}>
-  <BarY data={olympians} {...groupX({y2: "count"}, {x: "sport", fill: "sex", mixBlendMode: "multiply"})} />
+  <GroupX y2="count">
+    <BarY data={olympians} x="sport" fill="sex" mixBlendMode="multiply" />
+  </GroupX>
   <RuleY data={[0]} />
 </Plot>
 
@@ -68,7 +80,9 @@ While the **mixBlendMode** option is useful for mitigating occlusion, it can be 
 Perhaps better would be to make a grouped bar chart using [faceting](../features/facets.md). This is accomplished by setTing the **fx** channel to facet horizontally on *sport*, while the **x** channel is used within each facet to draw side-by-side bars for each *sex*. The group transform automatically partitions groups by facet.
 
 <Plot marginBottom={100} fx={{padding: 0, label: null, tickRotate: 90, tickSize: 6}} x={{axis: null, paddingOuter: 0.2}} y={{grid: true}} color={{legend: true}}>
-  <BarY data={olympians} {...groupX({y2: "count"}, {x: "sex", fx: "sport", fill: "sex"})} />
+  <GroupX y2="count">
+    <BarY data={olympians} x="sex" fx="sport" fill="sex" />
+  </GroupX>
   <RuleY data={[0]} />
 </Plot>
 
@@ -76,22 +90,22 @@ Alternatively, below we use directional arrows (a [link mark](../marks/link.md) 
 
 <Plot marginBottom={100} x={{label: null, tickRotate: 90}} y={{grid: true, label: "Frequency"}} color={{type: "categorical", domain: [-1, 1], unknown: "#aaa", transform: Math.sign}}>
   <RuleY data={[0]} />
-  <Link data={olympians} {...groupX(
-        {
-          y1: (D) => d3.sum(D, (d) => d === "female"),
-          y2: (D) => d3.sum(D, (d) => d === "male"),
-          stroke: (D) => d3.sum(D, (d) => d === "male") - d3.sum(D, (d) => d === "female")
-        },
-        {
-          x: "sport",
-          y1: "sex",
-          y2: "sex",
-          markerStart: "dot",
-          markerEnd: "arrow",
-          stroke: "sex",
-          strokeWidth: 2
-        }
-      )} />
+  <GroupX
+    y1={(D) => d3.sum(D, (d) => d === "female")}
+    y2={(D) => d3.sum(D, (d) => d === "male")}
+    stroke={(D) => d3.sum(D, (d) => d === "male") - d3.sum(D, (d) => d === "female")}
+  >
+    <Link
+      data={olympians}
+      x="sport"
+      y1="sex"
+      y2="sex"
+      markerStart="dot"
+      markerEnd="arrow"
+      stroke="sex"
+      strokeWidth={2}
+    />
+  </GroupX>
 </Plot>
 
 The group transform comes in four orientations:
@@ -104,32 +118,42 @@ The group transform comes in four orientations:
 As you might guess, the groupY transform with the barX mark produces a horizontal→ bar chart. (We must increase the **marginLeft** to avoid the *y* axis labels from being cut off.)
 
 <Plot marginLeft={100} x={{grid: true}} y={{label: null}}>
-  <BarX data={olympians} {...groupY({x: "count"}, {y: "sport", sort: {y: "x"}})} />
+  <GroupY x="count">
+    <BarX data={olympians} y="sport" sort={{y: "x"}} />
+  </GroupY>
   <RuleX data={[0]} />
 </Plot>
 
 You can produce a two-dimensional heatmap with group transform and a cell mark by generating a **fill** output channel. For example, we could show the median weight of athletes by sport (**x**) and sex (**y**).
 
 <Plot marginBottom={80} x={{label: null, tickRotate: 90}} y={{label: null}} color={{label: "Median weight (kg)", legend: true, scheme: "turbo"}}>
-  <Cell data={olympians} {...group({fill: "median"}, {fill: "weight", x: "sport", y: "sex"})} />
+  <Group fill="median">
+    <Cell data={olympians} fill="weight" x="sport" y="sex" />
+  </Group>
 </Plot>
 
 Or, we could group athletes by sport and the number of gold medals 🥇 won. ([Michael Phelps](https://en.wikipedia.org/wiki/Michael_Phelps), the most decorated Olympian of all time, won five gold medals in the 2016 Summer Olympics. [Simone Biles](https://en.wikipedia.org/wiki/Simone_Biles) and [Katie Ledecky](https://en.wikipedia.org/wiki/Katie_Ledecky) each won four.)
 
 <Plot marginBottom={100} x={{label: null, tickRotate: 90}} y={{label: "gold", labelAnchor: "top", labelArrow: true, reverse: true}} color={{type: "sqrt", scheme: "turbo"}}>
-  <Cell data={olympians} {...group({fill: "count"}, {x: "sport", y: "gold"})} />
+  <Group fill="count">
+    <Cell data={olympians} x="sport" y="gold" />
+  </Group>
 </Plot>
 
 We could instead output **r** and use a [dot mark](../marks/dot.md) whose size again represents the number of athletes in each group.
 
 <Plot marginBottom={100} x={{label: null, tickRotate: 90}} y={{type: "point", label: "gold", labelAnchor: "top", labelArrow: true, reverse: true}} r={{range: [0, 12]}}>
-  <Dot data={olympians} {...group({r: "count"}, {x: "sport", y: "gold"})} />
+  <Group r="count">
+    <Dot data={olympians} x="sport" y="gold" />
+  </Group>
 </Plot>
 
 We can add the **stroke** channel to show overlapping distributions by sex.
 
 <Plot marginBottom={100} x={{label: null, tickRotate: 90}} y={{type: "point", label: "gold", labelAnchor: "top", labelArrow: true, reverse: true}} r={{range: [0, 12]}}>
-  <Dot data={olympians} {...group({r: "count"}, {x: "sport", y: "gold", stroke: "sex"})} />
+  <Group r="count">
+    <Dot data={olympians} x="sport" y="gold" stroke="sex" />
+  </Group>
 </Plot>
 
 To group solely on **z** (or **fill** or **stroke**), use [groupZ](#groupZ). The single stacked bar chart below (an alternative to a pie chart) shows the proportion of athletes by sport. The *proportion* reducer converts counts into normalized proportions adding up to 1, while the *first* reducer pulls out the name of the sport for labeling.
@@ -156,7 +180,7 @@ To group solely on **z** (or **fill** or **stroke**), use [groupZ](#groupZ). The
 </Plot>
 
 
-Although barX applies an implicit stackX transform, [textX](../marks/text.md) does not; this example uses an explicit stackX transform in both cases for clarity, and to pass the additional **order** and **reverse** options to place the largest sport on the left. The [filter transform](./filter.md) is applied after the stack transform to hide the labels on the smallest sports where the bars are too thin.
+Although barX applies an implicit stackX transform, [textX](../marks/text.md) does not; this example uses an explicit stackX transform in both cases for clarity, and to pass the additional **order** and **reverse** options to place the largest sport on the left. The [filter transform](./filter.md) is applied after the stack transform to hide the labels on the smallest sports where the bars are too thin. This example uses the functional spread form — nesting calls composes transforms, with the outer call applied last — since the filter transform has no wrapper component; it is equivalent to the nested `<StackX><GroupZ>` wrapper form.
 ## Group options
 
 Given input *data* = [*d₀*, *d₁*, *d₂*, …], by default the resulting grouped data is an array of arrays where each inner array is a subset of the input data such as [[*d₁*, *d₂*, …], [*d₀*, …], …]. Each inner array is in input order. The outer array is in input order according to the first element of each group.

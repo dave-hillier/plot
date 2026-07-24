@@ -1,4 +1,4 @@
-import {AxisFy, Dot, Geo, Graticule, Plot, Sphere, centroid} from "replot/react";
+import {AxisFy, Centroid, Dot, Geo, Graticule, Plot, Sphere} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import * as topojson from "topojson-client";
@@ -67,7 +67,9 @@ By default, the geo mark doesn’t have **x** and **y** channels; when you use t
 <Plot projection="albers-usa">
   <Geo data={states} strokeOpacity={0.1} tip title="name" />
   <Geo data={nation} />
-  <Dot data={states} {...centroid({fill: "red", stroke: "var(--vp-c-bg-alt)"})} />
+  <Centroid>
+    <Dot data={states} fill="red" stroke="var(--vp-c-bg-alt)" />
+  </Centroid>
 </Plot>
 
 The geo mark supports [faceting](../features/facets.md). Below, a comic strip of sorts shows the locations of Walmart store openings in past decades.

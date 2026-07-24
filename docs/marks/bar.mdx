@@ -1,4 +1,4 @@
-import {AxisY, BarX, BarY, GridX, Plot, RuleX, Text, TextX, stackX} from "replot/react";
+import {AxisY, BarX, BarY, GridX, Plot, RuleX, StackX, Text, TextX} from "replot/react";
 import * as d3 from "d3";
 import {useState} from "react";
 import alphabet from "../data/alphabet.ts";
@@ -103,8 +103,10 @@ A bar’s ordinal dimension is optional; if missing, the bar spans the chart alo
 With the [stack transform](../transforms/stack.md), a one-dimensional bar can show the proportions of each value relative to the whole, as a compact alternative to a pie or donut chart.
 
 <Plot x={{percent: true}}>
-  <BarX data={alphabet} {...stackX({x: "frequency", fillOpacity: 0.3, inset: 0.5})} />
-  <TextX data={alphabet} {...stackX({x: "frequency", text: "letter", inset: 0.5})} />
+  <StackX>
+    <BarX data={alphabet} x="frequency" fillOpacity={0.3} inset={0.5} />
+    <TextX data={alphabet} x="frequency" text="letter" inset={0.5} />
+  </StackX>
   <RuleX data={[0, 1]} />
 </Plot>
 

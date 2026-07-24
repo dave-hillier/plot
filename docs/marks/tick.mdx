@@ -1,4 +1,4 @@
-import {BarY, Plot, RuleX, RuleY, TickX, TickY, normalizeX} from "replot/react";
+import {BarY, NormalizeX, Plot, RuleX, RuleY, TickX, TickY} from "replot/react";
 import * as d3 from "d3";
 import {useState} from "react";
 import aapl from "../data/aapl.ts";
@@ -27,7 +27,9 @@ Ticks are often used to show one-dimensional distributions, as in the “barcode
     labelAnchor: "top"
   }}>
   <RuleX data={[0]} />
-  <TickX data={stateage} {...normalizeX("sum", {z: "state", x: "population", y: "age"})} />
+  <NormalizeX basis="sum">
+    <TickX data={stateage} z="state" x="population" y="age" />
+  </NormalizeX>
 </Plot>
 
 Both ticks and [bars](./bar.md) have an ordinal secondary position dimension; a tick is therefore convenient for stroking the upper bound of a bar for emphasis, as in the bar chart below. A separate [rule](./rule.md) is also used to denote *y* = 0.

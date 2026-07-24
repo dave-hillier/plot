@@ -1,4 +1,4 @@
-import {Geo, Line, LineY, Plot, RuleY, Text, normalizeY, selectLast, windowY} from "replot/react";
+import {Geo, Line, LineY, NormalizeY, Plot, RuleY, SelectLast, Text, WindowY} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import * as topojson from "topojson-client";
@@ -93,19 +93,14 @@ If a **stroke** (or **fill**) channel is specified, the **z** option defaults to
     tickFormat: ((f) => (x) => f((x - 1) * 100))(d3.format("+d"))
   }}>
   <RuleY data={[1]} />
-  <Line data={stocks} {...normalizeY({
-      x: "Date",
-      y: "Close",
-      stroke: "Symbol"
-    })} />
-  <Text data={stocks} {...selectLast(normalizeY({
-      x: "Date",
-      y: "Close",
-      z: "Symbol",
-      text: "Symbol",
-      textAnchor: "start",
-      dx: 3
-    }))} />
+  <NormalizeY>
+    <Line data={stocks} x="Date" y="Close" stroke="Symbol" />
+  </NormalizeY>
+  <SelectLast>
+    <NormalizeY>
+      <Text data={stocks} x="Date" y="Close" z="Symbol" text="Symbol" textAnchor="start" dx={3} />
+    </NormalizeY>
+  </SelectLast>
 </Plot>
 
 
@@ -143,8 +138,10 @@ As an alternative to **z**, you can render multiple lines using multiple marks. 
     grid: true,
     label: "Temperature (°F)"
   }}>
-  <Line data={sftemp} {...windowY(14, {x: "date", y: "low", stroke: "#4e79a7"})} />
-  <Line data={sftemp} {...windowY(14, {x: "date", y: "high", stroke: "#e15759"})} />
+  <WindowY k={14}>
+    <Line data={sftemp} x="date" y="low" stroke="#4e79a7" />
+    <Line data={sftemp} x="date" y="high" stroke="#e15759" />
+  </WindowY>
   <RuleY data={[32]} />
 </Plot>
 
@@ -178,7 +175,9 @@ While uncommon, you can draw a line with ordinal position values. For example be
     grid: true
   }}>
   <RuleY data={[0]} />
-  <Line data={stateage} {...normalizeY("sum", {x: "age", y: "population", z: "state", strokeWidth: 1})} />
+  <NormalizeY basis="sum">
+    <Line data={stateage} x="age" y="population" z="state" strokeWidth={1} />
+  </NormalizeY>
 </Plot>
 
 With a [spherical projection](../features/projections.md), line segments become [geodesics](https://en.wikipedia.org/wiki/Great-circle_distance), taking the shortest path between two points on the sphere and wrapping around the antimeridian at 180° longitude. The line below shows Charles Darwin’s voyage on HMS _Beagle_. (Data via [Benjamin Schmidt](https://observablehq.com/@bmschmidt/data-driven-projections-darwins-world).)
