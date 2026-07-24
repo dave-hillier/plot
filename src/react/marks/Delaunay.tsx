@@ -1,10 +1,12 @@
 import {useMark} from "../useMark.js";
+import type {MarkProps} from "../markProps.js";
 import {delaunayLink, delaunayMesh, hull, voronoi, voronoiMesh} from "../../marks/delaunay.js";
+import type {DelaunayOptions} from "../../marks/delaunay.js";
 
-export interface DelaunayProps {
-  data?: any;
-  [key: string]: any;
-}
+// Mark-specific options come from the imperative options interface; the
+// shared MarkProps base contributes data and keeps the surface open (see
+// markProps.ts for the openness rationale).
+export interface DelaunayProps extends MarkProps, DelaunayOptions {}
 
 export function DelaunayLink({data, ...options}: DelaunayProps) {
   useMark({name: "delaunayLink", data, options, create: delaunayLink});

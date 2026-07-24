@@ -38,31 +38,31 @@ export {
 
 // Mark components
 export {Dot, DotX, DotY, Circle, Hexagon} from "./marks/Dot.js";
-export type {DotProps} from "./marks/Dot.js";
+export type {DotProps, DotXProps, DotYProps, CircleProps, HexagonProps} from "./marks/Dot.js";
 
 export {Line, LineX, LineY} from "./marks/Line.js";
-export type {LineProps} from "./marks/Line.js";
+export type {LineProps, LineXProps, LineYProps} from "./marks/Line.js";
 
 export {Area, AreaX, AreaY} from "./marks/Area.js";
-export type {AreaProps} from "./marks/Area.js";
+export type {AreaProps, AreaXProps, AreaYProps} from "./marks/Area.js";
 
 export {BarX, BarY} from "./marks/Bar.js";
-export type {BarProps} from "./marks/Bar.js";
+export type {BarXProps, BarYProps} from "./marks/Bar.js";
 
 export {Rect, Cell, CellX, CellY, RectX, RectY} from "./marks/Rect.js";
-export type {RectProps} from "./marks/Rect.js";
+export type {RectProps, RectXProps, RectYProps, CellProps} from "./marks/Rect.js";
 
 export {RuleX, RuleY} from "./marks/Rule.js";
-export type {RuleProps} from "./marks/Rule.js";
+export type {RuleXProps, RuleYProps} from "./marks/Rule.js";
 
 export {Text, TextX, TextY} from "./marks/Text.js";
-export type {TextProps} from "./marks/Text.js";
+export type {TextProps, TextXProps, TextYProps} from "./marks/Text.js";
 
 export {Frame} from "./marks/Frame.js";
 export type {FrameProps} from "./marks/Frame.js";
 
 export {TickX, TickY} from "./marks/Tick.js";
-export type {TickProps} from "./marks/Tick.js";
+export type {TickXProps, TickYProps} from "./marks/Tick.js";
 
 export {Link} from "./marks/Link.js";
 export type {LinkProps} from "./marks/Link.js";
@@ -78,6 +78,7 @@ export type {ImageProps} from "./marks/Image.js";
 
 // Geometric / computational marks
 export {Geo, Sphere, Graticule} from "./marks/Geo.js";
+export type {GeoProps, SphereProps, GraticuleProps} from "./marks/Geo.js";
 
 export {DelaunayLink, DelaunayMesh, Hull, Voronoi, VoronoiMesh} from "./marks/Delaunay.js";
 export type {DelaunayProps} from "./marks/Delaunay.js";
@@ -95,30 +96,33 @@ export type {RasterProps} from "./marks/Raster.js";
 export {interpolateNone, interpolatorBarycentric, interpolateNearest, interpolatorRandomWalk} from "../marks/raster";
 
 export {Hexgrid} from "./marks/Hexgrid.js";
+export type {HexgridProps} from "./marks/Hexgrid.js";
 
 // Composite marks
 export {BoxX, BoxY} from "./marks/Box.js";
-export type {BoxProps} from "./marks/Box.js";
+export type {BoxXProps, BoxYProps} from "./marks/Box.js";
 
 export {TreeMark, ClusterMark} from "./marks/Tree.js";
 export type {TreeProps} from "./marks/Tree.js";
 
 export {Auto} from "./marks/Auto.js";
+export type {AutoProps} from "./marks/Auto.js";
 
 export {BollingerX, BollingerY} from "./marks/Bollinger.js";
-export type {BollingerProps} from "./marks/Bollinger.js";
+export type {BollingerXProps, BollingerYProps} from "./marks/Bollinger.js";
 
 export {DifferenceX, DifferenceY} from "./marks/Difference.js";
 export type {DifferenceProps} from "./marks/Difference.js";
 
 export {LinearRegressionX, LinearRegressionY} from "./marks/LinearRegression.js";
-export type {LinearRegressionProps} from "./marks/LinearRegression.js";
+export type {LinearRegressionXProps, LinearRegressionYProps} from "./marks/LinearRegression.js";
 
 export {WaffleX, WaffleY} from "./marks/Waffle.js";
-export type {WaffleProps} from "./marks/Waffle.js";
+export type {WaffleXProps, WaffleYProps} from "./marks/Waffle.js";
 
 // Axis and grid components (including facet axes)
 export {AxisX, AxisY, GridX, GridY, AxisFx, AxisFy, GridFx, GridFy} from "./marks/Axis.js";
+export type {AxisXProps, AxisYProps, GridXProps, GridYProps} from "./marks/Axis.js";
 
 // Legend components
 export {Legend} from "./legends/Legend.js";

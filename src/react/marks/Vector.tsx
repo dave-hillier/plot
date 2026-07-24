@@ -1,10 +1,12 @@
 import {useMark} from "../useMark.js";
+import type {MarkProps} from "../markProps.js";
 import {vector, vectorX, vectorY, spike} from "../../marks/vector.js";
+import type {VectorOptions} from "../../marks/vector.js";
 
-export interface VectorProps {
-  data?: any;
-  [key: string]: any;
-}
+// Mark-specific options come from the imperative options interface; the
+// shared MarkProps base contributes data and keeps the surface open (see
+// markProps.ts for the openness rationale).
+export interface VectorProps extends MarkProps, VectorOptions {}
 
 export function Vector({data, ...options}: VectorProps) {
   useMark({name: "vector", data, options, create: vector});
