@@ -80,6 +80,8 @@ If you’d prefer to run Plot locally (or entirely offline), you can download th
 
 Then, create an `index.html` file as shown above in the **UMD + local** tab. If you prefer smaller minified files, you can download <a href="./d3.min.js" download>d3.min.js</a> and <a href="./plot.min.js" download>plot.min.js</a>, and then update the `src` attributes above accordingly.
 
+A note on size: because the imperative `plot()` API renders through React (via `react-dom/server`), the UMD bundle ships React and is considerably larger than upstream Observable Plot’s — roughly 1 MB unminified, 426 kB minified, and 139 kB gzipped. Script-tag usage works fine, but if bundle size matters, install from npm and use a bundler instead: your application then shares a single copy of React, and unused code can be tree-shaken.
+
 ## Installing from npm
 
 If you’re developing a web application using Node, you can install Plot via yarn, npm, pnpm, or your preferred package manager.
