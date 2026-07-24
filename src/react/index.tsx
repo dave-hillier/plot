@@ -99,7 +99,7 @@ export {Raster} from "./marks/Raster.js";
 export type {RasterProps} from "./marks/Raster.js";
 
 // Raster interpolation utilities (pure functions, shared with imperative API)
-export {interpolateNone, interpolatorBarycentric, interpolateNearest, interpolatorRandomWalk} from "../marks/raster";
+export {interpolateNone, interpolatorBarycentric, interpolateNearest, interpolatorRandomWalk} from "../marks/raster.js";
 
 export {Hexgrid} from "./marks/Hexgrid.js";
 export type {HexgridProps} from "./marks/Hexgrid.js";

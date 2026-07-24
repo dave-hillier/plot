@@ -59,3 +59,6 @@ export {scale} from "./scales.js";
 export {legend} from "./legends.js";
 export {numberInterval} from "./options.js";
 export {timeInterval, utcInterval} from "./time.js";
+export type {ChannelDomainSort} from "./channel.js";
+export type {AreaOptions, AreaXOptions, AreaYOptions} from "./marks/area.js";
+export type {TextOptions, TextXOptions, TextYOptions} from "./marks/text.js";

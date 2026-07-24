@@ -28,6 +28,9 @@ export type MarkerFunction = (color: string, context: {document: Document}) => S
 /** How to decorate control points. */
 export type Marker = MarkerName | MarkerFunction;
 
+/** Applies the marker options to the given mark. */
+export function markers(mark: any, options?: MarkerOptions): void;
+
 /** Options for marks that support markers, such as lines and links. */
 export interface MarkerOptions {
   /**

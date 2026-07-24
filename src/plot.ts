@@ -207,7 +207,7 @@ export function computePlot(options: any = {}): any {
         state.facets = update.facets;
       }
       if (update.channels !== undefined) {
-        const {fx, fy, ...channels} = update.channels; // separate facet channels
+        const {fx, fy, ...channels}: {fx?: any; fy?: any; [name: string]: any} = update.channels; // separate facet channels
         inferChannelScales(channels);
         Object.assign(state.channels, channels);
         for (const channel of Object.values(channels)) {
@@ -452,7 +452,7 @@ function maybeTopFacet(facet, options) {
   if (x == null && y == null) return;
   const data = dataify(facet.data);
   if (data == null) throw new Error("missing facet data");
-  const channels = {};
+  const channels: {fx?: any; fy?: any} = {};
   if (x != null) channels.fx = createChannel(data, {value: x, scale: "fx"});
   if (y != null) channels.fy = createChannel(data, {value: y, scale: "fy"});
   applyScaleTransforms(channels, options);
@@ -472,7 +472,7 @@ function maybeMarkFacet(mark, topFacetState, options) {
     const data = dataify(mark.data ?? fx ?? fy);
     if (data === undefined) throw new Error(`missing facet data in ${mark.ariaLabel}`);
     if (data === null) return; // ignore channel definitions if no data is provided TODO this right?
-    const channels = {};
+    const channels: {fx?: any; fy?: any} = {};
     if (fx != null) channels.fx = createChannel(data, {value: fx, scale: "fx"});
     if (fy != null) channels.fy = createChannel(data, {value: fy, scale: "fy"});
     applyScaleTransforms(channels, options);
@@ -632,8 +632,8 @@ function axisOptions(
 }
 
 function lineOptions(options) {
-  const {anchor, line} = options;
-  return {anchor, facetAnchor: anchor + "-empty", stroke: line === true ? undefined : line};
+  const {anchor, line}: {anchor: "top" | "right" | "bottom" | "left"; line: any} = options;
+  return {anchor, facetAnchor: `${anchor}-empty` as const, stroke: line === true ? undefined : line};
 }
 
 function gridOptions(

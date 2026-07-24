@@ -2,11 +2,9 @@ import React, {useContext, useId, useLayoutEffect} from "react";
 import {rgb} from "d3";
 import {type LegendScales} from "../../legends.js";
 // These helpers live in the JS sources but aren't part of the public .d.ts.
-// @ts-expect-error untyped JS export
 import {createContext} from "../../context.js";
 // @ts-expect-error untyped JS export
 import {inherit, isScaleOptions} from "../../options.js";
-// @ts-expect-error untyped JS export
 import {normalizeScale} from "../../scales.js";
 import {PlotContext, type PlotContextValue} from "../PlotContext.js";
 import {stampOptions} from "../useMark.js";

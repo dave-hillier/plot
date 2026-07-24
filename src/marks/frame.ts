@@ -35,6 +35,7 @@ const lineDefaults = {
 
 /** The frame decoration mark. */
 export class Frame extends Mark {
+  anchor: "top" | "right" | "bottom" | "left" | undefined;
   constructor(options: FrameOptions = {}) {
     const {anchor = null} = options;
     super(singleton, undefined, options, anchor == null ? defaults : lineDefaults);

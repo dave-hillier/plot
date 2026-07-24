@@ -152,7 +152,6 @@ export class Vector extends Mark {
     const [vl, cl] = maybeNumberChannel(length, 12);
     const [vr, cr] = maybeNumberChannel(rotate, 0);
     super(
-      // @ts-expect-error — Mark constructor signature missing from mark.d.ts
       data,
       {
         x: {value: x, scale: "x", optional: true},

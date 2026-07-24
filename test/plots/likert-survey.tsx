@@ -16,7 +16,7 @@ function Likert(
   const map = new Map(responses);
   return {
     order: Array.from(map.keys()),
-    offset(facetstacks, X1, X2, Z) {
+    offset(facetstacks: number[][][], X1: number[], X2: number[], Z: string[]) {
       for (const stacks of facetstacks) {
         for (const stack of stacks) {
           const k = d3.sum(stack, (i) => (X2[i] - X1[i]) * (1 - map.get(Z[i]))) / 2;

@@ -4,7 +4,6 @@ import type {ChannelValueSpec} from "../channel.js";
 import type {Data, MarkOptions} from "../mark.js";
 import {Mark} from "../mark.js";
 import {radians} from "../math.js";
-// @ts-expect-error — runtime exports missing from options.d.ts
 import {constant, keyword} from "../options.js";
 import {channelStyleProps, directStyleProps, indirectStyleProps, transformProp} from "../react/styles.js";
 import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
@@ -139,7 +138,6 @@ export class Arrow extends Mark {
       sweep
     } = options;
     super(
-      // @ts-expect-error — Mark constructor signature missing from mark.d.ts
       data,
       {
         x1: {value: x1, scale: "x"},

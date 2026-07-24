@@ -115,11 +115,17 @@ export interface ProjectionOptions extends InsetOptions {
 
 // --- Internal functions used by React layer ---
 
-/** Creates a projection function from the plot options and dimensions. */
-export function createProjection(options: any, dimensions: any): ((point: [number, number]) => [number, number]) | null;
+/** Creates a projection from the plot options and dimensions, if any. */
+export function createProjection(options: any, dimensions: any): any;
 
 /** Extracts x and y geometry channels from a projected channel. */
 export function getGeometryChannels(channel: any): [any, any];
 
 /** Returns true if the plot options specify a projection. */
 export function hasProjection(options: any): boolean;
+
+/** Projects the named x and y channels through the given projection in place. */
+export function project(cx: string, cy: string, values: any, projection: any): void;
+
+/** Returns a projection that applies the given x and y scale functions. */
+export function xyProjection(scales: any): any;

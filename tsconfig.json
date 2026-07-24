@@ -2,6 +2,7 @@
   "compilerOptions": {
     "allowJs": true,
     "noEmit": true,
+    "skipLibCheck": true,
     "noImplicitAny": false,
     "module": "Node16",
     "baseUrl": "./src",
@@ -15,5 +16,13 @@
       "react-dom/*": ["../node_modules/@types/react-dom/*"]
     }
   },
-  "include": ["src/**/*.d.ts", "src/**/*.js", "src/**/*.ts", "src/**/*.tsx", "test/**/*.js", "test/**/*.ts", "test/**/*.tsx"]
+  "include": [
+    "src/**/*.d.ts",
+    "src/**/*.js",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "test/**/*.js",
+    "test/**/*.ts",
+    "test/**/*.tsx"
+  ]
 }

@@ -13,7 +13,6 @@ import {
   identity,
   // @ts-expect-error — runtime export not present in hand-written .d.ts
   string,
-  // @ts-expect-error — runtime export not present in hand-written .d.ts
   maybeNumberChannel,
   // @ts-expect-error — runtime export not present in hand-written .d.ts
   maybeTuple,
@@ -21,15 +20,12 @@ import {
   numberChannel,
   // @ts-expect-error — runtime export not present in hand-written .d.ts
   isNumeric,
-  // @ts-expect-error — runtime export not present in hand-written .d.ts
   isTemporal,
-  // @ts-expect-error — runtime export not present in hand-written .d.ts
   keyword,
   // @ts-expect-error — runtime export not present in hand-written .d.ts
   maybeFrameAnchor,
   // @ts-expect-error — runtime export not present in hand-written .d.ts
   isTextual,
-  // @ts-expect-error — runtime export not present in hand-written .d.ts
   isIterable
 } from "../options.js";
 import {
@@ -270,7 +266,6 @@ export class Text extends Mark {
     const [vrotate, crotate] = maybeNumberChannel(rotate, 0);
     const [vfontSize, cfontSize] = maybeFontSizeChannel(fontSize);
     super(
-      // @ts-expect-error — Mark constructor signature not declared in hand-written .d.ts
       data,
       {
         x: {value: x, scale: "x", optional: true},

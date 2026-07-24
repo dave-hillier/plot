@@ -2,9 +2,9 @@ import {useId, useLayoutEffect, useRef} from "react";
 import type {MouseEvent as ReactMouseEvent, PointerEvent as ReactPointerEvent} from "react";
 import {usePlotContext} from "./PlotContext.js";
 import {useTransformContext} from "./TransformContext.js";
-import type {Mark} from "../mark.js";
+import type {Mark, Markish} from "../mark.js";
 
-export type MarkFactory = () => Mark | Mark[];
+export type MarkFactory = () => Mark | Markish[];
 
 // Per-mark event handlers. `datum` is the mark's (transformed) data element at
 // the rendered index; both are undefined when the handler is attached at the
@@ -40,7 +40,7 @@ export interface UseMarkOptions {
   options: Record<string, any>;
   // Builds the imperative mark(s). Called per computePlot run with the options
   // after any enclosing transform wrappers have been applied.
-  create: (data: any, options: Record<string, any>) => Mark | Mark[];
+  create: (data: any, options: Record<string, any>) => Mark | Markish[];
 }
 
 // Registers an imperative mark factory with the enclosing <Plot>. The factory

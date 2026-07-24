@@ -7,6 +7,12 @@ export function maybeClassName(name?: string): string;
 /** The sub-pixel offset used for crisp edges on low-DPI displays. */
 export const offset: number;
 
+/** Sets the sub-pixel offset used for crisp edges; for tests. */
+export function setOffset(o: number): void;
+
+/** Applies the mark’s transform attribute to the given selection. */
+export function applyTransform(selection: any, mark: any, scales: {x?: any; y?: any}, tx?: number, ty?: number): void;
+
 /** Returns a unique clip path ID string. */
 export function getClipId(): string;
 

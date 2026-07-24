@@ -687,3 +687,24 @@ export function autoScaleRange(scaleDescriptors: any, dimensions: any): void;
 
 /** Computes the inner (facet cell) dimensions from scale descriptors and outer dimensions. */
 export function innerDimensions(scaleDescriptors: any, dimensions: any): any;
+
+/** Computes the outer dimensions from the plot dimensions. */
+export function outerDimensions(dimensions: any): any;
+
+/** Returns the sign of the scale’s order (ascending or descending), if inferable. */
+export function inferScaleOrder(scale: any): number | undefined;
+
+/** Normalizes a scale descriptor for exposure via *plot*.scale. */
+export function normalizeScale(key: any, scale: any, hint?: any): any;
+
+/** Returns true if the scale is ordinal (ordinal, point, or band). */
+export function isOrdinalScale(scale: any): boolean;
+
+/** Returns true if the scale is discrete via thresholds (threshold, quantile, or quantize). */
+export function isThresholdScale(scale: any): boolean;
+
+/** Returns true if the scale’s domain is collapsed to a single value. */
+export function isCollapsed(scale: any): boolean;
+
+/** Exposes the materialized scales as a *plot*.scale accessor function. */
+export function exposeScales(scales: any): (name: string) => Scale | undefined;

@@ -6,7 +6,6 @@ import type {Data, MarkOptions} from "../mark.js";
 import {Mark} from "../mark.js";
 // @ts-expect-error — runtime exports missing from options.d.ts
 import {map, first, second, third, isTuples, isNumeric, isTemporal, identity} from "../options.js";
-// @ts-expect-error — runtime exports missing from options.d.ts
 import {maybeColorChannel, maybeNumberChannel} from "../options.js";
 import {impliedString} from "../style.js";
 import {directStyleProps, indirectStyleProps, offset as styleOffset, transformProp} from "../react/styles.js";
@@ -232,7 +231,6 @@ export class AbstractRaster extends Mark {
       if (y === undefined && y1 != null && y2 != null) y = denseY(y1, y2, width, height);
     }
     super(
-      // @ts-expect-error — Mark constructor signature missing from mark.d.ts
       data,
       {
         x: {value: x, scale: "x", optional: true},

@@ -67,7 +67,7 @@ export type RenderFunction = (
  * - an array of mark implementations or mark-like objects
  * - null or undefined, to render nothing
  */
-export type Markish = RenderableMark | RenderFunction | Markish[] | null | undefined;
+export type Markish = Mark | RenderableMark | RenderFunction | Markish[] | null | undefined;
 
 /** Shared options for all marks. */
 export interface MarkOptions {
@@ -475,6 +475,31 @@ export interface MarkOptions {
 
 /** The abstract base class for Mark implementations. */
 export class Mark {
+  constructor(
+    data?: Data | null,
+    channels?: Record<string, any>,
+    options?: MarkOptions,
+    defaults?: Record<string, any>
+  );
+
+  /** The mark’s resolved facet mode. */
+  facet: "auto" | "include" | "exclude" | "super" | null;
+
+  /** The mark’s resolved facet anchor. */
+  facetAnchor: ((facets: any, range: any, anchor: any) => boolean) | null;
+
+  /** Renders this mark to a React tree; the primary render path in this port. */
+  renderJSX?(
+    index: number[],
+    scales: ScaleFunctions,
+    values: ChannelValues,
+    dimensions: Dimensions,
+    context: Context
+  ): unknown;
+
+  /** Renders this mark imperatively, returning a new SVGElement (or null). */
+  render?: RenderFunction;
+
   /**
    * Renders a new plot, prepending this mark as the first element of **marks**
    * of the specified *options*, and returns the corresponding SVG element, or
@@ -482,6 +507,9 @@ export class Mark {
    */
   plot: typeof plot;
 }
+
+/** Given mark options and a pointer mode, adds a default tip to the options. */
+export function withTip<T extends MarkOptions>(options: T | undefined, pointer: TipPointer): T;
 
 /** A concrete Mark implementation. */
 export class RenderableMark extends Mark {

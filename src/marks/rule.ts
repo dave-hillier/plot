@@ -109,6 +109,8 @@ const defaults = {
 
 /** The ruleX mark. */
 export class RuleX extends Mark {
+  insetTop: number | null | undefined;
+  insetBottom: number | null | undefined;
   constructor(data?: Data, options: RuleXOptions = {}) {
     const {x, y1, y2, inset = 0, insetTop = inset, insetBottom = inset} = options;
     super(
@@ -190,6 +192,8 @@ export class RuleX extends Mark {
 
 /** The ruleY mark. */
 export class RuleY extends Mark {
+  insetRight: number | null | undefined;
+  insetLeft: number | null | undefined;
   constructor(data?: Data, options: RuleYOptions = {}) {
     const {x1, x2, y, inset = 0, insetRight = inset, insetLeft = inset} = options;
     super(

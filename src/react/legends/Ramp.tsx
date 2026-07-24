@@ -8,9 +8,7 @@ import {format, interpolateNumber, piecewise, quantize, scaleBand, scaleLinear} 
 import {inferFontVariant} from "../../axes.js";
 // These helpers exist in the JS sources but aren't in the corresponding .d.ts
 // shims, so we reach into them via untyped imports.
-// @ts-expect-error untyped JS export
 import {createContext} from "../../context.js";
-// @ts-expect-error untyped JS export
 import {map, maybeNumberChannel} from "../../options.js";
 import {interpolatePiecewise} from "../../scales/quantitative.js";
 import {impliedString, maybeClassName} from "../../style.js";

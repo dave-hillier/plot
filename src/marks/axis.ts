@@ -779,7 +779,7 @@ function inferTextChannel(scale: any, data: any, ticks: any, tickFormat: any, an
 // time ticks, we want to use the multi-line time format (e.g., Jan 26) if
 // possible, or the default ISO format (2014-01-26). TODO We need a better way
 // to infer whether the ordinal scale is UTC or local time.
-export function inferTickFormat(scale: any, data: any, ticks: any, tickFormat: any, anchor: any): any {
+export function inferTickFormat(scale: any, data: any, ticks?: any, tickFormat?: any, anchor?: any): any {
   return typeof tickFormat === "function" && !(scale.type === "log" && scale.tickFormat)
     ? tickFormat
     : tickFormat === undefined && data && isTemporal(data)

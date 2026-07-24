@@ -33,7 +33,7 @@ import {
 import * as d3 from "d3";
 import {feature, mesh} from "topojson-client";
 
-function DispatchPointerMove({x, y, children}: {x: number; y: number; children: React.ReactNode}) {
+function DispatchPointerMove({x, y, children}: {x: number; y: number; children?: React.ReactNode}) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const id = window.setTimeout(() => {

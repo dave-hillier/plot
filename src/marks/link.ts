@@ -9,7 +9,6 @@ import {curveAuto} from "../curve.js";
 import type {Data, MarkOptions} from "../mark.js";
 import {Mark} from "../mark.js";
 import type {MarkerOptions} from "../marker.js";
-// @ts-expect-error — runtime exports missing from marker.d.ts
 import {markers} from "../marker.js";
 // @ts-expect-error — runtime export missing from options.d.ts
 import {coerceNumbers} from "../options.js";
@@ -83,7 +82,6 @@ export class Link extends Mark {
   constructor(data: Data | null | undefined, options: LinkOptions = {}) {
     const {x1, y1, x2, y2, curve, tension} = options;
     super(
-      // @ts-expect-error — Mark constructor signature missing from mark.d.ts
       data,
       {
         x1: {value: x1, scale: "x"},

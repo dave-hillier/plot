@@ -4,13 +4,11 @@ import type {ChannelValue, ChannelValueSpec} from "../channel.js";
 import {negative, positive} from "../defined.js";
 import type {Data, MarkOptions} from "../mark.js";
 import {Mark} from "../mark.js";
-// @ts-expect-error — runtime exports missing from options.d.ts
 import {identity, maybeNumberChannel} from "../options.js";
 import {createElement as h, type ReactNode} from "react";
 import {channelStyleProps, directStyleProps, indirectStyleProps, transformProp} from "../react/styles.js";
 import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
 import {centroid} from "../transforms/centroid.js";
-// @ts-expect-error — runtime export missing from dot.d.ts
 import {withDefaultSort} from "./dot.js";
 
 /** Options for the geo mark. */
@@ -65,7 +63,6 @@ export class Geo extends Mark {
   constructor(data: any, options: any = {}) {
     const [vr, cr] = maybeNumberChannel(options.r, 3);
     super(
-      // @ts-expect-error — Mark constructor signature missing from mark.d.ts
       data,
       {
         x: {value: options.tip ? options.x : null, scale: "x", optional: true},

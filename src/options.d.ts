@@ -67,3 +67,57 @@ export function range(data: any): number[];
 
 /** Resolves a number interval specification. */
 export function numberInterval(interval: any): any;
+
+/** The singleton data used for data-less decoration marks, e.g. frame. */
+export const singleton: null[];
+
+/** Returns a channel transform that always returns the given value. */
+export const constant: <T>(x: T) => () => T;
+
+/** Coerces the value to a number, passing through null and undefined. */
+export const number: (x: any) => number | null | undefined;
+
+/** A filter predicate that accepts everything. */
+export const yes: (...args: any[]) => boolean;
+
+/** Validates the input against the allowed keywords, returning the lowercase keyword. */
+export function keyword<T extends string>(input: any, name: string, allowed: readonly T[]): T;
+
+/** Like keyword, but returns undefined if the input is nullish. */
+export function maybeKeyword<T extends string>(input: any, name: string, allowed: readonly T[]): T | undefined;
+
+/** Coerces the values to an array, materializing iterables; passes through nullish values and typed arrays. */
+export function arrayify(values: any): any;
+
+/** Returns true if the value is an iterable (but not a string). */
+export function isIterable(value: any): value is Iterable<any>;
+
+/** Returns true if the values are temporal (dates). */
+export function isTemporal(values: Iterable<any>): boolean;
+
+/** Returns true if the values are integers representing years. */
+export function isYearIntegers(values: Iterable<any>): boolean;
+
+/** Returns true if the value is an interval implementing floor and offset. */
+export function isInterval(t: any): boolean;
+
+/** Resolves a range interval specification, which must implement range. */
+export function maybeRangeInterval(interval: any, type?: any): any;
+
+/** Returns [channel, constant] for a channel that may be a constant color. */
+export function maybeColorChannel(value: any, defaultValue?: any): [any, any];
+
+/** Returns [channel, constant] for a channel that may be a constant number. */
+export function maybeNumberChannel(value: any, defaultValue?: any): [any, any];
+
+/** Returns true if the value is a valid CSS color string. */
+export function isColor(value: any): boolean;
+
+/** Returns true if the value represents none (e.g. "none" or null). */
+export function isNone(value: any): boolean;
+
+/** Returns true if the value is nullish or represents none. */
+export function isNoneish(value: any): boolean;
+
+/** Returns the length of the data, if known. */
+export function lengthof(data: any): number | undefined;

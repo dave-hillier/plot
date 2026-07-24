@@ -1,7 +1,6 @@
 import {cluster as Cluster, tree as Tree} from "d3";
 import type {CompoundMark, Data, MarkOptions} from "../mark.js";
 import {marks} from "../mark.js";
-// @ts-expect-error — runtime export missing from options.d.ts
 import {isNoneish, keyword} from "../options.js";
 import type {TreeTransformOptions} from "../transforms/tree.js";
 // @ts-expect-error — runtime export missing from transforms/tree.d.ts

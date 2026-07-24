@@ -11,6 +11,7 @@ import {
   type ReactElement
 } from "react";
 import {computePlot} from "../plot.js";
+import type {MarkOptions} from "../mark.js";
 import {consumeWarnings} from "../warnings.js";
 import {PlotContext} from "./PlotContext.js";
 import {markEventNames, type MarkEventHandlers, type MarkFactory} from "./useMark.js";
@@ -65,7 +66,7 @@ export interface PlotProps {
   ariaDescription?: string;
   axis?: any;
   grid?: any;
-  clip?: boolean | "frame" | null;
+  clip?: MarkOptions["clip"];
   title?: string;
   subtitle?: string;
   caption?: string;
