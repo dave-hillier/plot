@@ -1,4 +1,4 @@
-import {useMark, stampOptions} from "../useMark.js";
+import {useMark} from "../useMark.js";
 import {image} from "../../marks/image.js";
 
 export interface ImageProps {
@@ -7,6 +7,6 @@ export interface ImageProps {
 }
 
 export function Image({data, ...options}: ImageProps) {
-  useMark({stamp: stampOptions("image", data, options), factory: () => image(data, options)});
+  useMark({name: "image", data, options, create: image});
   return null;
 }

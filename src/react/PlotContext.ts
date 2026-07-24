@@ -21,6 +21,9 @@ export interface Dimensions {
 // `plot()` to do all rendering.
 export interface PlotContextValue {
   registerMark: (id: string, stamp: string, factory: MarkFactory) => void;
+  // Removes a mark's registration; called from useMark's unmount cleanup.
+  // Identity is stable across <Plot> renders.
+  unregisterMark: (id: string) => void;
   // Resolved scale descriptors and render context from the parent Plot's
   // computePlot() pass. Populated after the first render; descendants like
   // <Legend scale="color"> read named scales out of this map.

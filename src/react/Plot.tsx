@@ -108,13 +108,11 @@ export function Plot({
   ...options
 }: PlotProps) {
   const marksRef = useRef<Map<string, Registration>>(new Map());
-  const seenRef = useRef<Set<string>>(new Set());
   const dirtyRef = useRef(false);
-  const [, setVersion] = useState(0);
+  const computedRef = useRef(false);
+  const [version, setVersion] = useState(0);
   const [resolved, setResolved] = useState<ResolvedScales | null>(null);
   const [mode, setMode] = useState<Mode>({kind: "empty"});
-
-  seenRef.current = new Set();
 
   // Updates the published scale descriptors only when the set of scale keys
   // changes; identity-only changes mutate in place to avoid re-rendering
@@ -129,7 +127,6 @@ export function Plot({
   };
 
   const registerMark = (id: string, stamp: string, factory: MarkFactory) => {
-    seenRef.current.add(id);
     const prev = marksRef.current.get(id);
     if (!prev || prev.stamp !== stamp) {
       marksRef.current.set(id, {stamp, factory});
@@ -139,22 +136,49 @@ export function Plot({
     }
   };
 
+  // Removal is unmount-driven (useMark's cleanup), NOT inferred from who
+  // re-registered this render: when <Plot> re-renders from its own state,
+  // unchanged children bail out of rendering and never call registerMark, so
+  // any presence-based sweep would wrongly drop live marks. Stable identity
+  // (it closes over refs and setVersion only) so useMark's unmount cleanup
+  // doesn't re-fire on every render.
+  const unregisterMark = useRef((id: string) => {
+    if (marksRef.current.delete(id)) setVersion((v) => v + 1);
+  }).current;
+
   useLayoutEffect(() => {
-    for (const id of marksRef.current.keys()) {
-      if (!seenRef.current.has(id)) {
-        marksRef.current.delete(id);
-        dirtyRef.current = true;
-      }
-    }
     if (dirtyRef.current) {
       dirtyRef.current = false;
-      setVersion((v) => v + 1);
+      // The compute effect below re-runs when version changes, picking up the
+      // new registrations. Skip the bump before the first compute: it runs in
+      // this same commit anyway, and bumping would compute (and emit
+      // warnings) twice on mount.
+      if (computedRef.current) setVersion((v) => v + 1);
     }
   });
 
   const optionsKey = stableKey(options);
+  const lastInputsRef = useRef<string | null>(null);
+  const onValueRef = useRef(onValue);
+  onValueRef.current = onValue;
 
   useLayoutEffect(() => {
+    computedRef.current = true;
+    // Registration ids change when children remount without any real change —
+    // e.g. when the tree gains a <figure> once auto-legends resolve — bumping
+    // version while every stamp stays the same. Recomputing then would be
+    // wasted work and would re-emit computePlot warnings, so skip when the
+    // effective inputs are unchanged. (onValue identity is excluded, like
+    // functions in mark stamps; the onInput closure reads it from a ref.)
+    const inputsKey = [
+      ...[...marksRef.current.values()].map((r) => r.stamp),
+      optionsKey,
+      String(classNameProp),
+      stableKey({style}),
+      String(!!onValue)
+    ].join("\u0000");
+    if (inputsKey === lastInputsRef.current) return;
+    lastInputsRef.current = inputsKey;
     const flat: any[] = [];
     for (const {factory} of marksRef.current.values()) {
       const m = factory();
@@ -201,17 +225,21 @@ export function Plot({
     const onInput = onValue
       ? (e: Event) => {
           const t = e.target as any;
-          if (t && "value" in t) onValue(t.value);
+          const cb = onValueRef.current;
+          if (cb && t && "value" in t) cb(t.value);
         }
       : null;
 
     const pointerEnabled = computed.marks.some(isPointerConsumer);
     setMode({kind: "jsx", computed, onSvgRef, onInput, pointerEnabled, warnings});
+    // version counts mark registration changes (stamp changes, additions,
+    // removals), so prop updates on marks after mount re-run computePlot.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [optionsKey, onValue, classNameProp, style]);
+  }, [optionsKey, onValue, classNameProp, style, version]);
 
   const ctx = {
     registerMark,
+    unregisterMark,
     scaleDescriptors: resolved?.scaleDescriptors,
     context: resolved?.context,
     plotOptions: options

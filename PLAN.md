@@ -47,18 +47,32 @@ function Chart({ data }) {
 
 ### 2.2 With Transforms
 
+Transforms compose by nesting wrapper components, mirroring Observable Plot's
+functional composition (`binX(outputs, stackY(options))` ≡ nested JSX):
+
 ```jsx
-import { Plot, BarY, AxisX, AxisY } from "replot";
-import { binX } from "replot/transforms";
+import { Plot, BarY, BinX } from "replot";
 
 function Histogram({ data }) {
   return (
     <Plot>
-      <BarY data={data} {...binX({ y: "count" }, { x: "value" })} />
+      <BinX y="count">
+        <BarY data={data} x="value" />
+      </BinX>
     </Plot>
   );
 }
 ```
+
+The functional form remains supported as an escape hatch (and for conditional
+transform application, which is awkward in JSX):
+
+```jsx
+<BarY data={data} {...binX({ y: "count" }, { x: "value" })} />
+```
+
+Both forms flow through the same transform functions and must produce
+identical output. See section 8.3 for the design.
 
 ### 2.3 Faceting
 
@@ -493,7 +507,23 @@ interface DotProps<T = any> {
 }
 ```
 
-### Step 12: Testing
+### Step 12: Transform Wrapper Components
+
+Implement the nesting API of section 8.3:
+
+1. `TransformContext` (`{wrap, stamp}`) and the `useMark` change: fold
+   `ctx.stamp` into the registration stamp, apply `ctx.wrap(options)` inside
+   the factory closure.
+2. Fix invalidation first: include primitive values in stamps and make the
+   `<Plot>` recompute effect re-run on registration-version changes — the
+   wrappers depend on this path.
+3. First slice: `StackY` + `BinX`, validated by rewriting existing snapshot
+   plots (fruit-sales-date, athletes-weight) in nested form and asserting
+   byte-identical SVG against the spread form.
+4. Remaining wrappers follow mechanically from the table in 8.3, each with
+   typed props.
+
+### Step 13: Testing
 
 - Port snapshot tests: render React components to SVG strings and compare
 - Unit test hooks and context system
@@ -537,20 +567,100 @@ function Line({ data, x, y, z, curve, ...options }) {
 }
 ```
 
-### 8.3 Transforms remain as functions, not hooks
+### 8.3 Transforms compose as wrapper components
 
-Transforms (bin, stack, group, etc.) are pure data transforms. They should
-remain as composable functions, not hooks:
+Observable Plot's transforms are its one genuinely compositional construct:
+each is a pure function `(config, markOptions) => markOptions`, and nesting
+calls composes them (`binX(outputs, stackY(options))`). The JSX analogue is
+nesting wrapper components, so element structure mirrors call structure:
 
 ```tsx
-// Good: transforms as props/spread
-<BarY data={data} {...binX({ y: "count" }, { x: "value" })} />
-
-// Not: transforms as hooks (wrong abstraction level)
-const binned = useBin(data, { x: "value" }); // ❌
+// binX({y: "count"}, stackY({x: "v", fill: "sex"}))
+<BinX y="count">
+  <StackY>
+    <RectY data={data} x="v" fill="sex" />
+  </StackY>
+</BinX>
 ```
 
-This preserves composability and matches the existing API semantics.
+The rule for what belongs where: things Plot expresses by **wrapping**
+(transforms) nest as components; things Plot expresses as **options**
+(channels, styles) stay as props on the mark.
+
+#### Mechanism
+
+A `TransformContext` carries `{wrap: (options) => options, stamp: string}`
+(identity/empty by default). Each wrapper composes with its parent context —
+delegating outward so inner transforms apply first:
+
+```tsx
+function StackY({offset, order, reverse, children}: StackYProps) {
+  const parent = useContext(TransformContext);
+  const value = {
+    wrap: (o) => parent.wrap(stackY({offset, order, reverse}, o)),
+    stamp: parent.stamp + stampTransform("stackY", {offset, order, reverse})
+  };
+  return <TransformContext.Provider value={value}>{children}</TransformContext.Provider>;
+}
+```
+
+Marks (via `useMark`) fold `ctx.stamp` into their registration stamp and
+apply `ctx.wrap(options)` **inside the factory closure** — never at component
+render time. Transforms allocate lazy `column()` cells that `computePlot`
+fills per run; factories are re-evaluated each rebuild precisely so those
+columns are fresh, and the wrap must happen inside that re-evaluation.
+
+Multiple marks under one wrapper each get the transform applied
+independently — exactly equivalent to calling e.g. `stackY(options)` per mark
+in the functional API.
+
+#### Wrapper props per transform
+
+Every transform fits the `(config, options)` mold, so wrapper props map
+mechanically onto the first argument:
+
+| Wrapper | Props (first argument) |
+|---|---|
+| `BinX`/`BinY`/`Bin` | output reducers (`y="count"`) + `thresholds`/`interval`/`domain`/`cumulative` — bin's own `mergeOptions` routes config keys |
+| `GroupX`/`GroupY`/`GroupZ`/`Group` | output reducers |
+| `StackY`/`StackX` (+`1`/`2` variants) | `offset`/`order`/`reverse` |
+| `WindowX`/`WindowY` | `k`/`reduce`/`anchor`/`strict` |
+| `NormalizeX`/`NormalizeY` | `basis` |
+| `MapX`/`MapY` | `map` |
+| `ShiftX`/`ShiftY` | `interval` |
+| `SelectFirst`/`SelectLast`/`SelectMinX`/… | none (selector in the name) |
+| `DodgeX`/`DodgeY` (initializer) | `anchor`/`padding`/`r` |
+| `Hexbin` (initializer) | output reducers + `binWidth` |
+| `Centroid`/`GeoCentroid` (initializer) | `geometry` |
+
+Not componentized: `treeNode`/`treeLink` (already inside `TreeMark`/
+`ClusterMark`) and `pointer*` (already `Tip`/`Crosshair`). `sort`/`filter`/
+`reverse` work as plain mark props already; wrappers for them are optional
+sugar. Bare `map`/`select`/`window`/`filter` collide with JS/HTML names —
+those stay function-only or take distinct names.
+
+#### Constraints and known hazards
+
+- **Ordering**: Plot forbids transforms after initializers; nesting order
+  maps directly onto call order, so wrong nesting fails with the same runtime
+  error as wrong functional composition. Wrappers may pre-validate to give a
+  clearer message.
+- **Output vs input channels**: on a wrapper, `y="count"` is an output
+  reducer; on the mark inside, `x="weight"` is an input channel. Typed props
+  (reducer types on wrappers, channel types on marks) are the guard against
+  putting a prop on the wrong element.
+- **Invalidation**: wrapper config changes must flow through the mark stamp.
+  Stamps must include primitive *values* (not just key/typeof shape), or a
+  `thresholds` change won't trigger a rebuild. The `<Plot>` recompute effect
+  must also re-run when the registration version changes, not only when
+  plot-level options change.
+- **Equivalence tests**: nested-wrapper and functional-spread forms must
+  produce byte-identical SVG for the same plot (verify against existing
+  snapshot tests, e.g. fruit-sales-date, athletes-weight).
+
+Transforms should never become hooks — `useBin(data, ...)` is the wrong
+abstraction level; the transform contract is an options rewrite, not a data
+computation the component observes.
 
 ### 8.4 Style application
 

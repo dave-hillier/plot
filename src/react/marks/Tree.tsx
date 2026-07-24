@@ -1,4 +1,4 @@
-import {useMark, stampOptions} from "../useMark.js";
+import {useMark} from "../useMark.js";
 import {cluster, tree} from "../../marks/tree.js";
 
 export interface TreeProps {
@@ -7,11 +7,11 @@ export interface TreeProps {
 }
 
 export function TreeMark({data, ...options}: TreeProps) {
-  useMark({stamp: stampOptions("tree", data, options), factory: () => tree(data, options)});
+  useMark({name: "tree", data, options, create: tree});
   return null;
 }
 
 export function ClusterMark({data, ...options}: TreeProps) {
-  useMark({stamp: stampOptions("cluster", data, options), factory: () => cluster(data, options)});
+  useMark({name: "cluster", data, options, create: cluster});
   return null;
 }

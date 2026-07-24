@@ -1,4 +1,4 @@
-import {useMark, stampOptions} from "../useMark.js";
+import {useMark} from "../useMark.js";
 import {density} from "../../marks/density.js";
 
 export interface DensityProps {
@@ -7,6 +7,6 @@ export interface DensityProps {
 }
 
 export function Density({data, ...options}: DensityProps) {
-  useMark({stamp: stampOptions("density", data, options), factory: () => density(data, options)});
+  useMark({name: "density", data, options, create: density});
   return null;
 }

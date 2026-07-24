@@ -1,4 +1,4 @@
-import {useMark, stampOptions} from "../useMark.js";
+import {useMark} from "../useMark.js";
 import {contour} from "../../marks/contour.js";
 
 export interface ContourProps {
@@ -7,6 +7,6 @@ export interface ContourProps {
 }
 
 export function Contour({data, ...options}: ContourProps) {
-  useMark({stamp: stampOptions("contour", data, options), factory: () => contour(data, options)});
+  useMark({name: "contour", data, options, create: contour});
   return null;
 }

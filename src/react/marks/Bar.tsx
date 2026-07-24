@@ -1,4 +1,4 @@
-import {useMark, stampOptions} from "../useMark.js";
+import {useMark} from "../useMark.js";
 import {barX, barY} from "../../marks/bar.js";
 
 export interface BarProps {
@@ -7,11 +7,11 @@ export interface BarProps {
 }
 
 export function BarX({data, ...options}: BarProps) {
-  useMark({stamp: stampOptions("barX", data, options), factory: () => barX(data, options)});
+  useMark({name: "barX", data, options, create: barX});
   return null;
 }
 
 export function BarY({data, ...options}: BarProps) {
-  useMark({stamp: stampOptions("barY", data, options), factory: () => barY(data, options)});
+  useMark({name: "barY", data, options, create: barY});
   return null;
 }

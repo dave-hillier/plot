@@ -1,4 +1,4 @@
-import {useMark, stampOptions} from "../useMark.js";
+import {useMark} from "../useMark.js";
 import {tickX, tickY} from "../../marks/tick.js";
 
 export interface TickProps {
@@ -7,17 +7,11 @@ export interface TickProps {
 }
 
 export function TickX({data, ...options}: TickProps) {
-  useMark({
-    stamp: stampOptions("tickX", data, options),
-    factory: () => tickX(data, options)
-  });
+  useMark({name: "tickX", data, options, create: tickX});
   return null;
 }
 
 export function TickY({data, ...options}: TickProps) {
-  useMark({
-    stamp: stampOptions("tickY", data, options),
-    factory: () => tickY(data, options)
-  });
+  useMark({name: "tickY", data, options, create: tickY});
   return null;
 }

@@ -135,6 +135,46 @@ export type {CrosshairProps} from "./interactions/Crosshair.js";
 export {usePointer, findNearest} from "./interactions/usePointer.js";
 export type {PointerState, UsePointerOptions} from "./interactions/usePointer.js";
 
+// Transform components (wrappers composing via TransformContext)
+export {TransformContext, useTransformContext} from "./TransformContext.js";
+export type {TransformContextValue} from "./TransformContext.js";
+export {StackX, StackX1, StackX2, StackY, StackY1, StackY2} from "./transforms/Stack.js";
+export type {
+  StackXProps,
+  StackX1Props,
+  StackX2Props,
+  StackYProps,
+  StackY1Props,
+  StackY2Props
+} from "./transforms/Stack.js";
+export {Bin, BinX, BinY} from "./transforms/Bin.js";
+export type {BinProps, BinXProps, BinYProps} from "./transforms/Bin.js";
+export {Group, GroupX, GroupY, GroupZ} from "./transforms/Group.js";
+export type {GroupProps, GroupXProps, GroupYProps, GroupZProps} from "./transforms/Group.js";
+export {WindowX, WindowY} from "./transforms/Window.js";
+export type {WindowXProps, WindowYProps} from "./transforms/Window.js";
+export {NormalizeX, NormalizeY} from "./transforms/Normalize.js";
+export type {NormalizeXProps, NormalizeYProps} from "./transforms/Normalize.js";
+export {MapX, MapY} from "./transforms/Map.js";
+export type {MapXProps, MapYProps} from "./transforms/Map.js";
+export {ShiftX, ShiftY} from "./transforms/Shift.js";
+export type {ShiftXProps, ShiftYProps} from "./transforms/Shift.js";
+export {SelectFirst, SelectLast, SelectMinX, SelectMinY, SelectMaxX, SelectMaxY} from "./transforms/Select.js";
+export type {
+  SelectFirstProps,
+  SelectLastProps,
+  SelectMinXProps,
+  SelectMinYProps,
+  SelectMaxXProps,
+  SelectMaxYProps
+} from "./transforms/Select.js";
+export {DodgeX, DodgeY} from "./transforms/Dodge.js";
+export type {DodgeXProps, DodgeYProps} from "./transforms/Dodge.js";
+export {Hexbin} from "./transforms/Hexbin.js";
+export type {HexbinProps} from "./transforms/Hexbin.js";
+export {Centroid, GeoCentroid} from "./transforms/Centroid.js";
+export type {CentroidProps, GeoCentroidProps} from "./transforms/Centroid.js";
+
 // Re-export ALL transforms (pure functions, shared with imperative API)
 export {filter, reverse, sort, shuffle, basic as transform, initializer} from "../transforms/basic.js";
 export {bin, binX, binY} from "../transforms/bin.js";
@@ -152,8 +192,8 @@ export {treeNode, treeLink} from "../transforms/tree.js";
 export {pointer, pointerX, pointerY} from "../interactions/pointer.js";
 
 // Re-export mark-related utilities (pure functions, shared with imperative API)
-export {bollinger} from "../marks/bollinger";
-export {auto, autoSpec} from "../marks/auto";
+export {bollinger} from "../marks/bollinger.js";
+export {auto, autoSpec} from "../marks/auto.js";
 
 // Re-export data utilities
 export {valueof, column, identity, indexOf, numberInterval} from "../options.js";

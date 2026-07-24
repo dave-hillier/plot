@@ -1,4 +1,4 @@
-import {useMark, stampOptions} from "../useMark.js";
+import {useMark} from "../useMark.js";
 import {raster} from "../../marks/raster.js";
 
 export interface RasterProps {
@@ -7,6 +7,6 @@ export interface RasterProps {
 }
 
 export function Raster({data, ...options}: RasterProps) {
-  useMark({stamp: stampOptions("raster", data, options), factory: () => raster(data, options)});
+  useMark({name: "raster", data, options, create: raster});
   return null;
 }

@@ -1,4 +1,4 @@
-import {useMark, stampOptions} from "../useMark.js";
+import {useMark} from "../useMark.js";
 import {arrow} from "../../marks/arrow.js";
 
 export interface ArrowProps {
@@ -7,6 +7,6 @@ export interface ArrowProps {
 }
 
 export function Arrow({data, ...options}: ArrowProps) {
-  useMark({stamp: stampOptions("arrow", data, options), factory: () => arrow(data, options)});
+  useMark({name: "arrow", data, options, create: arrow});
   return null;
 }

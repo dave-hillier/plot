@@ -1,4 +1,4 @@
-import {useMark, stampOptions} from "../useMark.js";
+import {useMark} from "../useMark.js";
 import {tip} from "../../marks/tip.js";
 import {formatDefault} from "../../core/index.js";
 
@@ -14,10 +14,7 @@ export interface TipProps {
 // substitutes the selected datum's index and tip.renderJSX produces the
 // tooltip content.
 export function Tip({data, ...options}: TipProps) {
-  useMark({
-    stamp: stampOptions("tip", data, options),
-    factory: () => tip(data, options)
-  });
+  useMark({name: "tip", data, options, create: tip});
   return null;
 }
 

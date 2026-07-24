@@ -1,4 +1,4 @@
-import {useMark, stampOptions} from "../useMark.js";
+import {useMark} from "../useMark.js";
 import {frame} from "../../marks/frame.js";
 
 export interface FrameProps {
@@ -6,9 +6,6 @@ export interface FrameProps {
 }
 
 export function Frame(options: FrameProps = {}) {
-  useMark({
-    stamp: stampOptions("frame", null, options),
-    factory: () => frame(options)
-  });
+  useMark({name: "frame", options, create: (_data, o) => frame(o)});
   return null;
 }

@@ -1,4 +1,4 @@
-import {useMark, stampOptions} from "../useMark.js";
+import {useMark} from "../useMark.js";
 import {delaunayLink, delaunayMesh, hull, voronoi, voronoiMesh} from "../../marks/delaunay.js";
 
 export interface DelaunayProps {
@@ -7,26 +7,26 @@ export interface DelaunayProps {
 }
 
 export function DelaunayLink({data, ...options}: DelaunayProps) {
-  useMark({stamp: stampOptions("delaunayLink", data, options), factory: () => delaunayLink(data, options)});
+  useMark({name: "delaunayLink", data, options, create: delaunayLink});
   return null;
 }
 
 export function DelaunayMesh({data, ...options}: DelaunayProps) {
-  useMark({stamp: stampOptions("delaunayMesh", data, options), factory: () => delaunayMesh(data, options)});
+  useMark({name: "delaunayMesh", data, options, create: delaunayMesh});
   return null;
 }
 
 export function Hull({data, ...options}: DelaunayProps) {
-  useMark({stamp: stampOptions("hull", data, options), factory: () => hull(data, options)});
+  useMark({name: "hull", data, options, create: hull});
   return null;
 }
 
 export function Voronoi({data, ...options}: DelaunayProps) {
-  useMark({stamp: stampOptions("voronoi", data, options), factory: () => voronoi(data, options)});
+  useMark({name: "voronoi", data, options, create: voronoi});
   return null;
 }
 
 export function VoronoiMesh({data, ...options}: DelaunayProps) {
-  useMark({stamp: stampOptions("voronoiMesh", data, options), factory: () => voronoiMesh(data, options)});
+  useMark({name: "voronoiMesh", data, options, create: voronoiMesh});
   return null;
 }

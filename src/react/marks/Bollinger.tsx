@@ -1,4 +1,4 @@
-import {useMark, stampOptions} from "../useMark.js";
+import {useMark} from "../useMark.js";
 import {bollingerX, bollingerY} from "../../marks/bollinger.js";
 
 export interface BollingerProps {
@@ -7,11 +7,11 @@ export interface BollingerProps {
 }
 
 export function BollingerX({data, ...options}: BollingerProps) {
-  useMark({stamp: stampOptions("bollingerX", data, options), factory: () => bollingerX(data, options)});
+  useMark({name: "bollingerX", data, options, create: bollingerX});
   return null;
 }
 
 export function BollingerY({data, ...options}: BollingerProps) {
-  useMark({stamp: stampOptions("bollingerY", data, options), factory: () => bollingerY(data, options)});
+  useMark({name: "bollingerY", data, options, create: bollingerY});
   return null;
 }

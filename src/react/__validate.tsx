@@ -21,7 +21,7 @@ import {Arrow} from "./marks/Arrow.js";
 import {Vector, Spike} from "./marks/Vector.js";
 import {Image} from "./marks/Image.js";
 import {AxisX, AxisY, AxisFx, AxisFy, GridX, GridY, GridFx, GridFy} from "./marks/Axis.js";
-import {useMark, stampOptions} from "./useMark.js";
+import {useMark} from "./useMark.js";
 import {dot as dotMark} from "../marks/dot";
 import {frame as frameMark} from "../marks/frame";
 import {BollingerY} from "./marks/Bollinger.js";
@@ -42,10 +42,7 @@ import {Legend} from "./legends/Legend.js";
 // Facet axes need an fx/fy scale, which is created by a mark with an fx/fy
 // channel. Seed the facet scale via a dot mark with the appropriate facet data.
 function FacetSeed({data, ...rest}: Record<string, any>) {
-  useMark({
-    stamp: stampOptions("dotSeed", data, rest),
-    factory: () => dotMark(data, rest)
-  });
+  useMark({name: "dotSeed", data, options: rest, create: dotMark});
   return null;
 }
 
@@ -329,7 +326,6 @@ export function validateImage() {
   );
 }
 
-
 export function validateAxisX() {
   return (
     <Plot width={300} height={200} x={{domain: [0, 10]}}>
@@ -401,10 +397,7 @@ export function validateGridFy() {
 export function validateBollingerY() {
   // A series with enough samples for the n=5 window — verifies the band
   // (area + line) is actually computed by the imperative bollingerY composite.
-  const data = [
-    10, 11, 12, 13, 14, 13, 12, 13, 15, 17,
-    18, 19, 18, 17, 16, 17, 19, 20, 21, 22
-  ];
+  const data = [10, 11, 12, 13, 14, 13, 12, 13, 15, 17, 18, 19, 18, 17, 16, 17, 19, 20, 21, 22];
   return (
     <Plot width={300} height={150}>
       <BollingerY data={data} n={5} />
@@ -446,10 +439,21 @@ export function validateBoxY() {
   // Two groups, each with values that include outliers; imperative boxY
   // should emit rule + bar + tick + dot.
   const data = [
-    {g: "a", v: 1}, {g: "a", v: 2}, {g: "a", v: 3}, {g: "a", v: 4},
-    {g: "a", v: 5}, {g: "a", v: 6}, {g: "a", v: 7}, {g: "a", v: 50},
-    {g: "b", v: 2}, {g: "b", v: 3}, {g: "b", v: 4}, {g: "b", v: 5},
-    {g: "b", v: 6}, {g: "b", v: 7}, {g: "b", v: 8}
+    {g: "a", v: 1},
+    {g: "a", v: 2},
+    {g: "a", v: 3},
+    {g: "a", v: 4},
+    {g: "a", v: 5},
+    {g: "a", v: 6},
+    {g: "a", v: 7},
+    {g: "a", v: 50},
+    {g: "b", v: 2},
+    {g: "b", v: 3},
+    {g: "b", v: 4},
+    {g: "b", v: 5},
+    {g: "b", v: 6},
+    {g: "b", v: 7},
+    {g: "b", v: 8}
   ];
   return (
     <Plot width={300} height={200}>
@@ -461,15 +465,7 @@ export function validateBoxY() {
 export function validateTreeMark() {
   // Flat hierarchical input — imperative tree() must run treeNode/treeLink
   // transforms to compute positions from path strings.
-  const data = [
-    "root",
-    "root/a",
-    "root/a/aa",
-    "root/a/ab",
-    "root/b",
-    "root/b/ba",
-    "root/b/bb"
-  ];
+  const data = ["root", "root/a", "root/a/aa", "root/a/ab", "root/b", "root/b/ba", "root/b/bb"];
   return (
     <Plot width={400} height={200} margin={20}>
       <TreeMark data={data} />
@@ -494,9 +490,21 @@ export function validateAuto() {
 export function validateDensity() {
   // A small 2-D point cloud — enough to produce density contours.
   const data = [
-    [0, 0], [0.1, 0.05], [0.2, -0.05], [0.05, 0.1], [-0.05, 0.05],
-    [1, 1], [1.05, 0.95], [0.95, 1.05], [1.1, 1.0], [0.9, 0.9],
-    [2, 0.5], [2.1, 0.55], [1.95, 0.45], [2.05, 0.5], [2.0, 0.6]
+    [0, 0],
+    [0.1, 0.05],
+    [0.2, -0.05],
+    [0.05, 0.1],
+    [-0.05, 0.05],
+    [1, 1],
+    [1.05, 0.95],
+    [0.95, 1.05],
+    [1.1, 1.0],
+    [0.9, 0.9],
+    [2, 0.5],
+    [2.1, 0.55],
+    [1.95, 0.45],
+    [2.05, 0.5],
+    [2.0, 0.6]
   ];
   return (
     <Plot width={200} height={150}>
@@ -525,13 +533,7 @@ export function validateRaster() {
   // Use the function-of-(x,y) form so the raster mark samples its own grid.
   return (
     <Plot width={200} height={150}>
-      <Raster
-        x1={-2}
-        y1={-2}
-        x2={2}
-        y2={2}
-        fill={(x: number, y: number) => Math.sin(x) * Math.cos(y)}
-      />
+      <Raster x1={-2} y1={-2} x2={2} y2={2} fill={(x: number, y: number) => Math.sin(x) * Math.cos(y)} />
     </Plot>
   );
 }
@@ -607,10 +609,7 @@ export function validateWaffleX() {
 }
 
 function DotNew({data, ...options}: {data: any; [key: string]: any}) {
-  useMark({
-    stamp: stampOptions("dot", data, options),
-    factory: () => dotMark(data, options)
-  });
+  useMark({name: "dot", data, options, create: dotMark});
   return null;
 }
 

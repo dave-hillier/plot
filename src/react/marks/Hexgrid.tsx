@@ -1,7 +1,7 @@
-import {useMark, stampOptions} from "../useMark.js";
+import {useMark} from "../useMark.js";
 import {hexgrid} from "../../marks/hexgrid.js";
 
 export function Hexgrid(options: any = {}) {
-  useMark({stamp: stampOptions("hexgrid", null, options), factory: () => hexgrid(options)});
+  useMark({name: "hexgrid", options, create: (_data, o) => hexgrid(o)});
   return null;
 }

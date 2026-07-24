@@ -1,4 +1,4 @@
-import {useMark, stampOptions} from "../useMark.js";
+import {useMark} from "../useMark.js";
 import {auto} from "../../marks/auto.js";
 
 export interface AutoProps {
@@ -7,6 +7,6 @@ export interface AutoProps {
 }
 
 export function Auto({data, ...options}: AutoProps) {
-  useMark({stamp: stampOptions("auto", data, options), factory: () => auto(data, options)});
+  useMark({name: "auto", data, options, create: auto});
   return null;
 }

@@ -1,4 +1,4 @@
-import {useMark, stampOptions} from "../useMark.js";
+import {useMark} from "../useMark.js";
 import {linearRegressionX, linearRegressionY} from "../../marks/linearRegression.js";
 
 export interface LinearRegressionProps {
@@ -7,11 +7,11 @@ export interface LinearRegressionProps {
 }
 
 export function LinearRegressionX({data, ...options}: LinearRegressionProps) {
-  useMark({stamp: stampOptions("linearRegressionX", data, options), factory: () => linearRegressionX(data, options)});
+  useMark({name: "linearRegressionX", data, options, create: linearRegressionX});
   return null;
 }
 
 export function LinearRegressionY({data, ...options}: LinearRegressionProps) {
-  useMark({stamp: stampOptions("linearRegressionY", data, options), factory: () => linearRegressionY(data, options)});
+  useMark({name: "linearRegressionY", data, options, create: linearRegressionY});
   return null;
 }

@@ -1,4 +1,4 @@
-import {useMark, stampOptions} from "../useMark.js";
+import {useMark} from "../useMark.js";
 import {area, areaX, areaY} from "../../marks/area.js";
 
 export interface AreaProps {
@@ -7,20 +7,16 @@ export interface AreaProps {
 }
 
 export function Area({data, ...options}: AreaProps) {
-  const hasOptions = Object.keys(options).length > 0;
-  useMark({
-    stamp: stampOptions("area", data, options),
-    factory: () => (hasOptions ? area(data, options) : area(data))
-  });
+  useMark({name: "area", data, options, create: (d, o) => (Object.keys(o).length > 0 ? area(d, o) : area(d))});
   return null;
 }
 
 export function AreaX({data, ...options}: AreaProps) {
-  useMark({stamp: stampOptions("areaX", data, options), factory: () => areaX(data, options)});
+  useMark({name: "areaX", data, options, create: areaX});
   return null;
 }
 
 export function AreaY({data, ...options}: AreaProps) {
-  useMark({stamp: stampOptions("areaY", data, options), factory: () => areaY(data, options)});
+  useMark({name: "areaY", data, options, create: areaY});
   return null;
 }

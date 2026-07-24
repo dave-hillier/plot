@@ -1,4 +1,4 @@
-import {useMark, stampOptions} from "../useMark.js";
+import {useMark} from "../useMark.js";
 import {waffleX, waffleY} from "../../marks/waffle.js";
 
 export interface WaffleProps {
@@ -7,11 +7,11 @@ export interface WaffleProps {
 }
 
 export function WaffleX({data, ...options}: WaffleProps) {
-  useMark({stamp: stampOptions("waffleX", data, options), factory: () => waffleX(data, options)});
+  useMark({name: "waffleX", data, options, create: waffleX});
   return null;
 }
 
 export function WaffleY({data, ...options}: WaffleProps) {
-  useMark({stamp: stampOptions("waffleY", data, options), factory: () => waffleY(data, options)});
+  useMark({name: "waffleY", data, options, create: waffleY});
   return null;
 }

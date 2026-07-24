@@ -1,4 +1,4 @@
-import {useMark, stampOptions} from "../useMark.js";
+import {useMark} from "../useMark.js";
 import {crosshair, crosshairX, crosshairY} from "../../marks/crosshair.js";
 
 export interface CrosshairProps {
@@ -7,25 +7,16 @@ export interface CrosshairProps {
 }
 
 export function Crosshair({data, ...options}: CrosshairProps) {
-  useMark({
-    stamp: stampOptions("crosshair", data, options),
-    factory: () => crosshair(data, options)
-  });
+  useMark({name: "crosshair", data, options, create: crosshair});
   return null;
 }
 
 export function CrosshairX({data, ...options}: CrosshairProps) {
-  useMark({
-    stamp: stampOptions("crosshairX", data, options),
-    factory: () => crosshairX(data, options)
-  });
+  useMark({name: "crosshairX", data, options, create: crosshairX});
   return null;
 }
 
 export function CrosshairY({data, ...options}: CrosshairProps) {
-  useMark({
-    stamp: stampOptions("crosshairY", data, options),
-    factory: () => crosshairY(data, options)
-  });
+  useMark({name: "crosshairY", data, options, create: crosshairY});
   return null;
 }

@@ -1,4 +1,4 @@
-import {useMark, stampOptions} from "../useMark.js";
+import {useMark} from "../useMark.js";
 import {text, textX, textY} from "../../marks/text.js";
 
 export interface TextProps {
@@ -7,16 +7,16 @@ export interface TextProps {
 }
 
 export function Text({data, ...options}: TextProps) {
-  useMark({stamp: stampOptions("text", data, options), factory: () => text(data, options)});
+  useMark({name: "text", data, options, create: text});
   return null;
 }
 
 export function TextX({data, ...options}: TextProps) {
-  useMark({stamp: stampOptions("textX", data, options), factory: () => textX(data, options)});
+  useMark({name: "textX", data, options, create: textX});
   return null;
 }
 
 export function TextY({data, ...options}: TextProps) {
-  useMark({stamp: stampOptions("textY", data, options), factory: () => textY(data, options)});
+  useMark({name: "textY", data, options, create: textY});
   return null;
 }

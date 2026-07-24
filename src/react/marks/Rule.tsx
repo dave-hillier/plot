@@ -1,4 +1,4 @@
-import {useMark, stampOptions} from "../useMark.js";
+import {useMark} from "../useMark.js";
 import {ruleX, ruleY} from "../../marks/rule.js";
 
 export interface RuleProps {
@@ -7,17 +7,11 @@ export interface RuleProps {
 }
 
 export function RuleX({data, ...options}: RuleProps) {
-  useMark({
-    stamp: stampOptions("ruleX", data, options),
-    factory: () => ruleX(data, options)
-  });
+  useMark({name: "ruleX", data, options, create: ruleX});
   return null;
 }
 
 export function RuleY({data, ...options}: RuleProps) {
-  useMark({
-    stamp: stampOptions("ruleY", data, options),
-    factory: () => ruleY(data, options)
-  });
+  useMark({name: "ruleY", data, options, create: ruleY});
   return null;
 }

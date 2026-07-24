@@ -1,4 +1,4 @@
-import {useMark, stampOptions} from "../useMark.js";
+import {useMark} from "../useMark.js";
 import {link} from "../../marks/link.js";
 
 export interface LinkProps {
@@ -7,6 +7,6 @@ export interface LinkProps {
 }
 
 export function Link({data, ...options}: LinkProps) {
-  useMark({stamp: stampOptions("link", data, options), factory: () => link(data, options)});
+  useMark({name: "link", data, options, create: link});
   return null;
 }

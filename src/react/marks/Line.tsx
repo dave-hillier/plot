@@ -1,4 +1,4 @@
-import {useMark, stampOptions} from "../useMark.js";
+import {useMark} from "../useMark.js";
 import {line, lineX, lineY} from "../../marks/line.js";
 
 export interface LineProps {
@@ -7,16 +7,16 @@ export interface LineProps {
 }
 
 export function Line({data, ...options}: LineProps) {
-  useMark({stamp: stampOptions("line", data, options), factory: () => line(data, options)});
+  useMark({name: "line", data, options, create: line});
   return null;
 }
 
 export function LineX({data, ...options}: LineProps) {
-  useMark({stamp: stampOptions("lineX", data, options), factory: () => lineX(data, options)});
+  useMark({name: "lineX", data, options, create: lineX});
   return null;
 }
 
 export function LineY({data, ...options}: LineProps) {
-  useMark({stamp: stampOptions("lineY", data, options), factory: () => lineY(data, options)});
+  useMark({name: "lineY", data, options, create: lineY});
   return null;
 }

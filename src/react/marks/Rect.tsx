@@ -1,4 +1,4 @@
-import {useMark, stampOptions} from "../useMark.js";
+import {useMark} from "../useMark.js";
 import {rect, rectX, rectY} from "../../marks/rect.js";
 import {cell, cellX, cellY} from "../../marks/cell.js";
 
@@ -8,31 +8,31 @@ export interface RectProps {
 }
 
 export function Rect({data, ...options}: RectProps) {
-  useMark({stamp: stampOptions("rect", data, options), factory: () => rect(data, options)});
+  useMark({name: "rect", data, options, create: rect});
   return null;
 }
 
 export function RectX({data, ...options}: RectProps) {
-  useMark({stamp: stampOptions("rectX", data, options), factory: () => rectX(data, options)});
+  useMark({name: "rectX", data, options, create: rectX});
   return null;
 }
 
 export function RectY({data, ...options}: RectProps) {
-  useMark({stamp: stampOptions("rectY", data, options), factory: () => rectY(data, options)});
+  useMark({name: "rectY", data, options, create: rectY});
   return null;
 }
 
 export function Cell({data, ...options}: RectProps) {
-  useMark({stamp: stampOptions("cell", data, options), factory: () => cell(data, options)});
+  useMark({name: "cell", data, options, create: cell});
   return null;
 }
 
 export function CellX({data, ...options}: RectProps) {
-  useMark({stamp: stampOptions("cellX", data, options), factory: () => cellX(data, options)});
+  useMark({name: "cellX", data, options, create: cellX});
   return null;
 }
 
 export function CellY({data, ...options}: RectProps) {
-  useMark({stamp: stampOptions("cellY", data, options), factory: () => cellY(data, options)});
+  useMark({name: "cellY", data, options, create: cellY});
   return null;
 }
