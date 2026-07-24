@@ -1,0 +1,138 @@
+import {useId, useLayoutEffect} from "react";
+import {usePlotContext} from "../PlotContext.js";
+import {stampOptions} from "../useMark.js";
+import type {ChannelValue} from "../../channel.js";
+import type {Data} from "../../mark.js";
+import type {ScaleOptions} from "../../scales.js";
+import type {ColorLegendOptions, OpacityLegendOptions, SymbolLegendOptions} from "../../legends.js";
+import type {ProjectionOptions} from "../../projection.js";
+
+// Scale components declare plot-level scale options as JSX:
+//
+//   <Plot>
+//     <ScaleY grid type="log" label="Price" />
+//     <ScaleColor scheme="warm" />
+//     <Line data={data} x="date" y="price" stroke="city" />
+//   </Plot>
+//
+// Each component renders null and registers its props with the enclosing
+// <Plot> via PlotContext (like marks via useMark): registration happens
+// during render, stamped by prop values so a change recomputes the plot, and
+// removal is unmount-driven. <Plot> merges the registrations into the
+// options passed to computePlot; an explicit object-form prop on <Plot>
+// itself (e.g. y={{…}}) wins over the component on any conflicting key. The
+// object-literal form remains supported.
+
+export type ScaleXProps = ScaleOptions;
+export type ScaleYProps = ScaleOptions;
+export type ScaleColorProps = ScaleOptions & ColorLegendOptions;
+export type ScaleOpacityProps = ScaleOptions & OpacityLegendOptions;
+export type ScaleRProps = ScaleOptions;
+export type ScaleSymbolProps = ScaleOptions & SymbolLegendOptions;
+export type ScaleLengthProps = ScaleOptions;
+export type ScaleFxProps = ScaleOptions;
+export type ScaleFyProps = ScaleOptions;
+export type ScaleProjectionProps = ProjectionOptions;
+
+// Mirrors PlotFacetOptions from plot.d.ts, which the runtime plot.ts shadows
+// and so cannot be imported here.
+export interface ScaleFacetProps {
+  /** data for top-level faceting */
+  data?: Data;
+
+  /** x channel for top-level faceting; implies fx scale */
+  x?: ChannelValue;
+
+  /** y channel for top-level faceting; implies fy scale */
+  y?: ChannelValue;
+
+  /** shorthand to set the same default for all four facet margins */
+  margin?: number;
+
+  /** the top facet margin in pixels */
+  marginTop?: number;
+
+  /** the right facet margin in pixels */
+  marginRight?: number;
+
+  /** the bottom facet margin in pixels */
+  marginBottom?: number;
+
+  /** the left facet margin in pixels */
+  marginLeft?: number;
+
+  /** default axis grid for fx and fy scales */
+  grid?: ScaleOptions["grid"];
+
+  /** default axis label for fx and fy scales */
+  label?: ScaleOptions["label"];
+}
+
+// Shared registration: stamps the props by value (function identities
+// excluded, like mark stamps) and registers them under the plot-level option
+// key. Same-stamp re-registration refreshes the stored config in place so
+// closures always see the latest props.
+function useScaleOption(scaleName: string, config: Record<string, any>): void {
+  const id = useId();
+  const {registerScale, unregisterScale} = usePlotContext();
+  const stamp = stampOptions(`scale:${scaleName}`, null, config);
+  registerScale?.(id, stamp, scaleName, config);
+  // Registration happens during render (above) so <Plot> sees the scale
+  // before its compute effect; removal is unmount-driven, mirroring useMark.
+  useLayoutEffect(() => (unregisterScale ? () => unregisterScale(id) : undefined), [unregisterScale, id]);
+}
+
+export function ScaleX(props: ScaleXProps) {
+  useScaleOption("x", props);
+  return null;
+}
+
+export function ScaleY(props: ScaleYProps) {
+  useScaleOption("y", props);
+  return null;
+}
+
+export function ScaleColor(props: ScaleColorProps) {
+  useScaleOption("color", props);
+  return null;
+}
+
+export function ScaleOpacity(props: ScaleOpacityProps) {
+  useScaleOption("opacity", props);
+  return null;
+}
+
+export function ScaleR(props: ScaleRProps) {
+  useScaleOption("r", props);
+  return null;
+}
+
+export function ScaleSymbol(props: ScaleSymbolProps) {
+  useScaleOption("symbol", props);
+  return null;
+}
+
+export function ScaleLength(props: ScaleLengthProps) {
+  useScaleOption("length", props);
+  return null;
+}
+
+export function ScaleFx(props: ScaleFxProps) {
+  useScaleOption("fx", props);
+  return null;
+}
+
+export function ScaleFy(props: ScaleFyProps) {
+  useScaleOption("fy", props);
+  return null;
+}
+
+export function ScaleFacet(props: ScaleFacetProps) {
+  useScaleOption("facet", props);
+  return null;
+}
+
+export function ScaleProjection(props: ScaleProjectionProps) {
+  useScaleOption("projection", props);
+  return null;
+}

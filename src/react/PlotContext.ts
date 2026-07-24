@@ -27,6 +27,14 @@ export interface PlotContextValue {
   // Removes a mark's registration; called from useMark's unmount cleanup.
   // Identity is stable across <Plot> renders.
   unregisterMark: (id: string) => void;
+  // Scale components (<ScaleY>, <ScaleColor>, …) register their props here as
+  // the corresponding plot-level scale option (like marks via registerMark);
+  // <Plot> merges the registrations into the options passed to computePlot,
+  // with explicit object-form props on <Plot> winning on conflict.
+  registerScale?: (id: string, stamp: string, scaleName: string, config: Record<string, any>) => void;
+  // Removes a scale registration; called from the scale component's unmount
+  // cleanup. Identity is stable across <Plot> renders.
+  unregisterScale?: (id: string) => void;
   // Explicit <Legend> descendants register their props here (like marks via
   // registerMark) so <Plot> can render them visibly in the figure slot no
   // matter how they're composed (memo, wrapper components, fragments).

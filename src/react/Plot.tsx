@@ -91,9 +91,21 @@ interface LegendRegistration {
   props: Record<string, any>;
 }
 
+interface ScaleRegistration {
+  stamp: string;
+  // Plot-level option key the registration merges into ("x", "y", "color", …,
+  // and the scale-adjacent "facet" and "projection" options).
+  scaleName: string;
+  config: Record<string, any>;
+}
+
 interface ResolvedScales {
   scaleDescriptors: Record<string, any>;
   context: any;
+  // The options computePlot actually received: the <Plot> props with scale
+  // registrations merged in. Legend resolution reads these so scale options
+  // declared via components are visible as defaults.
+  plotOptions: Record<string, any>;
 }
 
 type Mode =
@@ -119,6 +131,7 @@ export function Plot({
   ...options
 }: PlotProps) {
   const marksRef = useRef<Map<string, Registration>>(new Map());
+  const scalesRef = useRef<Map<string, ScaleRegistration>>(new Map());
   const registrationByMarkRef = useRef<Map<any, Registration>>(new Map());
   const dirtyRef = useRef(false);
   const computedRef = useRef(false);
@@ -136,6 +149,7 @@ export function Plot({
     if (resolved && sameScaleKeys(resolved.scaleDescriptors, next.scaleDescriptors)) {
       resolved.scaleDescriptors = next.scaleDescriptors;
       resolved.context = next.context;
+      resolved.plotOptions = next.plotOptions;
     } else {
       setResolved(next);
     }
@@ -160,6 +174,25 @@ export function Plot({
   // doesn't re-fire on every render.
   const unregisterMark = useRef((id: string) => {
     if (marksRef.current.delete(id)) setVersion((v) => v + 1);
+  }).current;
+
+  // Scale components register like marks: during render, stamped by prop
+  // values so a prop change dirties the plot, with same-stamp re-registration
+  // refreshing the stored config in place (function identities are excluded
+  // from the stamp).
+  const registerScale = (id: string, stamp: string, scaleName: string, config: Record<string, any>) => {
+    const prev = scalesRef.current.get(id);
+    if (!prev || prev.stamp !== stamp) {
+      scalesRef.current.set(id, {stamp, scaleName, config});
+      dirtyRef.current = true;
+    } else {
+      prev.config = config;
+    }
+  };
+
+  // Unmount-driven removal with stable identity, mirroring unregisterMark.
+  const unregisterScale = useRef((id: string) => {
+    if (scalesRef.current.delete(id)) setVersion((v) => v + 1);
   }).current;
 
   // Reads the CURRENT handlers for a built mark instance. Stable identity so
@@ -247,6 +280,7 @@ export function Plot({
     // functions in mark stamps; the onInput closure reads it from a ref.)
     const inputsKey = [
       ...[...marksRef.current.values()].map((r) => r.stamp),
+      ...[...scalesRef.current.values()].map((r) => r.stamp),
       optionsKey,
       String(classNameProp),
       stableKey({style}),
@@ -268,12 +302,31 @@ export function Plot({
       }
     }
     registrationByMarkRef.current = registrationByMark;
+    // Merge scale-component registrations (<ScaleY>, <ScaleColor>, …) into
+    // the plot-level options. Multiple components for the same scale merge in
+    // registration order (later wins per key). Precedence on conflict: an
+    // explicit object-form prop on <Plot> itself (e.g. y={{type: "log"}})
+    // wins over scale components per conflicting key, and a non-object
+    // explicit prop (e.g. projection="albers-usa") replaces them entirely.
+    let effectiveOptions: Record<string, any> = options;
+    if (scalesRef.current.size > 0) {
+      effectiveOptions = {...options};
+      const merged = new Map<string, Record<string, any>>();
+      for (const {scaleName, config} of scalesRef.current.values()) {
+        merged.set(scaleName, {...merged.get(scaleName), ...config});
+      }
+      for (const [scaleName, config] of merged) {
+        const explicit = (options as Record<string, any>)[scaleName];
+        effectiveOptions[scaleName] =
+          explicit === undefined ? config : isPlainOptionsObject(explicit) ? {...config, ...explicit} : explicit;
+      }
+    }
     let computed: any;
     try {
       // Always run computePlot, even with zero marks: declared position scales
       // (e.g. x={{type: "log", …}}) infer implicit axis marks, so a markless
       // <Plot> can still render axes — matching the imperative plot().
-      computed = computePlot({...options, marks: flat, style});
+      computed = computePlot({...effectiveOptions, marks: flat, style});
     } catch (e) {
       console.error("Plot: computePlot failed.", e);
       setMode((prev) => (prev.kind === "empty" ? prev : {kind: "empty"}));
@@ -286,7 +339,11 @@ export function Plot({
       return;
     }
 
-    publishResolved({scaleDescriptors: computed.scaleDescriptors, context: computed.context});
+    publishResolved({
+      scaleDescriptors: computed.scaleDescriptors,
+      context: computed.context,
+      plotOptions: effectiveOptions
+    });
 
     // Drain the global warning counter just as the imperative plot() does, so
     // the warn() dedupe state (lastMessage) doesn't leak across plots and we
@@ -323,18 +380,22 @@ export function Plot({
   const ctx = {
     registerMark,
     unregisterMark,
+    registerScale,
+    unregisterScale,
     registerLegend,
     unregisterLegend,
     scaleDescriptors: resolved?.scaleDescriptors,
     context: resolved?.context,
-    plotOptions: options
+    // Prefer the computed effective options (props + scale registrations) so
+    // legend defaults see scale options declared via components.
+    plotOptions: resolved?.plotOptions ?? options
   };
 
   // Auto-legends (color/opacity/symbol scales with legend requested) render
   // via the React legend components and force figure mode, matching the
   // imperative plot()'s createLegends behavior.
   const autoLegends = resolved?.scaleDescriptors
-    ? buildAutoLegends(resolved.scaleDescriptors, resolved.context, options)
+    ? buildAutoLegends(resolved.scaleDescriptors, resolved.context, resolved.plotOptions ?? options)
     : [];
 
   // Explicit <Legend> descendants register via PlotContext (like marks via
@@ -720,6 +781,15 @@ function sameScaleKeys(a: Record<string, any> | undefined, b: Record<string, any
   if (ka.length !== kb.length) return false;
   for (const k of ka) if (!(k in b)) return false;
   return true;
+}
+
+// Only plain objects merge per-key with scale registrations; anything else
+// (scale shorthand strings/booleans, projection names/factories, class
+// instances) is taken wholesale.
+function isPlainOptionsObject(v: unknown): v is Record<string, any> {
+  if (v === null || typeof v !== "object") return false;
+  const proto = Object.getPrototypeOf(v);
+  return proto === Object.prototype || proto === null;
 }
 
 function subarray(index: any): any {

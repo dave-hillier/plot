@@ -130,6 +130,35 @@ export type {WaffleXProps, WaffleYProps} from "./marks/Waffle.js";
 export {AxisX, AxisY, GridX, GridY, AxisFx, AxisFy, GridFx, GridFy} from "./marks/Axis.js";
 export type {AxisXProps, AxisYProps, GridXProps, GridYProps} from "./marks/Axis.js";
 
+// Scale components (plot-level scale options declared as JSX; the
+// object-literal props on <Plot> remain supported and win on conflict)
+export {
+  ScaleX,
+  ScaleY,
+  ScaleColor,
+  ScaleOpacity,
+  ScaleR,
+  ScaleSymbol,
+  ScaleLength,
+  ScaleFx,
+  ScaleFy,
+  ScaleFacet,
+  ScaleProjection
+} from "./scales/Scale.js";
+export type {
+  ScaleXProps,
+  ScaleYProps,
+  ScaleColorProps,
+  ScaleOpacityProps,
+  ScaleRProps,
+  ScaleSymbolProps,
+  ScaleLengthProps,
+  ScaleFxProps,
+  ScaleFyProps,
+  ScaleFacetProps,
+  ScaleProjectionProps
+} from "./scales/Scale.js";
+
 // Legend components
 export {Legend} from "./legends/Legend.js";
 export type {LegendProps} from "./legends/Legend.js";
