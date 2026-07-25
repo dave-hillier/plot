@@ -6,19 +6,39 @@ import {readMarkdownFiles, readMarkdownSource, getAnchors} from "../components/l
 // channel, projection, and dimension computation), not user-facing API.
 function isInternalMethod(name: string): boolean {
   return (
+    name === "applyPosition" ||
     name === "autoScaleRange" ||
     name === "basic" ||
     name === "createChannel" ||
+    name === "createContext" ||
     name === "createDimensions" ||
     name === "createProjection" ||
     name === "createScaleFunctions" ||
     name === "createScales" ||
+    name === "exposeScales" ||
     name === "formatDefault" ||
     name === "getGeometryChannels" ||
     name === "hasProjection" ||
     name === "inferChannelScale" ||
+    name === "inferScaleOrder" ||
     name === "innerDimensions" ||
-    name === "maybeCurveAuto"
+    name === "isCollapsed" ||
+    name === "isOrdinalScale" ||
+    name === "isThresholdScale" ||
+    name === "maybeCurve" ||
+    name === "maybeCurveAuto" ||
+    name === "maybeGroup" ||
+    name === "maybeStackX" ||
+    name === "maybeStackY" ||
+    name === "normalizeScale" ||
+    name === "outerDimensions" ||
+    name === "ox" ||
+    name === "oy" ||
+    name === "project" ||
+    name === "sqrt4_3" ||
+    name === "valueObject" ||
+    name === "withTip" ||
+    name === "xyProjection"
   );
 }
 
