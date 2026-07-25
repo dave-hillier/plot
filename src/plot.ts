@@ -159,7 +159,6 @@ export function computePlot(options: any = {}): any {
 
   // Initialize the context.
   const context = createContext(options);
-  const document = context.document;
   // The figure/svg is produced by the imperative plot() entry (which renders
   // the marks via React). computePlot only provides a holder that plot()
   // mutates; the dispatchValue closure below reads through it so it tracks the
@@ -512,7 +511,8 @@ function inferTips(marks) {
     if (tipOptions) {
       if (tipOptions === true) tipOptions = {};
       else if (typeof tipOptions === "string") tipOptions = {pointer: tipOptions};
-      let {pointer: p, preferredAnchor: a} = tipOptions;
+      let {pointer: p} = tipOptions;
+      const {preferredAnchor: a} = tipOptions;
       p = /^x$/i.test(p) ? pointerX : /^y$/i.test(p) ? pointerY : pointer; // TODO validate?
       tipOptions = p(derive(mark, tipOptions));
       tipOptions.title = null; // prevent implicit title for primitive data
@@ -527,7 +527,7 @@ function inferTips(marks) {
 }
 
 function inferAxes(marks, channelsByScale, options) {
-  let {
+  const {
     projection,
     x = {},
     y = {},
@@ -536,7 +536,9 @@ function inferAxes(marks, channelsByScale, options) {
     axis,
     grid,
     facet = {},
-    facet: {axis: facetAxis = axis, grid: facetGrid} = facet,
+    facet: {axis: facetAxis = axis, grid: facetGrid} = facet
+  } = options;
+  let {
     x: {axis: xAxis = axis, grid: xGrid = xAxis === null ? null : grid} = x,
     y: {axis: yAxis = axis, grid: yGrid = yAxis === null ? null : grid} = y,
     fx: {axis: fxAxis = facetAxis, grid: fxGrid = fxAxis === null ? null : facetGrid} = fx,

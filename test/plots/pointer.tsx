@@ -1,6 +1,5 @@
 import {Plot, Dot, LineY, RuleX, pointer, pointerX} from "../../src/react/index.js";
 import * as d3 from "d3";
-import {html} from "htl";
 
 export async function pointerRenderCompose() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);

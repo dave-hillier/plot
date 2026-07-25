@@ -149,15 +149,21 @@ export function autoSpec(data?: Data, options?: AutoOptions): AutoSpec {
   const S = materializeValue(data, size);
 
   // Compute the default options.
-  let {
+  const {
     fx,
     fy,
-    x: {value: xValue, reduce: xReduce, zero: xZero, ...xOptions},
-    y: {value: yValue, reduce: yReduce, zero: yZero, ...yOptions},
+    x: {value: xValue, reduce: xReduceOption, zero: xZeroOption, ...xOptions},
+    y: {value: yValue, reduce: yReduceOption, zero: yZeroOption, ...yOptions},
     color: {value: colorValue, color: colorColor, reduce: colorReduce},
-    size: {value: sizeValue, reduce: sizeReduce}, // TODO constant radius?
-    mark
+    size: {value: sizeValue, reduce: sizeReduceOption}, // TODO constant radius?
+    mark: markOption
   }: any = options;
+  let xReduce = xReduceOption;
+  let yReduce = yReduceOption;
+  let xZero = xZeroOption;
+  let yZero = yZeroOption;
+  let sizeReduce = sizeReduceOption;
+  let mark = markOption;
 
   // Determine the default reducer, if any.
   if (xReduce === undefined)
@@ -270,7 +276,7 @@ export function autoSpec(data?: Data, options?: AutoOptions): AutoSpec {
   }
 
   // Determine the mark options.
-  let markOptions: any = {
+  const markOptions: any = {
     fx,
     fy,
     x: X ?? undefined, // treat null x as undefined for implicit stack
@@ -281,7 +287,7 @@ export function autoSpec(data?: Data, options?: AutoOptions): AutoSpec {
     tip: true
   };
   let transformImpl: any;
-  let transformOptions: any = {[colorMode]: colorReduce ?? undefined, r: sizeReduce ?? undefined};
+  const transformOptions: any = {[colorMode]: colorReduce ?? undefined, r: sizeReduce ?? undefined};
   if (xReduce != null && yReduce != null) {
     throw new Error(`cannot reduce both x and y`); // for now at least
   } else if (yReduce != null) {

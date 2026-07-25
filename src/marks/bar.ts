@@ -223,16 +223,6 @@ export class AbstractBar extends Mark {
   }
 }
 
-function add(a: any, b: any): any {
-  return typeof a === "function" && typeof b === "function"
-    ? (i: number) => a(i) + b(i)
-    : typeof a === "function"
-    ? (i: number) => a(i) + b
-    : typeof b === "function"
-    ? (i: number) => a + b(i)
-    : a + b;
-}
-
 /** The barX mark. */
 export class BarX extends AbstractBar {
   constructor(data: Data, options: BarXOptions = {}, defaults?: any) {

@@ -1,5 +1,5 @@
 import {createElement as h, type ReactNode} from "react";
-import type {MarkOptions, RenderableMark} from "../mark.js";
+import type {MarkOptions} from "../mark.js";
 import {Mark} from "../mark.js";
 // @ts-ignore
 import {number, singleton} from "../options.js";

@@ -375,7 +375,6 @@ export function Plot({
     setMode({kind: "jsx", computed, onSvgRef, onInput, pointerEnabled, warnings});
     // version counts mark registration changes (stamp changes, additions,
     // removals), so prop updates on marks after mount re-run computePlot.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [optionsKey, onValue, classNameProp, style, version]);
 
   const ctx = {

@@ -1,4 +1,3 @@
-import {namespaces} from "d3";
 import {createElement as h, type ReactNode} from "react";
 import type {ChannelValue, ChannelValueIntervalSpec, ChannelValueSpec} from "../channel.js";
 import {nonempty} from "../defined.js";
@@ -294,7 +293,7 @@ export class Text extends Mark {
     this.splitLines = splitter(this);
     this.clipLine = clipper(this);
   }
-  renderJSX(this: any, index: any, scales: any, channels: any, dimensions: any, context: any): ReactNode {
+  renderJSX(this: any, index: any, scales: any, channels: any, dimensions: any): ReactNode {
     // A mark whose data is null has no index; render nothing rather than crash.
     if (index == null) index = [];
     const {x, y} = scales;
@@ -372,38 +371,6 @@ export function maybeTextOverflow(textOverflow: any) {
         "ellipsis-middle",
         "ellipsis-end"
       ]).replace(/^(clip|ellipsis)$/, "$1-end");
-}
-
-function applyMultilineText(selection: any, mark: any, T: any, TL: any) {
-  if (!T) return;
-  const {lineAnchor, lineHeight, textOverflow, splitLines, clipLine} = mark;
-  selection.each(function (this: any, i: any) {
-    const lines = splitLines(formatDefault(T[i]) ?? "").map(clipLine);
-    const n = lines.length;
-    const y = lineAnchor === "top" ? 0.71 : lineAnchor === "bottom" ? 1 - n : (164 - n * 100) / 200;
-    if (n > 1) {
-      let m = 0;
-      for (let i = 0; i < n; ++i) {
-        ++m;
-        if (!lines[i]) continue;
-        const tspan = this.ownerDocument.createElementNS(namespaces.svg, "tspan");
-        tspan.setAttribute("x", 0);
-        if (i === m - 1) tspan.setAttribute("y", `${(y + i) * lineHeight}em`);
-        else tspan.setAttribute("dy", `${m * lineHeight}em`);
-        tspan.textContent = lines[i];
-        this.appendChild(tspan);
-        m = 0;
-      }
-    } else {
-      if (y) this.setAttribute("y", `${y * lineHeight}em`);
-      this.textContent = lines[0];
-    }
-    if (textOverflow && !TL && lines[0] !== T[i]) {
-      const title = this.ownerDocument.createElementNS(namespaces.svg, "title");
-      title.textContent = T[i];
-      this.appendChild(title);
-    }
-  });
 }
 
 /**

@@ -205,11 +205,9 @@ export class AbstractRaster extends Mark {
       x1 = x == null ? 0 : undefined,
       y1 = y == null ? 0 : undefined,
       x2 = x == null ? width : undefined,
-      y2 = y == null ? height : undefined,
-      pixelSize = defaults.pixelSize,
-      blur = 0,
-      interpolate
+      y2 = y == null ? height : undefined
     } = options;
+    const {pixelSize = defaults.pixelSize, blur = 0, interpolate} = options;
     if (width != null) width = integer(width, "width");
     if (height != null) height = integer(height, "height");
     // These represent the (minimum) bounds of the raster; they are not
@@ -227,7 +225,7 @@ export class AbstractRaster extends Mark {
       // further shorthand where x and y represent grid column and row index.
       // TODO If we know that the x and y scales are linear, then we could avoid
       // materializing these columns to improve performance.
-      if (x === undefined && x1 != null && x2 != null) x = denseX(x1, x2, width, height);
+      if (x === undefined && x1 != null && x2 != null) x = denseX(x1, x2, width);
       if (y === undefined && y1 != null && y2 != null) y = denseY(y1, y2, width, height);
     }
     super(
@@ -350,7 +348,8 @@ export class Raster extends AbstractRaster {
 
 export function maybeTuples(k: any, data: any, options?: any): [any, any] {
   if (arguments.length < 3) (options = data), (data = null);
-  let {x, y, [k]: z, ...rest} = options;
+  let {x, y, [k]: z} = options;
+  const {x: _x, y: _y, [k]: _z, ...rest} = options;
   // Because we use implicit x and y when z is a function of (x, y), and when
   // data is a dense grid, we must further disambiguate by testing whether data
   // contains [x, y, z?] tuples. Hence you can’t use this shorthand with a
@@ -700,7 +699,7 @@ function mixer(F: any, random: any) {
   return isNumeric(F) || isTemporal(F) ? blend : pick(random);
 }
 
-function denseX(x1: number, x2: number, width: number, height?: number) {
+function denseX(x1: number, x2: number, width: number) {
   return {
     transform(data: any) {
       const n = data.length;

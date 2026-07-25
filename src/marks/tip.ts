@@ -7,7 +7,7 @@ import {defined} from "../defined.js";
 import {formatDefault} from "../format.js";
 // @ts-ignore -- anchorX/anchorY are declared only in pointer.js, not pointer.d.ts
 import {anchorX, anchorY} from "../interactions/pointer.js";
-import type {Data, FrameAnchor, MarkOptions, RenderableMark} from "../mark.js";
+import type {Data, FrameAnchor, MarkOptions} from "../mark.js";
 import {Mark} from "../mark.js";
 // @ts-ignore -- these helpers are declared only in options.js, not options.d.ts
 import {maybeAnchor, maybeFrameAnchor, maybeTuple, number, string} from "../options.js";
@@ -259,7 +259,8 @@ export class Tip extends (Mark as {new (...args: any[]): Mark}) {
     // <tspan> children for one line. Returns an estimated width since we
     // cannot getBBox in the JSX path.
     function buildLine(spec: any): {tspans: ReactNode[]; width: number} {
-      let {label, value, color, opacity} = spec;
+      let {label, value} = spec;
+      const {color, opacity} = spec;
       label = label ?? "";
       value = value ?? "";
       const swatch = color != null || opacity != null;

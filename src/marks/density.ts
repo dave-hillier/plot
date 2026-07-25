@@ -91,7 +91,7 @@ export class Density extends Mark {
   filter(index: any): any {
     return index; // don’t filter contours constructed by initializer
   }
-  renderJSX(this: any, index: any, scales: any, channels: any, dimensions: any, context: any): ReactNode {
+  renderJSX(this: any, index: any, scales: any, channels: any): ReactNode {
     // A mark whose data is null has no index; render nothing rather than crash.
     if (index == null) index = [];
     const {contours} = channels;

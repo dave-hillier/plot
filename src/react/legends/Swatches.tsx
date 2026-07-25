@@ -236,7 +236,6 @@ function SwatchesContainer({
     <div
       className={`${cls}-swatches ${cls}-swatches-${layout}`}
       style={containerStyle}
-      // eslint-disable-next-line react/no-danger
       // The string is built from a controlled className and constant CSS.
     >
       <style>{styleBlock}</style>

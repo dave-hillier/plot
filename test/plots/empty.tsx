@@ -1,5 +1,4 @@
 import {Plot, Frame} from "../../src/react/index.js";
-import {svg} from "htl";
 
 export async function empty() {
   return (

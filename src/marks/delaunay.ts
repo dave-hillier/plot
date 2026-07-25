@@ -291,7 +291,7 @@ class Voronoi extends MarkBase {
       voronoiDefaults
     );
   }
-  renderJSX(this: any, index: any, scales: any, channels: any, dimensions: any, _context: any): ReactNode {
+  renderJSX(this: any, index: any, scales: any, channels: any): ReactNode {
     // A mark whose data is null has no index; render nothing rather than crash.
     if (index == null) index = [];
     const {x, y} = scales;

@@ -3,7 +3,6 @@ import {createCanvas, loadImage} from "canvas";
 import {max, mean, quantile} from "d3";
 import * as path from "path";
 import beautify from "js-beautify";
-import React from "react";
 import ReactDOM from "react-dom/client";
 import {act} from "react";
 import assert from "./assert.js";
@@ -37,7 +36,7 @@ async function renderReactElement(element) {
   });
   try {
     document.body.removeChild(container);
-  } catch (e) {
+  } catch {
     // Ignore: container may already be removed during React unmount
   }
   return result;

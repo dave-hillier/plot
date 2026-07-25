@@ -103,7 +103,7 @@ export class Contour extends AbstractRaster {
     // samples (often a grid, but not necessarily). If no interpolation method
     // was specified, default to nearest.
     else {
-      let {interpolate} = options;
+      const {interpolate} = options;
       if (value === undefined) value = identity;
       if (interpolate === undefined) options.interpolate = "nearest";
     }
@@ -132,7 +132,7 @@ export class Contour extends AbstractRaster {
     // @ts-expect-error — Mark.filter missing from mark.d.ts
     return super.filter(index, channels, values);
   }
-  renderJSX(this: any, index: any, scales: any, channels: any, dimensions: any, context: any): ReactNode {
+  renderJSX(this: any, index: any, scales: any, channels: any, dimensions: any): ReactNode {
     // A mark whose data is null has no index; render nothing rather than crash.
     if (index == null) index = [];
     const {geometry: G} = channels;

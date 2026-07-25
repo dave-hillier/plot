@@ -210,7 +210,8 @@ export class Vector extends Mark {
  * *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …]
  */
 export function vector(data?: Data, options: VectorOptions = {}): Vector {
-  let {x, y, ...rest} = options;
+  let {x, y} = options;
+  const {x: _x, y: _y, ...rest} = options;
   if (options.frameAnchor === undefined) [x, y] = maybeTuple(x, y);
   return new Vector(data, {...rest, x, y});
 }

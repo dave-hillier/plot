@@ -23,7 +23,6 @@ import {Image} from "./marks/Image.js";
 import {AxisX, AxisY, AxisFx, AxisFy, GridX, GridY, GridFx, GridFy} from "./marks/Axis.js";
 import {useMark} from "./useMark.js";
 import {dot as dotMark} from "../marks/dot.js";
-import {frame as frameMark} from "../marks/frame.js";
 import {BollingerY} from "./marks/Bollinger.js";
 import {DifferenceY} from "./marks/Difference.js";
 import {LinearRegressionY} from "./marks/LinearRegression.js";

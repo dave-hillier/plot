@@ -43,7 +43,7 @@ export class Frame extends Mark {
     rectInsets(this, options);
     if (!anchor) rectRadii(this, options);
   }
-  renderJSX(this: any, index, scales, channels, dimensions, context): ReactNode {
+  renderJSX(this: any, index, scales, channels, dimensions): ReactNode {
     const {marginTop, marginRight, marginBottom, marginLeft, width, height} = dimensions;
     const {anchor, insetTop, insetRight, insetBottom, insetLeft} = this;
     const {rx, ry, rx1y1, rx1y2, rx2y1, rx2y2} = this;

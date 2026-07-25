@@ -672,7 +672,8 @@ function axisMark(mark: any, k: any, data: any, properties: any, options: any, i
     const {[k]: scale} = scales;
     if (!scale) throw new Error(`missing scale: ${k}`);
     const domain = scale.domain();
-    let {interval, ticks, tickFormat, tickSpacing = k === "x" ? 80 : 35} = options;
+    let {interval, ticks} = options;
+    const {tickFormat, tickSpacing = k === "x" ? 80 : 35} = options;
     // For a scale with a temporal domain, also allow the ticks to be specified
     // as a string which is promoted to a time interval. In the case of ordinal
     // scales, the interval is interpreted as UTC.
