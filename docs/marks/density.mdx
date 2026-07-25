@@ -2,7 +2,7 @@ import {Density, Dot, Frame, Geo, Plot} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import * as topojson from "topojson-client";
-import diamonds from "../data/diamonds.ts";
+import {useDiamonds} from "../data/diamonds.ts";
 import faithful from "../data/faithful.ts";
 import penguins from "../data/penguins.ts";
 import walmarts from "../data/walmarts.ts";
@@ -81,7 +81,7 @@ Use an equal-area projection with the density mark.
 By using the _density_ keyword as a **fill** or **stroke** color, you can draw regions with a sequential color encoding.
 
 <Plot inset={10} grid x={{type: "log"}} y={{type: "log"}}>
-  <Density data={diamonds} x="carat" y="price" stroke="density" />
+  <Density data={useDiamonds()} x="carat" y="price" stroke="density" />
 </Plot>
 
 To facilitate comparison across facets (**fx** or **fy**) and series (**z**, **stroke**, or **fill**), the thresholds are determined by the series with the highest density. For instance, the chart below shows the highest concentration of penguins, arranged by flipper length and culmen length, on Biscoe island; the contours in the other facets use the same thresholds.

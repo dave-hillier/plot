@@ -5,7 +5,7 @@ import * as topojson from "topojson-client";
 import aapl from "../data/aapl.ts";
 import alphabet from "../data/alphabet.ts";
 import cars from "../data/cars.ts";
-import diamonds from "../data/diamonds.ts";
+import {useDiamonds} from "../data/diamonds.ts";
 import gistemp from "../data/gistemp.ts";
 import penguins from "../data/penguins.ts";
 
@@ -66,7 +66,7 @@ With the [bin transform](../transforms/bin.md), sized dots can also be used as a
 
 <Plot height={640} marginLeft={60} grid x={{label: "Carats"}} y={{label: "Price ($)"}} r={{range: [0, 20]}}>
   <Bin r="count" thresholds={100}>
-    <Dot data={diamonds} x="carat" y="price" />
+    <Dot data={useDiamonds()} x="carat" y="price" />
   </Bin>
 </Plot>
 

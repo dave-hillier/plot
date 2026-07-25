@@ -1,7 +1,7 @@
 import {AxisFx, GroupX, GroupZ, Plot, Text, WaffleX, WaffleY} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
-import olympians from "../data/olympians.ts";
+import {useOlympians} from "../data/olympians.ts";
 
 export const survey = [
   {question: "don't go out after dark", yes: 96},
@@ -26,7 +26,7 @@ The waffle mark is often used with the [group transform](../transforms/group.md)
 
 <Plot x={{label: null}}>
   <GroupX y="count">
-    <WaffleY data={olympians} x="sex" />
+    <WaffleY data={useOlympians()} x="sex" />
   </GroupX>
 </Plot>
 
@@ -49,7 +49,7 @@ The **unit** option determines the quantity each waffle cell represents; it defa
 
 <Plot fx={{interval: "5 years", label: null}}>
   <GroupZ y="count">
-    <WaffleY data={olympians} fx="date_of_birth" unit={unit} />
+    <WaffleY data={useOlympians()} fx="date_of_birth" unit={unit} />
   </GroupZ>
 </Plot>
 
@@ -61,7 +61,7 @@ Like bars, waffles can be [stacked](../transforms/stack.md), and implicitly appl
 
 <Plot fx={{interval: 10}} color={{legend: true}}>
   <GroupZ y="count">
-    <WaffleY data={olympians} fill="sex" sort="sex" fx="weight" unit={10} />
+    <WaffleY data={useOlympians()} fill="sex" sort="sex" fx="weight" unit={10} />
   </GroupZ>
 </Plot>
 

@@ -1,7 +1,7 @@
 import {BinX, Cell, Group, GroupY, NormalizeY, Plot, RectY, RuleX, TickX, identity, valueof, column, indexOf, scale} from "replot/react";
 import * as d3 from "d3";
 import penguins from "../data/penguins.ts";
-import olympians from "../data/olympians.ts";
+import {useOlympians} from "../data/olympians.ts";
 import aapl from "../data/aapl.ts";
 import bls from "../data/bls-industry-unemployment.ts";
 
@@ -51,7 +51,7 @@ But Plot’s transforms are often more convenient, especially in conjunction wit
 
 <Plot color={{legend: true}}>
   <BinX y="count">
-    <RectY data={olympians} x="weight" fill="sex" />
+    <RectY data={useOlympians()} x="weight" fill="sex" />
   </BinX>
 </Plot>
 
@@ -61,7 +61,7 @@ Each wrapper corresponds to an underlying transform *function* that typically ta
 
 ```jsx
 <Plot color={{legend: true}}>
-  <RectY data={olympians} {...binX({y: "count"}, {x: "weight", fill: "sex"})} />
+  <RectY data={useOlympians()} {...binX({y: "count"}, {x: "weight", fill: "sex"})} />
 </Plot>
 ```
 
@@ -85,7 +85,7 @@ Transforms are composable: nest one wrapper component inside another (or, with t
   {/* normalize each series by the sum per series */}
   <NormalizeY basis="sum">
     <BinX y2="count">
-      <RectY data={olympians} x="weight" fill="sex" mixBlendMode="multiply" />
+      <RectY data={useOlympians()} x="weight" fill="sex" mixBlendMode="multiply" />
     </BinX>
   </NormalizeY>
 </Plot>

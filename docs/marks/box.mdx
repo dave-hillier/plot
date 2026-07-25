@@ -2,7 +2,7 @@ import {BoxX, BoxY, Plot, RuleY} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import morley from "../data/morley.ts";
-import diamonds from "../data/diamonds.ts";
+import {useDiamonds} from "../data/diamonds.ts";
 
 # Box mark <VersionBadge version="0.4.2" />
 
@@ -44,7 +44,7 @@ Since the box mark uses the [group transform](../transforms/group.md), the secon
     tickFormat: (x) => x.toFixed(1)
   }}>
   <RuleY data={[0]} />
-  <BoxY data={diamonds} x={(d) => Math.floor(d.carat * 2) / 2} y="price" />
+  <BoxY data={useDiamonds()} x={(d) => Math.floor(d.carat * 2) / 2} y="price" />
 </Plot>
 
 This chart is slightly easier to construct with [faceting](../features/facets.md) using the [**interval** scale option](../features/scales.md#scale-transforms) on the *fx* scale. (This technique cannot be used with the *x* scale above because the scale interval transform is applied *after* the box mark applies the group transform.)
@@ -59,7 +59,7 @@ This chart is slightly easier to construct with [faceting](../features/facets.md
     tickFormat: (x) => x.toFixed(1)
   }}>
   <RuleY data={[0]} />
-  <BoxY data={diamonds} fx="carat" y="price" />
+  <BoxY data={useDiamonds()} fx="carat" y="price" />
 </Plot>
 
 ## Box options

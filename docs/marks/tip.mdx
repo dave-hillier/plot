@@ -3,7 +3,7 @@ import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import * as topojson from "topojson-client";
 import aapl from "../data/aapl.ts";
-import olympians from "../data/olympians.ts";
+import {useOlympians} from "../data/olympians.ts";
 
 export const states = [];
 
@@ -42,8 +42,8 @@ When using the **title** channel, the tip mark wraps text to 20 ems by default, 
 The **title** channel can be used with interactive tips, too. If you have a few moments, hover the chart below to read about various athletes who competed at Rio 2016.
 
 <Plot grid>
-  <Dot data={olympians} x="weight" y="height" fy="sex" sort={(d) => !!d.info} stroke={(d) => d.info ? "currentColor" : "#aaa"} />
-  <Tip data={olympians} {...pointer({
+  <Dot data={useOlympians()} x="weight" y="height" fy="sex" sort={(d) => !!d.info} stroke={(d) => d.info ? "currentColor" : "#aaa"} />
+  <Tip data={useOlympians()} {...pointer({
       x: "weight",
       y: "height",
       fy: "sex",
@@ -55,7 +55,7 @@ The **title** channel can be used with interactive tips, too. If you have a few 
 If no **title** channel is supplied, the tip mark displays all channel values. You can supply additional name-value pairs by registering extra channels using the **channels** mark option. In the scatterplot of Olympic athletes below, you can hover to see the *name* and *sport* of each athlete. This is helpful for noticing patterns — tall basketball players, giant weightlifters and judoka, diminutive gymnasts — and for seeing individuals.
 
 <Plot>
-  <Dot data={olympians} x="weight" y="height" stroke="sex" channels={{name: "name", sport: "sport"}} tip />
+  <Dot data={useOlympians()} x="weight" y="height" stroke="sex" channels={{name: "name", sport: "sport"}} tip />
 </Plot>
 
 
@@ -66,7 +66,7 @@ The tip mark recognizes that **x1** & **x2** and **y1** & **y2** are paired chan
 
 <Plot>
   <BinX y="count">
-    <RectY data={olympians} x="weight" fill="sex" tip />
+    <RectY data={useOlympians()} x="weight" fill="sex" tip />
   </BinX>
 </Plot>
 
@@ -74,7 +74,7 @@ This even works when stacking negative values, say to mirror the histogram inste
 
 <Plot y={{label: "Frequency"}}>
   <BinX y="sum">
-    <RectY data={olympians} x="weight" y={(d) => d.sex === "male" ? 1 : -1} fill="sex" tip />
+    <RectY data={useOlympians()} x="weight" y={(d) => d.sex === "male" ? 1 : -1} fill="sex" tip />
   </BinX>
 </Plot>
 
@@ -83,7 +83,7 @@ The order and formatting of channels in the tip can be customized with the **for
 A channel’s label can be specified alongside its value as a `{value, label}` object; if a channel label is not specified, the associated scale’s label is used, if any; if there is no associated scale, or if the scale has no label, the channel name is used instead.
 
 <Plot>
-  <Dot data={olympians} x="weight" y="height" stroke="sex" channels={{name: "name", nationality: {value: "nationality", label: "country"}, sport: "sport"}} tip={{format: {name: true, sport: true, nationality: true, y: (d) => `${d}m`, x: (d) => `${d}kg`, stroke: false}}} />
+  <Dot data={useOlympians()} x="weight" y="height" stroke="sex" channels={{name: "name", nationality: {value: "nationality", label: "country"}, sport: "sport"}} tip={{format: {name: true, sport: true, nationality: true, y: (d) => `${d}m`, x: (d) => `${d}kg`, stroke: false}}} />
 </Plot>
 
 The tip mark supports nine different orientations specified by the **anchor** option: the four sides (*top*, *right*, *bottom*, *left*), the four corners (*top-left*, *top-right*, *bottom-right*, *bottom-left*), and *middle*. Note that when *middle* is used, the tip will obscure its anchor point.

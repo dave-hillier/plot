@@ -9,10 +9,13 @@ export default defineConfig({
   root: path.resolve(__dirname),
   publicDir: path.resolve(__dirname, "public"),
   plugins: [
-    {enforce: "pre", ...mdx({
-      providerImportSource: "@mdx-js/react",
-      remarkPlugins: [remarkGfm, remarkFrontmatter]
-    })},
+    {
+      enforce: "pre",
+      ...mdx({
+        providerImportSource: "@mdx-js/react",
+        remarkPlugins: [remarkGfm, remarkFrontmatter]
+      })
+    },
     react({include: /\.(mdx|js|jsx|ts|tsx)$/})
   ],
   resolve: {
@@ -30,6 +33,14 @@ export default defineConfig({
   },
   build: {
     outDir: path.resolve(__dirname, "../dist-docs"),
-    emptyOutDir: true
+    emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes("/node_modules/react") || id.includes("/node_modules/scheduler")) return "react-vendor";
+          if (id.includes("/node_modules/d3") || id.includes("/node_modules/internmap")) return "d3-vendor";
+        }
+      }
+    }
   }
 });

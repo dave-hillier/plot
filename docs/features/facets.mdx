@@ -5,7 +5,7 @@ import anscombe from "../data/anscombe.ts";
 import barley from "../data/barley.ts";
 import industries from "../data/bls-industry-unemployment.ts";
 import penguins from "../data/penguins.ts";
-import olympians from "../data/olympians.ts";
+import {useOlympians} from "../data/olympians.ts";
 
 export const scheme = scale({color: {type: "categorical"}}).range;
 
@@ -44,7 +44,7 @@ Faceting requires ordinal or categorical data because there are a discrete numbe
     interval: 0.1, // 10cm
     reverse: true
   }}>
-  <BoxX data={olympians.filter((d) => d.height)} x="weight" fy="height" />
+  <BoxX data={useOlympians().filter((d) => d.height)} x="weight" fy="height" />
 </Plot>
 
 

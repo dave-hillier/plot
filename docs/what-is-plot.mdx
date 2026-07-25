@@ -1,6 +1,6 @@
 import {Bin, BinX, Density, Dot, Plot, Rect, RectY, RuleY} from "replot/react";
 import * as d3 from "d3";
-import olympians from "./data/olympians.ts";
+import {useOlympians} from "./data/olympians.ts";
 
 # What is Plot?
 
@@ -11,7 +11,7 @@ Plot offers two APIs: a concise **imperative API** for vanilla JavaScript enviro
 In the spirit of *show don’t tell*, here’s a scatterplot of body measurements of athletes from the [2016 Summer Olympics](https://flother.is/2017/olympic-games-data/).
 
 <Plot color={{legend: true}}>
-  <Dot data={olympians} x="weight" y="height" stroke="sex" />
+  <Dot data={useOlympians()} x="weight" y="height" stroke="sex" />
 </Plot>
 
 A plot specification assigns columns of data (*weight*, *height*, and *sex*) to visual properties of marks (**x**, **y**, and **stroke**). Plot does the rest! You can configure much more, if needed, but Plot’s goal is to help you get a meaningful visualization quickly to accelerate analysis.
@@ -20,21 +20,21 @@ This scatterplot suffers from overplotting: many dots are drawn in the same spot
 
 <Plot>
   <Bin fillOpacity="count">
-    <Rect data={olympians} x="weight" y="height" fill="sex" inset={0} />
+    <Rect data={useOlympians()} x="weight" y="height" fill="sex" inset={0} />
   </Bin>
 </Plot>
 
 Or we could try the [density mark](./marks/density.md).
 
 <Plot>
-  <Density data={olympians} x="weight" y="height" stroke="sex" />
+  <Density data={useOlympians()} x="weight" y="height" stroke="sex" />
 </Plot>
 
 A simpler take on this data is to focus on one dimension: weight. We can use the bin transform again to make a histogram with weight on the *x*-axis and frequency on the *y*-axis. This plot uses a [rect mark](./marks/rect.md) and an implicit [stack transform](./transforms/stack.md).
 
 <Plot>
   <BinX y="count">
-    <RectY data={olympians} x="weight" fill="sex" />
+    <RectY data={useOlympians()} x="weight" fill="sex" />
   </BinX>
 </Plot>
 
@@ -42,7 +42,7 @@ Or if we’d prefer to show the two distributions separately as small multiples,
 
 <Plot grid>
   <BinX y="count">
-    <RectY data={olympians} x="weight" fill="sex" fy="sex" />
+    <RectY data={useOlympians()} x="weight" fill="sex" fy="sex" />
   </BinX>
   <RuleY data={[0]} />
 </Plot>

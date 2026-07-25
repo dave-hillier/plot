@@ -2,8 +2,8 @@ import {Bin, BinX, formatMonth, Plot, Rect, RectY, RuleY, StackX} from "replot/r
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import * as topojson from "topojson-client";
-import olympians from "../data/olympians.ts";
-import diamonds from "../data/diamonds.ts";
+import {useOlympians} from "../data/olympians.ts";
+import {useDiamonds} from "../data/diamonds.ts";
 
 export const povcalnet = [];
 export const countyboxes = [];
@@ -48,7 +48,7 @@ Like the [bar mark](./bar.md), the rect mark has two convenience constructors fo
 
 <Plot color={{legend: true}}>
   <BinX y="count">
-    <RectY data={olympians} x="weight" fill="sex" />
+    <RectY data={useOlympians()} x="weight" fill="sex" />
   </BinX>
   <RuleY data={[0]} />
 </Plot>
@@ -57,7 +57,7 @@ For overlapping rects, you can opt-out of the implicit stack transform by specif
 
 <Plot round color={{legend: true}}>
   <BinX y2="count">
-    <RectY data={olympians} x="weight" fill="sex" mixBlendMode="multiply" />
+    <RectY data={useOlympians()} x="weight" fill="sex" mixBlendMode="multiply" />
   </BinX>
   <RuleY data={[0]} />
 </Plot>
@@ -68,7 +68,7 @@ The rect mark and bin transform naturally support [faceting](../features/facets.
 
 <Plot>
   <BinX y="count">
-    <RectY data={olympians} x="weight" fy="sex" />
+    <RectY data={useOlympians()} x="weight" fy="sex" />
   </BinX>
   <RuleY data={[0]} />
 </Plot>
@@ -80,7 +80,7 @@ The [rect constructor](#rect), again with the [bin transform](../transforms/bin.
     type: "symlog"
   }}>
   <Bin fill="count" thresholds={100}>
-    <Rect data={diamonds} x="carat" y="price" />
+    <Rect data={useDiamonds()} x="carat" y="price" />
   </Bin>
 </Plot>
 
@@ -115,7 +115,7 @@ To round corners, use the **r** option. If the combined corner radii exceed the 
 
 <Plot>
   <BinX y="count" thresholds={10}>
-    <RectY data={olympians} x="weight" r={r} />
+    <RectY data={useOlympians()} x="weight" r={r} />
   </BinX>
   <RuleY data={[0]} />
 </Plot>
@@ -133,7 +133,7 @@ To round corners on a specific side, use the **rx1**, **ry1**, **rx2**, or **ry2
 
 <Plot color={{legend: true}}>
   <BinX y="count">
-    <RectY data={olympians} x="weight" fill="sex" ry2={4} ry1={-4} clip="frame" />
+    <RectY data={useOlympians()} x="weight" fill="sex" ry2={4} ry1={-4} clip="frame" />
   </BinX>
   <RuleY data={[0]} />
 </Plot>
@@ -142,7 +142,7 @@ You can even round specific corners using the **rx1y1**, **rx2y1**, **rx2y2**, a
 
 <Plot color={{legend: true}}>
   <BinX y="count">
-    <RectY data={olympians} x="weight" fill="sex" rx1y2={10} rx1y1={-10} clip="frame" />
+    <RectY data={useOlympians()} x="weight" fill="sex" rx1y2={10} rx1y1={-10} clip="frame" />
   </BinX>
   <RuleY data={[0]} />
 </Plot>

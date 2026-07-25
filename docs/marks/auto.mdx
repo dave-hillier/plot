@@ -4,7 +4,7 @@ import {useState, useEffect} from "react";
 import aapl from "../data/aapl.ts";
 import industries from "../data/bls-industry-unemployment.ts";
 import penguins from "../data/penguins.ts";
-import olympians from "../data/olympians.ts";
+import {useOlympians} from "../data/olympians.ts";
 
 # Auto mark <VersionBadge version="0.6.3" />
 
@@ -28,7 +28,7 @@ A monotonically increasing dimension (here *Date*, as the data is ordered chrono
 Given only one dimension of data, it makes a histogram:
 
 <Plot>
-  <Auto data={olympians} x="weight" />
+  <Auto data={useOlympians()} x="weight" />
 </Plot>
 
 <Plot>
@@ -46,7 +46,7 @@ If you’d like to explicitly avoid grouping the data, you can opt out of the re
 As you can see from that **reduce** property, the auto mark has some special syntax that lets you specify a reducer without explicitly specifying a transform. For example, the scatterplot above can be made into a heatmap by adding a color reducer. You can pass the name of a reducer to that property, or pass a shorthand string:
 
 <Plot>
-  <Auto data={olympians} x="weight" y="height" color="count" />
+  <Auto data={useOlympians()} x="weight" y="height" color="count" />
 </Plot>
 
 That’s equivalent to this:
@@ -60,7 +60,7 @@ Notice that the code above makes you think about nested functions and two differ
 This saves you a little bit of typing, but, more importantly, it means that switching from showing one dimension to another only involves changing _one thing_. In the code above, if you change **y** from *weight* to *sex*, it’ll break, because *sex* is ordinal instead of quantitative. (You’d also have to change [rect](./rect.md) to [barX](./bar.md#barX), and [bin](../transforms/bin.md#bin) to [binX](../transforms/bin.md#binX).) With the auto mark, it just works:
 
 <Plot>
-  <Auto data={olympians} x="weight" y="sex" color="count" />
+  <Auto data={useOlympians()} x="weight" y="sex" color="count" />
 </Plot>
 
 Similarly, with explicit marks and transforms, changing a vertical histogram to a horizontal histogram involves switching [rectY](./rect.md#rectY) to [rectX](./rect.md#rectX), [binX](../transforms/bin.md#binX) to [binY](../transforms/bin.md#binY), **x** to **y**, and **y** to **x**. With the auto mark, just specify **y** instead of **x**:
@@ -84,7 +84,7 @@ The **mark** override option supports [dot](./dot.md), [line](./line.md), [area]
 You can get a more elaborate aggregated chart by passing an object with both a **value** (the input dimension) and a **reduce** (the reducer). For example, here’s the average heights of Olympians over time by sex:
 
 <Plot color={{legend: true}}>
-  <Auto data={olympians} x="date_of_birth" y={{value: "height", reduce: "mean"}} color="sex" mark="line" />
+  <Auto data={useOlympians()} x="date_of_birth" y={{value: "height", reduce: "mean"}} color="sex" mark="line" />
 </Plot>
 
 You can similarly pass a **zero** option to indicate that zero is meaningful for either **x** or **y**. This adds a corresponding rule to the returned mark.

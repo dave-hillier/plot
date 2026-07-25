@@ -1,7 +1,7 @@
 import {AreaY, Bin, BinX, BinY, Dot, LineY, Plot, Rect, RectX, RectY, RuleX, RuleY, binX, scale} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
-import olympians from "../data/olympians.ts";
+import {useOlympians} from "../data/olympians.ts";
 
 export const cumulatives = 0;
 export const setCumulatives = () => {};
@@ -18,7 +18,7 @@ For example, here is a histogram showing the distribution of weights of Olympic 
 
 <Plot y={{grid: true}}>
   <BinX y="count">
-    <RectY data={olympians} x="weight" />
+    <RectY data={useOlympians()} x="weight" />
   </BinX>
   <RuleY data={[0]} />
 </Plot>
@@ -29,7 +29,7 @@ While the binX transform is often used to generate **y**, it can output any chan
 
 <Plot color={{scheme: "turbo"}}>
   <BinX fill="count">
-    <Rect data={olympians} x="weight" />
+    <Rect data={useOlympians()} x="weight" />
   </BinX>
 </Plot>
 
@@ -37,7 +37,7 @@ You can partition bins using **z**. If **z** is undefined, it defaults to **fill
 
 <Plot y={{grid: true}} color={{legend: true}}>
   <BinX y="count">
-    <RectY data={olympians} x="weight" fill="sex" />
+    <RectY data={useOlympians()} x="weight" fill="sex" />
   </BinX>
   <RuleY data={[0]} />
 </Plot>
@@ -48,7 +48,7 @@ You can opt-out of the implicit stackY transform by having binX generate **y1** 
 
 <Plot y={{grid: true}}>
   <BinX y2="count">
-    <RectY data={olympians} x="weight" fill="sex" mixBlendMode="multiply" />
+    <RectY data={useOlympians()} x="weight" fill="sex" mixBlendMode="multiply" />
   </BinX>
   <RuleY data={[0]} />
 </Plot>
@@ -65,7 +65,7 @@ As you might guess, the binY transform with the rectX mark produces a histogram 
 
 <Plot x={{grid: true}}>
   <BinY x="count">
-    <RectX data={olympians} y="weight" />
+    <RectX data={useOlympians()} y="weight" />
   </BinY>
   <RuleX data={[0]} />
 </Plot>
@@ -74,7 +74,7 @@ You can produce a two-dimensional heatmap with bin transform and a rect mark by 
 
 <Plot color={{scheme: "turbo"}}>
   <Bin fill="count">
-    <Rect data={olympians} x="weight" y="height" />
+    <Rect data={useOlympians()} x="weight" y="height" />
   </Bin>
 </Plot>
 
@@ -82,7 +82,7 @@ The bin transform also outputs **x** and **y** channels representing bin centers
 
 <Plot r={{range: [0, 6]}}>
   <Bin r="count">
-    <Dot data={olympians} x="weight" y="height" />
+    <Dot data={useOlympians()} x="weight" y="height" />
   </Bin>
 </Plot>
 
@@ -90,7 +90,7 @@ We can add the **stroke** channel to show overlapping distributions by sex.
 
 <Plot r={{range: [0, 6]}}>
   <Bin r="count">
-    <Dot data={olympians} x="weight" y="height" stroke="sex" />
+    <Dot data={useOlympians()} x="weight" y="height" stroke="sex" />
   </Bin>
 </Plot>
 
@@ -98,7 +98,7 @@ Similarly the binX and binY transforms generate respective **x** and **y** chann
 
 <Plot r={{range: [0, 14]}}>
   <BinX r="count">
-    <Dot data={olympians} x="weight" />
+    <Dot data={useOlympians()} x="weight" />
   </BinX>
 </Plot>
 
@@ -106,8 +106,8 @@ In addition to rect and dot, you can even use continuous marks such as [area](..
 
 <Plot y={{grid: true}}>
   <BinX y="count" filter={null}>
-    <AreaY data={olympians} x="weight" fillOpacity={0.2} />
-    <LineY data={olympians} x="weight" />
+    <AreaY data={useOlympians()} x="weight" fillOpacity={0.2} />
+    <LineY data={useOlympians()} x="weight" />
   </BinX>
   <RuleY data={[0]} />
 </Plot>
@@ -124,23 +124,23 @@ The **cumulative** option produces a cumulative distribution. Below, each bin re
 
 <Plot marginLeft={60} y={{grid: true}}>
   <BinX y="count" cumulative={cumulative}>
-    <RectY data={olympians} x="weight" />
+    <RectY data={useOlympians()} x="weight" />
   </BinX>
   <RuleY data={[0]} />
 </Plot>
 
 The bin transform works with Plot’s [faceting system](../features/facets.md), partitioning bins by facet. Below, we compare the weight distributions of athletes within each sport using the *proportion-facet* reducer. Sports are sorted by median weight: gymnasts tend to be the lightest, and basketball players the heaviest.
 
-<Plot marginLeft={100} padding={0} x={{grid: true}} fy={{domain: d3.groupSort(olympians.filter((d) => d.weight), (g) => d3.median(g, (d) => d.weight), (d) => d.sport)}} color={{scheme: "turbo"}}>
+<Plot marginLeft={100} padding={0} x={{grid: true}} fy={{domain: d3.groupSort(useOlympians().filter((d) => d.weight), (g) => d3.median(g, (d) => d.weight), (d) => d.sport)}} color={{scheme: "turbo"}}>
   <BinX fill="proportion-facet">
-    <Rect data={olympians} x="weight" fy="sport" inset={0.5} />
+    <Rect data={useOlympians()} x="weight" fy="sport" inset={0.5} />
   </BinX>
 </Plot>
 
 The bin transform setS default insets for a one-pixel gap between rects. You can set explicit insets if you prefer, say if you want the rects to touch. In this case we recommend rounding on the _x_ scale to avoid antialiasing artifacts between rects. (This example uses the functional spread form, `{...binX(outputs, options)}`, which remains equivalent to the nested wrapper form used above.)
 
 <Plot x={{round: true}} y={{grid: true}}>
-  <RectY data={olympians} {...binX({y: "count"}, {x: "weight", inset: 0})} />
+  <RectY data={useOlympians()} {...binX({y: "count"}, {x: "weight", inset: 0})} />
   <RuleY data={[0]} />
 </Plot>
 
