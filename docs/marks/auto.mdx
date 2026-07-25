@@ -49,13 +49,17 @@ As you can see from that **reduce** property, the auto mark has some special syn
   <Auto data={useOlympians()} x="weight" y="height" color="count" />
 </Replot>
 
-That’s equivalent to this:
+That’s equivalent to writing the mark and transform out by hand:
 
-```js
-Replot.rect(olympians, Replot.bin({fill: "count"}, {x: "weight", y: "height"})).plot()
+```jsx
+<Replot>
+  <Bin fill="count">
+    <Rect data={olympians} x="weight" y="height" />
+  </Bin>
+</Replot>
 ```
 
-Notice that the code above makes you think about nested functions and two different options objects, which the auto mark flattens. The auto mark infers that it should use a [rect](./rect.md); that it should [bin](../transforms/bin.md) on **x** and **y**; that the kind of color should be a **fill**; and that **fill** is an “output” of the reducer, whereas **x** and **y** are “inputs”.
+Notice that the code above makes you think about a separate transform wrapper and which options belong to the transform versus the mark, which the auto mark flattens. The auto mark infers that it should use a [rect](./rect.md); that it should [bin](../transforms/bin.md) on **x** and **y**; that the kind of color should be a **fill**; and that **fill** is an “output” of the reducer, whereas **x** and **y** are “inputs”.
 
 This saves you a little bit of typing, but, more importantly, it means that switching from showing one dimension to another only involves changing _one thing_. In the code above, if you change **y** from *weight* to *sex*, it’ll break, because *sex* is ordinal instead of quantitative. (You’d also have to change [rect](./rect.md) to [barX](./bar.md#barX), and [bin](../transforms/bin.md#bin) to [binX](../transforms/bin.md#binX).) With the auto mark, it just works:
 
@@ -175,7 +179,7 @@ Returns an automatically-chosen mark with the given *data* and *options*, suitab
 
 ## autoSpec(*data*, *options*) <VersionBadge version="0.6.4" /> {/* {#autoSpec} */}
 ```js
-Replot.autoSpec(olympians, {x: "weight", y: "height", color: "count"})
+autoSpec(olympians, {x: "weight", y: "height", color: "count"})
 ```
 
-Returns an auto mark *options* object with no option undefined; the mark type, reducers, and other options are all populated.
+Returns an auto mark *options* object with no option undefined; the mark type, reducers, and other options are all populated. The `autoSpec` function is exported from `replot/react`.

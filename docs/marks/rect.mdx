@@ -120,15 +120,6 @@ To round corners, use the **r** option. If the combined corner radii exceed the 
   <RuleY data={[0]} />
 </Replot>
 
-```js-vue
-Replot.plot({
-  marks: [
-    Replot.rectY(olympians, Replot.binX({y: "count"}, {x: "weight", r: {r}, thresholds: 10})),
-    Replot.ruleY([0])
-  ]
-})
-```
-
 To round corners on a specific side, use the **rx1**, **ry1**, **rx2**, or **ry2** options. When stacking rounded rects vertically, use a positive **ry2** and a corresponding negative **ry1**; likewise for stacking rounded rects horizontally, use a positive **rx2** and a negative **rx1**. Use the **clip** option to hide the “wings” below zero.
 
 <Replot color={{legend: true}}>

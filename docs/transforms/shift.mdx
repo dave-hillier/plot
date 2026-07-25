@@ -24,10 +24,6 @@ The **shift transform** is a specialized [map transform](./map.md) that derives 
   </ShiftX>
 </Replot>
 
-```js-vue
-Replot.differenceY(aapl, Replot.shiftX("{shift} days", {x: "Date", y: "Close"})).plot({y: {grid: true}})
-```
-
 When looking at year-over-year growth, the chart is mostly green, implying that you would make a profit by holding Apple stock for a year. However, if you bought in 2015 and sold in 2016, you would likely have lost money. Try adjusting the slider to a shorter or longer interval: how does that affect the typical return?
 
 ## shiftX(*interval*, *options*) {/* {#shiftX} */}

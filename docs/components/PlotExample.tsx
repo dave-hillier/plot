@@ -7,8 +7,8 @@ export function PlotExample({source, children}: {source: string; children?: Reac
   return (
     <div className="plot-example">
       {children}
-      <details className="plot-example-code">
-        <summary>Show code</summary>
+      <details className="plot-example-code" open>
+        <summary>Code</summary>
         <pre>
           <code className="language-jsx">{source}</code>
         </pre>

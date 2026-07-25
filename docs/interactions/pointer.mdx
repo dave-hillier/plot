@@ -30,20 +30,6 @@ To demonstrate, below the pointer transform filters a filled <span style={{borde
   <Dot data={penguins} x="culmen_length_mm" y="culmen_depth_mm" />
 </Replot>
 
-<div>
-
-```js-vue
-Replot.plot({
-  marks: [
-    Replot.dot(penguins, Replot.pointer({x: "culmen_length_mm", y: "culmen_depth_mm", fill: "red", r: 8})),
-    Replot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm"})
-  ]
-})
-```
-
-</div>
-{/* VitePress v-else block removed - not applicable in React/MDX */}
-
 The pointer transform is similar to the [filter](../transforms/filter.md) and [select](../transforms/select.md) transforms: it filters the mark’s index to show a subset of the data. The difference is that the pointer transform is *interactive*: it listens to [pointer events](https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events) and re-renders the mark as the closest point changes. Since the mark is lazily rendered during interaction, it is fast: only the visible elements are rendered as needed. And, like the filter and select transforms, unfiltered channel values are incorporated into default scale domains.
 
 The pointer transform supports both one- and two-dimensional pointing modes. The two-dimensional mode, [pointer](#pointer), is used above and is suitable for scatterplots and the general case: it finds the point closest to the pointer by measuring distance in *x* and *y*. The one-dimensional modes, [pointerX](#pointerX) and [pointerY](#pointerY), in contrast only consider distance in one dimension; this is desirable when a chart has a “dominant” dimension, such as time in a time-series chart, the binned quantitative dimension in a histogram, or the categorical dimension of a bar chart.
@@ -116,16 +102,6 @@ The pointer transform emits an [*input* event](https://developer.mozilla.org/en-
 <Replot onValue={(value) => console.log(value)}>
   <Dot data={penguins} x="culmen_length_mm" y="culmen_depth_mm" tip />
 </Replot>
-```
-
-With the imperative API, the same event is available on the rendered plot element, which also allows using a plot as an [Observable view](https://observablehq.com/@observablehq/views) (viewof):
-
-```js
-const plot = Replot.plot(options);
-
-plot.addEventListener("input", (event) => {
-  console.log(plot.value);
-});
 ```
 
 ## Pointer options

@@ -75,19 +75,7 @@ import {Replot, RuleY, AreaY, LineY} from "replot/react";
 </Replot>
 ```
 
-With the imperative API, you can similarly define custom composite marks:
-
-```js
-function arealineY(data, {color, fillOpacity = 0.1, ...options} = {}) {
-  return Replot.marks(
-    Replot.ruleY([0]),
-    Replot.areaY(data, {fill: color, fillOpacity, ...options}),
-    Replot.lineY(data, {stroke: color, ...options})
-  );
-}
-```
-
-You can use this composite mark like any built-in mark:
+You can go further and define custom composite marks by wrapping a group of marks in a component of your own; a composite mark composes other components and can be used like any built-in mark:
 
 <Replot>
   <RuleY data={[0]} />

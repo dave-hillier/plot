@@ -50,7 +50,7 @@ If you aren't yet up and running with Replot, please read our [getting started g
 Replot doesn't have chart types; instead, you construct charts by layering **marks**.
 
 
-Every mark is available both as a [React component](../getting-started.md#plot-in-react) (e.g., `<Dot data={data} x="x" y="y" />`) and as an imperative function (e.g., `Replot.dot(data, options)`). The examples on this page use the React components, but all the same options and behaviors apply to the imperative API.
+Every mark is available as a [React component](../getting-started.md#plot-in-react) (e.g., `<Dot data={data} x="x" y="y" />`). The examples on this page use the React components.
 ## Marks are geometric shapes
 
 Replot provides a variety of mark types. Think of marks as the "visual vocabulary" — the painter's palette, but of shapes instead of colors — that you pull from when composing a chart. Each mark type produces a certain type of geometric shape.
@@ -92,30 +92,12 @@ Each mark supplies its own data; a quick way to combine multiple datasets into a
   <LineY data={aapl} x="Date" y="Close" />
 </Replot>
 
-Marks may also be a function which returns an [SVG element](https://developer.mozilla.org/en-US/docs/Web/SVG/Element), if you wish to insert arbitrary content. (Here we use [Hypertext Literal](https://github.com/observablehq/htl) to generate an SVG gradient.)
+Marks may also be a function which returns an [SVG element](https://developer.mozilla.org/en-US/docs/Web/SVG/Element), if you wish to insert arbitrary content.
 
 <Replot>
   <BarY data={alphabet} x="letter" y="frequency" fill="steelblue" />
   <RuleY data={[0]} />
 </Replot>
-
-The imperative API also supports inserting arbitrary SVG elements (such as gradients) as functions in the marks array. Here is the equivalent gradient example using the imperative API:
-
-```js
-Replot.plot({
-  marks: [
-    () => htl.svg`<defs>
-      <linearGradient id="gradient" gradientTransform="rotate(90)">
-        <stop offset="15%" stop-color="purple" />
-        <stop offset="75%" stop-color="red" />
-        <stop offset="100%" stop-color="gold" />
-      </linearGradient>
-    </defs>`,
-    Replot.barY(alphabet, {x: "letter", y: "frequency", fill: "url(#gradient)"}),
-    Replot.ruleY([0])
-  ]
-})
-```
 
 And marks may be null or undefined, which produce no output; this is useful for showing marks conditionally (*e.g.*, when a box is checked).
 
@@ -482,17 +464,3 @@ Rect-like marks support rounded corners. Each corner (or side) is individually a
 * **ry** - the [*y*-radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/ry) for elliptical corners
 
 Corner radii are specified in either pixels or, for **rx** and **ry**, as percentages (strings) or the keyword *auto*. If the corner radii are too big, they are reduced proportionally.
-
-## marks(...*marks*) <VersionBadge version="0.2.0" /> {/* {#marks} */}
-
-This helper is part of the imperative API; in React, compose marks by nesting components inside `<Replot>` instead.
-
-```js
-Replot.marks(
-  Replot.ruleY([0]),
-  Replot.areaY(data, {fill: color, fillOpacity, ...options}),
-  Replot.lineY(data, {stroke: color, ...options})
-)
-```
-
-A convenience method for composing a mark from a series of other marks. Returns an array of marks that implements the *mark*.plot function. See the [box mark](../marks/box.md) implementation for an example.

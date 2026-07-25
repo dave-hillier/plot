@@ -802,13 +802,13 @@ If the input channel is *data*, then the reducer is passed groups of the mark’
 Note: when the value of the sort option is a string or a function, it is interpreted as a mark [sort transform](../transforms/sort.md). To use both sort options and a mark sort transform, use [Replot.sort](../transforms/sort.md#sort).
 
 ## scale(*options*) <VersionBadge version="0.4.0" /> {/* {#scale} */}
-You can also create a standalone scale with Replot.**scale**(*options*), also available as the `scale` export of `replot/react`. The *options* object must define at least one scale; see [Scale options](#scale-options) for how to define a scale. For example, here is a categorical color scale with the *Tableau10* color scheme and a domain of fruits:
+You can also create a standalone scale with the **scale**(*options*) function, available as the `scale` export of `replot/react`. The *options* object must define at least one scale; see [Scale options](#scale-options) for how to define a scale. For example, here is a categorical color scale with the *Tableau10* color scheme and a domain of fruits:
 
 ```js
 const color = scale({color: {scheme: "Tableau10", domain: ["apple", "orange", "pear"]}});
 ```
 
-Both [*plot*.scale](./plots.md#plot_scale) and [Replot.scale](#scale) return scale objects. These objects represent the actual (or “materialized”) scale options used by Replot, including the domain, range, interpolate function, *etc.* The scale’s label, if any, is also returned; however, note that other axis properties are not currently exposed. Point and band scales also expose their materialized bandwidth and step.
+The [scale](#scale) function returns a scale object. These objects represent the actual (or “materialized”) scale options used by Replot, including the domain, range, interpolate function, *etc.* The scale’s label, if any, is also returned; however, note that other axis properties are not currently exposed. Point and band scales also expose their materialized bandwidth and step.
 
 ```js
 color.domain // ["apple", "orange", "pear"]
@@ -825,10 +825,3 @@ To apply a standalone scale object to a plot, pass it to the `<Replot>` componen
 <Replot color={color}>
   <CellX data={["apple", "apple", "orange", "pear", "orange"]} />
 </Replot>
-
-As another example, with the imperative API, [*plot*.scale](./plots.md#plot_scale) lets a second plot reuse the *color* scale from a first, already-rendered plot:
-
-```js
-const plot1 = Replot.plot({...options1});
-const plot2 = Replot.plot({...options2, color: plot1.scale("color")});
-```

@@ -2,6 +2,12 @@ import {rollup, sort} from "d3";
 import {FunctionDeclaration, Node, Project, VariableStatement} from "ts-morph";
 import {readMarkdownFiles, readMarkdownSource, getAnchors} from "../components/links.js";
 
+// Imperative-only entry points that the React docs no longer document; they
+// remain exported for non-React use but have no reference page to link to.
+function isUndocumentedImperative(name: string): boolean {
+  return name === "plot" || name === "marks" || name === "legend";
+}
+
 // Internal plumbing exported for the React renderer's benefit (shared scale,
 // channel, projection, and dimension computation), not user-facing API.
 function isInternalMethod(name: string): boolean {
@@ -141,7 +147,7 @@ export default {
     const allOptions: {name: string; context: {name: string; href: string}}[] = [];
     const index = project.getSourceFile("src/index.d.ts")!;
     for (const [name, declarations] of index.getExportedDeclarations()) {
-      if (isInternalMethod(name)) continue;
+      if (isInternalMethod(name) || isUndocumentedImperative(name)) continue;
       for (const declaration of declarations) {
         if (Node.isInterfaceDeclaration(declaration)) {
           if (isInternalInterface(name)) continue;

@@ -86,16 +86,6 @@ By using the _density_ keyword as a **fill** or **stroke** color, you can draw r
 
 To facilitate comparison across facets (**fx** or **fy**) and series (**z**, **stroke**, or **fill**), the thresholds are determined by the series with the highest density. For instance, the chart below shows the highest concentration of penguins, arranged by flipper length and culmen length, on Biscoe island; the contours in the other facets use the same thresholds.
 
-{/* ```js
-Replot.plot({
-  axis: null,
-  marks: [
-    Replot.dot(penguins, {x: "flipper_length_mm", y: "culmen_length_mm"}),
-    Replot.density(penguins, {x: "flipper_length_mm", y: "culmen_length_mm"})
-  ]
-})
-``` */}
-
 <Replot>
   <Density data={penguins} fx="island" x="flipper_length_mm" y="culmen_length_mm" stroke="density" clip />
   <Frame />
