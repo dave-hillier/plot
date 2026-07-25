@@ -113,7 +113,10 @@ function autoHeight(
     const fxb = fx ? fx.scale.bandwidth() : 1;
     const fyb = fy ? fy.scale.bandwidth() : 1;
     const w = fxb * (width - marginLeftDefault - marginRightDefault) - x.insetLeft - x.insetRight;
-    return (ratio * w + y.insetTop + y.insetBottom) / fyb + marginTopDefault + marginBottomDefault;
+    const height = (ratio * w + y.insetTop + y.insetBottom) / fyb + marginTopDefault + marginBottomDefault;
+    // Empty scale domains make the ratio NaN; an SVG must never get a
+    // non-finite height, so fall through to the default height instead.
+    if (isFinite(height)) return height;
   }
 
   return !!(y || fy) * Math.max(1, Math.min(60, ny * nfy)) * 20 + !!fx * 30 + 60;
