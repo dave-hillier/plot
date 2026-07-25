@@ -9,8 +9,8 @@ export const sidebar: SidebarItem[] = [
   {
     text: "Introduction",
     items: [
-      {text: "What is Plot?", link: "/what-is-plot"},
-      {text: "Why Plot?", link: "/why-plot"},
+      {text: "What is Replot?", link: "/what-is-plot"},
+      {text: "Why Replot?", link: "/why-plot"},
       {text: "Getting started", link: "/getting-started"}
     ]
   },

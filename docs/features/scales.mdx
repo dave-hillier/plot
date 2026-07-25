@@ -45,7 +45,7 @@ When visualizing this data with a [line](../marks/line.md), the *x* scale is res
   <LineY data={gistemp} x="Date" y="Anomaly" />
 </Plot>
 
-In Plot, the [mark](./marks.md) binds channels to scales; for example, the line’s **x** channel is bound to the *x* scale. The channel name and the scale name are often the same, but not always; for example, an area’s **y1** and **y2** channels are both bound to the *y* scale. (You can opt-out of a scale for a particular channel using [scale overrides](./marks.md#mark-options) if needed.)
+In Replot, the [mark](./marks.md) binds channels to scales; for example, the line’s **x** channel is bound to the *x* scale. The channel name and the scale name are often the same, but not always; for example, an area’s **y1** and **y2** channels are both bound to the *y* scale. (You can opt-out of a scale for a particular channel using [scale overrides](./marks.md#mark-options) if needed.)
 
 Think of a scale as a function that takes an abstract value and returns the corresponding visual value. For the *y* scale above, that might look like this:
 
@@ -91,7 +91,7 @@ Within a given [plot](./plots.md), marks share scales. For example, if a plot ha
 
 
 When comparing the performance of different stocks, we typically want to normalize the return relative to a purchase price; see the [normalize transform](../transforms/normalize.md) for an example. Also, not that we recommend them, but if you are interested in dual-axis charts, please upvote [#147](https://github.com/observablehq/plot/issues/147).
-Plot has many different scales; we categorize them by their _input_ (**domain**) and _output_ (**range**).
+Replot has many different scales; we categorize them by their _input_ (**domain**) and _output_ (**range**).
 
 The **domain** is the abstract values that the scale expects as input. For quantitative or temporal data, it is typically expressed as an extent such as [*start*, *end*], [*cold*, *hot*], or [*min*, *max*]. For ordinal or nominal data, it is an array of values such as names or categories. The type of input values corresponds to the **type** scale option (_e.g._, *linear* or *ordinal*).
 
@@ -117,9 +117,9 @@ Alternatively, use the **reverse** option; this is convenient when the domain is
 
 <Plot x={{domain: [0, 100], reverse: true, grid: true}} />
 
-If the domain is dates, Plot will default to a UTC scale. This is a linear scale with ticks based on the Gregorian calendar.
+If the domain is dates, Replot will default to a UTC scale. This is a linear scale with ticks based on the Gregorian calendar.
 
-{/* Plot doesn’t parse dates; convert your strings to [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) instances with [d3.utcParse](https://d3js.org/d3-time-format#utcParse) or [d3.autoType](https://d3js.org/d3-dsv#autoType). */}
+{/* Replot doesn’t parse dates; convert your strings to [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) instances with [d3.utcParse](https://d3js.org/d3-time-format#utcParse) or [d3.autoType](https://d3js.org/d3-dsv#autoType). */}
 
 <Plot x={{domain: [new Date("2021-01-01"), new Date("2022-01-01")], grid: true}} />
 
@@ -330,7 +330,7 @@ Below we again show observed global surface temperatures. The reversed *BuRd* co
   <Dot data={gistemp} x="Date" y="Anomaly" stroke="Anomaly" />
 </Plot>
 
-Plot also provides color schemes for discrete data. Use the *categorical* type for categorical (nominal) unordered data, and the *ordinal* type for ordered data.
+Replot also provides color schemes for discrete data. Use the *categorical* type for categorical (nominal) unordered data, and the *ordinal* type for ordered data.
 
 <div>
   <label className="label-input">
@@ -399,7 +399,7 @@ Plot also provides color schemes for discrete data. Use the *categorical* type f
 Discrete color schemes are intended for data that has only a few unique values. If the size of the categorical domain exceeds the number of colors in the scheme, colors will be reused; combining values into an “other” category is recommended.
 ## Other scales
 
-But wait, there’s more! 😅 Plot has *opacity*, *r*, *symbol*, and *length* scales, too. For example, the *r* scale **type** defaults to *sqrt* such that when used with the [dot mark](../marks/dot.md), the resulting area is proportional to the **r** channel value. You can adjust the effective dot size by specifying an explicit **range**, as below.
+But wait, there’s more! 😅 Replot has *opacity*, *r*, *symbol*, and *length* scales, too. For example, the *r* scale **type** defaults to *sqrt* such that when used with the [dot mark](../marks/dot.md), the resulting area is proportional to the **r** channel value. You can adjust the effective dot size by specifying an explicit **range**, as below.
 
 <div>
   <label className="label-input">
@@ -417,9 +417,9 @@ The default **range** for the associated *r* scale is constructed such that a ze
 
 ## Type inference
 
-Plot strives to be concise: rather than you laboriously specifying everything, Plot can guess by inspecting the data so you don’t have to set the **type**, **domain**, and **range** (and for color, **scheme**) of scales explicitly. But for Plot’s guesses to be accurate, your data must match Plot’s expectations. Here they are.
+Replot strives to be concise: rather than you laboriously specifying everything, Replot can guess by inspecting the data so you don’t have to set the **type**, **domain**, and **range** (and for color, **scheme**) of scales explicitly. But for Replot’s guesses to be accurate, your data must match Replot’s expectations. Here they are.
 
-A scale’s **type** is most often inferred from associated marks’ channel values: strings and booleans imply an *ordinal* scale; dates imply a *utc* scale; anything else is *linear*. Plot assumes that your data is consistently typed, so inference is based solely on the first non-null, non-undefined value. We recommend typed CSV (passing `{typed: true}` to Observable’s FileAttachment csv method) or explicitly coercing types when loading data (*e.g.*, d3.autoType).
+A scale’s **type** is most often inferred from associated marks’ channel values: strings and booleans imply an *ordinal* scale; dates imply a *utc* scale; anything else is *linear*. Replot assumes that your data is consistently typed, so inference is based solely on the first non-null, non-undefined value. We recommend typed CSV (passing `{typed: true}` to Observable’s FileAttachment csv method) or explicitly coercing types when loading data (*e.g.*, d3.autoType).
 
 If a scale’s **domain** is specified explicitly, the scale’s **type** is inferred from the **domain** values rather than channels as described above. However, if the **domain** or **range** has more than two elements, the *ordinal* type (or *point* for position scales) is used.
 
@@ -484,7 +484,7 @@ The **interval** scale option<a id="interval" href="#interval" aria-label="Perma
 </Plot>
 
 
-As an added bonus, the **fontVariant** and **type** options are no longer needed because Plot now understands that the *x* scale, despite being *ordinal*, represents daily observations.
+As an added bonus, the **fontVariant** and **type** options are no longer needed because Replot now understands that the *x* scale, despite being *ordinal*, represents daily observations.
 While the example above relies on the **interval** being promoted to the scale’s **transform**, the [stack](../transforms/stack.md), [bin](../transforms/bin.md), and [group](../transforms/group.md) transforms are also interval-aware: they apply the scale’s **interval**, if any, *before* grouping values. (This results in the interval being applied twice, both before and after the mark transform, but the second application has no effect since interval application is idempotent.)
 
 The **interval** option can also be used for quantitative and temporal scales. This enforces uniformity, say rounding timed observations down to the nearest hour, which may be helpful for the [stack transform](../transforms/stack.md) among other uses.
@@ -507,9 +507,9 @@ For example, to set the domain for the *x* scale:
   <LineY data={gistemp} x="Date" y="Anomaly" />
 </Plot>
 
-Plot supports many scale types. Some scale types are for quantitative data: values that can be added or subtracted, such as temperature or time. Other scale types are for ordinal or categorical data: unquantifiable values that can only be ordered, such as t-shirt sizes, or values with no inherent order that can only be tested for equality, such as types of fruit. Some scale types are further intended for specific visual encodings: for example, as position or color.
+Replot supports many scale types. Some scale types are for quantitative data: values that can be added or subtracted, such as temperature or time. Other scale types are for ordinal or categorical data: unquantifiable values that can only be ordered, such as t-shirt sizes, or values with no inherent order that can only be tested for equality, such as types of fruit. Some scale types are further intended for specific visual encodings: for example, as position or color.
 
-You can set the scale type explicitly via the **type** scale option, though typically the scale type is inferred automatically. Some marks mandate a particular scale type: for example, [barY](../marks/bar.md) requires that the *x* scale is a *band* scale. Some scales have a default type: for example, the *r* (radius) scale defaults to *sqrt* and the *opacity* scale defaults to *linear*. Most often, the scale type is inferred from associated data, pulled either from the domain (if specified) or from associated channels. Strings and booleans imply an ordinal scale; dates imply a UTC scale; and anything else is linear. Unless they represent text, we recommend explicitly converting strings to more specific types when loading data (*e.g.*, with d3.autoType or Observable’s FileAttachment). For simplicity’s sake, Plot assumes that data is consistently typed; type inference is based solely on the first non-null, non-undefined value.
+You can set the scale type explicitly via the **type** scale option, though typically the scale type is inferred automatically. Some marks mandate a particular scale type: for example, [barY](../marks/bar.md) requires that the *x* scale is a *band* scale. Some scales have a default type: for example, the *r* (radius) scale defaults to *sqrt* and the *opacity* scale defaults to *linear*. Most often, the scale type is inferred from associated data, pulled either from the domain (if specified) or from associated channels. Strings and booleans imply an ordinal scale; dates imply a UTC scale; and anything else is linear. Unless they represent text, we recommend explicitly converting strings to more specific types when loading data (*e.g.*, with d3.autoType or Observable’s FileAttachment). For simplicity’s sake, Replot assumes that data is consistently typed; type inference is based solely on the first non-null, non-undefined value.
 
 For quantitative data (*i.e.* numbers), a mathematical transform may be applied to the data by changing the scale type:
 
@@ -526,7 +526,7 @@ For temporal data (*i.e.* dates), two variants of a *linear* scale are also supp
 * *utc* (default, recommended) - UTC time
 * *time* - local time
 
-UTC is recommended over local time as charts in UTC time are guaranteed to appear consistently to all viewers whereas charts in local time will depend on the viewer’s time zone. Due to limitations in JavaScript’s Date class, Plot does not yet support an explicit time zone other than UTC.
+UTC is recommended over local time as charts in UTC time are guaranteed to appear consistently to all viewers whereas charts in local time will depend on the viewer’s time zone. Due to limitations in JavaScript’s Date class, Replot does not yet support an explicit time zone other than UTC.
 
 For ordinal data (*e.g.*, strings), use the *ordinal* scale type or the *point* or *band* position scale types. The *categorical* scale type is also supported; it is equivalent to *ordinal* except as a color scale, where it provides a different default color scheme. (Since position is inherently ordinal or even quantitative, categorical data must be assigned an effective order when represented as position, and hence *categorical* and *ordinal* may be considered synonymous in context.)
 
@@ -575,7 +575,7 @@ Plot.plot({
 
 ### Color scale options
 
-The normal scale types — *linear*, *sqrt*, *pow*, *log*, *symlog*, and *ordinal* — can be used to encode color. In addition, Plot supports special scale types for color:
+The normal scale types — *linear*, *sqrt*, *pow*, *log*, *symlog*, and *ordinal* — can be used to encode color. In addition, Replot supports special scale types for color:
 
 * *categorical* - like *ordinal*, but defaults to *observable10*
 * *sequential* - like *linear*
@@ -709,7 +709,7 @@ Similarly, the *y* and *fy* scales support asymmetric insets with:
 
 The inset scale options can provide “breathing room” to separate marks from axes or the plot’s edge. For example, in a scatterplot with a Plot.dot with the default 3-pixel radius and 1.5-pixel stroke width, an inset of 5 pixels prevents dots from overlapping with the axes. The *scale*.round option is useful for crisp edges by rounding to the nearest pixel boundary.
 
-In addition to the generic *ordinal* scale type, which requires an explicit output range value for each input domain value, Plot supports special *point* and *band* scale types for encoding ordinal data as position. These scale types accept a [*min*, *max*] range similar to quantitative scales, and divide this continuous interval into discrete points or bands based on the number of distinct values in the domain (*i.e.*, the domain’s cardinality). If the associated marks have no effective width along the ordinal dimension — such as a dot, rule, or tick — then use a *point* scale; otherwise, say for a bar, use a *band* scale.
+In addition to the generic *ordinal* scale type, which requires an explicit output range value for each input domain value, Replot supports special *point* and *band* scale types for encoding ordinal data as position. These scale types accept a [*min*, *max*] range similar to quantitative scales, and divide this continuous interval into discrete points or bands based on the number of distinct values in the domain (*i.e.*, the domain’s cardinality). If the associated marks have no effective width along the ordinal dimension — such as a dot, rule, or tick — then use a *point* scale; otherwise, say for a bar, use a *band* scale.
 
 Ordinal position scales support additional options, all specified as proportions in [0, 1]:
 
@@ -723,7 +723,7 @@ For a *band* scale, you can further fine-tune padding:
 
 Align defaults to 0.5 (centered). Band scale padding defaults to 0.1 (10% of available space reserved for separating bands), while point scale padding defaults to 0.5 (the gap between the first point and the edge is half the distance of the gap between points, and likewise for the gap between the last point and the opposite edge). Note that rounding and mark insets (e.g., for bars and rects) also affect separation between adjacent marks.
 
-Plot implicitly generates an [axis mark](../marks/axis.md) for position scales if one is not explicitly declared. (For more control, declare the axis mark explicitly.) The following [axis mark options](../marks/axis.md#axis-options) are also available as scale options, applying to the implicit axis:
+Replot implicitly generates an [axis mark](../marks/axis.md) for position scales if one is not explicitly declared. (For more control, declare the axis mark explicitly.) The following [axis mark options](../marks/axis.md#axis-options) are also available as scale options, applying to the implicit axis:
 
 * **axis** - the axis **anchor**: *top*, *bottom* (*x* or *fx*); *left*, *right* (*y* or *fy*); *both*; null to suppress
 * **ticks** - the approximate number of ticks to generate, or interval, or array of values
@@ -808,7 +808,7 @@ You can also create a standalone scale with Plot.**scale**(*options*). The *opti
 const color = scale({color: {scheme: "Tableau10", domain: ["apple", "orange", "pear"]}});
 ```
 
-Both [*plot*.scale](./plots.md#plot_scale) and [Plot.scale](#scale) return scale objects. These objects represent the actual (or “materialized”) scale options used by Plot, including the domain, range, interpolate function, *etc.* The scale’s label, if any, is also returned; however, note that other axis properties are not currently exposed. Point and band scales also expose their materialized bandwidth and step.
+Both [*plot*.scale](./plots.md#plot_scale) and [Plot.scale](#scale) return scale objects. These objects represent the actual (or “materialized”) scale options used by Replot, including the domain, range, interpolate function, *etc.* The scale’s label, if any, is also returned; however, note that other axis properties are not currently exposed. Point and band scales also expose their materialized bandwidth and step.
 
 ```js
 color.domain // ["apple", "orange", "pear"]

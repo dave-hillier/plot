@@ -108,7 +108,7 @@ aapl = [
 
 
 Rather than baking data into JavaScript, use [JSON](https://en.wikipedia.org/wiki/JSON) or [CSV](https://en.wikipedia.org/wiki/Comma-separated_values) files to store data. You can use [d3.json](https://d3js.org/d3-fetch#json), [d3.csv](https://d3js.org/d3-fetch#csv), or [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) to load a file. On Observable, you can also use a [file attachment](https://observablehq.com/@observablehq/file-attachments) or [SQL cell](https://observablehq.com/@observablehq/sql-cell).
-To use data with Plot, pass the data as the first argument to the mark constructor. We can then assign columns of data such as *Date* and *Close* to visual properties of the mark (or “channels”) such as horizontal↔︎ position **x** and vertical↕︎ position **y**.
+To use data with Replot, pass the data as the first argument to the mark constructor. We can then assign columns of data such as *Date* and *Close* to visual properties of the mark (or “channels”) such as horizontal↔︎ position **x** and vertical↕︎ position **y**.
 
 <Plot>
   <LineY data={aapl} x="Date" y="Close" />
@@ -172,10 +172,10 @@ Plot.plot({
 
 
 To assist the explanation, the plot above is drawn with a light gray border.
-The default **width** is 640. On Observable, the width can be set to the [standard width](https://github.com/observablehq/stdlib/blob/main/README.md#width) to make responsive plots. The default **height** is chosen automatically based on the plot’s associated scales; for example, if *y* is linear and there is no *fy* scale, it might be 396. The default margins depend on the maximum margins of the plot’s constituent [marks](#marks-option). While most marks default to zero margins (because they are drawn inside the chart area), Plot’s [axis mark](../marks/axis.md) has non-zero default margins.
+The default **width** is 640. On Observable, the width can be set to the [standard width](https://github.com/observablehq/stdlib/blob/main/README.md#width) to make responsive plots. The default **height** is chosen automatically based on the plot’s associated scales; for example, if *y* is linear and there is no *fy* scale, it might be 396. The default margins depend on the maximum margins of the plot’s constituent [marks](#marks-option). While most marks default to zero margins (because they are drawn inside the chart area), Replot’s [axis mark](../marks/axis.md) has non-zero default margins.
 
 
-Plot does not adjust margins automatically to make room for long tick labels. If your *y* axis labels are too long, you can increase the **marginLeft** to make more room. Also consider using a different **tickFormat** for short labels (*e.g.*, `s` for SI prefix notation), or a scale **transform** (say to convert units to millions or billions).
+Replot does not adjust margins automatically to make room for long tick labels. If your *y* axis labels are too long, you can increase the **marginLeft** to make more room. Also consider using a different **tickFormat** for short labels (*e.g.*, `s` for SI prefix notation), or a scale **transform** (say to convert units to millions or billions).
 The **aspectRatio** option<a id="aspectRatio" href="#aspectRatio" aria-label="Permalink to &quot;aspectRatio&quot;"></a> <VersionBadge version="0.6.4" />, if not null, computes a default **height** such that a variation of one unit in the *x* dimension is represented by the corresponding number of pixels as a variation in the *y* dimension of one unit. The **aspectRatio** option is recommended only when *x* and *y* domains share the same units, such as millimeters. When a position scale is [ordinal](./scales.md#discrete-scales) (*point* or *band*), consecutive domain values are treated as one unit length apart; for example, if both *x* and *y* are ordinal, then an aspect ratio of one produces a square grid.
 
 <AspectRatioDemo />
@@ -184,7 +184,7 @@ The **aspectRatio** option<a id="aspectRatio" href="#aspectRatio" aria-label="Pe
 When using facets, set the *fx* and *fy* scales’ **round** option to false if you need an exact aspect ratio.
 ## Other options
 
-By default, [plot](#plot) returns an SVG element; however, if the plot includes a title, subtitle, [legend](./legends.md), or caption, plot wraps the SVG element with an HTML figure element. You can also force Plot to generate a figure element by setTing the **figure** option <VersionBadge version="0.6.10" pr="1761" /> to true.
+By default, [plot](#plot) returns an SVG element; however, if the plot includes a title, subtitle, [legend](./legends.md), or caption, plot wraps the SVG element with an HTML figure element. You can also force Replot to generate a figure element by setTing the **figure** option <VersionBadge version="0.6.10" pr="1761" /> to true.
 
 The **title** & **subtitle** options <VersionBadge version="0.6.10" pr="1761" /> and the **caption** option accept either a string or an HTML element. If given an HTML element, say using the [`html` tagged template literal](http:
 
@@ -193,7 +193,7 @@ The **title** & **subtitle** options <VersionBadge version="0.6.10" pr="1761" />
   <Text data={["Titles, subtitles, captions, and annotations assist inter­pretation by telling the reader what’s interesting. Don’t make the reader work to find what you already know."]} lineWidth={30} frameAnchor="middle" />
 </Plot>
 
-The **style** option allows custom styles to override Plot’s defaults. It may be specified either as a string of inline styles (*e.g.*, `"color: red;"`, in the same fashion as assigning [*element*.style](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style)) or an object of properties (*e.g.*, `{color: "red"}`, in the same fashion as assigning [*element*.style properties](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration)). By default, the returned plot has a max-width of 100%, and the system-ui font. Plot’s marks and axes default to [currentColor](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#currentcolor_keyword), meaning that they will inherit the surrounding content’s color.
+The **style** option allows custom styles to override Replot’s defaults. It may be specified either as a string of inline styles (*e.g.*, `"color: red;"`, in the same fashion as assigning [*element*.style](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style)) or an object of properties (*e.g.*, `{color: "red"}`, in the same fashion as assigning [*element*.style properties](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration)). By default, the returned plot has a max-width of 100%, and the system-ui font. Replot’s marks and axes default to [currentColor](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#currentcolor_keyword), meaning that they will inherit the surrounding content’s color.
 
 
 Unitless numbers ([quirky lengths](https://www.w3.org/TR/css-values-4/#deprecated-quirky-length)) such as `{padding: 20}` are not supported by some browsers; you should instead specify a string with units such as `{padding: "20px"}`.

@@ -20,7 +20,7 @@ export const responses = [
 
 # Axis mark <VersionBadge version="0.6.3" />
 
-The **axis mark** conveys the meaning of a position [scale](../features/scales.md): _x_ or _y_, and _fx_ or _fy_ when [faceting](../features/facets.md). Plot automatically adds default axis marks as needed, but you can customize the appearance of axes either through scale options or by explicitly declaring an axis mark.
+The **axis mark** conveys the meaning of a position [scale](../features/scales.md): _x_ or _y_, and _fx_ or _fy_ when [faceting](../features/facets.md). Replot automatically adds default axis marks as needed, but you can customize the appearance of axes either through scale options or by explicitly declaring an axis mark.
 
 For example, the **axis** scale option specifies the side of the frame to draw the axis. Setting it to *both* will repeat the axis on both sides.
 
@@ -41,9 +41,9 @@ The above is equivalent to declaring two explicit axis marks, one with the *top*
 
 
 The **interval** option above instructs the grid lines to be drawn at unit intervals, _i.e._ whole percentages. As an alternative, you can use the **ticks** option to specify the desired number of ticks or the **tickSpacing** option to specify the desired separation between adjacent ticks in pixels.
-If you don’t declare an axis mark for a position scale, Plot will implicitly add one for you below (before) all other marks. To disable an implicit axis, set the _scale_.**axis** option to null for the corresponding scale; or, set the top-level **axis** option to null to disable all implicit axes.
+If you don’t declare an axis mark for a position scale, Replot will implicitly add one for you below (before) all other marks. To disable an implicit axis, set the _scale_.**axis** option to null for the corresponding scale; or, set the top-level **axis** option to null to disable all implicit axes.
 
-Plot’s axis mark is a composite mark comprised of:
+Replot’s axis mark is a composite mark comprised of:
 
 * a [vector](./vector.md) for ticks
 * a [text](./text.md) for tick labels
@@ -135,7 +135,7 @@ To draw an outline around the tick labels, say to improve legibility when drawin
 
 When faceting, the *x*- and *y*-axes are typically repeated across facets. A *bottom*-anchored *x*-axis is by default drawn on any facet _with empty space below it_; conversely, a *top*-anchored *x*-axis is drawn on any facet _with empty space above it_. Similarly, a *left*-anchored *y*-axis is drawn on facets with empty space to the left, and a *right*-anchored *y*-axis is drawn on facets with empty space to the right.
 
-If the default behavior isn’t what you want, use the *mark*.**facetAnchor** option to control which facets show an axis. (This option applies not just to Plot’s axis and grid mark, but any mark; for example, you can use it to place a text mark at the bottom of each facet column.) The supported values for this option are:
+If the default behavior isn’t what you want, use the *mark*.**facetAnchor** option to control which facets show an axis. (This option applies not just to Replot’s axis and grid mark, but any mark; for example, you can use it to place a text mark at the bottom of each facet column.) The supported values for this option are:
 
 * _top_ - show only on the top facets
 * _right_ - show only on the right facets

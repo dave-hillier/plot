@@ -37,11 +37,11 @@ A **projection** maps abstract coordinates in *x* and *y* to pixel positions on 
 
 Above, a [geo mark](../marks/geo.md) draws polygons representing land and a [sphere mark](../marks/geo.md#sphere) draws the outline of the globe. A [dot mark](../marks/dot.md) draws earthquakes as circles sized by magnitude.
 
-The geo mark is “projection aware” so that it can handle all the nuances of projecting spherical polygons to the screen — leaning on [d3-geo](https://d3js.org/d3-geo) to provide [adaptive sampling](https://observablehq.com/@d3/adaptive-sampling) with configurable precision, [antimeridian cutting](https://observablehq.com/@d3/antimeridian-cutting), and clipping. The dot mark is not; instead, Plot applies the projection in place of the *x* and *y* scales. Hence, projections work with any mark that consumes continuous **x** and **y** channels — as well as marks that use **x1** & **y1** and **x2** & **y2**. Each mark implementation decides whether to handle projections specially or to treat the projection as any other position scale. (For example, the [line mark](../marks/line.md) is projection-aware to draw geodesics.)
+The geo mark is “projection aware” so that it can handle all the nuances of projecting spherical polygons to the screen — leaning on [d3-geo](https://d3js.org/d3-geo) to provide [adaptive sampling](https://observablehq.com/@d3/adaptive-sampling) with configurable precision, [antimeridian cutting](https://observablehq.com/@d3/antimeridian-cutting), and clipping. The dot mark is not; instead, Replot applies the projection in place of the *x* and *y* scales. Hence, projections work with any mark that consumes continuous **x** and **y** channels — as well as marks that use **x1** & **y1** and **x2** & **y2**. Each mark implementation decides whether to handle projections specially or to treat the projection as any other position scale. (For example, the [line mark](../marks/line.md) is projection-aware to draw geodesics.)
 
 
 Marks that require *band* scales (bars, cells, and ticks) cannot be used with projections. Likewise one-dimensional marks such as rules cannot be used, though see [#1164](https://github.com/observablehq/plot/issues/1164).
-Plot provides a variety of built-in projections. And as above, all world projections can be rotated to show a different aspect.
+Replot provides a variety of built-in projections. And as above, all world projections can be rotated to show a different aspect.
 
 <p>
   <label className="label-input">
@@ -85,7 +85,7 @@ Why so many? Each projection has its strengths and weaknesses:
 
 No single projection is best at everything. It is impossible, for example, for a projection to be both conformal and equal-area.
 
-In addition to world projections, Plot provides the U.S.-centric *albers-usa* conic equal-area projection with an inset of Alaska and Hawaii. (Note that the scale for Alaska is diminished: it is projected at 0.35× its true relative area.)
+In addition to world projections, Replot provides the U.S.-centric *albers-usa* conic equal-area projection with an inset of Alaska and Hawaii. (Note that the scale for Alaska is diminished: it is projected at 0.35× its true relative area.)
 
 <Plot projection="albers-usa">
   <Geo data={nation} />
@@ -116,7 +116,7 @@ For maps that focus on a specific region, use the **domain** option to zoom in. 
   <Frame />
 </Plot>
 
-While this notebook mostly details spherical projections, you can use the *identity* projection to display planar geometry. For example, below we draw a schematic of the second floor of the [Westport House](https://en.wikipedia.org/wiki/Westport_House) in Dundee, Ireland.
+While this page mostly details spherical projections, you can use the *identity* projection to display planar geometry. For example, below we draw a schematic of the second floor of the [Westport House](https://en.wikipedia.org/wiki/Westport_House) in Dundee, Ireland.
 
 <Plot projection={{type: "identity", domain: westport}}>
   <Geo data={westport} />
@@ -124,7 +124,7 @@ While this notebook mostly details spherical projections, you can use the *ident
 
 
 There’s also a *reflect-y* projection in case *y* points up↑, which is often the case with [projected reference systems](https://en.wikipedia.org/wiki/Projected_coordinate_system).
-Naturally, Plot’s projection system is compatible with its [faceting system](./facets.md). Below, a comic strip of sorts shows the locations of Walmart store openings in past decades.
+Naturally, Replot’s projection system is compatible with its [faceting system](./facets.md). Below, a comic strip of sorts shows the locations of Walmart store openings in past decades.
 
 <Plot marginLeft={0} marginRight={0} projection="albers" fx={{
     interval: "10 years",
@@ -138,10 +138,10 @@ Naturally, Plot’s projection system is compatible with its [faceting system](.
 
 
 This uses the [**interval** scale option](./scales.md#scale-transforms) to bin temporal data into facets by decade.
-To learn more about mapping with Plot, see our hands-on tutorials:
+To learn more about mapping with Replot, see these hands-on Observable Plot tutorials:
 
-* [Build your first map with Replot](https://observablehq.com/@observablehq/build-your-first-map-with-observable-plot)
-* [Build your first choropleth map with Replot](https://observablehq.com/@observablehq/build-your-first-choropleth-map-with-observable-plot)
+* [Build your first map with Observable Plot](https://observablehq.com/@observablehq/build-your-first-map-with-observable-plot)
+* [Build your first choropleth map with Observable Plot](https://observablehq.com/@observablehq/build-your-first-choropleth-map-with-observable-plot)
 
 ## Projection options
 

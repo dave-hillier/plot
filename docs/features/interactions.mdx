@@ -6,7 +6,7 @@ import {useOlympians} from "../data/olympians.ts";
 
 # Interactions
 
-Interaction allows reading values out of a plot (details on demand), or fluidly changing a view of data without editing code (zoom and filter). There are a variety of ways to achieve interaction with Plot, including built-in interaction features and development techniques with frameworks such as Observable and React.
+Interaction allows reading values out of a plot (details on demand), or fluidly changing a view of data without editing code (zoom and filter). There are a variety of ways to achieve interaction with Replot, including built-in interaction features and development techniques with frameworks such as Observable and React.
 
 ## Pointing
 
@@ -41,10 +41,10 @@ Support for declarative animation is planned for a future release. If you are in
 
 ## Custom reactivity
 
-With the exception of render transforms (see the [pointer transform](https://github.com/observablehq/plot/blob/main/src/interactions/pointer.js) implementation), Plot does not currently provide incremental re-rendering (partial updates to previously-rendered plots) or animated transitions between views.
+With the exception of render transforms (see the [pointer transform](https://github.com/observablehq/plot/blob/main/src/interactions/pointer.js) implementation), Replot does not currently provide incremental re-rendering (partial updates to previously-rendered plots) or animated transitions between views.
 
 That said, you can simply throw away an old plot and replace it with a new one! This allows plotting of dynamic data: data which can change in real-time as it streams in, or because it is derived in response to external inputs such as range sliders and search boxes.
 
-On Observable, you can use [viewof](https://observablehq.com/@observablehq/views) in conjunction with [Observable Inputs](https://observablehq.com/@observablehq/inputs) (or other plots!) for interactivity. If your cell references another cell, it will automatically re-run whenever the upstream cell's value changes. For example, try dragging the slider in this [hexbin example](https://observablehq.com/@observablehq/plot-hexbin-binwidth). In React, Plot's [component API](../getting-started.md#plot-in-react) makes reactivity automatic — when your data or props change, the plot re-renders as part of the normal React rendering cycle, with no refs or effects needed. In Vue, use [ref](https://vuejs.org/api/reactivity-core.html#ref). For more, see our [getting started guide](../getting-started.md).
+On Observable, you can use [viewof](https://observablehq.com/@observablehq/views) in conjunction with [Observable Inputs](https://observablehq.com/@observablehq/inputs) (or other plots!) for interactivity. If your cell references another cell, it will automatically re-run whenever the upstream cell's value changes. For example, try dragging the slider in this [hexbin example](https://observablehq.com/@observablehq/plot-hexbin-binwidth). In React, Replot's [component API](../getting-started.md#plot-in-react) makes reactivity automatic — when your data or props change, the plot re-renders as part of the normal React rendering cycle, with no refs or effects needed. In Vue, use [ref](https://vuejs.org/api/reactivity-core.html#ref). For more, see our [getting started guide](../getting-started.md).
 
-You can also manipulate the SVG that Plot creates, if you are comfortable using lower-level APIs; see examples by [Mike Freeman](https://observablehq.com/@mkfreeman/plot-animation) and [Philippe Rivière](https://observablehq.com/@fil/plot-animate-a-bar-chart).
+You can also manipulate the SVG that Replot creates, if you are comfortable using lower-level APIs; see examples by [Mike Freeman](https://observablehq.com/@mkfreeman/plot-animation) and [Philippe Rivière](https://observablehq.com/@fil/plot-animate-a-bar-chart).

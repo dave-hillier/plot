@@ -2,9 +2,9 @@ import * as d3 from "d3";
 
 # Intervals <VersionBadge version="0.6.15" pr="2075" />
 
-Plot provides several built-in interval implementations for use with the **tick** option for [scales](./scales.md), as the **thresholds** option for a [bin transform](../transforms/bin.md), or other use. See also [d3-time](https://d3js.org/d3-time). You can also implement custom intervals.
+Replot provides several built-in interval implementations for use with the **tick** option for [scales](./scales.md), as the **thresholds** option for a [bin transform](../transforms/bin.md), or other use. See also [d3-time](https://d3js.org/d3-time). You can also implement custom intervals.
 
-At a minimum, intervals implement *interval*.**floor** and *interval*.**offset**. Range intervals additionally implement *interval*.**range**, and nice intervals additionally implement *interval*.**ceil**. These latter implementations are required in some contexts; see Plot’s TypeScript definitions for details.
+At a minimum, intervals implement *interval*.**floor** and *interval*.**offset**. Range intervals additionally implement *interval*.**range**, and nice intervals additionally implement *interval*.**ceil**. These latter implementations are required in some contexts; see Replot’s TypeScript definitions for details.
 
 The *interval*.**floor** method takes a *value* and returns the corresponding value representing the greatest interval boundary less than or equal to the specified *value*. For example, for the “day” time interval, it returns the preceding midnight:
 

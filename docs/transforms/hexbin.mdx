@@ -76,7 +76,7 @@ The hexbin transform can be paired with any mark that supports **x** and **y** c
   </Hexbin>
 </Plot>
 
-The hexbin transform also works with Plot’s [projection system](../features/projections.md). Below, hexagon size represents the number of nearby Walmart stores, while color represents the date the first nearby Walmart store opened. (The first Walmart opened in Rogers, Arkansas.)
+The hexbin transform also works with Replot’s [projection system](../features/projections.md). Below, hexagon size represents the number of nearby Walmart stores, while color represents the date the first nearby Walmart store opened. (The first Walmart opened in Rogers, Arkansas.)
 
 <Plot projection="albers" r={{range: [0, 16]}} color={{scheme: "spectral", label: "First year opened", legend: true}}>
   <Geo data={statemesh} strokeOpacity={0.5} />

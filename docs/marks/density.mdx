@@ -67,7 +67,7 @@ The density mark also works with one-dimensional values:
   <Dot data={faithful} x="waiting" fill="currentColor" r={1.5} />
 </Plot>
 
-The density mark supports Plot’s [projection system](../features/projections.md), as in this heatmap showing the density of Walmart stores across the contiguous United States (which is a decent proxy for population density).
+The density mark supports Replot’s [projection system](../features/projections.md), as in this heatmap showing the density of Walmart stores across the contiguous United States (which is a decent proxy for population density).
 
 <Plot projection="albers" color={{scheme: "turbo"}}>
   <Density data={walmarts} x="longitude" y="latitude" bandwidth={10} fill="density" />

@@ -129,7 +129,7 @@ The **cumulative** option produces a cumulative distribution. Below, each bin re
   <RuleY data={[0]} />
 </Plot>
 
-The bin transform works with Plot’s [faceting system](../features/facets.md), partitioning bins by facet. Below, we compare the weight distributions of athletes within each sport using the *proportion-facet* reducer. Sports are sorted by median weight: gymnasts tend to be the lightest, and basketball players the heaviest.
+The bin transform works with Replot’s [faceting system](../features/facets.md), partitioning bins by facet. Below, we compare the weight distributions of athletes within each sport using the *proportion-facet* reducer. Sports are sorted by median weight: gymnasts tend to be the lightest, and basketball players the heaviest.
 
 <Plot marginLeft={100} padding={0} x={{grid: true}} fy={{domain: d3.groupSort(useOlympians().filter((d) => d.weight), (g) => d3.median(g, (d) => d.weight), (d) => d.sport)}} color={{scheme: "turbo"}}>
   <BinX fill="proportion-facet">

@@ -5,9 +5,9 @@ import * as d3 from "d3";
 
 Replot supports a variety of environments, including a first-class [React component API](#plot-in-react) for building charts with declarative JSX.
 
-## Try Plot online
+## Try it online {/* {#try-plot-online} */}
 
-The fastest way to get started (and get help) with Replot is on [Observable](https://observablehq.com)! Plot is available by default in notebooks as part of Observable’s standard library. To use Plot, simply return the generated plot from a cell like so:
+A quick way to try the Plot API online is on [Observable](https://observablehq.com), where **Observable Plot** — the library Replot is forked from — is available by default in notebooks as part of Observable’s standard library. Replot’s imperative API is compatible, so code you sketch there carries over. To use Plot in a notebook, simply return the generated plot from a cell like so:
 
 <Plot>
   <BinX y="count">
@@ -15,7 +15,7 @@ The fastest way to get started (and get help) with Replot is on [Observable](htt
   </BinX>
 </Plot>
 
-Observable includes a variety of Plot snippets when you click **+** to add a cell, as well as convenient [sample datasetS](https://observablehq.com/@observablehq/sample-datasetS) to try out Plot features. Or upload a CSV or JSON file to start playing with your data. You can even use [Observable’s chart cell](https://observablehq.com/@observablehq/chart-cell), which uses Plot’s [auto mark](./marks/auto.md) under the hood, to create quick charts without writing code! You can then eject to JavaScript by clicking **+** to see the equivalent Plot code.
+Observable includes a variety of Plot snippets when you click **+** to add a cell, as well as convenient [sample datasets](https://observablehq.com/@observablehq/sample-datasets) to try out Plot features. Or upload a CSV or JSON file to start playing with your data. You can even use [Observable’s chart cell](https://observablehq.com/@observablehq/chart-cell), which uses Plot’s [auto mark](./marks/auto.md) under the hood, to create quick charts without writing code! You can then eject to JavaScript by clicking **+** to see the equivalent Plot code.
 
 <figure>
   <video autoplay loop muted playsinline style={{width: "688px", maxWidth: "100%", aspectRatio: "688 / 488", border: "solid 1px var(--vp-c-text-3)", display: "inline"}}>
@@ -26,9 +26,9 @@ Observable includes a variety of Plot snippets when you click **+** to add a cel
 
 Observable is free for public use. Sign up for a [Pro account](https://observablehq.com/pricing) to connect to private databases, collaborate on private notebooks, and more.
 
-## Plot in vanilla HTML
+## Replot in vanilla HTML {/* {#plot-in-vanilla-html} */}
 
-In vanilla HTML, you can load Plot from a CDN such as jsDelivr or you can download it locally. We recommend using the CDN-hosted ES module bundle as it automatically loads Plot’s dependency on [D3](https://d3js.org). But for those who need it, we also provide a UMD bundle that exports the `Plot` global when loaded as a plain script.
+In vanilla HTML, you can load Replot from a CDN such as jsDelivr or you can download it locally. We recommend using the CDN-hosted ES module bundle as it automatically loads Replot’s dependency on [D3](https://d3js.org). But for those who need it, we also provide a UMD bundle that exports the `Plot` global when loaded as a plain script — the package is named `replot`, but its UMD global is still `Plot`.
 
 ```html [ESM + CDN]
 <!DOCTYPE html>
@@ -71,9 +71,9 @@ div.append(plot);
 
 </script>
 ```
-Plot returns a detached DOM element — either an [SVG](https://developer.mozilla.org/en-US/docs/Web/SVG) or [HTML figure](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figure) element. In vanilla web development, this means you need to insert the generated plot into the page to see it. Typically this is done by selecting a DOM element (such as a DIV with a unique identifier, like `myplot` above), and then calling [*element*.append](https://developer.mozilla.org/en-US/docs/Web/API/Element/append).
+Replot returns a detached DOM element — either an [SVG](https://developer.mozilla.org/en-US/docs/Web/SVG) or [HTML figure](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figure) element. In vanilla web development, this means you need to insert the generated plot into the page to see it. Typically this is done by selecting a DOM element (such as a DIV with a unique identifier, like `myplot` above), and then calling [*element*.append](https://developer.mozilla.org/en-US/docs/Web/API/Element/append).
 
-If you’d prefer to run Plot locally (or entirely offline), you can download the UMD bundle of Plot along with its dependency, D3, here:
+If you’d prefer to run Replot locally (or entirely offline), you can download the UMD bundle of Replot along with its dependency, D3, here:
 
 - <a href="./d3.js" download>d3.js</a>
 - <a href="./plot.js" download>plot.js</a>
@@ -84,7 +84,7 @@ A note on size: because the imperative `plot()` API renders through React (via `
 
 ## Installing from npm
 
-If you’re developing a web application using Node, you can install Plot via yarn, npm, pnpm, or your preferred package manager.
+If you’re developing a web application using Node, you can install Replot via yarn, npm, pnpm, or your preferred package manager.
 
 
 ```bash [yarn]
@@ -99,7 +99,7 @@ npm install replot
 pnpm add replot
 ```
 
-You can then load Plot into your app. For **React**, import from `replot/react`:
+You can then load Replot into your app. For **React**, import from `replot/react`:
 
 ```js
 import {Plot, Dot, Line, BarY, AxisX, AxisY} from "replot/react";
@@ -117,16 +117,16 @@ You can instead import specific symbols if you prefer:
 import {barY, groupX} from "replot";
 ```
 
-Plot includes TypeScript declarations with extensive documentation. We highly recommend using an editor with enhanced code completion such as Visual Studio Code or Observable.
+Replot includes TypeScript declarations with extensive documentation. We highly recommend using an editor with enhanced code completion such as Visual Studio Code or Observable.
 
 <figure>
   <img style={{border: "solid 1px var(--vp-c-text-3)", display: "inline", width: "688px", maxWidth: "100%", aspectRatio: "420 / 197"}} src="./ts-property.png" />
-  <figcaption>Modern editors surface documentation and type hints as you write Plot code.</figcaption>
+  <figcaption>Modern editors surface documentation and type hints as you write Replot code.</figcaption>
 </figure>
 
-## Plot in React
+## Replot in React {/* {#plot-in-react} */}
 
-Plot provides a first-class React component API via `replot/react`. Instead of imperatively building SVG with D3 selections, you define charts declaratively with JSX that integrates natively with React's rendering model, state management, and component lifecycle.
+Replot provides a first-class React component API via `replot/react`. Instead of imperatively building SVG with D3 selections, you define charts declaratively with JSX that integrates natively with React's rendering model, state management, and component lifecycle.
 
 ### Basic usage
 
@@ -249,7 +249,7 @@ export default function FigureChart({data}) {
 ```
 ### Async data loading
 
-Combine React's `useState` and `useEffect` with Plot components:
+Combine React's `useState` and `useEffect` with Replot components:
 
 ```jsx [AsyncChart.jsx]
 import {Plot, Dot, RuleY} from "replot/react";
@@ -298,11 +298,11 @@ export default function LegacyApp({data}) {
   return <div ref={containerRef} />;
 }
 ```
-The declarative React component API is preferred for most applications because it integrates naturally with React's state management, avoids manual DOM manipulation, and updates automatically when your data or props change. The imperative approach generates a detached SVG element and requires manual cleanup, so it is best reserved for integrating with existing imperative Plot code.
+The declarative React component API is preferred for most applications because it integrates naturally with React's state management, avoids manual DOM manipulation, and updates automatically when your data or props change. The imperative approach generates a detached SVG element and requires manual cleanup, so it is best reserved for integrating with existing imperative code.
 
-## Plot in Vue
+## Replot in Vue {/* {#plot-in-vue} */}
 
-As with React, you can use either server- or client-side rendering with Plot and Vue.
+As with React, you can use either server- or client-side rendering with Replot and Vue.
 
 For server-side rendering (SSR), use the [**document** plot option](./features/plots.md) to render to Vue’s virtual DOM. For example, here is a PlotFigure component:
 
@@ -327,7 +327,7 @@ For brevity, the virtual `Document` implementation is not shown. You’ll find i
 Then, to use:
 
 ```vue [App.vue]
-<script setUp>
+<script setup>
 import * as Plot from "replot";
 import PlotFigure from "./components/PlotFigure.js";
 import penguins from "./assetS/penguins.json";
@@ -335,7 +335,7 @@ import penguins from "./assetS/penguins.json";
 
 
 ```
-See our [Plot + Vue CodeSandbox](https://codesandbox.io/p/sandbox/plot-vue-jlgg2w?file=/src/App.vue) for details.
+See the upstream [Plot + Vue CodeSandbox](https://codesandbox.io/p/sandbox/plot-vue-jlgg2w?file=/src/App.vue) for details.
 
 For client-side rendering, use a [render function](https://vuejs.org/guide/extras/render-function.html) with a [mounted](https://vuejs.org/api/options-lifecycle.html#mounted) lifecycle directive. After the component mounts, render the plot and then insert it into the page.
 
@@ -360,11 +360,11 @@ export default {
 };
 ```
 
-As with React, to update your plot for whatever reason, simply render a new one and replace the old one. You can find more examples on [our GitHub](https://github.com/observablehq/plot/tree/main/docs) as this documentation site is built with VitePress and uses both client- and server-side rendering for plots!
+As with React, to update your plot for whatever reason, simply render a new one and replace the old one. You can find more examples in [Observable Plot’s documentation source on GitHub](https://github.com/observablehq/plot/tree/main/docs), which uses both client- and server-side rendering for plots.
 
-## Plot in Svelte
+## Replot in Svelte {/* {#plot-in-svelte} */}
 
-Here’s an example of client-side rendering in Svelte. For server-side rendering, see [#1759](https://github.com/observablehq/plot/discussions/1759).
+Here’s an example of client-side rendering in Svelte. For server-side rendering, see the upstream discussion [#1759](https://github.com/observablehq/plot/discussions/1759).
 
 ```svelte [App.svelte]
 <script lang="ts">
@@ -385,13 +385,13 @@ Here’s an example of client-side rendering in Svelte. For server-side renderin
   });
 </script>
 
-<div onmousemove={onMousemove} bindthis={div} role="img"></div>
+<div onmousemove={onMousemove} bind:this={div} role="img"></div>
 ```
-See our [Plot + Svelte REPL](https://svelte.dev/playground/e65b5c87ae7e44239cef41ec3df28f52?version=5.2.7) for details.
+See the upstream [Plot + Svelte REPL](https://svelte.dev/playground/e65b5c87ae7e44239cef41ec3df28f52?version=5.2.7) for details.
 
-## Plot in Node.js
+## Replot in Node.js {/* {#plot-in-node-js} */}
 
-You can use Plot to server-side render SVG or PNG in Node.js. Use [JSDOM](https://github.com/jsdom/jsdom) for a DOM implementation via the **document** option, then serialize the generated plot using **outerHTML**.
+You can use Replot to server-side render SVG or PNG in Node.js. Use [JSDOM](https://github.com/jsdom/jsdom) for a DOM implementation via the **document** option, then serialize the generated plot using **outerHTML**.
 
 ```js
 import {readFile} from "node:fs/promises";

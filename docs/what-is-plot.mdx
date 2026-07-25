@@ -2,11 +2,11 @@ import {Bin, BinX, Density, Dot, Plot, Rect, RectY, RuleY} from "replot/react";
 import * as d3 from "d3";
 import {useOlympians} from "./data/olympians.ts";
 
-# What is Plot?
+# What is Replot?
 
 **Replot** is a free, open-source, JavaScript library for visualizing tabular data, focused on accelerating exploratory data analysis. It has a concise, memorable, yet expressive interface, featuring [scales](./features/scales.md) and [layered marks](./features/marks.md) in the *grammar of graphics* style popularized by [Leland Wilkinson](https://en.wikipedia.org/wiki/Leland_Wilkinson) and [Hadley Wickham](https://en.wikipedia.org/wiki/Hadley_Wickham) and inspired by the earlier ideas of [Jacques Bertin](https://en.wikipedia.org/wiki/Jacques_Bertin). And there are [plenty of examples](https://observablehq.com/@observablehq/plot-gallery) to learn from and copy-paste.
 
-Plot offers two APIs: a concise **imperative API** for vanilla JavaScript environments and a **declarative React component API** for building charts with JSX. Both APIs share the same powerful core — D3 scales, transforms, projections, and mark types — so you get the same expressive visualizations regardless of which API you choose. See the [getting started guide](./getting-started.md) for details on both approaches.
+Replot offers two APIs: a concise **imperative API** for vanilla JavaScript environments and a **declarative React component API** for building charts with JSX. Both APIs share the same powerful core — D3 scales, transforms, projections, and mark types — so you get the same expressive visualizations regardless of which API you choose. See the [getting started guide](./getting-started.md) for details on both approaches.
 
 In the spirit of *show don’t tell*, here’s a scatterplot of body measurements of athletes from the [2016 Summer Olympics](https://flother.is/2017/olympic-games-data/).
 
@@ -14,7 +14,7 @@ In the spirit of *show don’t tell*, here’s a scatterplot of body measurement
   <Dot data={useOlympians()} x="weight" y="height" stroke="sex" />
 </Plot>
 
-A plot specification assigns columns of data (*weight*, *height*, and *sex*) to visual properties of marks (**x**, **y**, and **stroke**). Plot does the rest! You can configure much more, if needed, but Plot’s goal is to help you get a meaningful visualization quickly to accelerate analysis.
+A plot specification assigns columns of data (*weight*, *height*, and *sex*) to visual properties of marks (**x**, **y**, and **stroke**). Replot does the rest! You can configure much more, if needed, but Replot’s goal is to help you get a meaningful visualization quickly to accelerate analysis.
 
 This scatterplot suffers from overplotting: many dots are drawn in the same spot, so it’s hard to perceive density. We can fix this by applying a [bin transform](./transforms/bin.md) to group athletes of similar height and weight (and sex), and then use opacity to encode the number of athletes in the bin.
 
@@ -47,7 +47,7 @@ Or if we’d prefer to show the two distributions separately as small multiples,
   <RuleY data={[0]} />
 </Plot>
 
-## What can Plot do?
+## What can Replot do?
 
 Because marks are composable, and because you can extend Plot with custom marks, you can make almost anything with it — much more than the charts above! The following [tree diagram](./marks/tree.md) of the documentation gives a sense of what’s ”in the box” with Plot. Peruse our [gallery of examples](https://observablehq.com/@observablehq/plot-gallery) for more inspiration.
 
