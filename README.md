@@ -61,8 +61,8 @@ components.
 
 | Imperative API (Observable Plot) | React Component API (Replot) |
 |---|---|
-| `import * as Plot from "replot"` | `import {Replot, Dot} from "replot/react"` |
-| `Plot.plot({ marks: [Plot.dot(data, {x, y})] })` | `<Replot><Dot data={data} x="x" y="y" /></Replot>` |
+| `import * as Replot from "replot"` | `import {Replot, Dot} from "replot/react"` |
+| `Replot.plot({ marks: [Replot.dot(data, {x, y})] })` | `<Replot><Dot data={data} x="x" y="y" /></Replot>` |
 | Returns a detached SVG element | Renders directly into the React tree |
 | Manual DOM insertion required | No refs or effects needed |
 
@@ -176,7 +176,7 @@ import {Replot, Dot, Line, BarY, AxisX, AxisY} from "replot/react";
 Or the imperative API:
 
 ```js
-import * as Plot from "replot";
+import * as Replot from "replot";
 ```
 
 ## Based on Observable Plot
