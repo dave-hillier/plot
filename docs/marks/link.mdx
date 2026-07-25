@@ -1,13 +1,11 @@
 import {Dot, Geo, Link, Replot, Sphere, Text, treeLink, treeNode} from "replot/react";
 import * as d3 from "d3";
-import {useState, useEffect} from "react";
-import * as topojson from "topojson-client";
 import income from "../data/income-gender.ts";
 import metros from "../data/metros.ts";
+import {useLand} from "../data/world.ts";
 
 export const xy = {x1: -122.4194, y1: 37.7749, x2: 2.3522, y2: 48.8566};
 export const gods = ["Chaos/Gaia/Mountains", "Chaos/Gaia/Pontus", "Chaos/Gaia/Uranus", "Chaos/Eros", "Chaos/Erebus", "Chaos/Tartarus"];
-export const land = [];
 
 # Link mark
 
@@ -31,7 +29,7 @@ For example, the chart below shows the rising inequality (and population) in var
   <Text data={metros} x="POP_2015" y="R90_10_2015" filter="highlight" text="nyt_display" fill="currentColor" stroke="var(--vp-c-bg)" dy={-8} />
 </Replot>
 
-The link mark is used by the composite [tree mark](./tree.md) to render a link from parent to child in a hierarchy. The [treeLink transform](../transforms/tree.md) setS the default [curve option](../features/curves.md) to *bump-x*.
+The link mark is used by the composite [tree mark](./tree.md) to render a link from parent to child in a hierarchy. The [treeLink transform](../transforms/tree.md) sets the default [curve option](../features/curves.md) to *bump-x*.
 
 <Replot axis={null} height={120} inset={20} insetRight={120}>
   <Link data={gods} {...treeLink({stroke: "node:internal"})} />
@@ -56,7 +54,7 @@ With a [spherical projection](../features/projections.md) and the default [*auto
 
 <Replot projection="equal-earth">
   <Sphere />
-  <Geo data={land} fill="currentColor" fillOpacity={0.3} />
+  <Geo data={useLand()} fill="currentColor" fillOpacity={0.3} />
   <Link data={{length: 1}} curve="linear" stroke="red" {...xy} />
   <Link data={{length: 1}} markerStart="dot" markerEnd="arrow" strokeWidth={1.5} {...xy} />
 </Replot>

@@ -1,16 +1,29 @@
-import {AxisX, AxisY, Circle, Dot, Geo, Hexbin, Hexgrid, Replot, Text, scale} from "replot/react";
+import {AxisX, AxisY, Circle, Dot, Geo, Hexbin, Hexgrid, Replot, Text} from "replot/react";
 import * as d3 from "d3";
-import {useState, useEffect} from "react";
-import * as topojson from "topojson-client";
-import cars from "../data/cars.ts";
+import {useState} from "react";
 import {useOlympians} from "../data/olympians.ts";
 import walmarts from "../data/walmarts.ts";
+import {useNation, useStatemesh} from "../data/us-atlas.ts";
 
-export const nation = [];
-export const statemesh = [];
-export const binWidth = 20;
-export const setBinWidth = () => {};
-export const scheme = scale({color: {type: "categorical"}}).range;
+export function BinWidthDemo() {
+  const [binWidth, setBinWidth] = useState(20);
+  return (
+    <div>
+      <p>
+        <label className="label-input">
+          Bin width:
+          <input type="range" value={binWidth} onChange={(e) => setBinWidth(Number(e.target.value))} min="0" max="40" step="0.1" />
+          <span style={{fontVariantNumeric: "tabular-nums"}}>{binWidth.toLocaleString("en-US", {minimumFractionDigits: 1})}</span>
+        </label>
+      </p>
+      <Replot>
+        <Hexbin r="count" binWidth={binWidth}>
+          <Dot data={useOlympians()} x="weight" y="height" />
+        </Hexbin>
+      </Replot>
+    </div>
+  );
+}
 
 # Hexbin transform <VersionBadge version="0.5.0" />
 
@@ -28,19 +41,15 @@ Whereas the [bin transform](./bin.md) produces rectangular bins and operates on 
 
 To produce an areal encoding as in a bubble map, output **r**. In this case, the default range of the *r* scale is set such that the hexagons do not overlap. The **binWidth** option, which defaults to 20, specifies the distance between centers of neighboring hexagons in pixels.
 
-<p>
-  <label className="label-input">
-    Bin width:
-    <input type="range" value={binWidth} onChange={(e) => setBinWidth(Number(e.target.value))} min="0" max="40" step="0.1" />
-    <span style={{fontVariantNumeric: "tabular-nums"}}>{binWidth.toLocaleString("en-US", {minimumFractionDigits: 1})}</span>
-  </label>
-</p>
+<BinWidthDemo />
 
+```jsx
 <Replot>
-  <Hexbin r="count" binWidth={binWidth}>
-    <Dot data={useOlympians()} x="weight" y="height" />
+  <Hexbin r="count" binWidth={20}>
+    <Dot data={olympians} x="weight" y="height" />
   </Hexbin>
 </Replot>
+```
 
 If desired, you can output both **fill** and **r** for a redundant encoding.
 
@@ -68,7 +77,7 @@ Using **z**, the hexbin transform will partition hexagons by ordinal value. If *
   </Hexbin>
 </Replot>
 
-The hexbin transform can be paired with any mark that supports **x** and **y** channels (which is almost all of them). The [text mark](../marks/text.md) is useful for labelling. By setTing the **text** output channel, you can derive the text from the binned contents.
+The hexbin transform can be paired with any mark that supports **x** and **y** channels (which is almost all of them). The [text mark](../marks/text.md) is useful for labelling. By setting the **text** output channel, you can derive the text from the binned contents.
 
 <Replot>
   <Hexbin text="count">
@@ -79,8 +88,8 @@ The hexbin transform can be paired with any mark that supports **x** and **y** c
 The hexbin transform also works with Replot’s [projection system](../features/projections.md). Below, hexagon size represents the number of nearby Walmart stores, while color represents the date the first nearby Walmart store opened. (The first Walmart opened in Rogers, Arkansas.)
 
 <Replot projection="albers" r={{range: [0, 16]}} color={{scheme: "spectral", label: "First year opened", legend: true}}>
-  <Geo data={statemesh} strokeOpacity={0.5} />
-  <Geo data={nation} />
+  <Geo data={useStatemesh() ?? {type: null}} strokeOpacity={0.5} />
+  <Geo data={useNation() ?? {type: null}} />
   <Hexbin r="count" fill="min">
     <Dot data={walmarts} x="longitude" y="latitude" fill="date" />
   </Hexbin>

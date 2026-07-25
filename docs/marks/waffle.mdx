@@ -1,6 +1,6 @@
 import {AxisFx, GroupX, GroupZ, Replot, Text, WaffleX, WaffleY} from "replot/react";
 import * as d3 from "d3";
-import {useState, useEffect} from "react";
+import {useState} from "react";
 import {useOlympians} from "../data/olympians.ts";
 
 export const survey = [
@@ -9,10 +9,49 @@ export const survey = [
   {question: "engage in political discussion and social movements, including online", yes: 10},
   {question: "would like to do activities but are prevented by safety concerns", yes: 73}
 ];
-export const unit = "1";
-export const setUnit = () => {};
-export const apples = 3;
-export const setApples = () => {};
+
+export function UnitDemo() {
+  const [unit, setUnit] = useState(10);
+  return (
+    <div>
+      <p>
+        <span className="label-input">
+          Unit:
+          <label style={{marginLeft: "0.5em"}}><input type="radio" name="unit" value="1" checked={unit === 1} onChange={(e) => setUnit(Number(e.target.value))} /> 1</label>
+          <label style={{marginLeft: "0.5em"}}><input type="radio" name="unit" value="2" checked={unit === 2} onChange={(e) => setUnit(Number(e.target.value))} /> 2</label>
+          <label style={{marginLeft: "0.5em"}}><input type="radio" name="unit" value="5" checked={unit === 5} onChange={(e) => setUnit(Number(e.target.value))} /> 5</label>
+          <label style={{marginLeft: "0.5em"}}><input type="radio" name="unit" value="10" checked={unit === 10} onChange={(e) => setUnit(Number(e.target.value))} /> 10</label>
+          <label style={{marginLeft: "0.5em"}}><input type="radio" name="unit" value="25" checked={unit === 25} onChange={(e) => setUnit(Number(e.target.value))} /> 25</label>
+          <label style={{marginLeft: "0.5em"}}><input type="radio" name="unit" value="50" checked={unit === 50} onChange={(e) => setUnit(Number(e.target.value))} /> 50</label>
+          <label style={{marginLeft: "0.5em"}}><input type="radio" name="unit" value="100" checked={unit === 100} onChange={(e) => setUnit(Number(e.target.value))} /> 100</label>
+        </span>
+      </p>
+      <Replot fx={{interval: "5 years", label: null}}>
+        <GroupZ y="count">
+          <WaffleY data={useOlympians()} fx="date_of_birth" unit={unit} />
+        </GroupZ>
+      </Replot>
+    </div>
+  );
+}
+
+export function ApplesDemo() {
+  const [apples, setApples] = useState(512);
+  return (
+    <div>
+      <p>
+        <label className="label-input">
+          <span>Apples:</span>
+          <input type="range" value={apples} onChange={(e) => setApples(Number(e.target.value))} min="10" max="1028" step="1" />
+          <span style={{fontVariantNumeric: "tabular-nums"}}>{apples}</span>
+        </label>
+      </p>
+      <Replot height={240}>
+        <WaffleX data={[apples]} y={["apples"]} />
+      </Replot>
+    </div>
+  );
+}
 
 # Waffle mark <VersionBadge version="0.6.16" pr="2040" />
 
@@ -34,24 +73,15 @@ The waffle mark is often used with the [group transform](../transforms/group.md)
 Waffles are rendered using SVG patterns, making them more performant than alternatives such as the [dot mark](./dot.md) for rendering many points.
 The **unit** option determines the quantity each waffle cell represents; it defaults to one. The unit may be set to a value greater than one for large quantities, or less than one (but greater than zero) for small fractional quantities. Try changing the unit below to see its effect.
 
-<p>
-  <span className="label-input">
-    Unit:
-    <label style={{marginLeft: "0.5em"}}><input type="radio" name="unit" value="1" checked={unit === "1"} onChange={(e) => setUnit(e.target.value)} /> 1</label>
-    <label style={{marginLeft: "0.5em"}}><input type="radio" name="unit" value="2" checked={unit === "2"} onChange={(e) => setUnit(e.target.value)} /> 2</label>
-    <label style={{marginLeft: "0.5em"}}><input type="radio" name="unit" value="5" checked={unit === "5"} onChange={(e) => setUnit(e.target.value)} /> 5</label>
-    <label style={{marginLeft: "0.5em"}}><input type="radio" name="unit" value="10" checked={unit === "10"} onChange={(e) => setUnit(e.target.value)} /> 10</label>
-    <label style={{marginLeft: "0.5em"}}><input type="radio" name="unit" value="25" checked={unit === "25"} onChange={(e) => setUnit(e.target.value)} /> 25</label>
-    <label style={{marginLeft: "0.5em"}}><input type="radio" name="unit" value="50" checked={unit === "50"} onChange={(e) => setUnit(e.target.value)} /> 50</label>
-    <label style={{marginLeft: "0.5em"}}><input type="radio" name="unit" value="100" checked={unit === "100"} onChange={(e) => setUnit(e.target.value)} /> 100</label>
-  </span>
-</p>
+<UnitDemo />
 
+```jsx
 <Replot fx={{interval: "5 years", label: null}}>
   <GroupZ y="count">
-    <WaffleY data={useOlympians()} fx="date_of_birth" unit={unit} />
+    <WaffleY data={olympians} fx="date_of_birth" unit={unit} />
   </GroupZ>
 </Replot>
+```
 
 
 Use [faceting](../features/facets.md) as an alternative to supplying an ordinal channel (_i.e._, *fx* instead of *x* for a vertical waffleY). The facet scale’s **interval** option then allows grouping by a quantitative or temporal variable, such as the athlete’s year of birth in the chart below.
@@ -76,22 +106,18 @@ Waffles can also be used to highlight a proportion of the whole. The chart below
 
 The waffle mark comes in two orientations: waffleY extends vertically↑, while waffleX extends horizontally→. The waffle mark automatically determines the appropriate number of cells per row or per column (depending on orientation) such that the cells are square, don’t overlap, and are consistent with position scales.
 
-<p>
-  <label className="label-input">
-    <span>Apples:</span>
-    <input type="range" value={apples} onChange={(e) => setApples(Number(e.target.value))} min="10" max="1028" step="1" />
-    <span style={{fontVariantNumeric: "tabular-nums"}}>{apples}</span>
-  </label>
-</p>
+<ApplesDemo />
 
+```jsx
 <Replot height={240}>
   <WaffleX data={[apples]} y={["apples"]} />
 </Replot>
+```
 
 
 The number of rows in the waffle above is guaranteed to be an integer, but it might not be a multiple or factor of the *x*-axis tick interval. For example, the waffle might have 15 rows while the *x*-axis shows ticks every 100 units.
 
-To set the number of rows (or columns) directly, use the **multiple** option, though note that manually setTing the multiple may result in non-square cells if there isn’t enough room. Alternatively, you can bias the automatic multiple while preserving square cells by setTing the **padding** option on the corresponding band scale: padding defaults to 0.1; a higher value may produce more rows, while a lower (or zero) value may produce fewer rows.
+To set the number of rows (or columns) directly, use the **multiple** option, though note that manually setting the multiple may result in non-square cells if there isn’t enough room. Alternatively, you can bias the automatic multiple while preserving square cells by setting the **padding** option on the corresponding band scale: padding defaults to 0.1; a higher value may produce more rows, while a lower (or zero) value may produce fewer rows.
 ## Waffle options
 
 For required channels, see the [bar mark](./bar.md). The waffle mark supports the [standard mark options](../features/marks.md), including [insets](../features/marks.md#insets) and [rounded corners](../features/marks.md#rounded-corners). The **stroke** defaults to *none*. The **fill** defaults to *currentColor* if the stroke is *none*, and to *none* otherwise.

@@ -77,7 +77,7 @@ When there are many facets, facets may be small and hard to read; you may need t
         <AreaY
           data={industries}
           x="date"
-          y="unemployment"
+          y="unemployed"
           fy={(d) => Math.floor(industryNames.indexOf(d.industry) / columns)}
           fx={(d) => industryNames.indexOf(d.industry) % columns}
           z="industry"
@@ -86,7 +86,7 @@ When there are many facets, facets may be small and hard to read; you may need t
         <Text
           data={industries}
           x="date"
-          y="unemployment"
+          y="unemployed"
           fy={(d) => Math.floor(industryNames.indexOf(d.industry) / columns)}
           fx={(d) => industryNames.indexOf(d.industry) % columns}
           z="industry"
@@ -105,7 +105,7 @@ When there are many facets, facets may be small and hard to read; you may need t
 If you are interested in automatic facet wrapping, please upvote [#277](https://github.com/observablehq/plot/issues/277).
 
 This example uses an [immediately-invoked function expression (IIFE)](https://developer.mozilla.org/en-US/docs/Glossary/IIFE) to declare local variables.
-The above chart also demonstrates faceted annotations, using a [text mark](../marks/text.md) to label the facet in lieu of facet axes. Below, we apply a single text annotation to the *Adelie* facet by setTing the **fy** channel to a single-element array parallel to the data.
+The above chart also demonstrates faceted annotations, using a [text mark](../marks/text.md) to label the facet in lieu of facet axes. Below, we apply a single text annotation to the *Adelie* facet by setting the **fy** channel to a single-element array parallel to the data.
 
 <Replot marginLeft={60} marginRight={60} grid y={{label: null}} fy={{label: null}} color={{legend: true}}>
   <GroupY x="count">
@@ -127,7 +127,7 @@ Faceting can be explicitly enabled or disabled on a mark with the **facet** opti
 * *super* - draw this mark in a single frame that covers all facets
 * null (or false) - repeat this mark’s data across all facets (*i.e.*, no faceting)
 
-When mark-level faceting is used, the default *auto* setTing is equivalent to *include*: the mark will be faceted if either the **fx** or **fy** channel option (or both) is specified. The null or false option will disable faceting, while *exclude* draws the subset of the mark’s data *not* in the current facet. When a mark uses *super* faceting, it is not allowed to use position scales (*x*, *y*, *fx*, or *fy*); *super* faceting is intended for decorations, such as labels and legends.
+When mark-level faceting is used, the default *auto* setting is equivalent to *include*: the mark will be faceted if either the **fx** or **fy** channel option (or both) is specified. The null or false option will disable faceting, while *exclude* draws the subset of the mark’s data *not* in the current facet. When a mark uses *super* faceting, it is not allowed to use position scales (*x*, *y*, *fx*, or *fy*); *super* faceting is intended for decorations, such as labels and legends.
 
 The **facetAnchor** option<a id="facetAnchor" href="#facetAnchor" aria-label="Permalink to &quot;facetAnchor&quot;"></a> <VersionBadge version="0.6.3" /> controls the placement of the mark with respect to the facets. Based on the value, the mark will be displayed on:
 
@@ -138,9 +138,9 @@ The **facetAnchor** option<a id="facetAnchor" href="#facetAnchor" aria-label="Pe
 
 The **facetAnchor** option defaults to null for all marks except axis marks, whose default depends on the axis orientation and associated scale.
 
-When using top-level faceting, if the mark data is parallel to the facet data (*i.e.*, it has the same length and order), but is not strictly equal (`===`), you can enable faceting by specifying the **facet** option to *include* (or equivalently true). Likewise you can disable faceting by setTing the **facet** option to null or false. Finally, the **facet** option supports the _exclude_ option to select all data points that are _not_ part of the current facet, allowing “background” marks for context.
+When using top-level faceting, if the mark data is parallel to the facet data (*i.e.*, it has the same length and order), but is not strictly equal (`===`), you can enable faceting by specifying the **facet** option to *include* (or equivalently true). Likewise you can disable faceting by setting the **facet** option to null or false. Finally, the **facet** option supports the _exclude_ option to select all data points that are _not_ part of the current facet, allowing “background” marks for context.
 
-When top-level faceting is used, the default *auto* setTing is equivalent to *include* when the mark data is strictly equal to the top-level facet data; otherwise it is equivalent to null. When the *include* or *exclude* facet mode is chosen, the mark data must be parallel to the top-level facet data: the data must have the same length and order. If the data are not parallel, then the wrong data may be shown in each facet. The default *auto* therefore requires strict equality (`===`) for safety, and using the facet data as mark data is recommended when using the *exclude* facet mode. (To construct parallel data safely, consider using [*array*.map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) on the facet data.)
+When top-level faceting is used, the default *auto* setting is equivalent to *include* when the mark data is strictly equal to the top-level facet data; otherwise it is equivalent to null. When the *include* or *exclude* facet mode is chosen, the mark data must be parallel to the top-level facet data: the data must have the same length and order. If the data are not parallel, then the wrong data may be shown in each facet. The default *auto* therefore requires strict equality (`===`) for safety, and using the facet data as mark data is recommended when using the *exclude* facet mode. (To construct parallel data safely, consider using [*array*.map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) on the facet data.)
 
 ## Replot facet options {/* {#plot-facet-options} */}
 

@@ -3,33 +3,44 @@ import * as d3 from "d3";
 import {useState} from "react";
 import aapl from "../data/aapl.ts";
 
-export const n = 20;
-export const setN = () => {};
-export const k = 2;
-export const setK = () => {};
+export function BollingerDemo() {
+  const [n, setN] = useState(20);
+  const [k, setK] = useState(2);
+  return (
+    <div>
+      <p>
+        For example, the chart below shows the price of Apple stock from 2013 to 2018, with a window size <em>n</em> of {n} days and radius <em>k</em> of {k} standard deviations.
+      </p>
+      <p>
+        <label className="label-input">
+          <span>Window size (n):</span>
+          <input type="range" value={n} onChange={(e) => setN(Number(e.target.value))} min="1" max="100" step="1" />
+          <span style={{fontVariantNumeric: "tabular-nums"}}>{n.toLocaleString("en-US")}</span>
+        </label>
+        <label className="label-input">
+          <span>Radius (k):</span>
+          <input type="range" value={k} onChange={(e) => setK(Number(e.target.value))} min="0" max="10" step="0.1" />
+          <span style={{fontVariantNumeric: "tabular-nums"}}>{k.toLocaleString("en-US")}</span>
+        </label>
+      </p>
+      <Replot>
+        <BollingerY data={aapl} x="Date" y="Close" n={n} k={k} />
+      </Replot>
+    </div>
+  );
+}
 
 # Bollinger mark <VersionBadge version="0.6.10" pr="1772" />
 
 The **bollinger mark** is a [composite mark](../features/marks.md) consisting of a [line](./line.md) representing a moving average and an [area](./area.md) representing volatility as a band; the band thickness is proportional to the deviation of nearby values. The bollinger mark is often used to [analyze the price](https://en.wikipedia.org/wiki/Bollinger_Bands) of financial instruments such as stocks.
 
-For example, the chart below shows the price of Apple stock from 2013 to 2018, with a window size *n* of {n} days and radius *k* of {k} standard deviations.
+<BollingerDemo />
 
-<p>
-  <label className="label-input">
-    <span>Window size (n):</span>
-    <input type="range" value={n} onChange={(e) => setN(Number(e.target.value))} min="1" max="100" step="1" />
-    <span style={{fontVariantNumeric: "tabular-nums"}}>{n.toLocaleString("en-US")}</span>
-  </label>
-  <label className="label-input">
-    <span>Radius (k):</span>
-    <input type="range" value={k} onChange={(e) => setK(Number(e.target.value))} min="0" max="10" step="0.1" />
-    <span style={{fontVariantNumeric: "tabular-nums"}}>{k.toLocaleString("en-US")}</span>
-  </label>
-</p>
-
+```jsx
 <Replot>
-  <BollingerY data={aapl} x="Date" y="Close" n={n} k={k} />
+  <BollingerY data={aapl} x="Date" y="Close" n={20} k={2} />
 </Replot>
+```
 
 For more control, you can also use the [bollinger map method](#bollinger) directly with the [map transform](../transforms/map.md).
 

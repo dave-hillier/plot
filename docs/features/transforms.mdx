@@ -1,12 +1,10 @@
-import {BinX, Cell, Group, GroupY, NormalizeY, Replot, RectY, RuleX, TickX, identity, valueof, column, indexOf, scale} from "replot/react";
+import {BinX, Cell, Group, GroupY, Line, NormalizeY, Replot, RectY, RuleX, RuleY, TickX, identity, valueof, column, indexOf, scale} from "replot/react";
 import * as d3 from "d3";
 import penguins from "../data/penguins.ts";
 import {useOlympians} from "../data/olympians.ts";
-import aapl from "../data/aapl.ts";
-import bls from "../data/bls-industry-unemployment.ts";
+import {useTraffic} from "../data/traffic.ts";
+import {useBlsMetroUnemployment} from "../data/bls-metro-unemployment.ts";
 
-export const traffic = [];
-export const bins = [];
 export const scheme = scale({color: {type: "categorical"}}).range;
 
 # Transforms
@@ -17,9 +15,9 @@ For example, given a [dataset of highway traffic](https://gist.github.com/chrtze
 
 <Replot marginLeft={120} x={{label: "Vehicles per hour (thousands)", transform: (x) => x / 1000}} y={{label: null}}>
   <RuleX data={[0]} />
-  <TickX data={traffic} x="vehicles" y="location" strokeOpacity={0.3} />
+  <TickX data={useTraffic()} x="vehicles" y="location" strokeOpacity={0.3} />
   <GroupY x="median">
-    <TickX data={traffic} x="vehicles" y="location" stroke="red" strokeWidth={4} sort={{y: "x"}} />
+    <TickX data={useTraffic()} x="vehicles" y="location" stroke="red" strokeWidth={4} sort={{y: "x"}} />
   </GroupY>
 </Replot>
 
@@ -27,7 +25,7 @@ As you might expect, traffic varies significantly throughout the day, so perhaps
 
 <Replot marginLeft={120} padding={0} y={{label: null}} color={{scheme: "turbo", legend: true, zero: true}}>
   <Group fill="median">
-    <Cell data={traffic} x={(d) => d.date.getUTCHours()} y="location" fill="vehicles" inset={0.5} sort={{y: "fill"}} />
+    <Cell data={useTraffic()} x={(d) => d.date.getUTCHours()} y="location" fill="vehicles" inset={0.5} sort={{y: "fill"}} />
   </Group>
 </Replot>
 
@@ -42,7 +40,7 @@ bins = d3.bin().thresholds(80).value((d) => d.weight)(olympians)
 We can then pass that to the [rect mark](../marks/rect.md), assigning to the **x1**, **x2**, and **y2** channels:
 
 <Replot>
-  <RectY data={bins} x1="x0" x2="x1" y2="length" />
+  <RectY data={d3.bin().thresholds(80).value((d) => d.weight)(useOlympians())} x1="x0" x2="x1" y2="length" />
 </Replot>
 
 
@@ -76,7 +74,7 @@ const binned = binX(binOptions, options); // transformed mark options
 
 
 If a transform isn’t doing what you expect, try inspecting the options object returned by the transform. Does it contain the options you expect?
-Transforms can derive channels (such as **y** above) as well as changing the default options. For example, the bin transform setS default insets for a one-pixel gap between adjacent rects.
+Transforms can derive channels (such as **y** above) as well as changing the default options. For example, the bin transform sets default insets for a one-pixel gap between adjacent rects.
 
 Transforms are composable: nest one wrapper component inside another (or, with the functional form, pass *options* through more than one transform before passing it to a mark); the nesting order of wrappers mirrors the call order of the functions. For example, above it’s a bit difficult to compare the weight distribution by sex because there are fewer <span style={{borderBottom: "solid 2px #4269d0"}}>female</span> than <span style={{borderBottom: "solid 2px #efb118"}}>male</span> athletes in the data. We can remove this effect using the [normalize transform](../transforms/normalize.md) with the *sum* reducer.
 
@@ -95,6 +93,23 @@ And, as you may have wondered above, many of Replot’s [marks](./marks.md) prov
 
 For greater control, you can also implement a custom **transform** function, allowing data, indexes, or channels to be derived prior to rendering. Custom transforms are rarely implemented directly; see the built-in transforms above. For example, below we implement the [filter transform](../transforms/filter.md) “by hand” as a custom transform to show the unemployment rates only in Michigan metropolitan divisions.
 
+<Replot y={{grid: true, label: "Unemployment (%)"}} color={{domain: [false, true], range: ["#ccc", "red"]}}>
+  <RuleY data={[0]} />
+  <Line
+    data={useBlsMetroUnemployment()}
+    x="date"
+    y="unemployment"
+    z="division"
+    transform={(data, facets) => ({
+      data,
+      facets: facets.map((facet) => {
+        return facet.filter((i) => {
+          return /, MI /.test(data[i].division);
+        });
+      })
+    })}
+  />
+</Replot>
 
 ```jsx{17-23}
 <Replot
@@ -130,7 +145,7 @@ If the **transform** option is specified, it supersedes any basic transforms (*i
 
 While transform functions often produce new *data* or *facets*, they may return the passed-in *data* and *facets* as-is, and often have a side effect of constructing derived channels. For example, the count of elements in a [groupX transform](../transforms/group.md) might be returned as a new *y* channel. In this case, the transform is typically expressed as an options transform: a function that takes a mark *options* object and returns a new, transformed options object, where the returned options object implements the **transform** option. Transform functions should not mutate the input *data* or *facets*. Likewise options transforms should not mutate the input *options* object.
 
-When implementing a custom transform for generic usage, keep in mind that it needs to be compatible with Replot’s [faceting system](./facets.md), which partitions the original dataset into discrete subsetS.
+When implementing a custom transform for generic usage, keep in mind that it needs to be compatible with Replot’s [faceting system](./facets.md), which partitions the original dataset into discrete subsets.
 
 ## Custom initializers <VersionBadge version="0.5.0" />
 

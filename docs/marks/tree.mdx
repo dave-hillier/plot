@@ -1,6 +1,6 @@
 import {ClusterMark, Replot, TreeMark} from "replot/react";
 import * as d3 from "d3";
-import {useState, useEffect} from "react";
+import flare from "../data/flare.ts";
 
 export const gods = [
   "Chaos/Gaia/Mountains",
@@ -10,7 +10,6 @@ export const gods = [
   "Chaos/Erebus",
   "Chaos/Tartarus"
 ];
-export const flare = [];
 
 export function indent() {
   return (root) => {
@@ -33,8 +32,15 @@ For example, here is a little family tree of Greek gods.
 
 Here `gods` is an array of slash-separated paths, similar to paths in a file system. Each path represents the hierarchical position of a node in the tree.
 
-```js-vue
-gods = {JSON.stringify(gods, null, 2)}
+```js
+gods = [
+  "Chaos/Gaia/Mountains",
+  "Chaos/Gaia/Pontus",
+  "Chaos/Gaia/Uranus",
+  "Chaos/Eros",
+  "Chaos/Erebus",
+  "Chaos/Tartarus"
+]
 ```
 
 As a more complete example, here is a visualization of a software package hierarchy.
@@ -43,7 +49,7 @@ As a more complete example, here is a visualization of a software package hierar
   <TreeMark data={flare} path="name" delimiter="." textStroke="var(--vp-c-bg)" />
 </Replot>
 
-The **treeLayout** option specifies the layout algorithm. The tree mark uses the Reingold–Tilford “tidy” tree algorithm, [d3.tree](https://d3js.org/d3-hierarchy/tree), by default. The [cluster](#cluster) convenience method setS **treeLayout** to [d3.cluster](https://d3js.org/d3-hierarchy/cluster), aligning the leaf nodes.
+The **treeLayout** option specifies the layout algorithm. The tree mark uses the Reingold–Tilford “tidy” tree algorithm, [d3.tree](https://d3js.org/d3-hierarchy/tree), by default. The [cluster](#cluster) convenience method sets **treeLayout** to [d3.cluster](https://d3js.org/d3-hierarchy/cluster), aligning the leaf nodes.
 
 <Replot axis={null} margin={10} marginLeft={30} marginRight={160} width={688} height={2400}>
   <ClusterMark data={flare} path="name" treeSort="node:height" delimiter="." textStroke="var(--vp-c-bg)" />
@@ -115,4 +121,4 @@ Returns a new tree mark with the given *data* and *options*.
 <ClusterMark data={flare} path="name" delimiter="." />
 ```
 
-Like [tree](#tree), except setS the **treeLayout** option to [d3.cluster](https://d3js.org/d3-hierarchy/cluster), aligning leaf nodes, and defaults the **textLayout** option to *mirrored*.
+Like [tree](#tree), except sets the **treeLayout** option to [d3.cluster](https://d3js.org/d3-hierarchy/cluster), aligning leaf nodes, and defaults the **textLayout** option to *mirrored*.

@@ -1,9 +1,8 @@
 import {Dot, GroupY, Line, NormalizeY, Replot, RuleX, RuleY, SelectLast, SelectMinX, Text, normalizeX} from "replot/react";
 import * as d3 from "d3";
-import {useState} from "react";
+import stateage from "../data/us-population-state-age.ts";
+import {useStocks} from "../data/stocks.ts";
 
-export const stateage = [];
-export const stocks = [];
 export const xy = normalizeX("sum", {z: "state", x: "population", y: "state"});
 
 # Normalize transform
@@ -18,11 +17,11 @@ The **normalize transform** is a specialized [map transform](./map.md) that norm
   }}>
   <RuleY data={[1]} />
   <NormalizeY>
-    <Line data={stocks} x="Date" y="Close" stroke="Symbol" />
+    <Line data={useStocks()} x="Date" y="Close" stroke="Symbol" />
   </NormalizeY>
   <SelectLast>
     <NormalizeY>
-      <Text data={stocks} x="Date" y="Close" z="Symbol" text="Symbol" textAnchor="start" dx={3} />
+      <Text data={useStocks()} x="Date" y="Close" z="Symbol" text="Symbol" textAnchor="start" dx={3} />
     </NormalizeY>
   </SelectLast>
 </Replot>

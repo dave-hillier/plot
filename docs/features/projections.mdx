@@ -1,39 +1,116 @@
 import {Dot, Frame, Geo, Graticule, Replot, Sphere} from "replot/react";
 import * as d3 from "d3";
-import {useState, useEffect} from "react";
-import * as topojson from "topojson-client";
+import {useState} from "react";
 import walmarts from "../data/walmarts.ts";
+import westport from "../data/westport.ts";
+import {useEarthquakes} from "../data/earthquakes.ts";
+import {useLand} from "../data/world.ts";
+import {useNation, useStatemesh} from "../data/us-atlas.ts";
 
-export const earthquakes = [];
-export const land = [];
-export const nation = [];
-export const statemesh = [];
-export const circle = d3.geoCircle().center([9, 34]).radius(30)();
-export const westport = [];
-export const longitude = 0;
-export const setLongitude = () => {};
-export const radius = 30;
-export const setRadius = () => {};
-export const projection = "albers-usa";
-export const setProjection = () => {};
+export function LongitudeDemo() {
+  const [longitude, setLongitude] = useState(90);
+  const land = useLand();
+  const earthquakes = (useEarthquakes() ?? []).map((f) => ({
+    longitude: f.geometry.coordinates[0],
+    latitude: f.geometry.coordinates[1],
+    magnitude: f.properties.mag
+  }));
+  return (
+    <div>
+      <p>
+        <label className="label-input">
+          Longitude:
+          <input type="range" value={longitude} onChange={(e) => setLongitude(Number(e.target.value))} min="-180" max="180" step="1" />
+          <span style={{fontVariantNumeric: "tabular-nums"}}>{longitude}°</span>
+        </label>
+      </p>
+      <Replot projection={{type: "orthographic", rotate: [-longitude, -30]}} r={{transform: (d) => Math.pow(10, d)}}>
+        <Geo data={land} fill="currentColor" fillOpacity={0.2} />
+        <Sphere />
+        <Dot data={earthquakes} x="longitude" y="latitude" r="magnitude" stroke="red" fill="red" fillOpacity={0.2} />
+      </Replot>
+    </div>
+  );
+}
+
+export function ProjectionDemo() {
+  const [projection, setProjection] = useState("equirectangular");
+  const land = useLand();
+  return (
+    <div>
+      <p>
+        <label className="label-input">
+          Projection:
+          <select value={projection} onChange={(e) => setProjection(e.target.value)}>
+            {/* <option>albers-usa</option> */}
+            {/* <option>albers</option> */}
+            <option>azimuthal-equal-area</option>
+            <option>azimuthal-equidistant</option>
+            {/* <option>conic-conformal</option> */}
+            <option>conic-equal-area</option>
+            <option>conic-equidistant</option>
+            <option>equal-earth</option>
+            <option>equirectangular</option>
+            <option>gnomonic</option>
+            {/* <option>identity</option> */}
+            {/* <option>reflect-y</option> */}
+            <option>mercator</option>
+            <option>orthographic</option>
+            <option>stereographic</option>
+            <option>transverse-mercator</option>
+          </select>
+        </label>
+      </p>
+      <Replot projection={projection}>
+        <Graticule />
+        <Geo data={land} fill="currentColor" />
+        <Sphere />
+      </Replot>
+    </div>
+  );
+}
+
+export function RadiusDemo() {
+  const [radius, setRadius] = useState(30);
+  const land = useLand();
+  const circle = d3.geoCircle().center([9, 34]).radius(radius)();
+  return (
+    <div>
+      <p>
+        <label className="label-input">
+          Radius:
+          <input type="range" value={radius} onChange={(e) => setRadius(Number(e.target.value))} min="10" max="50" step="0.1" />
+          <span style={{fontVariantNumeric: "tabular-nums"}}>{radius.toFixed(1)}°</span>
+        </label>
+      </p>
+      <Replot projection={{
+          type: "azimuthal-equidistant",
+          rotate: [-9, -34],
+          domain: circle,
+          inset: 10
+        }}>
+        <Graticule />
+        <Geo data={land} fill="currentColor" fillOpacity={0.3} />
+        <Geo data={circle} stroke="red" strokeWidth={2} />
+        <Frame />
+      </Replot>
+    </div>
+  );
+}
 
 # Projections <VersionBadge version="0.6.1" />
 
 A **projection** maps abstract coordinates in *x* and *y* to pixel positions on screen. Most often, abstract coordinates are spherical (degrees longitude and latitude), as when rendering a geographic map. For example, below we show earthquakes in the last seven days with a magnitude of 2.5 or higher as reported by the [USGS](https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php). Use the slider to adjust the *orthographic* projection’s center of longitude.
 
-<p>
-  <label className="label-input">
-    Longitude:
-    <input type="range" value={longitude} onChange={(e) => setLongitude(Number(e.target.value))} min="-180" max="180" step="1" />
-    <span style={{fontVariantNumeric: "tabular-nums"}}>{longitude}°</span>
-  </label>
-</p>
+<LongitudeDemo />
 
+```jsx
 <Replot projection={{type: "orthographic", rotate: [-longitude, -30]}} r={{transform: (d) => Math.pow(10, d)}}>
   <Geo data={land} fill="currentColor" fillOpacity={0.2} />
   <Sphere />
   <Dot data={earthquakes} x="longitude" y="latitude" r="magnitude" stroke="red" fill="red" fillOpacity={0.2} />
 </Replot>
+```
 
 Above, a [geo mark](../marks/geo.md) draws polygons representing land and a [sphere mark](../marks/geo.md#sphere) draws the outline of the globe. A [dot mark](../marks/dot.md) draws earthquakes as circles sized by magnitude.
 
@@ -43,35 +120,15 @@ The geo mark is “projection aware” so that it can handle all the nuances of 
 Marks that require *band* scales (bars, cells, and ticks) cannot be used with projections. Likewise one-dimensional marks such as rules cannot be used, though see [#1164](https://github.com/observablehq/plot/issues/1164).
 Replot provides a variety of built-in projections. And as above, all world projections can be rotated to show a different aspect.
 
-<p>
-  <label className="label-input">
-    Projection:
-    <select value={projection} onChange={(e) => setProjection(e.target.value)}>
-      {/* <option>albers-usa</option> */}
-      {/* <option>albers</option> */}
-      <option>azimuthal-equal-area</option>
-      <option>azimuthal-equidistant</option>
-      {/* <option>conic-conformal</option> */}
-      <option>conic-equal-area</option>
-      <option>conic-equidistant</option>
-      <option>equal-earth</option>
-      <option>equirectangular</option>
-      <option>gnomonic</option>
-      {/* <option>identity</option> */}
-      {/* <option>reflect-y</option> */}
-      <option>mercator</option>
-      <option>orthographic</option>
-      <option>stereographic</option>
-      <option>transverse-mercator</option>
-    </select>
-  </label>
-</p>
+<ProjectionDemo />
 
+```jsx
 <Replot projection={projection}>
   <Graticule />
   <Geo data={land} fill="currentColor" />
   <Sphere />
 </Replot>
+```
 
 Why so many? Each projection has its strengths and weaknesses:
 
@@ -88,22 +145,17 @@ No single projection is best at everything. It is impossible, for example, for a
 In addition to world projections, Replot provides the U.S.-centric *albers-usa* conic equal-area projection with an inset of Alaska and Hawaii. (Note that the scale for Alaska is diminished: it is projected at 0.35× its true relative area.)
 
 <Replot projection="albers-usa">
-  <Geo data={nation} />
-  <Geo data={statemesh} strokeOpacity={0.2} />
+  <Geo data={useNation()} />
+  <Geo data={useStatemesh()} strokeOpacity={0.2} />
 </Replot>
 
 
 Use the *albers-usa* projection for U.S.-centric choropleth maps.
 For maps that focus on a specific region, use the **domain** option to zoom in. This object should be a GeoJSON object. For example, you can use [d3.geoCircle](https://d3js.org/d3-geo/shape#geoCircle) to generate a circle of a given radius centered at a given longitude and latitude. You can also use the **inset** options for a bit of padding around the **domain**.
 
-<p>
-  <label className="label-input">
-    Radius:
-    <input type="range" value={radius} onChange={(e) => setRadius(Number(e.target.value))} min="10" max="50" step="0.1" />
-    <span style={{fontVariantNumeric: "tabular-nums"}}>{radius.toFixed(1)}°</span>
-  </label>
-</p>
+<RadiusDemo />
 
+```jsx
 <Replot projection={{
     type: "azimuthal-equidistant",
     rotate: [-9, -34],
@@ -115,6 +167,7 @@ For maps that focus on a specific region, use the **domain** option to zoom in. 
   <Geo data={circle} stroke="red" strokeWidth={2} />
   <Frame />
 </Replot>
+```
 
 While this page mostly details spherical projections, you can use the *identity* projection to display planar geometry. For example, below we draw a schematic of the second floor of the [Westport House](https://en.wikipedia.org/wiki/Westport_House) in Dundee, Ireland.
 
@@ -131,8 +184,8 @@ Naturally, Replot’s projection system is compatible with its [faceting system]
     tickFormat: (d) => `${d.getUTCFullYear()}’s`,
     label: null
   }}>
-  <Geo data={statemesh} strokeOpacity={0.1} />
-  <Geo data={nation} />
+  <Geo data={useStatemesh()} strokeOpacity={0.1} />
+  <Geo data={useNation()} />
   <Dot data={walmarts} fx="date" x="longitude" y="latitude" r={1} fill="currentColor" />
 </Replot>
 

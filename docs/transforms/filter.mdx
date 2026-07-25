@@ -1,23 +1,40 @@
-import {BarY, Replot} from "replot/react";
+import {BarY, Dot, Replot, Text} from "replot/react";
 import * as d3 from "d3";
 import {useState} from "react";
 import alphabet from "../data/alphabet.ts";
 import metros from "../data/metros.ts";
 
-export const filtered = false;
-export const setFiltered = () => {};
+export function FilterDemo() {
+  const [filtered, setFiltered] = useState(true);
+  return (
+    <div>
+      <p>
+        <label className="label-input">
+          Use filter:
+          <input type="checkbox" checked={filtered} onChange={(e) => setFiltered(e.target.checked)} />
+        </label>
+      </p>
+      <Replot grid x={{type: "log"}}>
+        <Dot data={metros} x="POP_2015" y="R90_10_2015" />
+        <Text
+          data={metros}
+          filter={filtered ? "highlight" : null}
+          x="POP_2015"
+          y="R90_10_2015"
+          text="nyt_display"
+          frameAnchor="bottom"
+          dy={-6}
+        />
+      </Replot>
+    </div>
+  );
+}
 
 # Filter transform
 
 The **filter transform** filters a mark’s index to show a subset of the data. For example, below the **filter** option controls which text labels are displayed in a dense scatterplot.
 
-<p>
-  <label className="label-input">
-    Use filter:
-    <input type="checkbox" checked={filtered} onChange={(e) => setFiltered(e.target.checked)} />
-  </label>
-</p>
-
+<FilterDemo />
 
 ```jsx{5}
 <Replot grid x={{type: "log"}}>

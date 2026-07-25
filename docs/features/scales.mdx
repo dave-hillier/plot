@@ -1,30 +1,267 @@
-import {BarY, Cell, CellX, Dot, Frame, LineY, Replot, RuleX, RuleY, TickX, identity, scale} from "replot/react";
+import {BarY, BinX, Cell, CellX, Dot, Frame, LineY, RectY, Replot, RuleX, RuleY, TickX, WindowY, identity, scale} from "replot/react";
 import * as d3 from "d3";
+import {useState} from "react";
 import gistemp from "../data/gistemp.ts";
 import aapl from "../data/aapl.ts";
-import bls from "../data/bls-industry-unemployment.ts";
+import goog from "../data/goog.ts";
+import sftemp from "../data/sf-temperatures.ts";
 
-export const goog = [];
-export const sftemp = [];
-export const schemeq = "turbo";
-export const interpolateq = "rgb";
-export const schemed = "rdbu";
-export const schemeo = "Observable10";
-export const padding = 0.5;
-export const align = 0.5;
-export const radius = 5;
-export const intervaled = true;
-export const setSchemeq = () => {};
-export const setInterpolateq = () => {};
-export const setSchemed = () => {};
-export const setSchemeo = () => {};
-export const setPadding = () => {};
-export const setAlign = () => {};
-export const setRadius = () => {};
-export const setIntervaled = () => {};
-export const color = {domain: ["apple", "orange", "pear"], apply: () => "#4e79a7"};
+export const color = scale({color: {scheme: "Tableau10", domain: ["apple", "orange", "pear"]}});
 
 export const anomaly = gistemp.map((d) => d.Anomaly);
+
+export function PaddingAlignDemo() {
+  const [padding, setPadding] = useState(0.1);
+  const [align, setAlign] = useState(0.5);
+  return (
+    <div>
+      <div>
+        <label className="label-input">
+          <span>Padding:</span>
+          <input type="range" value={padding} onChange={(e) => setPadding(Number(e.target.value))} min="0" max="1" step="0.01" />
+          <span style={{fontVariantNumeric: "tabular-nums"}}>{padding.toFixed(2)}</span>
+        </label>
+        <label className="label-input">
+          <span>Align:</span>
+          <input type="range" value={align} onChange={(e) => setAlign(Number(e.target.value))} min="0" max="1" step="0.01" />
+          <span style={{fontVariantNumeric: "tabular-nums"}}>{align.toFixed(2)}</span>
+        </label>
+      </div>
+      <Replot grid marginTop={0.5} x={{padding, align, round: false}}>
+        <Frame strokeOpacity={0.3} />
+        <TickX data={"ABCDEFGHIJ"} x={identity} stroke="currentColor" />
+      </Replot>
+      <Replot grid marginTop={0.5} x={{padding, align, round: false}}>
+        <Frame strokeOpacity={0.3} />
+        <Cell data={"ABCDEFGHIJ"} x={identity} stroke="currentColor" />
+      </Replot>
+    </div>
+  );
+}
+
+export function SchemeQDemo() {
+  const [schemeq, setSchemeq] = useState("turbo");
+  return (
+    <div>
+      <div>
+        <label className="label-input">
+          Color scheme:
+          <select value={schemeq} onChange={(e) => setSchemeq(e.target.value)}>
+            <optgroup label="sequential, single-hue">
+              <option value="blues">Blues</option>
+              <option value="greens">Greens</option>
+              <option value="greys">Greys</option>
+              <option value="purples">Purples</option>
+              <option value="reds">Reds</option>
+              <option value="oranges">Oranges</option>
+            </optgroup>
+            <optgroup label="sequential, multi-hue">
+              <option value="turbo">Turbo</option>
+              <option value="viridis">Viridis</option>
+              <option value="magma">Magma</option>
+              <option value="inferno">Inferno</option>
+              <option value="plasma">Plasma</option>
+              <option value="cividis">Cividis</option>
+              <option value="cubehelix">Cubehelix</option>
+              <option value="warm">Warm</option>
+              <option value="cool">Cool</option>
+              <option value="bugn">BuGn</option>
+              <option value="bupu">BuPu</option>
+              <option value="gnbu">GnBu</option>
+              <option value="orrd">OrRd</option>
+              <option value="pubugn">PuBuGn</option>
+              <option value="pubu">PuBu</option>
+              <option value="purd">PuRd</option>
+              <option value="rdpu">RdPu</option>
+              <option value="ylgnbu">YlGnBu</option>
+              <option value="ylgn">YlGn</option>
+              <option value="ylorbr">YlOrBr</option>
+              <option value="ylorrd">YlOrRd</option>
+            </optgroup>
+            <optgroup label="cyclical">
+              <option value="rainbow">Rainbow</option>
+              <option value="sinebow">Sinebow</option>
+            </optgroup>
+          </select>
+        </label>
+      </div>
+      <Replot axis={null} padding={0} color={{scheme: schemeq}}>
+        <Cell data={d3.range(40)} x={identity} fill={identity} inset={-0.5} />
+      </Replot>
+    </div>
+  );
+}
+
+export function InterpolateQDemo() {
+  const [interpolateq, setInterpolateq] = useState("rgb");
+  return (
+    <div>
+      <div>
+        <label className="label-input">
+          Color interpolate:
+          <select value={interpolateq} onChange={(e) => setInterpolateq(e.target.value)}>
+            <option value="rgb">rgb</option>
+            <option value="lab">lab</option>
+            <option value="hcl">hcl</option>
+            <option value="hsl">hsl</option>
+            <option value="rgb-gamma">d3.interpolateRgb.gamma(2)</option>
+            <option value="angry-rainbow">(t) =&gt; `hsl($&#123;t * 360&#125;,100%,50%)`</option>
+          </select>
+        </label>
+      </div>
+      <Replot axis={null} padding={0} color={{
+          type: "linear",
+          ...interpolateq === "angry-rainbow"
+            ? {interpolate: (t) => `hsl(${t * 360},100%,50%)`}
+            : interpolateq === "rgb-gamma"
+            ? {range: ["steelblue", "orange"], interpolate: d3.interpolateRgb.gamma(2)}
+            : {range: ["steelblue", "orange"], interpolate: interpolateq}
+        }}>
+        <Cell data={d3.range(40)} x={identity} fill={identity} inset={-0.5} />
+      </Replot>
+    </div>
+  );
+}
+
+export function SchemeDDemo() {
+  const [schemed, setSchemed] = useState("rdbu");
+  return (
+    <div>
+      <div>
+        <label className="label-input">
+          Color scheme:
+          <select value={schemed} onChange={(e) => setSchemed(e.target.value)}>
+            <optgroup label="diverging">
+              <option value="brbg">BrBG</option>
+              <option value="prgn">PRGn</option>
+              <option value="piyg">PiYG</option>
+              <option value="puor">PuOr</option>
+              <option value="rdbu">RdBu</option>
+              <option value="rdgy">RdGy</option>
+              <option value="rdylbu">RdYlBu</option>
+              <option value="rdylgn">RdYlGn</option>
+              <option value="spectral">Spectral</option>
+              <option value="burd">BuRd</option>
+              <option value="buylrd">BuYlRd</option>
+            </optgroup>
+          </select>
+        </label>
+      </div>
+      <Replot axis={null} padding={0} color={{type: "linear", scheme: schemed}}>
+        <Cell data={d3.range(40)} x={identity} fill={identity} inset={-0.5} />
+      </Replot>
+    </div>
+  );
+}
+
+export function SchemeODemo() {
+  const [schemeo, setSchemeo] = useState("Observable10");
+  return (
+    <div>
+      <div>
+        <label className="label-input">
+          Color scheme:
+          <select value={schemeo} onChange={(e) => setSchemeo(e.target.value)}>
+            <optgroup label="categorical">
+              <option>Accent</option>
+              <option>Category10</option>
+              <option>Dark2</option>
+              <option>Observable10</option>
+              <option>Paired</option>
+              <option>Pastel1</option>
+              <option>Pastel2</option>
+              <option>Set1</option>
+              <option>Set2</option>
+              <option>Set3</option>
+              <option>Tableau10</option>
+            </optgroup>
+            <optgroup label="sequential, single-hue">
+              <option value="blues">Blues</option>
+              <option value="greens">Greens</option>
+              <option value="greys">Greys</option>
+              <option value="purples">Purples</option>
+              <option value="reds">Reds</option>
+              <option value="oranges">Oranges</option>
+            </optgroup>
+            <optgroup label="sequential, multi-hue">
+              <option value="turbo">Turbo</option>
+              <option value="viridis">Viridis</option>
+              <option value="magma">Magma</option>
+              <option value="inferno">Inferno</option>
+              <option value="plasma">Plasma</option>
+              <option value="cividis">Cividis</option>
+              <option value="cubehelix">Cubehelix</option>
+              <option value="warm">Warm</option>
+              <option value="cool">Cool</option>
+              <option value="bugn">BuGn</option>
+              <option value="bupu">BuPu</option>
+              <option value="gnbu">GnBu</option>
+              <option value="orrd">OrRd</option>
+              <option value="pubugn">PuBuGn</option>
+              <option value="pubu">PuBu</option>
+              <option value="purd">PuRd</option>
+              <option value="rdpu">RdPu</option>
+              <option value="ylgnbu">YlGnBu</option>
+              <option value="ylgn">YlGn</option>
+              <option value="ylorbr">YlOrBr</option>
+              <option value="ylorrd">YlOrRd</option>
+            </optgroup>
+            <optgroup label="cyclical">
+              <option value="rainbow">Rainbow</option>
+              <option value="sinebow">Sinebow</option>
+            </optgroup>
+          </select>
+        </label>
+      </div>
+      <Replot color={{type: "ordinal", scheme: schemeo}}>
+        <Cell data={"ABCDEFGHIJ"} x={identity} fill={identity} />
+      </Replot>
+    </div>
+  );
+}
+
+export function RadiusDemo() {
+  const [radius, setRadius] = useState(8);
+  return (
+    <div>
+      <div>
+        <label className="label-input">
+          Radius:
+          <input type="range" value={radius} onChange={(e) => setRadius(Number(e.target.value))} min="1" max="20" step="0.1" />
+          <span style={{fontVariantNumeric: "tabular-nums"}}>{radius.toFixed(1)}</span>
+        </label>
+      </div>
+      <Replot r={{range: [0, radius]}}>
+        <Dot data={d3.range(1, 11)} x={identity} r={identity} fill="currentColor" />
+      </Replot>
+    </div>
+  );
+}
+
+export function IntervalDemo() {
+  const [intervaled, setIntervaled] = useState(true);
+  return (
+    <div>
+      <div>
+        <label className="label-input">
+          Use interval:
+          <input type="checkbox" checked={intervaled} onChange={(e) => setIntervaled(e.target.checked)} />
+        </label>
+      </div>
+      <Replot marginBottom={80} x={{
+          tickRotate: -90,
+          interval: intervaled ? "day" : null,
+          label: null
+        }} y={{
+          transform: (d) => d / 1e6,
+          label: "Daily trade volume (millions)"
+        }}>
+        <BarY data={aapl.slice(-40)} x="Date" y="Volume" />
+        <RuleY data={[0]} />
+      </Replot>
+    </div>
+  );
+}
 
 # Scales
 
@@ -175,36 +412,7 @@ A band scale divides space into uniformly-spaced and -sized discrete intervals. 
 
 While *point* and *band* scales appear visually similar when only the grid is visible, the two are not identical — they differ respective to padding. Play with the options below to get a sense of their effect on the scale’s behavior.
 
-<div>
-  <label className="label-input">
-    <span>Padding:</span>
-    <input type="range" value={padding} onChange={(e) => setPadding(Number(e.target.value))} min="0" max="1" step="0.01" />
-    <span style={{fontVariantNumeric: "tabular-nums"}}>{padding.toFixed(2)}</span>
-  </label>
-  <label className="label-input">
-    <span>Align:</span>
-    <input type="range" value={align} onChange={(e) => setAlign(Number(e.target.value))} min="0" max="1" step="0.01" />
-    <span style={{fontVariantNumeric: "tabular-nums"}}>{align.toFixed(2)}</span>
-  </label>
-</div>
-
-<Replot grid marginTop={0.5} x={{
-    padding,
-    align,
-    round: false
-  }}>
-  <Frame strokeOpacity={0.3} />
-  <TickX data={"ABCDEFGHIJ"} x={identity} stroke="currentColor" />
-</Replot>
-
-<Replot grid marginTop={0.5} x={{
-    padding,
-    align,
-    round: false
-  }}>
-  <Frame strokeOpacity={0.3} />
-  <Cell data={"ABCDEFGHIJ"} x={identity} stroke="currentColor" />
-</Replot>
+<PaddingAlignDemo />
 
 Position scales also have a **round** option which forces the scale to snap to integer pixels. This defaults to true for point and band scales, and false for quantitative scales. Use caution with high-cardinality ordinal domains (*i.e.*, a point or band scale used to encode many different values), as rounding can lead to “wasted” space or even zero-width bands.
 
@@ -212,113 +420,17 @@ Position scales also have a **round** option which forces the scale to snap to i
 
 While position is the most salient (and important) encoding, color matters too! The default quantitative color scale **type** is *linear*, and the default **scheme** is [*turbo*](https://ai.googleblog.com/2019/08/turbo-improved-rainbow-colormap-for.html). A wide variety of sequential, diverging, and cyclical schemes are supported, including ColorBrewer and [*viridis*](http://bids.github.io/colormap/).
 
-<div>
-  <label className="label-input">
-    Color scheme:
-    <select value={schemeq} onChange={(e) => setSchemeq(e.target.value)}>
-      <optgroup label="sequential, single-hue">
-        <option value="blues">Blues</option>
-        <option value="greens">Greens</option>
-        <option value="greys">Greys</option>
-        <option value="purples">Purples</option>
-        <option value="reds">Reds</option>
-        <option value="oranges">Oranges</option>
-      </optgroup>
-      <optgroup label="sequential, multi-hue">
-        <option value="turbo" selected>Turbo</option>
-        <option value="viridis">Viridis</option>
-        <option value="magma">Magma</option>
-        <option value="inferno">Inferno</option>
-        <option value="plasma">Plasma</option>
-        <option value="cividis">Cividis</option>
-        <option value="cubehelix">Cubehelix</option>
-        <option value="warm">Warm</option>
-        <option value="cool">Cool</option>
-        <option value="bugn">BuGn</option>
-        <option value="bupu">BuPu</option>
-        <option value="gnbu">GnBu</option>
-        <option value="orrd">OrRd</option>
-        <option value="pubugn">PuBuGn</option>
-        <option value="pubu">PuBu</option>
-        <option value="purd">PuRd</option>
-        <option value="rdpu">RdPu</option>
-        <option value="ylgnbu">YlGnBu</option>
-        <option value="ylgn">YlGn</option>
-        <option value="ylorbr">YlOrBr</option>
-        <option value="ylorrd">YlOrRd</option>
-      </optgroup>
-      <optgroup label="cyclical">
-        <option value="rainbow">Rainbow</option>
-        <option value="sinebow">Sinebow</option>
-      </optgroup>
-    </select>
-  </label>
-</div>
-
-<Replot axis={null} padding={0} color={{
-    scheme: schemeq
-  }}>
-  <Cell data={d3.range(40)} x={identity} fill={identity} inset={-0.5} />
-</Replot>
+<SchemeQDemo />
 
 You can implement a custom color scheme by specifying the scale’s **range**, or by passing an **interpolate** function that takes a parameter *t* in [0, 1]. The **interpolate** option can specify a color space such as *rgb*, or a two-argument function that takes a pair of values from the range.
 
-<div>
-  <label className="label-input">
-    Color interpolate:
-    <select value={interpolateq} onChange={(e) => setInterpolateq(e.target.value)}>
-      <option value="rgb">rgb</option>
-      <option value="lab">lab</option>
-      <option value="hcl">hcl</option>
-      <option value="hsl">hsl</option>
-      <option value="rgb-gamma">d3.interpolateRgb.gamma(2)</option>
-      <option value="angry-rainbow">(t) => `hsl(${t * 360},100%,50%)`</option>
-    </select>
-  </label>
-</div>
-
-<Replot axis={null} padding={0} color={{
-    type: "linear",
-    ...interpolateq === "angry-rainbow"
-      ? {interpolate: (t) => `hsl(${t * 360},100%,50%)`}
-      : interpolateq === "rgb-gamma"
-      ? {range: ["steelblue", "orange"], interpolate: d3.interpolateRgb.gamma(2)}
-      : {range: ["steelblue", "orange"], interpolate: interpolateq}
-  }}>
-  <Cell data={d3.range(40)} x={identity} fill={identity} inset={-0.5} />
-</Replot>
+<InterpolateQDemo />
 
 And like position scales, you can apply a *sqrt*, *pow*, *log*, or *symlog* transform; these are often useful when working with non-uniformly distributed data.
 
 Diverging color scales are intended to show positive and negative values, or more generally values above or below some **pivot** value. Diverging color scales default to the *RdBu* (red–blue) color scheme. The pivot defaults to zero, but you can change it with the **pivot** option, which should ideally be a value near the middle of the domain.
 
-<div>
-  <label className="label-input">
-    Color scheme:
-    <select value={schemed} onChange={(e) => setSchemed(e.target.value)}>
-      <optgroup label="diverging">
-        <option value="brbg">BrBG</option>
-        <option value="prgn">PRGn</option>
-        <option value="piyg">PiYG</option>
-        <option value="puor">PuOr</option>
-        <option value="rdbu">RdBu</option>
-        <option value="rdgy">RdGy</option>
-        <option value="rdylbu">RdYlBu</option>
-        <option value="rdylgn">RdYlGn</option>
-        <option value="spectral">Spectral</option>
-        <option value="burd">BuRd</option>
-        <option value="buylrd">BuYlRd</option>
-      </optgroup>
-    </select>
-  </label>
-</div>
-
-<Replot axis={null} padding={0} color={{
-    type: "linear",
-    scheme: schemed
-  }}>
-  <Cell data={d3.range(40)} x={identity} fill={identity} inset={-0.5} />
-</Replot>
+<SchemeDDemo />
 
 Below we again show observed global surface temperatures. The reversed *BuRd* color scheme is used since <span style={{borderBottom: "solid 2px steelblue"}}>blue</span> and <span style={{borderBottom: "solid 2px #b2182b"}}>red</span> are semantically associated with cold and hot, respectively.
 
@@ -332,68 +444,7 @@ Below we again show observed global surface temperatures. The reversed *BuRd* co
 
 Replot also provides color schemes for discrete data. Use the *categorical* type for categorical (nominal) unordered data, and the *ordinal* type for ordered data.
 
-<div>
-  <label className="label-input">
-    Color scheme:
-    <select value={schemeo} onChange={(e) => setSchemeo(e.target.value)}>
-      <optgroup label="categorical">
-        <option>Accent</option>
-        <option>Category10</option>
-        <option>Dark2</option>
-        <option>Observable10</option>
-        <option>Paired</option>
-        <option>Pastel1</option>
-        <option>Pastel2</option>
-        <option>Set1</option>
-        <option>Set2</option>
-        <option>Set3</option>
-        <option>Tableau10</option>
-      </optgroup>
-      <optgroup label="sequential, single-hue">
-        <option value="blues">Blues</option>
-        <option value="greens">Greens</option>
-        <option value="greys">Greys</option>
-        <option value="purples">Purples</option>
-        <option value="reds">Reds</option>
-        <option value="oranges">Oranges</option>
-      </optgroup>
-      <optgroup label="sequential, multi-hue">
-        <option value="turbo" selected>Turbo</option>
-        <option value="viridis">Viridis</option>
-        <option value="magma">Magma</option>
-        <option value="inferno">Inferno</option>
-        <option value="plasma">Plasma</option>
-        <option value="cividis">Cividis</option>
-        <option value="cubehelix">Cubehelix</option>
-        <option value="warm">Warm</option>
-        <option value="cool">Cool</option>
-        <option value="bugn">BuGn</option>
-        <option value="bupu">BuPu</option>
-        <option value="gnbu">GnBu</option>
-        <option value="orrd">OrRd</option>
-        <option value="pubugn">PuBuGn</option>
-        <option value="pubu">PuBu</option>
-        <option value="purd">PuRd</option>
-        <option value="rdpu">RdPu</option>
-        <option value="ylgnbu">YlGnBu</option>
-        <option value="ylgn">YlGn</option>
-        <option value="ylorbr">YlOrBr</option>
-        <option value="ylorrd">YlOrRd</option>
-      </optgroup>
-      <optgroup label="cyclical">
-        <option value="rainbow">Rainbow</option>
-        <option value="sinebow">Sinebow</option>
-      </optgroup>
-    </select>
-  </label>
-</div>
-
-<Replot color={{
-    type: "ordinal",
-    scheme: schemeo
-  }}>
-  <Cell data={"ABCDEFGHIJ"} x={identity} fill={identity} />
-</Replot>
+<SchemeODemo />
 
 
 Discrete color schemes are intended for data that has only a few unique values. If the size of the categorical domain exceeds the number of colors in the scheme, colors will be reused; combining values into an “other” category is recommended.
@@ -401,17 +452,7 @@ Discrete color schemes are intended for data that has only a few unique values. 
 
 But wait, there’s more! 😅 Replot has *opacity*, *r*, *symbol*, and *length* scales, too. For example, the *r* scale **type** defaults to *sqrt* such that when used with the [dot mark](../marks/dot.md), the resulting area is proportional to the **r** channel value. You can adjust the effective dot size by specifying an explicit **range**, as below.
 
-<div>
-  <label className="label-input">
-    Radius:
-    <input type="range" value={radius} onChange={(e) => setRadius(Number(e.target.value))} min="1" max="20" step="0.1" />
-    <span style={{fontVariantNumeric: "tabular-nums"}}>{radius.toFixed(1)}</span>
-  </label>
-</div>
-
-<Replot r={{range: [0, radius]}}>
-  <Dot data={d3.range(1, 11)} x={identity} r={identity} fill="currentColor" />
-</Replot>
+<RadiusDemo />
 
 The default **range** for the associated *r* scale is constructed such that a zero value maps to zero for an accurate areal encoding, while the first quartile of values is mapped to a radius of three pixels; this tends to be more stable with varying data.
 
@@ -433,6 +474,12 @@ All position scales (*x*, *y*, *fx*, and *fy*) have implicit automatic ranges ba
 
 The **transform** scale option allows you to apply a function to all values before they are passed through the scale. This is convenient for transforming a scale’s data, say to convert to thousands or between temperature units.
 
+<Replot y={{grid: true, label: "Temperature (°C)", transform: (f) => (f - 32) * (5 / 9)}}>
+  <RuleY data={[32]} />
+  <WindowY k={7}>
+    <LineY data={sftemp} x="date" y="high" />
+  </WindowY>
+</Replot>
 
 ```jsx{5}
 <Replot
@@ -450,6 +497,12 @@ The **transform** scale option allows you to apply a function to all values befo
 ```
 The **percent** scale option is shorthand for a **transform** that multiplies values by 100; it also adds a percent symbol (%) to the default label.
 
+<Replot y={{percent: true}} color={{scheme: "BuRd"}}>
+  <BinX y="proportion" fill="x">
+    <RectY data={gistemp} x="Anomaly" fill="Anomaly" />
+  </BinX>
+  <RuleY data={[0]} />
+</Replot>
 
 ```jsx{1}
 <Replot y={{percent: true}} color={{scheme: "BuRd"}}>
@@ -461,26 +514,9 @@ The **percent** scale option is shorthand for a **transform** that multiplies va
 ```
 
 [Mark transforms](./transforms.md) typically consume values *before* they are passed through scales (_e.g._, when binning). In this case the mark transforms will see the values prior to the scale transform as input, and the scale transform will apply to the *output* of the mark transform.
-The **interval** scale option<a id="interval" href="#interval" aria-label="Permalink to &quot;interval&quot;"></a> <VersionBadge version="0.5.1" /> setS an ordinal scale’s **domain** to the start of every interval within the extent of the data. In addition, it implicitly setS the **transform** of the scale to *interval*.floor, rounding values down to the start of each interval. For example, below we generate a time-series bar chart; when an **interval** is specified, missing days are visible.
+The **interval** scale option<a id="interval" href="#interval" aria-label="Permalink to &quot;interval&quot;"></a> <VersionBadge version="0.5.1" /> sets an ordinal scale’s **domain** to the start of every interval within the extent of the data. In addition, it implicitly sets the **transform** of the scale to *interval*.floor, rounding values down to the start of each interval. For example, below we generate a time-series bar chart; when an **interval** is specified, missing days are visible.
 
-<div>
-  <label className="label-input">
-    Use interval:
-    <input type="checkbox" checked={intervaled} onChange={(e) => setIntervaled(e.target.checked)} />
-  </label>
-</div>
-
-<Replot marginBottom={80} x={{
-    tickRotate: -90,
-    interval: intervaled ? "day" : null,
-    label: null
-  }} y={{
-    transform: (d) => d / 1e6,
-    label: "Daily trade volume (millions)"
-  }}>
-  <BarY data={aapl.slice(-40)} x="Date" y="Volume" />
-  <RuleY data={[0]} />
-</Replot>
+<IntervalDemo />
 
 
 As an added bonus, the **fontVariant** and **type** options are no longer needed because Replot now understands that the *x* scale, despite being *ordinal*, represents daily observations.
@@ -543,13 +579,13 @@ A scale’s domain (the extent of its inputs, abstract values) and range (the ex
 * **reverse** - reverses the domain (or the range), say to flip the chart along *x* or *y*
 * **interval** - an interval or time interval (for interval data; see below)
 
-For most quantitative scales, the default domain is the [*min*, *max*] of all values associated with the scale. For the *radius* and *opacity* scales, the default domain is [0, *max*] to ensure a meaningful value encoding. For ordinal scales, the default domain is the set of all distinct values associated with the scale in natural ascending order; for a different order, set the domain explicitly or add a [**sort** option](#sort-mark-option) to an associated mark. For threshold scales, the default domain is [0] to separate negative and non-negative values. For quantile scales, the default domain is the set of all defined values associated with the scale. If a scale is reversed, it is equivalent to setTing the domain as [*max*, *min*] instead of [*min*, *max*].
+For most quantitative scales, the default domain is the [*min*, *max*] of all values associated with the scale. For the *radius* and *opacity* scales, the default domain is [0, *max*] to ensure a meaningful value encoding. For ordinal scales, the default domain is the set of all distinct values associated with the scale in natural ascending order; for a different order, set the domain explicitly or add a [**sort** option](#sort-mark-option) to an associated mark. For threshold scales, the default domain is [0] to separate negative and non-negative values. For quantile scales, the default domain is the set of all defined values associated with the scale. If a scale is reversed, it is equivalent to setting the domain as [*max*, *min*] instead of [*min*, *max*].
 
 The default range depends on the scale: for position scales (*x*, *y*, *fx*, and *fy*), the default range depends on the [plot’s size and margins](./plots.md). For color scales, there are default color schemes for quantitative, ordinal, and categorical data. For opacity, the default range is [0, 1]. And for radius, the default range is designed to produce dots of “reasonable” size assuming a *sqrt* scale type for accurate area representation: zero maps to zero, the first quartile maps to a radius of three pixels, and other values are extrapolated. This convention for radius ensures that if the scale’s data values are all equal, dots have the default constant radius of three pixels, while if the data varies, dots will tend to be larger.
 
 The behavior of the **unknown** scale option depends on the scale type. For quantitative and temporal scales, the unknown value is used whenever the input value is undefined, null, or NaN. For ordinal or categorical scales, the unknown value is returned for any input value outside the domain. For band or point scales, the unknown option has no effect; it is effectively always equal to undefined. If the unknown option is set to undefined (the default), or null or NaN, then the affected input values will be considered undefined and filtered from the output.
 
-For data at regular intervals, such as integer values or daily samples, the [**interval** option](#scale-transforms) can be used to enforce uniformity. The specified *interval* — such as d3.utcMonth — must expose an *interval*.floor(*value*), *interval*.offset(*value*), and *interval*.range(*start*, *stop*) functions. The option can also be specified as a number, in which case it will be promoted to a numeric interval with the given step. The option can alternatively be specified as a string (*second*, *minute*, *hour*, *day*, *week*, *month*, *quarter*, *half*, *year*, *monday*, *tuesday*, *wednesday*, *thursday*, *friday*, *saturday*, *sunday*) <VersionBadge version="0.6.2" /> naming the corresponding time interval, or a skip interval consisting of a number followed by the interval name (possibly pluralized), such as *3 months* or *10 years*. This option setS the default *scale*.transform to the given interval’s *interval*.floor function. In addition, the default *scale*.domain is an array of uniformly-spaced values spanning the extent of the values associated with the scale.
+For data at regular intervals, such as integer values or daily samples, the [**interval** option](#scale-transforms) can be used to enforce uniformity. The specified *interval* — such as d3.utcMonth — must expose an *interval*.floor(*value*), *interval*.offset(*value*), and *interval*.range(*start*, *stop*) functions. The option can also be specified as a number, in which case it will be promoted to a numeric interval with the given step. The option can alternatively be specified as a string (*second*, *minute*, *hour*, *day*, *week*, *month*, *quarter*, *half*, *year*, *monday*, *tuesday*, *wednesday*, *thursday*, *friday*, *saturday*, *sunday*) <VersionBadge version="0.6.2" /> naming the corresponding time interval, or a skip interval consisting of a number followed by the interval name (possibly pluralized), such as *3 months* or *10 years*. This option sets the default *scale*.transform to the given interval’s *interval*.floor function. In addition, the default *scale*.domain is an array of uniformly-spaced values spanning the extent of the values associated with the scale.
 
 Quantitative scales can be further customized with additional options:
 
@@ -558,7 +594,7 @@ Quantitative scales can be further customized with additional options:
 * **zero** - if true, extend the domain to include zero if needed
 * **percent** - if true, transform proportions in [0, 1] to percentages in [0, 100]
 
-Clamping is typically used in conjunction with setTing an explicit domain since if the domain is inferred, no values will be outside the domain. Clamping is useful for focusing on a subset of the data while ensuring that extreme values remain visible, but use caution: clamped values may need an annotation to avoid misinterpretation. Top-level **clamp**, **nice**, and **zero** options are supported as shorthand for setTing the respective option on all scales.
+Clamping is typically used in conjunction with setting an explicit domain since if the domain is inferred, no values will be outside the domain. Clamping is useful for focusing on a subset of the data while ensuring that extreme values remain visible, but use caution: clamped values may need an annotation to avoid misinterpretation. Top-level **clamp**, **nice**, and **zero** options are supported as shorthand for setting the respective option on all scales.
 
 The **transform** option allows you to apply a function to all values before they are passed through the scale. This is convenient for transforming a scale’s data, say to convert to thousands or between temperature units.
 

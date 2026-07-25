@@ -1,25 +1,36 @@
 import {Bin, Dot, DotX, Geo, GeoCentroid, GroupY, Replot, RuleX, RuleY, SelectMinX, StackY2, Text, identity, normalizeX} from "replot/react";
-import * as d3 from "d3";
-import {useState, useEffect} from "react";
-import * as topojson from "topojson-client";
+import {useState} from "react";
 import aapl from "../data/aapl.ts";
 import alphabet from "../data/alphabet.ts";
 import cars from "../data/cars.ts";
+import congress from "../data/us-congress-2023.ts";
 import {useDiamonds} from "../data/diamonds.ts";
 import gistemp from "../data/gistemp.ts";
 import penguins from "../data/penguins.ts";
-
-export const congress = [];
-export const counties = [];
-export const stateage = [];
-export const statemesh = [];
-export const sorted = true;
-export const setSorted = () => {};
+import stateage from "../data/us-population-state-age.ts";
+import {useCountiesWithPopulation, useStatemesh} from "../data/us-county-population.ts";
 
 export const xy = normalizeX("sum", {x: "population", y: "state", z: "state"});
 
-{/* Data: counties/statemesh are loaded from us-counties-10m.json with population merged from us-county-population.csv.
-   stateage is loaded from us-population-state-age.csv, pivoted to tidy format with {state, age, population} and an .ages property. */}
+export function SortedCountiesDemo() {
+  const [sorted, setSorted] = useState(true);
+  return (
+    <div>
+      <p>
+        <label className="label-input">
+          Use default sort:
+          <input type="checkbox" checked={sorted} onChange={(e) => setSorted(e.target.checked)} />
+        </label>
+      </p>
+      <Replot projection="albers-usa">
+        <Geo data={useStatemesh()} strokeOpacity={0.4} />
+        <GeoCentroid>
+          <Dot data={useCountiesWithPopulation()} r={(d) => d.properties.population} fill="currentColor" stroke="var(--vp-c-bg)" strokeWidth={1} sort={sorted ? undefined : null} />
+        </GeoCentroid>
+      </Replot>
+    </div>
+  );
+}
 
 # Dot mark
 
@@ -152,19 +163,16 @@ The stackY2 transform places each dot at the upper bound of the associated stack
 The [dodge transform](../transforms/dodge.md) can also be used to produce beeswarm plots; this is particularly effective when dots have varying radius.
 Dots are sorted by descending radius by default <VersionBadge version="0.5.0" /> to mitigate occlusion; the smallest dots are drawn on top. Set the **sort** option to null to draw them in input order. Use the checkbox below to see the effect of sorting on a bubble map of U.S. county population.
 
-<p>
-  <label className="label-input">
-    Use default sort:
-    <input type="checkbox" checked={sorted} onChange={(e) => setSorted(e.target.checked)} />
-  </label>
-</p>
+<SortedCountiesDemo />
 
+```jsx
 <Replot projection="albers-usa">
   <Geo data={statemesh} strokeOpacity={0.4} />
   <GeoCentroid>
     <Dot data={counties} r={(d) => d.properties.population} fill="currentColor" stroke="var(--vp-c-bg)" strokeWidth={1} sort={sorted ? undefined : null} />
   </GeoCentroid>
 </Replot>
+```
 
 The dot mark can also be used to construct a [quantile-quantile (QQ) plot](https://observablehq.com/@observablehq/qq-plot) for comparing two univariate distributions.
 

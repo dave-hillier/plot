@@ -2,46 +2,52 @@ import {DotY, LineY, Replot} from "replot/react";
 import * as d3 from "d3";
 import {useState} from "react";
 
-export const numbers = Array.from({length: 20}, () => Math.random());
-export const curve = "catmull-rom";
-export const setCurve = () => {};
+export const numbers = d3.range(20).map(d3.randomLcg(42));
+
+export function CurveDemo() {
+  const [curve, setCurve] = useState("catmull-rom");
+  return (
+    <div>
+      <p>
+        <label className="label-input">
+          Curve:
+          <select value={curve} onChange={(e) => setCurve(e.target.value)}>
+            <option>basis</option>
+            <option>basis-open</option>
+            <option>basis-closed</option>
+            <option>bump-x</option>
+            <option>bump-y</option>
+            <option>bundle</option>
+            <option>cardinal</option>
+            <option>cardinal-open</option>
+            <option>cardinal-closed</option>
+            <option>catmull-rom</option>
+            <option>catmull-rom-open</option>
+            <option>catmull-rom-closed</option>
+            <option>linear</option>
+            <option>linear-closed</option>
+            <option>monotone-x</option>
+            <option>monotone-y</option>
+            <option>natural</option>
+            <option>step</option>
+            <option>step-after</option>
+            <option>step-before</option>
+          </select>
+        </label>
+      </p>
+      <Replot>
+        <LineY data={numbers} curve={curve} />
+        <DotY data={numbers} x={(d, i) => i} />
+      </Replot>
+    </div>
+  );
+}
 
 # Curves
 
 A **curve** defines how to turn a discrete representation of a line as a sequence of points [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] into a continuous path; *i.e.*, how to interpolate between points. Curves are used by the [line](../marks/line.md), [area](../marks/area.md), and [link](../marks/link.md) marks, and are implemented by [d3-shape](https://d3js.org/d3-shape/curve).
 
-<p>
-  <label className="label-input">
-    Curve:
-    <select value={curve} onChange={(e) => setCurve(e.target.value)}>
-      <option>basis</option>
-      <option>basis-open</option>
-      <option>basis-closed</option>
-      <option>bump-x</option>
-      <option>bump-y</option>
-      <option>bundle</option>
-      <option>cardinal</option>
-      <option>cardinal-open</option>
-      <option>cardinal-closed</option>
-      <option>catmull-rom</option>
-      <option>catmull-rom-open</option>
-      <option>catmull-rom-closed</option>
-      <option>linear</option>
-      <option>linear-closed</option>
-      <option>monotone-x</option>
-      <option>monotone-y</option>
-      <option>natural</option>
-      <option>step</option>
-      <option>step-after</option>
-      <option>step-before</option>
-    </select>
-  </label>
-</p>
-
-<Replot>
-  <LineY data={numbers} curve={curve} />
-  <DotY data={numbers} x={(d, i) => i} />
-</Replot>
+<CurveDemo />
 
 The supported curve options are:
 

@@ -1,13 +1,9 @@
 import {AxisY, DifferenceY, GroupX, Replot, RuleY, ShiftX, WindowY, find} from "replot/react";
 import * as d3 from "d3";
-import {useState, useEffect} from "react";
 import aapl from "../data/aapl.ts";
 import gistemp from "../data/gistemp.ts";
-
-export const temperature = [];
-export const tsa = [];
-
-{/* Data: temperature is loaded externally from sf-sj-temperatures.csv, filtered to year 2020. */}
+import tsa from "../data/tsa.ts";
+import {useSfSjTemperatures} from "../data/sf-sj-temperatures.ts";
 
 # Difference mark <VersionBadge version="0.6.12" pr="1896" />
 
@@ -41,7 +37,7 @@ If the data is “tall” rather than “wide” — that is, if the two metrics
   <RuleY data={[32]} />
   <WindowY k={14}>
     <GroupX y1={find((d) => d.station === "SJ")} y2={find((d) => d.station === "SF")}>
-      <DifferenceY data={temperature} x="date" y="tmin" tip />
+      <DifferenceY data={useSfSjTemperatures()} x="date" y="tmin" tip />
     </GroupX>
   </WindowY>
 </Replot>
@@ -80,7 +76,7 @@ The standard **fill** option is ignored; instead, there are separate channels ba
 * **stroke** - the metric line’s stroke color, defaults to currentColor
 * **strokeOpacity** - the metric line’s opacity, defaults to 1
 
-These options are passed to the underlying area and line marks; in particular, when they are defined as a channel, the underlying marks are broken into contiguous overlapping segments when the values change. When any of these channels are used, setTing an explicit **z** channel (possibly to null) is strongly recommended.
+These options are passed to the underlying area and line marks; in particular, when they are defined as a channel, the underlying marks are broken into contiguous overlapping segments when the values change. When any of these channels are used, setting an explicit **z** channel (possibly to null) is strongly recommended.
 
 ## differenceY(*data*, *options*) {/* {#differenceY} */}
 ```jsx

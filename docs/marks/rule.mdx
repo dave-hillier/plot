@@ -1,11 +1,9 @@
 import {BarY, Dot, GroupX, Line, LineY, NormalizeY, Replot, RuleX, RuleY} from "replot/react";
 import * as d3 from "d3";
-import {useState, useEffect} from "react";
 import aapl from "../data/aapl.ts";
 import alphabet from "../data/alphabet.ts";
-
-export const seattle = [];
-export const simpsons = [];
+import seattle from "../data/seattle-weather.ts";
+import {useSimpsons} from "../data/simpsons.ts";
 
 # Rule mark
 
@@ -60,15 +58,15 @@ Rules can be used to connect graphical elements, such as in the [dot plot](./dot
 
 <Replot>
   <GroupX y1="min" y2="max">
-    <RuleX data={simpsons} x="season" y="imdb_rating" />
+    <RuleX data={useSimpsons()} x="season" y="imdb_rating" />
   </GroupX>
-  <Dot data={simpsons} x="season" y="imdb_rating" fill="currentColor" stroke="var(--vp-c-bg)" />
+  <Dot data={useSimpsons()} x="season" y="imdb_rating" fill="currentColor" stroke="var(--vp-c-bg)" />
   <GroupX y="median">
-    <LineY data={simpsons} x="season" y="imdb_rating" stroke="red" />
+    <LineY data={useSimpsons()} x="season" y="imdb_rating" stroke="red" />
   </GroupX>
 </Replot>
 
-Rules can indicate uncertainty or error by setTing the [**marker** option](../features/markers.md) to *tick*; this draws a small perpendicular line at the start and end of the rule. For example, to simulate ±10% error:
+Rules can indicate uncertainty or error by setting the [**marker** option](../features/markers.md) to *tick*; this draws a small perpendicular line at the start and end of the rule. For example, to simulate ±10% error:
 
 <Replot x={{label: null}} y={{percent: true}}>
   <BarY data={alphabet} x="letter" y="frequency" fill="blue" />

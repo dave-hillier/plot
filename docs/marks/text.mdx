@@ -1,11 +1,9 @@
 import {BarY, Frame, identity, Line, Replot, RuleX, RuleY, SelectFirst, StackX2, Text} from "replot/react";
 import * as d3 from "d3";
-import {useState, useEffect} from "react";
 import alphabet from "../data/alphabet.ts";
 import caltrain from "../data/caltrain.ts";
 import driving from "../data/driving.ts";
-
-export const travelers = [];
+import travelers from "../data/travelers.ts";
 
 # Text mark
 
@@ -157,7 +155,7 @@ The **fontSize** and **rotate** options can be specified as either channels or c
 
 If the **frameAnchor** option is not specified, then **textAnchor** and **lineAnchor** default to middle. Otherwise, **textAnchor** defaults to start if **frameAnchor** is on the left, end if **frameAnchor** is on the right, and otherwise middle. Similarly, **lineAnchor** defaults to top if **frameAnchor** is on the top, bottom if **frameAnchor** is on the bottom, and otherwise middle.
 
-The **paintOrder** option defaults to *stroke* and the **strokeWidth** option defaults to 3. By setTing **fill** to the foreground color and **stroke** to the background color (such as *black* and *white*, respectively), you can surround text with a “halo” which may improve legibility against a busy background.
+The **paintOrder** option defaults to *stroke* and the **strokeWidth** option defaults to 3. By setting **fill** to the foreground color and **stroke** to the background color (such as *black* and *white*, respectively), you can surround text with a “halo” which may improve legibility against a busy background.
 
 ## text(*data*, *options*) {/* {#text} */}
 ```jsx

@@ -5,7 +5,7 @@ import alphabet from "../data/alphabet.ts";
 import gistemp from "../data/gistemp.ts";
 import aapl from "../data/aapl.ts";
 import goog from "../data/goog.ts";
-import bls from "../data/bls-industry-unemployment.ts";
+import {useBlsMetroUnemployment} from "../data/bls-metro-unemployment.ts";
 
 export const linedata = [
   {hour: 0, value: 8, sensor: "A"},
@@ -138,7 +138,7 @@ It's more complicated than that, though, since some marks produce shapes that in
 And a line mark isn't even guaranteed to produce a single polyline — there can be multiple polylines, as in a line chart with multiple series (using **z**).
 
 <Replot>
-  <LineY data={bls} x="date" y="unemployment" z="division" />
+  <LineY data={useBlsMetroUnemployment()} x="date" y="unemployment" z="division" />
 </Replot>
 
 Replot favors [tidy data](http://vita.had.co.nz/papers/tidy-data.html) structured as an array of objects, where each object represents an observation (a row), and each object property represents an observed value; all objects in the array should have the same property names (the columns).

@@ -1,21 +1,16 @@
 import {centroid, Centroid, Dot, Geo, GeoCentroid, Hexbin, Replot, pointer, Text, Tip, Voronoi} from "replot/react";
 import * as d3 from "d3";
-import {useState, useEffect} from "react";
-import * as topojson from "topojson-client";
-
-export const counties = [];
-export const nation = [];
-export const statemesh = [];
-export const states = [];
+import {useCounties, useNation, useStates} from "../data/us-atlas.ts";
+import {useStatemeshFull} from "../data/centroid-statemesh.ts";
 
 # Centroid transform <VersionBadge version="0.6.2" />
 
 Replot offers two transforms that derive centroids from GeoJSON geometries: [centroid](#centroid) and [geoCentroid](#geoCentroid). These transforms can be used by any mark that accepts **x** and **y** channels. Below, a [text mark](../marks/text.md) labels the U.S. states.
 
 <Replot projection="albers-usa">
-  <Geo data={statemesh} />
+  <Geo data={useStatemeshFull()} />
   <Centroid>
-    <Text data={states} text={(d) => d.properties.name} fill="currentColor" stroke="var(--vp-c-bg)" />
+    <Text data={useStates()} text={(d) => d.properties.name} fill="currentColor" stroke="var(--vp-c-bg)" />
   </Centroid>
 </Replot>
 
@@ -23,7 +18,7 @@ For fun, we can pass county centroids to the [voronoi mark](../marks/delaunay.md
 
 <Replot projection="albers">
   <Centroid>
-    <Voronoi data={counties} />
+    <Voronoi data={useCounties()} />
   </Centroid>
 </Replot>
 
@@ -33,7 +28,7 @@ As an [initializer](../features/transforms.md#custom-initializers), the centroid
 
 <Replot projection="albers-usa">
   <Centroid>
-    <Dot data={counties} />
+    <Dot data={useCounties()} />
   </Centroid>
 </Replot>
 
@@ -42,7 +37,7 @@ The geoCentroid transform is more specialized as the **x** and **y** channels it
 
 <Replot projection="albers-usa">
   <GeoCentroid>
-    <Dot data={counties} />
+    <Dot data={useCounties()} />
   </GeoCentroid>
 </Replot>
 
@@ -51,7 +46,7 @@ The geoCentroid transform is slightly faster than the centroid initializer — 
 <Replot projection="albers">
   <Hexbin r="count">
     <GeoCentroid>
-      <Dot data={counties} />
+      <Dot data={useCounties()} />
     </GeoCentroid>
   </Hexbin>
 </Replot>
@@ -59,12 +54,12 @@ The geoCentroid transform is slightly faster than the centroid initializer — 
 Combined with the [pointer transform](../interactions/pointer.md), the centroid transform can add [interactive tips](../marks/tip.md) on a map:
 
 <Replot projection="albers-usa">
-  <Geo data={statemesh} strokeOpacity={0.2} />
-  <Geo data={nation} />
+  <Geo data={useStatemeshFull()} strokeOpacity={0.2} />
+  <Geo data={useNation()} />
   <Centroid>
-    <Dot data={states} fill="red" stroke="var(--vp-c-bg-alt)" />
+    <Dot data={useStates()} fill="red" stroke="var(--vp-c-bg-alt)" />
   </Centroid>
-  <Tip data={states} {...pointer(centroid({title: (d) => d.properties.name}))} />
+  <Tip data={useStates()} {...pointer(centroid({title: (d) => d.properties.name}))} />
 </Replot>
 
 ## centroid(*options*) {/* {#centroid} */}

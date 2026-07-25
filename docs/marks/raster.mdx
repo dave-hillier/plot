@@ -1,12 +1,11 @@
 import {Dot, identity, Line, Replot, Raster, Sphere, Text} from "replot/react";
 import * as d3 from "d3";
-import {useState, useEffect} from "react";
 import penguins from "../data/penguins.ts";
 import volcano from "../data/volcano.ts";
+import {useCa55} from "../data/ca55.ts";
+import {useVapor} from "../data/water-vapor.ts";
 
-export const ca55 = [];
 export const grid = {"width": 10, "height": 10, "values": d3.cross(d3.range(10), d3.range(10), (x, y) => x * y)};
-export const vapor = [];
 
 export function mandelbrot(x, y) {
   for (let n = 0, zr = 0, zi = 0; n < 80; ++n) {
@@ -63,7 +62,7 @@ Also notice that the grid points are offset by 0.5: they represent the *middle* 
 
 
 Safari does not currently support the **imageRendering** option.
-While the raster mark provides convenient shorthand for strictly gridded data, as above, it *also* works with samples in arbitrary positions and arbitrary order. For example, in 1955 the [Great Britain aeromagnetic survey](https://www.bgs.ac.uk/datasetS/gb-aeromagnetic-survey/) measured the Earth’s magnetic field by plane. Each sample recorded the longitude and latitude alongside the strength of the [IGRF](https://www.ncei.noaa.gov/products/international-geomagnetic-reference-field) in [nanoteslas](https://en.wikipedia.org/wiki/Tesla_(unit)).
+While the raster mark provides convenient shorthand for strictly gridded data, as above, it *also* works with samples in arbitrary positions and arbitrary order. For example, in 1955 the [Great Britain aeromagnetic survey](https://www.bgs.ac.uk/datasets/gb-aeromagnetic-survey/) measured the Earth’s magnetic field by plane. Each sample recorded the longitude and latitude alongside the strength of the [IGRF](https://www.ncei.noaa.gov/products/international-geomagnetic-reference-field) in [nanoteslas](https://en.wikipedia.org/wiki/Tesla_(unit)).
 
 ```
 LONGITUDE,LATITUDE,MAG_IGRF90
@@ -78,13 +77,13 @@ LONGITUDE,LATITUDE,MAG_IGRF90
 Using a [dot mark](./dot.md), we can make a quick scatterplot to see the irregular grid. We’ll use a *diverging* color scale to distinguish positive and negative values.
 
 <Replot color={{type: "diverging"}}>
-  <Dot data={ca55} x="LONGITUDE" y="LATITUDE" fill="MAG_IGRF90" />
+  <Dot data={useCa55()} x="LONGITUDE" y="LATITUDE" fill="MAG_IGRF90" />
 </Replot>
 
 And using a [line mark](./line.md), we can connect the line segments to reveal the flight paths.
 
 <Replot color={{type: "diverging"}}>
-  <Line data={ca55} x="LONGITUDE" y="LATITUDE" stroke="MAG_IGRF90" z="LINE_NUMB-SEG" />
+  <Line data={useCa55()} x="LONGITUDE" y="LATITUDE" stroke="MAG_IGRF90" z="LINE_NUMB-SEG" />
 </Replot>
 
 The image above starts to be readable, but it would be frustrating to not do more with this data given all the effort that went into collecting it! Fortunately the raster mark’s **interpolate** option can quickly produce a continuous image.
@@ -92,7 +91,7 @@ The image above starts to be readable, but it would be frustrating to not do mor
 The *nearest* interpolator assigns the value of each pixel in the grid using the nearest sample in the data. In effect, this produces a Voronoi diagram.
 
 <Replot color={{type: "diverging"}}>
-  <Raster data={ca55} x="LONGITUDE" y="LATITUDE" fill="MAG_IGRF90" interpolate="nearest" />
+  <Raster data={useCa55()} x="LONGITUDE" y="LATITUDE" fill="MAG_IGRF90" interpolate="nearest" />
 </Replot>
 
 
@@ -100,19 +99,19 @@ You can also make this Voronoi diagram with the [voronoi mark](./delaunay.md).
 If the observed phenomenon is continuous, we can use the _barycentric_ interpolator. This constructs a Delaunay triangulation of the samples, and then paints each triangle by interpolating the values of the triangle’s vertices in [barycentric coordinates](https://en.wikipedia.org/wiki/Barycentric_coordinate_system). (Points outside the convex hull are extrapolated.)
 
 <Replot color={{type: "diverging"}}>
-  <Raster data={ca55} x="LONGITUDE" y="LATITUDE" fill="MAG_IGRF90" interpolate="barycentric" />
+  <Raster data={useCa55()} x="LONGITUDE" y="LATITUDE" fill="MAG_IGRF90" interpolate="barycentric" />
 </Replot>
 
 Finally, the _random-walk_ interpolator assigns the value at each grid location simply by taking a random walk that stops after reaching a minimum distance from any sample! The interpolator uses the [walk on spheres](https://observablehq.com/@fil/walk-on-spheres) algorithm, limited to 2 consecutive jumps.
 
 <Replot color={{type: "diverging"}}>
-  <Raster data={ca55} x="LONGITUDE" y="LATITUDE" fill="MAG_IGRF90" interpolate="random-walk" />
+  <Raster data={useCa55()} x="LONGITUDE" y="LATITUDE" fill="MAG_IGRF90" interpolate="random-walk" />
 </Replot>
 
 With the _random-walk_ method, the image is grainy, reflecting the uncertainty of the random walk. Use the **blur** option to make it smoother.
 
 <Replot color={{type: "diverging"}}>
-  <Raster data={ca55} x="LONGITUDE" y="LATITUDE" fill="MAG_IGRF90" interpolate="random-walk" blur={5} />
+  <Raster data={useCa55()} x="LONGITUDE" y="LATITUDE" fill="MAG_IGRF90" interpolate="random-walk" blur={5} />
 </Replot>
 
 
@@ -155,7 +154,7 @@ The raster mark supports Replot’s [projection system](../features/projections.
     legend: true,
     label: "Water vapor (cm)"
   }}>
-  <Raster data={vapor} fill={identity} width={360} height={180} x1={-180} y1={90} x2={180} y2={-90} interpolate="barycentric" clip="sphere" />
+  <Raster data={useVapor()} fill={identity} width={360} height={180} x1={-180} y1={90} x2={180} y2={-90} interpolate="barycentric" clip="sphere" />
   <Sphere stroke="black" />
 </Replot>
 

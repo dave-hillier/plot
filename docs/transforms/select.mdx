@@ -1,9 +1,7 @@
 import {Line, Replot, RuleY, SelectLast, SelectMaxY, SelectMinY, Text} from "replot/react";
 import * as d3 from "d3";
-import {useState} from "react";
 import aapl from "../data/aapl.ts";
-
-export const stocks = [];
+import {useStocks} from "../data/stocks.ts";
 
 
 # Select transform <VersionBadge version="0.4.0" />
@@ -37,9 +35,9 @@ The select transform groups data into series using the **z**, **fill**, or **str
 
 <Replot y={{grid: true}}>
   <RuleY data={[0]} />
-  <Line data={stocks} x="Date" y="Close" stroke="Symbol" />
+  <Line data={useStocks()} x="Date" y="Close" stroke="Symbol" />
   <SelectLast>
-    <Text data={stocks} x="Date" y="Close" z="Symbol" text="Symbol" textAnchor="start" dx={3} />
+    <Text data={useStocks()} x="Date" y="Close" z="Symbol" text="Symbol" textAnchor="start" dx={3} />
   </SelectLast>
 </Replot>
 

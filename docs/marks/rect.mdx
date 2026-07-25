@@ -1,23 +1,41 @@
 import {Bin, BinX, formatMonth, Replot, Rect, RectY, RuleY, StackX} from "replot/react";
 import * as d3 from "d3";
-import {useState, useEffect} from "react";
-import * as topojson from "topojson-client";
+import {useState} from "react";
+import povcalnet from "../data/povcalnet.ts";
+import seattle from "../data/seattle-weather.ts";
+import {useCounties} from "../data/us-atlas.ts";
 import {useOlympians} from "../data/olympians.ts";
 import {useDiamonds} from "../data/diamonds.ts";
 
-export const povcalnet = [];
-export const countyboxes = [];
 export const bins = d3.bin()(d3.range(1000).map(d3.randomNormal.source(d3.randomLcg(42))()));
-export const seattle = [];
-export const r = 0;
-export const setR = () => {};
+
+export function RadiusDemo() {
+  const [r, setR] = useState(4);
+  return (
+    <div>
+      <p>
+        <label className="label-input" style={{display: "flex"}}>
+          <span style={{display: "inline-block", width: "7em"}}>r:</span>
+          <input type="range" value={r} onChange={(e) => setR(Number(e.target.value))} min="0" max="25" step="0.2" />
+          <span style={{fontVariantNumeric: "tabular-nums"}}>{r}</span>
+        </label>
+      </p>
+      <Replot>
+        <BinX y="count" thresholds={10}>
+          <RectY data={useOlympians()} x="weight" r={r} />
+        </BinX>
+        <RuleY data={[0]} />
+      </Replot>
+    </div>
+  );
+}
 
 # Rect mark
 
 The **rect mark** draws axis-aligned rectangles defined by **x1**, **y1**, **x2**, and **y2**. For example, here we display geographic bounding boxes of U.S. counties represented as [*x1*, *y1*, *x2*, *y2*] tuples, where *x1* & *x2* are degrees longitude and *y1* & *y2* are degrees latitude.
 
 <Replot projection="albers-usa">
-  <Rect data={countyboxes} x1="0"
+  <Rect data={(useCounties() ?? []).map((d) => d3.geoBounds(d).flat())} x1="0"
       y1="1"
       x2="2"
       y2="3"
@@ -36,7 +54,7 @@ bins = d3.bin()(d3.range(1000).map(d3.randomNormal()))
 
 
 d3.bin uses *x0* and *x1* to represent the lower and upper bound of each bin, whereas the rect mark uses **x1** and **x2**. The *length* field is the count of values in each bin, which is encoded as **y**.
-More commonly, the rect mark is paired with the [bin transform](../transforms/bin.md) to bin quantitative values automatically. As an added bonus, this setS default [inset options](../features/marks.md#mark-options) for a 1px gap separating adjacent rects, improving readability.
+More commonly, the rect mark is paired with the [bin transform](../transforms/bin.md) to bin quantitative values automatically. As an added bonus, this sets default [inset options](../features/marks.md#mark-options) for a 1px gap separating adjacent rects, improving readability.
 
 <Replot>
   <BinX y="count">
@@ -95,7 +113,7 @@ Below we recreate an uncommon [chart by Max Roser](https://ourworldindata.org/po
   <RuleY data={[0]} />
 </Replot>
 
-The [interval transform](../transforms/interval.md) may be used to convert a single value in **x** or **y** (or both) into an extent. (Unlike the bin transform, the interval transform will produce overlapping rects if multiple points have the same position.) The chart below shows the observed daily maximum temperature in Seattle for the year 2015. The day-in-month and month-in-year numbers are expanded to unit intervals by setTing the **interval** option to 1.
+The [interval transform](../transforms/interval.md) may be used to convert a single value in **x** or **y** (or both) into an extent. (Unlike the bin transform, the interval transform will produce overlapping rects if multiple points have the same position.) The chart below shows the observed daily maximum temperature in Seattle for the year 2015. The day-in-month and month-in-year numbers are expanded to unit intervals by setting the **interval** option to 1.
 
 <Replot aspectRatio={1} y={{ticks: 12, tickFormat: formatMonth("en", "narrow")}}>
   <Rect data={seattle.filter((d) => d.date.getUTCFullYear() === 2015)} x={(d) => d.date.getUTCDate()} y={(d) => d.date.getUTCMonth()} interval={1} fill="temp_max" inset={0.5} />
@@ -105,20 +123,16 @@ The [interval transform](../transforms/interval.md) may be used to convert a sin
 A similar chart could be made with the [cell mark](./cell.md) using ordinal *x* and *y* scales instead, or with the [dot mark](./dot.md) as a scatterplot.
 To round corners, use the **r** option. If the combined corner radii exceed the width or height of the rect, the radii are proportionally reduced to produce a pill shape with circular caps. Try increasing the radii below.
 
-<p>
-  <label className="label-input" style={{display: "flex"}}>
-    <span style={{display: "inline-block", width: "7em"}}>r:</span>
-    <input type="range" value={r} onChange={(e) => setR(Number(e.target.value))} min="0" max="25" step="0.2" />
-    <span style={{fontVariantNumeric: "tabular-nums"}}>{r}</span>
-  </label>
-</p>
+<RadiusDemo />
 
+```jsx
 <Replot>
   <BinX y="count" thresholds={10}>
-    <RectY data={useOlympians()} x="weight" r={r} />
+    <RectY data={olympians} x="weight" r={r} />
   </BinX>
   <RuleY data={[0]} />
 </Replot>
+```
 
 To round corners on a specific side, use the **rx1**, **ry1**, **rx2**, or **ry2** options. When stacking rounded rects vertically, use a positive **ry2** and a corresponding negative **ry1**; likewise for stacking rounded rects horizontally, use a positive **rx2** and a negative **rx1**. Use the **clip** option to hide the “wings” below zero.
 

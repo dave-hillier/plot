@@ -1,11 +1,27 @@
 import {Density, Dot, Frame, Replot} from "replot/react";
 import * as d3 from "d3";
-import {useState, useEffect} from "react";
+import {useState} from "react";
 import penguins from "../data/penguins.ts";
 import faithful from "../data/faithful.ts";
 
-export const framed = true;
-export const setFramed = () => {};
+export function FramedDemo() {
+  const [framed, setFramed] = useState(true);
+  return (
+    <div>
+      <p>
+        <label className="label-input">
+          Show frame:
+          <input type="checkbox" checked={framed} onChange={(e) => setFramed(e.target.checked)} />
+        </label>
+      </p>
+      <Replot grid inset={10}>
+        {framed ? <Frame /> : null}
+        <Dot data={penguins} x="culmen_length_mm" y="culmen_depth_mm" fill="#eee" />
+        <Dot data={penguins} x="culmen_length_mm" y="culmen_depth_mm" fx="species" />
+      </Replot>
+    </div>
+  );
+}
 
 # Frame mark
 
@@ -17,18 +33,15 @@ The **frame mark** draws a rectangle around the plot area.
 
 Frames are most commonly used in conjunction with facets to provide better separation (Gestalt grouping) of faceted marks. Without a frame, it can be hard to tell where one facet ends and the next begins.
 
-<p>
-  <label className="label-input">
-    Show frame:
-    <input type="checkbox" checked={framed} onChange={(e) => setFramed(e.target.checked)} />
-  </label>
-</p>
+<FramedDemo />
 
+```jsx
 <Replot grid inset={10}>
   {framed ? <Frame /> : null}
   <Dot data={penguins} x="culmen_length_mm" y="culmen_depth_mm" fill="#eee" />
   <Dot data={penguins} x="culmen_length_mm" y="culmen_depth_mm" fx="species" />
 </Replot>
+```
 
 Unlike most marks, a frame never takes *data*; the first argument to [frame](#frame) is the *options* object. (For data-driven rectangles, see the [rect mark](./rect.md).)
 

@@ -16,8 +16,23 @@ export const timeseries = [
   {year: 2019, population: 7713.468100},
   {year: 2020, population: 7794.798739}
 ];
-export const checked = true;
-export const setChecked = () => {};
+
+export function IntervalDemo() {
+  const [checked, setChecked] = useState(true);
+  return (
+    <div>
+      <p>
+        <label className="label-input">
+          Use interval:
+          <input type="checkbox" checked={checked} onChange={(e) => setChecked(e.target.checked)} />
+        </label>
+      </p>
+      <Replot x={{tickFormat: "", interval: checked ? 1 : undefined}}>
+        <BarY data={timeseries} x="year" y="population" />
+      </Replot>
+    </div>
+  );
+}
 
 # Bar mark
 
@@ -81,16 +96,13 @@ For a diverging bar chart, simply specify a negative value. The chart below show
 The **percent** scale option is useful for showing percentages; it applies a [scale transform](../features/scales.md#scale-transforms) that multiplies associated channel values by 100.
 When ordinal data is regular, such as the yearly observations of the time-series bar chart of world population below, use the **interval** option to enforce uniformity and show gaps for missing data. It can be set to a named interval such as *hour* or *day*, a number for numeric intervals, a [d3-time interval](https://d3js.org/d3-time#_interval), or a custom implementation.
 
-<p>
-  <label className="label-input">
-    Use interval:
-    <input type="checkbox" checked={checked} onChange={(e) => setChecked(e.target.checked)} />
-  </label>
-</p>
+<IntervalDemo />
 
+```jsx
 <Replot x={{tickFormat: "", interval: checked ? 1 : undefined}}>
   <BarY data={timeseries} x="year" y="population" />
 </Replot>
+```
 
 
 You can also make a time-series bar chart with a [rect mark](./rect.md), possibly with the [bin transform](../transforms/bin.md) to bin observations at regular intervals.

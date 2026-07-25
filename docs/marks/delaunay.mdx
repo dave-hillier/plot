@@ -1,11 +1,7 @@
 import {DelaunayLink, DelaunayMesh, Dot, Frame, Geo, Hull, Replot, Voronoi, VoronoiMesh} from "replot/react";
-import * as d3 from "d3";
-import {useState, useEffect} from "react";
-import * as topojson from "topojson-client";
 import penguins from "../data/penguins.ts";
 import walmarts from "../data/walmarts.ts";
-
-export const nation = [];
+import {useNation} from "../data/us-atlas.ts";
 
 # Delaunay marks <VersionBadge version="0.5.1" />
 
@@ -62,7 +58,7 @@ The Delaunay marks can be one-dimensional, too.
 The [Delaunay marks](../marks/delaunay.md) also work with Replot’s [projection system](../features/projections.md), as in this Voronoi diagram showing the distribution of Walmart stores in the contiguous United States.
 
 <Replot projection="albers">
-  <Geo data={nation} />
+  <Geo data={useNation()} />
   <Dot data={walmarts} x="longitude" y="latitude" fill="currentColor" r={1} />
   <VoronoiMesh data={walmarts} x="longitude" y="latitude" />
 </Replot>

@@ -1,28 +1,41 @@
 import {DifferenceY, Replot, ShiftX} from "replot/react";
 import * as d3 from "d3";
-import {useState, useEffect} from "react";
+import {useState} from "react";
 import aapl from "../data/aapl.ts";
 
-export const shift = 365;
-export const setShift = () => {};
+export function ShiftDemo() {
+  const [shift, setShift] = useState(365);
+  return (
+    <div>
+      <p>
+        <label className="label-input" style={{display: "flex"}}>
+          <span style={{display: "inline-block", width: "7em"}}>Shift (days):</span>
+          <input type="range" value={shift} onChange={(e) => setShift(Number(e.target.value))} min="0" max="1000" step="1" />
+          <span style={{fontVariantNumeric: "tabular-nums"}}>{shift}</span>
+        </label>
+      </p>
+      <Replot y={{grid: true}}>
+        <ShiftX interval={`${shift} days`}>
+          <DifferenceY data={aapl} x="Date" y="Close" />
+        </ShiftX>
+      </Replot>
+    </div>
+  );
+}
 
 # Shift transform <VersionBadge version="0.6.12" pr="1896" />
 
 The **shift transform** is a specialized [map transform](./map.md) that derives an output **x1** channel by shifting the **x** channel; it can be used with the [difference mark](../marks/difference.md) to show change over time. For example, the chart below shows the price of Apple stock. The <span style={{borderBottom: "solid #01ab63 3px"}}>green region</span> shows when the price went up over the given interval, while the <span style={{borderBottom: "solid #4269d0 3px"}}>blue region</span> shows when the price went down.
 
-<p>
-  <label className="label-input" style={{display: "flex"}}>
-    <span style={{display: "inline-block", width: "7em"}}>Shift (days):</span>
-    <input type="range" value={shift} onChange={(e) => setShift(Number(e.target.value))} min="0" max="1000" step="1" />
-    <span style={{fontVariantNumeric: "tabular-nums"}}>{shift}</span>
-  </label>
-</p>
+<ShiftDemo />
 
+```jsx
 <Replot y={{grid: true}}>
-  <ShiftX interval={`${shift} days`}>
+  <ShiftX interval="365 days">
     <DifferenceY data={aapl} x="Date" y="Close" />
   </ShiftX>
 </Replot>
+```
 
 When looking at year-over-year growth, the chart is mostly green, implying that you would make a profit by holding Apple stock for a year. However, if you bought in 2015 and sold in 2016, you would likely have lost money. Try adjusting the slider to a shorter or longer interval: how does that affect the typical return?
 

@@ -1,35 +1,68 @@
 import {Dot, DotX, DodgeY, Geo, GeoCentroid, Line, Replot, RuleY} from "replot/react";
 import * as d3 from "d3";
-import {useState, useEffect} from "react";
-import * as topojson from "topojson-client";
+import {useState} from "react";
 import cars from "../data/cars.ts";
-import bls from "../data/bls-industry-unemployment.ts";
+import {useBlsMetroUnemployment} from "../data/bls-metro-unemployment.ts";
+import {useCountiesWithPopulation} from "../data/us-county-population.ts";
+import {useStatemeshAll} from "../data/us-statemesh.ts";
 
-export const counties = [];
-export const statemesh = [];
-export const sorted = true;
-export const setSorted = () => {};
-export const order = "ascending";
-export const setOrder = () => {};
+export function SortedDemo() {
+  const [sorted, setSorted] = useState(true);
+  const counties = useCountiesWithPopulation();
+  const statemesh = useStatemeshAll();
+  return (
+    <div>
+      <p>
+        <label className="label-input">
+          Sort by descending radius (r):
+          <input type="checkbox" checked={sorted} onChange={(e) => setSorted(e.target.checked)} />
+        </label>
+      </p>
+      <Replot projection="albers-usa">
+        <Geo data={statemesh ?? {type: null}} strokeOpacity={0.4} />
+        <GeoCentroid>
+          <Dot data={counties} r={(d) => d.properties.population} fill="currentColor" stroke="var(--vp-c-bg)" strokeWidth={1} sort={sorted ? {channel: "-r"} : null} />
+        </GeoCentroid>
+      </Replot>
+    </div>
+  );
+}
+
+export function SortOrderDemo() {
+  const [order, setOrder] = useState("ascending");
+  return (
+    <div>
+      <p>
+        <span className="label-input">
+          Sort x order:
+          <label style={{marginLeft: "0.5em"}}><input type="radio" name="order" value="ascending" checked={order === "ascending"} onChange={(e) => setOrder(e.target.value)} /> ascending</label>
+          <label style={{marginLeft: "0.5em"}}><input type="radio" name="order" value="descending" checked={order === "descending"} onChange={(e) => setOrder(e.target.value)} /> descending</label>
+        </span>
+      </p>
+      <Replot height={180}>
+        <DodgeY>
+          <DotX data={cars} x="weight (lb)" title="name" fill="currentColor" sort={{channel: "x", order}} />
+        </DodgeY>
+      </Replot>
+    </div>
+  );
+}
 
 
 # Sort transform
 
 The **sort transform** sorts a mark’s index to change the effective order of data. The sort transform affects the order in which a mark’s graphical elements are drawn ([z-order](https://en.wikipedia.org/wiki/Z-order)), which can have a dramatic effect when these elements overlap. For example, see the bubble map of U.S. county population below; when the null sort order is used for input order, many small dots are hidden underneath larger ones.
 
-<p>
-  <label className="label-input">
-    Sort by descending radius (r):
-    <input type="checkbox" checked={sorted} onChange={(e) => setSorted(e.target.checked)} />
-  </label>
-</p>
+<SortedDemo />
 
+```jsx
 <Replot projection="albers-usa">
   <Geo data={statemesh} strokeOpacity={0.4} />
   <GeoCentroid>
-    <Dot data={counties} r={(d) => d.properties.population} fill="currentColor" stroke="var(--vp-c-bg)" strokeWidth={1} sort={sorted ? {channel: "-r"} : null} />
+    <Dot data={counties} r={(d) => d.properties.population} fill="currentColor" stroke="var(--vp-c-bg)" strokeWidth={1} sort={{channel: "-r"}} />
   </GeoCentroid>
 </Replot>
+```
 
 
 Dots are sorted by descending **r** by default, so you may not need the **sort** option.
@@ -45,26 +78,22 @@ As another example, in the line chart of unemployment rates below, lines for met
     range: ["#ccc", "red"]
   }}>
   <RuleY data={[0]} />
-  <Line data={bls} x="date" y="unemployment" z="division" sort={(d) => /, MI /.test(d.division)} stroke={(d) => /, MI /.test(d.division)} />
+  <Line data={useBlsMetroUnemployment()} x="date" y="unemployment" z="division" sort={(d) => /, MI /.test(d.division)} stroke={(d) => /, MI /.test(d.division)} />
 </Replot>
 
 
 You could say `sort: {channel: "stroke"}` here to avoid repeating the test function.
 The index order also affects the behavior of certain transforms such as [stack](./stack.md) and [dodge](./dodge.md).
 
-<p>
-  <span className="label-input">
-    Sort x order:
-    <label style={{marginLeft: "0.5em"}}><input type="radio" name="order" value="ascending" checked={order === "ascending"} onChange={(e) => setOrder(e.target.value)} /> ascending</label>
-    <label style={{marginLeft: "0.5em"}}><input type="radio" name="order" value="descending" checked={order === "descending"} onChange={(e) => setOrder(e.target.value)} /> descending</label>
-  </span>
-</p>
+<SortOrderDemo />
 
+```jsx
 <Replot height={180}>
   <DodgeY>
-    <DotX data={cars} x="weight (lb)" title="name" fill="currentColor" sort={{channel: "x", order}} />
+    <DotX data={cars} x="weight (lb)" title="name" fill="currentColor" sort={{channel: "x", order: "ascending"}} />
   </DodgeY>
 </Replot>
+```
 
 The closely-related [reverse transform](#reverse) likewise reverses the mark index, while the [shuffle transform](#shuffle) for randomizes the mark index’s order.
 

@@ -77,7 +77,7 @@ You can opt-out of the implicit stackY transform by having groupX generate **y1*
 
 
 While the **mixBlendMode** option is useful for mitigating occlusion, it can be slow to render if there are many elements. More than two overlapping histograms may also be hard to read.
-Perhaps better would be to make a grouped bar chart using [faceting](../features/facets.md). This is accomplished by setTing the **fx** channel to facet horizontally on *sport*, while the **x** channel is used within each facet to draw side-by-side bars for each *sex*. The group transform automatically partitions groups by facet.
+Perhaps better would be to make a grouped bar chart using [faceting](../features/facets.md). This is accomplished by setting the **fx** channel to facet horizontally on *sport*, while the **x** channel is used within each facet to draw side-by-side bars for each *sex*. The group transform automatically partitions groups by facet.
 
 <Replot marginBottom={100} fx={{padding: 0, label: null, tickRotate: 90, tickSize: 6}} x={{axis: null, paddingOuter: 0.2}} y={{grid: true}} color={{legend: true}}>
   <GroupX y2="count">

@@ -1,12 +1,37 @@
 import {Cell, formatMonth, formatWeekday, Group, Replot, Text} from "replot/react";
 import * as d3 from "d3";
-import {useState, useEffect} from "react";
 import alphabet from "../data/alphabet.ts";
 import hadcrut from "../data/hadcrut.ts";
+import seattle from "../data/seattle-weather.ts";
+import {useDji} from "../data/dji.ts";
+import {useSimpsons} from "../data/simpsons.ts";
 
-export const simpsons = [];
-export const dji = [];
-export const seattle = [];
+export function DjiCalendar() {
+  const dji = useDji();
+  return (
+    <Replot padding={0} x={{axis: null}} y={{tickFormat: formatWeekday("en", "narrow"), tickSize: 0}} fy={{tickFormat: ""}} color={{scheme: "PiYG"}}>
+      <Cell data={dji} x={(d) => d3.utcWeek.count(d3.utcYear(d.Date), d.Date)} y={(d) => d.Date.getUTCDay()} fy={(d) => d.Date.getUTCFullYear()} fill={(d, i) => i > 0 ? (d.Close - dji[i - 1].Close) / dji[i - 1].Close : NaN} title={(d, i) => i > 0 ? ((d.Close - dji[i - 1].Close) / dji[i - 1].Close * 100).toFixed(1) : NaN} inset={0.5} />
+    </Replot>
+  );
+}
+
+export function SimpsonsSeasonStrip() {
+  const simpsons = useSimpsons();
+  return (
+    <Replot x={{
+        ticks: simpsons.filter((d) => d.number_in_season === 1).map((d) => d.id),
+        tickFormat: (x) => simpsons.find((d) => d.id === x).season,
+        label: "Season",
+        labelAnchor: "right",
+        labelArrow: true
+      }} color={{
+        type: "linear",
+        scheme: "PiYG"
+      }}>
+      <Cell data={simpsons} x="id" fill="imdb_rating" />
+    </Replot>
+  );
+}
 
 # Cell mark
 
@@ -17,15 +42,19 @@ The **cell mark** draws rectangles positioned in two ordinal dimensions. Hence, 
 For example, the heatmap below shows the decline of *The Simpsons* after Season 9: high IMDb ratings are dark green, while low ratings are dark pink. (The worst episode ever — cue Comic Book Guy — is season 23’s [“Lisa Goes Gaga”](https://en.wikipedia.org/wiki/Lisa_Goes_Gaga).)
 
 <Replot padding={0} grid x={{axis: "top", label: "Season"}} y={{label: "Episode"}} color={{type: "linear", scheme: "PiYG"}}>
-  <Cell data={simpsons} x="season" y="number_in_season" fill="imdb_rating" inset={0.5} />
-  <Text data={simpsons} x="season" y="number_in_season" text={(d) => d.imdb_rating?.toFixed(1)} fill="black" title="title" />
+  <Cell data={useSimpsons()} x="season" y="number_in_season" fill="imdb_rating" inset={0.5} />
+  <Text data={useSimpsons()} x="season" y="number_in_season" text={(d) => d.imdb_rating?.toFixed(1)} fill="black" title="title" />
 </Replot>
 
 With [faceting](../features/facets.md), we can produce a calendar of multiple years, where **x** represents week-of-year and **y** represents day-of-week. Below shows almost twenty years of daily changes of the Dow Jones Industrial Average.
 
+<DjiCalendar />
+
+```jsx
 <Replot padding={0} x={{axis: null}} y={{tickFormat: formatWeekday("en", "narrow"), tickSize: 0}} fy={{tickFormat: ""}} color={{scheme: "PiYG"}}>
   <Cell data={dji} x={(d) => d3.utcWeek.count(d3.utcYear(d.Date), d.Date)} y={(d) => d.Date.getUTCDay()} fy={(d) => d.Date.getUTCFullYear()} fill={(d, i) => i > 0 ? (d.Close - dji[i - 1].Close) / dji[i - 1].Close : NaN} title={(d, i) => i > 0 ? ((d.Close - dji[i - 1].Close) / dji[i - 1].Close * 100).toFixed(1) : NaN} inset={0.5} />
 </Replot>
+```
 
 The cell mark can be combined with the [group transform](../transforms/group.md), which groups data by ordinal value. (The [bin transform](../transforms/bin.md), on the other hand, is intended for quantitative data and is typically paired with the [rect mark](./rect.md).) The heatmap below shows the maximum observed temperature by month (**y**) and date (**x**) in Seattle from 2012 through 2015.
 
@@ -37,6 +66,9 @@ The cell mark can be combined with the [group transform](../transforms/group.md)
 
 A one-dimensional cell is produced by specifying only **x** or only **y**. The plot below collapses the history of *The Simpsons* to a single line.
 
+<SimpsonsSeasonStrip />
+
+```jsx
 <Replot x={{
     ticks: simpsons.filter((d) => d.number_in_season === 1).map((d) => d.id),
     tickFormat: (x) => simpsons.find((d) => d.id === x).season,
@@ -49,9 +81,10 @@ A one-dimensional cell is produced by specifying only **x** or only **y**. The p
   }}>
   <Cell data={simpsons} x="id" fill="imdb_rating" />
 </Replot>
+```
 
 
-Here the *x*-scale domain contains the *id* of every episode. An ordinal scale by default draws a tick for every domain value; setTing **ticks** to just the first episode of each season prevents overlapping labels. The **tickFormat** function finds the row corresponding to the episode id and returns the corresponding *season* number.
+Here the *x*-scale domain contains the *id* of every episode. An ordinal scale by default draws a tick for every domain value; setting **ticks** to just the first episode of each season prevents overlapping labels. The **tickFormat** function finds the row corresponding to the episode id and returns the corresponding *season* number.
 One-dimensional cells can be a compact alternative to a bar chart, where the *fill* color of the cell replaces the length of the bar. However, position is a more salient encoding and should be preferred to color if space is available.
 
 <Replot>

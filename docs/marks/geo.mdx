@@ -1,17 +1,16 @@
 import {AxisFy, Centroid, Dot, Geo, Graticule, Replot, Sphere} from "replot/react";
 import * as d3 from "d3";
-import {useState, useEffect} from "react";
-import * as topojson from "topojson-client";
 import walmarts from "../data/walmarts.ts";
+import {useEarthquakes} from "../data/earthquakes.ts";
+import {useLand} from "../data/world.ts";
+import {useNation, useStatemesh, useStates} from "../data/us-atlas.ts";
+import {useUnemploymentCounties} from "../data/geo-unemployment.ts";
 
-export const counties = [];
-export const earthquakes = [];
-export const land = [];
-export const nation = [];
-export const statemesh = [];
-export const states = [];
-
-{/* Data: counties/states/nation/statemesh are loaded externally from us-counties-10m.json with unemployment rates merged from us-county-unemployment.csv. */}
+export const walmartGeo = walmarts.map((d) => ({
+  type: "Feature",
+  properties: {date: d.date},
+  geometry: {type: "Point", coordinates: [d.longitude, d.latitude]}
+}));
 
 # Geo mark <VersionBadge version="0.6.1" />
 
@@ -24,7 +23,7 @@ The **geo mark** draws geographic features — polygons, lines, points, and oth
     label: "Unemployment (%)",
     legend: true
   }}>
-  <Geo data={counties} fill="unemployment" title={(d) => `${d.properties.name} ${d.properties.unemployment}%`} tip />
+  <Geo data={useUnemploymentCounties()} fill="unemployment" title={(d) => `${d.properties.name} ${d.properties.unemployment}%`} tip />
 </Replot>
 
 A geo mark’s data is typically [GeoJSON](https://geojson.org/). You can pass a single GeoJSON object, a feature or geometry collection, or an array or iterable of GeoJSON objects; Replot automatically normalizes these into an array of features or geometries. When a mark’s data is GeoJSON, Replot will look for the specified field name (such as _unemployment_ above, for **fill**) in the GeoJSON object’s `properties` if the object does not have this property directly. <VersionBadge version="0.6.16" pr="2092" />
@@ -32,9 +31,9 @@ A geo mark’s data is typically [GeoJSON](https://geojson.org/). You can pass a
 The size of Point and MultiPoint geometries is controlled by the **r** option. For example, below we show earthquakes in the last seven days with a magnitude of 2.5 or higher as reported by the [USGS](https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php). As with the [dot mark](./dot.md), the effective radius is controlled by the *r* scale, which is by default a *sqrt* scale such that the area of a point is proportional to its value. And likewise point geometries are by default sorted by descending radius to reduce occlusion, drawing the smallest circles on top. Set the **sort** option to null to use input order instead.
 
 <Replot projection="equirectangular" r={{transform: (r) => Math.pow(10, r)}}>
-  <Geo data={land} fill="currentColor" fillOpacity={0.2} />
+  <Geo data={useLand()} fill="currentColor" fillOpacity={0.2} />
   <Sphere />
-  <Geo data={earthquakes} r="mag" fill="red" fillOpacity={0.2} stroke="red" title="title" href="url" target="_blank" />
+  <Geo data={useEarthquakes() ?? []} r="mag" fill="red" fillOpacity={0.2} stroke="red" title="title" href="url" target="_blank" />
 </Replot>
 
 
@@ -57,7 +56,7 @@ The geo mark’s **geometry** channel can be used to generate geometry from a no
     transform: (d) => 111.2 * d, // degrees to km
     zero: true
   }}>
-  <Geo data={land} />
+  <Geo data={useLand()} />
   <Geo data={[0.5, 179.5].concat(d3.range(10, 171, 10))} geometry={d3.geoCircle().center([-175.38, -20.57]).radius((r) => r)} stroke={(r) => r} strokeWidth={2} />
   <Sphere />
 </Replot>
@@ -65,19 +64,19 @@ The geo mark’s **geometry** channel can be used to generate geometry from a no
 By default, the geo mark doesn’t have **x** and **y** channels; when you use the [**tip** option](./tip.md), the [centroid transform](../transforms/centroid.md) is implicitly applied on the geometries to compute the tip position by generating **x** and **y** channels. <VersionBadge version="0.6.16" pr="2088" /> You can alternatively specify these channels explicitly. The centroids are shown below in red.
 
 <Replot projection="albers-usa">
-  <Geo data={states} strokeOpacity={0.1} tip title="name" />
-  <Geo data={nation} />
+  <Geo data={useStates()} strokeOpacity={0.1} tip title="name" />
+  <Geo data={useNation()} />
   <Centroid>
-    <Dot data={states} fill="red" stroke="var(--vp-c-bg-alt)" />
+    <Dot data={useStates()} fill="red" stroke="var(--vp-c-bg-alt)" />
   </Centroid>
 </Replot>
 
 The geo mark supports [faceting](../features/facets.md). Below, a comic strip of sorts shows the locations of Walmart store openings in past decades.
 
 <Replot margin={0} padding={0} projection="albers" fy={{interval: "10 years"}}>
-  <Geo data={statemesh} strokeOpacity={0.2} />
-  <Geo data={nation} />
-  <Geo data={walmarts} fy="date" r={1.5} fill="blue" tip title="date" />
+  <Geo data={useStatemesh()} strokeOpacity={0.2} />
+  <Geo data={useNation()} />
+  <Geo data={walmartGeo} fy="date" r={1.5} fill="blue" tip title="date" />
   <AxisFy frameAnchor="top" dy={30} tickFormat={(d) => `${d.getUTCFullYear()}’s`} />
 </Replot>
 

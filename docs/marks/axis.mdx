@@ -5,10 +5,41 @@ import aapl from "../data/aapl.ts";
 import alphabet from "../data/alphabet.ts";
 import penguins from "../data/penguins.ts";
 
-export const anchor = "bottom";
-export const setAnchor = () => {};
-export const facetAnchor = "auto";
-export const setFacetAnchor = () => {};
+export function FacetAnchorDemo() {
+  const [anchor, setAnchor] = useState("bottom");
+  const [facetAnchor, setFacetAnchor] = useState("auto");
+  return (
+    <div>
+      <p>
+        <label className="label-input">
+          anchor:
+          <select value={anchor} onChange={(e) => setAnchor(e.target.value)}>
+            <option>bottom</option>
+            <option>top</option>
+          </select>
+        </label>
+        <label className="label-input">
+          facetAnchor:
+          <select value={facetAnchor} onChange={(e) => setFacetAnchor(e.target.value)}>
+            <option>auto</option>
+            <option>bottom-empty</option>
+            <option>bottom</option>
+            <option>top-empty</option>
+            <option>top</option>
+            <option>null</option>
+          </select>
+        </label>
+      </p>
+      <Replot facet={{marginRight: 80}} grid>
+        <Frame />
+        <Dot data={penguins} x="culmen_length_mm" y="culmen_depth_mm" fx="sex" fy="species" />
+        <AxisX color="red" anchor={anchor} facetAnchor={facetAnchor === "auto" ? undefined : facetAnchor === "null" ? null : facetAnchor} />
+        <AxisFx color="blue" anchor={anchor === "top" ? "bottom" : "top"} />
+      </Replot>
+    </div>
+  );
+}
+
 export const responses = [
   {name: "Family in feud with Zucker\u00ADbergs", value: 0.17},
   {name: "Committed 671 birthdays to memory", value: 0.19},
@@ -113,7 +144,7 @@ You can even style an axis dynamically based on data! The data associated with a
   <AxisY x={(y) => aapl.find((d) => d.Close >= y)?.Date} insetLeft={-6} textStroke="var(--vp-c-bg)" />
 </Replot>
 
-The color of an axis can be controlled with the **color**, **stroke**, and **fill** options, which affect the axis’ component marks differently. The **stroke** option affects the tick vector; the **fill** option affects the label texts. The **color** option is shorthand for setTing both **fill** and **stroke**. While these options are typically set to constant colors (such as _red_ or the default _currentColor_), they can be specified as channels to assign colors dynamically based on the associated tick value.
+The color of an axis can be controlled with the **color**, **stroke**, and **fill** options, which affect the axis’ component marks differently. The **stroke** option affects the tick vector; the **fill** option affects the label texts. The **color** option is shorthand for setting both **fill** and **stroke**. While these options are typically set to constant colors (such as _red_ or the default _currentColor_), they can be specified as channels to assign colors dynamically based on the associated tick value.
 
 <Replot>
   <AxisX data={d3.ticks(0, 1, 10)} color="red" />
@@ -149,33 +180,16 @@ If the default behavior isn’t what you want, use the *mark*.**facetAnchor** op
 
 The interactive chart below shows the different possibilities. Note that we place the facet *fx*-axis (in <span style={{borderBottom: "solid 2px var(--vp-c-blue)"}}>blue</span>) opposite the *x*-axis (in <span style={{borderBottom: "solid 2px var(--vp-c-red)"}}>red</span>).
 
-<p>
-  <label className="label-input">
-    anchor:
-    <select value={anchor} onChange={(e) => setAnchor(e.target.value)}>
-      <option>bottom</option>
-      <option>top</option>
-    </select>
-  </label>
-  <label className="label-input">
-    facetAnchor:
-    <select value={facetAnchor} onChange={(e) => setFacetAnchor(e.target.value)}>
-      <option>auto</option>
-      <option>bottom-empty</option>
-      <option>bottom</option>
-      <option>top-empty</option>
-      <option>top</option>
-      <option>null</option>
-    </select>
-  </label>
-</p>
+<FacetAnchorDemo />
 
+```jsx
 <Replot facet={{marginRight: 80}} grid>
   <Frame />
   <Dot data={penguins} x="culmen_length_mm" y="culmen_depth_mm" fx="sex" fy="species" />
   <AxisX color="red" anchor={anchor} facetAnchor={facetAnchor === "auto" ? undefined : facetAnchor === "null" ? null : facetAnchor} />
   <AxisFx color="blue" anchor={anchor === "top" ? "bottom" : "top"} />
 </Replot>
+```
 
 The **labelAnchor** option controls the position of the axis label. For the *x* or *fx* axis, the label anchor may be *left*, *center*, or *right*. It defaults to *center* for ordinal scales and *right* for quantitative scales.
 
@@ -239,7 +253,7 @@ The axis mark’s default margins depend on its orientation (**anchor**) as foll
 * *bottom* - 0, 20, 30, 20
 * *left* - 20, 0, 20, 40
 
-For simplicity’s sake and for consistent layout across plots, axis margins are not automatically sized to make room for tick labels; instead, shorten your tick labels (for example using the *k* SI-prefix tick format, or setTing a *scale*.transform to show thousands or millions, or setTing the **textOverflow** option to *ellipsis* and the **lineWidth** option to clip long labels) or increase the margins as needed.
+For simplicity’s sake and for consistent layout across plots, axis margins are not automatically sized to make room for tick labels; instead, shorten your tick labels (for example using the *k* SI-prefix tick format, or setting a *scale*.transform to show thousands or millions, or setting the **textOverflow** option to *ellipsis* and the **lineWidth** option to clip long labels) or increase the margins as needed.
 
 ## axisX(*data*, *options*) {/* {#axisX} */}
 ```jsx

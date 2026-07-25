@@ -1,24 +1,89 @@
-import {AreaY, BarX, BarY, Dot, GroupZ, Replot, RectY, RuleX, RuleY, StackX, StackY, StackY2, TextX, stackY, scale} from "replot/react";
+import {AreaY, BarX, BarY, Dot, GroupZ, Replot, RectY, RuleX, RuleY, StackX, StackY, StackY2, TextX, stackY} from "replot/react";
 import * as d3 from "d3";
-import {useState, useEffect} from "react";
+import {useState} from "react";
 import alphabet from "../data/alphabet.ts";
 import crimea from "../data/crimea.ts";
+import congress from "../data/us-congress-2023.ts";
+import riaa from "../data/riaa-us-revenue.ts";
+import survey from "../data/survey.ts";
 
-export const congress = [];
-export const riaa = [];
-export const survey = [];
-export const orders = "appearance";
-export const setOrders = () => {};
-export const offsetS = "normalize";
-export const setOffsetS = () => {};
-export const reverse = false;
-export const setReverse = () => {};
-export const order = null;
-export const setOrder = () => {};
-export const offset = null;
-export const setOffset = () => {};
+export function OrderDemo() {
+  const [orders, setOrders] = useState("appearance");
+  const order = orders === "null" ? null : orders;
+  return (
+    <div>
+      <p>
+        <label className="label-input">
+          Order:
+          <select value={orders} onChange={(e) => setOrders(e.target.value)}>
+            <option>null</option>
+            <option>appearance</option>
+            <option>inside-out</option>
+            <option>sum</option>
+            <option>group</option>
+            <option>z</option>
+          </select>
+        </label>
+      </p>
+      <Replot y={{
+          grid: true,
+          label: "Annual revenue (billions, adj.)",
+          transform: (d) => d / 1000 // convert millions to billions
+        }} color={{legend: true}}>
+        <AreaY data={riaa} x="year" y="revenue" z="format" fill="group" order={order} />
+        <RuleY data={[0]} />
+      </Replot>
+    </div>
+  );
+}
 
-export const scheme = scale({color: {type: "categorical"}}).range;
+export function ReverseDemo() {
+  const [reverse, setReverse] = useState(true);
+  return (
+    <div>
+      <p>
+        <label className="label-input">
+          Reverse:
+          <input type="checkbox" checked={reverse} onChange={(e) => setReverse(e.target.checked)} />
+        </label>
+      </p>
+      <Replot y={{
+          grid: true,
+          label: "Annual revenue (billions, adj.)",
+          transform: (d) => d / 1000 // convert millions to billions
+        }} color={{legend: true}}>
+        <AreaY data={riaa} {...stackY({order: "appearance", reverse}, {x: "year", y: "revenue", z: "format", fill: "group"})} />
+        <RuleY data={[0]} />
+      </Replot>
+    </div>
+  );
+}
+
+export function OffsetDemo() {
+  const [offsets, setOffsets] = useState("wiggle");
+  const offset = offsets === "null" ? null : offsets;
+  return (
+    <div>
+      <p>
+        <label className="label-input">
+          Offset:
+          <select value={offsets} onChange={(e) => setOffsets(e.target.value)}>
+            <option>null</option>
+            <option>center</option>
+            <option>wiggle</option>
+          </select>
+        </label>
+      </p>
+      <Replot y={{
+          grid: true,
+          label: "Annual revenue (billions, adj.)",
+          transform: (d) => d / 1000
+        }}>
+        <AreaY data={riaa} x="year" y="revenue" z="format" fill="group" offset={offset} />
+      </Replot>
+    </div>
+  );
+}
 
 export function Likert(responses) {
   const map = new Map(responses);
@@ -93,48 +158,35 @@ The stackY transform also outputs **y** representing the midpoint of **y1** and 
 
 The **order** option controls the order in which the layers are stacked. It defaults to null, meaning to respect the input order of the data. The *appearance* order excels when each series has a prominent peak, as in the chart below of [recording industry](https://en.wikipedia.org/wiki/Recording_Industry_Association_of_America) revenue. <span style={{borderBottom: "solid 2px #4269d0"}}>Compact disc</span> sales started declining well before the rise of <span style={{borderBottom: "solid 2px #efb118"}}>downloads</span> and <span style={{borderBottom: "solid 2px #6cc5b0"}}>streaming</span>, suggesting that the industry was slow to provide a convenient digital product and hence lost revenue to piracy.
 
-<p>
-  <label className="label-input">
-    Order:
-    <select value={orders} onChange={(e) => setOrders(e.target.value)}>
-      <option>null</option>
-      <option>appearance</option>
-      <option>inside-out</option>
-      <option>sum</option>
-      <option>group</option>
-      <option>z</option>
-    </select>
-  </label>
-</p>
+<OrderDemo />
 
+```jsx
 <Replot y={{
     grid: true,
     label: "Annual revenue (billions, adj.)",
     transform: (d) => d / 1000 // convert millions to billions
   }} color={{legend: true}}>
-  <AreaY data={riaa} x="year" y="revenue" z="format" fill="group" order={order} />
+  <AreaY data={riaa} x="year" y="revenue" z="format" fill="group" order="appearance" />
   <RuleY data={[0]} />
 </Replot>
+```
 
 
 In this data, the *group* field is a supercategory of the *format* field, which is useful to avoid overwhelming the color encoding with too many categories. For example, the *Vinyl* group includes both the *LP/EP* and *Vinyl Single* formats.
 The **reverse** option reverses the order of layers. In conjunction with the *appearance* order, now layers enter from the bottom rather than the top.
 
-<p>
-  <label className="label-input">
-    Reverse:
-    <input type="checkbox" checked={reverse} onChange={(e) => setReverse(e.target.checked)} />
-  </label>
-</p>
+<ReverseDemo />
 
+```jsx
 <Replot y={{
     grid: true,
     label: "Annual revenue (billions, adj.)",
     transform: (d) => d / 1000 // convert millions to billions
   }} color={{legend: true}}>
-  <AreaY data={riaa} {...stackY({order: "appearance", reverse}, {x: "year", y: "revenue", z: "format", fill: "group"})} />
+  <AreaY data={riaa} {...stackY({order: "appearance", reverse: true}, {x: "year", y: "revenue", z: "format", fill: "group"})} />
   <RuleY data={[0]} />
 </Replot>
+```
 
 
 The **reverse** option is also used by the [sort transform](./sort.md). To disambiguate, pass the *stack* options separately using the two-argument form of the stack transform, as in the functional spread form above. (The nested `<StackY order="appearance" reverse={reverse}>` wrapper form needs no disambiguation, since the stack options live on the wrapper while the mark options stay on the mark.)
@@ -149,26 +201,19 @@ The *value* **order** is worth special mention: it sorts each stack by value ind
   <RuleY data={[0]} />
 </Replot>
 
-The **offset** option controls the baseline of stacked layers. It defaults to null for a *y* = 0 baseline (for stackY, or *x* = 0 for stackX). The *center* **offset** centers each stack independently per [Havre *et al.*](https://innovis.cpsc.ucalgary.ca/innovis/uploads/Courses/InformationVisualizationDetails2009/Havre2000.pdf); the *wiggle* **offset** minimizes apparent movement per [Byron & Wattenberg](http://leebyron.com/streamgraph/stackedgraphs_byron_wattenberg.pdf); these two offsetS produce “streamgraphs”, so called for their fluid appearance. The *wiggle* **offset** changes the default **order** to *inside-out* to further minimize movement.
+The **offset** option controls the baseline of stacked layers. It defaults to null for a *y* = 0 baseline (for stackY, or *x* = 0 for stackX). The *center* **offset** centers each stack independently per [Havre *et al.*](https://innovis.cpsc.ucalgary.ca/innovis/uploads/Courses/InformationVisualizationDetails2009/Havre2000.pdf); the *wiggle* **offset** minimizes apparent movement per [Byron & Wattenberg](http://leebyron.com/streamgraph/stackedgraphs_byron_wattenberg.pdf); these two offsets produce “streamgraphs”, so called for their fluid appearance. The *wiggle* **offset** changes the default **order** to *inside-out* to further minimize movement.
 
-<p>
-  <label className="label-input">
-    Offset:
-    <select value={offsetS} onChange={(e) => setOffsetS(e.target.value)}>
-      <option>null</option>
-      <option>center</option>
-      <option>wiggle</option>
-    </select>
-  </label>
-</p>
+<OffsetDemo />
 
+```jsx
 <Replot y={{
     grid: true,
     label: "Annual revenue (billions, adj.)",
     transform: (d) => d / 1000
   }}>
-  <AreaY data={riaa} x="year" y="revenue" z="format" fill="group" offset={offset} />
+  <AreaY data={riaa} x="year" y="revenue" z="format" fill="group" offset="wiggle" />
 </Replot>
+```
 
 
 When **offset** is not null, the *y* axis is harder to use because there is no longer a shared baseline at *y* = 0, though it is still useful for eyeballing length.
@@ -206,7 +251,7 @@ When the provided length (typically **y**) is negative, in conjunction with the 
 
 
 The stackY2 transform places each dot at the upper bound of the associated stacked interval, rather than the middle of the interval as when using stackY. Hence, the first male dot is placed at *y* = 1, and the first female dot is placed at *y* = -1.
-When visualizing [Likert scale](https:
+When visualizing [Likert scale](https://en.wikipedia.org/wiki/Likert_scale) survey results we may wish to place <span style={{borderWidth: 2, borderBottomStyle: "solid", borderImage: `linear-gradient(to right, ${d3.schemeRdBu[5][0]}, ${d3.schemeRdBu[5][1]}) 2`}}>negative</span> (disagreeing) responses on the left and <span style={{borderWidth: 2, borderBottomStyle: "solid", borderImage: `linear-gradient(to right, ${d3.schemeRdBu[5][3]}, ${d3.schemeRdBu[5][4]}) 2`}}>positive</span> (agreeing) responses on the right, leaving <span style={{borderBottom: `solid 2px ${d3.schemeRdBu[5][2]}`}}>neutral</span> responses in the middle. This is achieved below using a custom **offset** function.
 
 <Replot x={{tickFormat: Math.abs}} color={{domain: likert.order, scheme: "RdBu", legend: true}}>
   <GroupZ x="count">
@@ -285,7 +330,7 @@ After all values have been stacked from zero, an optional **offset** can be appl
 - *wiggle* - translate stacks to minimize apparent movement
 - a function to be passed a nested index, and start, end, and *z* values
 
-If a given stack has zero total value, the *normalize* offset will not adjust the stack’s position. Both the *center* and *wiggle* offsetS ensure that the lowest element across stacks starts at zero for better default axes. The *wiggle* offset is recommended for streamgraphs, and if used, changes the default order to *inside-out*; see [Byron & Wattenberg](http://leebyron.com/streamgraph/).
+If a given stack has zero total value, the *normalize* offset will not adjust the stack’s position. Both the *center* and *wiggle* offsets ensure that the lowest element across stacks starts at zero for better default axes. The *wiggle* offset is recommended for streamgraphs, and if used, changes the default order to *inside-out*; see [Byron & Wattenberg](http://leebyron.com/streamgraph/).
 
 If the offset is specified as a function, it will receive four arguments: an index of stacks nested by facet and then stack, an array of start values, an array of end values, and an array of *z* values. For stackX, the start and end values correspond to **x1** and **x2**, while for stackY, the start and end values correspond to **y1** and **y2**. The offset function is then responsible for mutating the arrays of start and end values, such as by subtracting a common offset for each of the indices that pertain to the same stack.
 

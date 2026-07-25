@@ -1,21 +1,14 @@
 import {Geo, Line, LineY, NormalizeY, Replot, RuleY, SelectLast, Text, WindowY} from "replot/react";
 import * as d3 from "d3";
-import {useState, useEffect} from "react";
-import * as topojson from "topojson-client";
 import aapl from "../data/aapl.ts";
-import bls from "../data/bls-industry-unemployment.ts";
+import beagle from "../data/beagle.ts";
 import driving from "../data/driving.ts";
 import sftemp from "../data/sf-temperatures.ts";
+import stateage from "../data/us-population-state-age.ts";
 import tdf from "../data/tdf.ts";
-
-export const beagle = [];
-export const land = [];
-export const stateage = [];
-export const stocks = [];
-
-{/* Data: beagle is loaded from beagle.csv as [[lon, lat], ...] rows.
-   stateage is loaded from us-population-state-age.csv, pivoted to tidy format with {state, age, population} and an .ages property.
-   stocks is loaded from amzn.csv, goog.csv, ibm.csv combined with aapl, each row having {Symbol, Date, Close, ...}. */}
+import {useBlsMetroUnemployment} from "../data/bls-metro-unemployment.ts";
+import {useLand} from "../data/world.ts";
+import {useStocks} from "../data/stocks.ts";
 
 # Line mark
 
@@ -77,7 +70,7 @@ To draw multiple lines, use the **z** channel to group [tidy data](https://r4ds.
     label: "Unemployment (%)"
   }}>
   <RuleY data={[0]} />
-  <Line data={bls} x="date" y="unemployment" z="division" />
+  <Line data={useBlsMetroUnemployment()} x="date" y="unemployment" z="division" />
 </Replot>
 
 
@@ -94,11 +87,11 @@ If a **stroke** (or **fill**) channel is specified, the **z** option defaults to
   }}>
   <RuleY data={[1]} />
   <NormalizeY>
-    <Line data={stocks} x="Date" y="Close" stroke="Symbol" />
+    <Line data={useStocks()} x="Date" y="Close" stroke="Symbol" />
   </NormalizeY>
   <SelectLast>
     <NormalizeY>
-      <Text data={stocks} x="Date" y="Close" z="Symbol" text="Symbol" textAnchor="start" dx={3} />
+      <Text data={useStocks()} x="Date" y="Close" z="Symbol" text="Symbol" textAnchor="start" dx={3} />
     </NormalizeY>
   </SelectLast>
 </Replot>
@@ -114,7 +107,7 @@ Varying-color lines are supported. If the **stroke** value varies within series,
     label: "Unemployment (%)"
   }}>
   <RuleY data={[0]} />
-  <Line data={bls} x="date" y="unemployment" z="division" stroke="unemployment" />
+  <Line data={useBlsMetroUnemployment()} x="date" y="unemployment" z="division" stroke="unemployment" />
 </Replot>
 
 Color encodings can also be used to highlight specific series, such as here to emphasize high unemployment in Michigan.
@@ -127,7 +120,7 @@ Color encodings can also be used to highlight specific series, such as here to e
     range: ["#ccc", "red"]
   }}>
   <RuleY data={[0]} />
-  <Line data={bls} x="date" y="unemployment" z="division" stroke={(d) => /, MI /.test(d.division)} sort={{channel: "stroke"}} />
+  <Line data={useBlsMetroUnemployment()} x="date" y="unemployment" z="division" stroke={(d) => /, MI /.test(d.division)} sort={{channel: "stroke"}} />
 </Replot>
 
 When using **z**, lines are drawn in input order. The [sort transform](../transforms/sort.md) above places the red lines on top of the gray ones to improve readability.
@@ -183,17 +176,17 @@ While uncommon, you can draw a line with ordinal position values. For example be
 With a [spherical projection](../features/projections.md), line segments become [geodesics](https://en.wikipedia.org/wiki/Great-circle_distance), taking the shortest path between two points on the sphere and wrapping around the antimeridian at 180° longitude. The line below shows Charles Darwin’s voyage on HMS _Beagle_. (Data via [Benjamin Schmidt](https://observablehq.com/@bmschmidt/data-driven-projections-darwins-world).)
 
 <Replot projection="equirectangular">
-  <Geo data={land} />
+  <Geo data={useLand()} />
   <Line data={beagle} stroke="red" />
   <Geo data={[{type: "Point", coordinates: [-0.13, 51.5]}]} fill="red" />
 </Replot>
 
 
-Disable spherical interpolation by setTing the **curve** option to *linear* instead of the default *auto*.
+Disable spherical interpolation by setting the **curve** option to *linear* instead of the default *auto*.
 A projected line can use varying color, too. Below, color reveals the westward direction of the Beagle’s journey around the world, starting and ending in London.
 
 <Replot projection="equirectangular">
-  <Geo data={land} />
+  <Geo data={useLand()} />
   <Line data={beagle} stroke={(d, i) => i} z={null} />
 </Replot>
 
@@ -214,7 +207,7 @@ In addition to the [standard mark options](../features/marks.md#mark-options), t
 
 By default, the data is assumed to represent a single series (a single value that varies over time, *e.g.*). If the **z** channel is specified, data is grouped by **z** to form separate series. Typically **z** is a categorical value such as a series name. If **z** is not specified, it defaults to **stroke** if a channel, or **fill** if a channel.
 
-The **fill** defaults to *none*. The **stroke** defaults to *currentColor* if the fill is *none*, and to *none* otherwise. If the stroke is defined as a channel, the line will be broken into contiguous overlapping segments when the stroke color changes; the stroke color will apply to the interval spanning the current data point and the following data point. This behavior also applies to the **fill**, **fillOpacity**, **strokeOpacity**, **strokeWidth**, **opacity**, **href**, **title**, and **ariaLabel** channels. When any of these channels are used, setTing an explicit **z** channel (possibly to null) is strongly recommended. The **strokeWidth** defaults to 1.5, the **strokeLinecap** and **strokeLinejoin** default to *round*, and the **strokeMiterlimit** defaults to 1.
+The **fill** defaults to *none*. The **stroke** defaults to *currentColor* if the fill is *none*, and to *none* otherwise. If the stroke is defined as a channel, the line will be broken into contiguous overlapping segments when the stroke color changes; the stroke color will apply to the interval spanning the current data point and the following data point. This behavior also applies to the **fill**, **fillOpacity**, **strokeOpacity**, **strokeWidth**, **opacity**, **href**, **title**, and **ariaLabel** channels. When any of these channels are used, setting an explicit **z** channel (possibly to null) is strongly recommended. The **strokeWidth** defaults to 1.5, the **strokeLinecap** and **strokeLinejoin** default to *round*, and the **strokeMiterlimit** defaults to 1.
 
 Points along the line are connected in input order. Likewise, if there are multiple series via the **z**, **fill**, or **stroke** channel, the series are drawn in input order such that the last series is drawn on top. Typically, the data is already in sorted order, such as chronological for time series; if sorting is needed, consider a [sort transform](../transforms/sort.md).
 

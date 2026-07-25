@@ -3,41 +3,46 @@ import * as d3 from "d3";
 import {useState} from "react";
 import crimea from "../data/crimea.ts";
 
-export const marker = "arrow";
-export const setMarker = () => {};
+export function MarkerDemo() {
+  const [marker, setMarker] = useState("circle");
+  return (
+    <div>
+      <p>
+        <label className="label-input">
+          Marker:
+          <select value={marker} onChange={(e) => setMarker(e.target.value)}>
+            <option>none</option>
+            <option>arrow</option>
+            <option>arrow-reverse</option>
+            <option>dot</option>
+            <option>circle</option>
+            <option>circle-stroke</option>
+            <option>tick</option>
+            <option>tick-x</option>
+            <option>tick-y</option>
+          </select>
+        </label>
+      </p>
+      <Replot>
+        <RuleY data={[0]} />
+        <LineY data={crimea} x="date" y="deaths" stroke="cause" marker={marker} />
+      </Replot>
+    </div>
+  );
+}
 
 # Markers
 
 A **marker** defines a graphic drawn on vertices of a [line](../marks/line.md) or [link](../marks/link.md) mark.
 
-<p>
-  <label className="label-input">
-    Marker:
-    <select value={marker} onChange={(e) => setMarker(e.target.value)}>
-      <option>none</option>
-      <option>arrow</option>
-      <option>arrow-reverse</option>
-      <option>dot</option>
-      <option>circle</option>
-      <option>circle-stroke</option>
-      <option>tick</option>
-      <option>tick-x</option>
-      <option>tick-y</option>
-    </select>
-  </label>
-</p>
-
-<Replot>
-  <RuleY data={[0]} />
-  <LineY data={crimea} x="date" y="deaths" stroke="cause" marker={marker} />
-</Replot>
+<MarkerDemo />
 
 The supported marker options are:
 
 * **markerStart** - the marker for the starting point of a line segment
 * **markerMid** - the marker for any intermediate point of a line segment
 * **markerEnd** - the marker for the end point of a line segment
-* **marker** - shorthand for setTing the marker on all points
+* **marker** - shorthand for setting the marker on all points
 
 The following named markers are supported:
 

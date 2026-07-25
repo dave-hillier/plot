@@ -1,12 +1,29 @@
-import {AreaY, Bin, BinX, BinY, Dot, LineY, Replot, Rect, RectX, RectY, RuleX, RuleY, binX, scale} from "replot/react";
+import {AreaY, Bin, BinX, BinY, Dot, LineY, Replot, Rect, RectX, RectY, RuleX, RuleY, binX} from "replot/react";
 import * as d3 from "d3";
-import {useState, useEffect} from "react";
+import {useState} from "react";
 import {useOlympians} from "../data/olympians.ts";
 
-export const cumulatives = 0;
-export const setCumulatives = () => {};
-export const cumulative = 0;
-export const setCumulative = () => {};
+export function CumulativeDemo() {
+  const [cumulatives, setCumulatives] = useState("+1");
+  const cumulative = +cumulatives;
+  return (
+    <div>
+      <p>
+        <span className="label-input">
+          Cumulative:
+          <label style={{marginLeft: "0.5em", fontVariant: "tabular-nums"}}><input type="radio" name="cumulative" value="-1" checked={cumulatives === "-1"} onChange={(e) => setCumulatives(e.target.value)} /> -1 (reverse)</label>
+          <label style={{marginLeft: "0.5em", fontVariant: "tabular-nums"}}><input type="radio" name="cumulative" value="+1" checked={cumulatives === "+1"} onChange={(e) => setCumulatives(e.target.value)} /> +1 (true)</label>
+        </span>
+      </p>
+      <Replot marginLeft={60} y={{grid: true}}>
+        <BinX y="count" cumulative={cumulative}>
+          <RectY data={useOlympians()} x="weight" />
+        </BinX>
+        <RuleY data={[0]} />
+      </Replot>
+    </div>
+  );
+}
 
 # Bin transform
 
@@ -114,20 +131,16 @@ In addition to rect and dot, you can even use continuous marks such as [area](..
 
 The **cumulative** option produces a cumulative distribution. Below, each bin represents the number of athletes with the given weight *or less*. To have each bin represent the number of athletes with the given weight *or more*, set **cumulative** to −1.
 
-<p>
-  <span className="label-input">
-    Cumulative:
-    <label style={{marginLeft: "0.5em", fontVariant: "tabular-nums"}}><input type="radio" name="cumulative" value="-1" checked={cumulatives === "-1"} onChange={(e) => setCumulatives(e.target.value)} /> -1 (reverse)</label>
-    <label style={{marginLeft: "0.5em", fontVariant: "tabular-nums"}}><input type="radio" name="cumulative" value="+1" checked={cumulatives === "+1"} onChange={(e) => setCumulatives(e.target.value)} /> +1 (true)</label>
-  </span>
-</p>
+<CumulativeDemo />
 
+```jsx
 <Replot marginLeft={60} y={{grid: true}}>
-  <BinX y="count" cumulative={cumulative}>
-    <RectY data={useOlympians()} x="weight" />
+  <BinX y="count" cumulative={1}>
+    <RectY data={olympians} x="weight" />
   </BinX>
   <RuleY data={[0]} />
 </Replot>
+```
 
 The bin transform works with Replot’s [faceting system](../features/facets.md), partitioning bins by facet. Below, we compare the weight distributions of athletes within each sport using the *proportion-facet* reducer. Sports are sorted by median weight: gymnasts tend to be the lightest, and basketball players the heaviest.
 
@@ -137,7 +150,7 @@ The bin transform works with Replot’s [faceting system](../features/facets.md)
   </BinX>
 </Replot>
 
-The bin transform setS default insets for a one-pixel gap between rects. You can set explicit insets if you prefer, say if you want the rects to touch. In this case we recommend rounding on the _x_ scale to avoid antialiasing artifacts between rects. (This example uses the functional spread form, `{...binX(outputs, options)}`, which remains equivalent to the nested wrapper form used above.)
+The bin transform sets default insets for a one-pixel gap between rects. You can set explicit insets if you prefer, say if you want the rects to touch. In this case we recommend rounding on the _x_ scale to avoid antialiasing artifacts between rects. (This example uses the functional spread form, `{...binX(outputs, options)}`, which remains equivalent to the nested wrapper form used above.)
 
 <Replot x={{round: true}} y={{grid: true}}>
   <RectY data={useOlympians()} {...binX({y: "count"}, {x: "weight", inset: 0})} />

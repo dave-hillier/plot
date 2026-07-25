@@ -1,16 +1,72 @@
 import {BinX, Dot, DotX, DodgeX, DodgeY, Replot, RectY, RuleX, RuleY, Text} from "replot/react";
 import * as d3 from "d3";
-import {useState, useEffect} from "react";
+import {useState} from "react";
 import cars from "../data/cars.ts";
 import penguins from "../data/penguins.ts";
+import {useIpos} from "../data/ipos.ts";
 
-export const ipos = [];
-export const anchor = "middle";
-export const setAnchor = () => {};
-export const r = 3;
-export const setR = () => {};
-export const padding = 1;
-export const setPadding = () => {};
+export function AnchorDemo() {
+  const [anchor, setAnchor] = useState("middle");
+  return (
+    <div>
+      <p>
+        <label className="label-input">
+          Anchor:
+          <select value={anchor} onChange={(e) => setAnchor(e.target.value)}>
+            <option>top</option>
+            <option>middle</option>
+            <option>bottom</option>
+          </select>
+        </label>
+      </p>
+      <Replot height={180}>
+        <DodgeY anchor={anchor}>
+          <Dot data={cars} x="weight (lb)" fill="currentColor" />
+        </DodgeY>
+      </Replot>
+    </div>
+  );
+}
+
+export function RadiusDemo() {
+  const [r, setR] = useState(3);
+  return (
+    <div>
+      <p>
+        <label className="label-input">
+          Radius (r):
+          <input type="range" value={r} onChange={(e) => setR(Number(e.target.value))} min="0.5" max="10" step="0.1" />
+          <span style={{fontVariantNumeric: "tabular-nums"}}>{r.toLocaleString("en-US", {minimumFractionDigits: 1})}</span>
+        </label>
+      </p>
+      <Replot height={180}>
+        <DodgeY>
+          <Dot data={cars} x="weight (lb)" r={r} fill="currentColor" />
+        </DodgeY>
+      </Replot>
+    </div>
+  );
+}
+
+export function PaddingDemo() {
+  const [padding, setPadding] = useState(2);
+  return (
+    <div>
+      <p>
+        <label className="label-input">
+          Padding:
+          <input type="range" value={padding} onChange={(e) => setPadding(Number(e.target.value))} min="-1" max="5" step="0.1" />
+          <span style={{fontVariantNumeric: "tabular-nums"}}>{padding.toLocaleString("en-US", {minimumFractionDigits: 1})}</span>
+        </label>
+      </p>
+      <Replot height={180}>
+        <DodgeY padding={padding}>
+          <Dot data={cars} x="weight (lb)" fill="currentColor" />
+        </DodgeY>
+      </Replot>
+    </div>
+  );
+}
 
 # Dodge transform <VersionBadge version="0.5.0" />
 
@@ -53,65 +109,50 @@ Beeswarm plots avoid the occlusion problem of dense scatterplots and barcode plo
 
 The **anchor** option specifies the layout baseline: the optimal output position. For the dodgeX transform, the supported anchors are: _left_ (default), _middle_, _right_. For the dodgeY transform, the supported anchors are: _bottom_ (default), _middle_, _top_. When the _middle_ anchor is used, the dots are placed symmetrically around the baseline.
 
-<p>
-  <label className="label-input">
-    Anchor:
-    <select value={anchor} onChange={(e) => setAnchor(e.target.value)}>
-      <option>top</option>
-      <option>middle</option>
-      <option>bottom</option>
-    </select>
-  </label>
-</p>
+<AnchorDemo />
 
+```jsx
 <Replot height={180}>
-  <DodgeY anchor={anchor}>
+  <DodgeY anchor="middle">
     <Dot data={cars} x="weight (lb)" fill="currentColor" />
   </DodgeY>
 </Replot>
+```
 
 When using dodgeY, you must typically specify the plot’s **height** to create suitable space for the layout. The dodge transform is not currently able to set the height automatically. For dodgeX, the default **width** of 640 is often sufficient, though you may need to adjust it as well depending on your data.
 
 The dodge transform differs from the [stack transform](./stack.md) in that the dots do not need the exact same input position to avoid overlap; the dodge transform respects the radius **r** of each dot. Try adjusting the radius below to see the effect.
 
-<p>
-  <label className="label-input">
-    Radius (r):
-    <input type="range" value={r} onChange={(e) => setR(Number(e.target.value))} min="0.5" max="10" step="0.1" />
-    <span style={{fontVariantNumeric: "tabular-nums"}}>{r.toLocaleString("en-US", {minimumFractionDigits: 1})}</span>
-  </label>
-</p>
+<RadiusDemo />
 
+```jsx
 <Replot height={180}>
   <DodgeY>
-    <Dot data={cars} x="weight (lb)" r={r} fill="currentColor" />
+    <Dot data={cars} x="weight (lb)" r={3} fill="currentColor" />
   </DodgeY>
 </Replot>
+```
 
 The dodge transform also supports a **padding** option (default 1), which specifies the minimum separating distance between dots. Increase it for more breathing room.
 
-<p>
-  <label className="label-input">
-    Padding:
-    <input type="range" value={padding} onChange={(e) => setPadding(Number(e.target.value))} min="-1" max="5" step="0.1" />
-    <span style={{fontVariantNumeric: "tabular-nums"}}>{padding.toLocaleString("en-US", {minimumFractionDigits: 1})}</span>
-  </label>
-</p>
+<PaddingDemo />
 
+```jsx
 <Replot height={180}>
-  <DodgeY padding={padding}>
+  <DodgeY padding={2}>
     <Dot data={cars} x="weight (lb)" fill="currentColor" />
   </DodgeY>
 </Replot>
+```
 
 If **r** is a channel, the dodge transform will position circles of varying radius. The chart below shows twenty years of IPO offerings leading up to Facebook’s $104B offering in 2012; each circle is sized proportionally to the associated company’s valuation at IPO. (This data comes from [“The Facebook Offering: How It Compares”](https://archive.nytimes.com/www.nytimes.com/interactive/2012/05/17/business/dealbook/how-the-facebook-offering-compares.html?hp) by Jeremy Ashkenas, Matthew Bloch, Shan Carter, and Amanda Cox.) Facebook’s valuation was nearly four times that of Google, the previous record. The 2000 [dot-com bubble](https://en.wikipedia.org/wiki/Dot-com_bubble) is also visible.
 
 <Replot insetRight={10} height={790}>
   <DodgeY r="rMVOP">
-    <Dot data={ipos} x="date" title={(d) => `${d.NAME}\n${(d.rMVOP / 1e3).toFixed(1)}B`} fill="currentColor" />
+    <Dot data={useIpos()} x="date" title={(d) => `${d.NAME}\n${(d.rMVOP / 1e3).toFixed(1)}B`} fill="currentColor" />
   </DodgeY>
   <DodgeY r="rMVOP">
-    <Text data={ipos} filter={(d) => d.rMVOP > 5e3} x="date" text={(d) => (d.rMVOP / 1e3).toFixed()} fill="var(--vp-c-bg)" pointerEvents="none" />
+    <Text data={useIpos()} filter={(d) => d.rMVOP > 5e3} x="date" text={(d) => (d.rMVOP / 1e3).toFixed()} fill="var(--vp-c-bg)" pointerEvents="none" />
   </DodgeY>
 </Replot>
 
@@ -119,7 +160,7 @@ The dodge transform can be used with any mark that supports **x** and **y** posi
 
 <Replot insetRight={10} height={790}>
   <DodgeY r="rMVOP">
-    <Text data={ipos} x="date" text={(d) => (d.rMVOP / 1e3).toFixed(1)} title="NAME" fontSize={(d) => Math.min(22, Math.cbrt(d.rMVOP / 1e3) * 6)} />
+    <Text data={useIpos()} x="date" text={(d) => (d.rMVOP / 1e3).toFixed(1)} title="NAME" fontSize={(d) => Math.min(22, Math.cbrt(d.rMVOP / 1e3) * 6)} />
   </DodgeY>
 </Replot>
 
