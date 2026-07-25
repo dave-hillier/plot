@@ -1,4 +1,4 @@
-import {Bin, BinX, Density, Dot, Plot, Rect, RectY, RuleY} from "replot/react";
+import {Bin, BinX, Density, Dot, Replot, Rect, RectY, RuleY} from "replot/react";
 import * as d3 from "d3";
 import {useOlympians} from "./data/olympians.ts";
 
@@ -10,45 +10,45 @@ Replot offers two APIs: a concise **imperative API** for vanilla JavaScript envi
 
 In the spirit of *show don’t tell*, here’s a scatterplot of body measurements of athletes from the [2016 Summer Olympics](https://flother.is/2017/olympic-games-data/).
 
-<Plot color={{legend: true}}>
+<Replot color={{legend: true}}>
   <Dot data={useOlympians()} x="weight" y="height" stroke="sex" />
-</Plot>
+</Replot>
 
 A plot specification assigns columns of data (*weight*, *height*, and *sex*) to visual properties of marks (**x**, **y**, and **stroke**). Replot does the rest! You can configure much more, if needed, but Replot’s goal is to help you get a meaningful visualization quickly to accelerate analysis.
 
 This scatterplot suffers from overplotting: many dots are drawn in the same spot, so it’s hard to perceive density. We can fix this by applying a [bin transform](./transforms/bin.md) to group athletes of similar height and weight (and sex), and then use opacity to encode the number of athletes in the bin.
 
-<Plot>
+<Replot>
   <Bin fillOpacity="count">
     <Rect data={useOlympians()} x="weight" y="height" fill="sex" inset={0} />
   </Bin>
-</Plot>
+</Replot>
 
 Or we could try the [density mark](./marks/density.md).
 
-<Plot>
+<Replot>
   <Density data={useOlympians()} x="weight" y="height" stroke="sex" />
-</Plot>
+</Replot>
 
 A simpler take on this data is to focus on one dimension: weight. We can use the bin transform again to make a histogram with weight on the *x*-axis and frequency on the *y*-axis. This plot uses a [rect mark](./marks/rect.md) and an implicit [stack transform](./transforms/stack.md).
 
-<Plot>
+<Replot>
   <BinX y="count">
     <RectY data={useOlympians()} x="weight" fill="sex" />
   </BinX>
-</Plot>
+</Replot>
 
 Or if we’d prefer to show the two distributions separately as small multiples, we can [facet](./features/facets.md) the data along *y* (keeping the *fill* encoding for consistency, and adding grid lines and a rule at *y* = 0 to improve readability).
 
-<Plot grid>
+<Replot grid>
   <BinX y="count">
     <RectY data={useOlympians()} x="weight" fill="sex" fy="sex" />
   </BinX>
   <RuleY data={[0]} />
-</Plot>
+</Replot>
 
 ## What can Replot do?
 
-Because marks are composable, and because you can extend Plot with custom marks, you can make almost anything with it — much more than the charts above! The following [tree diagram](./marks/tree.md) of the documentation gives a sense of what’s ”in the box” with Plot. Peruse our [gallery of examples](https://observablehq.com/@observablehq/plot-gallery) for more inspiration.
+Because marks are composable, and because you can extend Replot with custom marks, you can make almost anything with it — much more than the charts above! The following [tree diagram](./marks/tree.md) of the documentation gives a sense of what’s ”in the box” with Plot. Peruse our [gallery of examples](https://observablehq.com/@observablehq/plot-gallery) for more inspiration.
 
 {/* The tree diagram of the documentation sidebar is rendered at build time from the site configuration. */}

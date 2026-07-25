@@ -1,4 +1,4 @@
-import {Geo, Line, LineY, NormalizeY, Plot, RuleY, SelectLast, Text, WindowY} from "replot/react";
+import {Geo, Line, LineY, NormalizeY, Replot, RuleY, SelectLast, Text, WindowY} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import * as topojson from "topojson-client";
@@ -21,39 +21,39 @@ export const stocks = [];
 
 The **line mark** draws two-dimensional lines as in a line chart. Because the line mark interpolates between adjacent data points, typically both the *x* and *y* scales are quantitative or temporal. For example, below is a line chart of the closing price of Apple stock.
 
-<Plot y={{grid: true}}>
+<Replot y={{grid: true}}>
   <Line data={aapl} x="Date" y="Close" />
-</Plot>
+</Replot>
 
 If the **x** and **y** options are not defined, the line mark assumes that the data is an iterable of points [[*x₁*, *y₁*], [*x₂*, *y₂*], …], allowing for [shorthand](../features/shorthand.md).
 
-<Plot>
+<Replot>
   <Line data={aapl.map((d) => [d.Date, d.Close])} />
-</Plot>
+</Replot>
 
 
 This shorthand loses the automatic *x*- and *y*-axis labels, reducing legibility. Use the **label** [scale option](../features/scales.md) to restore them.
 The [lineY constructor](#lineY) provides default channel definitions of **x** = index and **y** = [identity](../features/transforms.md#identity), letting you pass an array of numbers as data. The [lineX constructor](#lineX) similarly provides **x** = identity and **y** = index defaults for lines that go up↑ instead of to the right→. Below, a random walk is made using [d3.cumsum](https://observablehq.com/@d3/d3-cumsum?collection=@d3/d3-array) and [d3.randomNormal](https://observablehq.com/@d3/d3-random?collection=@d3/d3-random).
 
-<Plot>
+<Replot>
   <LineY data={d3.cumsum({length: 600}, d3.randomNormal.source(d3.randomLcg(42))())} />
-</Plot>
+</Replot>
 
 As with [areas](./area.md), points in lines are connected in input order: the first point is connected to the second point, the second is connected to the third, and so on. Line data is typically in chronological order. Unsorted data may produce gibberish.
 
-<Plot>
+<Replot>
   <LineY data={d3.shuffler(d3.randomLcg(42))(aapl.slice())} x="Date" y="Close" />
-</Plot>
+</Replot>
 
 If your data isn’t sorted, use the [sort transform](../transforms/sort.md).
 
-<Plot>
+<Replot>
   <LineY data={d3.shuffler(d3.randomLcg(42))(aapl.slice())} x="Date" y="Close" sort="Date" />
-</Plot>
+</Replot>
 
 While the *x* scale of a line chart often represents time, this is not required. For example, we can plot the elevation profile of a Tour de France stage — and imagine how tiring it must be to start a climb after riding 160km! ⛰🚴💦
 
-<Plot x={{
+<Replot x={{
     label: "Distance from stage start (km)"
   }} y={{
     label: "Elevation (m)",
@@ -61,24 +61,24 @@ While the *x* scale of a line chart often represents time, this is not required.
   }}>
   <RuleY data={[0]} />
   <Line data={tdf} x="distance" y="elevation" />
-</Plot>
+</Replot>
 
 There is no requirement that **y** be dependent on **x**; lines can be used in connected scatterplots to show two independent (but often correlated) variables. (See also [phase plots](https://en.wikipedia.org/wiki/Phase_portrait).) The chart below recreates Hannah Fairfield’s [“Driving Shifts Into Reverse”](http://www.nytimes.com/imagepages/2010/05/02/business/02metrics.html) from 2009.
 
-<Plot inset={10} grid x={{label: "Miles driven (per person-year)"}} y={{label: "Cost of gasoline ($ per gallon)"}}>
+<Replot inset={10} grid x={{label: "Miles driven (per person-year)"}} y={{label: "Cost of gasoline ($ per gallon)"}}>
   <Line data={driving} x="miles" y="gas" curve="catmull-rom" marker />
   <Text data={driving} filter={(d) => d.year % 5 === 0} x="miles" y="gas" text={(d) => `${d.year}`} dy={-8} />
-</Plot>
+</Replot>
 
 To draw multiple lines, use the **z** channel to group [tidy data](https://r4ds.had.co.nz/tidy-data.html) into series. For example, the chart below shows unemployment rates of various metro areas from the Bureau of Labor Statistics; the **z** value is the metro division name.
 
-<Plot y={{
+<Replot y={{
     grid: true,
     label: "Unemployment (%)"
   }}>
   <RuleY data={[0]} />
   <Line data={bls} x="date" y="unemployment" z="division" />
-</Plot>
+</Replot>
 
 
 If your data is not tidy, you can use [*array*.flatMap](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flatMap) to pivot.
@@ -86,7 +86,7 @@ If your data is not tidy, you can use [*array*.flatMap](https://developer.mozill
 
 If a **stroke** (or **fill**) channel is specified, the **z** option defaults to the same, automatically grouping series. For this reason, both **stroke** and **z** are typically ordinal or categorical.
 
-<Plot y={{
+<Replot y={{
     type: "log",
     grid: true,
     label: "Change in price (%)",
@@ -101,13 +101,13 @@ If a **stroke** (or **fill**) channel is specified, the **z** option defaults to
       <Text data={stocks} x="Date" y="Close" z="Symbol" text="Symbol" textAnchor="start" dx={3} />
     </NormalizeY>
   </SelectLast>
-</Plot>
+</Replot>
 
 
 Here the [normalize transform](../transforms/normalize.md) normalizes each time series (**z**) relative to its initial value, while the [select transform](../transforms/select.md) extracts the last point for labeling. A custom tick format converts multiples to percentage change (*e.g.*, 1.6× = +60%).
 Varying-color lines are supported. If the **stroke** value varies within series, the line will be segmented by color. (The same behavior applies to other channels, such as **strokeWidth** and **title**.) Specifying the **z** channel (say to null for a single series) is recommended.
 
-<Plot x={{
+<Replot x={{
     label: null
   }} y={{
     grid: true,
@@ -115,11 +115,11 @@ Varying-color lines are supported. If the **stroke** value varies within series,
   }}>
   <RuleY data={[0]} />
   <Line data={bls} x="date" y="unemployment" z="division" stroke="unemployment" />
-</Plot>
+</Replot>
 
 Color encodings can also be used to highlight specific series, such as here to emphasize high unemployment in Michigan.
 
-<Plot y={{
+<Replot y={{
     grid: true,
     label: "Unemployment (%)"
   }} color={{
@@ -128,13 +128,13 @@ Color encodings can also be used to highlight specific series, such as here to e
   }}>
   <RuleY data={[0]} />
   <Line data={bls} x="date" y="unemployment" z="division" stroke={(d) => /, MI /.test(d.division)} sort={{channel: "stroke"}} />
-</Plot>
+</Replot>
 
 When using **z**, lines are drawn in input order. The [sort transform](../transforms/sort.md) above places the red lines on top of the gray ones to improve readability.
 
 As an alternative to **z**, you can render multiple lines using multiple marks. While more verbose, this allows you to choose different options for each line. For example, below we plot the a 14-day moving average of the daily highs and lows in temperate San Francisco using the [window transform](../transforms/window.md).
 
-<Plot y={{
+<Replot y={{
     grid: true,
     label: "Temperature (°F)"
   }}>
@@ -143,28 +143,28 @@ As an alternative to **z**, you can render multiple lines using multiple marks. 
     <Line data={sftemp} x="date" y="high" stroke="#e15759" />
   </WindowY>
   <RuleY data={[32]} />
-</Plot>
+</Replot>
 
 If some channel values are undefined (or null or NaN), gaps will appear between adjacent points. To demonstrate, below we set the **y** value to NaN for the first three months of each year.
 
-<Plot y={{
+<Replot y={{
     grid: true
   }}>
   <LineY data={aapl} x="Date" y={(d) => d.Date.getUTCMonth() < 3 ? NaN : d.Close} />
-</Plot>
+</Replot>
 
 Supplying undefined values is not the same as filtering the data: the latter will interpolate between the data points. Observe the conspicuous straight lines below!
 
-<Plot y={{
+<Replot y={{
     grid: true
   }}>
   <LineY data={aapl} filter={(d) => d.Date.getUTCMonth() >= 3} x="Date" y="Close" strokeOpacity={0.3} />
   <LineY data={aapl} x="Date" y={(d) => d.Date.getUTCMonth() < 3 ? NaN : d.Close} />
-</Plot>
+</Replot>
 
 While uncommon, you can draw a line with ordinal position values. For example below, each line represents a U.S. state; **x** represents an (ordinal) age group while **y** represents the proportion of the state’s population in that age group. This chart emphasizes the overall age distribution of the United States, while giving a hint to variation across states.
 
-<Plot x={{
+<Replot x={{
     domain: stateage.ages, // in age order
     label: "Age range (years)",
     labelAnchor: "right",
@@ -178,24 +178,24 @@ While uncommon, you can draw a line with ordinal position values. For example be
   <NormalizeY basis="sum">
     <Line data={stateage} x="age" y="population" z="state" strokeWidth={1} />
   </NormalizeY>
-</Plot>
+</Replot>
 
 With a [spherical projection](../features/projections.md), line segments become [geodesics](https://en.wikipedia.org/wiki/Great-circle_distance), taking the shortest path between two points on the sphere and wrapping around the antimeridian at 180° longitude. The line below shows Charles Darwin’s voyage on HMS _Beagle_. (Data via [Benjamin Schmidt](https://observablehq.com/@bmschmidt/data-driven-projections-darwins-world).)
 
-<Plot projection="equirectangular">
+<Replot projection="equirectangular">
   <Geo data={land} />
   <Line data={beagle} stroke="red" />
   <Geo data={[{type: "Point", coordinates: [-0.13, 51.5]}]} fill="red" />
-</Plot>
+</Replot>
 
 
 Disable spherical interpolation by setTing the **curve** option to *linear* instead of the default *auto*.
 A projected line can use varying color, too. Below, color reveals the westward direction of the Beagle’s journey around the world, starting and ending in London.
 
-<Plot projection="equirectangular">
+<Replot projection="equirectangular">
   <Geo data={land} />
   <Line data={beagle} stroke={(d, i) => i} z={null} />
-</Plot>
+</Replot>
 
 
 Setting **z** to null forces a single line; we want the **stroke** to vary within the line instead of producing a separate line for each color.

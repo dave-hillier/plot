@@ -1,9 +1,9 @@
-import {Plot, Frame, BarX, RectX, RectY, Rect} from "../../src/react/index.js";
+import {Replot, Frame, BarX, RectX, RectY, Rect} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function rectBand() {
   return (
-    <Plot
+    <Replot
       y={{
         type: "band",
         domain: "ABC",
@@ -13,31 +13,31 @@ export async function rectBand() {
       <Frame />
       <BarX data={{length: 1}} x1={[0]} x2={[1]} fill="cyan" mixBlendMode="multiply" />
       <RectX data={{length: 1}} x1={[0]} x2={[1]} fill="magenta" mixBlendMode="multiply" />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function rectBandX() {
   const alphabet = await d3.csv<any>("data/alphabet.csv", d3.autoType);
   return (
-    <Plot>
+    <Replot>
       <RectY data={alphabet} x="letter" y="frequency" />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function rectBandY() {
   const alphabet = await d3.csv<any>("data/alphabet.csv", d3.autoType);
   return (
-    <Plot>
+    <Replot>
       <RectX data={alphabet} y="letter" x="frequency" />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function rectBandX1() {
   return (
-    <Plot round={true} x={{type: "band", domain: "ABCDE"}} y={{type: "linear", domain: [0, 9]}}>
+    <Replot round={true} x={{type: "band", domain: "ABCDE"}} y={{type: "linear", domain: [0, 9]}}>
       <Rect
         data={[
           ["A", 0, "A", 1],
@@ -56,13 +56,13 @@ export async function rectBandX1() {
         y2="3"
         inset={0.5}
       />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function rectPointX1() {
   return (
-    <Plot round={true} x={{type: "point", domain: "ABCDE"}} y={{type: "linear", domain: [0, 9]}}>
+    <Replot round={true} x={{type: "point", domain: "ABCDE"}} y={{type: "linear", domain: [0, 9]}}>
       <Rect
         data={[
           ["A", 0, "A", 1],
@@ -83,6 +83,6 @@ export async function rectPointX1() {
         insetLeft={-0.5}
         insetRight={-0.5}
       />
-    </Plot>
+    </Replot>
   );
 }

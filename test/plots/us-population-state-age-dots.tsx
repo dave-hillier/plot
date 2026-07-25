@@ -1,4 +1,4 @@
-import {Plot, RuleX, RuleY, Dot, Text, normalizeX, groupY, selectMinX} from "../../src/react/index.js";
+import {Replot, RuleX, RuleY, Dot, Text, normalizeX, groupY, selectMinX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function usPopulationStateAgeDots() {
@@ -7,7 +7,7 @@ export async function usPopulationStateAgeDots() {
   const stateage = ages.flatMap((age) => states.map((d) => ({state: d.name, age, population: d[age]})));
   const position = normalizeX("sum", {z: "state", x: "population", y: "state"});
   return (
-    <Plot
+    <Replot
       height={660}
       grid={true}
       x={{
@@ -36,6 +36,6 @@ export async function usPopulationStateAgeDots() {
           sort: {y: "-x", reduce: "min"}
         })}
       />
-    </Plot>
+    </Replot>
   );
 }

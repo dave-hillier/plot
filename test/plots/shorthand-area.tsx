@@ -1,4 +1,4 @@
-import {Plot, Area} from "../../src/react/index.js";
+import {Replot, Area} from "../../src/react/index.js";
 
 export async function shorthandArea() {
   const timeSeries = [
@@ -44,8 +44,8 @@ export async function shorthandArea() {
     [new Date("2018-02-28"), 179.259995]
   ];
   return (
-    <Plot>
+    <Replot>
       <Area data={timeSeries} />
-    </Plot>
+    </Replot>
   );
 }

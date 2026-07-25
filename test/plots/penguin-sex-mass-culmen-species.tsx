@@ -1,10 +1,10 @@
-import {Plot, Frame, Dot, bin} from "../../src/react/index.js";
+import {Replot, Frame, Dot, bin} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function penguinSexMassCulmenSpecies() {
   const data = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return (
-    <Plot
+    <Replot
       inset={10}
       height={320}
       grid
@@ -38,6 +38,6 @@ export async function penguinSexMassCulmenSpecies() {
           }
         )}
       />
-    </Plot>
+    </Replot>
   );
 }

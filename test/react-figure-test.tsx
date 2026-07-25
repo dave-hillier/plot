@@ -1,10 +1,10 @@
-// @ts-nocheck — JSDOM React tests for the <Plot> figure-mode contract.
+// @ts-nocheck — JSDOM React tests for the <Replot> figure-mode contract.
 import assert from "assert";
 import React from "react";
 import jsdomit from "./jsdom.js";
 import ReactDOM from "react-dom/client";
 import {act} from "react";
-import {Plot, Dot} from "../src/react/index.js";
+import {Replot, Dot} from "../src/react/index.js";
 
 const data = [
   {x: 1, y: 2},
@@ -34,9 +34,9 @@ async function mount(node) {
 
 function plotWith(props) {
   return (
-    <Plot width={200} height={200} {...props}>
+    <Replot width={200} height={200} {...props}>
       <Dot data={data} x="x" y="y" />
-    </Plot>
+    </Replot>
   );
 }
 

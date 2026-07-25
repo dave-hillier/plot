@@ -1,4 +1,4 @@
-import {Plot, Geo, Dot, VoronoiMesh, Voronoi, Sphere, pointer, centroid, geoCentroid} from "../../src/react/index.js";
+import {Replot, Geo, Dot, VoronoiMesh, Voronoi, Sphere, pointer, centroid, geoCentroid} from "../../src/react/index.js";
 import * as d3 from "d3";
 import {feature} from "topojson-client";
 
@@ -8,7 +8,7 @@ export async function usStateCapitalsVoronoi() {
     d3.json<any>("data/us-counties-10m.json").then((us) => feature(us, us.objects.nation))
   ]);
   return (
-    <Plot
+    <Replot
       width={640}
       height={640}
       margin={1}
@@ -34,7 +34,7 @@ export async function usStateCapitalsVoronoi() {
         })}
       />
       <Sphere strokeWidth={2} />
-    </Plot>
+    </Replot>
   );
 }
 
@@ -45,7 +45,7 @@ async function voronoiMap(centroidFn, clipNation = false) {
 
   const clip = clipNation ? nation : "sphere";
   return (
-    <Plot
+    <Replot
       width={640}
       height={640}
       margin={1}
@@ -77,7 +77,7 @@ async function voronoiMap(centroidFn, clipNation = false) {
         )}
       />
       {clipNation ? <Geo data={nation} strokeWidth={1} /> : <Sphere strokeWidth={2} />}
-    </Plot>
+    </Replot>
   );
 }
 

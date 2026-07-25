@@ -1,10 +1,10 @@
-import {Plot, Line, RuleY} from "../../src/react/index.js";
+import {Replot, Line, RuleY} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function aaplCloseUntyped() {
   const AAPL = await d3.csv<any>("data/aapl.csv");
   return (
-    <Plot
+    <Replot
       x={{
         type: "utc"
       }}
@@ -15,6 +15,6 @@ export async function aaplCloseUntyped() {
     >
       <Line data={AAPL} x="Date" y="Close" />
       <RuleY data={[0]} />
-    </Plot>
+    </Replot>
   );
 }

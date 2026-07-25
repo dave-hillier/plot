@@ -1,4 +1,4 @@
-import {Plot, RuleY, Line, Text, normalizeY, selectLast} from "../../src/react/index.js";
+import {Replot, RuleY, Line, Text, normalizeY, selectLast} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 const format = d3.format("+d");
@@ -15,7 +15,7 @@ async function loadSymbol(name) {
 export async function stocksIndex() {
   const stocks = (await Promise.all(["aapl", "amzn", "goog", "ibm"].map(loadSymbol))).flat();
   return (
-    <Plot
+    <Replot
       style="overflow: visible;"
       y={{
         type: "log",
@@ -46,6 +46,6 @@ export async function stocksIndex() {
           })
         )}
       />
-    </Plot>
+    </Replot>
   );
 }

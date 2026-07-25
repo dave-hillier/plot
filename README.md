@@ -9,22 +9,22 @@
 Use declarative JSX components to build charts natively in React applications:
 
 ```jsx
-import {Plot, Dot, Line, AxisX, AxisY} from "replot/react";
+import {Replot, Dot, Line, AxisX, AxisY} from "replot/react";
 
 function Chart({data}) {
   return (
-    <Plot width={640} height={400}>
+    <Replot width={640} height={400}>
       <Dot data={data} x="weight" y="height" stroke="species" />
       <AxisX />
       <AxisY />
-    </Plot>
+    </Replot>
   );
 }
 ```
 
 ### Why Replot?
 
-- **Native React integration** — Use composable React components (`<Plot>`, `<Dot>`, `<Line>`, etc.) that render directly into the React tree.
+- **Native React integration** — Use composable React components (`<Replot>`, `<Dot>`, `<Line>`, etc.) that render directly into the React tree.
 - **Declarative API** — Define charts with JSX, making them easier to read, compose, and maintain alongside other React code.
 - **React ecosystem compatibility** — Works with React state, context, hooks, Suspense, and server-side rendering out of the box.
 - **No manual DOM management** — No need for refs, effects, or manual cleanup.
@@ -61,8 +61,8 @@ components.
 
 | Imperative API (Observable Plot) | React Component API (Replot) |
 |---|---|
-| `import * as Plot from "replot"` | `import {Plot, Dot} from "replot/react"` |
-| `Plot.plot({ marks: [Plot.dot(data, {x, y})] })` | `<Plot><Dot data={data} x="x" y="y" /></Plot>` |
+| `import * as Plot from "replot"` | `import {Replot, Dot} from "replot/react"` |
+| `Plot.plot({ marks: [Plot.dot(data, {x, y})] })` | `<Replot><Dot data={data} x="x" y="y" /></Replot>` |
 | Returns a detached SVG element | Renders directly into the React tree |
 | Manual DOM insertion required | No refs or effects needed |
 
@@ -73,13 +73,13 @@ The core computation — D3 scales, shape generators, geo projections, data tran
 **Scatterplot with color encoding:**
 
 ```jsx
-import {Plot, Dot} from "replot/react";
+import {Replot, Dot} from "replot/react";
 
 function Scatterplot({data}) {
   return (
-    <Plot width={640} height={400} color={{scheme: "category10"}}>
+    <Replot width={640} height={400} color={{scheme: "category10"}}>
       <Dot data={data} x="weight" y="height" fill="species" />
-    </Plot>
+    </Replot>
   );
 }
 ```
@@ -87,16 +87,16 @@ function Scatterplot({data}) {
 **Histogram with binning:**
 
 ```jsx
-import {Plot, BarY, BinX, RuleY} from "replot/react";
+import {Replot, BarY, BinX, RuleY} from "replot/react";
 
 function Histogram({data}) {
   return (
-    <Plot>
+    <Replot>
       <BinX y="count">
         <BarY data={data} x="value" />
       </BinX>
       <RuleY data={[0]} />
-    </Plot>
+    </Replot>
   );
 }
 ```
@@ -104,13 +104,13 @@ function Histogram({data}) {
 **Line chart with grid and custom scales:**
 
 ```jsx
-import {Plot, Line} from "replot/react";
+import {Replot, Line} from "replot/react";
 
 function LineChart({data}) {
   return (
-    <Plot y={{grid: true}} color={{scheme: "warm"}}>
+    <Replot y={{grid: true}} color={{scheme: "warm"}}>
       <Line data={data} x="date" y="temperature" stroke="city" />
-    </Plot>
+    </Replot>
   );
 }
 ```
@@ -118,13 +118,13 @@ function LineChart({data}) {
 **Faceted dot plot (small multiples):**
 
 ```jsx
-import {Plot, Dot} from "replot/react";
+import {Replot, Dot} from "replot/react";
 
 function FacetedPlot({data}) {
   return (
-    <Plot>
+    <Replot>
       <Dot data={data} x="x" y="y" fx="category" fill="group" />
-    </Plot>
+    </Replot>
   );
 }
 ```
@@ -132,15 +132,15 @@ function FacetedPlot({data}) {
 **Stacked area chart:**
 
 ```jsx
-import {Plot, AreaY, StackY} from "replot/react";
+import {Replot, AreaY, StackY} from "replot/react";
 
 function StackedArea({data}) {
   return (
-    <Plot>
+    <Replot>
       <StackY>
         <AreaY data={data} x="date" y="value" fill="category" />
       </StackY>
-    </Plot>
+    </Replot>
   );
 }
 ```
@@ -148,13 +148,13 @@ function StackedArea({data}) {
 **Interactive chart with tooltips:**
 
 ```jsx
-import {Plot, Dot} from "replot/react";
+import {Replot, Dot} from "replot/react";
 
 function InteractiveChart({data}) {
   return (
-    <Plot>
+    <Replot>
       <Dot data={data} x="x" y="y" fill="species" tip />
-    </Plot>
+    </Replot>
   );
 }
 ```
@@ -170,7 +170,7 @@ npm install replot
 Then import the React API:
 
 ```js
-import {Plot, Dot, Line, BarY, AxisX, AxisY} from "replot/react";
+import {Replot, Dot, Line, BarY, AxisX, AxisY} from "replot/react";
 ```
 
 Or the imperative API:

@@ -23,7 +23,7 @@ import {buildStaticPlotSvg} from "./react/renderStatic.js";
 
 // Returns the pre-render state needed by both the imperative DOM build path
 // (used by `plot()` below) and the React JSX path (used by `<Plot>` in
-// src/react/Plot.tsx). Producing the SVG element here lets the imperative
+// src/react/Replot.tsx). Producing the SVG element here lets the imperative
 // path keep mutating it, while the JSX path can ignore the empty SVG and
 // emit its own React tree using the returned state.
 export function computePlot(options: any = {}): any {

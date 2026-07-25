@@ -5,7 +5,7 @@ import ReactDOM from "react-dom/client";
 import {act} from "react";
 import jsdomit from "./jsdom.js";
 import {
-  Plot,
+  Replot,
   Text,
   selectFirst,
   selectLast,
@@ -66,16 +66,16 @@ function normalize(markup) {
 function equivalenceTest(name, Wrapper, fn) {
   jsdomit(`<${name}> around <Text> matches the spread ${fn.name} form`, async () => {
     const nested = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <Wrapper>
           <Text data={readings} {...channels} />
         </Wrapper>
-      </Plot>
+      </Replot>
     );
     const spread = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <Text data={readings} {...fn({...channels})} />
-      </Plot>
+      </Replot>
     );
     assert.strictEqual(normalize(nested), normalize(spread));
   });

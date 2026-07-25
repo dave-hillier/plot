@@ -1,10 +1,10 @@
-import {Plot, RuleX} from "../../src/react/index.js";
+import {Replot, RuleX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function aaplCandlestick() {
   const AAPL = (await d3.csv<any>("data/aapl.csv", d3.autoType)).slice(-120);
   return (
-    <Plot
+    <Replot
       width={960}
       inset={6}
       grid={true}
@@ -26,6 +26,6 @@ export async function aaplCandlestick() {
         strokeWidth={4}
         strokeLinecap="round"
       />
-    </Plot>
+    </Replot>
   );
 }

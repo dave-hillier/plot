@@ -5,7 +5,7 @@ import ReactDOM from "react-dom/client";
 import {act} from "react";
 import * as d3 from "d3";
 import jsdomit from "./jsdom.js";
-import {Plot, Dot, Hexagon, dodgeX, dodgeY, hexbin} from "../src/react/index.js";
+import {Replot, Dot, Hexagon, dodgeX, dodgeY, hexbin} from "../src/react/index.js";
 import {DodgeX, DodgeY} from "../src/react/transforms/Dodge.js";
 import {Hexbin} from "../src/react/transforms/Hexbin.js";
 import {StackY} from "../src/react/transforms/Stack.js";
@@ -40,16 +40,16 @@ describe("dodge and hexbin wrapper equivalence", () => {
   jsdomit("<DodgeY> around <Dot> matches the spread dodgeY form", async () => {
     const penguins = await d3.csv("data/penguins.csv", d3.autoType);
     const nested = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <DodgeY anchor="bottom" padding={2} r={3}>
           <Dot data={penguins} x="body_mass_g" stroke="red" />
         </DodgeY>
-      </Plot>
+      </Replot>
     );
     const spread = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <Dot data={penguins} {...dodgeY({anchor: "bottom", padding: 2, r: 3}, {x: "body_mass_g", stroke: "red"})} />
-      </Plot>
+      </Replot>
     );
     assert.strictEqual(normalize(nested), normalize(spread));
   });
@@ -57,16 +57,16 @@ describe("dodge and hexbin wrapper equivalence", () => {
   jsdomit("<DodgeX> around <Dot> matches the spread dodgeX form", async () => {
     const penguins = await d3.csv("data/penguins.csv", d3.autoType);
     const nested = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <DodgeX anchor="middle">
           <Dot data={penguins} y="body_mass_g" fill="currentColor" />
         </DodgeX>
-      </Plot>
+      </Replot>
     );
     const spread = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <Dot data={penguins} {...dodgeX({anchor: "middle"}, {y: "body_mass_g", fill: "currentColor"})} />
-      </Plot>
+      </Replot>
     );
     assert.strictEqual(normalize(nested), normalize(spread));
   });
@@ -74,14 +74,14 @@ describe("dodge and hexbin wrapper equivalence", () => {
   jsdomit("<Hexbin> around <Hexagon> matches the spread hexbin form", async () => {
     const cars = await d3.csv("data/cars.csv", d3.autoType);
     const nested = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <Hexbin r="count" fill="mean" binWidth={30}>
           <Hexagon data={cars} x="displacement (cc)" y="economy (mpg)" fill="weight (lb)" />
         </Hexbin>
-      </Plot>
+      </Replot>
     );
     const spread = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <Hexagon
           data={cars}
           {...hexbin(
@@ -89,7 +89,7 @@ describe("dodge and hexbin wrapper equivalence", () => {
             {x: "displacement (cc)", y: "economy (mpg)", fill: "weight (lb)", binWidth: 30}
           )}
         />
-      </Plot>
+      </Replot>
     );
     assert.strictEqual(normalize(nested), normalize(spread));
   });
@@ -97,16 +97,16 @@ describe("dodge and hexbin wrapper equivalence", () => {
   jsdomit("<Hexbin> without output props defaults to fill count", async () => {
     const cars = await d3.csv("data/cars.csv", d3.autoType);
     const nested = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <Hexbin>
           <Hexagon data={cars} x="displacement (cc)" y="economy (mpg)" />
         </Hexbin>
-      </Plot>
+      </Replot>
     );
     const spread = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <Hexagon data={cars} {...hexbin(undefined, {x: "displacement (cc)", y: "economy (mpg)"})} />
-      </Plot>
+      </Replot>
     );
     assert.strictEqual(normalize(nested), normalize(spread));
   });
@@ -119,13 +119,13 @@ describe("dodge and hexbin wrapper nesting order", () => {
     const penguins = await d3.csv("data/penguins.csv", d3.autoType);
     await assert.rejects(
       renderSvg(
-        <Plot width={400} height={300}>
+        <Replot width={400} height={300}>
           <StackY>
             <DodgeX>
               <Dot data={penguins} y="body_mass_g" />
             </DodgeX>
           </StackY>
-        </Plot>
+        </Replot>
       ),
       /transforms cannot be applied after initializers/
     );

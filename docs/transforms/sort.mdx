@@ -1,4 +1,4 @@
-import {Dot, DotX, DodgeY, Geo, GeoCentroid, Line, Plot, RuleY} from "replot/react";
+import {Dot, DotX, DodgeY, Geo, GeoCentroid, Line, Replot, RuleY} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import * as topojson from "topojson-client";
@@ -24,12 +24,12 @@ The **sort transform** sorts a mark’s index to change the effective order of d
   </label>
 </p>
 
-<Plot projection="albers-usa">
+<Replot projection="albers-usa">
   <Geo data={statemesh} strokeOpacity={0.4} />
   <GeoCentroid>
     <Dot data={counties} r={(d) => d.properties.population} fill="currentColor" stroke="var(--vp-c-bg)" strokeWidth={1} sort={sorted ? {channel: "-r"} : null} />
   </GeoCentroid>
-</Plot>
+</Replot>
 
 
 Dots are sorted by descending **r** by default, so you may not need the **sort** option.
@@ -37,7 +37,7 @@ The sort transform can be applied either via the **sort** [mark option](../featu
 
 As another example, in the line chart of unemployment rates below, lines for metropolitan areas in Michigan (which saw exceptionally high unemployment following the [financial crisis of 2008](https://en.wikipedia.org/wiki/2007–2008_financial_crisis), in part due to the [auto industry collapse](https://en.wikipedia.org/wiki/2008–2010_automotive_industry_crisis)) are highlighted in <span style={{borderBottom: "solid 2px var(--vp-c-red)"}}>red</span>, and the **sort** option is used to draw them on top of other series.
 
-<Plot y={{
+<Replot y={{
     grid: true,
     label: "Unemployment (%)"
   }} color={{
@@ -46,7 +46,7 @@ As another example, in the line chart of unemployment rates below, lines for met
   }}>
   <RuleY data={[0]} />
   <Line data={bls} x="date" y="unemployment" z="division" sort={(d) => /, MI /.test(d.division)} stroke={(d) => /, MI /.test(d.division)} />
-</Plot>
+</Replot>
 
 
 You could say `sort: {channel: "stroke"}` here to avoid repeating the test function.
@@ -60,11 +60,11 @@ The index order also affects the behavior of certain transforms such as [stack](
   </span>
 </p>
 
-<Plot height={180}>
+<Replot height={180}>
   <DodgeY>
     <DotX data={cars} x="weight (lb)" title="name" fill="currentColor" sort={{channel: "x", order}} />
   </DodgeY>
-</Plot>
+</Replot>
 
 The closely-related [reverse transform](#reverse) likewise reverses the mark index, while the [shuffle transform](#shuffle) for randomizes the mark index’s order.
 

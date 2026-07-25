@@ -1,10 +1,10 @@
-import {Plot, Line, RuleY, map, window as win} from "../../src/react/index.js";
+import {Replot, Line, RuleY, map, window as win} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function metroUnemploymentSlope() {
   const bls = await d3.csv<any>("data/bls-metro-unemployment.csv", d3.autoType);
   return (
-    <Plot
+    <Replot
       y={{
         grid: true
       }}
@@ -21,6 +21,6 @@ export async function metroUnemploymentSlope() {
         )}
       />
       <RuleY data={[0]} />
-    </Plot>
+    </Replot>
   );
 }

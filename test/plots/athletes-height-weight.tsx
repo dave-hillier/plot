@@ -1,11 +1,11 @@
-import {Plot, Dot} from "../../src/react/index.js";
+import {Replot, Dot} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function athletesHeightWeight() {
   const athletes = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return (
-    <Plot grid={true} height={640}>
+    <Replot grid={true} height={640}>
       <Dot data={athletes} x="weight" y="height" />
-    </Plot>
+    </Replot>
   );
 }

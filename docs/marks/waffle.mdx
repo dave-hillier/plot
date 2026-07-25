@@ -1,4 +1,4 @@
-import {AxisFx, GroupX, GroupZ, Plot, Text, WaffleX, WaffleY} from "replot/react";
+import {AxisFx, GroupX, GroupZ, Replot, Text, WaffleX, WaffleY} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import {useOlympians} from "../data/olympians.ts";
@@ -18,17 +18,17 @@ export const setApples = () => {};
 
 The **waffle mark** is similar to the [bar mark](./bar.md) in that it displays a quantity (or quantitative extent) for a given category; but unlike a bar, a waffle is subdivided into square cells that allow easier counting. Waffles are useful for reading exact quantities. How quickly can you count the pears 🍐 below? How many more apples 🍎 are there than bananas 🍌?
 
-<Plot height={420}>
+<Replot height={420}>
   <WaffleY data={[212, 207, 315, 11]} x={["apples", "bananas", "oranges", "pears"]} />
-</Plot>
+</Replot>
 
 The waffle mark is often used with the [group transform](../transforms/group.md) to compute counts. The chart below compares the number of female and male athletes in the 2012 Olympics.
 
-<Plot x={{label: null}}>
+<Replot x={{label: null}}>
   <GroupX y="count">
     <WaffleY data={useOlympians()} x="sex" />
   </GroupX>
-</Plot>
+</Replot>
 
 
 Waffles are rendered using SVG patterns, making them more performant than alternatives such as the [dot mark](./dot.md) for rendering many points.
@@ -47,11 +47,11 @@ The **unit** option determines the quantity each waffle cell represents; it defa
   </span>
 </p>
 
-<Plot fx={{interval: "5 years", label: null}}>
+<Replot fx={{interval: "5 years", label: null}}>
   <GroupZ y="count">
     <WaffleY data={useOlympians()} fx="date_of_birth" unit={unit} />
   </GroupZ>
-</Plot>
+</Replot>
 
 
 Use [faceting](../features/facets.md) as an alternative to supplying an ordinal channel (_i.e._, *fx* instead of *x* for a vertical waffleY). The facet scale’s **interval** option then allows grouping by a quantitative or temporal variable, such as the athlete’s year of birth in the chart below.
@@ -59,20 +59,20 @@ While waffles typically represent integer quantities, say to count people or day
 
 Like bars, waffles can be [stacked](../transforms/stack.md), and implicitly apply the stack transform when only a single quantitative channel is supplied.
 
-<Plot fx={{interval: 10}} color={{legend: true}}>
+<Replot fx={{interval: 10}} color={{legend: true}}>
   <GroupZ y="count">
     <WaffleY data={useOlympians()} fill="sex" sort="sex" fx="weight" unit={10} />
   </GroupZ>
-</Plot>
+</Replot>
 
 Waffles can also be used to highlight a proportion of the whole. The chart below recreates a graphic of survey responses from [“Teens in Syria”](https://www.economist.com/graphic-detail/2015/08/19/teens-in-syria) by _The Economist_ (August 19, 2015); positive responses are in orange, while negative responses are in gray. The **rx** option is used to produce circles instead of squares.
 
-<Plot axis={null} label={null} height={260} marginTop={20} marginBottom={70} title="Subdued" subtitle="Of 120 surveyed Syrian teenagers:">
+<Replot axis={null} label={null} height={260} marginTop={20} marginBottom={70} title="Subdued" subtitle="Of 120 surveyed Syrian teenagers:">
   <AxisFx lineWidth={10} anchor="bottom" dy={20} />
   <WaffleY data={{length: 1}} y={120} fillOpacity={0.4} rx="100%" />
   <WaffleY data={survey} fx="question" y="yes" rx="100%" fill="orange" />
   <Text data={survey} fx="question" text={(d) => (d.yes / 120).toLocaleString("en-US", {style: "percent"})} frameAnchor="bottom" lineAnchor="top" dy={6} fill="orange" fontSize={24} fontWeight="bold" />
-</Plot>
+</Replot>
 
 The waffle mark comes in two orientations: waffleY extends vertically↑, while waffleX extends horizontally→. The waffle mark automatically determines the appropriate number of cells per row or per column (depending on orientation) such that the cells are square, don’t overlap, and are consistent with position scales.
 
@@ -84,9 +84,9 @@ The waffle mark comes in two orientations: waffleY extends vertically↑, while 
   </label>
 </p>
 
-<Plot height={240}>
+<Replot height={240}>
   <WaffleX data={[apples]} y={["apples"]} />
-</Plot>
+</Replot>
 
 
 The number of rows in the waffle above is guaranteed to be an integer, but it might not be a multiple or factor of the *x*-axis tick interval. For example, the waffle might have 15 rows while the *x*-axis shows ticks every 100 units.

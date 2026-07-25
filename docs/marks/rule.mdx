@@ -1,4 +1,4 @@
-import {BarY, Dot, GroupX, Line, LineY, NormalizeY, Plot, RuleX, RuleY} from "replot/react";
+import {BarY, Dot, GroupX, Line, LineY, NormalizeY, Replot, RuleX, RuleY} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import aapl from "../data/aapl.ts";
@@ -13,16 +13,16 @@ export const simpsons = [];
 The rule mark is one of two marks in Replot for drawing horizontal or vertical lines; it should be used when the secondary position dimension, if any, is quantitative. When it is ordinal, use a [tick](./tick.md).
 The **rule mark** comes in two orientations: [ruleY](#ruleY) draws a horizontal↔︎ line with a given *y* value, while [ruleX](#ruleX) draws a vertical↕︎ line with a given *x* value. Rules are often used as annotations, say to mark the *y* = 0 baseline (in red below for emphasis) in a line chart.
 
-<Plot y={{
+<Replot y={{
     grid: true
   }}>
   <RuleY data={[0]} stroke="red" />
   <Line data={aapl} x="Date" y="Close" />
-</Plot>
+</Replot>
 
 As annotations, rules often have a hard-coded array of literal values as data. This [shorthand](../features/shorthand.md) utilizes the default [identity](../features/transforms.md#identity) definition of the rule’s position (**y** for ruleY and **x** for ruleX).
 
-<Plot y={{
+<Replot y={{
     type: "log",
     grid: true,
     label: "Change in price (%)",
@@ -32,33 +32,33 @@ As annotations, rules often have a hard-coded array of literal values as data. T
   <NormalizeY basis="first">
     <Line data={aapl} x="Date" y="Close" />
   </NormalizeY>
-</Plot>
+</Replot>
 
 Yet rules can also be used to visualize data. Below, a random normal distribution is plotted with rules, looking a bit like the [emission spectrum of Hydrogen](https://en.wikipedia.org/wiki/Hydrogen_spectral_series).
 
-<Plot x={{domain: [-4, 4]}}>
+<Replot x={{domain: [-4, 4]}}>
   <RuleX data={{length: 500}} x={d3.randomNormal.source(d3.randomLcg(42))()} strokeOpacity={0.2} />
-</Plot>
+</Replot>
 
 
 Reducing opacity allows better perception of density when rules overlap.
 Rules can also serve as an alternative to an [area mark](./area.md) as in a band chart, provided the data is sufficiently dense: you can limit the extent of a rule along the secondary dimension (**y1** and **y2** channels for ruleX, and **x1** and **x2** channels for ruleY) rather than having it span the frame. And rules support a **stroke** color encoding. The rules below plot the daily minimum and maximum temperature for Seattle.
 
-<Plot y={{grid: true, label: "Temperature (°C)"}} color={{scheme: "BuRd"}}>
+<Replot y={{grid: true, label: "Temperature (°C)"}} color={{scheme: "BuRd"}}>
   <RuleY data={[0]} />
   <RuleX data={seattle} x="date" y1="temp_min" y2="temp_max" stroke="temp_min" />
-</Plot>
+</Replot>
 
 In the dense [candlestick chart](https://observablehq.com/@observablehq/observable-plot-candlestick) below, three rules are drawn for each trading day: a gray rule spans the chart, showing gaps for weekends and holidays; a <span style={{borderBottom: "solid 2px currentColor"}}>black</span> rule spans the day’s low and high; and a <span style={{borderBottom: "solid 2px var(--vp-c-green)"}}>green</span> or <span style={{borderBottom: "solid 2px var(--vp-c-red)"}}>red</span> rule spans the day’s open and close.
 
-<Plot inset={6} label={null} y={{grid: true, label: "Stock price ($)"}} color={{type: "threshold", range: ["red", "green"]}}>
+<Replot inset={6} label={null} y={{grid: true, label: "Stock price ($)"}} color={{type: "threshold", range: ["red", "green"]}}>
   <RuleX data={aapl} x="Date" y1="Low" y2="High" />
   <RuleX data={aapl} x="Date" y1="Open" y2="Close" stroke={(d) => d.Close - d.Open} strokeWidth={4} />
-</Plot>
+</Replot>
 
 Rules can be used to connect graphical elements, such as in the [dot plot](./dot.md) below showing the decline of *The Simpsons*. The rules indicate the extent (minimum and maximum) for each season, computed via the [group transform](../transforms/group.md), while a red line shows the median rating trend.
 
-<Plot>
+<Replot>
   <GroupX y1="min" y2="max">
     <RuleX data={simpsons} x="season" y="imdb_rating" />
   </GroupX>
@@ -66,21 +66,21 @@ Rules can be used to connect graphical elements, such as in the [dot plot](./dot
   <GroupX y="median">
     <LineY data={simpsons} x="season" y="imdb_rating" stroke="red" />
   </GroupX>
-</Plot>
+</Replot>
 
 Rules can indicate uncertainty or error by setTing the [**marker** option](../features/markers.md) to *tick*; this draws a small perpendicular line at the start and end of the rule. For example, to simulate ±10% error:
 
-<Plot x={{label: null}} y={{percent: true}}>
+<Replot x={{label: null}} y={{percent: true}}>
   <BarY data={alphabet} x="letter" y="frequency" fill="blue" />
   <RuleX data={alphabet} x="letter" y1={(d) => d.frequency * 0.9} y2={(d) => d.frequency * 1.1} marker="tick" />
   <RuleY data={[0]} />
-</Plot>
+</Replot>
 
 Rules can also be a stylistic choice, as in the lollipop 🍭 chart below, serving the role of a skinny [bar](./bar.md) topped with a [*dot* marker](../features/markers.md).
 
-<Plot x={{label: null, tickPadding: 6, tickSize: 0}} y={{percent: true}}>
+<Replot x={{label: null, tickPadding: 6, tickSize: 0}} y={{percent: true}}>
   <RuleX data={alphabet} x="letter" y="frequency" strokeWidth={2} markerEnd="dot" />
-</Plot>
+</Replot>
 
 Rules are also used by the [grid mark](./grid.md) to draw grid lines.
 

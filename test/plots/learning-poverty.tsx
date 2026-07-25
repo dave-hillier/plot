@@ -1,4 +1,4 @@
-import {Plot, BarX, RuleX} from "../../src/react/index.js";
+import {Replot, BarX, RuleX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function learningPoverty() {
@@ -9,7 +9,7 @@ export async function learningPoverty() {
     {...d, type: "out of school", share: d["Out-of-School (OoS)"]}
   ]);
   return (
-    <Plot
+    <Replot
       marginLeft={120}
       height={1160}
       x={{axis: "top", grid: true, ticks: 10, tickFormat: (d) => `${Math.abs(d)}%`, nice: true}}
@@ -27,6 +27,6 @@ export async function learningPoverty() {
         sort={{y: "-x"}}
       />
       <RuleX data={[0]} />
-    </Plot>
+    </Replot>
   );
 }

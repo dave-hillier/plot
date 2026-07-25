@@ -1,4 +1,4 @@
-import {Plot, BarX, RuleX} from "../../src/react/index.js";
+import {Replot, BarX, RuleX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function ballotStatusRace() {
@@ -53,7 +53,7 @@ export async function ballotStatusRace() {
   });
 
   return (
-    <Plot
+    <Replot
       x={{grid: true, label: "Frequency (%)"}}
       y={{domain: ["ACCEPTED", "REJECTED", "PENDING"], axis: null}}
       fy={{label: null}}
@@ -76,6 +76,6 @@ export async function ballotStatusRace() {
         }}
       />
       <RuleX data={[0]} />
-    </Plot>
+    </Replot>
   );
 }

@@ -1,10 +1,10 @@
-import {Plot, Dot, LineY, RuleX, pointer, pointerX} from "../../src/react/index.js";
+import {Replot, Dot, LineY, RuleX, pointer, pointerX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function pointerRenderCompose() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return (
-    <Plot>
+    <Replot>
       <Dot
         data={penguins}
         {...pointer({
@@ -20,16 +20,16 @@ export async function pointerRenderCompose() {
         })}
       />
       <Dot data={penguins} x="culmen_length_mm" y="culmen_depth_mm" />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function pointerViewof() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   const plot = (
-    <Plot>
+    <Replot>
       <Dot data={penguins} x="culmen_length_mm" y="culmen_depth_mm" tip />
-    </Plot>
+    </Replot>
   );
   // TODO: viewof interaction with textarea requires imperative DOM manipulation
   return plot;
@@ -38,9 +38,9 @@ export async function pointerViewof() {
 export async function pointerViewofTitle() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   const plot = (
-    <Plot title="Penguins">
+    <Replot title="Penguins">
       <Dot data={penguins} x="culmen_length_mm" y="culmen_depth_mm" tip />
-    </Plot>
+    </Replot>
   );
   // TODO: viewof interaction with textarea requires imperative DOM manipulation
   return plot;
@@ -49,10 +49,10 @@ export async function pointerViewofTitle() {
 export async function pointerNonFaceted() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return (
-    <Plot>
+    <Replot>
       <LineY data={aapl} x="Date" y="Close" fy={(d) => d.Close % 2 === 0} />
       <RuleX data={aapl} x="Date" strokeOpacity={0.1} />
       <RuleX data={aapl} {...pointerX({x: "Date", stroke: "red"})} />
-    </Plot>
+    </Replot>
   );
 }

@@ -1,10 +1,10 @@
-import {Plot, BarX, RuleX} from "../../src/react/index.js";
+import {Replot, BarX, RuleX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function letterFrequencyBar() {
   const alphabet = await d3.csv<any>("data/alphabet.csv", d3.autoType);
   return (
-    <Plot
+    <Replot
       ariaLabel="letter-frequency chart"
       ariaDescription="A horizontal bar chart showing the relative frequency of letters in the English language."
       x={{label: "Frequency (%)", transform: (x) => x * 100, grid: true}}
@@ -22,6 +22,6 @@ export async function letterFrequencyBar() {
         sort={{y: "x"}}
       />
       <RuleX data={[0]} ariaHidden="true" />
-    </Plot>
+    </Replot>
   );
 }

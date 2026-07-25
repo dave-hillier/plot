@@ -1,4 +1,4 @@
-import {BarY, NormalizeX, Plot, RuleX, RuleY, TickX, TickY} from "replot/react";
+import {BarY, NormalizeX, Replot, RuleX, RuleY, TickX, TickY} from "replot/react";
 import * as d3 from "d3";
 import {useState} from "react";
 import aapl from "../data/aapl.ts";
@@ -16,7 +16,7 @@ The **tick mark** comes in two orientations: [tickY](#tickY) draws a horizontal�
 
 Ticks are often used to show one-dimensional distributions, as in the “barcode” plot below showing the proportion of the population in each age bracket across U.S. states.
 
-<Plot x={{
+<Replot x={{
     grid: true,
     label: "Population (%)",
     percent: true
@@ -30,21 +30,21 @@ Ticks are often used to show one-dimensional distributions, as in the “barcode
   <NormalizeX basis="sum">
     <TickX data={stateage} z="state" x="population" y="age" />
   </NormalizeX>
-</Plot>
+</Replot>
 
 Both ticks and [bars](./bar.md) have an ordinal secondary position dimension; a tick is therefore convenient for stroking the upper bound of a bar for emphasis, as in the bar chart below. A separate [rule](./rule.md) is also used to denote *y* = 0.
 
-<Plot x={{label: null}} y={{percent: true}}>
+<Replot x={{label: null}} y={{percent: true}}>
   <BarY data={alphabet} x="letter" y="frequency" fillOpacity={0.2} />
   <TickY data={alphabet} x="letter" y="frequency" />
   <RuleY data={[0]} />
-</Plot>
+</Replot>
 
 When there is no secondary position dimension, a tick behaves identically to a [rule](./rule.md). While a one-dimensional rule and tick are equivalent, a one-dimensional rule is generally preferred, if only because the name “rule” is more descriptive. But as an example below, a random normal distribution is plotted below with ticks.
 
-<Plot x={{domain: [-4, 4]}}>
+<Replot x={{domain: [-4, 4]}}>
   <TickX data={{length: 500}} x={d3.randomNormal.source(d3.randomLcg(42))()} strokeOpacity={0.2} />
-</Plot>
+</Replot>
 
 
 Reducing opacity allows better perception of density when ticks overlap.

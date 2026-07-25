@@ -1,10 +1,10 @@
-import {Plot, Dot} from "../../src/react/index.js";
+import {Replot, Dot} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function penguinSizeSymbols() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return (
-    <Plot
+    <Replot
       grid
       x={{
         label: "Body mass (g)"
@@ -17,6 +17,6 @@ export async function penguinSizeSymbols() {
       }}
     >
       <Dot data={penguins} x="body_mass_g" y="flipper_length_mm" stroke="species" symbol="species" />
-    </Plot>
+    </Replot>
   );
 }

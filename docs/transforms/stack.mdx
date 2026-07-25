@@ -1,4 +1,4 @@
-import {AreaY, BarX, BarY, Dot, GroupZ, Plot, RectY, RuleX, RuleY, StackX, StackY, StackY2, TextX, stackY, scale} from "replot/react";
+import {AreaY, BarX, BarY, Dot, GroupZ, Replot, RectY, RuleX, RuleY, StackX, StackY, StackY2, TextX, stackY, scale} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import alphabet from "../data/alphabet.ts";
@@ -52,44 +52,44 @@ The **stack transform** comes in two orientations: [stackY](#stackY) replaces **
 
 For example, below is a stacked area chart of [deaths in the Crimean War](https://en.wikipedia.org/wiki/Florence_Nightingale#Crimean_War) — predominantly from <span style={{borderBottom: "solid #4269d0 3px"}}>disease</span> — using Florence Nightingale’s data.
 
-<Plot y={{grid: true}} color={{legend: true}}>
+<Replot y={{grid: true}} color={{legend: true}}>
   <AreaY data={crimea} x="date" y="deaths" fill="cause" />
   <RuleY data={[0]} />
-</Plot>
+</Replot>
 
 
 The [areaY mark](../marks/area.md) applies the stackY transform implicitly if you do not specify either **y1** or **y2**. The same applies to [barY](../marks/bar.md) and [rectY](../marks/rect.md). You can invoke the stack transform explicitly as `Plot.stackY({x: "date", y: "deaths", fill: "cause"})` to produce an identical chart.
 The stack transform works with any mark that consumes **y1** & **y2** or **x1** & **x2**, so you can stack rects, too.
 
-<Plot y={{grid: true}}>
+<Replot y={{grid: true}}>
   <RectY data={crimea} x="date" y="deaths" interval="month" fill="cause" />
   <RuleY data={[0]} />
-</Plot>
+</Replot>
 
 
 The [**interval** mark option](./interval.md) specifies the periodicity of the data; without it, Replot wouldn’t know how wide to make the rects.
 And you can stack bars if you’d prefer to treat *x* as ordinal.
 
-<Plot x={{
+<Replot x={{
     interval: "month",
     tickFormat: (d) => d.toLocaleString("en", {month: "narrow"}),
     label: null
   }} y={{grid: true}}>
   <BarY data={crimea} x="date" y="deaths" fill="cause" />
   <RuleY data={[0]} />
-</Plot>
+</Replot>
 
 
 The [**interval** scale option](../features/scales.md#scale-transforms) specifies the periodicity of the data; without it, any gaps in the data would not be visible since barY implies that *x* is ordinal.
 The stackY transform also outputs **y** representing the midpoint of **y1** and **y2**, and likewise stackX outputs **x** representing the midpoint of **x1** and **x2**. This is useful for point-based marks such as [text](../marks/text.md) and [dot](../marks/dot.md). Below, a single stacked horizontal [bar](../marks/bar.md) shows the relative frequency of English letters; this form is a compact alternative to a pie 🥧 or donut 🍩 chart.
 
-<Plot x={{percent: true}}>
+<Replot x={{percent: true}}>
   <StackX>
     <BarX data={alphabet} x="frequency" fillOpacity={0.3} inset={0.5} />
     <TextX data={alphabet} x="frequency" text="letter" inset={0.5} />
   </StackX>
   <RuleX data={[0, 1]} />
-</Plot>
+</Replot>
 
 The **order** option controls the order in which the layers are stacked. It defaults to null, meaning to respect the input order of the data. The *appearance* order excels when each series has a prominent peak, as in the chart below of [recording industry](https://en.wikipedia.org/wiki/Recording_Industry_Association_of_America) revenue. <span style={{borderBottom: "solid 2px #4269d0"}}>Compact disc</span> sales started declining well before the rise of <span style={{borderBottom: "solid 2px #efb118"}}>downloads</span> and <span style={{borderBottom: "solid 2px #6cc5b0"}}>streaming</span>, suggesting that the industry was slow to provide a convenient digital product and hence lost revenue to piracy.
 
@@ -107,14 +107,14 @@ The **order** option controls the order in which the layers are stacked. It defa
   </label>
 </p>
 
-<Plot y={{
+<Replot y={{
     grid: true,
     label: "Annual revenue (billions, adj.)",
     transform: (d) => d / 1000 // convert millions to billions
   }} color={{legend: true}}>
   <AreaY data={riaa} x="year" y="revenue" z="format" fill="group" order={order} />
   <RuleY data={[0]} />
-</Plot>
+</Replot>
 
 
 In this data, the *group* field is a supercategory of the *format* field, which is useful to avoid overwhelming the color encoding with too many categories. For example, the *Vinyl* group includes both the *LP/EP* and *Vinyl Single* formats.
@@ -127,27 +127,27 @@ The **reverse** option reverses the order of layers. In conjunction with the *ap
   </label>
 </p>
 
-<Plot y={{
+<Replot y={{
     grid: true,
     label: "Annual revenue (billions, adj.)",
     transform: (d) => d / 1000 // convert millions to billions
   }} color={{legend: true}}>
   <AreaY data={riaa} {...stackY({order: "appearance", reverse}, {x: "year", y: "revenue", z: "format", fill: "group"})} />
   <RuleY data={[0]} />
-</Plot>
+</Replot>
 
 
 The **reverse** option is also used by the [sort transform](./sort.md). To disambiguate, pass the *stack* options separately using the two-argument form of the stack transform, as in the functional spread form above. (The nested `<StackY order="appearance" reverse={reverse}>` wrapper form needs no disambiguation, since the stack options live on the wrapper while the mark options stay on the mark.)
 The *value* **order** is worth special mention: it sorts each stack by value independently such that the order of layers can change, emphasizing the changing ranks of layers. This is sometimes called a “ribbon” chart. (In fact, the default null **order** supports changing order of layers, too! But most often data comes already sorted by series.)
 
-<Plot y={{
+<Replot y={{
     grid: true,
     label: "Annual revenue (billions, adj.)",
     transform: (d) => d / 1000 // convert millions to billions
   }}>
   <AreaY data={riaa} x="year" y="revenue" z="format" fill="group" order="value" />
   <RuleY data={[0]} />
-</Plot>
+</Replot>
 
 The **offset** option controls the baseline of stacked layers. It defaults to null for a *y* = 0 baseline (for stackY, or *x* = 0 for stackX). The *center* **offset** centers each stack independently per [Havre *et al.*](https://innovis.cpsc.ucalgary.ca/innovis/uploads/Courses/InformationVisualizationDetails2009/Havre2000.pdf); the *wiggle* **offset** minimizes apparent movement per [Byron & Wattenberg](http://leebyron.com/streamgraph/stackedgraphs_byron_wattenberg.pdf); these two offsetS produce “streamgraphs”, so called for their fluid appearance. The *wiggle* **offset** changes the default **order** to *inside-out* to further minimize movement.
 
@@ -162,19 +162,19 @@ The **offset** option controls the baseline of stacked layers. It defaults to nu
   </label>
 </p>
 
-<Plot y={{
+<Replot y={{
     grid: true,
     label: "Annual revenue (billions, adj.)",
     transform: (d) => d / 1000
   }}>
   <AreaY data={riaa} x="year" y="revenue" z="format" fill="group" offset={offset} />
-</Plot>
+</Replot>
 
 
 When **offset** is not null, the *y* axis is harder to use because there is no longer a shared baseline at *y* = 0, though it is still useful for eyeballing length.
 The *normalize* **offset** is again worth special mention: it scales stacks to fill the interval [0, 1], thereby showing the relative proportion of each layer. Sales of <span style={{borderBottom: "solid 2px #4269d0"}}>compact discs</span> accounted for over 90% of revenue in the early 2000’s, but now most revenue comes from <span style={{borderBottom: "solid 2px #6cc5b0"}}>streaming</span>.
 
-<Plot y={{
+<Replot y={{
     label: "Annual revenue (%)",
     percent: true
   }}>
@@ -182,11 +182,11 @@ The *normalize* **offset** is again worth special mention: it scales stacks to f
     <AreaY data={riaa} x="year" y="revenue" z="format" fill="group" />
   </StackY>
   <RuleY data={[0, 1]} />
-</Plot>
+</Replot>
 
 When the provided length (typically **y**) is negative, in conjunction with the null **offset** the stack transform will produce diverging stacks on opposites sides of the zero baseline. The diverging stacked dot plot below shows the age and gender distribution of the U.S. Congress in 2023. This form is also often *popular* for [population pyramids](https://observablehq.com/@observablehq/plot-population-pyramid).
 
-<Plot aspectRatio={1} x={{label: "Age (years)"}} y={{
+<Replot aspectRatio={1} x={{label: "Age (years)"}} y={{
     grid: true,
     label: "← Women · Men →",
     labelAnchor: "center",
@@ -202,18 +202,18 @@ When the provided length (typically **y**) is negative, in conjunction with the 
     />
   </StackY2>
   <RuleY data={[0]} />
-</Plot>
+</Replot>
 
 
 The stackY2 transform places each dot at the upper bound of the associated stacked interval, rather than the middle of the interval as when using stackY. Hence, the first male dot is placed at *y* = 1, and the first female dot is placed at *y* = -1.
 When visualizing [Likert scale](https:
 
-<Plot x={{tickFormat: Math.abs}} color={{domain: likert.order, scheme: "RdBu", legend: true}}>
+<Replot x={{tickFormat: Math.abs}} color={{domain: likert.order, scheme: "RdBu", legend: true}}>
   <GroupZ x="count">
     <BarX data={survey} fy="Question" fill="Response" {...likert} />
   </GroupZ>
   <RuleX data={[0]} />
-</Plot>
+</Replot>
 
 Here `likert` declares which response values are negative (`-1`), which are positive (`1`), and which are neutral (`0`).
 

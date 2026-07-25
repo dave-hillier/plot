@@ -1,4 +1,4 @@
-import {Plot, Density, Dot, Geo} from "../../src/react/index.js";
+import {Replot, Density, Dot, Geo} from "../../src/react/index.js";
 import * as d3 from "d3";
 import {mesh} from "topojson-client";
 
@@ -13,7 +13,7 @@ export async function walmartsDensity() {
     )
   ]);
   return (
-    <Plot
+    <Replot
       width={960}
       height={600}
       projection="albers-usa"
@@ -24,6 +24,6 @@ export async function walmartsDensity() {
       <Density data={walmarts} x="longitude" y="latitude" bandwidth={12} fill="density" />
       <Dot data={walmarts} x="longitude" y="latitude" r={1} fill="currentColor" />
       <Geo data={statemesh} strokeOpacity={0.3} />
-    </Plot>
+    </Replot>
   );
 }

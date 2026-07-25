@@ -1,4 +1,4 @@
-import {Plot, Geo, Graticule, Line, Sphere} from "../../src/react/index.js";
+import {Replot, Geo, Graticule, Line, Sphere} from "../../src/react/index.js";
 import * as d3 from "d3";
 import {feature} from "topojson-client";
 
@@ -9,11 +9,11 @@ export async function beagle() {
   const beagle = await d3.text("data/beagle.csv").then(d3.csvParseRows);
   const land = feature(world, world.objects.land);
   return (
-    <Plot width={960} height={480} projection={{type: "equal-earth", rotate: [-10, 0]}}>
+    <Replot width={960} height={480} projection={{type: "equal-earth", rotate: [-10, 0]}}>
       <Geo data={land} fill="currentColor" />
       <Graticule />
       <Line data={beagle} stroke={(d, i) => i} z={null} />
       <Sphere />
-    </Plot>
+    </Replot>
   );
 }

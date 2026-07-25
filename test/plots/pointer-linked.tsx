@@ -1,4 +1,4 @@
-import {Plot, Rect, LineY, Arrow, pointerX, groupX} from "../../src/react/index.js";
+import {Replot, Rect, LineY, Arrow, pointerX, groupX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function pointerLinkedRectInterval() {
@@ -7,10 +7,10 @@ export async function pointerLinkedRectInterval() {
   const round = {floor: (x) => Math.floor(x) - 0.5, offset: (x) => x + 1};
   const series = [...a, ...b];
   return (
-    <Plot>
+    <Replot>
       <Rect data={series} {...pointerX({x: "time", interval: round, fillOpacity: 0.1})} />
       <LineY data={series} stroke="series" x="time" y="value" marker curve="natural" />
       <Arrow data={series} {...pointerX(groupX({y1: "min", y2: "max"}, {x: "time", y: "value", inset: 10}))} />
-    </Plot>
+    </Replot>
   );
 }

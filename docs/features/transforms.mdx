@@ -1,4 +1,4 @@
-import {BinX, Cell, Group, GroupY, NormalizeY, Plot, RectY, RuleX, TickX, identity, valueof, column, indexOf, scale} from "replot/react";
+import {BinX, Cell, Group, GroupY, NormalizeY, Replot, RectY, RuleX, TickX, identity, valueof, column, indexOf, scale} from "replot/react";
 import * as d3 from "d3";
 import penguins from "../data/penguins.ts";
 import {useOlympians} from "../data/olympians.ts";
@@ -15,21 +15,21 @@ export const scheme = scale({color: {type: "categorical"}}).range;
 
 For example, given a [dataset of highway traffic](https://gist.github.com/chrtze/c74efb46cadb6a908bbbf5227934bfea) measured as vehicles per hour by location, plotting every observation is straightforward: use a [tick](../marks/tick.md) (or [dot](../marks/dot.md)) and assign **x** = vehicles per hour and **y** = location. But to draw a quantifiable insight, we may want a summary statistic such as the *median* traffic by location. 👩‍💻 Below we use the [group transform](../transforms/group.md) to group by location and apply a *median* reducer to position the <span style={{borderBottom: "solid 2px var(--vp-c-red)"}}>red</span> tick.
 
-<Plot marginLeft={120} x={{label: "Vehicles per hour (thousands)", transform: (x) => x / 1000}} y={{label: null}}>
+<Replot marginLeft={120} x={{label: "Vehicles per hour (thousands)", transform: (x) => x / 1000}} y={{label: null}}>
   <RuleX data={[0]} />
   <TickX data={traffic} x="vehicles" y="location" strokeOpacity={0.3} />
   <GroupY x="median">
     <TickX data={traffic} x="vehicles" y="location" stroke="red" strokeWidth={4} sort={{y: "x"}} />
   </GroupY>
-</Plot>
+</Replot>
 
 As you might expect, traffic varies significantly throughout the day, so perhaps it would be better to look at the median by hour by location? Instead of grouping only by **y**, we can group by both **x** and **y** to produce a heatmap.
 
-<Plot marginLeft={120} padding={0} y={{label: null}} color={{scheme: "turbo", legend: true, zero: true}}>
+<Replot marginLeft={120} padding={0} y={{label: null}} color={{scheme: "turbo", legend: true, zero: true}}>
   <Group fill="median">
     <Cell data={traffic} x={(d) => d.date.getUTCHours()} y="location" fill="vehicles" inset={0.5} sort={{y: "fill"}} />
   </Group>
-</Plot>
+</Replot>
 
 Replot includes many useful transforms! For example, you can compute a [rolling average](../transforms/window.md) to smooth a noisy signal, [stack layers](../transforms/stack.md) for a streamgraph, or [dodge dots](../transforms/dodge.md) for a beeswarm. Replot’s various built-in transforms include: [bin](../transforms/bin.md), [centroid](../transforms/centroid.md), [dodge](../transforms/dodge.md), [filter](../transforms/filter.md), [group](../transforms/group.md), [hexbin](../transforms/hexbin.md), [interval](../transforms/interval.md), [map](../transforms/map.md), [normalize](../transforms/normalize.md), [reverse](../transforms/sort.md#reverse), [select](../transforms/select.md), [shuffle](../transforms/sort.md#shuffle), [sort](../transforms/sort.md), [stack](../transforms/stack.md), [tree](../transforms/tree.md), and [window](../transforms/window.md). If these don’t meet your needs, you can even implement a [custom transform](#custom-transforms).
 
@@ -41,28 +41,28 @@ bins = d3.bin().thresholds(80).value((d) => d.weight)(olympians)
 
 We can then pass that to the [rect mark](../marks/rect.md), assigning to the **x1**, **x2**, and **y2** channels:
 
-<Plot>
+<Replot>
   <RectY data={bins} x1="x0" x2="x1" y2="length" />
-</Plot>
+</Replot>
 
 
 This is for demonstration only; you wouldn’t normally bin “by hand” as shown here.
 But Replot’s transforms are often more convenient, especially in conjunction with Replot’s other features such as [faceting](./facets.md) and automatic grouping by **z**. For example, if we want to add a color encoding to our histogram, we simply add the **fill** option and the bin transform partitions each bin accordingly; doing this with d3.bin would be a lot more work!
 
-<Plot color={{legend: true}}>
+<Replot color={{legend: true}}>
   <BinX y="count">
     <RectY data={useOlympians()} x="weight" fill="sex" />
   </BinX>
-</Plot>
+</Replot>
 
 In React, each transform is a wrapper component: the transform’s options become props on the wrapper (above, `y="count"`), while the mark’s input channels and styles stay as props on the mark inside (`x="weight"` and `fill="sex"`). Wrapping a mark applies the transform to that mark; wrapping several marks applies the transform to each independently.
 
 Each wrapper corresponds to an underlying transform *function* that typically takes two *options* objects as arguments: the first object contains the *transform* options (above, `{y: "count"}`), while the second object contains *mark* options to be “passed through” to the mark (`{x: "weight", fill: "sex"}`). The transform returns a new options object representing the *transformed* mark options to be passed to a mark. This functional form remains fully supported in React — the transform functions are exported from `replot/react`, and you can spread their result onto a mark instead of nesting:
 
 ```jsx
-<Plot color={{legend: true}}>
+<Replot color={{legend: true}}>
   <RectY data={useOlympians()} {...binX({y: "count"}, {x: "weight", fill: "sex"})} />
-</Plot>
+</Replot>
 ```
 
 Breaking down the functional form:
@@ -81,14 +81,14 @@ Transforms can derive channels (such as **y** above) as well as changing the def
 
 Transforms are composable: nest one wrapper component inside another (or, with the functional form, pass *options* through more than one transform before passing it to a mark); the nesting order of wrappers mirrors the call order of the functions. For example, above it’s a bit difficult to compare the weight distribution by sex because there are fewer <span style={{borderBottom: "solid 2px #4269d0"}}>female</span> than <span style={{borderBottom: "solid 2px #efb118"}}>male</span> athletes in the data. We can remove this effect using the [normalize transform](../transforms/normalize.md) with the *sum* reducer.
 
-<Plot y={{percent: true}}>
+<Replot y={{percent: true}}>
   {/* normalize each series by the sum per series */}
   <NormalizeY basis="sum">
     <BinX y2="count">
       <RectY data={useOlympians()} x="weight" fill="sex" mixBlendMode="multiply" />
     </BinX>
   </NormalizeY>
-</Plot>
+</Replot>
 
 And, as you may have wondered above, many of Replot’s [marks](./marks.md) provide implicit transforms: for example, the [rectY mark](../marks/rect.md) applies an implicit [stackY transform](../transforms/stack.md) if you use the **y** option, and the [dot mark](../marks/dot.md) applies an implicit [sort transform](../transforms/sort.md) to mitigate the effect of occlusion by drawing the smallest dots on top.
 
@@ -98,7 +98,7 @@ For greater control, you can also implement a custom **transform** function, all
 
 
 ```jsx{17-23}
-<Plot
+<Replot
   y={{
     grid: true,
     label: "Unemployment (%)"
@@ -123,7 +123,7 @@ For greater control, you can also implement a custom **transform** function, all
       })
     })}
   />
-</Plot>
+</Replot>
 ```
 The **transform** function is passed three arguments, *data*, *facets*, and *options* representing the mark’s data and facet indexes, and the plot’s options; it must then return a `\{*data*, *facets*\}` object with the transformed data and facet indexes. The *facets* are represented as a nested array of arrays such as [[0, 1, 3, …], [2, 5, 10, …], …]; each element in *facets* specifies the zero-based indexes of elements in *data* that are in a given facet (*i.e.*, have a distinct value in the associated *fx* or *fy* dimension).
 

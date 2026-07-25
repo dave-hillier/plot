@@ -1,10 +1,10 @@
-import {Plot, RuleX, RuleY} from "../../src/react/index.js";
+import {Replot, RuleX, RuleY} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function usPresidentialForecast2016() {
   const data = await d3.csv<any>("data/us-presidential-forecast-2016-histogram.csv", d3.autoType);
   return (
-    <Plot
+    <Replot
       x={{
         label: "Electoral votes for Hillary Clinton"
       }}
@@ -27,6 +27,6 @@ export async function usPresidentialForecast2016() {
       />
       <RuleY data={[0]} />
       <RuleX data={[270]} />
-    </Plot>
+    </Replot>
   );
 }

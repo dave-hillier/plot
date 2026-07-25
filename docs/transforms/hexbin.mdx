@@ -1,4 +1,4 @@
-import {AxisX, AxisY, Circle, Dot, Geo, Hexbin, Hexgrid, Plot, Text, scale} from "replot/react";
+import {AxisX, AxisY, Circle, Dot, Geo, Hexbin, Hexgrid, Replot, Text, scale} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import * as topojson from "topojson-client";
@@ -18,11 +18,11 @@ The **hexbin transform** groups two-dimensional quantitative or temporal data �
 
 For example, the heatmap below shows the weights and heights of Olympic athletes. The color of each hexagon represents the number (*count*) of athletes with similar weight and height.
 
-<Plot color={{scheme: "turbo"}}>
+<Replot color={{scheme: "turbo"}}>
   <Hexbin fill="count">
     <Dot data={useOlympians()} x="weight" y="height" />
   </Hexbin>
-</Plot>
+</Replot>
 
 Whereas the [bin transform](./bin.md) produces rectangular bins and operates on abstract data, the hexbin transform produces hexagonal bins and operates in “screen space” (_i.e._, pixel coordinates) after the *x* and *y* scales have been applied to the data. And whereas the bin transform produces **x1**, **y1**, **x2**, **y2** representing rectangular extents, the hexbin transform produces **x** and **y** representing hexagon centers.
 
@@ -36,94 +36,94 @@ To produce an areal encoding as in a bubble map, output **r**. In this case, the
   </label>
 </p>
 
-<Plot>
+<Replot>
   <Hexbin r="count" binWidth={binWidth}>
     <Dot data={useOlympians()} x="weight" y="height" />
   </Hexbin>
-</Plot>
+</Replot>
 
 If desired, you can output both **fill** and **r** for a redundant encoding.
 
-<Plot color={{scheme: "turbo"}}>
+<Replot color={{scheme: "turbo"}}>
   <Hexbin fill="count" r="count">
     <Dot data={useOlympians()} x="weight" y="height" stroke="currentColor" />
   </Hexbin>
-</Plot>
+</Replot>
 
 
 Setting a **stroke** ensures that the smallest hexagons are visible.
 Alternatively, the **fill** and **r** channels can encode independent (or “bivariate”) dimensions of data. Below, the **r** channel uses *count* as before, while the **fill** channel uses *mode* to show the most frequent sex of athletes in each hexagon. The larger athletes are more likely to be <span style={{borderBottom: "solid 2px #efb118"}}>male</span>, while the smaller athletes are more likely to be <span style={{borderBottom: "solid 2px #4269d0"}}>female</span>.
 
-<Plot>
+<Replot>
   <Hexbin fill="mode" r="count">
     <Dot data={useOlympians()} x="weight" y="height" fill="sex" />
   </Hexbin>
-</Plot>
+</Replot>
 
 Using **z**, the hexbin transform will partition hexagons by ordinal value. If **z** is not specified, it defaults to **fill** (if there is no **fill** output channel) or **stroke** (if there is no **stroke** output channel). Setting **z** to *sex* in the chart above, and switching to **stroke** instead of **fill**, produces separate overlapping hexagons for each sex.
 
-<Plot>
+<Replot>
   <Hexbin stroke="mode" r="count">
     <Dot data={useOlympians()} x="weight" y="height" z="sex" stroke="sex" />
   </Hexbin>
-</Plot>
+</Replot>
 
 The hexbin transform can be paired with any mark that supports **x** and **y** channels (which is almost all of them). The [text mark](../marks/text.md) is useful for labelling. By setTing the **text** output channel, you can derive the text from the binned contents.
 
-<Plot>
+<Replot>
   <Hexbin text="count">
     <Text data={useOlympians()} x="weight" y="height" />
   </Hexbin>
-</Plot>
+</Replot>
 
 The hexbin transform also works with Replot’s [projection system](../features/projections.md). Below, hexagon size represents the number of nearby Walmart stores, while color represents the date the first nearby Walmart store opened. (The first Walmart opened in Rogers, Arkansas.)
 
-<Plot projection="albers" r={{range: [0, 16]}} color={{scheme: "spectral", label: "First year opened", legend: true}}>
+<Replot projection="albers" r={{range: [0, 16]}} color={{scheme: "spectral", label: "First year opened", legend: true}}>
   <Geo data={statemesh} strokeOpacity={0.5} />
   <Geo data={nation} />
   <Hexbin r="count" fill="min">
     <Dot data={walmarts} x="longitude" y="latitude" fill="date" />
   </Hexbin>
-</Plot>
+</Replot>
 
 
 Beware the [modifiable areal unit problem](https://en.wikipedia.org/wiki/Modifiable_areal_unit_problem). On a small scale map, this is compounded by the Earth’s curvature, which makes it impossible to create an accurate and regular grid. Use an equal-area projection when binning.
 The [hexgrid mark](../marks/hexgrid.md) draws the base hexagonal grid as a mesh. This is useful for showing the empty hexagons, since the hexbin transform does not output empty bins (and unlike the bin transform, the hexbin transform does not currently support the **filter** option).
 
-<Plot>
+<Replot>
   <Hexgrid />
   <Hexbin r="count">
     <Dot data={useOlympians()} x="weight" y="height" fill="currentColor" />
   </Hexbin>
-</Plot>
+</Replot>
 
 The hexbin transform defaults the **symbol** option to *hexagon*, but you can override it. The [circle constructor](../marks/dot.md#circle) changes it to *circle*.
 
-<Plot>
+<Replot>
   <Hexbin r="count">
     <Circle data={useOlympians()} x="weight" y="height" />
   </Hexbin>
-</Plot>
+</Replot>
 
 Hexbins work best when there is an interesting density of dots in the center of the chart, but sometimes hexagons “escape” the edge of the frame and cover the axes. To prevent this, you can use the **inset** [scale option](../features/scales.md) to reserve space on the edges of the frame.
 
-<Plot inset={10} color={{scheme: "turbo"}}>
+<Replot inset={10} color={{scheme: "turbo"}}>
   <Hexbin fill="count">
     <Dot data={useOlympians()} x="weight" y="height" />
   </Hexbin>
-</Plot>
+</Replot>
 
 
 You can also set the dot’s **clip** option to true to prevent the hexagons from escaping.
 Alternatively, use the [axis mark](../marks/axis.md) to draw axes on top of the hexagons.
 
-<Plot color={{scheme: "turbo"}}>
+<Replot color={{scheme: "turbo"}}>
   <Hexbin fill="count">
     <Dot data={useOlympians()} x="weight" y="height" />
   </Hexbin>
   <AxisX />
   <AxisY />
-</Plot>
+</Replot>
 
 ## Hexbin options
 

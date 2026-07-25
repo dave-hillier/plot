@@ -1,10 +1,10 @@
-import {Plot, Line, Dot, groupX, binY} from "../../src/react/index.js";
+import {Replot, Line, Dot, groupX, binY} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function carsMpg() {
   const data = await d3.csv<any>("data/cars.csv", d3.autoType);
   return (
-    <Plot
+    <Replot
       x={{
         type: "point"
       }}
@@ -40,6 +40,6 @@ export async function carsMpg() {
           }
         )}
       />
-    </Plot>
+    </Replot>
   );
 }

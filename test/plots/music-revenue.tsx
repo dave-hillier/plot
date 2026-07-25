@@ -1,4 +1,4 @@
-import {Plot, AreaY, LineY, RuleY, stackY, stackY2} from "../../src/react/index.js";
+import {Replot, AreaY, LineY, RuleY, stackY, stackY2} from "../../src/react/index.js";
 import * as d3 from "d3";
 import type * as PlotType from "replot";
 
@@ -11,7 +11,7 @@ export async function musicRevenue() {
     order: "-appearance"
   };
   return (
-    <Plot
+    <Replot
       y={{
         grid: true,
         label: "Annual revenue (billions, adj.)",
@@ -21,14 +21,14 @@ export async function musicRevenue() {
       <AreaY data={riaa} {...stackY({...stack, fill: "group", title: (d) => `${d.format}\n${d.group}`})} />
       <LineY data={riaa} {...stackY2({...stack, stroke: "white", strokeWidth: 1})} />
       <RuleY data={[0]} />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function musicRevenueCustomOrder() {
   const riaa = await d3.csv<any>("data/riaa-us-revenue.csv", d3.autoType);
   return (
-    <Plot
+    <Replot
       y={{
         grid: true,
         label: "Annual revenue (billions, adj.)",
@@ -48,6 +48,6 @@ export async function musicRevenueCustomOrder() {
         })}
       />
       <RuleY data={[0]} />
-    </Plot>
+    </Replot>
   );
 }

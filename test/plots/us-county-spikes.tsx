@@ -1,4 +1,4 @@
-import {Plot, Geo, Spike, geoCentroid} from "../../src/react/index.js";
+import {Replot, Geo, Spike, geoCentroid} from "../../src/react/index.js";
 import * as d3 from "d3";
 import {feature, mesh} from "topojson-client";
 
@@ -16,7 +16,7 @@ export async function usCountySpikes() {
       .then((data) => new Map(data.map(({state, county, population}) => [state + county, +population])))
   ]);
   return (
-    <Plot
+    <Replot
       width={960}
       height={600}
       projection="albers-usa"
@@ -27,6 +27,6 @@ export async function usCountySpikes() {
       <Geo data={nation} fill="#e0e0e0" />
       <Geo data={statemesh} stroke="white" />
       <Spike data={counties.features} {...geoCentroid({stroke: "red", length: (d) => population.get(d.id)})} />
-    </Plot>
+    </Replot>
   );
 }

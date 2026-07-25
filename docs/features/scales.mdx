@@ -1,4 +1,4 @@
-import {BarY, Cell, CellX, Dot, Frame, LineY, Plot, RuleX, RuleY, TickX, identity, scale} from "replot/react";
+import {BarY, Cell, CellX, Dot, Frame, LineY, Replot, RuleX, RuleY, TickX, identity, scale} from "replot/react";
 import * as d3 from "d3";
 import gistemp from "../data/gistemp.ts";
 import aapl from "../data/aapl.ts";
@@ -41,9 +41,9 @@ export const anomaly = gistemp.map((d) => d.Anomaly);
 
 When visualizing this data with a [line](../marks/line.md), the *x* scale is responsible for mapping dates to horizontal↔︎ positions. For example, 1880-01-01 might be mapped to *x* = 40 (on the left) and 2016-12-01 might be mapped to *x* = 620 (on the right). Likewise, the *y* scale maps temperature anomalies to vertical↕︎ positions.
 
-<Plot>
+<Replot>
   <LineY data={gistemp} x="Date" y="Anomaly" />
-</Plot>
+</Replot>
 
 In Replot, the [mark](./marks.md) binds channels to scales; for example, the line’s **x** channel is bound to the *x* scale. The channel name and the scale name are often the same, but not always; for example, an area’s **y1** and **y2** channels are both bound to the *y* scale. (You can opt-out of a scale for a particular channel using [scale overrides](./marks.md#mark-options) if needed.)
 
@@ -68,9 +68,9 @@ const maxAnomaly = d3.max(gistemp, (d) => d.Anomaly);
 
 Scales aren’t limited to horizontal and vertical position. They can also output to color, radius, length, opacity, and more. For example if we switch to a [rule](../marks/rule.md) and use the **stroke** channel instead of **y**, we get a one-dimensional heatmap:
 
-<Plot>
+<Replot>
   <RuleX data={gistemp} x="Date" stroke="Anomaly" />
-</Plot>
+</Replot>
 
 While the resulting chart looks different, the *color* scale here behaves similarly to the `y` function above — the only difference is that it interpolates colors (using [d3.interpolateTurbo](https://d3js.org/d3-scale-chromatic/sequential#interpolateTurbo)) instead of numbers (the top and bottom sides of the plot frame):
 
@@ -83,11 +83,11 @@ function color(anomaly) {
 
 Within a given [plot](./plots.md), marks share scales. For example, if a plot has two line marks, such as the lines below visualizing the daily closing price of <span style={{borderBottom: "solid 2px var(--vp-c-red)"}}>Google</span> and <span style={{borderBottom: "solid 2px var(--vp-c-blue)"}}>Apple</span> stock, both share the same *x* and *y* scales for a consistent encoding.
 
-<Plot>
+<Replot>
   <RuleY data={[0]} />
   <LineY data={goog} x="Date" y="Close" stroke="red" />
   <LineY data={aapl} x="Date" y="Close" stroke="blue" />
-</Plot>
+</Replot>
 
 
 When comparing the performance of different stocks, we typically want to normalize the return relative to a purchase price; see the [normalize transform](../transforms/normalize.md) for an example. Also, not that we recommend them, but if you are interested in dual-axis charts, please upvote [#147](https://github.com/observablehq/plot/issues/147).
@@ -107,51 +107,51 @@ Let’s look at some examples to make this less abstract.
 
 The domain of a quantitative scale is a continuous extent [*min*, *max*] where *min* and *max* are numbers, such as temperatures. Below, the first domain value (*x* = 0) corresponds to the left side of the plot while the second (*x* = 100) corresponds to the right side.
 
-<Plot x={{domain: [0, 100], grid: true}} />
+<Replot x={{domain: [0, 100], grid: true}} />
 
 Flipping the domain reverses the scale so that +*x* points ←left instead of right→.
 
-<Plot x={{domain: [100, 0], grid: true}} />
+<Replot x={{domain: [100, 0], grid: true}} />
 
 Alternatively, use the **reverse** option; this is convenient when the domain is implied from data rather than specified explicitly.
 
-<Plot x={{domain: [0, 100], reverse: true, grid: true}} />
+<Replot x={{domain: [0, 100], reverse: true, grid: true}} />
 
 If the domain is dates, Replot will default to a UTC scale. This is a linear scale with ticks based on the Gregorian calendar.
 
 {/* Replot doesn’t parse dates; convert your strings to [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) instances with [d3.utcParse](https://d3js.org/d3-time-format#utcParse) or [d3.autoType](https://d3js.org/d3-dsv#autoType). */}
 
-<Plot x={{domain: [new Date("2021-01-01"), new Date("2022-01-01")], grid: true}} />
+<Replot x={{domain: [new Date("2021-01-01"), new Date("2022-01-01")], grid: true}} />
 
 To force a UTC scale, say when the data is milliseconds since UNIX epoch rather than Date instances, pass *utc* as the **type** option. Though we recommend coercing strings and numbers to more specific types when you load data, rather than relying on scales to do it.
 
-<Plot x={{type: "utc", domain: [1609459200000, 1640995200000], grid: true}} />
+<Replot x={{type: "utc", domain: [1609459200000, 1640995200000], grid: true}} />
 
 If the scale **type** is *time*, the ticks will be in local time — as with the dates below — rather than UTC.
 
-<Plot x={{type: "time", domain: [new Date(2021, 0, 1), new Date(2022, 0, 1)], grid: true}} />
+<Replot x={{type: "time", domain: [new Date(2021, 0, 1), new Date(2022, 0, 1)], grid: true}} />
 
 When plotting values that vary widely, such as the luminosity of stars in an [HR diagram](https://observablehq.com/@mbostock/hertzsprung-russell-diagram), a *log* scale may improve readability. Log scales default to base-10 ticks with SI-prefix notation.
 
-<Plot x={{type: "log", domain: [1e0, 1e5], grid: true}} />
+<Replot x={{type: "log", domain: [1e0, 1e5], grid: true}} />
 
 If you prefer conventional notation, you can specify the **tickFormat** option to change the behavior of the axis. The **tickFormat** option can either be a [d3.format](https://d3js.org/d3-format) string or a function that takes a tick value and returns the corresponding string. Note, however, that this may result in overlapping text.
 
-<Plot x={{type: "log", domain: [1e0, 1e5], tickFormat: ",", grid: true}} />
+<Replot x={{type: "log", domain: [1e0, 1e5], tickFormat: ",", grid: true}} />
 
 Log scales also support a **base** option, say for powers of two. This does not affect the scale’s encoding, but it does change where ticks are shown.
 
-<Plot x={{type: "log", base: 2, domain: [1e0, 1e4], ticks: 20, grid: true}} />
+<Replot x={{type: "log", base: 2, domain: [1e0, 1e4], ticks: 20, grid: true}} />
 
 The domain of a log scale cannot include (or cross) zero; for this, consider a [bi-symmetric log](https://d3js.org/d3-scale/symlog) scale instead.
 
-<Plot x={{type: "symlog", domain: [-10, 10], grid: true}} />
+<Replot x={{type: "symlog", domain: [-10, 10], grid: true}} />
 
 Power scales and square-root scales are also supported. The *pow* scale supports the **exponent** option, which defaults to 1 (for a linear scale). The *sqrt* scale is shorthand for a *pow* scale with exponent 0.5.
 
-<Plot x={{type: "sqrt", domain: [0, 100], grid: true}} />
+<Replot x={{type: "sqrt", domain: [0, 100], grid: true}} />
 
-<Plot x={{type: "pow", exponent: 1 / 3, domain: [0, 100], grid: true}} />
+<Replot x={{type: "pow", exponent: 1 / 3, domain: [0, 100], grid: true}} />
 
 Continuous scales also support a **clamp** option which, if true, clamps input values to the scale’s domain before scaling. This is useful for preventing marks from escaping the chart area.
 
@@ -165,13 +165,13 @@ Sadly, not all data is continuous: some data is merely ordinal, such as t-shirt 
 
 A *point* scale divides space into uniformly-spaced discrete values. It is commonly used for scatterplots (a [dot mark](../marks/dot.md)) of ordinal data. It is the default scale type for ordinal data on the *x* and *y* scale.
 
-<Plot x={{type: "point", domain: "ABCDEFGHIJ", grid: true}} />
+<Replot x={{type: "point", domain: "ABCDEFGHIJ", grid: true}} />
 
 A band scale divides space into uniformly-spaced and -sized discrete intervals. It is commonly used for bar charts (bar marks). To show the bands below, we use a [cell](../marks/cell.md) instead of a [grid](../marks/grid.md).
 
-<Plot x={{type: "band", domain: "ABCDEFGHIJ"}}>
+<Replot x={{type: "band", domain: "ABCDEFGHIJ"}}>
   <Cell data={"ABCDEFGHIJ"} x={identity} stroke="currentColor" strokeOpacity={0.1} />
-</Plot>
+</Replot>
 
 While *point* and *band* scales appear visually similar when only the grid is visible, the two are not identical — they differ respective to padding. Play with the options below to get a sense of their effect on the scale’s behavior.
 
@@ -188,23 +188,23 @@ While *point* and *band* scales appear visually similar when only the grid is vi
   </label>
 </div>
 
-<Plot grid marginTop={0.5} x={{
+<Replot grid marginTop={0.5} x={{
     padding,
     align,
     round: false
   }}>
   <Frame strokeOpacity={0.3} />
   <TickX data={"ABCDEFGHIJ"} x={identity} stroke="currentColor" />
-</Plot>
+</Replot>
 
-<Plot grid marginTop={0.5} x={{
+<Replot grid marginTop={0.5} x={{
     padding,
     align,
     round: false
   }}>
   <Frame strokeOpacity={0.3} />
   <Cell data={"ABCDEFGHIJ"} x={identity} stroke="currentColor" />
-</Plot>
+</Replot>
 
 Position scales also have a **round** option which forces the scale to snap to integer pixels. This defaults to true for point and band scales, and false for quantitative scales. Use caution with high-cardinality ordinal domains (*i.e.*, a point or band scale used to encode many different values), as rounding can lead to “wasted” space or even zero-width bands.
 
@@ -255,11 +255,11 @@ While position is the most salient (and important) encoding, color matters too! 
   </label>
 </div>
 
-<Plot axis={null} padding={0} color={{
+<Replot axis={null} padding={0} color={{
     scheme: schemeq
   }}>
   <Cell data={d3.range(40)} x={identity} fill={identity} inset={-0.5} />
-</Plot>
+</Replot>
 
 You can implement a custom color scheme by specifying the scale’s **range**, or by passing an **interpolate** function that takes a parameter *t* in [0, 1]. The **interpolate** option can specify a color space such as *rgb*, or a two-argument function that takes a pair of values from the range.
 
@@ -277,7 +277,7 @@ You can implement a custom color scheme by specifying the scale’s **range**, o
   </label>
 </div>
 
-<Plot axis={null} padding={0} color={{
+<Replot axis={null} padding={0} color={{
     type: "linear",
     ...interpolateq === "angry-rainbow"
       ? {interpolate: (t) => `hsl(${t * 360},100%,50%)`}
@@ -286,7 +286,7 @@ You can implement a custom color scheme by specifying the scale’s **range**, o
       : {range: ["steelblue", "orange"], interpolate: interpolateq}
   }}>
   <Cell data={d3.range(40)} x={identity} fill={identity} inset={-0.5} />
-</Plot>
+</Replot>
 
 And like position scales, you can apply a *sqrt*, *pow*, *log*, or *symlog* transform; these are often useful when working with non-uniformly distributed data.
 
@@ -313,22 +313,22 @@ Diverging color scales are intended to show positive and negative values, or mor
   </label>
 </div>
 
-<Plot axis={null} padding={0} color={{
+<Replot axis={null} padding={0} color={{
     type: "linear",
     scheme: schemed
   }}>
   <Cell data={d3.range(40)} x={identity} fill={identity} inset={-0.5} />
-</Plot>
+</Replot>
 
 Below we again show observed global surface temperatures. The reversed *BuRd* color scheme is used since <span style={{borderBottom: "solid 2px steelblue"}}>blue</span> and <span style={{borderBottom: "solid 2px #b2182b"}}>red</span> are semantically associated with cold and hot, respectively.
 
-<Plot grid color={{
+<Replot grid color={{
     type: "diverging",
     scheme: "BuRd"
   }}>
   <RuleY data={[0]} />
   <Dot data={gistemp} x="Date" y="Anomaly" stroke="Anomaly" />
-</Plot>
+</Replot>
 
 Replot also provides color schemes for discrete data. Use the *categorical* type for categorical (nominal) unordered data, and the *ordinal* type for ordered data.
 
@@ -388,12 +388,12 @@ Replot also provides color schemes for discrete data. Use the *categorical* type
   </label>
 </div>
 
-<Plot color={{
+<Replot color={{
     type: "ordinal",
     scheme: schemeo
   }}>
   <Cell data={"ABCDEFGHIJ"} x={identity} fill={identity} />
-</Plot>
+</Replot>
 
 
 Discrete color schemes are intended for data that has only a few unique values. If the size of the categorical domain exceeds the number of colors in the scheme, colors will be reused; combining values into an “other” category is recommended.
@@ -409,9 +409,9 @@ But wait, there’s more! 😅 Replot has *opacity*, *r*, *symbol*, and *length*
   </label>
 </div>
 
-<Plot r={{range: [0, radius]}}>
+<Replot r={{range: [0, radius]}}>
   <Dot data={d3.range(1, 11)} x={identity} r={identity} fill="currentColor" />
-</Plot>
+</Replot>
 
 The default **range** for the associated *r* scale is constructed such that a zero value maps to zero for an accurate areal encoding, while the first quartile of values is mapped to a radius of three pixels; this tends to be more stable with varying data.
 
@@ -435,7 +435,7 @@ The **transform** scale option allows you to apply a function to all values befo
 
 
 ```jsx{5}
-<Plot
+<Replot
   y={{
     grid: true,
     label: "Temperature (°C)",
@@ -446,18 +446,18 @@ The **transform** scale option allows you to apply a function to all values befo
   <WindowY k={7}>
     <LineY data={sftemp} x="date" y="high" />
   </WindowY>
-</Plot>
+</Replot>
 ```
 The **percent** scale option is shorthand for a **transform** that multiplies values by 100; it also adds a percent symbol (%) to the default label.
 
 
 ```jsx{1}
-<Plot y={{percent: true}} color={{scheme: "BuRd"}}>
+<Replot y={{percent: true}} color={{scheme: "BuRd"}}>
   <BinX y="proportion" fill="x">
     <RectY data={gistemp} x="Anomaly" fill="Anomaly" />
   </BinX>
   <RuleY data={[0]} />
-</Plot>
+</Replot>
 ```
 
 [Mark transforms](./transforms.md) typically consume values *before* they are passed through scales (_e.g._, when binning). In this case the mark transforms will see the values prior to the scale transform as input, and the scale transform will apply to the *output* of the mark transform.
@@ -470,7 +470,7 @@ The **interval** scale option<a id="interval" href="#interval" aria-label="Perma
   </label>
 </div>
 
-<Plot marginBottom={80} x={{
+<Replot marginBottom={80} x={{
     tickRotate: -90,
     interval: intervaled ? "day" : null,
     label: null
@@ -480,7 +480,7 @@ The **interval** scale option<a id="interval" href="#interval" aria-label="Perma
   }}>
   <BarY data={aapl.slice(-40)} x="Date" y="Volume" />
   <RuleY data={[0]} />
-</Plot>
+</Replot>
 
 
 As an added bonus, the **fontVariant** and **type** options are no longer needed because Replot now understands that the *x* scale, despite being *ordinal*, represents daily observations.
@@ -502,9 +502,9 @@ Each scale’s options are specified as a nested options object with the corresp
 
 For example, to set the domain for the *x* scale:
 
-<Plot x={{domain: [new Date("1880-01-01"), new Date("2016-11-01")]}}>
+<Replot x={{domain: [new Date("1880-01-01"), new Date("2016-11-01")]}}>
   <LineY data={gistemp} x="Date" y="Anomaly" />
-</Plot>
+</Replot>
 
 Replot supports many scale types. Some scale types are for quantitative data: values that can be added or subtracted, such as temperature or time. Other scale types are for ordinal or categorical data: unquantifiable values that can only be ordered, such as t-shirt sizes, or values with no inherent order that can only be tested for equality, such as types of fruit. Some scale types are further intended for specific visual encodings: for example, as position or color.
 
@@ -563,14 +563,14 @@ Clamping is typically used in conjunction with setTing an explicit domain since 
 The **transform** option allows you to apply a function to all values before they are passed through the scale. This is convenient for transforming a scale’s data, say to convert to thousands or between temperature units.
 
 ```jsx
-<Plot
+<Replot
   y={{
     label: "Temperature (°F)",
     transform: (f) => f * 9 / 5 + 32 // convert Celsius to Fahrenheit
   }}
 >
   {/* marks… */}
-</Plot>
+</Replot>
 ```
 
 ### Color scale options
@@ -602,7 +602,7 @@ For quantile and quantize color scales, the **scheme** option is used in conjunc
 
 The following sequential scale schemes are supported for both quantitative and ordinal data:
 
-<Plot width={322} height={25 * 27} margin={0} marginRight={70} padding={0} x={{axis: null}} y={{axis: "right", tickSize: 0}} color={{type: "identity"}}>
+<Replot width={322} height={25 * 27} margin={0} marginRight={70} padding={0} x={{axis: null}} y={{axis: "right", tickSize: 0}} color={{type: "identity"}}>
   <Cell data={[
       ["Blues", d3.interpolateBlues],
       ["Greens", d3.interpolateGreens],
@@ -632,13 +632,13 @@ The following sequential scale schemes are supported for both quantitative and o
       ["YlOrBr", d3.interpolateYlOrBr],
       ["YlOrRd", d3.interpolateYlOrRd],
     ].flatMap(([name, i]) => d3.ticks(0, 1, 20).map((t) => [t, name, String(i(t))]))} fill="2" insetTop={0.5} insetBottom={0.5} />
-</Plot>
+</Replot>
 
 The default color scheme, *turbo*, was chosen primarily to ensure high-contrast visibility. Color schemes such as *blues* make low-value marks difficult to see against a white background, for better or for worse. To use a subset of a continuous color scheme (or any single-argument *interpolate* function), set the *scale*.range property to the corresponding subset of [0, 1]; for example, to use the first half of the *rainbow* color scheme, use a range of [0, 0.5]. By default, the full range [0, 1] is used. If you wish to encode a quantitative value without hue, consider using *opacity* rather than *color* (e.g., use Plot.dot’s *strokeOpacity* instead of *stroke*).
 
 The following diverging scale schemes are supported:
 
-<Plot width={322} height={25 * 11} margin={0} marginRight={70} padding={0} x={{axis: null}} y={{axis: "right", tickSize: 0}} color={{type: "identity"}}>
+<Replot width={322} height={25 * 11} margin={0} marginRight={70} padding={0} x={{axis: null}} y={{axis: "right", tickSize: 0}} color={{type: "identity"}}>
   <Cell data={[
       ["BrBG", d3.interpolateBrBG],
       ["PRGn", d3.interpolatePRGn],
@@ -652,22 +652,22 @@ The following diverging scale schemes are supported:
       ["BuRd", (t) => d3.interpolateRdBu(1 - t)],
       ["BuYlRd", (t) => d3.interpolateRdYlBu(1 - t)],
     ].flatMap(([name, i]) => d3.ticks(0, 1, 30).map((t) => [t, name, String(i(t))]))} fill="2" insetTop={0.5} insetBottom={0.5} />
-</Plot>
+</Replot>
 
 Picking a diverging color scheme name defaults the scale type to *diverging*; set the scale type to *linear* to treat the color scheme as sequential instead. Diverging color scales support a *scale*.**pivot** option, which defaults to zero. Values below the pivot will use the lower half of the color scheme (*e.g.*, reds for the *rdgy* scheme), while values above the pivot will use the upper half (grays for *rdgy*).
 
 The following cylical color schemes are supported:
 
-<Plot width={322} height={25 * 2} margin={0} marginRight={70} padding={0} x={{axis: null}} y={{axis: "right", tickSize: 0}} color={{type: "identity"}}>
+<Replot width={322} height={25 * 2} margin={0} marginRight={70} padding={0} x={{axis: null}} y={{axis: "right", tickSize: 0}} color={{type: "identity"}}>
   <Cell data={[
       ["rainbow", d3.interpolateRainbow],
       ["sinebow", d3.interpolateSinebow],
     ].flatMap(([name, i]) => d3.ticks(0, 1, 30).map((t) => [t, name, String(i(t))]))} fill="2" insetTop={0.5} insetBottom={0.5} />
-</Plot>
+</Replot>
 
 The following categorical color schemes are supported:
 
-<Plot width={322} height={25 * 10} margin={0} marginRight={70} padding={0} x={{axis: null}} y={{axis: "right", tickSize: 0}} color={{type: "identity"}}>
+<Replot width={322} height={25 * 10} margin={0} marginRight={70} padding={0} x={{axis: null}} y={{axis: "right", tickSize: 0}} color={{type: "identity"}}>
   <Cell data={[
       ["Accent", d3.schemeAccent],
       ["Category10", d3.schemeCategory10],
@@ -681,7 +681,7 @@ The following categorical color schemes are supported:
       ["Set3", d3.schemeSet3],
       ["Tableau10", d3.schemeTableau10],
     ].flatMap(([name, scheme]) => scheme.map((s, i) => [i, name, s]))} fill="2" inset={0.5} />
-</Plot>
+</Replot>
 
 The following color interpolators are supported:
 
@@ -822,9 +822,9 @@ color.apply("apple") // "#4e79a7"
 
 To apply a standalone scale object to a plot, pass it to Plot.plot as the corresponding scale options, such as **color**:
 
-<Plot color={color}>
+<Replot color={color}>
   <CellX data={["apple", "apple", "orange", "pear", "orange"]} />
-</Plot>
+</Replot>
 
 As another example, below are two plots with different options where the second plot uses the *color* scale from the first plot:
 

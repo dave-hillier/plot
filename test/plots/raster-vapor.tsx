@@ -1,4 +1,4 @@
-import {Plot, Raster, Contour, Sphere, Geo, identity} from "../../src/react/index.js";
+import {Replot, Raster, Contour, Sphere, Geo, identity} from "../../src/react/index.js";
 import * as d3 from "d3";
 import {feature} from "topojson-client";
 
@@ -11,15 +11,15 @@ async function vapor() {
 
 export async function rasterVapor() {
   return (
-    <Plot color={{scheme: "blues"}} x={{transform: (x) => x - 180}} y={{transform: (y) => 90 - y}}>
+    <Replot color={{scheme: "blues"}} x={{transform: (x) => x - 180}} y={{transform: (y) => 90 - y}}>
       <Raster data={await vapor()} width={360} height={180} />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function rasterVapor2() {
   return (
-    <Plot color={{scheme: "blues", legend: true}} x={{transform: (x) => x - 180}} y={{transform: (y) => 90 - y}}>
+    <Replot color={{scheme: "blues", legend: true}} x={{transform: (x) => x - 180}} y={{transform: (y) => 90 - y}}>
       <Raster data={await vapor()} width={360} height={180} />
       <Raster
         data={await vapor()}
@@ -27,13 +27,13 @@ export async function rasterVapor2() {
         height={180}
         fill={{value: (d) => (d > 4 ? "red" : null), scale: null}}
       />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function contourVapor() {
   return (
-    <Plot width={960} projection="equal-earth" color={{scheme: "blues"}}>
+    <Replot width={960} projection="equal-earth" color={{scheme: "blues"}}>
       <Contour
         data={await vapor()}
         fill={identity}
@@ -50,7 +50,7 @@ export async function contourVapor() {
         clip="sphere"
       />
       <Sphere />
-    </Plot>
+    </Replot>
   );
 }
 
@@ -58,7 +58,7 @@ export async function contourVaporClip() {
   const [world, data] = await Promise.all([d3.json<any>("data/countries-50m.json"), vapor()]);
   const land = feature(world, world.objects.land);
   return (
-    <Plot width={960} projection={{type: "orthographic", rotate: [0, -90]}} color={{scheme: "blues"}}>
+    <Replot width={960} projection={{type: "orthographic", rotate: [0, -90]}} color={{scheme: "blues"}}>
       <Sphere fill="#eee" />
       <Raster
         data={data}
@@ -90,7 +90,7 @@ export async function contourVaporClip() {
       />
       <Geo data={land} stroke="black" />
       <Sphere stroke="black" />
-    </Plot>
+    </Replot>
   );
 }
 
@@ -99,7 +99,7 @@ export async function rasterVaporPeters() {
   const sin = (y) => Math.sin(y * radians);
   const asin = (y) => Math.asin(y) / radians;
   return (
-    <Plot
+    <Replot
       width={Math.floor(30 + (500 * Math.PI) / 2)}
       height={500 + 20}
       marginLeft={30}
@@ -114,13 +114,13 @@ export async function rasterVaporPeters() {
       }}
     >
       <Raster data={await vapor()} width={360} height={180} x1={-180} y1={90} x2={180} y2={-90} interpolate="nearest" />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function rasterVaporEqualEarth() {
   return (
-    <Plot projection="equal-earth" color={{scheme: "blues"}}>
+    <Replot projection="equal-earth" color={{scheme: "blues"}}>
       <Raster
         data={await vapor()}
         width={360}
@@ -133,13 +133,13 @@ export async function rasterVaporEqualEarth() {
         clip="sphere"
       />
       <Sphere />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function rasterVaporEqualEarthBarycentric() {
   return (
-    <Plot projection="equal-earth" color={{scheme: "blues"}}>
+    <Replot projection="equal-earth" color={{scheme: "blues"}}>
       <Raster
         data={await vapor()}
         width={360}
@@ -152,6 +152,6 @@ export async function rasterVaporEqualEarthBarycentric() {
         clip="sphere"
       />
       <Sphere />
-    </Plot>
+    </Replot>
   );
 }

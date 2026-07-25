@@ -1,4 +1,4 @@
-import {Dot, DodgeY, Frame, Image, Plot, RuleX, RuleY} from "replot/react";
+import {Dot, DodgeY, Frame, Image, Replot, RuleX, RuleY} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import penguins from "../data/penguins.ts";
@@ -9,41 +9,41 @@ export const presidents = [];
 
 The **image mark** draws images centered at the given position in **x** and **y**. It is often used to construct scatterplots in place of a [dot mark](./dot.md). For example, the chart below, based on one by [Robert Lesser](https://observablehq.com/@rlesser/when-presidents-fade-away), shows the favorability of U.S. presidents over time alongside their portraits.
 
-<Plot inset={20} x={{label: "First inauguration date"}} y={{grid: true, label: "Net favorability (%)", tickFormat: "+f"}}>
+<Replot inset={20} x={{label: "First inauguration date"}} y={{grid: true, label: "Net favorability (%)", tickFormat: "+f"}}>
   <RuleY data={[0]} />
   <Image data={presidents} x="First Inauguration Date" y={(d) => d["Very Favorable %"] + d["Somewhat Favorable %"] - d["Very Unfavorable %"] - d["Somewhat Unfavorable %"]} src="Portrait URL" width={40} title="Name" />
-</Plot>
+</Replot>
 
 Images are drawn in input order by default. This dataset is ordered chronologically, and hence above the more recent presidents are drawn on top. You can change the order with the [sort transform](../transforms/sort.md).
 
 With the **r** option, images will be clipped to circles of the given radius. Use the [**preserveAspectRatio** option](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/preserveAspectRatio) to control which part of the image appears within the circle; below, we favor the top part of the image to show the presidential head.
 
-<Plot x={{inset: 20, label: "First inauguration date"}} y={{insetTop: 4, grid: true, label: "Any opinion (%)", tickFormat: "+f"}}>
+<Replot x={{inset: 20, label: "First inauguration date"}} y={{insetTop: 4, grid: true, label: "Any opinion (%)", tickFormat: "+f"}}>
   <RuleY data={[0]} />
   <Image data={presidents} x="First Inauguration Date" y={(d) => d["Very Favorable %"] + d["Somewhat Favorable %"] + d["Very Unfavorable %"] + d["Somewhat Unfavorable %"]} src="Portrait URL" r={20} preserveAspectRatio="xMidYMin slice" title="Name" />
-</Plot>
+</Replot>
 
 
 You can also use the **r** channel as a size encoding, and the **rotate** channel, as with dots.
 The **r** option works well with the [dodge transform](../transforms/dodge.md) for an image beeswarm plot. This chart isn’t particularly interesting because new presidents are inaugurated at a fairly consistent rate, but at least it avoids overlapping portraits.
 
-<Plot inset={20} height={280}>
+<Replot inset={20} height={280}>
   <DodgeY>
     <Image data={presidents} x="First Inauguration Date" r={20 /* clip to a circle */} preserveAspectRatio="xMidYMin slice" src="Portrait URL" title="Name" />
   </DodgeY>
-</Plot>
+</Replot>
 
 The default size of an image is only 16×16 pixels. This may be acceptable if the image is a small glyph, such as a categorical symbol in a scatterplot. But often you will want to set **width**, **height**, or **r** to increase the image size.
 
-<Plot aspectRatio={1} grid x={{label: "Favorable opinion (%)"}} y={{label: "Unfavorable opinion (%)"}}>
+<Replot aspectRatio={1} grid x={{label: "Favorable opinion (%)"}} y={{label: "Unfavorable opinion (%)"}}>
   <RuleY data={[0]} />
   <RuleX data={[0]} />
   <Image data={presidents} x={(d) => d["Very Favorable %"] + d["Somewhat Favorable %"]} y={(d) => d["Very Unfavorable %"] + d["Somewhat Unfavorable %"]} src="Portrait URL" title="Name" />
-</Plot>
+</Replot>
 
 If — *for reasons* — you want to style the plot with a background image, you can do that using the top-level **style** option rather than an image mark. Below, Kristen Gorman’s penguins dataset is visualized atop her photograph of sea ice near Palmer Station on the Antarctic peninsula, where she collected the measurements.
 
-<Plot margin={30} inset={10} grid style={{
+<Replot margin={30} inset={10} grid style={{
     padding: "10px",
     color: "black",
     background: "url(../sea-ice.jpg)",
@@ -51,7 +51,7 @@ If — *for reasons* — you want to style the plot with a background image, y
   }}>
   <Frame />
   <Dot data={penguins} x="culmen_length_mm" y="culmen_depth_mm" fill="white" stroke="black" />
-</Plot>
+</Replot>
 
 ## Image options
 

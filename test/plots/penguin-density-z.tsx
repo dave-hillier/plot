@@ -1,10 +1,10 @@
-import {Plot, Density, Frame} from "../../src/react/index.js";
+import {Replot, Density, Frame} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function penguinDensityZ() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return (
-    <Plot
+    <Replot
       width={960}
       height={360}
       inset={20}
@@ -26,6 +26,6 @@ export async function penguinDensityZ() {
         clip={true}
       />
       <Frame />
-    </Plot>
+    </Replot>
   );
 }

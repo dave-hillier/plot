@@ -1,4 +1,4 @@
-import {Line, Plot, RuleY, SelectLast, SelectMaxY, SelectMinY, Text} from "replot/react";
+import {Line, Replot, RuleY, SelectLast, SelectMaxY, SelectMinY, Text} from "replot/react";
 import * as d3 from "d3";
 import {useState} from "react";
 import aapl from "../data/aapl.ts";
@@ -10,19 +10,19 @@ export const stocks = [];
 
 The **select transform** filters a mark’s index to show a subset of the data. It is a specialized [filter transform](./filter.md) that pulls a single value or a sample subset out of each series. For example, below selectLast is used to label the last value in a line chart.
 
-<Plot y={{grid: true}}>
+<Replot y={{grid: true}}>
   <RuleY data={[0]} />
   <Line data={aapl} x="Date" y="Close" />
   <SelectLast>
     <Text data={aapl} x="Date" y="Close" text="Close" frameAnchor="bottom" dy={-6} />
   </SelectLast>
-</Plot>
+</Replot>
 
 The select transform uses input order, not natural order by value, to determine the meaning of *first* and *last*. Since this dataset is in reverse chronological order, the first element is the most recent.
 
 Using selectMinY and selectMaxY, you can label the extreme values.
 
-<Plot y={{grid: true}}>
+<Replot y={{grid: true}}>
   <RuleY data={[0]} />
   <Line data={aapl} x="Date" y="Close" />
   <SelectMinY>
@@ -31,17 +31,17 @@ Using selectMinY and selectMaxY, you can label the extreme values.
   <SelectMaxY>
     <Text data={aapl} x="Date" y="Close" text="Close" frameAnchor="bottom" dy={-6} />
   </SelectMaxY>
-</Plot>
+</Replot>
 
 The select transform groups data into series using the **z**, **fill**, or **stroke** channel in the same fashion as the [area](../marks/area.md) and [line](../marks/line.md) marks. Below, the select transform is used to label the last point in each series of a multi-series line chart.
 
-<Plot y={{grid: true}}>
+<Replot y={{grid: true}}>
   <RuleY data={[0]} />
   <Line data={stocks} x="Date" y="Close" stroke="Symbol" />
   <SelectLast>
     <Text data={stocks} x="Date" y="Close" z="Symbol" text="Symbol" textAnchor="start" dx={3} />
   </SelectLast>
-</Plot>
+</Replot>
 
 ## select(*selector*, *options*) {/* {#select} */}
 ```js

@@ -1,10 +1,10 @@
-import {Plot, Dot, bin} from "../../src/react/index.js";
+import {Replot, Dot, bin} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function diamondsCaratPriceDots() {
   const data = await d3.csv<any>("data/diamonds.csv", d3.autoType);
   return (
-    <Plot
+    <Replot
       height={640}
       grid={true}
       marginLeft={44}
@@ -20,6 +20,6 @@ export async function diamondsCaratPriceDots() {
       }}
     >
       <Dot data={data} {...bin({r: "count"}, {x: "carat", y: "price", thresholds: 100})} />
-    </Plot>
+    </Replot>
   );
 }

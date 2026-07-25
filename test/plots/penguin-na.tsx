@@ -1,4 +1,4 @@
-import {Plot, TickX, valueof} from "../../src/react/index.js";
+import {Replot, TickX, valueof} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 async function penguinNA(tickFormat: (x: number) => any = undefined) {
@@ -6,9 +6,9 @@ async function penguinNA(tickFormat: (x: number) => any = undefined) {
   const V = valueof(sample, "body_mass_g");
   const [min, max] = d3.extent(V);
   return (
-    <Plot x={{unknown: 10, ticks: [NaN, ...d3.ticks(min, max, 7)], tickFormat}}>
+    <Replot x={{unknown: 10, ticks: [NaN, ...d3.ticks(min, max, 7)], tickFormat}}>
       <TickX data={sample} x={V} stroke={(d) => (d.body_mass_g ? "black" : "red")} />
-    </Plot>
+    </Replot>
   );
 }
 

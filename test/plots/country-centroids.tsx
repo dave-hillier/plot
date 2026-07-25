@@ -1,4 +1,4 @@
-import {Plot, Graticule, Geo, Text, Frame, geoCentroid, centroid} from "../../src/react/index.js";
+import {Replot, Graticule, Geo, Text, Frame, geoCentroid, centroid} from "../../src/react/index.js";
 import * as d3 from "d3";
 import {feature} from "topojson-client";
 
@@ -7,13 +7,13 @@ export async function countryCentroids() {
   const land = feature(world, world.objects.land);
   const countries = feature(world, world.objects.countries);
   return (
-    <Plot projection="mercator">
+    <Replot projection="mercator">
       <Graticule />
       <Geo data={land} fill="#ddd" />
       <Geo data={countries} stroke="#fff" />
       <Text data={countries} {...geoCentroid({fill: "red", text: "id"})} />
       <Text data={countries} {...centroid({fill: "blue", text: "id"})} />
       <Frame />
-    </Plot>
+    </Replot>
   );
 }

@@ -1,14 +1,14 @@
-import {Plot, BarY, RuleY} from "../../src/react/index.js";
+import {Replot, BarY, RuleY} from "../../src/react/index.js";
 
 export async function ordinalBar() {
   return (
-    <Plot
+    <Replot
       y={{
         grid: true
       }}
     >
       <BarY data="ABCDEF" />
       <RuleY data={[0]} />
-    </Plot>
+    </Replot>
   );
 }

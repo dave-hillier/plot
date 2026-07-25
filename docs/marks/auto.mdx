@@ -1,4 +1,4 @@
-import {Auto, Plot} from "replot/react";
+import {Auto, Replot} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import aapl from "../data/aapl.ts";
@@ -10,9 +10,9 @@ import {useOlympians} from "../data/olympians.ts";
 
 The magic ✨ **auto mark** automatically selects a mark type that best represents the given dimensions of the data according to some simple heuristics. The auto mark — which powers [Observable’s chart cell](https://observablehq.com/@observablehq/chart-cell) — is intended to support fast exploratory analysis where the goal is to get a useful plot as quickly as possible. For example, two quantitative dimensions make a scatterplot:
 
-<Plot>
+<Replot>
   <Auto data={penguins} x="body_mass_g" y="flipper_length_mm" />
-</Plot>
+</Replot>
 
 
 The auto mark is supposed to be fast and fluid, so don’t overthink it. If you need precise control, use explicit marks instead.
@@ -21,33 +21,33 @@ While the auto mark will respect the options you provide, you shouldn’t rely o
 Because its heuristics are likely to evolve, they are not explicitly documented; see the [source code](https://github.com/observablehq/plot/blob/main/src/marks/auto.js) for details.
 A monotonically increasing dimension (here *Date*, as the data is ordered chronologically), paired with a numeric column (*Close*), makes a line chart:
 
-<Plot>
+<Replot>
   <Auto data={aapl} x="Date" y="Close" />
-</Plot>
+</Replot>
 
 Given only one dimension of data, it makes a histogram:
 
-<Plot>
+<Replot>
   <Auto data={useOlympians()} x="weight" />
-</Plot>
+</Replot>
 
-<Plot>
+<Replot>
   <Auto data={penguins} x="island" />
-</Plot>
+</Replot>
 
 This is easier than deciding whether to use bin and rect, or group and bar: the auto mark chooses the right one based on whether the data is quantitative or ordinal.
 
 If you’d like to explicitly avoid grouping the data, you can opt out of the reducer, and get a one-dimensional plot:
 
-<Plot>
+<Replot>
   <Auto data={penguins} x="body_mass_g" y={{reduce: null}} />
-</Plot>
+</Replot>
 
 As you can see from that **reduce** property, the auto mark has some special syntax that lets you specify a reducer without explicitly specifying a transform. For example, the scatterplot above can be made into a heatmap by adding a color reducer. You can pass the name of a reducer to that property, or pass a shorthand string:
 
-<Plot>
+<Replot>
   <Auto data={useOlympians()} x="weight" y="height" color="count" />
-</Plot>
+</Replot>
 
 That’s equivalent to this:
 
@@ -59,51 +59,51 @@ Notice that the code above makes you think about nested functions and two differ
 
 This saves you a little bit of typing, but, more importantly, it means that switching from showing one dimension to another only involves changing _one thing_. In the code above, if you change **y** from *weight* to *sex*, it’ll break, because *sex* is ordinal instead of quantitative. (You’d also have to change [rect](./rect.md) to [barX](./bar.md#barX), and [bin](../transforms/bin.md#bin) to [binX](../transforms/bin.md#binX).) With the auto mark, it just works:
 
-<Plot>
+<Replot>
   <Auto data={useOlympians()} x="weight" y="sex" color="count" />
-</Plot>
+</Replot>
 
 Similarly, with explicit marks and transforms, changing a vertical histogram to a horizontal histogram involves switching [rectY](./rect.md#rectY) to [rectX](./rect.md#rectX), [binX](../transforms/bin.md#binX) to [binY](../transforms/bin.md#binY), **x** to **y**, and **y** to **x**. With the auto mark, just specify **y** instead of **x**:
 
-<Plot>
+<Replot>
   <Auto data={penguins} y="island" />
-</Plot>
+</Replot>
 
 For the sake of seamless switching, the auto mark has just one color channel, which it assigns to either **fill** or **stroke** depending on the mark. We can see that clearly by overriding a line chart with the **mark** option to make an area chart:
 
-<Plot>
+<Replot>
   <Auto data={industries} x="date" y="unemployed" color="industry" />
-</Plot>
+</Replot>
 
-<Plot>
+<Replot>
   <Auto data={industries} x="date" y="unemployed" color="industry" mark="area" />
-</Plot>
+</Replot>
 
 The **mark** override option supports [dot](./dot.md), [line](./line.md), [area](./area.md), [rule](./rule.md), and [bar](./bar.md) (which automatically chooses among barX, barY, rectX, rectY, rect, and cell).
 
 You can get a more elaborate aggregated chart by passing an object with both a **value** (the input dimension) and a **reduce** (the reducer). For example, here’s the average heights of Olympians over time by sex:
 
-<Plot color={{legend: true}}>
+<Replot color={{legend: true}}>
   <Auto data={useOlympians()} x="date_of_birth" y={{value: "height", reduce: "mean"}} color="sex" mark="line" />
-</Plot>
+</Replot>
 
 You can similarly pass a **zero** option to indicate that zero is meaningful for either **x** or **y**. This adds a corresponding rule to the returned mark.
 
-<Plot>
+<Replot>
   <Auto data={industries} x="date" y={{value: "unemployed", zero: true}} color="industry" />
-</Plot>
+</Replot>
 
 The auto mark has a **size** channel, which (currently) always results in a dot. For now, it’s an alias for the dot’s **r** channel; in the future it will also represent a vector’s **length** channel.
 
-<Plot>
+<Replot>
   <Auto data={aapl} x="Date" y="Close" size="Volume" />
-</Plot>
+</Replot>
 
 Like with any other mark, you can also use **fx** or **fy**, and pass additional global options in the plot method.
 
-<Plot grid x={{ticks: 5}} marginRight={70}>
+<Replot grid x={{ticks: 5}} marginRight={70}>
   <Auto data={penguins} x="body_mass_g" y="culmen_length_mm" fx="island" fy="species" />
-</Plot>
+</Replot>
 
 
 You can combine the auto mark with other marks, but the combination may be brittle because the auto mark may pick encodings that don’t play well with others.

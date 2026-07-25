@@ -1,4 +1,4 @@
-import {AxisFx, AxisX, AxisY, BarX, BarY, Dot, Frame, GridX, GridY, Line, Plot, RuleX, RuleY, identity} from "replot/react";
+import {AxisFx, AxisX, AxisY, BarX, BarY, Dot, Frame, GridX, GridY, Line, Replot, RuleX, RuleY, identity} from "replot/react";
 import * as d3 from "d3";
 import {useState} from "react";
 import aapl from "../data/aapl.ts";
@@ -24,20 +24,20 @@ The **axis mark** conveys the meaning of a position [scale](../features/scales.m
 
 For example, the **axis** scale option specifies the side of the frame to draw the axis. Setting it to *both* will repeat the axis on both sides.
 
-<Plot x={{percent: true, grid: true, axis: "both"}}>
+<Replot x={{percent: true, grid: true, axis: "both"}}>
   <BarX data={alphabet} x="frequency" y="letter" />
   <RuleX data={[0]} />
-</Plot>
+</Replot>
 
 The above is equivalent to declaring two explicit axis marks, one with the *top* **anchor** and the other with the *bottom* **anchor**, and one explicit [grid mark](./grid.md). A benefit of declaring explicit axes is that you can draw them atop other marks.
 
-<Plot x={{percent: true}}>
+<Replot x={{percent: true}}>
   <AxisX anchor="top" />
   <AxisX anchor="bottom" label={null} />
   <BarX data={alphabet} x="frequency" y="letter" />
   <GridX interval={1} stroke="var(--vp-c-bg)" strokeOpacity={0.5} />
   <RuleX data={[0]} />
-</Plot>
+</Replot>
 
 
 The **interval** option above instructs the grid lines to be drawn at unit intervals, _i.e._ whole percentages. As an alternative, you can use the **ticks** option to specify the desired number of ticks or the **tickSpacing** option to specify the desired separation between adjacent ticks in pixels.
@@ -51,87 +51,87 @@ Replot’s axis mark is a composite mark comprised of:
 
 As such, you can take advantage of the full capabilities of these marks. For example, you can use the text mark’s **lineWidth** option to wrap long tick labels (and even soft hyphens). Note this option is expressed in ems, not pixels, and you may have to reserve additional **marginBottom** to make room for multiple lines.
 
-<Plot y={{percent: true}}>
+<Replot y={{percent: true}}>
   <AxisX label={null} lineWidth={8} marginBottom={40} />
   <AxisY label="Responses (%)" />
   <BarY data={responses} x="name" y="value" />
   <RuleY data={[0]} />
-</Plot>
+</Replot>
 
 Or, you can use the **textAnchor** option to extend the *y*-axis tick labels to the right and into the frame, and the **fill** option to specify the color of the text.
 
-<Plot marginTop={0} marginLeft={4} x={{ticks: 4, label: "Yield (kg)"}}>
+<Replot marginTop={0} marginLeft={4} x={{ticks: 4, label: "Yield (kg)"}}>
   <BarX data={[42, 17, 32]} y={["🍌 banana", "🍎 apple", "🍐 pear"]} />
   <AxisY textAnchor="start" fill="var(--vp-c-bg)" dx={14} />
-</Plot>
+</Replot>
 
 Layering several marks makes it possible to create [ggplot2-style axes](https://ggplot2.tidyverse.org/reference/guide_axis.html) with a filled [frame](./frame.md) and white grid lines.
 
-<Plot inset={10}>
+<Replot inset={10}>
   <Frame fill="#eaeaea" />
   <GridY stroke="white" strokeOpacity={1} />
   <GridX stroke="white" strokeOpacity={1} />
   <Line data={aapl} x="Date" y="Close" stroke="black" />
-</Plot>
+</Replot>
 
 Or you could emulate the style of *The New York Times*, with tick labels above dashed grid lines, and a custom tick format to show units (here dollars) on the first tick.
 
-<Plot round marginLeft={0}
+<Replot round marginLeft={0}
   x={{label: null, insetLeft: 36}}>
   <GridY strokeDasharray="0.75,2" strokeOpacity={1} />
   <AxisY tickSize={0} dx={38} dy={-6} lineAnchor="bottom" tickFormat={(d, i, t) => (i === t.length - 1 ? `$${d}` : d)} />
   <RuleY data={[0]} />
   <Line data={aapl} x="Date" y="Close" markerEnd="dot" />
-</Plot>
+</Replot>
 
 Time axes default to a consistent multi-line tick format <VersionBadge version="0.6.9" />, [à la Datawrapper](https:
 
-<Plot>
+<Replot>
   <RuleY data={[0]} />
   <AxisX ticks="3 months" />
   <GridX />
   <Line data={aapl} x="Date" y="Close" />
-</Plot>
+</Replot>
 
 The format is inferred from the tick interval, and consists of two fields (*e.g.*, month and year, day and month, minutes and hours); when a tick has the same second field value as the previous tick (*e.g.*, “19 Jan” after “17 Jan”), only the first field (“19”) is shown for brevity. Alternatively, you can specify multiple explicit axes with options for hierarchical time intervals, here showing weeks, months, and years.
 
-<Plot x={{round: true, nice: d3.utcWeek}} y={{inset: 6}}>
+<Replot x={{round: true, nice: d3.utcWeek}} y={{inset: 6}}>
   <Frame fill="currentColor" fillOpacity={0.1} />
   <Frame anchor="bottom" />
   <AxisX ticks="year" tickSize={28} tickPadding={-11} tickFormat="  %Y" textAnchor="start" />
   <AxisX ticks="month" tickSize={16} tickPadding={-11} tickFormat="  %b" textAnchor="start" />
   <GridX ticks="week" stroke="var(--vp-c-bg)" strokeOpacity={1} insetBottom={-0.5} />
   <Line data={aapl.slice(-340, -10)} x="Date" y="Close" curve="step" />
-</Plot>
+</Replot>
 
 You can even style an axis dynamically based on data! The data associated with an axis or grid mark are the tick values sampled from the associated scale’s domain. If you don’t specify the data explicitly, the ticks will be chosen through a combination of the **ticks**, **tickSpacing**, and **interval** options.
 
-<Plot marginRight={0}>
+<Replot marginRight={0}>
   <RuleY data={[0]} />
   <Line data={aapl} x="Date" y="Close" />
   <GridY x={(y) => aapl.find((d) => d.Close >= y)?.Date} insetLeft={-6} />
   <AxisY x={(y) => aapl.find((d) => d.Close >= y)?.Date} insetLeft={-6} textStroke="var(--vp-c-bg)" />
-</Plot>
+</Replot>
 
 The color of an axis can be controlled with the **color**, **stroke**, and **fill** options, which affect the axis’ component marks differently. The **stroke** option affects the tick vector; the **fill** option affects the label texts. The **color** option is shorthand for setTing both **fill** and **stroke**. While these options are typically set to constant colors (such as _red_ or the default _currentColor_), they can be specified as channels to assign colors dynamically based on the associated tick value.
 
-<Plot>
+<Replot>
   <AxisX data={d3.ticks(0, 1, 10)} color="red" />
-</Plot>
+</Replot>
 
-<Plot>
+<Replot>
   <AxisX data={d3.ticks(0, 1, 10)} stroke={identity} strokeWidth={3} tickSize={10} />
-</Plot>
+</Replot>
 
-<Plot>
+<Replot>
   <AxisX data={d3.ticks(0, 1, 10)} fill="red" />
-</Plot>
+</Replot>
 
 To draw an outline around the tick labels, say to improve legibility when drawing an axes atop other marks, use the **textStroke** (default _none_), **textStrokeWidth** (default 3), and **textStrokeOpacity**  (default 1) options.
 
-<Plot height={40} style={{background: "#777"}} x={{domain: [0, 100]}}>
+<Replot height={40} style={{background: "#777"}} x={{domain: [0, 100]}}>
   <AxisX fill="black" stroke="white" textStroke="white" textStrokeWidth={3} textStrokeOpacity={0.6} />
-</Plot>
+</Replot>
 
 When faceting, the *x*- and *y*-axes are typically repeated across facets. A *bottom*-anchored *x*-axis is by default drawn on any facet _with empty space below it_; conversely, a *top*-anchored *x*-axis is drawn on any facet _with empty space above it_. Similarly, a *left*-anchored *y*-axis is drawn on facets with empty space to the left, and a *right*-anchored *y*-axis is drawn on facets with empty space to the right.
 
@@ -170,34 +170,34 @@ The interactive chart below shows the different possibilities. Note that we plac
   </label>
 </p>
 
-<Plot facet={{marginRight: 80}} grid>
+<Replot facet={{marginRight: 80}} grid>
   <Frame />
   <Dot data={penguins} x="culmen_length_mm" y="culmen_depth_mm" fx="sex" fy="species" />
   <AxisX color="red" anchor={anchor} facetAnchor={facetAnchor === "auto" ? undefined : facetAnchor === "null" ? null : facetAnchor} />
   <AxisFx color="blue" anchor={anchor === "top" ? "bottom" : "top"} />
-</Plot>
+</Replot>
 
 The **labelAnchor** option controls the position of the axis label. For the *x* or *fx* axis, the label anchor may be *left*, *center*, or *right*. It defaults to *center* for ordinal scales and *right* for quantitative scales.
 
-<Plot height={80} grid x={{type: "linear"}}>
+<Replot height={80} grid x={{type: "linear"}}>
   <AxisX anchor="top" label="top-left" labelAnchor="left" />
   <AxisX anchor="top" label="top-center" labelAnchor="center" ticks={[]} />
   <AxisX anchor="top" label="top-right" labelAnchor="right" ticks={[]} />
   <AxisX anchor="bottom" label="bottom-left" labelAnchor="left" />
   <AxisX anchor="bottom" label="bottom-center" labelAnchor="center" ticks={[]} />
   <AxisX anchor="bottom" label="bottom-right" labelAnchor="right" ticks={[]} />
-</Plot>
+</Replot>
 
 For the *y* and *fy* axis, the label anchor may be *top*, *center*, or *bottom*. It defaults to *center* for ordinal scales and *top* for quantitative scales. When the label anchor is *center*, the label is rotated by 90° to fit, though you may need to adjust the margins to avoid overlap between the tick labels and the axis label.
 
-<Plot grid y={{type: "linear"}}>
+<Replot grid y={{type: "linear"}}>
   <AxisY anchor="left" label="left-top" labelAnchor="top" />
   <AxisY anchor="left" label="left-center" labelAnchor="center" ticks={[]} />
   <AxisY anchor="left" label="left-bottom" labelAnchor="bottom" ticks={[]} />
   <AxisY anchor="right" label="right-top" labelAnchor="top" />
   <AxisY anchor="right" label="right-center" labelAnchor="center" ticks={[]} />
   <AxisY anchor="right" label="right-bottom" labelAnchor="bottom" ticks={[]} />
-</Plot>
+</Replot>
 
 ## Axis options
 

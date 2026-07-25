@@ -1,4 +1,15 @@
-import {Plot, WaffleX, WaffleY, RuleX, RuleY, AxisX, AxisY, identity, pointer, groupX} from "../../src/react/index.js";
+import {
+  Replot,
+  WaffleX,
+  WaffleY,
+  RuleX,
+  RuleY,
+  AxisX,
+  AxisY,
+  identity,
+  pointer,
+  groupX
+} from "../../src/react/index.js";
 import * as d3 from "d3";
 import {svg} from "htl";
 
@@ -14,51 +25,51 @@ Elderly 65+,65+,12456`,
 
 export function waffleSquished() {
   return (
-    <Plot>
+    <Replot>
       <WaffleX data={[10]} />
-    </Plot>
+    </Replot>
   );
 }
 
 export function waffleMultiple() {
   return (
-    <Plot y={{inset: 12}}>
+    <Replot y={{inset: 12}}>
       <WaffleY data={[4, 9, 24, 46, 66, 7]} multiple={10} fill="currentColor" />
       <WaffleY data={[-4, -9, -24, -46, -66, -7]} multiple={10} fill="red" />
-    </Plot>
+    </Replot>
   );
 }
 
 export function waffleShorthand() {
   return (
-    <Plot y={{inset: 12}}>
+    <Replot y={{inset: 12}}>
       <WaffleY data={[4, 9, 24, 46, 66, 7]} fill="currentColor" />
       <WaffleY data={[-4, -9, -24, -46, -66, -7]} fill="red" />
-    </Plot>
+    </Replot>
   );
 }
 
 export function waffleStroke() {
   return (
-    <Plot y={{inset: 12}}>
+    <Replot y={{inset: 12}}>
       <WaffleY data={[4, 9, 24, 46, 66, 7]} fill="currentColor" stroke="red" gap={0} />
       <WaffleY data={[-4, -9, -24, -46, -66, -7]} fill="red" stroke="currentColor" gap={0} />
-    </Plot>
+    </Replot>
   );
 }
 
 export function waffleRound() {
   return (
-    <Plot y={{inset: 12}}>
+    <Replot y={{inset: 12}}>
       <WaffleY data={[4, 9, 24, 46, 66, 7]} fill="currentColor" rx="100%" />
       <WaffleY data={[-4, -9, -24, -46, -66, -7]} fill="red" rx="100%" />
-    </Plot>
+    </Replot>
   );
 }
 
 export function waffleStrokeMixed() {
   return (
-    <Plot y={{insetBottom: 16}}>
+    <Replot y={{insetBottom: 16}}>
       <WaffleY
         data={{length: 6}}
         x={["A", "B", "C", "D", "E", "F"]}
@@ -78,13 +89,13 @@ export function waffleStrokeMixed() {
         fill="red"
       />
       <RuleY data={[0]} />
-    </Plot>
+    </Replot>
   );
 }
 
 export function waffleStrokeNegative() {
   return (
-    <Plot x={{axis: "top"}}>
+    <Replot x={{axis: "top"}}>
       <WaffleY
         data={{length: 6}}
         x={["A", "B", "C", "D", "E", "F"]}
@@ -121,13 +132,13 @@ export function waffleStrokeNegative() {
         fill="red"
       />
       <RuleY data={[0]} />
-    </Plot>
+    </Replot>
   );
 }
 
 export function waffleStrokePositive() {
   return (
-    <Plot>
+    <Replot>
       <WaffleY
         data={{length: 6}}
         x={["A", "B", "C", "D", "E", "F"]}
@@ -164,57 +175,57 @@ export function waffleStrokePositive() {
         fill="red"
       />
       <RuleY data={[0]} />
-    </Plot>
+    </Replot>
   );
 }
 
 export function waffleX() {
   return (
-    <Plot marginLeft={80} y={{label: null}} color={{scheme: "cool"}}>
+    <Replot marginLeft={80} y={{label: null}} color={{scheme: "cool"}}>
       <AxisX label="Frequency (thousands)" tickFormat={(d) => d / 1000} />
       <WaffleX data={demographics} y="group" fill="group" x="freq" unit={100} sort={{y: null, color: null}} />
       <RuleX data={[0]} />
-    </Plot>
+    </Replot>
   );
 }
 
 export function waffleXStacked() {
   return (
-    <Plot height={240} color={{scheme: "cool"}}>
+    <Replot height={240} color={{scheme: "cool"}}>
       <AxisX label="Frequency (thousands)" tickFormat={(d) => d / 1000} />
       <WaffleX data={demographics} fill="group" x="freq" unit={100} sort={{color: null}} />
       <RuleX data={[0]} />
-    </Plot>
+    </Replot>
   );
 }
 
 export function waffleY() {
   return (
-    <Plot x={{label: null}} color={{scheme: "cool"}}>
+    <Replot x={{label: null}} color={{scheme: "cool"}}>
       <AxisY label="Frequency (thousands)" tickFormat={(d) => d / 1000} />
       <WaffleY data={demographics} x="group" fill="group" y="freq" unit={100} sort={{x: null, color: null}} />
       <RuleY data={[0]} />
-    </Plot>
+    </Replot>
   );
 }
 
 export function waffleYStacked() {
   return (
-    <Plot y={{insetTop: 10}} color={{scheme: "cool", legend: true}}>
+    <Replot y={{insetTop: 10}} color={{scheme: "cool", legend: true}}>
       <AxisY label="Frequency (thousands)" tickFormat={(d) => d / 1000} />
       <WaffleY data={demographics} fill="group" y="freq" unit={100} sort={{color: null}} />
       <RuleY data={[0]} />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function waffleYGrouped() {
   const athletes = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return (
-    <Plot marginBottom={100} x={{tickRotate: -90, label: null}}>
+    <Replot marginBottom={100} x={{tickRotate: -90, label: null}}>
       <WaffleY data={athletes} {...groupX({y: "count"}, {x: "sport", unit: 10})} />
       <RuleY data={[0]} />
-    </Plot>
+    </Replot>
   );
 }
 
@@ -222,10 +233,10 @@ export function wafflePointer() {
   const random = d3.randomLcg(42);
   const data = Array.from({length: 100}, (_, i) => ({x: i % 3, fill: random()}));
   return (
-    <Plot y={{inset: 12}}>
+    <Replot y={{inset: 12}}>
       <WaffleY data={data} x="x" y={1} fill="#888" />
       <WaffleY data={data} {...pointer({x: "x", y: 1, fill: "fill"})} />
-    </Plot>
+    </Replot>
   );
 }
 
@@ -233,7 +244,7 @@ export function wafflePointerFractional() {
   const values = [0.51, 0.99, 0.5, 6, 0.3, 1.6, 9.1, 2, 18, 6, 0.5, 2.5, 46, 34, 20, 7, 0.5, 0.1, 0, 2.5, 1, 0.1, 0.8];
   const multiple = 16;
   return (
-    <Plot axis={null} y={{insetTop: 12}} color={{scheme: "Dark2"}}>
+    <Replot axis={null} y={{insetTop: 12}} color={{scheme: "Dark2"}}>
       <WaffleY data={values} x={null} multiple={multiple} fill={(d, i) => i % 7} tip={true} />
       {/* TODO: This mark uses a render function with svg tagged template literals */}
       <WaffleY
@@ -256,50 +267,50 @@ export function wafflePointerFractional() {
           )}</g>`;
         }}
       />
-    </Plot>
+    </Replot>
   );
 }
 
 export function waffleTip() {
   return (
-    <Plot color={{type: "sqrt", scheme: "spectral"}} y={{inset: 12}}>
+    <Replot color={{type: "sqrt", scheme: "spectral"}} y={{inset: 12}}>
       <WaffleY data={[1, 4, 9, 24, 46, 66, 7]} x={null} fill={identity} tip={true} />
-    </Plot>
+    </Replot>
   );
 }
 
 export function waffleTipUnit() {
   return (
-    <Plot y={{inset: 12}}>
+    <Replot y={{inset: 12}}>
       <WaffleY data={{length: 100}} x={(d, i) => i % 3} y={1} fill={d3.randomLcg(42)} tip={true} />
-    </Plot>
+    </Replot>
   );
 }
 
 export function waffleTipFacet() {
   return (
-    <Plot>
+    <Replot>
       <WaffleY data={{length: 500}} x={(d, i) => i % 3} fx={(d, i) => i % 2} y={1} fill={d3.randomLcg(42)} tip={true} />
-    </Plot>
+    </Replot>
   );
 }
 
 export function waffleTipX() {
   return (
-    <Plot
+    <Replot
       style={{overflow: "visible"}}
       color={{type: "sqrt", scheme: "spectral"}}
       x={{label: "quantity"}}
       y={{inset: 12}}
     >
       <WaffleX data={[1, 4, 9, 24, 46, 66, 7]} y={null} fill={identity} tip={true} />
-    </Plot>
+    </Replot>
   );
 }
 
 export function waffleTipUnitX() {
   return (
-    <Plot height={300} y={{inset: 12}}>
+    <Replot height={300} y={{inset: 12}}>
       <WaffleX
         data={{length: 100}}
         multiple={5}
@@ -308,13 +319,13 @@ export function waffleTipUnitX() {
         fill={d3.randomLcg(42)}
         tip={{format: {x: false}}}
       />
-    </Plot>
+    </Replot>
   );
 }
 
 export function waffleHref() {
   return (
-    <Plot inset={10}>
+    <Replot inset={10}>
       <WaffleY
         data={{length: 77}}
         y={1}
@@ -323,37 +334,37 @@ export function waffleHref() {
         title={(d, i) => `waffle ${i}`}
         target="_blank"
       />
-    </Plot>
+    </Replot>
   );
 }
 
 export function waffleStrokeWidth() {
   return (
-    <Plot inset={10}>
+    <Replot inset={10}>
       <WaffleY data={{length: 77}} y={1} stroke={(d, i) => i % 7} gap={15} strokeWidth={15} strokeOpacity={0.8} />
-    </Plot>
+    </Replot>
   );
 }
 
 export function waffleStrokeWidthConst() {
   return (
-    <Plot inset={10}>
+    <Replot inset={10}>
       <WaffleY data={{length: 77}} y={1} stroke="black" gap={15} strokeWidth={15} strokeOpacity={0.8} />
-    </Plot>
+    </Replot>
   );
 }
 
 export function waffleTipFacetX() {
   return (
-    <Plot height={500}>
+    <Replot height={500}>
       <WaffleX data={{length: 500}} y={(d, i) => i % 3} fx={(d, i) => i % 2} x={1} fill={d3.randomLcg(42)} tip={true} />
-    </Plot>
+    </Replot>
   );
 }
 
 export function waffleTipFacetXY() {
   return (
-    <Plot height={600}>
+    <Replot height={600}>
       <WaffleX
         data={{length: 500}}
         fx={(d, i) => i % 3}
@@ -362,7 +373,7 @@ export function waffleTipFacetXY() {
         fill={d3.randomLcg(42)}
         tip={true}
       />
-    </Plot>
+    </Replot>
   );
 }
 
@@ -376,7 +387,7 @@ export function waffleShapes() {
     return <WaffleY data={{length: 1}} y1={y1} y2={y2} multiple={k} fill={y1} stroke="black" />;
   };
   return (
-    <Plot height={1200} color={{type: "categorical"}} y={{domain: [0, 300]}}>
+    <Replot height={1200} color={{type: "categorical"}} y={{domain: [0, 300]}}>
       <WaffleY data={{length: 1}} y1={0} y2={300} multiple={10} stroke="currentColor" strokeOpacity={0.2} gap={0} />
       {waffle(0, 1)}
       {waffle(0, 0.5)}
@@ -397,6 +408,6 @@ export function waffleShapes() {
       {waffle(0, 12.4)}
       {waffle(7, 23)}
       {waffle(7.6, 22.4)}
-    </Plot>
+    </Replot>
   );
 }

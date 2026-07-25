@@ -1,4 +1,4 @@
-import {Plot, Line, Dot} from "../../src/react/index.js";
+import {Replot, Line, Dot} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function curves() {
@@ -8,7 +8,7 @@ export async function curves() {
     return [r * Math.cos(t * 2 * Math.PI), r * Math.sin(t * 2 * Math.PI)];
   });
   return (
-    <Plot width={500} axis={null} aspectRatio={true} inset={10}>
+    <Replot width={500} axis={null} aspectRatio={true} inset={10}>
       {d3
         .ticks(0, 1, 4)
         .flatMap((tension) => [
@@ -17,6 +17,6 @@ export async function curves() {
           <Line data={values} curve="catmull-rom-closed" tension={tension} stroke="blue" mixBlendMode="multiply" />
         ])}
       <Dot data={values} stroke="white" fill="black" />
-    </Plot>
+    </Replot>
   );
 }

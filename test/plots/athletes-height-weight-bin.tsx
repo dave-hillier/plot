@@ -1,10 +1,10 @@
-import {Plot, Rect, bin} from "../../src/react/index.js";
+import {Replot, Rect, bin} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function athletesHeightWeightBin() {
   const athletes = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return (
-    <Plot
+    <Replot
       round={true}
       grid={true}
       height={640}
@@ -16,6 +16,6 @@ export async function athletesHeightWeightBin() {
       }}
     >
       <Rect data={athletes} {...bin({fill: "count"}, {x: "weight", y: "height"})} />
-    </Plot>
+    </Replot>
   );
 }

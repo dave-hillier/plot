@@ -1,10 +1,10 @@
-import {Plot, Image, dodgeY, sort} from "../../src/react/index.js";
+import {Replot, Image, dodgeY, sort} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function usPresidentGallery() {
   const presidents = await d3.csv<any>("data/us-president-favorability.csv", d3.autoType);
   return (
-    <Plot inset={30} width={960} height={300}>
+    <Replot inset={30} width={960} height={300}>
       <Image
         data={presidents}
         {...dodgeY({
@@ -15,14 +15,14 @@ export async function usPresidentGallery() {
           title: "Name"
         })}
       />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function usPresidentGalleryAlt() {
   const presidents = await d3.csv<any>("data/us-president-favorability.csv", d3.autoType);
   return (
-    <Plot inset={30} width={960} height={300}>
+    <Replot inset={30} width={960} height={300}>
       <Image
         data={presidents}
         {...sort(
@@ -40,6 +40,6 @@ export async function usPresidentGalleryAlt() {
           }
         )}
       />
-    </Plot>
+    </Replot>
   );
 }

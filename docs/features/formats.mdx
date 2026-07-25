@@ -1,4 +1,4 @@
-import {formatMonth, formatWeekday, Plot, TextX} from "replot/react";
+import {formatMonth, formatWeekday, Replot, TextX} from "replot/react";
 import * as d3 from "d3";
 
 # Formats
@@ -20,9 +20,9 @@ Plot.formatIsoDate(new Date("2020-01-01T00:00:00.000Z")) // "2020-01-01"
 Given a *date*, returns the shortest equivalent ISO 8601 UTC string. If the given *date* is not valid, returns `"Invalid Date"`. See [isoformat](https://github.com/mbostock/isoformat).
 
 ## formatWeekday(*locale*, *format*) {/* {#formatWeekday} */}
-<Plot x={{tickFormat: formatWeekday()}}>
+<Replot x={{tickFormat: formatWeekday()}}>
   <TextX data={d3.range(7)} />
-</Plot>
+</Replot>
 
 ```js
 Plot.formatWeekday("es-MX", "long")(0) // "domingo"
@@ -31,9 +31,9 @@ Plot.formatWeekday("es-MX", "long")(0) // "domingo"
 Returns a function that formats a given week day number (from 0 = Sunday to 6 = Saturday) according to the specified *locale* and *format*. The *locale* is a [BCP 47 language tag](https://tools.ietf.org/html/bcp47) and defaults to U.S. English. The *format* is a [weekday format](https://tc39.es/ecma402/#datetimeformat-objects): either *narrow*, *short*, or *long*; if not specified, it defaults to *short*.
 
 ## formatMonth(*locale*, *format*) {/* {#formatMonth} */}
-<Plot x={{tickFormat: formatMonth(), ticks: 12}}>
+<Replot x={{tickFormat: formatMonth(), ticks: 12}}>
   <TextX data={d3.range(12)} />
-</Plot>
+</Replot>
 
 ```js
 Plot.formatMonth("es-MX", "long")(0) // "enero"

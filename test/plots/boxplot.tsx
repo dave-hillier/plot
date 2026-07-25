@@ -1,18 +1,18 @@
-import {Plot, BoxX} from "../../src/react/index.js";
+import {Replot, BoxX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function boxplot() {
   return (
-    <Plot>
+    <Replot>
       <BoxX data={[0, 3, 4.4, 4.5, 4.6, 5, 7]} />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function boxplotFacetInterval() {
   const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return (
-    <Plot
+    <Replot
       fy={{
         grid: true,
         tickFormat: String, // for debugging
@@ -21,14 +21,14 @@ export async function boxplotFacetInterval() {
       }}
     >
       <BoxX data={olympians.filter((d) => d.height)} x="weight" fy="height" />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function boxplotFacetNegativeInterval() {
   const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return (
-    <Plot
+    <Replot
       fy={{
         grid: true,
         tickFormat: String, // for debugging
@@ -37,6 +37,6 @@ export async function boxplotFacetNegativeInterval() {
       }}
     >
       <BoxX data={olympians.filter((d) => d.height)} x="weight" fy="height" />
-    </Plot>
+    </Replot>
   );
 }

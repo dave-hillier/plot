@@ -1,10 +1,10 @@
-import {Plot, Voronoi, Dot, VoronoiMesh} from "../../src/react/index.js";
+import {Replot, Voronoi, Dot, VoronoiMesh} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function penguinVoronoi1D() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return (
-    <Plot inset={10}>
+    <Replot inset={10}>
       <Voronoi
         data={penguins}
         x="body_mass_g"
@@ -16,6 +16,6 @@ export async function penguinVoronoi1D() {
       />
       <Dot data={penguins} x="body_mass_g" fill="currentColor" r={1.5} pointerEvents="none" />
       <VoronoiMesh data={penguins} x="body_mass_g" pointerEvents="none" />
-    </Plot>
+    </Replot>
   );
 }

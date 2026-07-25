@@ -1,10 +1,10 @@
-import {Plot, Text, RuleX, stackX2} from "../../src/react/index.js";
+import {Replot, Text, RuleX, stackX2} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function caltrain() {
   const caltrain = await d3.csv<any>("data/caltrain.csv");
   return (
-    <Plot
+    <Replot
       width={240}
       axis={null}
       y={{
@@ -47,6 +47,6 @@ export async function caltrain() {
         })}
       />
       <RuleX data={[-0.5, 0.5]} />
-    </Plot>
+    </Replot>
   );
 }

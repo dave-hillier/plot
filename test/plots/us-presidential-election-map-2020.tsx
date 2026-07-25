@@ -1,4 +1,4 @@
-import {Plot, Geo, Vector, geoCentroid} from "../../src/react/index.js";
+import {Replot, Geo, Vector, geoCentroid} from "../../src/react/index.js";
 import * as d3 from "d3";
 import {feature, mesh} from "topojson-client";
 
@@ -11,7 +11,7 @@ export async function usPresidentialElectionMap2020() {
   ]);
   const geom = new Map(counties.features.map((d) => [d.id, d]));
   return (
-    <Plot width={960} height={600} projection="albers-usa">
+    <Replot width={960} height={600} projection="albers-usa">
       <Geo data={statemesh} />
       <Vector
         data={elections}
@@ -25,6 +25,6 @@ export async function usPresidentialElectionMap2020() {
           rotate: (d) => (+d.results_bidenj < +d.results_trumpd ? 60 : -60)
         })}
       />
-    </Plot>
+    </Replot>
   );
 }

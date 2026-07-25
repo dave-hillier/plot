@@ -1,4 +1,4 @@
-import {Plot, Cell, group} from "../../src/react/index.js";
+import {Replot, Cell, group} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function mobyDickLetterPosition() {
@@ -17,7 +17,7 @@ export async function mobyDickLetterPosition() {
   const positions = words.flatMap((word) => [...word].map((c, i) => [i, c])); // compute position
 
   return (
-    <Plot
+    <Replot
       height={640}
       padding={0}
       align={0}
@@ -30,6 +30,6 @@ export async function mobyDickLetterPosition() {
       }}
     >
       <Cell data={positions} {...group({fill: "count"}, {inset: 0.5})} />
-    </Plot>
+    </Replot>
   );
 }

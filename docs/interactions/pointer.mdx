@@ -1,4 +1,4 @@
-import {BinX, Dot, formatIsoDate, LineY, Plot, pointer, pointerX, RectY, RuleX, RuleY, StackY, Text} from "replot/react";
+import {BinX, Dot, formatIsoDate, LineY, Replot, pointer, pointerX, RectY, RuleX, RuleY, StackY, Text} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import aapl from "../data/aapl.ts";
@@ -25,10 +25,10 @@ To demonstrate, below the pointer transform filters a filled <span style={{borde
   </label>
 </div>
 
-<Plot>
+<Replot>
   <Dot data={penguins} {...(pointered ? pointer : (o) => o)({x: "culmen_length_mm", y: "culmen_depth_mm", fill: "red", r: 8})} />
   <Dot data={penguins} x="culmen_length_mm" y="culmen_depth_mm" />
-</Plot>
+</Replot>
 
 <div>
 
@@ -59,16 +59,16 @@ Try the different modes on the line chart below to get a feel for their behavior
   </span>
 </div>
 
-<Plot>
+<Replot>
   <LineY data={aapl} x="Date" y="Close" tip={linetip} />
-</Plot>
+</Replot>
 
 “One-dimensional” is a slight misnomer: the pointerX and pointerY transforms consider distance in both dimensions, but the distance along the non-dominant dimension is divided by 100. Below, the pointerX transform is applied to a multi-series line chart; the closest point in *x* is chosen, while *y* is used to “break ties” such that you can focus different series by moving the mouse vertically.
 
-<Plot>
+<Replot>
   <RuleY data={[0]} />
   <LineY data={industries} x="date" y="unemployed" stroke="industry" tip="x" />
-</Plot>
+</Replot>
 
 One-dimensional pointing makes even small bars or rects easily hoverable. If you switch the histogram below to two-dimensional pointing, you must hover near a rect’s centroid (shown in <span style={{borderBottom: "solid 2px var(--vp-c-red)"}}>red</span>) to trigger a tip, whereas one-dimensional pointing triggers the tip anywhere in the chart.
 
@@ -80,7 +80,7 @@ One-dimensional pointing makes even small bars or rects easily hoverable. If you
   </span>
 </div>
 
-<Plot x={{label: "Daily volume (log₁₀)"}}>
+<Replot x={{label: "Daily volume (log₁₀)"}}>
   <BinX y="count" thresholds={40}>
     <RectY data={aapl} x={(d) => Math.log10(d.Volume)} tip={recttip} />
   </BinX>
@@ -89,7 +89,7 @@ One-dimensional pointing makes even small bars or rects easily hoverable. If you
       <Dot data={aapl} x={(d) => Math.log10(d.Volume)} stroke="red" />
     </BinX>
   </StackY>
-</Plot>
+</Replot>
 
 This reveals an important caveat: the pointer transform understands only points and not the arbitrary geometry of marks. By default, the pointer transform only focuses the closest point if it is within 40 pixels of the pointer (in either one or two dimensions, depending on the pointing mode). With large marks, there may be “dead spots” that do not trigger pointing even when the pointer is within the displayed mark. You can mitigate dead spots either by switching to one-dimensional pointing, if appropriate, or by setTing the **maxRadius** option to increase the pointing distance cutoff.
 
@@ -99,12 +99,12 @@ The pointer transform will prefer the midpoint of the **x1** and **x2** channels
 
 The **px** and **py** channels may be used to specify pointing target positions independent of the displayed mark. Below, text in the top-left corner shows the focused date and closing price. The focused point is also highlighted with a red dot and rule.
 
-<Plot height={160} y={{axis: "right", grid: true, nice: true}}>
+<Replot height={160} y={{axis: "right", grid: true, nice: true}}>
   <LineY data={aapl} x="Date" y="Close" />
   <RuleX data={aapl} {...pointerX({x: "Date", py: "Close", stroke: "red"})} />
   <Dot data={aapl} {...pointerX({x: "Date", y: "Close", stroke: "red"})} />
   <Text data={aapl} {...pointerX({px: "Date", py: "Close", dy: -17, frameAnchor: "top-left", fontVariant: "tabular-nums", text: (d) => [`Date ${formatIsoDate(d.Date)}`, `Close ${d.Close.toFixed(2)}`].join("   ")})} />
-</Plot>
+</Replot>
 
 As the above chart shows, a plot can have multiple pointer transforms. Each pointer transform functions independently (with the exception of *click-to-stick*, described next), though we recommend configuring them with the same target positions and pointing mode so that the same point is focused across marks.
 

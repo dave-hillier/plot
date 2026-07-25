@@ -1,4 +1,4 @@
-import {Plot, TextX} from "../../src/react/index.js";
+import {Replot, TextX} from "../../src/react/index.js";
 
 export async function shorthandTextX() {
   const numbers = [
@@ -7,8 +7,8 @@ export async function shorthandTextX() {
     163.04, 169.79, 172.36, 172.05, 172.83, 171.8, 173.67, 176.35, 179.1, 179.26
   ];
   return (
-    <Plot>
+    <Replot>
       <TextX data={numbers} />
-    </Plot>
+    </Replot>
   );
 }

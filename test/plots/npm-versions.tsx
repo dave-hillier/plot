@@ -1,4 +1,4 @@
-import {Plot, BarX, Text, RuleX, stackX, valueof} from "../../src/react/index.js";
+import {Replot, BarX, Text, RuleX, stackX, valueof} from "../../src/react/index.js";
 
 export async function npmVersions() {
   const versions = [
@@ -63,7 +63,7 @@ export async function npmVersions() {
   ];
   const order = valueof(versions, "version");
   return (
-    <Plot x={{grid: true}} y={{reverse: true}} color={{scheme: "rainbow", domain: order}}>
+    <Replot x={{grid: true}} y={{reverse: true}} color={{scheme: "rainbow", domain: order}}>
       <BarX
         data={versions}
         x="downloads"
@@ -84,6 +84,6 @@ export async function npmVersions() {
         })}
       />
       <RuleX data={[0]} />
-    </Plot>
+    </Replot>
   );
 }

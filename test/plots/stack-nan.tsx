@@ -1,4 +1,4 @@
-import {Plot, AreaY, LineY, stackY} from "../../src/react/index.js";
+import {Replot, AreaY, LineY, stackY} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function stackNaN() {
@@ -13,9 +13,9 @@ export async function stackNaN() {
     }
   }
   return (
-    <Plot y={{grid: true, label: "Unemployed (thousands)", transform: (d: number) => d / 1000}}>
+    <Replot y={{grid: true, label: "Unemployed (thousands)", transform: (d: number) => d / 1000}}>
       <AreaY data={industries} x="date" y="unemployed" fill="industry" fillOpacity={0.5} />
       <LineY data={industries} {...stackY({x: "date", y: "unemployed", stroke: "industry"})} />
-    </Plot>
+    </Replot>
   );
 }

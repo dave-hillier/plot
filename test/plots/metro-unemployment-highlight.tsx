@@ -1,11 +1,11 @@
-import {Plot, RuleY, Line} from "../../src/react/index.js";
+import {Replot, RuleY, Line} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function metroUnemploymentHighlight() {
   const bls = await d3.csv<any>("data/bls-metro-unemployment.csv", d3.autoType);
   const highlight = (d) => /, MI /.test(d.division);
   return (
-    <Plot
+    <Replot
       y={{
         grid: true,
         label: "Unemployment (%)"
@@ -17,6 +17,6 @@ export async function metroUnemploymentHighlight() {
     >
       <RuleY data={[0]} />
       <Line data={bls} x="date" y="unemployment" z="division" sort={highlight} stroke={highlight} />
-    </Plot>
+    </Replot>
   );
 }

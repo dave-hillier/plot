@@ -1,43 +1,43 @@
-import {Plot, Frame, Dot, Text, GridX, GridY, AxisX, AxisY, AxisFx} from "../../src/react/index.js";
+import {Replot, Frame, Dot, Text, GridX, GridY, AxisX, AxisY, AxisFx} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function frameFillCategorical() {
   return (
-    <Plot color={{legend: true}}>
+    <Replot color={{legend: true}}>
       <Frame fill="foo" />
       <Frame fill="bar" inset={5} />
       <Frame fill="baz" inset={10} />
       <Frame fill="white" inset={15} />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function frameFillQuantitative() {
   return (
-    <Plot color={{type: "linear", legend: true}}>
+    <Replot color={{type: "linear", legend: true}}>
       {d3.range(11).map((t, i) => (
         <Frame key={i} fill={t} inset={i} />
       ))}
       <Frame fill="white" inset={11} />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function frameFacet() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return (
-    <Plot marginLeft={80} inset={10}>
+    <Replot marginLeft={80} inset={10}>
       <Frame fy="Gentoo" />
       <Dot data={penguins} x="body_mass_g" fy="species" />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function frameCorners() {
   return (
-    <Plot>
+    <Replot>
       <Frame rx={16} ry={10} />
-    </Plot>
+    </Replot>
   );
 }
 
@@ -50,40 +50,40 @@ const marks = [
 
 export async function frameSides() {
   return (
-    <Plot width={350} height={250} margin={2}>
+    <Replot width={350} height={250} margin={2}>
       {marks}
-    </Plot>
+    </Replot>
   );
 }
 
 export async function frameSidesXY() {
   return (
-    <Plot width={350} height={250} x={{domain: [0, 1]}} y={{domain: [0, 1]}}>
+    <Replot width={350} height={250} x={{domain: [0, 1]}} y={{domain: [0, 1]}}>
       {marks}
-    </Plot>
+    </Replot>
   );
 }
 
 export async function frameSidesX() {
   return (
-    <Plot width={350} height={250} x={{domain: [0, 1]}}>
+    <Replot width={350} height={250} x={{domain: [0, 1]}}>
       {marks}
-    </Plot>
+    </Replot>
   );
 }
 
 export async function frameSidesY() {
   return (
-    <Plot width={350} height={250} y={{domain: [0, 1]}}>
+    <Replot width={350} height={250} y={{domain: [0, 1]}}>
       {marks}
-    </Plot>
+    </Replot>
   );
 }
 
 export async function futureSplom() {
   const data = {columns: ["A", "B", "C"]};
   return (
-    <Plot
+    <Replot
       width={400}
       height={400}
       fx={{domain: data.columns, axis: null}}
@@ -104,6 +104,6 @@ export async function futureSplom() {
       />
       <AxisFx label={null} frameAnchor="middle" dy={10} facetAnchor="empty" />
       <Frame facetAnchor="empty" />
-    </Plot>
+    </Replot>
   );
 }

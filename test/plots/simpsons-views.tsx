@@ -1,10 +1,10 @@
-import {Plot, RuleY, Dot} from "../../src/react/index.js";
+import {Replot, RuleY, Dot} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function simpsonsViews() {
   const data = await d3.csv<any>("data/simpsons.csv", d3.autoType);
   return (
-    <Plot
+    <Replot
       height={640}
       grid
       x={{
@@ -27,6 +27,6 @@ export async function simpsonsViews() {
         fill="season"
         title={(d) => `${d.title} S${d.season}E${d.number_in_season}`}
       />
-    </Plot>
+    </Replot>
   );
 }

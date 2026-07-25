@@ -1,4 +1,4 @@
-import {AxisFy, Centroid, Dot, Geo, Graticule, Plot, Sphere} from "replot/react";
+import {AxisFy, Centroid, Dot, Geo, Graticule, Replot, Sphere} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import * as topojson from "topojson-client";
@@ -17,7 +17,7 @@ export const states = [];
 
 The **geo mark** draws geographic features — polygons, lines, points, and other geometry — often as thematic maps. It works with Replot’s [projection system](../features/projections.md). For example, the [choropleth map](https://en.wikipedia.org/wiki/Choropleth_map) below shows unemployment by county in the United States.
 
-<Plot projection="albers-usa" color={{
+<Replot projection="albers-usa" color={{
     type: "quantile",
     n: 9,
     scheme: "blues",
@@ -25,30 +25,30 @@ The **geo mark** draws geographic features — polygons, lines, points, and oth
     legend: true
   }}>
   <Geo data={counties} fill="unemployment" title={(d) => `${d.properties.name} ${d.properties.unemployment}%`} tip />
-</Plot>
+</Replot>
 
 A geo mark’s data is typically [GeoJSON](https://geojson.org/). You can pass a single GeoJSON object, a feature or geometry collection, or an array or iterable of GeoJSON objects; Replot automatically normalizes these into an array of features or geometries. When a mark’s data is GeoJSON, Replot will look for the specified field name (such as _unemployment_ above, for **fill**) in the GeoJSON object’s `properties` if the object does not have this property directly. <VersionBadge version="0.6.16" pr="2092" />
 
 The size of Point and MultiPoint geometries is controlled by the **r** option. For example, below we show earthquakes in the last seven days with a magnitude of 2.5 or higher as reported by the [USGS](https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php). As with the [dot mark](./dot.md), the effective radius is controlled by the *r* scale, which is by default a *sqrt* scale such that the area of a point is proportional to its value. And likewise point geometries are by default sorted by descending radius to reduce occlusion, drawing the smallest circles on top. Set the **sort** option to null to use input order instead.
 
-<Plot projection="equirectangular" r={{transform: (r) => Math.pow(10, r)}}>
+<Replot projection="equirectangular" r={{transform: (r) => Math.pow(10, r)}}>
   <Geo data={land} fill="currentColor" fillOpacity={0.2} />
   <Sphere />
   <Geo data={earthquakes} r="mag" fill="red" fillOpacity={0.2} stroke="red" title="title" href="url" target="_blank" />
-</Plot>
+</Replot>
 
 
 Click on any of the earthquakes above to see details.
 The [graticule](#graticule) helper draws a uniform grid of meridians (lines of constant longitude) and parallels (lines of constant latitude) every 10° between ±80° latitude; for the polar regions, meridians are drawn every 90°. The [sphere](#sphere) helper draws the outline of the projected sphere.
 
-<Plot inset={2} projection={{type: "orthographic", rotate: [0, -30, 20]}}>
+<Replot inset={2} projection={{type: "orthographic", rotate: [0, -30, 20]}}>
   <Sphere fill="var(--vp-c-bg-alt)" stroke="currentColor" />
   <Graticule strokeOpacity={0.3} />
-</Plot>
+</Replot>
 
 The geo mark’s **geometry** channel can be used to generate geometry from a non-GeoJSON data source. For example, below we visualize the shockwave created by the explosion of the [Hunga Tonga–Hunga Haʻapai volcano](https://en.wikipedia.org/wiki/2021–22_Hunga_Tonga–Hunga_Haʻapai_eruption_and_tsunami) on January 15, 2022 with a series of geodesic circles of increasing radius.
 
-<Plot projection={{
+<Replot projection={{
     type: "equal-earth",
     rotate: [90, 0]
   }} color={{
@@ -60,26 +60,26 @@ The geo mark’s **geometry** channel can be used to generate geometry from a no
   <Geo data={land} />
   <Geo data={[0.5, 179.5].concat(d3.range(10, 171, 10))} geometry={d3.geoCircle().center([-175.38, -20.57]).radius((r) => r)} stroke={(r) => r} strokeWidth={2} />
   <Sphere />
-</Plot>
+</Replot>
 
 By default, the geo mark doesn’t have **x** and **y** channels; when you use the [**tip** option](./tip.md), the [centroid transform](../transforms/centroid.md) is implicitly applied on the geometries to compute the tip position by generating **x** and **y** channels. <VersionBadge version="0.6.16" pr="2088" /> You can alternatively specify these channels explicitly. The centroids are shown below in red.
 
-<Plot projection="albers-usa">
+<Replot projection="albers-usa">
   <Geo data={states} strokeOpacity={0.1} tip title="name" />
   <Geo data={nation} />
   <Centroid>
     <Dot data={states} fill="red" stroke="var(--vp-c-bg-alt)" />
   </Centroid>
-</Plot>
+</Replot>
 
 The geo mark supports [faceting](../features/facets.md). Below, a comic strip of sorts shows the locations of Walmart store openings in past decades.
 
-<Plot margin={0} padding={0} projection="albers" fy={{interval: "10 years"}}>
+<Replot margin={0} padding={0} projection="albers" fy={{interval: "10 years"}}>
   <Geo data={statemesh} strokeOpacity={0.2} />
   <Geo data={nation} />
   <Geo data={walmarts} fy="date" r={1.5} fill="blue" tip title="date" />
   <AxisFy frameAnchor="top" dy={30} tickFormat={(d) => `${d.getUTCFullYear()}’s`} />
-</Plot>
+</Replot>
 
 
 This uses the [**interval** scale option](../features/scales.md#scale-transforms) to bin temporal data into facets by decade.

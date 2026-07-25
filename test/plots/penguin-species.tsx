@@ -1,12 +1,12 @@
 import type {ReactNode} from "react";
-import {Plot, BarY, BarX, Text, RuleY, RuleX, groupX, groupZ, stackX} from "../../src/react/index.js";
+import {Replot, BarY, BarX, Text, RuleY, RuleX, groupX, groupZ, stackX} from "../../src/react/index.js";
 import * as d3 from "d3";
 import {svg} from "htl";
 
 export async function penguinSpeciesCheysson() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return (
-    <Plot
+    <Replot
       color={{
         range: [
           "url(#grouped-12512014-1)",
@@ -30,14 +30,14 @@ export async function penguinSpeciesCheysson() {
       <BarY data={penguins} {...groupX({y: "count"}, {x: "species", fill: "species", inset: 3})} />
       <BarY data={penguins} {...groupX({y: "count"}, {x: "species", stroke: "currentColor"})} />
       <RuleY data={[0]} />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function penguinSpeciesGradient() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return (
-    <Plot>
+    <Replot>
       {/* TODO: arrow function mark returning raw SVG */}
       {
         (() => svg`<defs>
@@ -50,25 +50,25 @@ export async function penguinSpeciesGradient() {
       }
       <BarY data={penguins} {...groupX({y: "count"}, {x: "species", fill: "url(#gradient)"})} />
       <RuleY data={[0]} />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function penguinSpeciesGroup() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return (
-    <Plot>
+    <Replot>
       <BarX data={penguins} {...stackX(groupZ({x: "proportion"}, {fill: "species"}))} />
       <Text data={penguins} {...stackX(groupZ({x: "proportion", text: "first"}, {z: "species", text: "species"}))} />
       <RuleX data={[0, 1]} />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function penguinSpeciesImageFilter() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return (
-    <Plot>
+    <Replot>
       <BarY
         data={penguins}
         {...groupX(
@@ -81,6 +81,6 @@ export async function penguinSpeciesImageFilter() {
         )}
       />
       <RuleY data={[0]} />
-    </Plot>
+    </Replot>
   );
 }

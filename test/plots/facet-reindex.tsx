@@ -1,11 +1,11 @@
-import {Plot, BarX, Frame, valueof} from "../../src/react/index.js";
+import {Replot, BarX, Frame, valueof} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function facetReindex() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   const island = valueof(penguins, "island");
   return (
-    <Plot
+    <Replot
       width={830}
       marginLeft={74}
       marginRight={68}
@@ -26,6 +26,6 @@ export async function facetReindex() {
       />
       <BarX data={penguins} facet="include" fill={island} x={1} y={() => "include"} />
       <Frame />
-    </Plot>
+    </Replot>
   );
 }

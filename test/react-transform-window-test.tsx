@@ -4,7 +4,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import {act} from "react";
 import jsdomit from "./jsdom.js";
-import {Plot, LineX, LineY, windowX, windowY} from "../src/react/index.js";
+import {Replot, LineX, LineY, windowX, windowY} from "../src/react/index.js";
 import {WindowX, WindowY} from "../src/react/transforms/Window.js";
 
 // A noisy series to smooth, mirroring the rolling-window usage in
@@ -43,35 +43,35 @@ function normalize(markup) {
 describe("window transform wrapper equivalence", () => {
   jsdomit("<WindowY> around <LineY> matches the spread windowY form", async () => {
     const nested = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <WindowY k={7} reduce="mean">
           <LineY data={series} x="step" y="value" />
         </WindowY>
-      </Plot>
+      </Replot>
     );
     const spread = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <LineY data={series} {...windowY({k: 7, reduce: "mean"}, {x: "step", y: "value"})} />
-      </Plot>
+      </Replot>
     );
     assert.strictEqual(normalize(nested), normalize(spread));
   });
 
   jsdomit("<WindowX> around <LineX> matches the spread windowX form", async () => {
     const nested = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <WindowX k={5} reduce="max" anchor="start" strict>
           <LineX data={series} x="value" y="step" />
         </WindowX>
-      </Plot>
+      </Replot>
     );
     const spread = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <LineX
           data={series}
           {...windowX({k: 5, reduce: "max", anchor: "start", strict: true}, {x: "value", y: "step"})}
         />
-      </Plot>
+      </Replot>
     );
     assert.strictEqual(normalize(nested), normalize(spread));
   });

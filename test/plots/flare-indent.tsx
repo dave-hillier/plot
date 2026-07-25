@@ -1,10 +1,10 @@
-import {Plot, TreeMark} from "../../src/react/index.js";
+import {Replot, TreeMark} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function flareIndent() {
   const flare = await d3.csv<any>("data/flare.csv", d3.autoType);
   return (
-    <Plot axis={null} inset={10} insetRight={120} round={true} width={200} height={3600}>
+    <Replot axis={null} inset={10} insetRight={120} round={true} width={200} height={3600}>
       <TreeMark
         data={flare}
         strokeWidth={1}
@@ -14,7 +14,7 @@ export async function flareIndent() {
         path="name"
         delimiter="."
       />
-    </Plot>
+    </Replot>
   );
 }
 

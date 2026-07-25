@@ -1,4 +1,4 @@
-import {Plot, Geo, Dot, hexbin} from "../../src/react/index.js";
+import {Replot, Geo, Dot, hexbin} from "../../src/react/index.js";
 import * as d3 from "d3";
 import {mesh} from "topojson-client";
 
@@ -13,7 +13,7 @@ export async function walmarts() {
     )
   ]);
   return (
-    <Plot
+    <Replot
       width={960}
       height={600}
       projection="albers-usa"
@@ -34,6 +34,6 @@ export async function walmarts() {
           {x: "longitude", y: "latitude", fill: "date", stroke: "white", title: "date"}
         )}
       />
-    </Plot>
+    </Replot>
   );
 }

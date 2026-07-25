@@ -1,8 +1,8 @@
-import {Plot, Geo} from "../../src/react/index.js";
+import {Replot, Geo} from "../../src/react/index.js";
 
 export async function projectionFitIdentity() {
   return (
-    <Plot
+    <Replot
       width={640}
       height={400}
       projection={{
@@ -22,6 +22,6 @@ export async function projectionFitIdentity() {
           coordinates: Array.from({length: 400}, (_, i) => [Math.cos(i / 10) * (i / 20), Math.sin(i / 10) * (i / 20)])
         }}
       />
-    </Plot>
+    </Replot>
   );
 }

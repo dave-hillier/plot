@@ -1,21 +1,21 @@
 // replot/react — React component API for Replot
 //
 // Usage:
-//   import { Plot, Dot, Line, BarY, AxisX, AxisY } from "replot/react";
+//   import { Replot, Dot, Line, BarY, AxisX, AxisY } from "replot/react";
 //
 //   function Chart({ data }) {
 //     return (
-//       <Plot width={640} height={400}>
+//       <Replot width={640} height={400}>
 //         <Dot data={data} x="weight" y="height" fill="species" />
 //         <AxisX />
 //         <AxisY />
-//       </Plot>
+//       </Replot>
 //     );
 //   }
 
 // Root component
-export {Plot} from "./Plot.js";
-export type {PlotProps} from "./Plot.js";
+export {Replot, Replot as Plot} from "./Replot.js";
+export type {ReplotProps, ReplotProps as PlotProps} from "./Replot.js";
 
 // Context (for advanced usage / custom marks)
 export {PlotContext, usePlotContext} from "./PlotContext.js";

@@ -1,4 +1,4 @@
-import {Plot, RuleX, RuleY, TickX, BarY, normalizeX} from "../../src/react/index.js";
+import {Replot, RuleX, RuleY, TickX, BarY, normalizeX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function usPopulationStateAge() {
@@ -6,7 +6,7 @@ export async function usPopulationStateAge() {
   const ages = states.columns.slice(1);
   const stateage = ages.flatMap((age) => states.map((d) => ({state: d.name, age, population: d[age]})));
   return (
-    <Plot
+    <Replot
       marginLeft={50}
       grid={true}
       x={{
@@ -21,7 +21,7 @@ export async function usPopulationStateAge() {
     >
       <RuleX data={[0]} />
       <TickX data={stateage} {...normalizeX("sum", {z: "state", x: "population", y: "age"})} />
-    </Plot>
+    </Replot>
   );
 }
 
@@ -30,7 +30,7 @@ export async function usPopulationStateAgeGrouped() {
   const ages = states.columns.slice(1);
   const stateage = ages.flatMap((age) => states.map((d) => ({state: d.name, age, population: d[age]})));
   return (
-    <Plot
+    <Replot
       x={{
         axis: null,
         domain: ages
@@ -50,6 +50,6 @@ export async function usPopulationStateAgeGrouped() {
     >
       <BarY data={stateage} fx="state" x="age" y="population" fill="age" title="age" sort={{fx: "-y", limit: 6}} />
       <RuleY data={[0]} />
-    </Plot>
+    </Replot>
   );
 }

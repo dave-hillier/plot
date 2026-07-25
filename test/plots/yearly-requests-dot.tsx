@@ -1,4 +1,4 @@
-import {Plot, RuleY, Dot} from "../../src/react/index.js";
+import {Replot, RuleY, Dot} from "../../src/react/index.js";
 
 export async function yearlyRequestsDot() {
   const requests = [
@@ -7,9 +7,9 @@ export async function yearlyRequestsDot() {
     [new Date("2005-01-01"), 5]
   ];
   return (
-    <Plot x={{type: "point", interval: "year", grid: true}} y={{zero: true}}>
+    <Replot x={{type: "point", interval: "year", grid: true}} y={{zero: true}}>
       <RuleY data={[0]} />
       <Dot data={requests} />
-    </Plot>
+    </Replot>
   );
 }

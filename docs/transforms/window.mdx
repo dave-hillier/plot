@@ -1,4 +1,4 @@
-import {AreaY, LineY, Plot, RuleY, WindowY, mapTransform, windowMap} from "replot/react";
+import {AreaY, LineY, Replot, RuleY, WindowY, mapTransform, windowMap} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import sftemp from "../data/sf-temperatures.ts";
@@ -25,7 +25,7 @@ For example, the band chart below shows the daily high and low temperature in Sa
   </label>
 </p>
 
-<Plot y={{
+<Replot y={{
     grid: true,
     label: "Temperature (°F)"
   }}>
@@ -34,7 +34,7 @@ For example, the band chart below shows the daily high and low temperature in Sa
     <LineY data={sftemp} x="date" y="low" stroke="blue" />
     <LineY data={sftemp} x="date" y="high" stroke="red" />
   </WindowY>
-</Plot>
+</Replot>
 
 The **k** option specifies the window size: the number of consecutive elements in the rolling window. A larger window for the rolling mean above produces a smoother curve.
 
@@ -55,7 +55,7 @@ The **anchor** specifies how to align the rolling window with the data. If *midd
   </span>
 </p>
 
-<Plot y={{
+<Replot y={{
     grid: true,
     label: "Temperature (°F)"
   }}>
@@ -63,7 +63,7 @@ The **anchor** specifies how to align the rolling window with the data. If *midd
   <WindowY k={28} anchor={anchor}>
     <LineY data={sftemp} x="date" y="high" />
   </WindowY>
-</Plot>
+</Replot>
 
 The window transform uses input order, not natural order by value, to determine the meaning of *start* and *end*. When the data is in reverse chronological order, the meaning of *start* and *end* is effectively reversed because the first data point is the most recent. Use a [sort transform](./sort.md) to change the order as needed.
 
@@ -76,7 +76,7 @@ If **strict** is false (the default), the window size is effectively reduced at 
   </label>
 </p>
 
-<Plot y={{
+<Replot y={{
     grid: true,
     label: "Temperature (°F)"
   }}>
@@ -84,11 +84,11 @@ If **strict** is false (the default), the window size is effectively reduced at 
   <WindowY k={28} anchor="end" strict={strict}>
     <LineY data={sftemp} x="date" y="low" />
   </WindowY>
-</Plot>
+</Replot>
 
 The **reduce** option specifies how to compute the output value for the current window. It defaults to *mean* for a rolling average. Below, the rolling <span style={{borderBottom: "solid 2px var(--vp-c-blue)"}}>minimum</span>, <span style={{borderBottom: "solid 2px var(--vp-c-red)"}}>maximum</span>, and <span style={{borderBottom: "solid 2px"}}>median</span> are shown. The window transform supports most of the same reducers as [bin](./bin.md) and [group](./group.md), and you can implement a custom reducer as a function if needed.
 
-<Plot y={{
+<Replot y={{
     grid: true,
     label: "Temperature (°F)"
   }}>
@@ -102,17 +102,17 @@ The **reduce** option specifies how to compute the output value for the current 
   <WindowY k={28} reduce="median">
     <LineY data={sftemp} x="date" y="low" />
   </WindowY>
-</Plot>
+</Replot>
 
 While the windowY transform derives **y** (and **y1** and **y2**), and the windowX transform likewise derives **x**, **x1**, and **x2**, you can use the [map transform](./map.md) directly for other channels. For example, the chart below uses a variable **stroke** to encode slope: the monthly change in unemployment rate for each metropolitan division. The slope is computed with a window of size 2 and the *difference* reducer.
 
-<Plot y={{grid: true}} color={{scheme: "BuYlRd", domain: [-0.5, 0.5]}}>
+<Replot y={{grid: true}} color={{scheme: "BuYlRd", domain: [-0.5, 0.5]}}>
   <RuleY data={[0]} />
   <LineY data={bls} {...mapTransform(
         {stroke: windowMap({k: 2, reduce: "difference"})},
         {x: "date", y: "unemployment", z: "division", stroke: "unemployment"}
       )} />
-</Plot>
+</Replot>
 
 As shown above, the window transform also understands the **z** channel: each metropolitan division is treated as a separate series.
 

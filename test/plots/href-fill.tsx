@@ -1,8 +1,8 @@
-import {Plot, Text} from "../../src/react/index.js";
+import {Replot, Text} from "../../src/react/index.js";
 
 export async function hrefFill() {
   return (
-    <Plot>
+    <Replot>
       <Text
         data={{length: 1}}
         text={["click me"]}
@@ -11,6 +11,6 @@ export async function hrefFill() {
         fill="red"
         href={[`https://google.com/search?q=12345`]}
       />
-    </Plot>
+    </Replot>
   );
 }

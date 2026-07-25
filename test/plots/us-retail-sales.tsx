@@ -1,4 +1,4 @@
-import {Plot, Line, RuleY} from "../../src/react/index.js";
+import {Replot, Line, RuleY} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 const parseDate = d3.utcParse("%b-%Y");
@@ -9,7 +9,7 @@ export async function usRetailSales() {
     ...d3.autoType(d)
   }));
   return (
-    <Plot
+    <Replot
       y={{
         grid: true,
         label: "U.S. retail monthly sales (in billions, seasonally-adjusted)",
@@ -19,6 +19,6 @@ export async function usRetailSales() {
       <Line data={data} x="Date" y="Sales" stroke="#bab0ab" />
       <Line data={data} x="Date" y="Seasonally Adjusted Sales" />
       <RuleY data={[0]} />
-    </Plot>
+    </Replot>
   );
 }

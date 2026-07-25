@@ -1,4 +1,4 @@
-import {Plot, Vector} from "../../src/react/index.js";
+import {Replot, Vector} from "../../src/react/index.js";
 
 export async function shorthandVector() {
   const timeSeries = [
@@ -44,8 +44,8 @@ export async function shorthandVector() {
     [new Date("2018-02-28"), 179.259995]
   ];
   return (
-    <Plot>
+    <Replot>
       <Vector data={timeSeries} />
-    </Plot>
+    </Replot>
   );
 }

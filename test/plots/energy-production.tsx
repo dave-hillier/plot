@@ -1,4 +1,4 @@
-import {Plot, RectY, RuleY} from "../../src/react/index.js";
+import {Replot, RectY, RuleY} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 // This dataset is hierarchical:
@@ -31,7 +31,7 @@ export async function energyProduction() {
     .filter((d) => types.has(d.Description)) // don't double-count categories
     .map((d) => ({...d, Year: +d.YYYYMM.slice(0, 4), Value: +d.Value}));
   return (
-    <Plot
+    <Replot
       x={{
         tickFormat: "d",
         label: null
@@ -46,6 +46,6 @@ export async function energyProduction() {
     >
       <RectY data={energy} x="Year" interval={1} y="Value" fill="Description" sort={{color: "height"}} />
       <RuleY data={[0]} />
-    </Plot>
+    </Replot>
   );
 }

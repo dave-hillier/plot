@@ -1,4 +1,4 @@
-import {Plot, BarY, RuleY} from "../../src/react/index.js";
+import {Replot, BarY, RuleY} from "../../src/react/index.js";
 
 export async function mixedFacets() {
   const data = [
@@ -11,10 +11,10 @@ export async function mixedFacets() {
     {date: new Date("2024-02-01"), name: "a", value: 3}
   ];
   return (
-    <Plot>
+    <Replot>
       <BarY data={data} x="name" y="value" fill="name" fx="date" fy="name" />
       <BarY data={data} x="name" y="value" fx="date" stroke="currentColor" />
       <RuleY data={[0]} />
-    </Plot>
+    </Replot>
   );
 }

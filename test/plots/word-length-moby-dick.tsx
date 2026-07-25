@@ -1,4 +1,4 @@
-import {Plot, BarY, groupX} from "../../src/react/index.js";
+import {Replot, BarY, groupX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function wordLengthMobyDick() {
@@ -11,8 +11,8 @@ export async function wordLengthMobyDick() {
     .filter((word) => word); // ignore (now) empty words
 
   return (
-    <Plot x={{label: "Word length", labelAnchor: "right", labelArrow: true}} y={{grid: true, percent: true}}>
+    <Replot x={{label: "Word length", labelAnchor: "right", labelArrow: true}} y={{grid: true, percent: true}}>
       <BarY data={words} {...groupX({y: "proportion", title: "mode"}, {x: "length", title: (d) => d})} />
-    </Plot>
+    </Replot>
   );
 }

@@ -1,4 +1,4 @@
-import {Plot, Geo, Raster} from "../../src/react/index.js";
+import {Replot, Geo, Raster} from "../../src/react/index.js";
 import * as d3 from "d3";
 import {mesh} from "topojson-client";
 
@@ -16,7 +16,7 @@ export async function walmartsDecades() {
   const coordinate = (d) => [d.longitude, d.latitude];
   const decades = d3.sort(new Set(walmarts.map(decade)));
   return (
-    <Plot
+    <Replot
       width={960}
       height={150}
       marginLeft={0}
@@ -38,7 +38,7 @@ export async function walmartsDecades() {
         fill="red"
         r={1}
       />
-    </Plot>
+    </Replot>
   );
 }
 
@@ -53,7 +53,7 @@ export async function walmartsAdditions() {
     )
   ]);
   return (
-    <Plot
+    <Replot
       width={200}
       projection="albers-usa"
       fy={{interval: "5 years", axis: "right", tickFormat: "%Y—", reverse: true}}
@@ -68,6 +68,6 @@ export async function walmartsAdditions() {
         y="latitude"
         fill="date"
       />
-    </Plot>
+    </Replot>
   );
 }

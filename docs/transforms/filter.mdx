@@ -1,4 +1,4 @@
-import {BarY, Plot} from "replot/react";
+import {BarY, Replot} from "replot/react";
 import * as d3 from "d3";
 import {useState} from "react";
 import alphabet from "../data/alphabet.ts";
@@ -20,7 +20,7 @@ The **filter transform** filters a mark’s index to show a subset of the data. 
 
 
 ```jsx{5}
-<Plot grid x={{type: "log"}}>
+<Replot grid x={{type: "log"}}>
   <Dot data={metros} x="POP_2015" y="R90_10_2015" />
   <Text
     data={metros}
@@ -31,7 +31,7 @@ The **filter transform** filters a mark’s index to show a subset of the data. 
     frameAnchor="bottom"
     dy={-6}
   />
-</Plot>
+</Replot>
 ```
 
 As an alternative to the filter transform here, you could set the **text** channel value to null using a function: `text: (d) => d.highlight ? d.nyt_display : null`.
@@ -41,7 +41,7 @@ To highlight the vowels in a bar chart of English letter frequency, you can use 
 
 
 ```jsx{5}
-<Plot>
+<Replot>
   <BarY data={alphabet} x="letter" y="frequency" />
   <BarY
     data={alphabet}
@@ -52,25 +52,25 @@ To highlight the vowels in a bar chart of English letter frequency, you can use 
     strokeWidth={3}
     inset={-3} // expand the bars
   />
-</Plot>
+</Replot>
 ```
 Since the filter transform only affects the mark’s index and not the channel values, it does not affect the default scale domains. Below, the *x* scale contains every English letter, even though the only the bars for the vowels are shown.
 
-<Plot>
+<Replot>
   <BarY data={alphabet} filter={(d) => /[aeiouy]/i.test(d.letter)} x="letter" y="frequency" />
-</Plot>
+</Replot>
 
 If you want to drop values completely, you can filter the data with [*array*.filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter).
 
 
 ```jsx{3}
-<Plot>
+<Replot>
   <BarY
     data={alphabet.filter((d) => /[aeiouy]/i.test(d.letter))}
     x="letter"
     y="frequency"
   />
-</Plot>
+</Replot>
 ```
 ## filter(*test*, *options*) {/* {#filter} */}
 ```js

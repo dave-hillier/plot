@@ -1,4 +1,4 @@
-import {BarY, Plot, RectY, RuleY} from "replot/react";
+import {BarY, Replot, RectY, RuleY} from "replot/react";
 import * as d3 from "d3";
 import aapl from "../data/aapl.ts";
 
@@ -10,36 +10,36 @@ The **interval transform** turns a quantitative or temporal *value* into a conti
 
 The interval transform is often used for time-series bar charts. For example, consider the chart below of the daily trade volume of Apple stock. Because of the [barY mark](../marks/bar.md), the *x* scale is ordinal (*band*). And because the regularity of the data is not specified (*i.e.*, because Replot has no way of knowing that this is daily data), every distinct value must have its own label, leading to crowding. If a day were missing data, it would be difficult to spot! 👓
 
-<Plot marginBottom={80} x={{type: "band"}} y={{
+<Replot marginBottom={80} x={{type: "band"}} y={{
     transform: (d) => d / 1e6,
     label: "Daily trade volume (millions)"
   }}>
   <BarY data={aapl.slice(-40)} x="Date" y="Volume" />
   <RuleY data={[0]} />
-</Plot>
+</Replot>
 
 In contrast, a [rectY mark](../marks/rect.md) with the **interval** option and the *day* interval produces a temporal (*utc*) *x* scale. This allows Replot to compute ticks at meaningful intervals: here weekly boundaries, UTC midnight on Sundays. Furthermore, we can see that this isn’t truly daily data — it’s missing weekends and holidays when the stock market was closed.
 
-<Plot y={{
+<Replot y={{
     grid: true,
     transform: (d) => d / 1e6,
     label: "Daily trade volume (millions)"
   }}>
   <RectY data={aapl.slice(-40)} x="Date" interval="day" y="Volume" />
   <RuleY data={[0]} />
-</Plot>
+</Replot>
 
 
 The interval transform is not a standalone transform, but an option on marks and scales.
 The meaning of the **interval** mark option depends on the associated mark, such as line, bar, rect, or dot. For example, for the [barY mark](../marks/bar.md), the **interval** option affects converts a singular *y* value into an interval [*y1*, *y2*]. In the contrived example below, notice that the vertical↕︎ extent of each bar spans an interval of 5 million, rather than extending to *y* = 0.
 
-<Plot marginBottom={80} x={{type: "band"}} y={{
+<Replot marginBottom={80} x={{type: "band"}} y={{
     grid: true,
     transform: (d) => d / 1e6,
     label: "Daily trade volume (millions)"
   }}>
   <BarY data={aapl.slice(-40)} x="Date" y="Volume" interval={5e6} />
   <RuleY data={[0]} />
-</Plot>
+</Replot>
 
 While the **interval** option is most commonly specified as a named time interval or a number, it can also be specified as a [D3 time interval](https://d3js.org/d3-time#_interval) or any object that implements *interval*.floor and *interval*.offset.

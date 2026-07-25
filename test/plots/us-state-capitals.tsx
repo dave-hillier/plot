@@ -1,4 +1,4 @@
-import {Plot, Geo, Dot, Text} from "../../src/react/index.js";
+import {Replot, Geo, Dot, Text} from "../../src/react/index.js";
 import * as d3 from "d3";
 import {feature, mesh} from "topojson-client";
 
@@ -10,7 +10,7 @@ export async function usStateCapitals() {
     d3.csv<any>("data/us-state-capitals.csv", d3.autoType)
   ]);
   return (
-    <Plot width={960} height={600} projection="albers-usa">
+    <Replot width={960} height={600} projection="albers-usa">
       <Geo data={states} fill="#ccc" />
       <Geo data={statemesh} stroke="white" />
       <Dot data={capitals} x="longitude" y="latitude" fill="currentColor" />
@@ -22,6 +22,6 @@ export async function usStateCapitals() {
         text={(d) => `${d.capital}\n${d.state}`}
         dy={-6}
       />
-    </Plot>
+    </Replot>
   );
 }

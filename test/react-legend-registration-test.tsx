@@ -4,7 +4,7 @@ import React from "react";
 import jsdomit from "./jsdom.js";
 import ReactDOM from "react-dom/client";
 import {act} from "react";
-import {Plot, Dot, Legend} from "../src/react/index.js";
+import {Replot, Dot, Legend} from "../src/react/index.js";
 
 const data = [
   {x: 1, y: 2, c: "a"},
@@ -40,10 +40,10 @@ async function mount(node) {
 
 function plotWith(legends) {
   return (
-    <Plot width={200} height={200} color={{domain: ["a", "b", "c"]}}>
+    <Replot width={200} height={200} color={{domain: ["a", "b", "c"]}}>
       <Dot data={data} x="x" y="y" fill="c" />
       {legends}
-    </Plot>
+    </Replot>
   );
 }
 
@@ -135,7 +135,7 @@ describe("Plot legend registration", () => {
       show = () => setVisible(true);
       return visible ? <Legend {...({scale: "color"} as any)} /> : null;
     }
-    // The wrapper re-renders on its own state change without <Plot> itself
+    // The wrapper re-renders on its own state change without <Replot> itself
     // re-rendering; registration alone must surface the legend.
     const {container, cleanup} = await mount(plotWith(<Toggle />));
     assert.strictEqual(container.querySelector(".plot-legend"), null, "expected no legend before the toggle");

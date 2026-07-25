@@ -3,7 +3,7 @@
 // the imperative mount path works end-to-end. Delete once real marks have
 // migrated off the legacy stack.
 import React from "react";
-import {Plot} from "./Plot.js";
+import {Replot as Plot} from "./Replot.js";
 import {Frame} from "./marks/Frame.js";
 import {RuleX, RuleY} from "./marks/Rule.js";
 import {TickX, TickY} from "./marks/Tick.js";

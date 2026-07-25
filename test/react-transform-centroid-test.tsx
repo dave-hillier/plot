@@ -4,7 +4,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import {act} from "react";
 import jsdomit from "./jsdom.js";
-import {Plot, Text, centroid, geoCentroid} from "../src/react/index.js";
+import {Replot, Text, centroid, geoCentroid} from "../src/react/index.js";
 import {Centroid, GeoCentroid} from "../src/react/transforms/Centroid.js";
 
 const countries = [
@@ -73,48 +73,48 @@ function normalize(markup) {
 describe("centroid wrapper equivalence", () => {
   jsdomit("<Centroid> around <Text> matches the spread centroid form", async () => {
     const nested = await renderSvg(
-      <Plot projection="equirectangular" width={400} height={300}>
+      <Replot projection="equirectangular" width={400} height={300}>
         <Centroid>
           <Text data={countries} text="id" fill="blue" />
         </Centroid>
-      </Plot>
+      </Replot>
     );
     const spread = await renderSvg(
-      <Plot projection="equirectangular" width={400} height={300}>
+      <Replot projection="equirectangular" width={400} height={300}>
         <Text data={countries} {...centroid({text: "id", fill: "blue"})} />
-      </Plot>
+      </Replot>
     );
     assert.strictEqual(normalize(nested), normalize(spread));
   });
 
   jsdomit("<GeoCentroid> around <Text> matches the spread geoCentroid form", async () => {
     const nested = await renderSvg(
-      <Plot projection="equirectangular" width={400} height={300}>
+      <Replot projection="equirectangular" width={400} height={300}>
         <GeoCentroid>
           <Text data={countries} text="id" fill="red" />
         </GeoCentroid>
-      </Plot>
+      </Replot>
     );
     const spread = await renderSvg(
-      <Plot projection="equirectangular" width={400} height={300}>
+      <Replot projection="equirectangular" width={400} height={300}>
         <Text data={countries} {...geoCentroid({text: "id", fill: "red"})} />
-      </Plot>
+      </Replot>
     );
     assert.strictEqual(normalize(nested), normalize(spread));
   });
 
   jsdomit("<Centroid geometry> resolves a named geometry channel", async () => {
     const nested = await renderSvg(
-      <Plot projection="equirectangular" width={400} height={300}>
+      <Replot projection="equirectangular" width={400} height={300}>
         <Centroid geometry="shape">
           <Text data={regions} text="name" />
         </Centroid>
-      </Plot>
+      </Replot>
     );
     const spread = await renderSvg(
-      <Plot projection="equirectangular" width={400} height={300}>
+      <Replot projection="equirectangular" width={400} height={300}>
         <Text data={regions} {...centroid({geometry: "shape", text: "name"})} />
-      </Plot>
+      </Replot>
     );
     assert.strictEqual(normalize(nested), normalize(spread));
   });

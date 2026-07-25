@@ -1,4 +1,4 @@
-import {Plot, Geo} from "../../src/react/index.js";
+import {Replot, Geo} from "../../src/react/index.js";
 import * as d3 from "d3";
 import {mesh} from "topojson-client";
 
@@ -10,7 +10,7 @@ export async function projectionFitUsAlbers() {
       mesh(us, filter48(us.objects.counties), (a, b) => a !== b)
     ]);
   return (
-    <Plot
+    <Replot
       width={960}
       height={600}
       projection={{
@@ -22,7 +22,7 @@ export async function projectionFitUsAlbers() {
     >
       <Geo data={conus} strokeWidth={1.5} />
       <Geo data={countymesh} strokeOpacity={0.1} />
-    </Plot>
+    </Replot>
   );
 }
 

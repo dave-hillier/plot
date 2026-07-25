@@ -5,7 +5,7 @@ import ReactDOM from "react-dom/client";
 import {act} from "react";
 import jsdomit from "./jsdom.js";
 import {
-  Plot,
+  Replot,
   BarY,
   LineY,
   Rect,
@@ -71,48 +71,48 @@ function normalize(markup) {
 describe("transform wrapper equivalence", () => {
   jsdomit("<StackY> around <BarY> matches the spread stackY form", async () => {
     const nested = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <StackY>
           <BarY data={sales} x="date" y="units" fill="fruit" />
         </StackY>
-      </Plot>
+      </Replot>
     );
     const spread = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <BarY data={sales} {...stackY({x: "date", y: "units", fill: "fruit"})} />
-      </Plot>
+      </Replot>
     );
     assert.strictEqual(normalize(nested), normalize(spread));
   });
 
   jsdomit("<BinX> around <RectY> matches the spread binX form", async () => {
     const nested = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <BinX y="count" thresholds={10}>
           <RectY data={weights} x={(d) => d} />
         </BinX>
-      </Plot>
+      </Replot>
     );
     const spread = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <RectY data={weights} {...binX({y: "count", thresholds: 10}, {x: (d) => d})} />
-      </Plot>
+      </Replot>
     );
     assert.strictEqual(normalize(nested), normalize(spread));
   });
 
   jsdomit("<BinY> around <RectX> matches the spread binY form", async () => {
     const nested = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <BinY x="count" filter={null} thresholds={5}>
           <RectX data={weights} y={(d) => d} />
         </BinY>
-      </Plot>
+      </Replot>
     );
     const spread = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <RectX data={weights} {...binY({x: "count", filter: null, thresholds: 5}, {y: (d) => d})} />
-      </Plot>
+      </Replot>
     );
     assert.strictEqual(normalize(nested), normalize(spread));
   });
@@ -120,82 +120,82 @@ describe("transform wrapper equivalence", () => {
   jsdomit("<Bin> around <Rect> matches the spread bin form", async () => {
     const points = weights.map((weight, i) => ({weight, height: 150 + ((i * 7) % 40)}));
     const nested = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <Bin fill="count">
           <Rect data={points} x="weight" y="height" />
         </Bin>
-      </Plot>
+      </Replot>
     );
     const spread = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <Rect data={points} {...bin({fill: "count"}, {x: "weight", y: "height"})} />
-      </Plot>
+      </Replot>
     );
     assert.strictEqual(normalize(nested), normalize(spread));
   });
 
   jsdomit("a bare <BinX> matches the no-argument binX() default outputs", async () => {
     const nested = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <BinX>
           <RectY data={weights} x={(d) => d} />
         </BinX>
-      </Plot>
+      </Replot>
     );
     const spread = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <RectY data={weights} {...binX(undefined, {x: (d) => d})} />
-      </Plot>
+      </Replot>
     );
     assert.strictEqual(normalize(nested), normalize(spread));
   });
 
   jsdomit("<BinX> with only bin config still applies the default outputs", async () => {
     const nested = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <BinX thresholds={5}>
           <RectY data={weights} x={(d) => d} />
         </BinX>
-      </Plot>
+      </Replot>
     );
     const spread = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <RectY data={weights} {...binX(undefined, {thresholds: 5, x: (d) => d})} />
-      </Plot>
+      </Replot>
     );
     assert.strictEqual(normalize(nested), normalize(spread));
   });
 
   jsdomit("a bare <GroupX> matches the no-argument groupX() default outputs", async () => {
     const nested = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <GroupX>
           <BarY data={sexed} x="sex" />
         </GroupX>
-      </Plot>
+      </Replot>
     );
     const spread = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <BarY data={sexed} {...groupX(undefined, {x: "sex"})} />
-      </Plot>
+      </Replot>
     );
     assert.strictEqual(normalize(nested), normalize(spread));
   });
 
   jsdomit("<BinX> around <StackY> composes with inner transform applied first", async () => {
     const nested = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <BinX y="count">
           <StackY>
             <RectY data={sexed} x="weight" fill="sex" />
           </StackY>
         </BinX>
-      </Plot>
+      </Replot>
     );
     const spread = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <RectY data={sexed} {...binX({y: "count"}, stackY({x: "weight", fill: "sex"}))} />
-      </Plot>
+      </Replot>
     );
     assert.strictEqual(normalize(nested), normalize(spread));
   });
@@ -210,7 +210,7 @@ describe("preferred transform aliases", () => {
 
   jsdomit("mapTransform with a windowMap method matches the bare map/window form", async () => {
     const aliased = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <LineY
           data={sales}
           {...mapTransform(
@@ -218,10 +218,10 @@ describe("preferred transform aliases", () => {
             {x: "date", y: "units", z: "fruit", stroke: "units"}
           )}
         />
-      </Plot>
+      </Replot>
     );
     const bare = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <LineY
           data={sales}
           {...map(
@@ -229,21 +229,21 @@ describe("preferred transform aliases", () => {
             {x: "date", y: "units", z: "fruit", stroke: "units"}
           )}
         />
-      </Plot>
+      </Replot>
     );
     assert.strictEqual(normalize(aliased), normalize(bare));
   });
 
   jsdomit("filterTransform matches the bare filter form", async () => {
     const aliased = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <BarY data={sales} {...filterTransform((d) => d.units > 15, {x: "date", y: "units"})} />
-      </Plot>
+      </Replot>
     );
     const bare = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <BarY data={sales} {...filter((d) => d.units > 15, {x: "date", y: "units"})} />
-      </Plot>
+      </Replot>
     );
     assert.strictEqual(normalize(aliased), normalize(bare));
   });
@@ -256,11 +256,11 @@ describe("transform wrapper invalidation", () => {
       const [thresholds, set] = useState(5);
       setThresholds = set;
       return (
-        <Plot width={400} height={300}>
+        <Replot width={400} height={300}>
           <BinX y="count" thresholds={thresholds}>
             <RectY data={weights} x={(d) => d} />
           </BinX>
-        </Plot>
+        </Replot>
       );
     }
     const container = (globalThis as any).document.createElement("div");
@@ -288,11 +288,11 @@ describe("transform wrapper invalidation", () => {
       const [thresholds, set] = useState([50, 60, 70, 80, 90, 100]);
       setThresholds = set;
       return (
-        <Plot width={400} height={300}>
+        <Replot width={400} height={300}>
           <BinX y="count" thresholds={thresholds}>
             <RectY data={weights} x={(d) => d} />
           </BinX>
-        </Plot>
+        </Replot>
       );
     }
     const container = (globalThis as any).document.createElement("div");

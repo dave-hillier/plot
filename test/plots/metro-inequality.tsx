@@ -1,10 +1,10 @@
-import {Plot, Dot} from "../../src/react/index.js";
+import {Replot, Dot} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function metroInequality() {
   const data = await d3.csv<any>("data/metros.csv", d3.autoType);
   return (
-    <Plot
+    <Replot
       grid={true}
       inset={10}
       x={{
@@ -16,6 +16,6 @@ export async function metroInequality() {
       }}
     >
       <Dot data={data} x="POP_1980" y="R90_10_1980" />
-    </Plot>
+    </Replot>
   );
 }

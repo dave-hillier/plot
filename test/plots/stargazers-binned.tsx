@@ -1,11 +1,11 @@
-import {Plot, RectY, RuleY, binX, groupZ} from "../../src/react/index.js";
+import {Replot, RectY, RuleY, binX, groupZ} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function stargazersBinned() {
   const stargazers = await d3.csv<any>("data/stargazers.csv", d3.autoType);
   const format = d3.utcFormat("%Y-%m-%d");
   return (
-    <Plot
+    <Replot
       y={{
         grid: true,
         label: "Stargazers added per week"
@@ -23,6 +23,6 @@ export async function stargazersBinned() {
         {...groupZ({y: "median"}, binX({y: "count", x: null}, {x: "date", stroke: "red", thresholds: "week"}))}
       />
       <RuleY data={[0]} />
-    </Plot>
+    </Replot>
   );
 }

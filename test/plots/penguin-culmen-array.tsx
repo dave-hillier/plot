@@ -1,4 +1,4 @@
-import {Plot, Dot} from "../../src/react/index.js";
+import {Replot, Dot} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function penguinCulmenArray() {
@@ -6,7 +6,7 @@ export async function penguinCulmenArray() {
   const culmen_depth_mm = data.map((d) => d.culmen_depth_mm);
   const culmen_length_mm = data.map((d) => d.culmen_length_mm);
   return (
-    <Plot
+    <Replot
       height={600}
       grid={true}
       facet={{
@@ -18,6 +18,6 @@ export async function penguinCulmenArray() {
     >
       <Dot data={data} facet={null} x={culmen_depth_mm} y={culmen_length_mm} r={2} fill="#ddd" />
       <Dot data={data} x={culmen_depth_mm} y={culmen_length_mm} />
-    </Plot>
+    </Replot>
   );
 }

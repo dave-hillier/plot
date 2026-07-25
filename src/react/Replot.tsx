@@ -27,7 +27,7 @@ import {FigureLayout} from "./FigureLayout.js";
 // render; a useLayoutEffect then runs computePlot and stores the result in
 // state. The component re-renders with <PlotSvg> as a normal React child so
 // the JSX tree participates in the parent root's act() scope under JSDOM.
-export interface PlotProps {
+export interface ReplotProps {
   children?: ReactNode;
   width?: number;
   height?: number;
@@ -120,7 +120,7 @@ type Mode =
       warnings: number;
     };
 
-export function Plot({
+export function Replot({
   children,
   title,
   subtitle,
@@ -130,7 +130,7 @@ export function Plot({
   className: classNameProp,
   style,
   ...options
-}: PlotProps) {
+}: ReplotProps) {
   const marksRef = useRef<Map<string, Registration>>(new Map());
   const scalesRef = useRef<Map<string, ScaleRegistration>>(new Map());
   const registrationByMarkRef = useRef<Map<any, Registration>>(new Map());

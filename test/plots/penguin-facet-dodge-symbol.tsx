@@ -1,10 +1,10 @@
-import {Plot, Dot, dodgeX} from "../../src/react/index.js";
+import {Replot, Dot, dodgeX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function penguinFacetDodgeSymbol() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return (
-    <Plot
+    <Replot
       grid={true}
       nice={true}
       symbol={{
@@ -12,6 +12,6 @@ export async function penguinFacetDodgeSymbol() {
       }}
     >
       <Dot data={penguins} {...dodgeX("left", {y: "body_mass_g", symbol: "species", stroke: "species"})} />
-    </Plot>
+    </Replot>
   );
 }

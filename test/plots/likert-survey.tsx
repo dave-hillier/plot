@@ -1,4 +1,4 @@
-import {Plot, BarX, RuleX, groupY} from "../../src/react/index.js";
+import {Replot, BarX, RuleX, groupY} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 function Likert(
@@ -34,7 +34,7 @@ export async function likertSurvey() {
   const survey = await d3.csv<any>("data/survey.csv");
   const {order, offset} = Likert();
   return (
-    <Plot
+    <Replot
       x={{
         tickFormat: Math.abs,
         label: "← more disagree · Number of responses · more agree →",
@@ -45,6 +45,6 @@ export async function likertSurvey() {
     >
       <BarX data={survey} {...groupY({x: "count"}, {y: "Question", fill: "Response", order, offset})} />
       <RuleX data={[0]} />
-    </Plot>
+    </Replot>
   );
 }

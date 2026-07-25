@@ -1,4 +1,4 @@
-import {LineY, Plot, RuleY} from "replot/react";
+import {LineY, Replot, RuleY} from "replot/react";
 import * as d3 from "d3";
 import {useState} from "react";
 import crimea from "../data/crimea.ts";
@@ -27,10 +27,10 @@ A **marker** defines a graphic drawn on vertices of a [line](../marks/line.md) o
   </label>
 </p>
 
-<Plot>
+<Replot>
   <RuleY data={[0]} />
   <LineY data={crimea} x="date" y="deaths" stroke="cause" marker={marker} />
-</Plot>
+</Replot>
 
 The supported marker options are:
 

@@ -1,4 +1,4 @@
-import {Dot, Plot, RuleY} from "replot/react";
+import {Dot, Replot, RuleY} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import {useOlympians} from "../data/olympians.ts";
@@ -10,25 +10,25 @@ import penguins from "../data/penguins.ts";
 
 Replot can generate **legends** for *color*, *opacity*, and *symbol* [scales](./scales.md). For example, the scatterplot below of body measurements of Olympic athletes includes a legend for its *color* scale, allowing the meaning of color to be interpreted by the reader. (The axes similarly document the meaning of the *x* and *y* position scales.)
 
-<Plot color={{legend: true}}>
+<Replot color={{legend: true}}>
   <Dot data={useOlympians()} x="weight" y="height" stroke="sex" />
-</Plot>
+</Replot>
 
 The legend above is a *swatches* legend because the *color* scale is *ordinal* (with a *categorical* scheme). When the *color* scale is continuous, a *ramp* legend with a smooth gradient is generated instead. The plot below of global average surface temperature ([GISTEMP](https://data.giss.nasa.gov/gistemp/)) uses a *diverging* *color* scale to indicate the deviation from the 1951–1980 average in degrees Celsius.
 
-<Plot color={{
+<Replot color={{
     scheme: "BuRd",
     legend: true
   }}>
   <RuleY data={[0]} />
   <Dot data={gistemp} x="Date" y="Anomaly" stroke="Anomaly" />
-</Plot>
+</Replot>
 
 When an ordinal *color* scale is used redundantly with a *symbol* scale, the *symbol* legend will incorporate the color encoding. This is more accessible than using color alone, particularly for readers with color vision deficiency.
 
-<Plot grid x={{label: "Body mass (g)"}} y={{label: "Flipper length (mm)"}} symbol={{legend: true}}>
+<Replot grid x={{label: "Body mass (g)"}} y={{label: "Flipper length (mm)"}} symbol={{legend: true}}>
   <Dot data={penguins} x="body_mass_g" y="flipper_length_mm" stroke="species" symbol="species" />
-</Plot>
+</Replot>
 
 Replot does not yet generate legends for the *r* (radius) scale or the *length* scale. If you are interested in this feature, please upvote [#236](https://github.com/observablehq/plot/issues/236). In the meantime, you can implement a legend using marks as demonstrated in the [spike map](https://observablehq.com/@observablehq/plot-spike) example.
 
@@ -83,7 +83,7 @@ Renders a standalone legend for the scale defined by the given *options* object,
 
 For example, here is a *ramp* legend of a *linear* *color* scale with the default domain of [0, 1] and default scheme *turbo*:
 
-<Plot color={{type: "linear", legend: true}} />
+<Replot color={{type: "linear", legend: true}} />
 
 ```js
 Plot.legend({color: {type: "linear"}})
@@ -91,7 +91,7 @@ Plot.legend({color: {type: "linear"}})
 
 The *options* object may also include any additional legend options described in the previous section. For example, to make the above legend slightly wider:
 
-<Plot width={320} color={{type: "linear", legend: true}} />
+<Replot width={320} color={{type: "linear", legend: true}} />
 
 ```js
 Plot.legend({width: 320, color: {type: "linear"}})

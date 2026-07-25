@@ -1,4 +1,4 @@
-import {Plot, Geo} from "../../src/react/index.js";
+import {Replot, Geo} from "../../src/react/index.js";
 import * as d3 from "d3";
 import {feature, mesh} from "topojson-client";
 
@@ -13,10 +13,10 @@ async function stateMap(id: string, prj: Prj) {
     (a, b) => a != b
   );
   return (
-    <Plot projection={{...prj, domain: state}}>
+    <Replot projection={{...prj, domain: state}}>
       <Geo data={counties} strokeOpacity={0.2} />
       <Geo data={state} />
-    </Plot>
+    </Replot>
   );
 }
 

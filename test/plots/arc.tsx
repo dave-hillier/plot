@@ -1,4 +1,4 @@
-import {Plot, Text, Arrow, Dot, identity, initializer, valueof} from "../../src/react/index.js";
+import {Replot, Text, Arrow, Dot, identity, initializer, valueof} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 function* collatz(n) {
@@ -11,17 +11,17 @@ function* collatz(n) {
 
 export async function arcCollatz() {
   return (
-    <Plot height={520} axis={null} inset={10} y={{domain: [-1, 1]}}>
+    <Replot height={520} axis={null} inset={10} y={{domain: [-1, 1]}}>
       <Text data={collatz(12)} x={identity} text={identity} y={0} fill="currentColor" />
       <Arrow data={d3.pairs(collatz(12))} x1="0" x2="1" y={0} bend={90} headLength={4} insetEnd={18} insetStart={14} />
       <Dot data={collatz(12)} x={identity} r={10} />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function arcCollatzUp() {
   return (
-    <Plot height={260} x={{ticks: 20, tickSize: 0}} y={{domain: [0, 1], axis: null}}>
+    <Replot height={260} x={{ticks: 20, tickSize: 0}} y={{domain: [0, 1], axis: null}}>
       <Dot data={collatz(12)} x={identity} y={0} fill="currentColor" />
       <Arrow
         data={d3.pairs(collatz(12))}
@@ -46,7 +46,7 @@ export async function arcCollatzUp() {
        *     <stop offset="95%" stop-opacity="0.3"></stop>
        *   </linearGradient>`
        */}
-    </Plot>
+    </Replot>
   );
 }
 
@@ -70,7 +70,7 @@ export async function arcMiserables() {
   const groups = new Map(nodes.map((d) => [d.id, d.group]));
   const samegroup = ({source, target}) => (groups.get(source) === groups.get(target) ? groups.get(source) : null);
   return (
-    <Plot
+    <Replot
       width={640}
       height={1080}
       marginLeft={100}
@@ -109,6 +109,6 @@ export async function arcMiserables() {
           fill: "group"
         })}
       />
-    </Plot>
+    </Replot>
   );
 }

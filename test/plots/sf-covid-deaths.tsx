@@ -1,10 +1,10 @@
-import {Plot, AreaY, RuleY, binX} from "../../src/react/index.js";
+import {Replot, AreaY, RuleY, binX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function sfCovidDeaths() {
   const cases = await d3.csv<any>("data/sf-covid.csv", d3.autoType);
   return (
-    <Plot>
+    <Replot>
       <AreaY
         data={cases}
         {...binX(
@@ -24,6 +24,6 @@ export async function sfCovidDeaths() {
         )}
       />
       <RuleY data={[0]} />
-    </Plot>
+    </Replot>
   );
 }

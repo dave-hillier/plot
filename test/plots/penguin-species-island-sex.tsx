@@ -1,10 +1,10 @@
-import {Plot, BarY, RuleY, groupX} from "../../src/react/index.js";
+import {Replot, BarY, RuleY, groupX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function penguinSpeciesIslandSex() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return (
-    <Plot
+    <Replot
       x={{
         tickFormat: (d) => (d === null ? "N/A" : d)
       }}
@@ -18,6 +18,6 @@ export async function penguinSpeciesIslandSex() {
     >
       <BarY data={penguins} {...groupX({y: "count"}, {x: "sex", fill: "island"})} />
       <RuleY data={[0]} />
-    </Plot>
+    </Replot>
   );
 }

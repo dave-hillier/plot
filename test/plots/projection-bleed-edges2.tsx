@@ -1,4 +1,4 @@
-import {Plot, Graticule, Geo, Frame} from "../../src/react/index.js";
+import {Replot, Graticule, Geo, Frame} from "../../src/react/index.js";
 import * as d3 from "d3";
 import {feature} from "topojson-client";
 
@@ -6,7 +6,7 @@ export async function projectionBleedEdges2() {
   const world = await d3.json<any>("data/countries-110m.json");
   const land = feature(world, world.objects.land);
   return (
-    <Plot
+    <Replot
       width={600}
       height={600}
       facet={{x: [1, 2], data: [1, 2]}}
@@ -21,6 +21,6 @@ export async function projectionBleedEdges2() {
       <Graticule />
       <Geo data={land} fill="#ccc" stroke="currentColor" />
       <Frame stroke="white" />
-    </Plot>
+    </Replot>
   );
 }

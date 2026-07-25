@@ -1,4 +1,4 @@
-import {Plot, Dot, transform} from "../../src/react/index.js";
+import {Replot, Dot, transform} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 // https://observablehq.com/@mbostock/evenly-spaced-sampling
@@ -17,7 +17,7 @@ function sample(n, options) {
 export async function diamondsCaratSampling() {
   const data = await d3.csv<any>("data/diamonds.csv", d3.autoType);
   return (
-    <Plot marginLeft={44}>
+    <Replot marginLeft={44}>
       <Dot
         data={data}
         {...sample(2000, {
@@ -27,6 +27,6 @@ export async function diamondsCaratSampling() {
           fill: "currentColor"
         })}
       />
-    </Plot>
+    </Replot>
   );
 }

@@ -1,4 +1,4 @@
-import {Plot, Frame, DifferenceY, groupX, find} from "../../src/react/index.js";
+import {Replot, Frame, DifferenceY, groupX, find} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function youngAdults() {
@@ -8,7 +8,7 @@ export async function youngAdults() {
     ages.includes(d.age) && geos.includes(d.geo) ? d3.autoType(d) : null
   );
   return (
-    <Plot
+    <Replot
       title="Share of young adults living with their parents (%)"
       subtitle="…by age and sex. Data: Eurostat"
       width={928}
@@ -40,6 +40,6 @@ export async function youngAdults() {
           }
         )}
       />
-    </Plot>
+    </Replot>
   );
 }

@@ -134,5 +134,5 @@ The generated bundle `dist/replot.umd.js` can then be loaded like so:
 Alternatively, you can attach the `dist/replot.umd.js` file to an [Observable notebook](https://observablehq.com), and then load it like so:
 
 ```js
-Plot = require(await FileAttachment("replot.umd.js").url())
+Replot = require(await FileAttachment("replot.umd.js").url())
 ```

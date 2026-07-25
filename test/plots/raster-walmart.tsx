@@ -1,4 +1,4 @@
-import {Plot, Raster, Geo} from "../../src/react/index.js";
+import {Replot, Raster, Geo} from "../../src/react/index.js";
 import * as d3 from "d3";
 import {feature, mesh} from "topojson-client";
 
@@ -10,10 +10,10 @@ async function rasterWalmart(options) {
       .then((us) => [feature(us, us.objects.nation.geometries[0]), mesh(us, us.objects.states, (a, b) => a !== b)])
   ]);
   return (
-    <Plot projection="albers" color={{scheme: "spectral"}}>
+    <Replot projection="albers" color={{scheme: "spectral"}}>
       <Raster data={walmarts} x="longitude" y="latitude" {...options} clip={outline} />
       <Geo data={statemesh} />
-    </Plot>
+    </Replot>
   );
 }
 

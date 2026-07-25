@@ -1,4 +1,4 @@
-import {AreaX, AreaY, Frame, LineX, LineY, Plot, RuleX, RuleY, SelectFirst, Text} from "replot/react";
+import {AreaX, AreaY, Frame, LineX, LineY, Replot, RuleX, RuleY, SelectFirst, Text} from "replot/react";
 import * as d3 from "d3";
 import aapl from "../data/aapl.ts";
 import industries from "../data/bls-industry-unemployment.ts";
@@ -8,54 +8,54 @@ import sftemp from "../data/sf-temperatures.ts";
 
 The **area mark** draws the region between a baseline (**x1**, **y1**) and a topline (**x2**, **y2**) as in an area chart. Often the baseline represents *y* = 0, and because the area mark interpolates between adjacent data points, typically both the *x* and *y* scales are quantitative or temporal.
 
-<Plot>
+<Replot>
   <AreaY data={aapl} x="Date" y="Close" />
-</Plot>
+</Replot>
 
 The area mark has three constructors: [areaY](#areaY) for when the baseline and topline share *x* values, as in a time-series area chart where time goes right→ (or ←left); [areaX](#areaX) for when the baseline and topline share *y* values, as in a time-series area chart where time goes up↑ (or down↓); and lastly the rarely-used [area](#area) where the baseline and topline share neither *x* nor *y* values.
 
 The area mark is often paired with a [line](./line.md) and [rule](./rule.md) mark to accentuate the topline and baseline.
 
-<Plot y={{
+<Replot y={{
     grid: true
   }}>
   <AreaY data={aapl} x="Date" y="Close" fillOpacity={0.3} />
   <LineY data={aapl} x="Date" y="Close" />
   <RuleY data={[0]} />
-</Plot>
+</Replot>
 
 With the default definitions of **x** = index and **y** = [identity](../features/transforms.md#identity), you can pass an array of numbers as data. Below, a random walk is constructed with [d3.cumsum](https://observablehq.com/@d3/d3-cumsum?collection=@d3/d3-array) and [d3.randomNormal](https://observablehq.com/@d3/d3-random?collection=@d3/d3-random).
 
-<Plot>
+<Replot>
   <AreaY data={d3.cumsum({length: 600}, d3.randomNormal.source(d3.randomLcg(42))())} />
-</Plot>
+</Replot>
 
 As with [lines](./line.md), points in areas are connected in input order: the first point is connected to the second point, the second is connected to the third, and so on. Area data is typically in chronological order. Unsorted data may produce gibberish.
 
-<Plot>
+<Replot>
   <AreaY data={d3.shuffler(d3.randomLcg(42))(aapl.slice())} x="Date" y="Close" />
-</Plot>
+</Replot>
 
 If your data isn’t sorted, use the [sort transform](../transforms/sort.md).
 
-<Plot>
+<Replot>
   <AreaY data={d3.shuffler(d3.randomLcg(42))(aapl.slice())} x="Date" y="Close" sort="Date" />
-</Plot>
+</Replot>
 
 When the baseline is not *y* = 0 but instead represents another dimension of data as in a band chart, specify **y1** and **y2** instead of **y**.
 
-<Plot y={{
+<Replot y={{
     label: "Temperature (°F)",
     grid: true
   }}>
   <AreaY data={sftemp} x="date" y1="low" y2="high" />
-</Plot>
+</Replot>
 
 
 Since **y1** and **y2** refer to different fields here, a *y*-scale label is specified to improve readability. Also, the band above is spiky; you can smooth it by applying a [window transform](../transforms/window.md).
 While charts typically put *y* = 0 on the bottom edge, such that the area grows up↑, this is not required; reversing the *y* scale will produce a “hanging” area that grows down↓.
 
-<Plot x={{
+<Replot x={{
     label: null
   }} y={{
     grid: true,
@@ -64,87 +64,87 @@ While charts typically put *y* = 0 on the bottom edge, such that the area grows 
   <AreaY data={aapl} x="Date" y="Close" fillOpacity={0.3} />
   <LineY data={aapl} x="Date" y="Close" />
   <RuleY data={[0]} />
-</Plot>
+</Replot>
 
 For a vertically-oriented baseline and topline, such as when time goes up↑ instead of right→, use [areaX](#areaX) instead of [areaY](#areaY) and swap **x** and **y**.
 
-<Plot x={{
+<Replot x={{
     grid: true
   }}>
   <AreaX data={aapl} y="Date" x="Close" fillOpacity={0.3} />
   <LineX data={aapl} y="Date" x="Close" />
   <RuleX data={[0]} />
-</Plot>
+</Replot>
 
 If some channel values are undefined (or null or NaN), gaps will appear between adjacent points. To demonstrate, below we set the **y** value to NaN for the first three months of each year.
 
-<Plot y={{
+<Replot y={{
     grid: true
   }}>
   <AreaY data={aapl} x="Date" y={(d) => d.Date.getUTCMonth() < 3 ? NaN : d.Close} fillOpacity={0.3} />
   <LineY data={aapl} x="Date" y={(d) => d.Date.getUTCMonth() < 3 ? NaN : d.Close} />
   <RuleY data={[0]} />
-</Plot>
+</Replot>
 
 Supplying undefined values is not the same as filtering the data: the latter will interpolate between the data points. Observe the conspicuous straight lines below!
 
-<Plot y={{
+<Replot y={{
     grid: true
   }}>
   <AreaY data={aapl} filter={(d) => d.Date.getUTCMonth() >= 3} x="Date" y="Close" fillOpacity={0.3} />
   <LineY data={aapl} x="Date" y={(d) => d.Date.getUTCMonth() < 3 ? NaN : d.Close} />
   <RuleY data={[0]} />
-</Plot>
+</Replot>
 
 If a **fill** channel is specified, it is assumed to be ordinal or nominal; data is grouped into series and then implicitly [stacked](../transforms/stack.md).
 
-<Plot y={{
+<Replot y={{
     transform: (d) => d / 1000,
     label: "Unemployed (thousands)"
   }}>
   <AreaY data={industries} x="date" y="unemployed" fill="industry" />
   <RuleY data={[0]} />
-</Plot>
+</Replot>
 
 
 This area chart uses color but does not include a [legend](../features/legends.md). This should usually be avoided because color cannot be interpreted without a legend, titles, or labels.
 Or, as a streamgraph with the **offset** stack transform option:
 
-<Plot y={{
+<Replot y={{
     transform: (d) => d / 1000,
     label: "Unemployed (thousands)"
   }}>
   <AreaY data={industries} x="date" y="unemployed" fill="industry" offset="wiggle" />
-</Plot>
+</Replot>
 
 The **z** channel determines how data is grouped: if the **z** channel is not specified, but a varying **fill** channel is, the **fill** channel is used for **z**; the **z** channel will further fallback to a varying **stroke** channel if needed.
 
 The **z** channel (either implicitly or explicitly) is typically used with the [stack transform](../transforms/stack.md) for a stacked area chart or streamgraph. You can disable the implicit stack transform and produce overlapping areas by setTing **y2** instead of **y**.
 
-<Plot>
+<Replot>
   <AreaY data={industries} x="date" y2="unemployed" z="industry" fillOpacity={0.1} />
   <LineY data={industries} x="date" y="unemployed" z="industry" strokeWidth={1} />
-</Plot>
+</Replot>
 
 To vary **fill** within a single series, set the **z** option to null.
 
-<Plot color={{
+<Replot color={{
     type: "log",
     legend: true
   }}>
   <AreaY data={aapl} x="Date" y="Close" fill="Volume" z={null} />
   <RuleY data={[0]} />
-</Plot>
+</Replot>
 
 As an alternative to overlapping or stacking, [faceting](../features/facets.md) will produce small multiples, here arranged vertically with a shared *x*-axis.
 
-<Plot height={720} axis={null}>
+<Replot height={720} axis={null}>
   <AreaY data={industries} x="date" y="unemployed" fy="industry" />
   <SelectFirst>
     <Text data={industries} text="industry" fy="industry" frameAnchor="top-left" dx={6} dy={6} />
   </SelectFirst>
   <Frame />
-</Plot>
+</Replot>
 
 
 Above, smaller industries such as agriculture and mining & extraction are dwarfed by larger industries such as wholesale & retail trade. To emphasize each industry’s trend, instead of comparing absolute numbers across industries, you could use the [normalize transform](../transforms/normalize.md).
@@ -154,13 +154,13 @@ Or, as a [horizon chart](https://observablehq.com/@observablehq/plot-horizon), w
   const bands = 7;
   const step = d3.max(industries, (d) => d.unemployed) / bands;
   return (
-    <Plot height={720} axis={null} y={{domain: [0, step]}} color={{scheme: "YlGnBu"}} facet={{data: industries, y: "industry"}}>
+    <Replot height={720} axis={null} y={{domain: [0, step]}} color={{scheme: "YlGnBu"}} facet={{data: industries, y: "industry"}}>
       {d3.range(bands).map((i) => <AreaY key={i} data={industries} x="date" y={(d) => d.unemployed - i * step} fill={i} clip />)}
       <SelectFirst>
         <Text data={industries} text="industry" frameAnchor="top-left" dx={6} dy={6} />
       </SelectFirst>
       <Frame />
-    </Plot>
+    </Replot>
   );
 })()}
 

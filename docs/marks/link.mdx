@@ -1,4 +1,4 @@
-import {Dot, Geo, Link, Plot, Sphere, Text, treeLink, treeNode} from "replot/react";
+import {Dot, Geo, Link, Replot, Sphere, Text, treeLink, treeNode} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import * as topojson from "topojson-client";
@@ -15,7 +15,7 @@ The **link mark** draws straight lines between two points [**x1**, **y1**] and [
 
 For example, the chart below shows the rising inequality (and population) in various U.S. cities from 1980 to 2015. Each link represents two observations of a city: the city’s population (**x**) and inequality (**y**) in 1980, and the same in 2015. The link’s **stroke** redundantly encodes the change in inequality: red indicates rising inequality, while blue (there are only four) indicates declining inequality.
 
-<Plot grid inset={10} x={{
+<Replot grid inset={10} x={{
     type: "log",
     label: "Population"
   }} y={{
@@ -29,15 +29,15 @@ For example, the chart below shows the rising inequality (and population) in var
   }}>
   <Link data={metros} x1="POP_1980" y1="R90_10_1980" x2="POP_2015" y2="R90_10_2015" stroke={(d) => d.R90_10_2015 - d.R90_10_1980} markerEnd="arrow" />
   <Text data={metros} x="POP_2015" y="R90_10_2015" filter="highlight" text="nyt_display" fill="currentColor" stroke="var(--vp-c-bg)" dy={-8} />
-</Plot>
+</Replot>
 
 The link mark is used by the composite [tree mark](./tree.md) to render a link from parent to child in a hierarchy. The [treeLink transform](../transforms/tree.md) setS the default [curve option](../features/curves.md) to *bump-x*.
 
-<Plot axis={null} height={120} inset={20} insetRight={120}>
+<Replot axis={null} height={120} inset={20} insetRight={120}>
   <Link data={gods} {...treeLink({stroke: "node:internal"})} />
   <Dot data={gods} {...treeNode({fill: "node:internal"})} />
   <Text data={gods} {...treeNode({text: "node:name", stroke: "var(--vp-c-bg)", fill: "currentColor", dx: 6})} />
-</Plot>
+</Replot>
 
 In this example, `gods` is an array of slash-separated paths representing the ancestry of mythological Greek gods.
 
@@ -54,12 +54,12 @@ gods = [
 
 With a [spherical projection](../features/projections.md) and the default [*auto* curve](../features/curves.md), the link mark will render a geodesic: the shortest path between two points on the surface of the sphere. Setting the **curve** to *linear* will instead draw a straight line between the projected points. For example, below we draw two links from San Francisco to Paris.
 
-<Plot projection="equal-earth">
+<Replot projection="equal-earth">
   <Sphere />
   <Geo data={land} fill="currentColor" fillOpacity={0.3} />
   <Link data={{length: 1}} curve="linear" stroke="red" {...xy} />
   <Link data={{length: 1}} markerStart="dot" markerEnd="arrow" strokeWidth={1.5} {...xy} />
-</Plot>
+</Replot>
 
 ```js
 xy = ({x1: -122.4194, y1: 37.7749, x2: 2.3522, y2: 48.8566})
@@ -67,7 +67,7 @@ xy = ({x1: -122.4194, y1: 37.7749, x2: 2.3522, y2: 48.8566})
 
 Like a [rule](./rule.md), a link can also serve as annotation. Whereas a rule is strictly horizontal or vertical, however, a link can generate [diagonal lines](http://kelsocartography.com/blog/?p=2074). The following chart depicts the gender gap in wages, segmented by education and age, in the U.S. A regular grid would make the gender disparity much less clear, even with the domains explicitly set to be equal.
 
-<Plot aspectRatio={1} marginRight={40} x={{
+<Replot aspectRatio={1} marginRight={40} x={{
     label: "Median annual income (men, thousands)",
     transform: (d) => d / 1000,
     tickSpacing: 60
@@ -79,7 +79,7 @@ Like a [rule](./rule.md), a link can also serve as annotation. Whereas a rule is
   <Link data={[0.6, 0.7, 0.8, 0.9, 1]} x1={0} y1={0} x2={102000} y2={(k) => 102000 * k} strokeOpacity={(k) => k === 1 ? 1 : 0.2} />
   <Text data={[0.6, 0.7, 0.8, 0.9, 1]} x={102000} y={(k) => 102000 * k} text={((f) => (k) => k === 1 ? "Equal" : f(k - 1))(d3.format("+.0%"))} textAnchor="start" dx={6} />
   <Dot data={income} x="m" y="f" />
-</Plot>
+</Replot>
 
 ## Link options
 

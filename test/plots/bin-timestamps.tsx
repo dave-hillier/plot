@@ -1,4 +1,4 @@
-import {Plot, RectY, binX} from "../../src/react/index.js";
+import {Replot, RectY, binX} from "../../src/react/index.js";
 
 export async function binTimestamps() {
   const timestamps = Float64Array.of(
@@ -11,8 +11,8 @@ export async function binTimestamps() {
     1609977600000
   );
   return (
-    <Plot>
+    <Replot>
       <RectY data={timestamps} {...binX({y: "count"}, {interval: "day"})} />
-    </Plot>
+    </Replot>
   );
 }

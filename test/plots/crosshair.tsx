@@ -1,5 +1,5 @@
 import {
-  Plot,
+  Replot,
   Dot,
   CrosshairX,
   Crosshair,
@@ -16,57 +16,57 @@ import * as d3 from "d3";
 export async function crosshairDodge() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return (
-    <Plot height={160}>
+    <Replot height={160}>
       <Dot data={penguins} {...dodgeY({x: "culmen_length_mm", r: "body_mass_g"})} />
       <CrosshairX data={penguins} {...dodgeY({x: "culmen_length_mm", r: "body_mass_g"})} />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function crosshairDot() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return (
-    <Plot>
+    <Replot>
       <Dot data={penguins} x="culmen_length_mm" y="culmen_depth_mm" stroke="sex" />
       <Crosshair data={penguins} x="culmen_length_mm" y="culmen_depth_mm" />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function crosshairDotFacet() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return (
-    <Plot>
+    <Replot>
       <Dot data={penguins} x="culmen_length_mm" y="culmen_depth_mm" fy="species" stroke="sex" />
       <Crosshair data={penguins} x="culmen_length_mm" y="culmen_depth_mm" fy="species" />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function crosshairHexbin() {
   const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return (
-    <Plot>
+    <Replot>
       <Hexagon data={olympians} {...hexbin({r: "count"}, {x: "weight", y: "height"})} />
       <Crosshair data={olympians} {...hexbin({r: "count"}, {x: "weight", y: "height"})} />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function crosshairLine() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return (
-    <Plot marginLeft={60} marginRight={40}>
+    <Replot marginLeft={60} marginRight={40}>
       <LineY data={aapl} x="Date" y="Close" />
       <CrosshairX data={aapl} x="Date" y="Close" />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function crosshairContinuousX() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return (
-    <Plot height={270} x={{nice: true}}>
+    <Replot height={270} x={{nice: true}}>
       <LineY data={aapl} x="Date" y="Close" />
       <GridX {...pointerX({ticks: 1000, ariaLabel: `crosshair-x tick`})} />
       <AxisX
@@ -79,6 +79,6 @@ export async function crosshairContinuousX() {
           tickSize: 0
         })}
       />
-    </Plot>
+    </Replot>
   );
 }

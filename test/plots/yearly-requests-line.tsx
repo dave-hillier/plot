@@ -1,4 +1,4 @@
-import {Plot, Line} from "../../src/react/index.js";
+import {Replot, Line} from "../../src/react/index.js";
 
 export async function yearlyRequestsLine() {
   const requests = [
@@ -16,7 +16,7 @@ export async function yearlyRequestsLine() {
     [2019, 20]
   ];
   return (
-    <Plot
+    <Replot
       label={null}
       x={{
         interval: 1,
@@ -28,6 +28,6 @@ export async function yearlyRequestsLine() {
       }}
     >
       <Line data={requests} />
-    </Plot>
+    </Replot>
   );
 }

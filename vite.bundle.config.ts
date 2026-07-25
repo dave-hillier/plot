@@ -29,7 +29,7 @@ export default defineConfig({
     minify: minify ? "esbuild" : false,
     lib: {
       entry: path.resolve(__dirname, "bundle.js"),
-      name: "Plot",
+      name: "Replot",
       formats: ["umd"],
       fileName: () => `${filename}.umd${minify ? ".min" : ""}.js`
     },

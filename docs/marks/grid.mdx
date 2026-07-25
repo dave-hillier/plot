@@ -1,4 +1,4 @@
-import {BarX, GridX, Plot, RuleX, identity} from "replot/react";
+import {BarX, GridX, Replot, RuleX, identity} from "replot/react";
 import * as d3 from "d3";
 import {useState} from "react";
 import alphabet from "../data/alphabet.ts";
@@ -17,29 +17,29 @@ The **grid mark** is a specially-configured [rule](./rule.md) for drawing an axi
   </label>
 </p>
 
-<Plot x={{axis: "top", percent: true, grid: !atop}}>
+<Replot x={{axis: "top", percent: true, grid: !atop}}>
   <BarX data={alphabet} x="frequency" y="letter" sort={{y: "width"}} />
   {atop ? <GridX interval={1} stroke="var(--vp-c-bg)" strokeOpacity={0.5} /> : null}
   <RuleX data={[0]} />
-</Plot>
+</Replot>
 
 The **interval** option above instructs the grid lines to be drawn at unit intervals, _i.e._ whole percentages. As an alternative, you can use the **ticks** option to specify the desired number of ticks or the **tickSpacing** option to specify the desired separation between adjacent ticks in pixels.
 
-<Plot x={{type: "linear"}}>
+<Replot x={{type: "linear"}}>
   <GridX />
-</Plot>
+</Replot>
 
 The color of the grid lines can be controlled with the **stroke** option (or the alias **color**). While this option is are typically set to a constant color (such as _red_ or the default _currentColor_), it can be specified as a channel to assign colors dynamically based on the associated tick value.
 
-<Plot>
+<Replot>
   <GridX data={d3.range(101)} stroke={identity} strokeOpacity={1} />
-</Plot>
+</Replot>
 
 You can set other [stroke options](../features/marks.md#mark-options) to further customize the appearance, say for dashed strokes.
 
-<Plot x={{type: "linear"}}>
+<Replot x={{type: "linear"}}>
   <GridX strokeDasharray="2" strokeOpacity={1} />
-</Plot>
+</Replot>
 
 See the [axis mark](./axis.md) for more details and examples.
 

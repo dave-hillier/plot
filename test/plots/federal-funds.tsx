@@ -1,10 +1,10 @@
-import {Plot, AxisY, GridY, RuleY, Line} from "../../src/react/index.js";
+import {Replot, AxisY, GridY, RuleY, Line} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function federalFunds() {
   const h15 = d3.csvParse((await d3.text("data/federal-funds.csv")).split("\n").slice(5).join("\n"), d3.autoType);
   return (
-    <Plot marginLeft={0} x={{label: null, insetLeft: 28}} y={{label: "Federal funds rate (% per year)"}}>
+    <Replot marginLeft={0} x={{label: null, insetLeft: 28}} y={{label: "Federal funds rate (% per year)"}}>
       <AxisY
         interval={2}
         tickSize={0}
@@ -16,6 +16,6 @@ export async function federalFunds() {
       <GridY interval={2} strokeDasharray={1.5} strokeOpacity={0.4} />
       <RuleY data={[0]} />
       <Line data={h15} x="Time Period" y="RIFSPFF_N.BWAW" markerEnd="dot" />
-    </Plot>
+    </Replot>
   );
 }

@@ -243,7 +243,7 @@ describe("Style utilities", () => {
   });
 });
 
-// --- New <Plot> contract validation (Unit 1) ---
+// --- New <Replot> contract validation (Unit 1) ---
 // Renders the new façade through JSDOM + ReactDOM to confirm the imperative
 // mount path produces real SVG output via the imperative `plot()` factory.
 

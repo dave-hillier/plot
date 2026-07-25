@@ -1,4 +1,4 @@
-import {Plot, Graticule, Geo, Sphere} from "../../src/react/index.js";
+import {Replot, Graticule, Geo, Sphere} from "../../src/react/index.js";
 import * as d3 from "d3";
 import {feature} from "topojson-client";
 
@@ -6,7 +6,7 @@ export async function projectionClipAngleFrame() {
   const world = await d3.json<any>("data/countries-50m.json");
   const domain = feature(world, world.objects.land);
   return (
-    <Plot
+    <Replot
       width={600}
       height={600}
       projection={{type: "azimuthal-equidistant", clip: 40, inset: -20, rotate: [0, -90], domain: {type: "Sphere"}}}
@@ -14,6 +14,6 @@ export async function projectionClipAngleFrame() {
       <Graticule />
       <Geo data={domain} fill="currentColor" />
       <Sphere />
-    </Plot>
+    </Replot>
   );
 }

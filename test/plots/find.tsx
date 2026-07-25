@@ -1,4 +1,4 @@
-import {Plot, RuleY, LineY, Arrow, groupX, find} from "../../src/react/index.js";
+import {Replot, RuleY, LineY, Arrow, groupX, find} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function findArrow() {
@@ -8,7 +8,7 @@ export async function findArrow() {
     d.geo === "EL" && sexes.includes(d.sex) && ages.includes(d.age) ? d3.autoType(d) : null
   );
   return (
-    <Plot
+    <Replot
       x={{tickFormat: "", label: null, inset: 10}}
       y={{grid: true, label: "Greek youth living with parents (%, ↑more male, ↓more female)"}}
       color={{legend: true}}
@@ -23,6 +23,6 @@ export async function findArrow() {
           {x: "TIME_PERIOD", y: "OBS_VALUE", stroke: "age", bend: true}
         )}
       />
-    </Plot>
+    </Replot>
   );
 }

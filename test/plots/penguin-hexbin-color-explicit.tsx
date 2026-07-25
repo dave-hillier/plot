@@ -1,10 +1,10 @@
-import {Plot, Dot, hexbin} from "../../src/react/index.js";
+import {Replot, Dot, hexbin} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function penguinHexbinColorExplicit() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return (
-    <Plot grid={true}>
+    <Replot grid={true}>
       <Dot
         data={penguins}
         {...hexbin(
@@ -12,6 +12,6 @@ export async function penguinHexbinColorExplicit() {
           {x: "culmen_depth_mm", y: "culmen_length_mm"}
         )}
       />
-    </Plot>
+    </Replot>
   );
 }

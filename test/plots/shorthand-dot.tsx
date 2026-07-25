@@ -1,4 +1,4 @@
-import {Plot, Dot} from "../../src/react/index.js";
+import {Replot, Dot} from "../../src/react/index.js";
 
 export async function shorthandDot() {
   const timeSeries = [
@@ -44,8 +44,8 @@ export async function shorthandDot() {
     [new Date("2018-02-28"), 179.259995]
   ];
   return (
-    <Plot>
+    <Replot>
       <Dot data={timeSeries} />
-    </Plot>
+    </Replot>
   );
 }

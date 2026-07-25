@@ -1,4 +1,4 @@
-import {Plot, Line, AreaY} from "../../src/react/index.js";
+import {Replot, Line, AreaY} from "../../src/react/index.js";
 
 export async function integerInterval() {
   const requests = [
@@ -8,9 +8,9 @@ export async function integerInterval() {
     [5, 12]
   ];
   return (
-    <Plot x={{interval: 1}} y={{zero: true}}>
+    <Replot x={{interval: 1}} y={{zero: true}}>
       <Line data={requests} />
-    </Plot>
+    </Replot>
   );
 }
 
@@ -22,7 +22,7 @@ export async function integerIntervalArea() {
     {x: 10, y: 4, type: "b"}
   ];
   return (
-    <Plot color={{legend: true}}>
+    <Replot color={{legend: true}}>
       <AreaY
         data={series}
         interval={5}
@@ -34,7 +34,7 @@ export async function integerIntervalArea() {
         fillOpacity={0.7}
         tip={true}
       />
-    </Plot>
+    </Replot>
   );
 }
 
@@ -48,7 +48,7 @@ export async function integerIntervalAreaZ() {
     {x: 3, y: 7, type: "c", category: "R"}
   ];
   return (
-    <Plot x={{interval: 1}} color={{scheme: "Paired", legend: true}}>
+    <Replot x={{interval: 1}} color={{scheme: "Paired", legend: true}}>
       <AreaY
         data={series}
         x="x"
@@ -61,6 +61,6 @@ export async function integerIntervalAreaZ() {
         fillOpacity={0.7}
         tip={true}
       />
-    </Plot>
+    </Replot>
   );
 }

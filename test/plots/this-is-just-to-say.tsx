@@ -1,8 +1,8 @@
-import {Plot, Frame, Text} from "../../src/react/index.js";
+import {Replot, Frame, Text} from "../../src/react/index.js";
 
 export async function thisIsJustToSay() {
   return (
-    <Plot height={200}>
+    <Replot height={200}>
       <Frame />
       <Text
         data={[
@@ -10,6 +10,6 @@ export async function thisIsJustToSay() {
         ]}
         frameAnchor="middle"
       />
-    </Plot>
+    </Replot>
   );
 }

@@ -1,10 +1,10 @@
-import {Plot, RuleX} from "../../src/react/index.js";
+import {Replot, RuleX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function seattleTemperatureBand() {
   const data = await d3.csv<any>("data/seattle-weather.csv", d3.autoType);
   return (
-    <Plot
+    <Replot
       y={{
         grid: true,
         label: "Temperature (°F)",
@@ -16,6 +16,6 @@ export async function seattleTemperatureBand() {
       }}
     >
       <RuleX data={data} x="date" y1="temp_min" y2="temp_max" stroke="temp_min" />
-    </Plot>
+    </Replot>
   );
 }

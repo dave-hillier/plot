@@ -1,4 +1,4 @@
-import {Plot, Geo, Frame} from "../../src/react/index.js";
+import {Replot, Geo, Frame} from "../../src/react/index.js";
 import * as d3 from "d3";
 import {mesh} from "topojson-client";
 
@@ -7,7 +7,7 @@ export async function projectionHeightAlbers() {
     .json<any>("data/us-counties-10m.json")
     .then((us) => [mesh(us, us.objects.states, (a, b) => a === b), mesh(us, us.objects.counties, (a, b) => a !== b)]);
   return (
-    <Plot
+    <Replot
       projection={{
         type: "albers-usa"
       }}
@@ -15,6 +15,6 @@ export async function projectionHeightAlbers() {
       <Geo data={conus} strokeWidth={1.5} />
       <Geo data={countymesh} strokeOpacity={0.1} />
       <Frame stroke="red" strokeDasharray={4} />
-    </Plot>
+    </Replot>
   );
 }

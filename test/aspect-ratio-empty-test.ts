@@ -1,6 +1,6 @@
 import assert from "assert";
 import it from "./jsdom.js";
-import * as Plot from "../src/index.ts";
+import * as Plot from "../src/index.js";
 
 describe("aspectRatio with empty data", () => {
   it("falls back to a finite default height", () => {

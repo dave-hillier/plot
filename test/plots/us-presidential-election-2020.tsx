@@ -1,10 +1,10 @@
-import {Plot, RuleX, Dot} from "../../src/react/index.js";
+import {Replot, RuleX, Dot} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function usPresidentialElection2020() {
   const data = await d3.csv<any>("data/us-presidential-election-2020.csv", d3.autoType);
   return (
-    <Plot
+    <Replot
       width={960}
       height={640}
       inset={12}
@@ -40,7 +40,7 @@ ${[
         stroke="currentColor"
         strokeWidth={0.5}
       />
-    </Plot>
+    </Replot>
   );
 }
 

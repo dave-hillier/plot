@@ -1,10 +1,10 @@
-import {Plot, LineY, windowY} from "../../src/react/index.js";
+import {Replot, LineY, windowY} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function travelersCovidDrop() {
   const travelers = await d3.csv<any>("data/travelers.csv", d3.autoType);
   return (
-    <Plot
+    <Replot
       width={960}
       y={{
         grid: true,
@@ -19,6 +19,6 @@ export async function travelersCovidDrop() {
         data={travelers}
         {...windowY({x: "date", y: (d) => d.current / d.previous - 1, k: 7, strict: true, stroke: "steelblue"})}
       />
-    </Plot>
+    </Replot>
   );
 }

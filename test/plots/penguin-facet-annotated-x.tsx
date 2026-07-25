@@ -1,10 +1,10 @@
-import {Plot, BarX, Frame, Text, groupY} from "../../src/react/index.js";
+import {Replot, BarX, Frame, Text, groupY} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function penguinFacetAnnotatedX() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return (
-    <Plot marginLeft={75} x={{insetRight: 10}}>
+    <Replot marginLeft={75} x={{insetRight: 10}}>
       <BarX data={penguins} {...groupY({x: "count"}, {fx: "island", y: "species", fill: "sex"})} />
       <Frame />
       <Text
@@ -15,6 +15,6 @@ export async function penguinFacetAnnotatedX() {
         dx={-4}
         lineWidth={10}
       />
-    </Plot>
+    </Replot>
   );
 }

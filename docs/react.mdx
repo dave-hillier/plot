@@ -2,12 +2,12 @@ import penguins from "./data/penguins.ts";
 
 # React examples
 
-Replot provides a native React component API. Instead of the imperative `Plot.plot()` function, you compose charts declaratively with JSX using the `<Plot>` root component and mark components like `<Dot>`, `<Line>`, `<BarY>`, and others.
+Replot provides a native React component API. Instead of the imperative `Plot.plot()` function, you compose charts declaratively with JSX using the `<Replot>` root component and mark components like `<Dot>`, `<Line>`, `<BarY>`, and others.
 
 All components are imported from `replot/react`. Transforms are components too — `<BinX>`, `<GroupX>`, `<StackY>`, and friends wrap marks to transform them; the underlying transform functions (`binX`, `groupX`, `stackY`, ...) are also re-exported from the same entry point.
 
 ```jsx
-import {Plot, Dot, Line, BarY, BinX, StackY} from "replot/react";
+import {Replot, Dot, Line, BarY, BinX, StackY} from "replot/react";
 ```
 
 ## Scatterplot
@@ -26,9 +26,9 @@ Plot.plot({
 ```
 
 ```jsx [React]
-<Plot width={640} height={400} color={{scheme: "category10"}}>
+<Replot width={640} height={400} color={{scheme: "category10"}}>
   <Dot data={penguins} x="culmen_length_mm" y="culmen_depth_mm" fill="species" />
-</Plot>
+</Replot>
 ```
 
 
@@ -46,9 +46,9 @@ Plot.plot({
 ```
 
 ```jsx [React]
-<Plot y={{grid: true}}>
+<Replot y={{grid: true}}>
   <Line data={data} x="date" y="temperature" stroke="city" />
-</Plot>
+</Replot>
 ```
 
 
@@ -66,10 +66,10 @@ Plot.plot({
 ```
 
 ```jsx [React]
-<Plot>
+<Replot>
   <AreaY data={data} x="date" y="value" fill="steelblue" fillOpacity={0.5} />
   <Line data={data} x="date" y="value" stroke="steelblue" />
-</Plot>
+</Replot>
 ```
 
 
@@ -88,9 +88,9 @@ Plot.plot({
 ```
 
 ```jsx [React]
-<Plot x={{label: "Category"}} y={{label: "Count"}}>
+<Replot x={{label: "Category"}} y={{label: "Count"}}>
   <BarY data={data} x="category" y="count" fill="steelblue" />
-</Plot>
+</Replot>
 ```
 
 
@@ -108,12 +108,12 @@ Plot.plot({
 ```
 
 ```jsx [React]
-<Plot>
+<Replot>
   <BinX y="count">
     <BarY data={data} x="value" fill="steelblue" />
   </BinX>
   <RuleY data={[0]} />
-</Plot>
+</Replot>
 ```
 
 
@@ -133,11 +133,11 @@ Plot.plot({
 ```
 
 ```jsx [React]
-<Plot x={{label: "Category"}} y={{label: "Count"}} color={{legend: true}}>
+<Replot x={{label: "Category"}} y={{label: "Count"}} color={{legend: true}}>
   <GroupX y="count">
     <BarY data={data} x="category" fill="group" />
   </GroupX>
-</Plot>
+</Replot>
 ```
 
 
@@ -154,11 +154,11 @@ Plot.plot({
 ```
 
 ```jsx [React]
-<Plot>
+<Replot>
   <StackY>
     <AreaY data={data} x="date" y="value" fill="category" />
   </StackY>
-</Plot>
+</Replot>
 ```
 
 
@@ -178,10 +178,10 @@ Plot.plot({
 ```
 
 ```jsx [React]
-<Plot y={{grid: true}} color={{scheme: "burd"}}>
+<Replot y={{grid: true}} color={{scheme: "burd"}}>
   <RuleY data={[0]} />
   <Dot data={data} x="date" y="anomaly" stroke="anomaly" />
-</Plot>
+</Replot>
 ```
 
 
@@ -199,9 +199,9 @@ Plot.plot({
 ```
 
 ```jsx [React]
-<Plot facet={{marginRight: 60}}>
+<Replot facet={{marginRight: 60}}>
   <Dot data={penguins} x="culmen_length_mm" y="culmen_depth_mm" fx="species" />
-</Plot>
+</Replot>
 ```
 
 
@@ -218,9 +218,9 @@ Plot.plot({
 ```
 
 ```jsx [React]
-<Plot>
+<Replot>
   <Dot data={penguins} x="culmen_length_mm" y="culmen_depth_mm" fill="species" tip />
-</Plot>
+</Replot>
 ```
 
 
@@ -238,10 +238,10 @@ Plot.plot({
 ```
 
 ```jsx [React]
-<Plot>
+<Replot>
   <Line data={data} x="date" y="value" />
   <Crosshair data={data} x="date" y="value" />
-</Plot>
+</Replot>
 ```
 
 
@@ -260,11 +260,11 @@ Plot.plot({
 ```
 
 ```jsx [React]
-<Plot>
+<Replot>
   <Dot data={data} x="x" y="y" />
   <RuleX data={[0]} />
   <RuleY data={[0]} />
-</Plot>
+</Replot>
 ```
 
 
@@ -282,10 +282,10 @@ Plot.plot({
 ```
 
 ```jsx [React]
-<Plot>
+<Replot>
   <Dot data={data} x="x" y="y" />
   <Text data={data} x="x" y="y" text="label" dy={-8} />
-</Plot>
+</Replot>
 ```
 
 
@@ -303,9 +303,9 @@ Plot.plot({
 ```
 
 ```jsx [React]
-<Plot color={{scheme: "blues"}}>
+<Replot color={{scheme: "blues"}}>
   <Cell data={data} x="column" y="row" fill="value" />
-</Plot>
+</Replot>
 ```
 
 
@@ -323,11 +323,11 @@ Plot.plot({
 ```
 
 ```jsx [React]
-<Plot color={{scheme: "ylgnbu"}}>
+<Replot color={{scheme: "ylgnbu"}}>
   <Bin fill="count">
     <Rect data={data} x="x" y="y" />
   </Bin>
-</Plot>
+</Replot>
 ```
 
 
@@ -344,9 +344,9 @@ Plot.plot({
 ```
 
 ```jsx [React]
-<Plot>
+<Replot>
   <TickX data={data} x="value" y="category" />
-</Plot>
+</Replot>
 ```
 
 
@@ -363,9 +363,9 @@ Plot.plot({
 ```
 
 ```jsx [React]
-<Plot>
+<Replot>
   <BoxY data={data} x="category" y="value" />
-</Plot>
+</Replot>
 ```
 
 
@@ -385,19 +385,19 @@ Plot.plot({
 ```
 
 ```jsx [React]
-<Plot
+<Replot
   title="Penguin measurements"
   subtitle="Palmer Archipelago, Antarctica"
   caption="Source: palmerpenguins"
 >
   <Dot data={penguins} x="culmen_length_mm" y="culmen_depth_mm" />
-</Plot>
+</Replot>
 ```
 
 
 ## Multiple marks
 
-Compose multiple marks in a single chart by nesting them inside `<Plot>`.
+Compose multiple marks in a single chart by nesting them inside `<Replot>`.
 
 ```jsx [Imperative]
 Plot.plot({
@@ -412,12 +412,12 @@ Plot.plot({
 ```
 
 ```jsx [React]
-<Plot y={{grid: true}}>
+<Replot y={{grid: true}}>
   <AreaY data={data} x="date" y="value" fill="#e0e0e0" />
   <Line data={data} x="date" y="value" stroke="steelblue" />
   <Dot data={data} x="date" y="value" fill="steelblue" />
   <RuleY data={[0]} />
-</Plot>
+</Replot>
 ```
 
 
@@ -426,7 +426,7 @@ Plot.plot({
 React components work naturally with React state and hooks:
 
 ```jsx
-import {Plot, Dot} from "replot/react";
+import {Replot, Dot} from "replot/react";
 import {useState} from "react";
 
 function FilterableChart({data}) {
@@ -441,9 +441,9 @@ function FilterableChart({data}) {
         <option value="Chinstrap">Chinstrap</option>
         <option value="Gentoo">Gentoo</option>
       </select>
-      <Plot width={640} height={400}>
+      <Replot width={640} height={400}>
         <Dot data={filtered} x="culmen_length_mm" y="culmen_depth_mm" fill="species" />
-      </Plot>
+      </Replot>
     </div>
   );
 }
@@ -455,7 +455,7 @@ All mark components accept the same options as their imperative counterparts, pa
 
 | Imperative | React | Notes |
 |---|---|---|
-| `Plot.plot({marks: [...]})` | `<Plot>...</Plot>` | Marks are children, scale options are props |
+| `Plot.plot({marks: [...]})` | `<Replot>...</Replot>` | Marks are children, scale options are props |
 | `Plot.dot(data, {x, y})` | `<Dot data={data} x="x" y="y" />` | All options become props |
 | `Plot.binX({y: "count"}, opts)` | `<BinX y="count">...</BinX>` | Transforms nest as wrapper components |
 | `Plot.line(data, {...})` | `<Line data={data} ... />` | Same pattern for all marks |

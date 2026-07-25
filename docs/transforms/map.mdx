@@ -1,4 +1,4 @@
-import {AreaY, bollinger, LineY, map, MapY, Plot, RuleY, WindowY} from "replot/react";
+import {AreaY, bollinger, LineY, map, MapY, Replot, RuleY, WindowY} from "replot/react";
 import * as d3 from "d3";
 import {useState} from "react";
 import aapl from "../data/aapl.ts";
@@ -12,16 +12,16 @@ export const setK = () => {};
 
 The **map transform** groups data into series and then transforms each series’ values, say to normalize them relative to some basis or to apply a moving average. For example, below the map transform computes a cumulative sum (*cumsum*) of a series of random numbers sampled from a normal distribution — in other words, a random walk.
 
-<Plot>
+<Replot>
   <RuleY data={[0]} />
   <MapY map="cumsum">
     <LineY data={{length: 600}} y={d3.randomNormal.source(d3.randomLcg(42))()} />
   </MapY>
-</Plot>
+</Replot>
 
 As another example, we can map the daily trading volume of Apple stock to a [*p*-quantile](https://en.wikipedia.org/wiki/Quantile) in [0, 1] using the *quantile* map method, where 0 represents the minimum daily trade volume and 1 represents the maximum, and then apply a 30-day rolling mean with the [window transform](./window.md) to smooth out the noise.
 
-<Plot>
+<Replot>
   <RuleY data={[0, 1]} />
   <MapY map="quantile">
     <LineY data={aapl} x="Date" y="Volume" strokeOpacity={0.2} />
@@ -31,7 +31,7 @@ As another example, we can map the daily trading volume of Apple stock to a [*p*
       <LineY data={aapl} x="Date" y="Volume" />
     </MapY>
   </WindowY>
-</Plot>
+</Replot>
 
 The [mapY transform](#mapY) above is shorthand for applying the given map method to all *y* channels. There’s also a less-common [mapX transform](#mapX) for *x* channels.
 
@@ -62,13 +62,13 @@ As a more practical example, we can use the map transform to construct [Bollinge
   </label>
 </p>
 
-<Plot y={{
+<Replot y={{
     grid: true
   }}>
   <AreaY data={aapl} {...map({y1: bollinger({n, k: -k}), y2: bollinger({n, k})}, {x: "Date", y: "Close", fillOpacity: 0.2})} />
   <LineY data={aapl} {...map({y: bollinger({n})}, {x: "Date", y: "Close", stroke: "blue"})} />
   <LineY data={aapl} x="Date" y="Close" strokeWidth={1} />
-</Plot>
+</Replot>
 
 The [bollinger map method](../marks/bollinger.md#bollinger) is implemented atop the [window map method](./window.md#window), computing the mean of values within the rolling window, and then offsetTing the mean by a multiple of the rolling deviation.
 

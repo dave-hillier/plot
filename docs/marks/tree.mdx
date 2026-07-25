@@ -1,4 +1,4 @@
-import {ClusterMark, Plot, TreeMark} from "replot/react";
+import {ClusterMark, Replot, TreeMark} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 
@@ -27,9 +27,9 @@ The **tree mark** produces tree diagrams using the [tree transform](../transform
 
 For example, here is a little family tree of Greek gods.
 
-<Plot axis={null} height={100} margin={10} marginLeft={40} marginRight={120}>
+<Replot axis={null} height={100} margin={10} marginLeft={40} marginRight={120}>
   <TreeMark data={gods} textStroke="var(--vp-c-bg)" />
-</Plot>
+</Replot>
 
 Here `gods` is an array of slash-separated paths, similar to paths in a file system. Each path represents the hierarchical position of a node in the tree.
 
@@ -39,15 +39,15 @@ gods = {JSON.stringify(gods, null, 2)}
 
 As a more complete example, here is a visualization of a software package hierarchy.
 
-<Plot axis={null} margin={10} marginLeft={30} marginRight={160} width={688} height={1800}>
+<Replot axis={null} margin={10} marginLeft={30} marginRight={160} width={688} height={1800}>
   <TreeMark data={flare} path="name" delimiter="." textStroke="var(--vp-c-bg)" />
-</Plot>
+</Replot>
 
 The **treeLayout** option specifies the layout algorithm. The tree mark uses the Reingold–Tilford “tidy” tree algorithm, [d3.tree](https://d3js.org/d3-hierarchy/tree), by default. The [cluster](#cluster) convenience method setS **treeLayout** to [d3.cluster](https://d3js.org/d3-hierarchy/cluster), aligning the leaf nodes.
 
-<Plot axis={null} margin={10} marginLeft={30} marginRight={160} width={688} height={2400}>
+<Replot axis={null} margin={10} marginLeft={30} marginRight={160} width={688} height={2400}>
   <ClusterMark data={flare} path="name" treeSort="node:height" delimiter="." textStroke="var(--vp-c-bg)" />
-</Plot>
+</Replot>
 
 Here is an example of a custom **treeLayout** implementation, assigning *node*.x and *node*.y.
 
@@ -64,9 +64,9 @@ function indent() {
 
 This produces an indented tree layout.
 
-<Plot axis={null} inset={10} insetRight={120} round width={200} height={3600}>
+<Replot axis={null} inset={10} insetRight={120} round width={200} height={3600}>
   <TreeMark data={flare} path="name" delimiter="." treeLayout={indent} strokeWidth={1} curve="step-before" textStroke="none" />
-</Plot>
+</Replot>
 
 The tree mark currently does not inform the default layout; you may find it necessary to set the **height** and **margin** [layout options](../features/plots.md#layout-options) for readability.
 

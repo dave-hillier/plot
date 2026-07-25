@@ -9,7 +9,7 @@ export default function remarkPlotSource() {
   return (tree, file) => {
     const source = String(file.value);
     tree.children = tree.children.map((node) => {
-      if (node.type !== "mdxJsxFlowElement" || node.name !== "Plot") return node;
+      if (node.type !== "mdxJsxFlowElement" || (node.name !== "Replot" && node.name !== "Plot")) return node;
       const {start, end} = node.position ?? {};
       if (start?.offset == null || end?.offset == null) return node;
       const text = source.slice(start.offset, end.offset).trimEnd();

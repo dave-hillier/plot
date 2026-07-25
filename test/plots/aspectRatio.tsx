@@ -1,8 +1,8 @@
-import {Plot, Frame} from "../../src/react/index.js";
+import {Replot, Frame} from "../../src/react/index.js";
 
 export async function aspectRatioLinear() {
   return (
-    <Plot
+    <Replot
       grid={true}
       inset={6}
       x={{type: "linear", domain: [0, 10]}}
@@ -10,13 +10,13 @@ export async function aspectRatioLinear() {
       aspectRatio={1}
     >
       <Frame />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function aspectRatioSqrt() {
   return (
-    <Plot
+    <Replot
       grid={true}
       inset={6}
       x={{type: "sqrt", domain: [0, 10]}}
@@ -24,21 +24,27 @@ export async function aspectRatioSqrt() {
       aspectRatio={1}
     >
       <Frame />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function aspectRatioLog() {
   return (
-    <Plot grid={true} inset={6} x={{type: "log", domain: [1, 10]}} y={{type: "log", domain: [10, 100]}} aspectRatio={1}>
+    <Replot
+      grid={true}
+      inset={6}
+      x={{type: "log", domain: [1, 10]}}
+      y={{type: "log", domain: [10, 100]}}
+      aspectRatio={1}
+    >
       <Frame />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function aspectRatioPoint() {
   return (
-    <Plot
+    <Replot
       grid={true}
       inset={6}
       x={{type: "point", domain: "ABCDEF"}}
@@ -46,13 +52,13 @@ export async function aspectRatioPoint() {
       aspectRatio={1}
     >
       <Frame />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function aspectRatioBand() {
   return (
-    <Plot
+    <Replot
       grid={true}
       inset={6}
       x={{type: "band", domain: "ABCDEF"}}
@@ -60,6 +66,6 @@ export async function aspectRatioBand() {
       aspectRatio={1}
     >
       <Frame />
-    </Plot>
+    </Replot>
   );
 }

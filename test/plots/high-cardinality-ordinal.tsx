@@ -1,9 +1,9 @@
-import {Plot, CellX} from "../../src/react/index.js";
+import {Replot, CellX} from "../../src/react/index.js";
 
 export async function highCardinalityOrdinal() {
   return (
-    <Plot color={{type: "ordinal"}}>
+    <Replot color={{type: "ordinal"}}>
       <CellX data="ABCDEFGHIJKLMNOPQRSTUVWXYZ" />
-    </Plot>
+    </Replot>
   );
 }

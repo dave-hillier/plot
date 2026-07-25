@@ -1,8 +1,8 @@
-import {Plot, BarX, stackX} from "../../src/react/index.js";
+import {Replot, BarX, stackX} from "../../src/react/index.js";
 
 export async function stackedBar() {
   return (
-    <Plot
+    <Replot
       x={{
         tickFormat: "%"
       }}
@@ -16,6 +16,6 @@ export async function stackedBar() {
           offset: "normalize"
         })}
       />
-    </Plot>
+    </Replot>
   );
 }

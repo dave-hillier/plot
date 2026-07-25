@@ -1,4 +1,4 @@
-import {BarY, Dot, Frame, LineY, Plot, RuleY, Text} from "replot/react";
+import {BarY, Dot, Frame, LineY, Replot, RuleY, Text} from "replot/react";
 import * as d3 from "d3";
 import {useState} from "react";
 import alphabet from "../data/alphabet.ts";
@@ -41,11 +41,11 @@ export function MarginDemo() {
           <span style={{fontVariantNumeric: "tabular-nums"}}>{marginLeft}</span>
         </label>
       </div>
-      <Plot marginTop={marginTop} marginRight={marginRight} marginBottom={marginBottom} marginLeft={marginLeft} grid>
+      <Replot marginTop={marginTop} marginRight={marginRight} marginBottom={marginBottom} marginLeft={marginLeft} grid>
         <Frame stroke="var(--vp-c-text-2)" strokeOpacity={0.5} insetTop={-marginTop} insetRight={-marginRight} insetBottom={-marginBottom} insetLeft={-marginLeft} />
         <BarY data={alphabet} x="letter" y="frequency" fill="green" />
         <Frame />
-      </Plot>
+      </Replot>
     </div>
   );
 }
@@ -61,10 +61,10 @@ export function AspectRatioDemo() {
           <input type="checkbox" checked={fixed} onChange={(e) => setFixed(e.target.checked)} />
         </label>
       </div>
-      <Plot grid inset={10} aspectRatio={fixed ? 1 : undefined} color={{legend: true}}>
+      <Replot grid inset={10} aspectRatio={fixed ? 1 : undefined} color={{legend: true}}>
         <Frame />
         <Dot data={penguins} x="culmen_length_mm" y="culmen_depth_mm" stroke="species" />
-      </Plot>
+      </Replot>
     </div>
   );
 }
@@ -73,10 +73,10 @@ export function AspectRatioDemo() {
 
 To render a **plot** in Replot, call [plot](#plot) (typically as `Plot.plot`), passing in the desired *options*. This function returns an SVG or HTML figure element.
 
-<Plot>
+<Replot>
   <Frame />
   <Text data={["Hello, world!"]} frameAnchor="middle" />
-</Plot>
+</Replot>
 
 
 With the imperative API, the returned plot element is detached; it must be inserted into the page to be visible. With the [React component API](../getting-started.md#plot-in-react), plots render directly into the React tree — no manual DOM insertion needed. For help, see the [getting started guide](../getting-started.md).
@@ -110,35 +110,35 @@ aapl = [
 Rather than baking data into JavaScript, use [JSON](https://en.wikipedia.org/wiki/JSON) or [CSV](https://en.wikipedia.org/wiki/Comma-separated_values) files to store data. You can use [d3.json](https://d3js.org/d3-fetch#json), [d3.csv](https://d3js.org/d3-fetch#csv), or [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) to load a file. On Observable, you can also use a [file attachment](https://observablehq.com/@observablehq/file-attachments) or [SQL cell](https://observablehq.com/@observablehq/sql-cell).
 To use data with Replot, pass the data as the first argument to the mark constructor. We can then assign columns of data such as *Date* and *Close* to visual properties of the mark (or “channels”) such as horizontal↔︎ position **x** and vertical↕︎ position **y**.
 
-<Plot>
+<Replot>
   <LineY data={aapl} x="Date" y="Close" />
-</Plot>
+</Replot>
 
 A plot can have multiple marks, and each mark has its own data. For example, say we had a similar table `goog` representing the daily price of Google stock for the same period. Below, the <span style={{borderBottom: "solid 2px var(--vp-c-red)"}}>red</span> line represents Google stock, while the <span style={{borderBottom: "solid 2px var(--vp-c-blue)"}}>blue</span> line represents Apple stock.
 
-<Plot>
+<Replot>
   <RuleY data={[0]} />
   <LineY data={goog} x="Date" y="Close" stroke="red" />
   <LineY data={aapl} x="Date" y="Close" stroke="blue" />
-</Plot>
+</Replot>
 
 
 When comparing the performance of different stocks, we typically want to normalize the return relative to a purchase price. See the [normalize transform](../transforms/normalize.md) for an example.
 Alternatively, the tables can be combined, say with a *Symbol* column to distinguish AAPL from GOOG. This allows the use of a categorical *color* scale and legend.
 
-<Plot color={{legend: true}}>
+<Replot color={{legend: true}}>
   <RuleY data={[0]} />
   <LineY data={stocks} x="Date" y="Close" stroke="Symbol" />
-</Plot>
+</Replot>
 
 Each mark has its own options, and different mark types support different options. See the respective mark type (such as [bar](../marks/bar.md) or [dot](../marks/dot.md)) for details.
 
 Marks are drawn in the given order, with the last mark drawn on top. For example, below <span style={{borderBottom: "solid 2px var(--vp-c-green)"}}>green</span> bars are drawn on top of <span style={{borderBottom: "solid 2px"}}>black</span> bars.
 
-<Plot x={{padding: 0.4}}>
+<Replot x={{padding: 0.4}}>
   <BarY data={alphabet} x="letter" y="frequency" dx={2} dy={2} />
   <BarY data={alphabet} x="letter" y="frequency" fill="green" dx={-2} dy={-2} />
-</Plot>
+</Replot>
 
 ## Layout options
 
@@ -157,10 +157,10 @@ Experiment with the margins by adjusting the sliders below. Note that because th
 <MarginDemo />
 
 ```jsx
-<Plot marginTop={20} marginRight={20} marginBottom={30} marginLeft={40} grid>
+<Replot marginTop={20} marginRight={20} marginBottom={30} marginLeft={40} grid>
   <BarY data={alphabet} x="letter" y="frequency" fill="green" />
   <Frame />
-</Plot>
+</Replot>
 ```
 
 
@@ -181,10 +181,10 @@ By default, [plot](#plot) returns an SVG element; however, if the plot includes 
 
 The **title** & **subtitle** options <VersionBadge version="0.6.10" pr="1761" /> and the **caption** option accept either a string or an HTML element. If given an HTML element, say using the [`html` tagged template literal](http:
 
-<Plot title="For charts, an informative title" subtitle="Subtitle to follow with additional context" caption="Figure 1. A chart with a title, subtitle, and caption.">
+<Replot title="For charts, an informative title" subtitle="Subtitle to follow with additional context" caption="Figure 1. A chart with a title, subtitle, and caption.">
   <Frame />
   <Text data={["Titles, subtitles, captions, and annotations assist inter­pretation by telling the reader what’s interesting. Don’t make the reader work to find what you already know."]} lineWidth={30} frameAnchor="middle" />
-</Plot>
+</Replot>
 
 The **style** option allows custom styles to override Replot’s defaults. It may be specified either as a string of inline styles (*e.g.*, `"color: red;"`, in the same fashion as assigning [*element*.style](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style)) or an object of properties (*e.g.*, `{color: "red"}`, in the same fashion as assigning [*element*.style properties](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration)). By default, the returned plot has a max-width of 100%, and the system-ui font. Replot’s marks and axes default to [currentColor](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#currentcolor_keyword), meaning that they will inherit the surrounding content’s color.
 

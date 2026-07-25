@@ -1,8 +1,8 @@
-import {Plot, Image} from "../../src/react/index.js";
+import {Replot, Image} from "../../src/react/index.js";
 
 export async function imagePixelated() {
   return (
-    <Plot width={300} height={200}>
+    <Replot width={300} height={200}>
       <Image
         data={[0]}
         frameAnchor="middle"
@@ -11,6 +11,6 @@ export async function imagePixelated() {
         height={200}
         imageRendering="pixelated"
       />
-    </Plot>
+    </Replot>
   );
 }

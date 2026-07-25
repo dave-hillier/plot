@@ -1,4 +1,4 @@
-import {Plot, BarY, RuleY, groupX} from "../../src/react/index.js";
+import {Replot, BarY, RuleY, groupX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function mobyDickFaceted() {
@@ -8,7 +8,7 @@ export async function mobyDickFaceted() {
   const cases = letters.map((d) => (d.toLowerCase() === d ? "lower" : "upper"));
   const vowels = letters.map((d) => (/[aeiouy]/i.test(d) ? "vowel" : "consonant"));
   return (
-    <Plot
+    <Replot
       y={{
         grid: true
       }}
@@ -20,6 +20,6 @@ export async function mobyDickFaceted() {
     >
       <BarY data={letters} {...groupX({y: "count"}, {x: uppers})} />
       <RuleY data={[0]} />
-    </Plot>
+    </Replot>
   );
 }

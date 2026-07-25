@@ -1,4 +1,4 @@
-import {Crosshair, Dot, Plot} from "replot/react";
+import {Crosshair, Dot, Replot} from "replot/react";
 import * as d3 from "d3";
 import {useEffect} from "react";
 import {useOlympians} from "../data/olympians.ts";
@@ -14,16 +14,16 @@ When looking at a scatterplot, the reader may wonder, *what abstract values does
 
 The [pointer transform](../interactions/pointer.md) can provide an answer: it dynamically [filters](../transforms/filter.md) a mark such that only the data closest to the pointer (such as the mouse) is rendered. The pointer transform is often paired with the [tip mark](../marks/tip.md) for interactive tooltips, revealing exact values as the pointer moves over the plot. The tip can show additional fields not otherwise visible, such as the *name* and *sport* of Olympic athletes below.
 
-<Plot>
+<Replot>
   <Dot data={useOlympians()} x="weight" y="height" stroke="sex" channels={{name: "name", sport: "sport"}} tip />
-</Plot>
+</Replot>
 
 The [crosshair mark](../interactions/crosshair.md) uses the pointer transform internally to display a [rule](../marks/rule.md) and a [text](../marks/text.md) showing the **x** (horizontal↔︎ position) and **y** (vertical↕︎ position) value of the nearest data.
 
-<Plot>
+<Replot>
   <Dot data={useOlympians()} x="weight" y="height" stroke="sex" />
   <Crosshair data={useOlympians()} x="weight" y="height" />
-</Plot>
+</Replot>
 
 These values are displayed atop the axes on the edge of the frame; unlike the tip mark, the crosshair mark will not obscure other marks in the plot.
 

@@ -1,4 +1,4 @@
-import {Plot, Voronoi, VoronoiMesh, geoCentroid, centroid} from "../../src/react/index.js";
+import {Replot, Voronoi, VoronoiMesh, geoCentroid, centroid} from "../../src/react/index.js";
 import * as d3 from "d3";
 import {feature} from "topojson-client";
 
@@ -9,10 +9,10 @@ export async function usCountyVoronoi() {
     .json<any>("data/us-counties-10m.json")
     .then((us) => feature(us, us.objects.counties).features);
   return (
-    <Plot projection="albers">
+    <Replot projection="albers">
       <Voronoi data={counties} {...geoCentroid({transform, stroke: "red"})} />
       <Voronoi data={counties} {...centroid({transform, stroke: "blue", mixBlendMode: "multiply"})} />
-    </Plot>
+    </Replot>
   );
 }
 
@@ -21,12 +21,12 @@ export async function usCountyVoronoiMesh() {
     .json<any>("data/us-counties-10m.json")
     .then((us) => feature(us, us.objects.counties).features);
   return (
-    <Plot projection="albers">
+    <Replot projection="albers">
       <VoronoiMesh data={counties} {...geoCentroid({transform, stroke: "red", strokeOpacity: 1})} />
       <VoronoiMesh
         data={counties}
         {...centroid({transform, stroke: "blue", strokeOpacity: 1, mixBlendMode: "multiply"})}
       />
-    </Plot>
+    </Replot>
   );
 }

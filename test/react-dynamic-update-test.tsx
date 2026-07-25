@@ -1,10 +1,10 @@
-// @ts-nocheck — JSDOM React tests for <Plot> recompute-on-update invalidation.
+// @ts-nocheck — JSDOM React tests for <Replot> recompute-on-update invalidation.
 import assert from "assert";
 import React, {useState} from "react";
 import ReactDOM from "react-dom/client";
 import {act} from "react";
 import jsdomit from "./jsdom.js";
-import {Plot, Dot, BarY, stampOptions} from "../src/react/index.js";
+import {Replot, Dot, BarY, stampOptions} from "../src/react/index.js";
 
 const dataA = [
   {x: 1, y: 2},
@@ -52,9 +52,9 @@ describe("Plot recomputes when mark props change after mount", () => {
       const [data, set] = useState(dataA);
       setData = set;
       return (
-        <Plot width={200} height={200}>
+        <Replot width={200} height={200}>
           <Dot data={data} x="x" y="y" />
-        </Plot>
+        </Replot>
       );
     }
     const {container, cleanup} = await mount(<Harness />);
@@ -72,9 +72,9 @@ describe("Plot recomputes when mark props change after mount", () => {
       const [r, set] = useState(3);
       setR = set;
       return (
-        <Plot width={200} height={200}>
+        <Replot width={200} height={200}>
           <Dot data={dataA} x="x" y="y" r={r} />
-        </Plot>
+        </Replot>
       );
     }
     const {container, cleanup} = await mount(<Harness />);
@@ -92,9 +92,9 @@ describe("Plot recomputes when mark props change after mount", () => {
       const [field, set] = useState("y");
       setField = set;
       return (
-        <Plot width={200} height={200}>
+        <Replot width={200} height={200}>
           <Dot data={dataA} x="x" y={field} />
-        </Plot>
+        </Replot>
       );
     }
     const {container, cleanup} = await mount(<Harness />);
@@ -117,9 +117,9 @@ describe("Plot recomputes when mark props change after mount", () => {
       const [sort, set] = useState({x: "y"});
       setSort = set;
       return (
-        <Plot width={200} height={200}>
+        <Replot width={200} height={200}>
           <BarY data={bars} x="letter" y="value" sort={sort} />
-        </Plot>
+        </Replot>
       );
     }
     const {container, cleanup} = await mount(<Harness />);

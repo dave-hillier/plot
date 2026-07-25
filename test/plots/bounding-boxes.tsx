@@ -1,4 +1,4 @@
-import {Plot, Geo, Rect, Arrow, Sphere} from "../../src/react/index.js";
+import {Replot, Geo, Rect, Arrow, Sphere} from "../../src/react/index.js";
 import * as d3 from "d3";
 import {geoChamberlinAfrica} from "d3-geo-projection";
 import {feature} from "topojson-client";
@@ -8,7 +8,7 @@ export async function boundingBoxes() {
   const land = feature(world, world.objects.land);
   const countries = feature(world, world.objects.countries).features;
   return (
-    <Plot
+    <Replot
       width={600}
       height={600}
       projection={{
@@ -37,6 +37,6 @@ export async function boundingBoxes() {
       />
       <Arrow data={[1]} x1={-10} y1={10} x2={20} y2={-32} bend stroke="red" />
       <Sphere />
-    </Plot>
+    </Replot>
   );
 }

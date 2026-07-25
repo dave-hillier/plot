@@ -1,5 +1,5 @@
 import * as d3 from "d3";
-import {Plot, CellX, legend} from "../../src/react/index.js";
+import {Replot, CellX, legend} from "../../src/react/index.js";
 import {plot as imperativePlot, dot as imperativeDot} from "replot";
 
 export function colorLegendCategorical() {
@@ -61,9 +61,9 @@ export function colorLegendOrdinalRamp() {
 
 export function colorLegendOrdinalRampInline() {
   return (
-    <Plot legend="ramp" color={{type: "ordinal", domain: "ABCDEFGHIJ"}}>
+    <Replot legend="ramp" color={{type: "ordinal", domain: "ABCDEFGHIJ"}}>
       <CellX data="ABCDEFGHIJ" />
-    </Plot>
+    </Replot>
   );
 }
 

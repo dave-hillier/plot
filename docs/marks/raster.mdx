@@ -1,4 +1,4 @@
-import {Dot, identity, Line, Plot, Raster, Sphere, Text} from "replot/react";
+import {Dot, identity, Line, Replot, Raster, Sphere, Text} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import penguins from "../data/penguins.ts";
@@ -23,9 +23,9 @@ The **raster mark** renders a [raster image](https://en.wikipedia.org/wiki/Raste
 
 For example, the heatmap below shows the topography of the [Maungawhau volcano](https://en.wikipedia.org/wiki/Maungawhau), produced from a {volcano.width}×{volcano.height} grid of elevation samples.
 
-<Plot color={{label: "Elevation (m)", legend: true}}>
+<Replot color={{label: "Elevation (m)", legend: true}}>
   <Raster data={volcano.values} width={volcano.width} height={volcano.height} />
-</Plot>
+</Replot>
 
 The grid (`volcano.values` above) is a list of numbers `[103, 104, 104, …]`. The first number `103` is the elevation of the bottom-left corner. This grid is in [row-major order](https://en.wikipedia.org/wiki/Row-_and_column-major_order), meaning that the elevations of the first row are followed by the second row, then the third, and so on. Here’s a smaller grid to demonstrate the concept.
 
@@ -50,16 +50,16 @@ grid = ({
 
 We can visualize this small grid directly with a [text mark](./text.md) using the same color encoding. Notice that the image below is flipped vertically relative to the data: the first row of the data is the *bottom* of the image because below *y* points up↑.
 
-<Plot grid x={{domain: [0, grid.width], label: "column"}} y={{domain: [0, grid.height], label: "row"}}>
+<Replot grid x={{domain: [0, grid.width], label: "column"}} y={{domain: [0, grid.height], label: "row"}}>
   <Text data={grid.values} text={identity} fill={identity} x={(d, i) => i % grid.width + 0.5} y={(d, i) => Math.floor(i / grid.width) + 0.5} />
-</Plot>
+</Replot>
 
 Also notice that the grid points are offset by 0.5: they represent the *middle* of each pixel rather than the corner. Below, the raster mark is laid under the text mark to show the raster image.
 
-<Plot>
+<Replot>
   <Raster data={grid.values} width={grid.width} height={grid.height} imageRendering={"pixelated"} />
   <Text data={grid.values} text={identity} fill="white" x={(d, i) => i % grid.width + 0.5} y={(d, i) => Math.floor(i / grid.width) + 0.5} />
-</Plot>
+</Replot>
 
 
 Safari does not currently support the **imageRendering** option.
@@ -77,58 +77,58 @@ LONGITUDE,LATITUDE,MAG_IGRF90
 
 Using a [dot mark](./dot.md), we can make a quick scatterplot to see the irregular grid. We’ll use a *diverging* color scale to distinguish positive and negative values.
 
-<Plot color={{type: "diverging"}}>
+<Replot color={{type: "diverging"}}>
   <Dot data={ca55} x="LONGITUDE" y="LATITUDE" fill="MAG_IGRF90" />
-</Plot>
+</Replot>
 
 And using a [line mark](./line.md), we can connect the line segments to reveal the flight paths.
 
-<Plot color={{type: "diverging"}}>
+<Replot color={{type: "diverging"}}>
   <Line data={ca55} x="LONGITUDE" y="LATITUDE" stroke="MAG_IGRF90" z="LINE_NUMB-SEG" />
-</Plot>
+</Replot>
 
 The image above starts to be readable, but it would be frustrating to not do more with this data given all the effort that went into collecting it! Fortunately the raster mark’s **interpolate** option can quickly produce a continuous image.
 
 The *nearest* interpolator assigns the value of each pixel in the grid using the nearest sample in the data. In effect, this produces a Voronoi diagram.
 
-<Plot color={{type: "diverging"}}>
+<Replot color={{type: "diverging"}}>
   <Raster data={ca55} x="LONGITUDE" y="LATITUDE" fill="MAG_IGRF90" interpolate="nearest" />
-</Plot>
+</Replot>
 
 
 You can also make this Voronoi diagram with the [voronoi mark](./delaunay.md).
 If the observed phenomenon is continuous, we can use the _barycentric_ interpolator. This constructs a Delaunay triangulation of the samples, and then paints each triangle by interpolating the values of the triangle’s vertices in [barycentric coordinates](https://en.wikipedia.org/wiki/Barycentric_coordinate_system). (Points outside the convex hull are extrapolated.)
 
-<Plot color={{type: "diverging"}}>
+<Replot color={{type: "diverging"}}>
   <Raster data={ca55} x="LONGITUDE" y="LATITUDE" fill="MAG_IGRF90" interpolate="barycentric" />
-</Plot>
+</Replot>
 
 Finally, the _random-walk_ interpolator assigns the value at each grid location simply by taking a random walk that stops after reaching a minimum distance from any sample! The interpolator uses the [walk on spheres](https://observablehq.com/@fil/walk-on-spheres) algorithm, limited to 2 consecutive jumps.
 
-<Plot color={{type: "diverging"}}>
+<Replot color={{type: "diverging"}}>
   <Raster data={ca55} x="LONGITUDE" y="LATITUDE" fill="MAG_IGRF90" interpolate="random-walk" />
-</Plot>
+</Replot>
 
 With the _random-walk_ method, the image is grainy, reflecting the uncertainty of the random walk. Use the **blur** option to make it smoother.
 
-<Plot color={{type: "diverging"}}>
+<Replot color={{type: "diverging"}}>
   <Raster data={ca55} x="LONGITUDE" y="LATITUDE" fill="MAG_IGRF90" interpolate="random-walk" blur={5} />
-</Plot>
+</Replot>
 
 
 If none of the built-in [spatial interpolators](#spatial-interpolators) suffice, you can write your own as a custom function!
 The raster mark can interpolate categorical values, too! Below, this creates an interesting “map” of penguin species in the space of culmen length _vs._ depth.
 
-<Plot color={{legend: true}}>
+<Replot color={{legend: true}}>
   <Raster data={penguins} x="culmen_length_mm" y="culmen_depth_mm" fill="species" interpolate="random-walk" />
   <Dot data={penguins} x="culmen_length_mm" y="culmen_depth_mm" />
-</Plot>
+</Replot>
 
 As an alternative to interpolating discrete samples, you can supply values as a continuous function *f*(*x*,*y*); the raster mark will invoke this function for the midpoint of each pixel in the raster grid, similar to a WebGL fragment shader. For example, below we visualize the [Mandelbrot set](https://en.wikipedia.org/wiki/Mandelbrot_set) by counting the number of iterations needed until the point “escapes”.
 
-<Plot aspectRatio={1}>
+<Replot aspectRatio={1}>
   <Raster fill={mandelbrot} x1={-2} x2={1} y1={-1.164} y2={1.164} />
-</Plot>
+</Replot>
 
 ```js
 function mandelbrot(x, y) {
@@ -141,15 +141,15 @@ function mandelbrot(x, y) {
 
 Or to visualize the arctangent function:
 
-<Plot>
+<Replot>
   <Raster x1={-1} x2={1} y1={-1} y2={1} fill={(x, y) => Math.atan2(y, x)} />
-</Plot>
+</Replot>
 
 
 When faceting, the sample function *f*(*x*,*y*) is passed a third argument of the facet values `\{*fx*, *fy*\}`.
 The raster mark supports Replot’s [projection system](../features/projections.md). The chart below shows global atmospheric water vapor measurements from [NASA Earth Observations](https://neo.gsfc.nasa.gov/view.php?datasetId=MYDAL2_M_SKY_WV).
 
-<Plot projection="equal-earth" color={{
+<Replot projection="equal-earth" color={{
     scheme: "BuPu",
     domain: [0, 6],
     legend: true,
@@ -157,7 +157,7 @@ The raster mark supports Replot’s [projection system](../features/projections.
   }}>
   <Raster data={vapor} fill={identity} width={360} height={180} x1={-180} y1={90} x2={180} y2={-90} interpolate="barycentric" clip="sphere" />
   <Sphere stroke="black" />
-</Plot>
+</Replot>
 
 ## Raster options
 

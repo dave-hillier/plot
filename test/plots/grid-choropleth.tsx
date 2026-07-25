@@ -1,4 +1,4 @@
-import {Plot, Cell, Text, Rect, groupY} from "../../src/react/index.js";
+import {Replot, Cell, Text, Rect, groupY} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function gridChoropleth() {
@@ -8,7 +8,7 @@ export async function gridChoropleth() {
   ]);
   const states = data.filter((d) => grid.has(d.State)).map((d) => ({...d, ...grid.get(d.State)}));
   return (
-    <Plot height={420} x={{axis: null}} y={{axis: null}} color={{type: "diverging-log", scheme: "piyg"}}>
+    <Replot height={420} x={{axis: null}} y={{axis: null}} color={{type: "diverging-log", scheme: "piyg"}}>
       <Cell data={states} x="x" y="y" fill={change} />
       <Text data={states} x="x" y="y" text="key" dy={-6} />
       <Text
@@ -22,7 +22,7 @@ export async function gridChoropleth() {
         dy={6}
         fillOpacity={0.6}
       />
-    </Plot>
+    </Replot>
   );
 }
 
@@ -33,7 +33,7 @@ export async function gridChoroplethDx() {
   ]);
   const states = data.filter((d) => grid.has(d.State)).map((d) => ({...d, ...grid.get(d.State)}));
   return (
-    <Plot height={420} x={{axis: null}} y={{axis: null}} color={{type: "diverging-log", scheme: "piyg"}}>
+    <Replot height={420} x={{axis: null}} y={{axis: null}} color={{type: "diverging-log", scheme: "piyg"}}>
       <Cell data={states} x="x" y="y" fill={change} dx={-1.5} dy={-1.5} />
       <Cell data={states} x="x" y="y" stroke="black" dx={1.5} dy={1.5} />
       <Text data={states} x="x" y="y" text="key" dy={-6} />
@@ -48,14 +48,14 @@ export async function gridChoroplethDx() {
         dy={6}
         fillOpacity={0.6}
       />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function gridReduceIdentity() {
   const grid = await d3.csv<any>("data/us-state-grid.csv", d3.autoType);
   return (
-    <Plot axis={null} x={{insetRight: 200}} y={{reverse: true}} aspectRatio={true}>
+    <Replot axis={null} x={{insetRight: 200}} y={{reverse: true}} aspectRatio={true}>
       <Rect data={grid} x="x" y="y" stroke="currentColor" interval={1} inset={3} />
       <Text
         data={grid}
@@ -64,7 +64,7 @@ export async function gridReduceIdentity() {
           {sort: "x", frameAnchor: "right", y: "y", text: "key", dx: -10, stroke: "white", fill: "currentColor"}
         )}
       />
-    </Plot>
+    </Replot>
   );
 }
 

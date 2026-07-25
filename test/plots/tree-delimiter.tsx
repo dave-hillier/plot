@@ -1,8 +1,8 @@
-import {Plot, TreeMark} from "../../src/react/index.js";
+import {Replot, TreeMark} from "../../src/react/index.js";
 
 export async function treeDelimiter() {
   return (
-    <Plot axis={null} height={150} margin={10} marginLeft={40} marginRight={190}>
+    <Replot axis={null} height={150} margin={10} marginLeft={40} marginRight={190}>
       <TreeMark
         data={[
           "foo;a;//example", // foo → a → //example
@@ -17,13 +17,13 @@ export async function treeDelimiter() {
         ]}
         delimiter=";"
       />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function treeDelimiter2() {
   return (
-    <Plot axis={null} height={150} margin={10} marginLeft={40} marginRight={190}>
+    <Replot axis={null} height={150} margin={10} marginLeft={40} marginRight={190}>
       <TreeMark
         data={[
           "foo/a/\\/\\/example", // foo → a → //example
@@ -37,6 +37,6 @@ export async function treeDelimiter2() {
           "foo/g\\\\\\/g/\\/\\/example3" // foo → g\/g → //example3
         ]}
       />
-    </Plot>
+    </Replot>
   );
 }

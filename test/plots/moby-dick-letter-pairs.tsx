@@ -1,4 +1,4 @@
-import {Plot, BarX, Text, groupY, stackX, group} from "../../src/react/index.js";
+import {Replot, BarX, Text, groupY, stackX, group} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function mobyDickLetterPairs() {
@@ -6,7 +6,7 @@ export async function mobyDickLetterPairs() {
   const letters = [...mobydick].map((d) => (/\w/.test(d) ? d.toUpperCase() : "*"));
   const pairs = d3.pairs(letters).map(([letter, next]) => ({letter, next}));
   return (
-    <Plot x={{axis: null}} y={{label: null}}>
+    <Replot x={{axis: null}} y={{label: null}}>
       <BarX data={pairs} {...groupY({x: "distinct"}, {x: "next", y: "letter"})} />
       <Text
         data={pairs}
@@ -28,6 +28,6 @@ export async function mobyDickLetterPairs() {
           )
         )}
       />
-    </Plot>
+    </Replot>
   );
 }

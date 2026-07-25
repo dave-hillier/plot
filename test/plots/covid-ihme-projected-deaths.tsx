@@ -1,11 +1,11 @@
-import {Plot, GridX, AreaY, Line, Dot, Text} from "../../src/react/index.js";
+import {Replot, GridX, AreaY, Line, Dot, Text} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function covidIhmeProjectedDeaths() {
   const data = await d3.csv<any>("data/covid-ihme-projected-deaths.csv", d3.autoType);
   const i = data.findIndex((d) => d.projected) - 1;
   return (
-    <Plot
+    <Replot
       width={960}
       height={600}
       y={{
@@ -28,6 +28,6 @@ export async function covidIhmeProjectedDeaths() {
       <Line data={data.slice(i)} x="date" y="mean" title={() => "projected values"} strokeDasharray="2,2" />
       <Dot data={[data[i]]} x="date" y="mean" fill="currentColor" />
       <Text data={[data[i]]} x="date" y="mean" text="mean" textAnchor="start" dx={6} />
-    </Plot>
+    </Replot>
   );
 }

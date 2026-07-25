@@ -1,4 +1,4 @@
-import {Plot, BarY} from "../../src/react/index.js";
+import {Replot, BarY} from "../../src/react/index.js";
 
 export async function emptyFacet() {
   const data = [
@@ -6,8 +6,8 @@ export async function emptyFacet() {
     {PERIOD: 2, VALUE: 4, TYPE: "c"}
   ];
   return (
-    <Plot facet={{data, x: "TYPE"}} fx={{domain: ["a", "b"]}}>
+    <Replot facet={{data, x: "TYPE"}} fx={{domain: ["a", "b"]}}>
       <BarY data={data} x="PERIOD" y="VALUE" />
-    </Plot>
+    </Replot>
   );
 }

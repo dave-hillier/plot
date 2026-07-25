@@ -1,10 +1,10 @@
-import {Plot, BarY, RuleY} from "../../src/react/index.js";
+import {Replot, BarY, RuleY} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function figcaption() {
   const alphabet = await d3.csv<any>("data/alphabet.csv", d3.autoType);
   return (
-    <Plot
+    <Replot
       caption="The relative frequency of letters in the English language. Data: Robert Edward Lewand"
       x={{
         label: null
@@ -17,6 +17,6 @@ export async function figcaption() {
     >
       <BarY data={alphabet} x="letter" y="frequency" />
       <RuleY data={[0]} />
-    </Plot>
+    </Replot>
   );
 }

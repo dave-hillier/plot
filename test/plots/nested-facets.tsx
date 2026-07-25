@@ -1,11 +1,11 @@
-import {Plot, AxisFx, Frame, Dot} from "../../src/react/index.js";
+import {Replot, AxisFx, Frame, Dot} from "../../src/react/index.js";
 import * as Plot_ from "replot";
 import * as d3 from "d3";
 
 export async function nestedFacets() {
   const diamonds = await d3.csv<any>("data/diamonds.csv", d3.autoType);
   return (
-    <Plot
+    <Replot
       width={960}
       height={480}
       fx={{domain: ["D", "E", "F"]}}
@@ -51,6 +51,6 @@ export async function nestedFacets() {
           }) as SVGElement;
         }}
       />
-    </Plot>
+    </Replot>
   );
 }

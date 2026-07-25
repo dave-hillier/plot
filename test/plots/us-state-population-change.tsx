@@ -1,10 +1,10 @@
-import {Plot, BarX, RuleX, AxisY, GridX} from "../../src/react/index.js";
+import {Replot, BarX, RuleX, AxisY, GridX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function usStatePopulationChange() {
   const data = await d3.csv<any>("data/us-state-population-2010-2019.csv", d3.autoType);
   return (
-    <Plot
+    <Replot
       height={800}
       marginLeft={100}
       grid={true}
@@ -27,7 +27,7 @@ export async function usStatePopulationChange() {
     >
       <BarX data={data} y="State" x={(d) => d[2019] - d[2010]} fill={(d) => Math.sign(d[2019] - d[2010])} />
       <RuleX data={[0]} />
-    </Plot>
+    </Replot>
   );
 }
 
@@ -35,7 +35,7 @@ export async function usStatePopulationChangeRelative() {
   const statepop = await d3.csv<any>("data/us-state-population-2010-2019.csv", d3.autoType);
   const change = new Map(statepop.map((d) => [d.State, (d[2019] - d[2010]) / d[2010]]));
   return (
-    <Plot
+    <Replot
       height={800}
       label={null}
       x={{
@@ -62,6 +62,6 @@ export async function usStatePopulationChangeRelative() {
       <AxisY x={0} filter={(d) => change.get(d) < 0} anchor="right" />
       <GridX stroke="white" strokeOpacity={0.5} />
       <RuleX data={[0]} />
-    </Plot>
+    </Replot>
   );
 }

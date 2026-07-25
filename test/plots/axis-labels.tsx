@@ -1,8 +1,8 @@
-import {Plot, Frame, AxisX, AxisY, RuleX, RuleY} from "../../src/react/index.js";
+import {Replot, Frame, AxisX, AxisY, RuleX, RuleY} from "../../src/react/index.js";
 
 export async function axisLabelX() {
   return (
-    <Plot inset={6} x={{type: "linear"}} y={{type: "linear", axis: null}}>
+    <Replot inset={6} x={{type: "linear"}} y={{type: "linear", axis: null}}>
       <Frame />
       <AxisX anchor="top" label="top-left" labelAnchor="left" />
       <AxisX anchor="top" label="top-center" labelAnchor="center" ticks={[]} />
@@ -10,13 +10,13 @@ export async function axisLabelX() {
       <AxisX anchor="bottom" label="bottom-left" labelAnchor="left" />
       <AxisX anchor="bottom" label="bottom-center" labelAnchor="center" ticks={[]} />
       <AxisX anchor="bottom" label="bottom-right" labelAnchor="right" ticks={[]} />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function axisLabelY() {
   return (
-    <Plot inset={6} x={{type: "linear", axis: null}} y={{type: "linear"}}>
+    <Replot inset={6} x={{type: "linear", axis: null}} y={{type: "linear"}}>
       <Frame />
       <AxisY anchor="left" label="left-top" labelAnchor="top" />
       <AxisY anchor="left" label="left-center" labelAnchor="center" ticks={[]} />
@@ -24,56 +24,56 @@ export async function axisLabelY() {
       <AxisY anchor="right" label="right-top" labelAnchor="top" />
       <AxisY anchor="right" label="right-center" labelAnchor="center" ticks={[]} />
       <AxisY anchor="right" label="right-bottom" labelAnchor="bottom" ticks={[]} />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function axisLabelBoth() {
   return (
-    <Plot
+    <Replot
       inset={6}
       x={{type: "linear", axis: "both", labelAnchor: "center"}}
       y={{type: "linear", axis: "both", labelAnchor: "center"}}
     >
       <RuleX data={[{x: 0}, {x: 1}]} x="x" />
       <RuleY data={[{y: 0}, {y: 1}]} y="y" />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function axisLabelBothReverse() {
   return (
-    <Plot
+    <Replot
       inset={6}
       x={{type: "linear", reverse: true, axis: "both", labelAnchor: "center"}}
       y={{type: "linear", reverse: true, axis: "both", labelAnchor: "center"}}
     >
       <RuleX data={[{x: 0}, {x: 1}]} x="x" />
       <RuleY data={[{y: 0}, {y: 1}]} y="y" />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function axisLabelFontVariant() {
   return (
-    <Plot x={{domain: "abcde"}}>
+    <Replot x={{domain: "abcde"}}>
       <AxisX label="Letter" fontVariant="small-caps" />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function axisLabelVaryingFill() {
   return (
-    <Plot x={{domain: "ABCDEF"}}>
+    <Replot x={{domain: "ABCDEF"}}>
       <AxisX label="Letter" fill={(d, i) => i} />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function axisLabelHref() {
   return (
-    <Plot x={{domain: "ABCDEF"}}>
+    <Replot x={{domain: "ABCDEF"}}>
       <AxisX label="Letter" href={(d) => `https://en.wikipedia.org/wiki/${d}`} />
-    </Plot>
+    </Replot>
   );
 }

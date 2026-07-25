@@ -1,4 +1,4 @@
-import {Plot, Dot, Arrow, Text} from "../../src/react/index.js";
+import {Replot, Dot, Arrow, Text} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function markovChain() {
@@ -10,7 +10,7 @@ export async function markovChain() {
   const centers = matrix.map((m, i) => d3.pointRadial(((2 - i) * 2 * Math.PI) / matrix.length, 100));
   const factors = matrix.flatMap((m, i) => m.map((value, j) => ({i, j, value})));
   return (
-    <Plot width={400} inset={60} aspectRatio={1} axis={null}>
+    <Replot width={400} inset={60} aspectRatio={1} axis={null}>
       <Dot data={centers} r={40} />
       <Arrow
         data={factors}
@@ -30,6 +30,6 @@ export async function markovChain() {
         y={({i, j}) => (centers[i][1] + centers[j][1]) / 2 - (centers[i][0] - centers[j][0]) * 0.16}
         text="value"
       />
-    </Plot>
+    </Replot>
   );
 }

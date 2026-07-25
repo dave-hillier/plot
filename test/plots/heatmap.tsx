@@ -1,9 +1,9 @@
-import {Plot, Raster, Frame, RuleX, RuleY, Rect} from "../../src/react/index.js";
+import {Replot, Raster, Frame, RuleX, RuleY, Rect} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function heatmap() {
   return (
-    <Plot color={{type: "diverging"}}>
+    <Replot color={{type: "diverging"}}>
       <Raster
         fill={(x, y) => x * y * Math.sin(x) * Math.cos(y)}
         x1={0}
@@ -13,7 +13,7 @@ export async function heatmap() {
         pixelSize={3}
       />
       <Frame />
-    </Plot>
+    </Replot>
   );
 }
 
@@ -28,7 +28,7 @@ export async function heatmapArray() {
   const x = (f => i => f.invert(i % width + 0.5))(d3.scaleLinear([x1, x2], [0, width])); // prettier-ignore
   const y = (f => i => f.invert(Math.floor(i / width) + 0.5))(d3.scaleLinear([y2, y1], [height, 0])); // prettier-ignore
   return (
-    <Plot color={{type: "diverging"}}>
+    <Replot color={{type: "diverging"}}>
       <Raster
         data={d3.range(width * height)}
         fill={((f) => (_, i) => f(x(i), y(i)))((x, y) => x * y * Math.sin(x) * Math.cos(y)) /* prettier-ignore */}
@@ -42,13 +42,13 @@ export async function heatmapArray() {
         height={height}
       />
       <Frame />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function heatmapLog() {
   return (
-    <Plot
+    <Replot
       height={630}
       x={{ticks: 10, tickFormat: "+f"}}
       y={{ticks: 10, tickFormat: "+f"}}
@@ -68,22 +68,22 @@ export async function heatmapLog() {
       <RuleX data={[0]} strokeOpacity={0.2} />
       <RuleY data={[0]} strokeOpacity={0.2} />
       <Frame />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function heatmapPartial() {
   return (
-    <Plot axis={null}>
+    <Replot axis={null}>
       <Raster x1={-7} x2={7} y1={-7} y2={7} fill={(x, y) => Math.atan2(y, x)} pixelSize={2} />
       <Rect data={{length: 1}} x1={-10} x2={10} y1={-10} y2={10} stroke="currentColor" />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function heatmapFillOpacity() {
   return (
-    <Plot axis={null}>
+    <Replot axis={null}>
       <Raster
         x1={-1}
         y1={-1}
@@ -93,13 +93,13 @@ export async function heatmapFillOpacity() {
         fillOpacity={(x, y) => Math.PI - Math.atan2(y, x)}
         pixelSize={2}
       />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function heatmapOpacity() {
   return (
-    <Plot axis={null}>
+    <Replot axis={null}>
       <Raster
         x1={-1}
         y1={-1}
@@ -109,15 +109,15 @@ export async function heatmapOpacity() {
         fillOpacity={(x, y) => Math.PI - Math.atan2(y, x)}
         pixelSize={2}
       />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function heatmapConstantOpacity() {
   return (
-    <Plot axis={null}>
+    <Replot axis={null}>
       <Raster x1={-1} y1={-1} x2={1} y2={1} fill={(x, y) => Math.atan2(y, x)} fillOpacity={0.5} pixelSize={2} />
-    </Plot>
+    </Replot>
   );
 }
 
@@ -126,7 +126,12 @@ export async function heatmapFaceted() {
     return x / (4 * Math.PI);
   }
   return (
-    <Plot height={580} color={{type: "diverging"}} fx={{tickFormat: (f) => f?.name}} fy={{tickFormat: (f) => f?.name}}>
+    <Replot
+      height={580}
+      color={{type: "diverging"}}
+      fx={{tickFormat: (f) => f?.name}}
+      fy={{tickFormat: (f) => f?.name}}
+    >
       <Raster
         fill={(x, y, {fx, fy}) => fx(x) * fy(y)}
         fx={[Math.sin, Math.sin, lin, lin]}
@@ -138,13 +143,13 @@ export async function heatmapFaceted() {
         pixelSize={2}
       />
       <Frame />
-    </Plot>
+    </Replot>
   );
 }
 
 export function mandelbrot() {
   return (
-    <Plot height={500}>
+    <Replot height={500}>
       <Raster
         fill={(x, y) => {
           for (let n = 0, zr = 0, zi = 0; n < 80; ++n) {
@@ -157,13 +162,13 @@ export function mandelbrot() {
         x2={1}
         y2={1.164}
       />
-    </Plot>
+    </Replot>
   );
 }
 
 export function mandelbrotClip() {
   return (
-    <Plot
+    <Replot
       height={500}
       clip={{
         type: "Polygon",
@@ -190,6 +195,6 @@ export function mandelbrotClip() {
         x2={1}
         y2={1.164}
       />
-    </Plot>
+    </Replot>
   );
 }

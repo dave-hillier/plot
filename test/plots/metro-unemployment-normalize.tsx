@@ -1,10 +1,10 @@
-import {Plot, Line, RuleY, normalizeY} from "../../src/react/index.js";
+import {Replot, Line, RuleY, normalizeY} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function metroUnemploymentNormalize() {
   const data = await d3.csv<any>("data/bls-metro-unemployment.csv", d3.autoType);
   return (
-    <Plot
+    <Replot
       y={{
         type: "log",
         label: "Change in unemployment (%)",
@@ -14,6 +14,6 @@ export async function metroUnemploymentNormalize() {
     >
       <Line data={data} {...normalizeY({x: "date", y: "unemployment", z: "division"})} />
       <RuleY data={[1]} />
-    </Plot>
+    </Replot>
   );
 }

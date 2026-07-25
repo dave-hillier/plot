@@ -1,4 +1,4 @@
-import {Plot, RuleX, BarX, Dot, TickX, groupY} from "../../src/react/index.js";
+import {Replot, RuleX, BarX, Dot, TickX, groupY} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function moviesProfitByGenre() {
@@ -6,7 +6,7 @@ export async function moviesProfitByGenre() {
   const Genre = (d) => d["Major Genre"] || "Other";
   const Profit = (d) => (d["Worldwide Gross"] - d["Production Budget"]) / 1e6;
   return (
-    <Plot
+    <Replot
       marginLeft={120}
       x={{
         grid: true,
@@ -41,6 +41,6 @@ export async function moviesProfitByGenre() {
           }
         )}
       />
-    </Plot>
+    </Replot>
   );
 }

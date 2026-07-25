@@ -1,4 +1,4 @@
-import {Plot, Frame, Geo} from "../../src/react/index.js";
+import {Replot, Frame, Geo} from "../../src/react/index.js";
 import * as d3 from "d3";
 import {geoBertin1953} from "d3-geo-projection";
 import {merge} from "topojson-client";
@@ -10,7 +10,7 @@ export async function projectionFitBertin1953() {
     world.objects.countries.geometries.filter((d) => d.properties.name !== "Antarctica")
   );
   return (
-    <Plot
+    <Replot
       width={960}
       height={302}
       marginRight={44}
@@ -21,6 +21,6 @@ export async function projectionFitBertin1953() {
     >
       <Frame stroke="red" />
       <Geo data={land} fill="currentColor" />
-    </Plot>
+    </Replot>
   );
 }

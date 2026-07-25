@@ -1,49 +1,49 @@
-import {Plot, DotX, indexOf} from "../../src/react/index.js";
+import {Replot, DotX, indexOf} from "../../src/react/index.js";
 
 export async function symbolSetFill() {
   return (
-    <Plot>
+    <Replot>
       <DotX
         data={["circle", "cross", "diamond", "square", "star", "triangle", "wye"]}
         fill="currentColor"
         symbol={indexOf}
       />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function symbolSetStroke() {
   return (
-    <Plot>
+    <Replot>
       <DotX
         data={["circle", "cross", "diamond", "square", "star", "triangle", "wye"]}
         stroke="currentColor"
         symbol={indexOf}
       />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function symbolSetFillColor() {
   return (
-    <Plot symbol={{legend: true}}>
+    <Replot symbol={{legend: true}}>
       <DotX
         data={["circle", "cross", "diamond", "square", "star", "triangle", "wye"]}
         fill={indexOf}
         symbol={indexOf}
       />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function symbolSetStrokeColor() {
   return (
-    <Plot symbol={{legend: true}}>
+    <Replot symbol={{legend: true}}>
       <DotX
         data={["circle", "cross", "diamond", "square", "star", "triangle", "wye"]}
         stroke={indexOf}
         symbol={indexOf}
       />
-    </Plot>
+    </Replot>
   );
 }

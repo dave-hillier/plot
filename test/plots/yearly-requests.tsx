@@ -1,4 +1,4 @@
-import {Plot, BarY} from "../../src/react/index.js";
+import {Replot, BarY} from "../../src/react/index.js";
 
 const requests = [
   [new Date("2002-01-01"), 9],
@@ -17,19 +17,19 @@ const requests = [
 
 export async function yearlyRequests() {
   return (
-    <Plot
+    <Replot
       label={null}
       x={{interval: 1, tickFormat: ""}} // TODO https://github.com/observablehq/plot/issues/768
     >
       <BarY data={requests} x={([date]) => date.getUTCFullYear()} y="1" />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function yearlyRequestsDate() {
   return (
-    <Plot label={null} x={{interval: "year"}}>
+    <Replot label={null} x={{interval: "year"}}>
       <BarY data={requests} x="0" y="1" />
-    </Plot>
+    </Replot>
   );
 }

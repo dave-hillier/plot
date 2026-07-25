@@ -1,10 +1,10 @@
-import {Plot, BarX, TextX, RuleX} from "../../src/react/index.js";
+import {Replot, BarX, TextX, RuleX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function documentationLinks() {
   const data = await d3.json<any>("data/plot-documentation.json").then((d) => d.listings);
   return (
-    <Plot
+    <Replot
       marginLeft={140}
       x={{
         domain: [0, 41],
@@ -32,6 +32,6 @@ export async function documentationLinks() {
         dx={-3}
       />
       <RuleX data={[0]} />
-    </Plot>
+    </Replot>
   );
 }

@@ -1,8 +1,8 @@
-import {Plot, RuleX, RuleY, TickX, TickY, LineY} from "../../src/react/index.js";
+import {Replot, RuleX, RuleY, TickX, TickY, LineY} from "../../src/react/index.js";
 
 export async function markerDasharray() {
   return (
-    <Plot axis={null} inset={20}>
+    <Replot axis={null} inset={20}>
       <LineY
         data={[
           [0, 5],
@@ -17,38 +17,38 @@ export async function markerDasharray() {
         markerMid="arrow"
         markerEnd="circle-stroke"
       />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function markerRuleX() {
   return (
-    <Plot>
+    <Replot>
       <RuleX data={[1, 2, 3]} marker="arrow-reverse" inset={3} />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function markerRuleY() {
   return (
-    <Plot>
+    <Replot>
       <RuleY data={[1, 2, 3]} marker="arrow-reverse" inset={3} />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function markerTickX() {
   return (
-    <Plot>
+    <Replot>
       <TickX data={[1, 2, 3]} marker="arrow-reverse" inset={3} />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function markerTickY() {
   return (
-    <Plot>
+    <Replot>
       <TickY data={[1, 2, 3]} marker="arrow-reverse" inset={3} />
-    </Plot>
+    </Replot>
   );
 }

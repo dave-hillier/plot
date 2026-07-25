@@ -1,4 +1,4 @@
-import {Plot, RuleY, LineX, Text} from "../../src/react/index.js";
+import {Replot, RuleY, LineX, Text} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function carsParcoords() {
@@ -28,7 +28,7 @@ export async function carsParcoords() {
   });
 
   return (
-    <Plot
+    <Replot
       marginLeft={104}
       marginRight={20}
       x={{
@@ -60,6 +60,6 @@ export async function carsParcoords() {
         stroke="white"
         strokeWidth={3}
       />
-    </Plot>
+    </Replot>
   );
 }

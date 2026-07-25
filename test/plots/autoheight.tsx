@@ -1,9 +1,9 @@
-import {Plot, RectY} from "../../src/react/index.js";
+import {Replot, RectY} from "../../src/react/index.js";
 
 export async function autoHeightEmpty() {
   return (
-    <Plot>
+    <Replot>
       <RectY data={[]} x="date" y="visitors" fy="path" />
-    </Plot>
+    </Replot>
   );
 }

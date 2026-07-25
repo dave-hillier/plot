@@ -1,10 +1,10 @@
-import {Plot, LineY, windowY} from "../../src/react/index.js";
+import {Replot, LineY, windowY} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function sfTemperatureWindow() {
   const sftemp = await d3.csv<any>("data/sf-temperatures.csv", d3.autoType);
   return (
-    <Plot
+    <Replot
       y={{
         grid: true,
         label: "Temperature (°F)"
@@ -14,6 +14,6 @@ export async function sfTemperatureWindow() {
       <LineY data={sftemp} {...windowY({k: 28, reduce: "min"}, {x: "date", y: "low", stroke: "blue"})} />
       <LineY data={sftemp} {...windowY({k: 28, reduce: "max"}, {x: "date", y: "low", stroke: "red"})} />
       <LineY data={sftemp} {...windowY({k: 28, reduce: "median"}, {x: "date", y: "low"})} />
-    </Plot>
+    </Replot>
   );
 }

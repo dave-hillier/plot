@@ -1,4 +1,4 @@
-import {Plot, LineY, BarY, RuleY} from "../../src/react/index.js";
+import {Replot, LineY, BarY, RuleY} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 async function getYearlyUnemployment() {
@@ -15,19 +15,19 @@ async function getYearlyUnemployment() {
 export async function yearFormat() {
   const data = await getYearlyUnemployment();
   return (
-    <Plot>
+    <Replot>
       <LineY data={data} x="year" y="unemployed" stroke="industry" marker={true} tip={true} />
       <RuleY data={[0]} />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function yearFormatOrdinal() {
   const data = await getYearlyUnemployment();
   return (
-    <Plot>
+    <Replot>
       <BarY data={data} x="year" y="unemployed" fill="industry" tip={true} />
       <RuleY data={[0]} />
-    </Plot>
+    </Replot>
   );
 }

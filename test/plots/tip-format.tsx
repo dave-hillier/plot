@@ -1,4 +1,4 @@
-import {Plot, Tip, RuleX} from "../../src/react/index.js";
+import {Replot, Tip, RuleX} from "../../src/react/index.js";
 
 function tip(
   data: any,
@@ -6,10 +6,10 @@ function tip(
   {height = 90, marks = [], ...plotOptions}: any = {}
 ) {
   return (
-    <Plot height={height} {...plotOptions}>
+    <Replot height={height} {...plotOptions}>
       {marks}
       <Tip data={data} x={x} frameAnchor={frameAnchor} anchor={anchor} {...tipOptions} />
-    </Plot>
+    </Replot>
   );
 }
 

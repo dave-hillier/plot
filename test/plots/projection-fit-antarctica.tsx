@@ -1,4 +1,4 @@
-import {Plot, Graticule, Geo, Frame, Dot, Text} from "../../src/react/index.js";
+import {Replot, Graticule, Geo, Frame, Dot, Text} from "../../src/react/index.js";
 import * as d3 from "d3";
 import {feature} from "topojson-client";
 
@@ -9,7 +9,7 @@ export async function projectionFitAntarctica() {
     world.objects.countries.geometries.find((d) => d.properties.name === "Antarctica")
   );
   return (
-    <Plot
+    <Replot
       width={600}
       height={600}
       inset={30}
@@ -27,6 +27,6 @@ export async function projectionFitAntarctica() {
       marks should not be rendered; the projected point is outside the frame. */}
       <Dot data={{length: 1}} x={-90} y={-63} />
       <Text data={{length: 1}} x={-90} y={-63} text={["Do not render"]} />
-    </Plot>
+    </Replot>
   );
 }

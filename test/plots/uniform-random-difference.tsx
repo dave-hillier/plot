@@ -1,10 +1,10 @@
-import {Plot, RectY, RuleY, binX} from "../../src/react/index.js";
+import {Replot, RectY, RuleY, binX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function uniformRandomDifference() {
   const random = d3.randomLcg(42);
   return (
-    <Plot
+    <Replot
       x={{
         label: "Difference of two uniform random variables",
         labelAnchor: "center"
@@ -16,6 +16,6 @@ export async function uniformRandomDifference() {
     >
       <RectY data={{length: 10000}} {...binX({y: "proportion"}, {x: () => random() - random()})} />
       <RuleY data={[0]} />
-    </Plot>
+    </Replot>
   );
 }

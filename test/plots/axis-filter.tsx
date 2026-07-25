@@ -1,8 +1,8 @@
-import {Plot, Dot, GridX, GridY, AxisX, AxisY} from "../../src/react/index.js";
+import {Replot, Dot, GridX, GridY, AxisX, AxisY} from "../../src/react/index.js";
 
 export async function axisFilter() {
   return (
-    <Plot height={100}>
+    <Replot height={100}>
       <Dot
         data={[
           ["A", 0],
@@ -14,6 +14,6 @@ export async function axisFilter() {
       <GridY filter={(d) => d} />
       <AxisX filter={(d) => d} />
       <AxisY filter={(d) => d} />
-    </Plot>
+    </Replot>
   );
 }

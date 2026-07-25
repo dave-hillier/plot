@@ -1,4 +1,4 @@
-import {Plot, Image, dodgeY} from "../../src/react/index.js";
+import {Replot, Image, dodgeY} from "../../src/react/index.js";
 import type {ImageProps} from "../../src/react/index.js";
 
 async function kitten({
@@ -8,9 +8,9 @@ async function kitten({
   ...options
 }: Partial<ImageProps> = {}) {
   return (
-    <Plot inset={60} width={520} height={520} axis={null} r={{range: [10, 60]}}>
+    <Replot inset={60} width={520} height={520} axis={null} r={{range: [10, 60]}}>
       <Image data={{length: 25}} x={x} y={y} src={src} {...options} />
-    </Plot>
+    </Replot>
   );
 }
 

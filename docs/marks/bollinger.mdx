@@ -1,4 +1,4 @@
-import {bollinger, BollingerX, BollingerY, LineY, MapY, Plot, RuleX} from "replot/react";
+import {bollinger, BollingerX, BollingerY, LineY, MapY, Replot, RuleX} from "replot/react";
 import * as d3 from "d3";
 import {useState} from "react";
 import aapl from "../data/aapl.ts";
@@ -27,9 +27,9 @@ For example, the chart below shows the price of Apple stock from 2013 to 2018, w
   </label>
 </p>
 
-<Plot>
+<Replot>
   <BollingerY data={aapl} x="Date" y="Close" n={n} k={k} />
-</Plot>
+</Replot>
 
 ```js-vue
 Plot.bollingerY(aapl, {x: "Date", y: "Close", n: {n}, k: {{k}}}).plot()
@@ -37,7 +37,7 @@ Plot.bollingerY(aapl, {x: "Date", y: "Close", n: {n}, k: {{k}}}).plot()
 
 For more control, you can also use the [bollinger map method](#bollinger) directly with the [map transform](../transforms/map.md).
 
-<Plot>
+<Replot>
   <MapY map={bollinger({n: 20, k: -2})}>
     <LineY data={aapl} x="Date" y="Close" stroke="red" />
   </MapY>
@@ -45,27 +45,27 @@ For more control, you can also use the [bollinger map method](#bollinger) direct
     <LineY data={aapl} x="Date" y="Close" stroke="green" />
   </MapY>
   <LineY data={aapl} x="Date" y="Close" />
-</Plot>
+</Replot>
 
 Below a candlestick chart is constructed from two [rule marks](./rule.md), with a bollinger mark underneath to emphasize the days when the stock was more volatile.
 
-<Plot x={{domain: [new Date("2014-01-01"), new Date("2014-06-01")]}} y={{domain: [68, 92], grid: true}} color={{domain: [-1, 0, 1], range: ["red", "black", "green"]}}>
+<Replot x={{domain: [new Date("2014-01-01"), new Date("2014-06-01")]}} y={{domain: [68, 92], grid: true}} color={{domain: [-1, 0, 1], range: ["red", "black", "green"]}}>
   <BollingerY data={aapl} x="Date" y="Close" stroke="none" clip />
   <RuleX data={aapl} x="Date" y1="Low" y2="High" strokeWidth={1} clip />
   <RuleX data={aapl} x="Date" y1="Open" y2="Close" strokeWidth={3} stroke={(d) => Math.sign(d.Close - d.Open)} clip />
-</Plot>
+</Replot>
 
 The bollinger mark has two constructors: the common [bollingerY](#bollingerY) for when time goes right→ (or ←left); and the rare [bollingerX](#bollingerX) for when time goes up↑ (or down↓).
 
-<Plot>
+<Replot>
   <BollingerX data={aapl} y="Date" x="Close" />
-</Plot>
+</Replot>
 
 As [shorthand](../features/shorthand.md), you can pass an array of numbers as data. Below, the *x* axis represents the zero-based index into the data (*i.e.*, trading days since May 13, 2013).
 
-<Plot>
+<Replot>
   <BollingerY data={aapl.map((d) => d.Close)} />
-</Plot>
+</Replot>
 
 ## Bollinger options
 

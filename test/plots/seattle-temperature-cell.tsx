@@ -1,10 +1,10 @@
-import {Plot, Cell, group} from "../../src/react/index.js";
+import {Replot, Cell, group} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function seattleTemperatureCell() {
   const seattle = await d3.csv<any>("data/seattle-weather.csv", d3.autoType);
   return (
-    <Plot
+    <Replot
       height={300}
       padding={0}
       y={{
@@ -23,6 +23,6 @@ export async function seattleTemperatureCell() {
           }
         )}
       />
-    </Plot>
+    </Replot>
   );
 }

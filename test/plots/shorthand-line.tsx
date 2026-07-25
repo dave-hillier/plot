@@ -1,4 +1,4 @@
-import {Plot, Line} from "../../src/react/index.js";
+import {Replot, Line} from "../../src/react/index.js";
 
 export async function shorthandLine() {
   const timeSeries = [
@@ -44,8 +44,8 @@ export async function shorthandLine() {
     [new Date("2018-02-28"), 179.259995]
   ];
   return (
-    <Plot>
+    <Replot>
       <Line data={timeSeries} />
-    </Plot>
+    </Replot>
   );
 }

@@ -1,4 +1,4 @@
-import {Plot, RectY, binX} from "../../src/react/index.js";
+import {Replot, RectY, binX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 const dates = new Array(1e6);
@@ -9,8 +9,8 @@ for (let i = 0; i < dates.length; ++i) dates[i] = new Date(random() * (end - sta
 
 export async function bin1m() {
   return (
-    <Plot>
+    <Replot>
       <RectY data={dates} {...binX({y: "count", data: "first"})} />
-    </Plot>
+    </Replot>
   );
 }

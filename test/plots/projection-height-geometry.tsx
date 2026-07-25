@@ -1,4 +1,4 @@
-import {Plot, Geo, Frame, Graticule, Sphere} from "../../src/react/index.js";
+import {Replot, Geo, Frame, Graticule, Sphere} from "../../src/react/index.js";
 
 const shape = {
   type: "LineString",
@@ -11,36 +11,36 @@ const shape = {
 
 export async function projectionHeightGeometry() {
   return (
-    <Plot facet={{data: [0, 1], y: [0, 1]}} projection="identity">
+    <Replot facet={{data: [0, 1], y: [0, 1]}} projection="identity">
       <Geo data={shape} />
       <Frame stroke="red" strokeDasharray={4} />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function projectionHeightDegenerate() {
   return (
-    <Plot style="border: #777 1px solid;" projection="mercator" height={400} inset={199.5}>
+    <Replot style="border: #777 1px solid;" projection="mercator" height={400} inset={199.5}>
       <Graticule />
       <Sphere />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function projectionHeightGeometryDomain() {
   return (
-    <Plot projection={{type: "identity", domain: shape}}>
+    <Replot projection={{type: "identity", domain: shape}}>
       <Geo data={shape} />
       <Frame stroke="red" strokeDasharray={4} />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function projectionHeightGeometryNull() {
   return (
-    <Plot aspectRatio={true} width={400} facet={{data: [0, 1], y: [0, 1]}}>
+    <Replot aspectRatio={true} width={400} facet={{data: [0, 1], y: [0, 1]}}>
       <Geo data={shape} />
       <Frame stroke="red" strokeDasharray={4} />
-    </Plot>
+    </Replot>
   );
 }

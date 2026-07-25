@@ -1,11 +1,11 @@
-import {Plot, Dot, Text, Frame, LineY} from "../../src/react/index.js";
+import {Replot, Dot, Text, Frame, LineY} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function liborProjections() {
   const libor = await d3.csv<any>("data/libor-projections.csv", d3.autoType);
   const pc = d3.format(".2%");
   return (
-    <Plot width={960} aspectRatio={1} insetLeft={10} insetRight={5} insetBottom={7} y={{grid: true, line: true}}>
+    <Replot width={960} aspectRatio={1} insetLeft={10} insetRight={5} insetBottom={7} y={{grid: true, line: true}}>
       <Dot data={libor} x="about" y="on" fill="value" />
       <Text
         data={libor}
@@ -16,14 +16,14 @@ export async function liborProjections() {
         stroke="white"
         fill="black"
       />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function liborProjectionsFacet() {
   const libor = await d3.csv<any>("data/libor-projections.csv", d3.autoType);
   return (
-    <Plot
+    <Replot
       fy={{tickFormat: "d"}}
       y={{percent: true, nice: true, grid: true, axis: "right", label: "rate (%)"}}
       color={{legend: true}}
@@ -38,6 +38,6 @@ export async function liborProjectionsFacet() {
         y="value"
         tip={true}
       />
-    </Plot>
+    </Replot>
   );
 }

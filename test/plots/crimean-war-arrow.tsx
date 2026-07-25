@@ -1,4 +1,4 @@
-import {Plot, RuleY, LineY} from "../../src/react/index.js";
+import {Replot, RuleY, LineY} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function crimeanWarArrow() {
@@ -6,9 +6,9 @@ export async function crimeanWarArrow() {
   const causes = crimea.columns.slice(2);
   const data = causes.flatMap((cause) => crimea.map(({date, [cause]: deaths}) => ({date, cause, deaths})));
   return (
-    <Plot x={{tickFormat: "%b", label: null}}>
+    <Replot x={{tickFormat: "%b", label: null}}>
       <RuleY data={[0]} />
       <LineY data={data} x="date" y="deaths" stroke="cause" markerMid="arrow" />
-    </Plot>
+    </Replot>
   );
 }

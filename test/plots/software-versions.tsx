@@ -1,4 +1,4 @@
-import {Plot, BarX, Text, RuleX, stackX, groupZ} from "../../src/react/index.js";
+import {Replot, BarX, Text, RuleX, stackX, groupZ} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function softwareVersions() {
@@ -24,7 +24,7 @@ export async function softwareVersions() {
   }
 
   return (
-    <Plot
+    <Replot
       x={{
         percent: true
       }}
@@ -36,6 +36,6 @@ export async function softwareVersions() {
       <BarX data={data} {...stack({fill: "version", insetLeft: 0.5, insetRight: 0.5})} />
       <Text data={data} {...stack({text: "version"})} />
       <RuleX data={[0, 1]} />
-    </Plot>
+    </Replot>
   );
 }

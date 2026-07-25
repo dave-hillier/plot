@@ -1,4 +1,4 @@
-import {Plot, Frame, Dot, dodgeX} from "../../src/react/index.js";
+import {Replot, Frame, Dot, dodgeX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 // Country code to continent; coverage limited to sport=boxing.
@@ -18,7 +18,7 @@ export async function athletesBoxingHeight() {
     (d) => d.sport === "boxing" && d.height
   );
   return (
-    <Plot
+    <Replot
       width={600}
       height={350}
       facet={{data: athletes, x: "nationality"}}
@@ -27,6 +27,6 @@ export async function athletesBoxingHeight() {
     >
       <Frame />
       <Dot data={athletes} {...dodgeX({y: "height", title: "nationality", fill: "currentColor", anchor: "middle"})} />
-    </Plot>
+    </Replot>
   );
 }

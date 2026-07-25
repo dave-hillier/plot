@@ -1,11 +1,11 @@
-import {Plot, Cell, Text} from "../../src/react/index.js";
+import {Replot, Cell, Text} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function sparseCell() {
   const simpsons = d3.sort(await d3.csv<any>("data/simpsons.csv", d3.autoType), (d) => d.number_in_series);
   const data = [...simpsons.slice(0, 26), ...simpsons.slice(-10)];
   return (
-    <Plot
+    <Replot
       grid={20}
       padding={0.05}
       x={{
@@ -32,6 +32,6 @@ export async function sparseCell() {
         text={(d) => (d.imdb_rating == null ? "-" : d.imdb_rating.toFixed(1))}
         title="title"
       />
-    </Plot>
+    </Replot>
   );
 }

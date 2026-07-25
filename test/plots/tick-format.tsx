@@ -1,19 +1,19 @@
-import {Plot, BarX, Frame} from "../../src/react/index.js";
+import {Replot, BarX, Frame} from "../../src/react/index.js";
 
 export async function tickFormatEmptyDomain() {
   return (
-    <Plot y={{tickFormat: "%W"}}>
+    <Replot y={{tickFormat: "%W"}}>
       <BarX data={[]} />
       <Frame />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function tickFormatEmptyFacetDomain() {
   return (
-    <Plot fy={{tickFormat: "%W"}}>
+    <Replot fy={{tickFormat: "%W"}}>
       <BarX data={[]} />
       <Frame />
-    </Plot>
+    </Replot>
   );
 }

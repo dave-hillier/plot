@@ -1,4 +1,4 @@
-import {Plot, AreaY, AxisFy, AxisX} from "../../src/react/index.js";
+import {Replot, AreaY, AxisFy, AxisX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function trafficHorizon() {
@@ -8,7 +8,7 @@ export async function trafficHorizon() {
   const step = d3.tickStep(0, max, bands);
   const ticks = d3.ticks(0, max, bands);
   return (
-    <Plot
+    <Replot
       width={960}
       height={1100}
       margin={0}
@@ -35,6 +35,6 @@ export async function trafficHorizon() {
       ))}
       <AxisFy frameAnchor="left" label={null} />
       <AxisX anchor="top" filter={(d, i) => i > 0} />
-    </Plot>
+    </Replot>
   );
 }

@@ -1,12 +1,12 @@
-import {Plot, Frame, Text, RuleY, BarY, groupX} from "../../src/react/index.js";
+import {Replot, Frame, Text, RuleY, BarY, groupX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function bandClip() {
   return (
-    <Plot y={{type: "band"}} clip>
+    <Replot y={{type: "band"}} clip>
       <Frame />
       <Text data={["A", "B", "C"]} x={(d) => d} y={(d) => d} fontSize={50} />
-    </Plot>
+    </Replot>
   );
 }
 
@@ -21,9 +21,9 @@ export async function bandClip2() {
     {Date: new Date("2022-12-06"), Count: 5}
   ];
   return (
-    <Plot grid x={{interval: d3.utcDay}}>
+    <Replot grid x={{interval: d3.utcDay}}>
       <RuleY data={[0]} />
       <BarY data={data} {...groupX({y: "sum"}, {x: "Date", y: "Count", rx: 6, insetBottom: -6, clip: "frame"})} />
-    </Plot>
+    </Replot>
   );
 }

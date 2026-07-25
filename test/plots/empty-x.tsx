@@ -1,8 +1,8 @@
-import {Plot, Frame} from "../../src/react/index.js";
+import {Replot, Frame} from "../../src/react/index.js";
 
 export async function emptyX() {
   return (
-    <Plot
+    <Replot
       grid={true}
       x={{
         domain: [0, 1],
@@ -10,6 +10,6 @@ export async function emptyX() {
       }}
     >
       <Frame />
-    </Plot>
+    </Replot>
   );
 }

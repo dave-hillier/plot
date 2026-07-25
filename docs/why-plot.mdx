@@ -1,4 +1,4 @@
-import {AreaY, BarX, BoxX, Dot, Frame, GroupY, LineY, Plot, RuleX, RuleY} from "replot/react";
+import {AreaY, BarX, BoxX, Dot, Frame, GroupY, LineY, Replot, RuleX, RuleY} from "replot/react";
 import * as d3 from "d3";
 import aapl from "./data/aapl.ts";
 import penguins from "./data/penguins.ts";
@@ -17,62 +17,62 @@ Or put more simply: **with Replot, you’ll see more charts.**
 
 You can make a meaningful chart in Replot with as little as one line of code.
 
-<Plot>
+<Replot>
   <Dot data={penguins} x="culmen_length_mm" y="culmen_depth_mm" stroke="species" />
-</Plot>
+</Replot>
 
 What makes Replot concise? In a word: *defaults*. If you specify the semantics — your data and the desired encodings — Replot will figure out the rest.
 
 The beauty of defaults is that you can override them as needed. This is ideal for exploring: you invest minimally in the initial chart, and as you start to see something interesting, you progressively customize to improve the display. Perhaps the plot above would be easier to read with an aspect ratio proportional to the data, a grid, and a legend?
 
-<Plot grid aspectRatio={1} inset={10} x={{tickSpacing: 80, label: "Culmen length (mm)"}} y={{tickSpacing: 80, label: "Culmen depth (mm)"}} color={{legend: true}}>
+<Replot grid aspectRatio={1} inset={10} x={{tickSpacing: 80, label: "Culmen length (mm)"}} y={{tickSpacing: 80, label: "Culmen depth (mm)"}} color={{legend: true}}>
   <Frame />
   <Dot data={penguins} x="culmen_length_mm" y="culmen_depth_mm" stroke="species" />
-</Plot>
+</Replot>
 
 ## Replot transforms data
 
 Munging data, not visualizing it, is often most of the work of data analysis. Replot’s [transforms](./features/transforms.md) let you aggregate and derive data *within* your plot specification, reducing the time spent preparing data. For example, if you have a dataset of penguins, you can quickly count their frequency by *species* with the [group transform](./transforms/group.md).
 
-<Plot marginLeft={80} marginRight={80}>
+<Replot marginLeft={80} marginRight={80}>
   <GroupY x="count">
     <BarX data={penguins} y="species" />
   </GroupY>
   <RuleX data={[0]} />
-</Plot>
+</Replot>
 
 Because transforms are integrated into Replot, they work automatically with other Replot features such as [faceting](./features/facets.md). For example, to breakdown the chart above by *island*, we just add the **fy** (vertical facet) option.
 
-<Plot marginLeft={80} marginRight={80}>
+<Replot marginLeft={80} marginRight={80}>
   <GroupY x="count">
     <BarX data={penguins} fy="island" y="species" />
   </GroupY>
   <RuleX data={[0]} />
-</Plot>
+</Replot>
 
 And to color by *sex*, too? Add **fill**; the [bar mark](./marks/bar.md) then applies an implicit [stack transform](./transforms/stack.md).
 
-<Plot marginLeft={80} marginRight={80} color={{legend: true}}>
+<Replot marginLeft={80} marginRight={80} color={{legend: true}}>
   <GroupY x="count">
     <BarX data={penguins} fy="island" y="species" fill="sex" />
   </GroupY>
   <RuleX data={[0]} />
-</Plot>
+</Replot>
 
 Replot’s transforms can do powerful things, including [normalizing series](./transforms/normalize.md), computing [moving averages](./transforms/window.md), laying out [trees](./marks/tree.md), [dodging](./transforms/dodge.md), and [hexagonal binning](./transforms/hexbin.md).
 
 ## Replot is composable
 
-Simple components gain power through composition, such as layering multiple [marks](./features/marks.md) into a single plot. In React, this composability is especially natural — each mark is a JSX component that you nest inside `<Plot>`:
+Simple components gain power through composition, such as layering multiple [marks](./features/marks.md) into a single plot. In React, this composability is especially natural — each mark is a JSX component that you nest inside `<Replot>`:
 
 ```jsx
-import {Plot, RuleY, AreaY, LineY} from "replot/react";
+import {Replot, RuleY, AreaY, LineY} from "replot/react";
 
-<Plot>
+<Replot>
   <RuleY data={[0]} />
   <AreaY data={aapl} x="Date" y="Close" fill="blue" fillOpacity={0.1} />
   <LineY data={aapl} x="Date" y="Close" stroke="blue" />
-</Plot>
+</Replot>
 ```
 
 With the imperative API, you can similarly define custom composite marks:
@@ -89,17 +89,17 @@ function arealineY(data, {color, fillOpacity = 0.1, ...options} = {}) {
 
 You can use this composite mark like any built-in mark:
 
-<Plot>
+<Replot>
   <RuleY data={[0]} />
   <AreaY data={aapl} x="Date" y="Close" fill="blue" fillOpacity={0.1} />
   <LineY data={aapl} x="Date" y="Close" stroke="blue" />
-</Plot>
+</Replot>
 
 Replot uses this technique internally: the [axis mark](./marks/axis.md) and [box mark](./marks/box.md) are both composite marks.
 
-<Plot marginLeft={60} y={{label: null}}>
+<Replot marginLeft={60} y={{label: null}}>
   <BoxX data={penguins} x="body_mass_g" y="species" />
-</Plot>
+</Replot>
 
 Replot’s [transforms](./features/transforms.md) are composable, too: to apply multiple transforms, you simply pass the *options* from one transform to the next. Some marks even apply implicit transforms, say for [stacking](./transforms/stack.md) or [binning](./transforms/bin.md) as shown [above](#replot-transforms-data). Mark options are plain JavaScript objects, so you can also share options across marks and inspect them to debug.
 

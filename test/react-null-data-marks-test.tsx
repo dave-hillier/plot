@@ -9,7 +9,7 @@ import {act} from "react";
 import jsdomit from "./jsdom.js";
 import * as Plot from "../src/index.ts";
 import {
-  Plot as PlotComponent,
+  Replot as PlotComponent,
   Arrow,
   BarX,
   BarY,

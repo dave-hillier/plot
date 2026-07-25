@@ -1,17 +1,17 @@
-import {Plot, Geo, Text, centroid, geoCentroid} from "../../src/react/index.js";
+import {Replot, Geo, Text, centroid, geoCentroid} from "../../src/react/index.js";
 import * as d3 from "d3";
 import {feature} from "topojson-client";
 
 export async function geoText() {
   const london = feature(await d3.json("data/london.json"), "boroughs");
   return (
-    <Plot projection={{type: "transverse-mercator", rotate: [2, 0, 0], domain: london}}>
+    <Replot projection={{type: "transverse-mercator", rotate: [2, 0, 0], domain: london}}>
       <Geo data={london} />
       <Text
         data={london.features}
         {...centroid({text: "id", stroke: "var(--plot-background)", fill: "currentColor"})}
       />
-    </Plot>
+    </Replot>
   );
 }
 
@@ -20,7 +20,7 @@ export async function geoTip() {
   const [london, boroughs] = await getLondonBoroughs();
   const access = await getLondonAccess();
   return (
-    <Plot
+    <Replot
       width={900}
       projection={{type: "transverse-mercator", rotate: [2, 0, 0], domain: london}}
       color={{scheme: "RdYlBu", pivot: 0.5}}
@@ -35,7 +35,7 @@ export async function geoTip() {
         channels={{borough: "borough"}}
         tip={true}
       />
-    </Plot>
+    </Replot>
   );
 }
 
@@ -44,7 +44,7 @@ export async function geoTipCentroid() {
   const [london, boroughs] = await getLondonBoroughs();
   const access = await getLondonAccess();
   return (
-    <Plot
+    <Replot
       width={900}
       projection={{type: "transverse-mercator", rotate: [2, 0, 0], domain: london}}
       color={{scheme: "RdYlBu", pivot: 0.5}}
@@ -61,7 +61,7 @@ export async function geoTipCentroid() {
           tip: true
         })}
       />
-    </Plot>
+    </Replot>
   );
 }
 
@@ -70,7 +70,7 @@ export async function geoTipGeoCentroid() {
   const [london, boroughs] = await getLondonBoroughs();
   const access = await getLondonAccess();
   return (
-    <Plot
+    <Replot
       width={900}
       projection={{type: "transverse-mercator", rotate: [2, 0, 0], domain: london}}
       color={{scheme: "RdYlBu", pivot: 0.5}}
@@ -87,7 +87,7 @@ export async function geoTipGeoCentroid() {
           tip: true
         })}
       />
-    </Plot>
+    </Replot>
   );
 }
 
@@ -102,7 +102,7 @@ export async function geoTipXY() {
   const [london, boroughs] = await getLondonBoroughs();
   const access = await getLondonAccess();
   return (
-    <Plot
+    <Replot
       width={900}
       projection={{type: "transverse-mercator", rotate: [2, 0, 0], domain: london}}
       color={{scheme: "RdYlBu", pivot: 0.5}}
@@ -119,7 +119,7 @@ export async function geoTipXY() {
         channels={{borough: "borough"}}
         tip={true}
       />
-    </Plot>
+    </Replot>
   );
 }
 
@@ -128,7 +128,7 @@ export async function geoTipScaled() {
   const [, boroughs] = await getLondonBoroughs();
   const access = await getLondonAccess();
   return (
-    <Plot width={900} height={265} color={{scheme: "RdYlBu", pivot: 0.5}}>
+    <Replot width={900} height={265} color={{scheme: "RdYlBu", pivot: 0.5}}>
       <Geo
         data={access}
         {...centroid({
@@ -141,7 +141,7 @@ export async function geoTipScaled() {
           tip: true
         })}
       />
-    </Plot>
+    </Replot>
   );
 }
 

@@ -1,4 +1,4 @@
-import {BinX, Plot, RectY} from "replot/react";
+import {BinX, Replot, RectY} from "replot/react";
 import * as d3 from "d3";
 
 # Getting started
@@ -9,11 +9,11 @@ Replot supports a variety of environments, including a first-class [React compon
 
 A quick way to try the Plot API online is on [Observable](https://observablehq.com), where **Observable Plot** — the library Replot is forked from — is available by default in notebooks as part of Observable’s standard library. Replot’s imperative API is compatible, so code you sketch there carries over. To use Plot in a notebook, simply return the generated plot from a cell like so:
 
-<Plot>
+<Replot>
   <BinX y="count">
     <RectY data={{length: 10000}} x={d3.randomNormal.source(d3.randomLcg(42))()} />
   </BinX>
-</Plot>
+</Replot>
 
 Observable includes a variety of Plot snippets when you click **+** to add a cell, as well as convenient [sample datasets](https://observablehq.com/@observablehq/sample-datasets) to try out Plot features. Or upload a CSV or JSON file to start playing with your data. You can even use [Observable’s chart cell](https://observablehq.com/@observablehq/chart-cell), which uses Plot’s [auto mark](./marks/auto.md) under the hood, to create quick charts without writing code! You can then eject to JavaScript by clicking **+** to see the equivalent Plot code.
 
@@ -28,7 +28,7 @@ Observable is free for public use. Sign up for a [Pro account](https://observabl
 
 ## Replot in vanilla HTML {/* {#plot-in-vanilla-html} */}
 
-In vanilla HTML, you can load Replot from a CDN such as jsDelivr or you can download it locally. We recommend using the CDN-hosted ES module bundle as it automatically loads Replot’s dependency on [D3](https://d3js.org). But for those who need it, we also provide a UMD bundle that exports the `Plot` global when loaded as a plain script — the package is named `replot`, but its UMD global is still `Plot`.
+In vanilla HTML, you can load Replot from a CDN such as jsDelivr or you can download it locally. We recommend using the CDN-hosted ES module bundle as it automatically loads Replot’s dependency on [D3](https://d3js.org). But for those who need it, we also provide a UMD bundle that exports the `Replot` global when loaded as a plain script.
 
 ```html [ESM + CDN]
 <!DOCTYPE html>
@@ -51,7 +51,7 @@ div.append(plot);
 <script src="https://cdn.jsdelivr.net/npm/replot@0.6"></script>
 <script type="module">
 
-const plot = Plot.rectY({length: 10000}, Plot.binX({y: "count"}, {x: Math.random})).plot();
+const plot = Replot.rectY({length: 10000}, Replot.binX({y: "count"}, {x: Math.random})).plot();
 const div = document.querySelector("#myplot");
 div.append(plot);
 
@@ -65,7 +65,7 @@ div.append(plot);
 <script src="plot.js"></script>
 <script type="module">
 
-const plot = Plot.rectY({length: 10000}, Plot.binX({y: "count"}, {x: Math.random})).plot();
+const plot = Replot.rectY({length: 10000}, Replot.binX({y: "count"}, {x: Math.random})).plot();
 const div = document.querySelector("#myplot");
 div.append(plot);
 
@@ -102,7 +102,7 @@ pnpm add replot
 You can then load Replot into your app. For **React**, import from `replot/react`:
 
 ```js
-import {Plot, Dot, Line, BarY, AxisX, AxisY} from "replot/react";
+import {Replot, Dot, Line, BarY, AxisX, AxisY} from "replot/react";
 ```
 
 For the **imperative API** (vanilla JS or non-React frameworks), import from the main entry point:
@@ -133,39 +133,39 @@ Replot provides a first-class React component API via `replot/react`. Instead of
 Import the `Plot` root component and mark components, then compose them as JSX:
 
 ```jsx [App.jsx]
-import {Plot, Dot, AxisX, AxisY} from "replot/react";
+import {Replot, Dot, AxisX, AxisY} from "replot/react";
 import penguins from "./penguins.json";
 
 export default function App() {
   return (
     <div>
       <h1>Penguins</h1>
-      <Plot width={640} height={400}>
+      <Replot width={640} height={400}>
         <Dot data={penguins} x="culmen_length_mm" y="culmen_depth_mm" fill="species" />
         <AxisX />
         <AxisY />
-      </Plot>
+      </Replot>
     </div>
   );
 }
 ```
-The `<Plot>` component handles scale inference, axis generation, and layout automatically. Pass scale options as props on `<Plot>`, and channel mappings as props on mark components. Every mark available in the imperative API has a corresponding React component: `<Dot>`, `<Line>`, `<BarX>`, `<BarY>`, `<Area>`, `<Rect>`, `<Text>`, `<Rule>`, `<Tick>`, and [many more](./api.md).
+The `<Replot>` component handles scale inference, axis generation, and layout automatically. Pass scale options as props on `<Replot>`, and channel mappings as props on mark components. Every mark available in the imperative API has a corresponding React component: `<Dot>`, `<Line>`, `<BarX>`, `<BarY>`, `<Area>`, `<Rect>`, `<Text>`, `<Rule>`, `<Tick>`, and [many more](./api.md).
 
 ### With transforms
 
 Transforms such as binning, grouping, and stacking are available as wrapper components: nest a mark inside the wrapper, with the transform options as props on the wrapper and the input channels on the mark.
 
 ```jsx [Histogram.jsx]
-import {Plot, BarY, RuleY, BinX} from "replot/react";
+import {Replot, BarY, RuleY, BinX} from "replot/react";
 
 export default function Histogram({data}) {
   return (
-    <Plot>
+    <Replot>
       <BinX y="count">
         <BarY data={data} x="value" fill="steelblue" />
       </BinX>
       <RuleY data={[0]} />
-    </Plot>
+    </Replot>
   );
 }
 ```
@@ -173,17 +173,17 @@ export default function Histogram({data}) {
 Transforms are also available as pure functions (`binX`, `groupX`, `stackY`, …) whose result you can spread onto a mark: `<BarY data={data} {...binX({y: "count"}, {x: "value"})} />`.
 ### With scale options
 
-Configure scales by passing options directly to `<Plot>`:
+Configure scales by passing options directly to `<Replot>`:
 
 ```jsx [TemperatureChart.jsx]
-import {Plot, Dot, RuleY} from "replot/react";
+import {Replot, Dot, RuleY} from "replot/react";
 
 export default function TemperatureChart({data}) {
   return (
-    <Plot y={{grid: true}} color={{scheme: "burd"}}>
+    <Replot y={{grid: true}} color={{scheme: "burd"}}>
       <RuleY data={[0]} />
       <Dot data={data} x="Date" y="Anomaly" stroke="Anomaly" />
-    </Plot>
+    </Replot>
   );
 }
 ```
@@ -192,13 +192,13 @@ export default function TemperatureChart({data}) {
 Use the `fx` or `fy` props on mark components to create small multiples:
 
 ```jsx [FacetedChart.jsx]
-import {Plot, Dot} from "replot/react";
+import {Replot, Dot} from "replot/react";
 
 export default function FacetedChart({data}) {
   return (
-    <Plot>
+    <Replot>
       <Dot data={data} x="culmen_length_mm" y="culmen_depth_mm" fx="species" />
-    </Plot>
+    </Replot>
   );
 }
 ```
@@ -207,13 +207,13 @@ export default function FacetedChart({data}) {
 Add interactive tooltips with the `tip` prop on any mark, or use the `<Tip>` component for more control:
 
 ```jsx [InteractiveChart.jsx]
-import {Plot, Dot} from "replot/react";
+import {Replot, Dot} from "replot/react";
 
 export default function InteractiveChart({data}) {
   return (
-    <Plot>
+    <Replot>
       <Dot data={data} x="weight" y="height" fill="species" tip />
-    </Plot>
+    </Replot>
   );
 }
 ```
@@ -222,28 +222,28 @@ export default function InteractiveChart({data}) {
 Use the `<Legend>` component to add a legend for any scale:
 
 ```jsx [LegendChart.jsx]
-import {Plot, Dot, Legend} from "replot/react";
+import {Replot, Dot, Legend} from "replot/react";
 
 export default function LegendChart({data}) {
   return (
-    <Plot color={{legend: true}}>
+    <Replot color={{legend: true}}>
       <Dot data={data} x="weight" y="height" fill="species" />
-    </Plot>
+    </Replot>
   );
 }
 ```
 ### Figure wrapping
 
-Use the `title`, `subtitle`, and `caption` props on `<Plot>` to wrap the chart in a `<figure>` element:
+Use the `title`, `subtitle`, and `caption` props on `<Replot>` to wrap the chart in a `<figure>` element:
 
 ```jsx [FigureChart.jsx]
-import {Plot, Line} from "replot/react";
+import {Replot, Line} from "replot/react";
 
 export default function FigureChart({data}) {
   return (
-    <Plot title="Temperature over time" subtitle="Global average" caption="Source: NASA">
+    <Replot title="Temperature over time" subtitle="Global average" caption="Source: NASA">
       <Line data={data} x="date" y="temperature" />
-    </Plot>
+    </Replot>
   );
 }
 ```
@@ -252,7 +252,7 @@ export default function FigureChart({data}) {
 Combine React's `useState` and `useEffect` with Replot components:
 
 ```jsx [AsyncChart.jsx]
-import {Plot, Dot, RuleY} from "replot/react";
+import {Replot, Dot, RuleY} from "replot/react";
 import * as d3 from "d3";
 import {useEffect, useState} from "react";
 
@@ -266,10 +266,10 @@ export default function AsyncChart() {
   if (!data) return <p>Loading…</p>;
 
   return (
-    <Plot y={{grid: true}} color={{scheme: "burd"}}>
+    <Replot y={{grid: true}} color={{scheme: "burd"}}>
       <RuleY data={[0]} />
       <Dot data={data} x="Date" y="Anomaly" stroke="Anomaly" />
-    </Plot>
+    </Replot>
   );
 }
 ```

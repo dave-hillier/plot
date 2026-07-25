@@ -1,10 +1,10 @@
-import {Plot, Rect, Dot, Text} from "../../src/react/index.js";
+import {Replot, Rect, Dot, Text} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function multiplicationTable() {
   const numbers = d3.range(2, 10);
   return (
-    <Plot
+    <Replot
       height={450}
       width={450}
       padding={0}
@@ -31,6 +31,6 @@ export async function multiplicationTable() {
         fx={([x]) => x}
         fy={([, y]) => y}
       />
-    </Plot>
+    </Replot>
   );
 }

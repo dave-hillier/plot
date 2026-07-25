@@ -1,11 +1,11 @@
-import {Plot, RuleX} from "../../src/react/index.js";
+import {Replot, RuleX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function seattlePrecipitationRule() {
   const data = await d3.csv<any>("data/seattle-weather.csv", d3.autoType);
   return (
-    <Plot>
+    <Replot>
       <RuleX data={data} x="date" strokeOpacity="precipitation" />
-    </Plot>
+    </Replot>
   );
 }

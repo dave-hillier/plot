@@ -1,10 +1,10 @@
-import {Plot, RectY, RuleY, binX} from "../../src/react/index.js";
+import {Replot, RectY, RuleY, binX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function stargazersHourlyGroup() {
   const stargazers = await d3.csv<any>("data/stargazers.csv", d3.autoType);
   return (
-    <Plot
+    <Replot
       x={{
         label: "New stargazers per hour",
         tickFormat: (d) => (d > 10 ? "" : d === 10 ? "10+" : d)
@@ -24,6 +24,6 @@ export async function stargazersHourlyGroup() {
         )}
       />
       <RuleY data={[0]} />
-    </Plot>
+    </Replot>
   );
 }

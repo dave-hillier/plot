@@ -1,5 +1,5 @@
 import {
-  Plot,
+  Replot,
   DifferenceY,
   DifferenceX,
   normalizeY,
@@ -28,7 +28,7 @@ async function readStocks(start = 0, end = Infinity) {
 export async function differenceY() {
   const stocks = await readStocks();
   return (
-    <Plot>
+    <Replot>
       <DifferenceY
         data={stocks}
         {...normalizeY(
@@ -38,7 +38,7 @@ export async function differenceY() {
           )
         )}
       />
-    </Plot>
+    </Replot>
   );
 }
 
@@ -47,16 +47,16 @@ export async function differenceYRandom() {
   let sum = 3;
   const cumsum = () => (sum += random() - 0.5);
   return (
-    <Plot>
+    <Replot>
       <DifferenceY data={{length: 60}} y1={cumsum} y2={cumsum} curve="natural" tip={true} />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function differenceYCurve() {
   const stocks = await readStocks(60, 100);
   return (
-    <Plot>
+    <Replot>
       <DifferenceY
         data={stocks}
         {...normalizeY(
@@ -66,14 +66,14 @@ export async function differenceYCurve() {
           )
         )}
       />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function differenceYVariable() {
   const stocks = await readStocks();
   return (
-    <Plot>
+    <Replot>
       <DifferenceY
         data={stocks}
         {...normalizeY(
@@ -83,23 +83,23 @@ export async function differenceYVariable() {
           )
         )}
       />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function differenceYClip() {
   const gistemp = await d3.csv<any>("data/gistemp.csv", d3.autoType);
   return (
-    <Plot x={{insetLeft: -50}}>
+    <Replot x={{insetLeft: -50}}>
       <DifferenceY data={gistemp} {...windowY(28, {x: "Date", y: "Anomaly", clip: "frame"})} />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function differenceYClipVariable() {
   const stocks = await readStocks();
   return (
-    <Plot>
+    <Replot>
       <DifferenceY
         data={stocks}
         {...normalizeY(
@@ -109,68 +109,68 @@ export async function differenceYClipVariable() {
           )
         )}
       />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function differenceYConstant() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return (
-    <Plot>
+    <Replot>
       <DifferenceY data={aapl} x="Date" y1={115} y2="Close" />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function differenceYOrdinal() {
   const random = d3.randomLcg(42);
   return (
-    <Plot>
+    <Replot>
       <DifferenceY data={{length: 30}} y1={() => "ABCDE"[(random() * 5) | 0]} y2={() => "ABCDE"[(random() * 5) | 0]} />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function differenceYOrdinalFlip() {
   const random = d3.randomLcg(42);
   return (
-    <Plot y={{reverse: true}}>
+    <Replot y={{reverse: true}}>
       <DifferenceY data={{length: 30}} y1={() => "ABCDE"[(random() * 5) | 0]} y2={() => "ABCDE"[(random() * 5) | 0]} />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function differenceYReverse() {
   const gistemp = await d3.csv<any>("data/gistemp.csv", d3.autoType);
   return (
-    <Plot y={{reverse: true}}>
+    <Replot y={{reverse: true}}>
       <DifferenceY data={gistemp} {...windowY(28, {x: "Date", y: "Anomaly"})} />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function differenceYZero() {
   const gistemp = await d3.csv<any>("data/gistemp.csv", d3.autoType);
   return (
-    <Plot>
+    <Replot>
       <DifferenceY data={gistemp} {...windowY(28, {x: "Date", y: "Anomaly"})} />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function differenceYNegative() {
   const gistemp = await d3.csv<any>("data/gistemp.csv", d3.autoType);
   return (
-    <Plot>
+    <Replot>
       <DifferenceY data={gistemp} {...windowY(28, {x: "Date", positiveFill: "none", y: "Anomaly"})} />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function differenceY1() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return (
-    <Plot>
+    <Replot>
       <DifferenceY
         data={aapl}
         {...shiftX("year", {
@@ -182,7 +182,7 @@ export async function differenceY1() {
           negativeFill: "red"
         })}
       />
-    </Plot>
+    </Replot>
   );
 }
 
@@ -193,9 +193,9 @@ export async function differenceFilterX() {
   const y1 = goog.map((d, i, data) => d.Close / data[0].Close);
   const y2 = aapl.map((d, i, data) => d.Close / data[0].Close);
   return (
-    <Plot>
+    <Replot>
       <DifferenceY data={aapl} x={x} y1={y1} y2={y2} />
-    </Plot>
+    </Replot>
   );
 }
 
@@ -206,9 +206,9 @@ export async function differenceFilterY1() {
   const y1 = goog.map((d, i, data) => d.Close / data[0].Close);
   const y2 = aapl.map((d, i, data) => (200 <= i && i < 400 ? NaN : d.Close / data[0].Close));
   return (
-    <Plot>
+    <Replot>
       <DifferenceY data={aapl} x={x} y1={y1} y2={y2} />
-    </Plot>
+    </Replot>
   );
 }
 
@@ -219,17 +219,17 @@ export async function differenceFilterY2() {
   const y1 = goog.map((d, i, data) => (200 <= i && i < 400 ? NaN : d.Close / data[0].Close));
   const y2 = aapl.map((d, i, data) => d.Close / data[0].Close);
   return (
-    <Plot>
+    <Replot>
       <DifferenceY data={aapl} x={x} y1={y1} y2={y2} />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function differenceX() {
   const random = d3.randomNormal.source(d3.randomLcg(22))();
   return (
-    <Plot height={600} y={{reverse: true}}>
+    <Replot height={600} y={{reverse: true}}>
       <DifferenceX data={{length: 100}} {...mapX("cumsum", {x1: random, x2: random, curve: "basis"})} />
-    </Plot>
+    </Replot>
   );
 }

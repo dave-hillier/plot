@@ -1,13 +1,13 @@
-import {Plot, Raster, Dot} from "../../src/react/index.js";
+import {Replot, Raster, Dot} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 async function rasterPenguins(options) {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return (
-    <Plot>
+    <Replot>
       <Raster data={penguins} x="body_mass_g" y="flipper_length_mm" fill="island" {...options} />
       <Dot data={penguins} x="body_mass_g" y="flipper_length_mm" fill="island" stroke="white" />
-    </Plot>
+    </Replot>
   );
 }
 

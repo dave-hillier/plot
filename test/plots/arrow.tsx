@@ -1,5 +1,5 @@
 import {
-  Plot,
+  Replot,
   BarY,
   BarX,
   RectY,
@@ -27,9 +27,9 @@ export async function arrowTest() {
     age: [35, 25, 45]
   });
   return (
-    <Plot>
+    <Replot>
       <BarY data={data} x="name" y="age" />
-    </Plot>
+    </Replot>
   );
 }
 
@@ -44,9 +44,9 @@ export async function arrowTestAccessor() {
   });
 
   return (
-    <Plot>
+    <Replot>
       <BarY data={data} x="name" y="age" fill={(d) => d.name} />
-    </Plot>
+    </Replot>
   );
 }
 
@@ -59,9 +59,9 @@ export async function arrowTestBin() {
   const category = Array.from({length: 1e5}, d3.randomInt.source(seed)(4)).map((i) => `a${i}`);
   const data = Arrow.tableFromArrays({category, vector});
   return (
-    <Plot marginLeft={60}>
+    <Replot marginLeft={60}>
       <RectY data={data} {...binX({y: "count"}, {x: "vector", fill: "category", thresholds: 10})} />
-    </Plot>
+    </Replot>
   );
 }
 
@@ -74,9 +74,9 @@ export async function arrowTestGroup() {
   const category = Array.from({length: 1e5}, d3.randomInt.source(seed)(4)).map((i) => `a${i}`);
   const data = Arrow.tableFromArrays({category, vector});
   return (
-    <Plot marginLeft={60}>
+    <Replot marginLeft={60}>
       <BarY data={data} {...groupX({y: "count"}, {x: "vector", fill: "category"})} />
-    </Plot>
+    </Replot>
   );
 }
 
@@ -90,9 +90,9 @@ export async function arrowTestSort() {
     age: [35, 25, 45]
   });
   return (
-    <Plot>
+    <Replot>
       <BarX data={data} x="age" fill="name" sort={(a: {age: number}, b: {age: number}) => b.age - a.age} />
-    </Plot>
+    </Replot>
   );
 }
 
@@ -111,9 +111,9 @@ Chaos Tartarus`
       .map((d) => d.replace(/\s+/g, "/"))
   });
   return (
-    <Plot axis={null} insetLeft={35} insetTop={20} insetBottom={20} insetRight={120}>
+    <Replot axis={null} insetLeft={35} insetTop={20} insetBottom={20} insetRight={120}>
       <TreeMark data={gods} path="branch" fill={(d) => d?.branch} />
-    </Plot>
+    </Replot>
   );
 }
 
@@ -123,7 +123,7 @@ Chaos Tartarus`
 export async function arrowTestDifferenceY() {
   const stocks = Arrow.tableFromJSON(await readStocks());
   return (
-    <Plot>
+    <Replot>
       <DifferenceY
         data={stocks}
         {...normalizeY(
@@ -133,7 +133,7 @@ export async function arrowTestDifferenceY() {
           )
         )}
       />
-    </Plot>
+    </Replot>
   );
 }
 
@@ -155,7 +155,7 @@ async function readStocks(start = 0, end = Infinity) {
 export async function arrowTestCustomOrder() {
   const riaa = Arrow.tableFromJSON(await d3.csv<any>("data/riaa-us-revenue.csv", d3.autoType));
   return (
-    <Plot
+    <Replot
       y={{
         grid: true,
         label: "Annual revenue (billions, adj.)",
@@ -175,7 +175,7 @@ export async function arrowTestCustomOrder() {
         })}
       />
       <RuleY data={[0]} />
-    </Plot>
+    </Replot>
   );
 }
 
@@ -185,9 +185,9 @@ export async function arrowTestCustomOrder() {
 export async function arrowTestPointer() {
   const penguins = Arrow.tableFromJSON(await d3.csv<any>("data/penguins.csv", d3.autoType));
   const plot = (
-    <Plot>
+    <Replot>
       <Dot data={penguins} x="culmen_length_mm" y="culmen_depth_mm" tip={true} />
-    </Plot>
+    </Replot>
   );
   // TODO: This test involves DOM manipulation (textarea, oninput) that doesn't directly translate to React components.
   // The React component tree is returned as-is without the textarea interaction.

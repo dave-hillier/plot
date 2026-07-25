@@ -1,5 +1,5 @@
 import {createElement as h, Fragment, type ReactNode} from "react";
-import {renderMarksWith, isPointerConsumer} from "./Plot.js";
+import {renderMarksWith, isPointerConsumer} from "./Replot.js";
 import {createClipRegistry, registerClips, type ClipRegistry} from "./clip.js";
 
 // Builds the <svg> React element for a computed plot without any hooks, so it

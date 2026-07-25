@@ -1,4 +1,4 @@
-import {Plot, Dot, reverse, sort, shuffle} from "../../src/react/index.js";
+import {Replot, Dot, reverse, sort, shuffle} from "../../src/react/index.js";
 import {html} from "htl";
 
 export async function dotSort() {
@@ -8,45 +8,45 @@ export async function dotSort() {
   const p = {width: 300, axis: null, r: {type: "identity"}, x: {inset: 50}, margin: 0};
   return html`
     ${(
-      <Plot {...p} caption="default sort (r desc)">
+      <Replot {...p} caption="default sort (r desc)">
         <Dot data={x} {...options} />
-      </Plot>
+      </Replot>
     )}
     <br />
     ${(
-      <Plot {...p} caption="sort by r">
+      <Replot {...p} caption="sort by r">
         <Dot data={x} {...options} sort={r} />
-      </Plot>
+      </Replot>
     )}
     <br />
     ${(
-      <Plot {...p} caption="null sort">
+      <Replot {...p} caption="null sort">
         <Dot data={x} {...options} sort={null} />
-      </Plot>
+      </Replot>
     )}
     <br />
     ${(
-      <Plot {...p} caption="reverse">
+      <Replot {...p} caption="reverse">
         <Dot data={x} {...reverse(options)} />
-      </Plot>
+      </Replot>
     )}
     <br />
     ${(
-      <Plot {...p} caption="sort by x">
+      <Replot {...p} caption="sort by x">
         <Dot data={x} {...sort((d) => d, options)} />
-      </Plot>
+      </Replot>
     )}
     <br />
     ${(
-      <Plot {...p} caption="reverse sort by x">
+      <Replot {...p} caption="reverse sort by x">
         <Dot data={x} {...reverse(sort((d) => d, options))} />
-      </Plot>
+      </Replot>
     )}
     <br />
     ${(
-      <Plot {...p} caption="shuffle">
+      <Replot {...p} caption="shuffle">
         <Dot data={x} {...shuffle({...options, seed: 42})} />
-      </Plot>
+      </Replot>
     )}
   `;
 }

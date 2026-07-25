@@ -1,4 +1,4 @@
-import {BinX, Dot, DotX, DodgeX, DodgeY, Plot, RectY, RuleX, RuleY, Text} from "replot/react";
+import {BinX, Dot, DotX, DodgeX, DodgeY, Replot, RectY, RuleX, RuleY, Text} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import cars from "../data/cars.ts";
@@ -18,38 +18,38 @@ Given one position dimension (either **x** or **y**), the **dodge** transform co
 
 The dodge transform is commonly used to produce beeswarm 🐝 plots, a way of showing a one-dimensional distribution that preserves the visual identity of individual data points. For example, the dots below represent the weights of cars; the rough shape of the pile gives a sense of the overall distribution (peaking around 2,100 pounds), and you can hover an individual dot to see which car it represents.
 
-<Plot height={160}>
+<Replot height={160}>
   <DodgeY>
     <DotX data={cars} x="weight (lb)" title="name" fill="currentColor" />
   </DodgeY>
-</Plot>
+</Replot>
 
 Compare this to a conventional histogram using a [rect mark](../marks/rect.md).
 
-<Plot height={180}>
+<Replot height={180}>
   <BinX y="count">
     <RectY data={cars} x="weight (lb)" />
   </BinX>
   <RuleY data={[0]} />
-</Plot>
+</Replot>
 
 The dodge transform works with Replot’s [faceting system](../features/facets.md), allowing independent beeswarm plots on discrete partitions of the data. Below, penguins are grouped by species and colored by sex, while vertical↕︎ position (**y**) encodes body mass.
 
-<Plot y={{grid: true}} color={{legend: true}}>
+<Replot y={{grid: true}} color={{legend: true}}>
   <DodgeX anchor="middle">
     <Dot data={penguins} fx="species" y="body_mass_g" fill="sex" />
   </DodgeX>
-</Plot>
+</Replot>
 
 Beeswarm plots avoid the occlusion problem of dense scatterplots and barcode plots.
 
-<Plot>
+<Replot>
   <DotX data={cars} x="weight (lb)" />
-</Plot>
+</Replot>
 
-<Plot>
+<Replot>
   <RuleX data={cars} x="weight (lb)" />
-</Plot>
+</Replot>
 
 The **anchor** option specifies the layout baseline: the optimal output position. For the dodgeX transform, the supported anchors are: _left_ (default), _middle_, _right_. For the dodgeY transform, the supported anchors are: _bottom_ (default), _middle_, _top_. When the _middle_ anchor is used, the dots are placed symmetrically around the baseline.
 
@@ -64,11 +64,11 @@ The **anchor** option specifies the layout baseline: the optimal output position
   </label>
 </p>
 
-<Plot height={180}>
+<Replot height={180}>
   <DodgeY anchor={anchor}>
     <Dot data={cars} x="weight (lb)" fill="currentColor" />
   </DodgeY>
-</Plot>
+</Replot>
 
 When using dodgeY, you must typically specify the plot’s **height** to create suitable space for the layout. The dodge transform is not currently able to set the height automatically. For dodgeX, the default **width** of 640 is often sufficient, though you may need to adjust it as well depending on your data.
 
@@ -82,11 +82,11 @@ The dodge transform differs from the [stack transform](./stack.md) in that the d
   </label>
 </p>
 
-<Plot height={180}>
+<Replot height={180}>
   <DodgeY>
     <Dot data={cars} x="weight (lb)" r={r} fill="currentColor" />
   </DodgeY>
-</Plot>
+</Replot>
 
 The dodge transform also supports a **padding** option (default 1), which specifies the minimum separating distance between dots. Increase it for more breathing room.
 
@@ -98,48 +98,48 @@ The dodge transform also supports a **padding** option (default 1), which specif
   </label>
 </p>
 
-<Plot height={180}>
+<Replot height={180}>
   <DodgeY padding={padding}>
     <Dot data={cars} x="weight (lb)" fill="currentColor" />
   </DodgeY>
-</Plot>
+</Replot>
 
 If **r** is a channel, the dodge transform will position circles of varying radius. The chart below shows twenty years of IPO offerings leading up to Facebook’s $104B offering in 2012; each circle is sized proportionally to the associated company’s valuation at IPO. (This data comes from [“The Facebook Offering: How It Compares”](https://archive.nytimes.com/www.nytimes.com/interactive/2012/05/17/business/dealbook/how-the-facebook-offering-compares.html?hp) by Jeremy Ashkenas, Matthew Bloch, Shan Carter, and Amanda Cox.) Facebook’s valuation was nearly four times that of Google, the previous record. The 2000 [dot-com bubble](https://en.wikipedia.org/wiki/Dot-com_bubble) is also visible.
 
-<Plot insetRight={10} height={790}>
+<Replot insetRight={10} height={790}>
   <DodgeY r="rMVOP">
     <Dot data={ipos} x="date" title={(d) => `${d.NAME}\n${(d.rMVOP / 1e3).toFixed(1)}B`} fill="currentColor" />
   </DodgeY>
   <DodgeY r="rMVOP">
     <Text data={ipos} filter={(d) => d.rMVOP > 5e3} x="date" text={(d) => (d.rMVOP / 1e3).toFixed()} fill="var(--vp-c-bg)" pointerEvents="none" />
   </DodgeY>
-</Plot>
+</Replot>
 
 The dodge transform can be used with any mark that supports **x** and **y** position. Below, we use the [text mark](../marks/text.md) instead to show company valuations (in billions).
 
-<Plot insetRight={10} height={790}>
+<Replot insetRight={10} height={790}>
   <DodgeY r="rMVOP">
     <Text data={ipos} x="date" text={(d) => (d.rMVOP / 1e3).toFixed(1)} title="NAME" fontSize={(d) => Math.min(22, Math.cbrt(d.rMVOP / 1e3) * 6)} />
   </DodgeY>
-</Plot>
+</Replot>
 
 The dodge transform places dots sequentially, each time finding the closest position to the baseline that avoids intersection with previously-placed dots. Because this is a [greedy algorithm](https://en.wikipedia.org/wiki/Greedy_algorithm), the resulting layout depends on the input order. When **r** is a channel, dots are sorted by descending radius by default such that the largest dots are placed closest to the baseline. Otherwise, dots are placed in input order by default.
 
 To adjust the dodge layout, use the [sort transform](./sort.md). For example, if the **sort** option uses the same column as **x**, the dots are arranged in piles leaning right.
 
-<Plot height={180}>
+<Replot height={180}>
   <DodgeY>
     <DotX data={cars} x="weight (lb)" title="name" fill="currentColor" sort="weight (lb)" />
   </DodgeY>
-</Plot>
+</Replot>
 
 Reversing the sort order produces piles leaning left.
 
-<Plot height={180}>
+<Replot height={180}>
   <DodgeY>
     <DotX data={cars} x="weight (lb)" title="name" fill="currentColor" sort="weight (lb)" reverse />
   </DodgeY>
-</Plot>
+</Replot>
 
 
 To avoid repeating a channel definition, you can also specify the **sort** option as `{channel: "x"}`.

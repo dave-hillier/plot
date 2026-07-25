@@ -4,7 +4,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import {act} from "react";
 import jsdomit from "./jsdom.js";
-import {Plot, AreaY, BarX, BarY} from "../src/react/index.js";
+import {Replot, AreaY, BarX, BarY} from "../src/react/index.js";
 import {StackX, StackX1, StackX2, StackY1, StackY2} from "../src/react/transforms/Stack.js";
 import {stackX, stackX1, stackX2, stackY1, stackY2} from "../src/transforms/stack.js";
 
@@ -46,86 +46,86 @@ function normalize(markup) {
 describe("stack variant wrapper equivalence", () => {
   jsdomit("<StackX> around <BarX> matches the spread stackX form", async () => {
     const nested = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <StackX offset="normalize" order="sum" reverse>
           <BarX data={sales} y="date" x="units" fill="fruit" />
         </StackX>
-      </Plot>
+      </Replot>
     );
     const spread = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <BarX
           data={sales}
           {...stackX({offset: "normalize", order: "sum", reverse: true}, {y: "date", x: "units", fill: "fruit"})}
         />
-      </Plot>
+      </Replot>
     );
     assert.strictEqual(normalize(nested), normalize(spread));
   });
 
   jsdomit("<StackX1> around <BarX> matches the spread stackX1 form", async () => {
     const nested = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <StackX1 order="appearance">
           <BarX data={sales} y="date" x="units" fill="fruit" />
         </StackX1>
-      </Plot>
+      </Replot>
     );
     const spread = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <BarX data={sales} {...stackX1({order: "appearance"}, {y: "date", x: "units", fill: "fruit"})} />
-      </Plot>
+      </Replot>
     );
     assert.strictEqual(normalize(nested), normalize(spread));
   });
 
   jsdomit("<StackX2> around <BarX> matches the spread stackX2 form", async () => {
     const nested = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <StackX2>
           <BarX data={sales} y="date" x="units" fill="fruit" />
         </StackX2>
-      </Plot>
+      </Replot>
     );
     const spread = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <BarX data={sales} {...stackX2({y: "date", x: "units", fill: "fruit"})} />
-      </Plot>
+      </Replot>
     );
     assert.strictEqual(normalize(nested), normalize(spread));
   });
 
   jsdomit("<StackY1> around <AreaY> matches the spread stackY1 form", async () => {
     const nested = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <StackY1 order="inside-out" reverse>
           <AreaY data={sales} x="date" y="units" fill="fruit" />
         </StackY1>
-      </Plot>
+      </Replot>
     );
     const spread = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <AreaY
           data={sales}
           {...stackY1({order: "inside-out", reverse: true}, {x: "date", y: "units", fill: "fruit"})}
         />
-      </Plot>
+      </Replot>
     );
     assert.strictEqual(normalize(nested), normalize(spread));
   });
 
   jsdomit("<StackY2> around <BarY> matches the spread stackY2 form", async () => {
     const nested = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <StackY2 offset="expand">
           <BarY data={sales} x="date" y="units" fill="fruit" />
         </StackY2>
-      </Plot>
+      </Replot>
     );
     const spread = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <BarY data={sales} {...stackY2({offset: "expand"}, {x: "date", y: "units", fill: "fruit"})} />
-      </Plot>
+      </Replot>
     );
     assert.strictEqual(normalize(nested), normalize(spread));
   });

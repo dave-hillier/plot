@@ -1,4 +1,4 @@
-import {Plot, Text, AxisX, AxisY, BarX, TickX, Frame, valueof} from "../../src/react/index.js";
+import {Replot, Text, AxisX, AxisY, BarX, TickX, Frame, valueof} from "../../src/react/index.js";
 import type * as Plot_ from "replot";
 import * as d3 from "d3";
 
@@ -50,7 +50,7 @@ export async function textOverflow() {
     "ellipsis-end"
   ];
   return (
-    <Plot width={800} marginLeft={180} fx={{axis: "top", domain: [...options, "monospace"]}} y={{domain: names}}>
+    <Replot width={800} marginLeft={180} fx={{axis: "top", domain: [...options, "monospace"]}} y={{domain: names}}>
       {options.map((textOverflow) => (
         <Text
           data={names}
@@ -75,7 +75,7 @@ export async function textOverflow() {
         frameAnchor="right"
       />
       <Frame />
-    </Plot>
+    </Replot>
   );
 }
 
@@ -107,7 +107,7 @@ async function textOverflowPlot(textOverflow, {monospace = false} = {}) {
   ];
   const dates = new Map(presidents.map((p) => [p.Name, p["First Inauguration Date"]]));
   return (
-    <Plot
+    <Replot
       width={500}
       height={textOverflow ? 730 : 1100}
       marginLeft={95}
@@ -140,6 +140,6 @@ async function textOverflowPlot(textOverflow, {monospace = false} = {}) {
         })}
       />
       <TickX data={[0.5]} stroke="white" />
-    </Plot>
+    </Replot>
   );
 }

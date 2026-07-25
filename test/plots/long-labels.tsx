@@ -1,4 +1,4 @@
-import {Plot, AxisX, BarY, GridY, RuleY} from "../../src/react/index.js";
+import {Replot, AxisX, BarY, GridY, RuleY} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function longLabels() {
@@ -11,7 +11,7 @@ Discovered how to "like" things mentally\t.27
 Not enough politics\t.12
 `);
   return (
-    <Plot
+    <Replot
       margin={20}
       marginLeft={40}
       marginBottom={40}
@@ -23,6 +23,6 @@ Not enough politics\t.12
       <BarY data={responses} x="name" y="value" />
       <GridY color="#eee" opacity={0.2} />
       <RuleY data={[0]} />
-    </Plot>
+    </Replot>
   );
 }

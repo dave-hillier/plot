@@ -1,4 +1,4 @@
-import {Plot, BarX, DotX, TextX} from "../../src/react/index.js";
+import {Replot, BarX, DotX, TextX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 const times = [
@@ -25,7 +25,7 @@ const events = [
 
 export async function polylinear() {
   return (
-    <Plot
+    <Replot
       height={90}
       grid
       x={{
@@ -45,6 +45,6 @@ export async function polylinear() {
       <BarX data={d3.utcDays(...(d3.extent(times) as [Date, Date]))} interval="day" fill={(d) => d} />
       <DotX data={events} x="date" fill="white" />
       <TextX data={events} x="date" text="text" dx={-5} dy={-10} fill="white" textAnchor="start" />
-    </Plot>
+    </Replot>
   );
 }

@@ -1,4 +1,4 @@
-import {Dot, Frame, Geo, Graticule, Plot, Sphere} from "replot/react";
+import {Dot, Frame, Geo, Graticule, Replot, Sphere} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import * as topojson from "topojson-client";
@@ -29,11 +29,11 @@ A **projection** maps abstract coordinates in *x* and *y* to pixel positions on 
   </label>
 </p>
 
-<Plot projection={{type: "orthographic", rotate: [-longitude, -30]}} r={{transform: (d) => Math.pow(10, d)}}>
+<Replot projection={{type: "orthographic", rotate: [-longitude, -30]}} r={{transform: (d) => Math.pow(10, d)}}>
   <Geo data={land} fill="currentColor" fillOpacity={0.2} />
   <Sphere />
   <Dot data={earthquakes} x="longitude" y="latitude" r="magnitude" stroke="red" fill="red" fillOpacity={0.2} />
-</Plot>
+</Replot>
 
 Above, a [geo mark](../marks/geo.md) draws polygons representing land and a [sphere mark](../marks/geo.md#sphere) draws the outline of the globe. A [dot mark](../marks/dot.md) draws earthquakes as circles sized by magnitude.
 
@@ -67,11 +67,11 @@ Replot provides a variety of built-in projections. And as above, all world proje
   </label>
 </p>
 
-<Plot projection={projection}>
+<Replot projection={projection}>
   <Graticule />
   <Geo data={land} fill="currentColor" />
   <Sphere />
-</Plot>
+</Replot>
 
 Why so many? Each projection has its strengths and weaknesses:
 
@@ -87,10 +87,10 @@ No single projection is best at everything. It is impossible, for example, for a
 
 In addition to world projections, Replot provides the U.S.-centric *albers-usa* conic equal-area projection with an inset of Alaska and Hawaii. (Note that the scale for Alaska is diminished: it is projected at 0.35× its true relative area.)
 
-<Plot projection="albers-usa">
+<Replot projection="albers-usa">
   <Geo data={nation} />
   <Geo data={statemesh} strokeOpacity={0.2} />
-</Plot>
+</Replot>
 
 
 Use the *albers-usa* projection for U.S.-centric choropleth maps.
@@ -104,7 +104,7 @@ For maps that focus on a specific region, use the **domain** option to zoom in. 
   </label>
 </p>
 
-<Plot projection={{
+<Replot projection={{
     type: "azimuthal-equidistant",
     rotate: [-9, -34],
     domain: circle,
@@ -114,19 +114,19 @@ For maps that focus on a specific region, use the **domain** option to zoom in. 
   <Geo data={land} fill="currentColor" fillOpacity={0.3} />
   <Geo data={circle} stroke="red" strokeWidth={2} />
   <Frame />
-</Plot>
+</Replot>
 
 While this page mostly details spherical projections, you can use the *identity* projection to display planar geometry. For example, below we draw a schematic of the second floor of the [Westport House](https://en.wikipedia.org/wiki/Westport_House) in Dundee, Ireland.
 
-<Plot projection={{type: "identity", domain: westport}}>
+<Replot projection={{type: "identity", domain: westport}}>
   <Geo data={westport} />
-</Plot>
+</Replot>
 
 
 There’s also a *reflect-y* projection in case *y* points up↑, which is often the case with [projected reference systems](https://en.wikipedia.org/wiki/Projected_coordinate_system).
 Naturally, Replot’s projection system is compatible with its [faceting system](./facets.md). Below, a comic strip of sorts shows the locations of Walmart store openings in past decades.
 
-<Plot marginLeft={0} marginRight={0} projection="albers" fx={{
+<Replot marginLeft={0} marginRight={0} projection="albers" fx={{
     interval: "10 years",
     tickFormat: (d) => `${d.getUTCFullYear()}’s`,
     label: null
@@ -134,7 +134,7 @@ Naturally, Replot’s projection system is compatible with its [faceting system]
   <Geo data={statemesh} strokeOpacity={0.1} />
   <Geo data={nation} />
   <Dot data={walmarts} fx="date" x="longitude" y="latitude" r={1} fill="currentColor" />
-</Plot>
+</Replot>
 
 
 This uses the [**interval** scale option](./scales.md#scale-transforms) to bin temporal data into facets by decade.

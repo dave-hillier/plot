@@ -4,7 +4,7 @@ import React, {useState} from "react";
 import ReactDOM from "react-dom/client";
 import {act} from "react";
 import jsdomit from "./jsdom.js";
-import {Plot, Dot, stampOptions} from "../src/react/index.js";
+import {Replot, Dot, stampOptions} from "../src/react/index.js";
 
 const data = [
   {x: 1, y: 2},
@@ -50,9 +50,9 @@ describe("per-mark event handlers", () => {
   jsdomit("onClick on a Dot receives the clicked datum and index", async () => {
     const clicks = [];
     const {container, cleanup} = await mount(
-      <Plot width={200} height={200}>
+      <Replot width={200} height={200}>
         <Dot data={data} x="x" y="y" onClick={(event, datum, i) => clicks.push({type: event.type, datum, i})} />
-      </Plot>
+      </Replot>
     );
     const circles = container.querySelectorAll("circle");
     assert.strictEqual(circles.length, data.length);
@@ -82,9 +82,9 @@ describe("per-mark event handlers", () => {
       swap = set;
       const target = swapped ? second : first;
       return (
-        <Plot width={200} height={200}>
+        <Replot width={200} height={200}>
           <Dot data={data} x="x" y="y" onClick={(event, datum, i) => target.push({datum, i})} />
-        </Plot>
+        </Replot>
       );
     }
     const {container, cleanup} = await mount(<Harness />);
@@ -105,14 +105,14 @@ describe("per-mark event handlers", () => {
 
   jsdomit("a mark with handlers renders markup identical to one without", async () => {
     const withHandlers = await mount(
-      <Plot width={200} height={200}>
+      <Replot width={200} height={200}>
         <Dot data={data} x="x" y="y" onClick={() => {}} onPointerEnter={() => {}} />
-      </Plot>
+      </Replot>
     );
     const without = await mount(
-      <Plot width={200} height={200}>
+      <Replot width={200} height={200}>
         <Dot data={data} x="x" y="y" />
-      </Plot>
+      </Replot>
     );
     assert.strictEqual(svgMarkup(withHandlers.container), svgMarkup(without.container));
     await withHandlers.cleanup();

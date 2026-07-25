@@ -1,4 +1,4 @@
-import {BoxX, BoxY, Plot, RuleY} from "replot/react";
+import {BoxX, BoxY, Replot, RuleY} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import morley from "../data/morley.ts";
@@ -10,31 +10,31 @@ The **box mark** summarizes one-dimensional distributions as boxplots. It is a [
 
 For example, the boxplot below shows [A.A. Michelson’s experimental measurements](https://stat.ethz.ch/R-manual/R-devel/library/datasetS/html/morley.html) of the speed of light. (Speed is in km/sec minus 299,000.)
 
-<Plot y={{
+<Replot y={{
     grid: true,
     inset: 6
   }}>
   <BoxY data={morley} x="Expt" y="Speed" />
-</Plot>
+</Replot>
 
 [boxY](#boxY) produces vertical boxplots; for horizontal boxplots, use [boxX](#boxX) and swap **x** and **y**.
 
-<Plot x={{
+<Replot x={{
     grid: true,
     inset: 6
   }}>
   <BoxX data={morley} x="Speed" y="Expt" />
-</Plot>
+</Replot>
 
 As [shorthand](../features/shorthand.md), you can pass an array of numbers for a single boxplot.
 
-<Plot>
+<Replot>
   <BoxX data={[0, 3, 4.4, 4.5, 4.6, 5, 7]} />
-</Plot>
+</Replot>
 
 Since the box mark uses the [group transform](../transforms/group.md), the secondary dimension must be ordinal. To group quantitative values, bin manually, say with [Math.floor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor); see [#1330](https://github.com/observablehq/plot/issues/1330).
 
-<Plot marginLeft={60} y={{
+<Replot marginLeft={60} y={{
     grid: true,
     label: "Price"
   }} x={{
@@ -45,11 +45,11 @@ Since the box mark uses the [group transform](../transforms/group.md), the secon
   }}>
   <RuleY data={[0]} />
   <BoxY data={useDiamonds()} x={(d) => Math.floor(d.carat * 2) / 2} y="price" />
-</Plot>
+</Replot>
 
 This chart is slightly easier to construct with [faceting](../features/facets.md) using the [**interval** scale option](../features/scales.md#scale-transforms) on the *fx* scale. (This technique cannot be used with the *x* scale above because the scale interval transform is applied *after* the box mark applies the group transform.)
 
-<Plot marginLeft={60} y={{
+<Replot marginLeft={60} y={{
     grid: true,
     label: "Price"
   }} fx={{
@@ -60,7 +60,7 @@ This chart is slightly easier to construct with [faceting](../features/facets.md
   }}>
   <RuleY data={[0]} />
   <BoxY data={useDiamonds()} fx="carat" y="price" />
-</Plot>
+</Replot>
 
 ## Box options
 

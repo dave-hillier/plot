@@ -1,4 +1,4 @@
-import {Dot, GroupY, Line, NormalizeY, Plot, RuleX, RuleY, SelectLast, SelectMinX, Text, normalizeX} from "replot/react";
+import {Dot, GroupY, Line, NormalizeY, Replot, RuleX, RuleY, SelectLast, SelectMinX, Text, normalizeX} from "replot/react";
 import * as d3 from "d3";
 import {useState} from "react";
 
@@ -10,7 +10,7 @@ export const xy = normalizeX("sum", {z: "state", x: "population", y: "state"});
 
 The **normalize transform** is a specialized [map transform](./map.md) that normalizes series values relative to some basis, say to convert absolute values into relative values. For example, here is an index chart — a type of multi-series line chart — showing the return of several stocks relative to their closing price on a particular date.
 
-<Plot y={{
+<Replot y={{
     type: "log",
     grid: true,
     label: "Change in price (%)",
@@ -25,7 +25,7 @@ The **normalize transform** is a specialized [map transform](./map.md) that norm
       <Text data={stocks} x="Date" y="Close" z="Symbol" text="Symbol" textAnchor="start" dx={3} />
     </NormalizeY>
   </SelectLast>
-</Plot>
+</Replot>
 
 
 The [select transform](./select.md) is used to label the endpoints of each line.
@@ -35,7 +35,7 @@ The normalize transform converts absolute values into relative ones. So, if **y*
 
 As another example, the normalize transform can be used to compute proportional demographics from absolute populations. The plot below compares the demographics of U.S. states: color represents age group, **y** represents the state, and **x** represents the proportion of the state’s population in that age group.
 
-<Plot height={660} axis={null} grid x={{
+<Replot height={660} axis={null} grid x={{
     axis: "top",
     label: "Population (%)",
     percent: true
@@ -52,7 +52,7 @@ As another example, the normalize transform can be used to compute proportional 
   <SelectMinX>
     <Text data={stateage} {...xy} textAnchor="end" dx={-6} text="state" />
   </SelectMinX>
-</Plot>
+</Replot>
 
 ```js
 xy = Plot.normalizeX("sum", {z: "state", x: "population", y: "state"})

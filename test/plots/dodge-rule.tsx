@@ -1,9 +1,9 @@
-import {Plot, RuleX, dodgeY} from "../../src/react/index.js";
+import {Replot, RuleX, dodgeY} from "../../src/react/index.js";
 
 export async function dodgeRule() {
   return (
-    <Plot>
+    <Replot>
       <RuleX data={[1, 2, 3]} {...dodgeY()} />
-    </Plot>
+    </Replot>
   );
 }

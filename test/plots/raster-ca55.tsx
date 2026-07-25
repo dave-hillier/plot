@@ -1,13 +1,13 @@
-import {Plot, Raster, Contour} from "../../src/react/index.js";
+import {Replot, Raster, Contour} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 async function plotCa55(children) {
   const ca55 = await d3.csv<any>("data/ca55-south.csv", d3.autoType);
   const domain = {type: "MultiPoint", coordinates: ca55.map((d) => [d.GRID_EAST, d.GRID_NORTH])} as const;
   return (
-    <Plot width={640} height={484} projection={{type: "reflect-y", inset: 3, domain}} color={{type: "diverging"}}>
+    <Replot width={640} height={484} projection={{type: "reflect-y", inset: 3, domain}} color={{type: "diverging"}}>
       {children(ca55)}
-    </Plot>
+    </Replot>
   );
 }
 
@@ -35,7 +35,7 @@ export async function rasterCa55Color() {
   const ca55 = await d3.csv<any>("data/ca55-south.csv", d3.autoType);
   const domain = {type: "MultiPoint", coordinates: ca55.map((d) => [d.GRID_EAST, d.GRID_NORTH])} as const;
   return (
-    <Plot width={640} height={484} projection={{type: "reflect-y", inset: 3, domain}}>
+    <Replot width={640} height={484} projection={{type: "reflect-y", inset: 3, domain}}>
       <Raster
         data={ca55}
         x="GRID_EAST"
@@ -43,7 +43,7 @@ export async function rasterCa55Color() {
         interpolate="random-walk"
         fill={(d) => d3.hcl(d.MAG_IGRF90, 120, 80).formatHex()}
       />
-    </Plot>
+    </Replot>
   );
 }
 

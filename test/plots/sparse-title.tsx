@@ -1,10 +1,10 @@
-import {Plot, Dot, Tip, pointer} from "../../src/react/index.js";
+import {Replot, Dot, Tip, pointer} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function sparseTitle() {
   const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return (
-    <Plot grid>
+    <Replot grid>
       <Dot
         data={olympians}
         x="weight"
@@ -16,14 +16,14 @@ export async function sparseTitle() {
         strokeWidth={0.25}
         title={(d) => (d.info ? [(d.name, d.info)].join("\n\n") : undefined)}
       />
-    </Plot>
+    </Replot>
   );
 }
 
 export async function sparseTitleTip() {
   const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return (
-    <Plot grid>
+    <Replot grid>
       <Dot
         data={olympians}
         x="weight"
@@ -41,6 +41,6 @@ export async function sparseTitleTip() {
           title: (d) => (d.info ? [(d.name, d.info)].join("\n\n") : undefined)
         })}
       />
-    </Plot>
+    </Replot>
   );
 }

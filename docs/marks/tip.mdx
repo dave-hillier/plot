@@ -1,4 +1,4 @@
-import {BinX, Dot, Frame, Geo, GeoCentroid, LineY, Plot, pointer, RectY, Tip} from "replot/react";
+import {BinX, Dot, Frame, Geo, GeoCentroid, LineY, Replot, pointer, RectY, Tip} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import * as topojson from "topojson-client";
@@ -13,32 +13,32 @@ export const states = [];
 
 The **tip mark** displays text, or several name-value pairs, in a floating box anchored to a given position in **x** and **y**. The tip mark is often paired with the [pointer transform](../interactions/pointer.md) to reveal details on demand when hovering over a chart, as in this line chart of Apple stock price:
 
-<Plot y={{grid: true}}>
+<Replot y={{grid: true}}>
   <LineY data={aapl} x="Date" y="Close" tip />
-</Plot>
+</Replot>
 
 The above code uses the **tip** [mark option](../features/marks.md#mark-options); the code can be written more explicitly with a tip mark and a pointer transform.
 
 ```jsx
-<Plot y={{grid: true}}>
+<Replot y={{grid: true}}>
   <LineY data={aapl} x="Date" y="Close" />
   <Tip data={aapl} {...pointerX({x: "Date", y: "Close"})} />
-</Plot>
+</Replot>
 ```
 
 The tip mark can also be used for static annotations, say to draw attention to elements of interest or to add context. The tip text is supplied via the **title** channel. If the tip mark‘s data is an array of strings, the **title** channel defaults to [identity](../features/transforms.md#identity).
 
-<Plot y={{grid: true}}>
+<Replot y={{grid: true}}>
   <LineY data={aapl} x="Date" y="Close" />
   <Tip data={[`Apple stock reaches a new high of $133 on Feb. 23, 2015. The release of the first Apple Watch, slated for April, is hotly anticipated.`]} x={new Date("2015-02-23")} y={133} dy={-3} anchor="bottom" />
   <Tip data={[`Apple stock drops 8% after the company misses Q2 revenue targets and reports declining iPhone sales. It reaches a two-year low of $90.34 on May 12.`]} x={new Date("2016-05-12")} y={90.34} dy={3} anchor="top" />
-</Plot>
+</Replot>
 
 When using the **title** channel, the tip mark wraps text to 20 ems by default, and preserves newlines in the provided text. Use the **lineWidth** option to adjust the width, along with other text options such as **lineHeight**, **textOverflow**, **fontFamily**, and **fontSize**; see the [text mark](../marks/text.md) for more details.
 
 The **title** channel can be used with interactive tips, too. If you have a few moments, hover the chart below to read about various athletes who competed at Rio 2016.
 
-<Plot grid>
+<Replot grid>
   <Dot data={useOlympians()} x="weight" y="height" fy="sex" sort={(d) => !!d.info} stroke={(d) => d.info ? "currentColor" : "#aaa"} />
   <Tip data={useOlympians()} {...pointer({
       x: "weight",
@@ -47,13 +47,13 @@ The **title** channel can be used with interactive tips, too. If you have a few 
       filter: (d) => d.info,
       title: (d) => [d.name, d.info].join("\n\n")
     })} />
-</Plot>
+</Replot>
 
 If no **title** channel is supplied, the tip mark displays all channel values. You can supply additional name-value pairs by registering extra channels using the **channels** mark option. In the scatterplot of Olympic athletes below, you can hover to see the *name* and *sport* of each athlete. This is helpful for noticing patterns — tall basketball players, giant weightlifters and judoka, diminutive gymnasts — and for seeing individuals.
 
-<Plot>
+<Replot>
   <Dot data={useOlympians()} x="weight" y="height" stroke="sex" channels={{name: "name", sport: "sport"}} tip />
-</Plot>
+</Replot>
 
 
 The tallest athlete in this dataset, swimmer [Kevin Cordes](https://en.wikipedia.org/wiki/Kevin_Cordes), is likely an error: his official height is 1.96m (6′ 5″) not 2.21m (7′ 3″). Basketball player [Li Muhao](https://en.wikipedia.org/wiki/Li_Muhao) is likely the true tallest.
@@ -61,48 +61,48 @@ If a channel is bound to the *color* or *opacity* scale, the tip mark displays a
 
 The tip mark recognizes that **x1** & **x2** and **y1** & **y2** are paired channels. Below, observe that the *weight* shown in the tip is a range such as 64–66 kg; however, the *frequency* is shown as the difference between the **y1** and **y2** channels. The latter is achieved by the stack transform setTing a channel hint to indicate that **y1** and **y2** represent a length.
 
-<Plot>
+<Replot>
   <BinX y="count">
     <RectY data={useOlympians()} x="weight" fill="sex" tip />
   </BinX>
-</Plot>
+</Replot>
 
 This even works when stacking negative values, say to mirror the histogram instead of stacking it. (The tip displays negative frequency, but this is consistent with the *y* axis.)
 
-<Plot y={{label: "Frequency"}}>
+<Replot y={{label: "Frequency"}}>
   <BinX y="sum">
     <RectY data={useOlympians()} x="weight" y={(d) => d.sex === "male" ? 1 : -1} fill="sex" tip />
   </BinX>
-</Plot>
+</Replot>
 
 The order and formatting of channels in the tip can be customized with the **format** option <VersionBadge version="0.6.11" pr="1823" />, which accepts a key-value object mapping channel names to formats. Each [format](../features/formats.md) can be a string (for number or time formats), a function that receives the value as input and returns a string, true to use the default format, and null or false to suppress. The order of channels in the tip follows their order in the format object followed by any additional channels. When using the **title** channel, the **format** option may be specified as a string or a function; the given format will then apply to the **title** channel. <VersionBadge version="0.6.15" pr="2074" />
 
 A channel’s label can be specified alongside its value as a `{value, label}` object; if a channel label is not specified, the associated scale’s label is used, if any; if there is no associated scale, or if the scale has no label, the channel name is used instead.
 
-<Plot>
+<Replot>
   <Dot data={useOlympians()} x="weight" y="height" stroke="sex" channels={{name: "name", nationality: {value: "nationality", label: "country"}, sport: "sport"}} tip={{format: {name: true, sport: true, nationality: true, y: (d) => `${d}m`, x: (d) => `${d}kg`, stroke: false}}} />
-</Plot>
+</Replot>
 
 The tip mark supports nine different orientations specified by the **anchor** option: the four sides (*top*, *right*, *bottom*, *left*), the four corners (*top-left*, *top-right*, *bottom-right*, *bottom-left*), and *middle*. Note that when *middle* is used, the tip will obscure its anchor point.
 
-<Plot height={160}>
+<Replot height={160}>
   <Frame strokeOpacity={0.2} />
   {["top", "right", "bottom", "left", "top-left", "top-right", "bottom-right", "bottom-left", "middle"].map((anchor) => [
     <Dot key={`dot-${anchor}`} data={{length: 1}} frameAnchor={anchor} fill="blue" />,
     <Tip key={`tip-${anchor}`} data={[anchor]} frameAnchor={anchor} anchor={anchor} />
   ])}
-</Plot>
+</Replot>
 
 If you don’t specify an explicit **anchor**, the tip mark will choose one automatically, using the **preferredAnchor** <VersionBadge version="0.6.12" pr="1872" /> if it fits. The preferred anchor defaults to *bottom*, except when using the **tip** option and the [pointerY pointing mode](../interactions/pointer.md), in which case it defaults to *left*. In some cases, it may not be possible to fit the tip within the plot’s frame; consider setTing the plot’s **style** to `overflow: visible;` to prevent the tip from being truncated.
 
 The tip mark is compatible with transforms that derive **x** and **y** dynamically from data, such as the [centroid transform](../transforms/centroid.md) which computes polygon centroids. Below, a map of the United States shows state names. We reduce the size of the tips by setTing the **textPadding** option to 3 pixels instead of the default 8.
 
-<Plot projection="albers-usa">
+<Replot projection="albers-usa">
   <Geo data={states} />
   <GeoCentroid>
     <Tip data={states} title={(d) => d.properties.name} anchor="bottom" textPadding={3} />
   </GeoCentroid>
-</Plot>
+</Replot>
 
 
 When multiple tips are visible simultaneously, some may collide; consider using the pointer interaction to show only the one closest to the pointer, or use multiple tip marks and adjust the **anchor** option for each to minimize occlusion.
@@ -132,9 +132,9 @@ These tip-specific options control the tip appearance:
 
 The tip mark does not support the [standard style channels](../features/marks.md#mark-options) such as varying **fill** or **stroke**; channels are used exclusively to control the displayed values rather than the tip’s appearance. You can however use the these options for a constant **fill**, **fillOpacity**, **stroke**, **strokeOpacity**, or **strokeWidth** on the path element surrounding the tip text.
 
-<Plot>
+<Replot>
   <Tip data={["Danger! This tip is red."]} anchor="bottom" frameAnchor="bottom" fill="red" />
-</Plot>
+</Replot>
 
 These [standard text options](./text.md#text-options) control the display of text within the tip:
 

@@ -1,4 +1,4 @@
-import {Plot, Dot, Text, dodgeY} from "../../src/react/index.js";
+import {Replot, Dot, Text, dodgeY} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function dodgeTextRadius() {
@@ -7,7 +7,7 @@ export async function dodgeTextRadius() {
   const X = Float64Array.from({length}, random);
   const R = Float64Array.from({length}, random);
   return (
-    <Plot
+    <Replot
       height={400}
       nice={true}
       r={{
@@ -16,6 +16,6 @@ export async function dodgeTextRadius() {
     >
       <Dot data={{length}} {...dodgeY({x: X, r: R})} />
       <Text data={{length}} {...dodgeY({x: X, r: R})} />
-    </Plot>
+    </Replot>
   );
 }

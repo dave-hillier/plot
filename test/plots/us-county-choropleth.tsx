@@ -1,4 +1,4 @@
-import {Plot, Geo} from "../../src/react/index.js";
+import {Replot, Geo} from "../../src/react/index.js";
 import * as d3 from "d3";
 import {feature, mesh} from "topojson-client";
 
@@ -10,7 +10,7 @@ export async function usCountyChoropleth() {
     d3.csv<any>("data/us-county-unemployment.csv").then((data) => new Map(data.map(({id, rate}) => [id, +rate])))
   ]);
   return (
-    <Plot
+    <Replot
       width={960}
       height={600}
       projection="albers-usa"
@@ -26,6 +26,6 @@ export async function usCountyChoropleth() {
     >
       <Geo data={counties} fill={(d) => unemployment.get(d.id)} title="name" />
       <Geo data={statemesh} stroke="white" />
-    </Plot>
+    </Replot>
   );
 }

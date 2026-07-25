@@ -1,12 +1,12 @@
-import {Plot, BarX, Frame, binX} from "../../src/react/index.js";
+import {Replot, BarX, Frame, binX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function athletesSportWeight() {
   const athletes = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return (
-    <Plot marginLeft={100} grid color={{scheme: "YlGnBu", zero: true}}>
+    <Replot marginLeft={100} grid color={{scheme: "YlGnBu", zero: true}}>
       <BarX data={athletes} {...binX({fill: "proportion-facet"}, {x: "weight", fy: "sport", thresholds: 60})} />
       <Frame anchor="bottom" facetAnchor="bottom" />
-    </Plot>
+    </Replot>
   );
 }

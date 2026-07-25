@@ -1,13 +1,13 @@
-import {Plot, BarX, TickX, groupY} from "../../src/react/index.js";
+import {Replot, BarX, TickX, groupY} from "../../src/react/index.js";
 import * as d3 from "d3";
 import type * as PlotType from "replot";
 
 async function countNationality(sort: PlotType.ChannelDomainSort) {
   const athletes = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return (
-    <Plot>
+    <Replot>
       <BarX data={athletes} {...groupY({x: "count"}, {y: "nationality", sort})} />
-    </Plot>
+    </Replot>
   );
 }
 
@@ -60,9 +60,9 @@ async function groupNationality(sort: PlotType.ChannelDomainSort) {
   const count = Object.assign(([, D]) => D.length, {label: "Frequency"});
   const key = Object.assign(([d]) => d, {label: "nationality"});
   return (
-    <Plot>
+    <Replot>
       <BarX data={nationalities} x={count} y={key} sort={sort} />
-    </Plot>
+    </Replot>
   );
 }
 
@@ -77,9 +77,9 @@ export async function channelDomainNullReverse() {
 async function weightNationality(sort: PlotType.ChannelDomainSort) {
   const athletes = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return (
-    <Plot>
+    <Replot>
       <TickX data={athletes} x="weight" y="nationality" sort={sort} />
-    </Plot>
+    </Replot>
   );
 }
 

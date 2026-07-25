@@ -1,4 +1,4 @@
-import {Plot, AreaY, Text, stackY} from "../../src/react/index.js";
+import {Replot, AreaY, Text, stackY} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function wealthBritainProportionPlot() {
@@ -7,7 +7,7 @@ export async function wealthBritainProportionPlot() {
   const data = columns.flatMap((type) => wide.map((d) => ({age: d.age, type, value: d[type]})));
   const stack = (options) => stackY({}, {x: "type", y: "value", z: "age", ...options});
   return (
-    <Plot
+    <Replot
       x={{
         domain: columns,
         axis: "top",
@@ -64,6 +64,6 @@ export async function wealthBritainProportionPlot() {
           dx: +8
         })}
       />
-    </Plot>
+    </Replot>
   );
 }

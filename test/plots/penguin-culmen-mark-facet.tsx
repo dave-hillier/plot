@@ -1,10 +1,10 @@
-import {Plot, Frame, Dot} from "../../src/react/index.js";
+import {Replot, Frame, Dot} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function penguinCulmenMarkFacet() {
   const data = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return (
-    <Plot height={600} facet={{marginRight: 80}}>
+    <Replot height={600} facet={{marginRight: 80}}>
       <Frame />
       <Dot
         data={data}
@@ -17,6 +17,6 @@ export async function penguinCulmenMarkFacet() {
         fill="#ddd"
       />
       <Dot data={data} fx="sex" fy="species" x="culmen_depth_mm" y="culmen_length_mm" />
-    </Plot>
+    </Replot>
   );
 }

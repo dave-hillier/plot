@@ -1,4 +1,4 @@
-import {Dot, Link, Plot, Text, treeLink, treeNode} from "replot/react";
+import {Dot, Link, Replot, Text, treeLink, treeNode} from "replot/react";
 import * as d3 from "d3";
 
 export const gods = [
@@ -25,11 +25,11 @@ The **tree transform** is rarely used directly; the two variants, [treeNode](#tr
 
 As a contrived example, we can construct the equivalent of the tree mark using a [link](../marks/link.md), [dot](../marks/dot.md), and [text](../marks/text.md), and the corresponding tree transforms.
 
-<Plot axis={null} height={100} margin={20} marginRight={120}>
+<Replot axis={null} height={100} margin={20} marginRight={120}>
   <Link data={gods} {...treeLink()} />
   <Dot data={gods} {...treeNode()} />
   <Text data={gods} {...treeNode({text: "node:name", dx: 6})} />
-</Plot>
+</Replot>
 
 Here `gods` is an array of slash-separated paths, similar to paths in a file system. Each path represents the hierarchical position of a node in the tree.
 

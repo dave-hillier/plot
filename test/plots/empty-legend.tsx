@@ -1,13 +1,13 @@
-import {Plot, Frame} from "../../src/react/index.js";
+import {Replot, Frame} from "../../src/react/index.js";
 
 export async function emptyLegend() {
   return (
-    <Plot
+    <Replot
       color={{
         legend: true // ignored because no color scale
       }}
     >
       <Frame />
-    </Plot>
+    </Replot>
   );
 }

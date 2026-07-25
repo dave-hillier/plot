@@ -1,4 +1,4 @@
-import {Plot, BarX} from "../../src/react/index.js";
+import {Replot, BarX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function hadcrutWarmingStripes() {
@@ -12,8 +12,8 @@ export async function hadcrutWarmingStripes() {
       anomaly: +anomaly
     }));
   return (
-    <Plot x={{round: true}} color={{scheme: "BuRd", symmetric: false}}>
+    <Replot x={{round: true}} color={{scheme: "BuRd", symmetric: false}}>
       <BarX data={hadcrut} x1="year" x2={(d) => d3.utcYear.offset(d.year)} fill="anomaly" />
-    </Plot>
+    </Replot>
   );
 }

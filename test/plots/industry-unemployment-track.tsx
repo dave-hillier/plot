@@ -1,10 +1,10 @@
-import {Plot, BarX, DotX, select} from "../../src/react/index.js";
+import {Replot, BarX, DotX, select} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function industryUnemploymentTrack() {
   const data = await d3.csv<any>("data/bls-industry-unemployment.csv", d3.autoType);
   return (
-    <Plot facet={{data, y: "industry"}} marginLeft={140} color={{scheme: "plasma", reverse: true}}>
+    <Replot facet={{data, y: "industry"}} marginLeft={140} color={{scheme: "plasma", reverse: true}}>
       <BarX data={data} x="date" interval="month" fill="unemployed" title="unemployed" sort={{fy: "-fill"}} inset={0} />
       <DotX
         data={data}
@@ -35,6 +35,6 @@ export async function industryUnemploymentTrack() {
           }
         )}
       />
-    </Plot>
+    </Replot>
   );
 }

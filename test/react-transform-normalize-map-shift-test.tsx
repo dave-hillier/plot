@@ -5,7 +5,7 @@ import ReactDOM from "react-dom/client";
 import {act} from "react";
 import jsdomit from "./jsdom.js";
 import {
-  Plot,
+  Replot,
   Line,
   LineY,
   DotX,
@@ -71,96 +71,96 @@ function normalize(markup) {
 describe("normalize, map, and shift wrapper equivalence", () => {
   jsdomit("<NormalizeX> around <Line> matches the spread normalizeX form", async () => {
     const nested = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <NormalizeX basis="mean">
           <Line data={unemployment} y="date" x="unemployment" z="division" />
         </NormalizeX>
-      </Plot>
+      </Replot>
     );
     const spread = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <Line data={unemployment} {...normalizeX("mean", {y: "date", x: "unemployment", z: "division"})} />
-      </Plot>
+      </Replot>
     );
     assert.strictEqual(normalize(nested), normalize(spread));
   });
 
   jsdomit("<NormalizeY> around <Line> matches the spread normalizeY form", async () => {
     const nested = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <NormalizeY>
           <Line data={unemployment} x="date" y="unemployment" z="division" />
         </NormalizeY>
-      </Plot>
+      </Replot>
     );
     const spread = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <Line data={unemployment} {...normalizeY({x: "date", y: "unemployment", z: "division"})} />
-      </Plot>
+      </Replot>
     );
     assert.strictEqual(normalize(nested), normalize(spread));
   });
 
   jsdomit("<MapX> around <DotX> matches the spread mapX form", async () => {
     const nested = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <MapX map="quantile">
           <DotX data={randoms} x={randoms} />
         </MapX>
-      </Plot>
+      </Replot>
     );
     const spread = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <DotX data={randoms} {...mapX("quantile", {x: randoms})} />
-      </Plot>
+      </Replot>
     );
     assert.strictEqual(normalize(nested), normalize(spread));
   });
 
   jsdomit("<MapY> around <LineY> matches the spread mapY form", async () => {
     const nested = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <MapY map="cumsum">
           <LineY data={randoms} y={randoms} />
         </MapY>
-      </Plot>
+      </Replot>
     );
     const spread = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <LineY data={randoms} {...mapY("cumsum", {y: randoms})} />
-      </Plot>
+      </Replot>
     );
     assert.strictEqual(normalize(nested), normalize(spread));
   });
 
   jsdomit("<ShiftX> around <Arrow> matches the spread shiftX form", async () => {
     const nested = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <ShiftX interval="quarter">
           <Arrow data={aapl} x="Date" y="Close" bend />
         </ShiftX>
-      </Plot>
+      </Replot>
     );
     const spread = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <Arrow data={aapl} {...shiftX("quarter", {x: "Date", y: "Close", bend: true})} />
-      </Plot>
+      </Replot>
     );
     assert.strictEqual(normalize(nested), normalize(spread));
   });
 
   jsdomit("<ShiftY> around <Arrow> matches the spread shiftY form", async () => {
     const nested = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <ShiftY interval="quarter">
           <Arrow data={aapl} y="Date" x="Close" bend />
         </ShiftY>
-      </Plot>
+      </Replot>
     );
     const spread = await renderSvg(
-      <Plot width={400} height={300}>
+      <Replot width={400} height={300}>
         <Arrow data={aapl} {...shiftY("quarter", {y: "Date", x: "Close", bend: true})} />
-      </Plot>
+      </Replot>
     );
     assert.strictEqual(normalize(nested), normalize(spread));
   });

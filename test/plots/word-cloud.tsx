@@ -1,4 +1,4 @@
-import {Plot, Text, groupZ} from "../../src/react/index.js";
+import {Replot, Text, groupZ} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function wordCloud() {
@@ -14,7 +14,7 @@ export async function wordCloud() {
     .map((word) => word.toLowerCase()); // normalize to lowercase
 
   return (
-    <Plot inset={20} x={{axis: null}} y={{axis: null}}>
+    <Replot inset={20} x={{axis: null}} y={{axis: null}}>
       <Text
         data={words}
         {...groupZ(
@@ -29,6 +29,6 @@ export async function wordCloud() {
           }
         )}
       />
-    </Plot>
+    </Replot>
   );
 }

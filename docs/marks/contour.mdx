@@ -1,4 +1,4 @@
-import {Contour, Dot, identity, Plot, Sphere, Text} from "replot/react";
+import {Contour, Dot, identity, Replot, Sphere, Text} from "replot/react";
 import * as d3 from "d3";
 import {useState, useEffect} from "react";
 import volcano from "../data/volcano.ts";
@@ -15,18 +15,18 @@ The **contour mark** draws [isolines](https://en.wikipedia.org/wiki/Contour_line
 
 For example, the contours below show the topography of the [Maungawhau volcano](https://en.wikipedia.org/wiki/Maungawhau), produced from a {volcano.width}×{volcano.height} grid of elevation samples.
 
-<Plot>
+<Replot>
   <Contour data={volcano.values} width={volcano.width} height={volcano.height} />
-</Plot>
+</Replot>
 
 Whereas the **value** option produces isolines suitable for stroking, the **fill** option produces filled contours. Setting the **fill** to [identity](../features/transforms.md#identity) will apply a color encoding to the contour values, allowing the contour values to be read via a *color* legend.
 
-<Plot color={{
+<Replot color={{
     legend: true,
     label: "Elevation (m)"
   }}>
   <Contour data={volcano.values} width={volcano.width} height={volcano.height} fill={identity} stroke="black" />
-</Plot>
+</Replot>
 
 
 Contours are drawn in ascending value order, with the highest value on top; hence, filled contour polygons overlap! If you are interested in isobands, please upvote [#1420](https://github.com/observablehq/plot/issues/1420).
@@ -53,16 +53,16 @@ grid = ({
 
 We can visualize this small grid directly with a [text mark](./text.md) using the same color encoding. Notice that the image below is flipped vertically relative to the data: the first row of the data is the *bottom* of the image because below *y* points up↑.
 
-<Plot grid x={{domain: [0, grid.width], label: "column"}} y={{domain: [0, grid.height], label: "row"}}>
+<Replot grid x={{domain: [0, grid.width], label: "column"}} y={{domain: [0, grid.height], label: "row"}}>
   <Text data={grid.values} text={identity} fill={identity} x={(d, i) => i % grid.width + 0.5} y={(d, i) => Math.floor(i / grid.width) + 0.5} />
-</Plot>
+</Replot>
 
 Also notice that the grid points are offset by 0.5: they represent the *middle* of each pixel rather than the corner. Below, the contour mark is laid under the text mark to show filled contours.
 
-<Plot>
+<Replot>
   <Contour data={grid.values} width={grid.width} height={grid.height} fill={identity} interval={5} />
   <Text data={grid.values} text={identity} fill="white" x={(d, i) => i % grid.width + 0.5} y={(d, i) => Math.floor(i / grid.width) + 0.5} />
-</Plot>
+</Replot>
 
 Similar to the [bin transform](../transforms/bin.md), contour levels can be specified either with the **interval** option (above, a contour at each multiple of 5) or with the **thresholds** option (either a count of thresholds or an explicit array of values).
 
@@ -80,27 +80,27 @@ LONGITUDE,LATITUDE,MAG_IGRF90
 
 Using a [dot mark](./dot.md), we can make a quick scatterplot to see the irregular grid. We’ll use a *diverging* color scale to distinguish positive and negative values.
 
-<Plot color={{type: "diverging"}}>
+<Replot color={{type: "diverging"}}>
   <Dot data={ca55} x="LONGITUDE" y="LATITUDE" fill="MAG_IGRF90" />
-</Plot>
+</Replot>
 
 Pass the same arguments to the contour mark for continuous contours.
 
-<Plot color={{type: "diverging"}}>
+<Replot color={{type: "diverging"}}>
   <Contour data={ca55} x="LONGITUDE" y="LATITUDE" fill="MAG_IGRF90" />
-</Plot>
+</Replot>
 
 As with the raster mark, the **blur** option applies a Gaussian blur to the underlying raster grid, resulting in smoother contours.
 
-<Plot color={{type: "diverging"}}>
+<Replot color={{type: "diverging"}}>
   <Contour data={ca55} x="LONGITUDE" y="LATITUDE" fill="MAG_IGRF90" blur={4} />
-</Plot>
+</Replot>
 
 
 The contour mark also supports the **interpolate** option for control over [spatial interpolation](./raster.md#spatial-interpolators).
 The contour mark supports Replot’s [projection system](../features/projections.md). The chart below shows global atmospheric water vapor measurements from [NASA Earth Observations](https://neo.gsfc.nasa.gov/view.php?datasetId=MYDAL2_M_SKY_WV).
 
-<Plot projection="equal-earth" color={{
+<Replot projection="equal-earth" color={{
     scheme: "BuPu",
     domain: [0, 6],
     legend: true,
@@ -108,13 +108,13 @@ The contour mark supports Replot’s [projection system](../features/projections
   }}>
   <Contour data={vapor} fill={identity} width={360} height={180} x1={-180} y1={90} x2={180} y2={-90} blur={1} stroke="black" strokeWidth={0.5} clip="sphere" />
   <Sphere stroke="black" />
-</Plot>
+</Replot>
 
 As an alternative to interpolating discrete samples, you can supply values as a continuous function *f*(*x*,*y*); the contour mark will invoke this function for the midpoint of each pixel in the raster grid, similar to a WebGL fragment shader. For example, below we visualize the trigonometric function sin(*x*) cos(*y*), producing a checkerboard-like pattern.
 
-<Plot aspectRatio={1} x={{tickSpacing: 80, label: "x"}} y={{tickSpacing: 80, label: "y"}} color={{type: "diverging", legend: true, label: "sin(x) cos(y)"}}>
+<Replot aspectRatio={1} x={{tickSpacing: 80, label: "x"}} y={{tickSpacing: 80, label: "y"}} color={{type: "diverging", legend: true, label: "sin(x) cos(y)"}}>
   <Contour fill={(x, y) => Math.sin(x) * Math.cos(y)} x1={0} y1={0} x2={6 * Math.PI} y2={4 * Math.PI} />
-</Plot>
+</Replot>
 
 
 When faceting, the sample function *f*(*x*,*y*) is passed a third argument of the facet values `\{*fx*, *fy*\}`.

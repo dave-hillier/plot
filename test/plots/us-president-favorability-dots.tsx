@@ -1,10 +1,10 @@
-import {Plot, RuleY, Image} from "../../src/react/index.js";
+import {Replot, RuleY, Image} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 export async function usPresidentFavorabilityDots() {
   const data = await d3.csv<any>("data/us-president-favorability.csv", d3.autoType);
   return (
-    <Plot
+    <Replot
       inset={30}
       width={960}
       height={600}
@@ -30,6 +30,6 @@ export async function usPresidentFavorabilityDots() {
         src="Portrait URL"
         title="Name"
       />
-    </Plot>
+    </Replot>
   );
 }

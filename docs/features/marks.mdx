@@ -1,4 +1,4 @@
-import {AreaY, BarX, BarY, Dot, LineY, Plot, RuleY} from "replot/react";
+import {AreaY, BarX, BarY, Dot, LineY, Replot, RuleY} from "replot/react";
 import * as d3 from "d3";
 import {useState} from "react";
 import alphabet from "../data/alphabet.ts";
@@ -36,11 +36,11 @@ export function AreaToggle() {
           <input type="checkbox" checked={area} onChange={(e) => setArea(e.target.checked)} />
         </label>
       </div>
-      <Plot>
+      <Replot>
         <RuleY data={[0]} />
         {area ? <AreaY data={aapl} x="Date" y="Close" fillOpacity={0.2} /> : null}
         <LineY data={aapl} x="Date" y="Close" />
-      </Plot>
+      </Replot>
     </div>
   );
 }
@@ -57,21 +57,21 @@ Replot provides a variety of mark types. Think of marks as the "visual vocabular
 
 For example, the [dot mark](../marks/dot.md) draws stroked circles (by default).
 
-<Plot>
+<Replot>
   <Dot data={gistemp} x="Date" y="Anomaly" />
-</Plot>
+</Replot>
 
 The [line mark](../marks/line.md) draws connected line segments (also known as a *polyline* or *polygonal chain*).
 
-<Plot>
+<Replot>
   <LineY data={gistemp} x="Date" y="Anomaly" />
-</Plot>
+</Replot>
 
 And the [bar mark](../marks/bar.md) draws rectangular bars in either a horizontal (barX) or vertical (barY) orientation.
 
-<Plot>
+<Replot>
   <BarX data={alphabet} x="frequency" y="letter" />
-</Plot>
+</Replot>
 
 So instead of looking for a chart type, consider the shape of the primary graphical elements in your chart, and look for the corresponding mark type. If a chart has only a single mark, the mark type *is* effectively the chart type: the bar mark is used to make a bar chart, the area mark is used to make an area chart, and so on.
 
@@ -79,25 +79,25 @@ So instead of looking for a chart type, consider the shape of the primary graphi
 
 The big advantage of mark types over chart types is that you can compose multiple marks of different types into a single [plot](./plots.md). For example, below an [area](../marks/area.md) and [line](../marks/line.md) are used to plot the same sequence of values, while a [rule](../marks/rule.md) emphasizes *y* = 0.
 
-<Plot>
+<Replot>
   <RuleY data={[0]} />
   <AreaY data={aapl} x="Date" y="Close" fillOpacity={0.2} />
   <LineY data={aapl} x="Date" y="Close" />
-</Plot>
+</Replot>
 
 Each mark supplies its own data; a quick way to combine multiple datasets into a chart is to declare a separate mark for each. You can even use [*array*.map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) to create multiple marks from nested data.
 
-<Plot>
+<Replot>
   <LineY data={goog} x="Date" y="Close" />
   <LineY data={aapl} x="Date" y="Close" />
-</Plot>
+</Replot>
 
 Marks may also be a function which returns an [SVG element](https://developer.mozilla.org/en-US/docs/Web/SVG/Element), if you wish to insert arbitrary content. (Here we use [Hypertext Literal](https://github.com/observablehq/htl) to generate an SVG gradient.)
 
-<Plot>
+<Replot>
   <BarY data={alphabet} x="letter" y="frequency" fill="steelblue" />
   <RuleY data={[0]} />
-</Plot>
+</Replot>
 
 The imperative API also supports inserting arbitrary SVG elements (such as gradients) as functions in the marks array. Here is the equivalent gradient example using the imperative API:
 
@@ -129,7 +129,7 @@ Data is passed through scales automatically during rendering; the mark controls 
 
 
 ```jsx {2-6}
-<Plot
+<Replot
   y={{
     type: "log",
     domain: [30, 300],
@@ -137,27 +137,27 @@ Data is passed through scales automatically during rendering; the mark controls 
   }}
 >
   <LineY data={aapl} x="Date" y="Close" />
-</Plot>
+</Replot>
 ```
 ## Marks have tidy data
 
 A single mark can draw multiple shapes. A mark generally produces a shape — such as a rectangle or circle — for each element in the data.
 
-<Plot>
+<Replot>
   <Dot data={aapl} x="Date" y="Close" />
-</Plot>
+</Replot>
 
 It's more complicated than that, though, since some marks produce shapes that incorporate *multiple* data points. Pass the same data to a [line](../marks/line.md) and you'll get a single polyline.
 
-<Plot>
+<Replot>
   <LineY data={aapl} x="Date" y="Close" />
-</Plot>
+</Replot>
 
 And a line mark isn't even guaranteed to produce a single polyline — there can be multiple polylines, as in a line chart with multiple series (using **z**).
 
-<Plot>
+<Replot>
   <LineY data={bls} x="date" y="unemployment" z="division" />
-</Plot>
+</Replot>
 
 Replot favors [tidy data](http://vita.had.co.nz/papers/tidy-data.html) structured as an array of objects, where each object represents an observation (a row), and each object property represents an observed value; all objects in the array should have the same property names (the columns).
 
@@ -180,15 +180,15 @@ linedata = [
 For larger datasets, you can more efficiently pass data using an [Apache Arrow](https://arrow.apache.org/docs/js/) table as a columnar data representation. <VersionBadge version="0.6.16" pr="2115" />
 Then you can pass the data to the line mark, and extract named columns from the data for the desired options:
 
-<Plot>
+<Replot>
   <LineY data={linedata} x="hour" y="value" stroke="sensor" />
-</Plot>
+</Replot>
 
 Another common way to extract a column from tabular data is an accessor function. This function is invoked for each element in the data (each row), and returns the corresponding observed value, as with [*array*.map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map).
 
-<Plot>
+<Replot>
   <LineY data={linedata} x={(d) => d.hour} y={(d) => d.value} stroke={(d) => d.sensor} />
-</Plot>
+</Replot>
 
 For greater efficiency, Replot also supports columnar data: you can use an [Apache Arrow](https://arrow.apache.org/docs/js/) table as data instead of an array of objects. <VersionBadge version="0.6.16" pr="2115" /> You can even pass parallel arrays of values, or Apache Arrow vectors, to each channel.
 
@@ -210,9 +210,9 @@ Data comes in different types: quantitative (or temporal) values can be subtract
 Because nominal values often need some arbitrary order for display purposes — often alphabetical — Replot uses the term *ordinal* to refer to both ordinal and nominal data.
 Some marks work with any type of data, while other marks have certain requirements or assumptions of data. For example, a line should only be used when both *x* and *y* are quantitative or temporal, and when the data is in a meaningful order (such as chronological). This is because the line mark will interpolate between adjacent points to draw line segments. If *x* or *y* is nominal — say the names of countries — it doesn't make sense to use a line because there is no half-way point between two nominal values.
 
-<Plot>
+<Replot>
   <LineY data={["please", "don't", "do", "this"]} />
-</Plot>
+</Replot>
 
 
 While Replot aspires to give good defaults and helpful warnings, Replot won't prevent you from creating a meaningless chart. *Only you* can prevent bogus charts!
@@ -225,9 +225,9 @@ In particular, beware the simple "bar"! A bar mark is used for a bar chart, but 
 
 Replot encourages you to think about data types as you visualize because data types often imply semantics. For example, do you notice anything strange about the bar chart below?
 
-<Plot x={{tickFormat: ""}}>
+<Replot x={{tickFormat: ""}}>
   <BarY data={timeseries} x="year" y="population" />
-</Plot>
+</Replot>
 
 Here's the underlying data:
 
@@ -260,15 +260,15 @@ Plot.barY(timeseries, {x: "year", y: "population"}).plot({x: {tickFormat: "", in
 
 When constructing a mark, you can specify options to change the mark's appearance. These options are passed as a second argument to the mark constructor. (The first argument is the required data.) For example, if you want filled dots instead of stroked ones, pass the desired color to the **fill** option:
 
-<Plot>
+<Replot>
   <Dot data={gistemp} x="Date" y="Anomaly" fill="red" />
-</Plot>
+</Replot>
 
 As the name suggests, options are generally optional; Replot tries to provide good defaults for whatever you don't specify. Replot even has [shorthand](./shorthand.md) for various common forms of data. Below, we extract an array of numbers from the `gistemp` dataset, and use the line mark shorthand to set *x* = index and *y* = identity.
 
-<Plot>
+<Replot>
   <LineY data={gistemp.map((d) => d.Anomaly)} />
-</Plot>
+</Replot>
 
 Some marks even provide default [transforms](./transforms.md), say for [stacking](../transforms/stack.md)!
 
@@ -290,33 +290,33 @@ Not all mark options can be expressed as channels. For example, **stroke** can b
 To vary the definition of a constant option with data, create multiple marks with your different constant options, and then filter the data for each mark to achieve the desired result.
 Some options can be either a channel or a constant depending on the provided value. For example, if you set the **fill** option to *purple*, Replot interprets it as a literal color.
 
-<Plot y={{label: null, tickFormat: ""}}>
+<Replot y={{label: null, tickFormat: ""}}>
   <BarX data={timeseries} x="population" y="year" fill="purple" />
-</Plot>
+</Replot>
 
 Whereas if the **fill** option is a string but *not* a valid CSS color, Replot assumes you mean the corresponding column of the data and interprets it as a channel.
 
-<Plot y={{label: null, tickFormat: ""}}>
+<Replot y={{label: null, tickFormat: ""}}>
   <BarX data={timeseries} x="population" y="year" fill="year" />
-</Plot>
+</Replot>
 
 If the **fill** option is a function, it is interpreted as a channel.
 
-<Plot y={{label: null, tickFormat: ""}}>
+<Replot y={{label: null, tickFormat: ""}}>
   <BarX data={timeseries} x="population" y="year" fill={(d) => d.year} />
-</Plot>
+</Replot>
 
 Lastly, note that while channels are normally bound to a [scale](#marks-use-scales), you can bypass the *color* scale here by supplying literal color values to the **fill** channel.
 
-<Plot y={{label: null, tickFormat: ""}}>
+<Replot y={{label: null, tickFormat: ""}}>
   <BarX data={timeseries} x="population" y="year" fill={(d) => d.year & 1 ? "red" : "currentColor"} />
-</Plot>
+</Replot>
 
 But rather than supplying literal values, it is more semantic to provide abstract values and use scales. In addition to centralizing the encoding definition (if used by multiple marks), it allows Replot to generate a legend.
 
-<Plot y={{label: null, tickFormat: ""}} color={{legend: true}}>
+<Replot y={{label: null, tickFormat: ""}} color={{legend: true}}>
   <BarX data={timeseries} x="population" y="year" fill={(d) => d.year & 1 ? "odd" : "even"} />
-</Plot>
+</Replot>
 
 You can then specify the *color* scale's **domain** and **range** to control the encoding.
 

@@ -1,4 +1,4 @@
-import {DotY, LineY, Plot} from "replot/react";
+import {DotY, LineY, Replot} from "replot/react";
 import * as d3 from "d3";
 import {useState} from "react";
 
@@ -38,10 +38,10 @@ A **curve** defines how to turn a discrete representation of a line as a sequenc
   </label>
 </p>
 
-<Plot>
+<Replot>
   <LineY data={numbers} curve={curve} />
   <DotY data={numbers} x={(d, i) => i} />
-</Plot>
+</Replot>
 
 The supported curve options are:
 

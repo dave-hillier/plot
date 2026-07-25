@@ -1,4 +1,4 @@
-import {Plot, BarX, RuleX} from "../../src/react/index.js";
+import {Replot, BarX, RuleX} from "../../src/react/index.js";
 import * as d3 from "d3";
 
 // TODO consolidate bars into Other category
@@ -22,7 +22,7 @@ export function chooseMany(responses, y, title) {
 
 function bars(groups, title) {
   return (
-    <Plot
+    <Replot
       marginLeft={300}
       width={960}
       height={groups.length * 20 + 50}
@@ -41,6 +41,6 @@ function bars(groups, title) {
     >
       <BarX data={groups} x={([, value]) => value} y={([key]) => key} fill="steelblue" insetTop={1} sort={{y: "-x"}} />
       <RuleX data={[0]} />
-    </Plot>
+    </Replot>
   );
 }
