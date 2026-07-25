@@ -1,4 +1,4 @@
-<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="140" viewBox="0 0 640 140" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="140" viewBox="0 0 640 140" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
     :where(.plot) {
       --plot-background: white;
@@ -13,13 +13,13 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(-0.5,9.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,10)">
     <path transform="translate(40,24)" d="M0,0L-6,0"></path>
     <path transform="translate(40,45)" d="M0,0L-6,0"></path>
     <path transform="translate(40,66)" d="M0,0L-6,0"></path>
     <path transform="translate(40,87)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-9,9.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,10)">
     <text transform="translate(40,24)" y="0.32em">3</text>
     <text transform="translate(40,45)" y="0.32em">2</text>
     <text transform="translate(40,66)" y="0.32em">1</text>
@@ -35,7 +35,7 @@
     <line x1="488.679" x2="488.679" y1="20" y2="110"></line>
     <line x1="563.458" x2="563.458" y1="20" y2="110"></line>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,-0.5)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(40,110)" d="M0,0L0,6"></path>
     <path transform="translate(114.78,110)" d="M0,0L0,6"></path>
     <path transform="translate(189.56,110)" d="M0,0L0,6"></path>
@@ -45,7 +45,7 @@
     <path transform="translate(488.679,110)" d="M0,0L0,6"></path>
     <path transform="translate(563.458,110)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
     <text transform="translate(40,110)" y="0.71em">0</text>
     <text transform="translate(114.78,110)" y="0.71em">200,000</text>
     <text transform="translate(189.56,110)" y="0.71em">400,000</text>
@@ -55,7 +55,7 @@
     <text transform="translate(488.679,110)" y="0.71em">1,200,000</text>
     <text transform="translate(563.458,110)" y="0.71em">1,400,000</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(17,27)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
     <text transform="translate(620,110)">downloads →</text>
   </g>
   <g aria-label="bar">
@@ -118,7 +118,7 @@
     <rect fill="rgb(101, 77, 191)" x="200.474" y="24" width="182.422" height="19"><title>3.2.0</title></rect>
     <rect fill="rgb(106, 70, 181)" x="383.896" y="24" width="163.093" height="19"><title>3.2.1</title></rect>
   </g>
-  <g aria-label="text" transform="translate(0,9.5)">
+  <g aria-label="text" transform="translate(0.5,10)">
     <text transform="translate(64.1,66)" y="0.32em">1.2.1</text>
     <text transform="translate(326.173,66)" y="0.32em">1.2.4</text>
     <text transform="translate(367.442,45)" y="0.32em">2.12.1</text>

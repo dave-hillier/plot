@@ -1,4 +1,4 @@
-<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="400" height="407.261" viewBox="0 0 400 407.261" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="400" height="407.261" viewBox="0 0 400 407.261" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
     :where(.plot) {
       --plot-background: white;
@@ -13,12 +13,12 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5">
+  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
     <circle cx="60" cy="104.64" r="40"></circle>
     <circle cx="339" cy="104.64" r="40"></circle>
     <circle cx="199.5" cy="346.261" r="40"></circle>
   </g>
-  <g aria-label="arrow" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="1">
+  <g aria-label="arrow" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="1" transform="translate(0.5,0.5)">
     <path stroke-opacity="0.2" d="M112.256,87.486A364.531,364.531 0,0,1 286.744,87.486M282.897,83.791L286.744,87.486L281.621,88.969"></path>
     <path stroke-opacity="0.5" d="M100.984,141.318A364.531,364.531 0,0,1 188.228,292.429M189.504,287.25L188.228,292.429L184.381,288.734"></path>
     <path stroke-opacity="0.1" d="M286.744,121.794A364.531,364.531 0,0,1 112.256,121.794M116.103,125.489L112.256,121.794L117.379,120.311"></path>
@@ -26,12 +26,12 @@
     <path stroke-opacity="0.1" d="M158.516,309.583A364.531,364.531 0,0,1 71.272,158.473M69.996,163.651L71.272,158.473L75.119,162.167"></path>
     <path stroke-opacity="0.1" d="M210.772,292.429A364.531,364.531 0,0,1 298.016,141.318M292.893,142.802L298.016,141.318L296.739,146.497"></path>
   </g>
-  <g aria-label="text" transform="translate(0,55)">
+  <g aria-label="text" transform="translate(0.5,55.5)">
     <text transform="translate(60,104.64)" y="0.32em">A</text>
     <text transform="translate(339,104.64)" y="0.32em">B</text>
     <text transform="translate(199.5,346.261)" y="0.32em">C</text>
   </g>
-  <g aria-label="text" font-variant="tabular-nums">
+  <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,0.5)">
     <text transform="translate(60,104.64)" y="0.32em">0.3</text>
     <text transform="translate(199.5,60)" y="0.32em">0.2</text>
     <text transform="translate(168.409,203.131)" y="0.32em">0.5</text>

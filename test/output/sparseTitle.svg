@@ -1,4 +1,4 @@
-<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
     :where(.plot) {
       --plot-background: white;
@@ -15,17 +15,17 @@
   </style>
   <g>
     <g transform="translate(0,0)">
-      <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9,0)">
+      <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
         <text transform="translate(600,103)" y="0.32em">female</text>
       </g>
     </g>
     <g transform="translate(0,184)">
-      <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9,0)">
+      <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
         <text transform="translate(600,103)" y="0.32em">male</text>
       </g>
     </g>
   </g>
-  <g aria-label="fy-axis label" transform="translate(37,0)">
+  <g aria-label="fy-axis label" transform="translate(37.5,0.5)">
     <text transform="translate(600,195) rotate(-90)">sex</text>
   </g>
   <g>
@@ -50,7 +50,7 @@
   </g>
   <g>
     <g transform="translate(0,0)">
-      <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(-0.5,0)">
+      <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
         <path transform="translate(40,154.46)" d="M0,0L-6,0"></path>
         <path transform="translate(40,121.26)" d="M0,0L-6,0"></path>
         <path transform="translate(40,88.06)" d="M0,0L-6,0"></path>
@@ -59,7 +59,7 @@
       </g>
     </g>
     <g transform="translate(0,184)">
-      <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(-0.5,0)">
+      <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
         <path transform="translate(40,154.46)" d="M0,0L-6,0"></path>
         <path transform="translate(40,121.26)" d="M0,0L-6,0"></path>
         <path transform="translate(40,88.06)" d="M0,0L-6,0"></path>
@@ -70,7 +70,7 @@
   </g>
   <g>
     <g transform="translate(0,0)">
-      <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
+      <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
         <text transform="translate(40,154.46)" y="0.32em">1.4</text>
         <text transform="translate(40,121.26)" y="0.32em">1.6</text>
         <text transform="translate(40,88.06)" y="0.32em">1.8</text>
@@ -79,7 +79,7 @@
       </g>
     </g>
     <g transform="translate(0,184)">
-      <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
+      <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
         <text transform="translate(40,154.46)" y="0.32em">1.4</text>
         <text transform="translate(40,121.26)" y="0.32em">1.6</text>
         <text transform="translate(40,88.06)" y="0.32em">1.8</text>
@@ -88,7 +88,7 @@
       </g>
     </g>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-37,-17)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
     <text transform="translate(40,20)" y="0.71em">↑ height</text>
   </g>
   <g>
@@ -117,7 +117,7 @@
   </g>
   <g>
     <g transform="translate(0,184)">
-      <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,-0.5)">
+      <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
         <path transform="translate(76.259,186)" d="M0,0L0,6"></path>
         <path transform="translate(156.835,186)" d="M0,0L0,6"></path>
         <path transform="translate(237.41,186)" d="M0,0L0,6"></path>
@@ -130,7 +130,7 @@
   </g>
   <g>
     <g transform="translate(0,184)">
-      <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
+      <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
         <text transform="translate(76.259,186)" y="0.71em">40</text>
         <text transform="translate(156.835,186)" y="0.71em">60</text>
         <text transform="translate(237.41,186)" y="0.71em">80</text>
@@ -141,12 +141,12 @@
       </g>
     </g>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(37,27)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(37.5,27.5)">
     <text transform="translate(600,370)">weight →</text>
   </g>
   <g>
     <g transform="translate(0,0)">
-      <g aria-label="dot" stroke="white" stroke-width="0.25">
+      <g aria-label="dot" stroke="white" stroke-width="0.25" transform="translate(0.5,0.5)">
         <circle fill="#aaa" cx="140.719" cy="107.98" r="3"></circle>
         <circle fill="#aaa" cx="164.892" cy="88.06" r="3"></circle>
         <circle fill="#aaa" cx="132.662" cy="112.96" r="3"></circle>
@@ -5270,7 +5270,7 @@
       </g>
     </g>
     <g transform="translate(0,184)">
-      <g aria-label="dot" stroke="white" stroke-width="0.25">
+      <g aria-label="dot" stroke="white" stroke-width="0.25" transform="translate(0.5,0.5)">
         <circle fill="#aaa" cx="172.95" cy="101.34" r="3"></circle>
         <circle fill="#aaa" cx="233.381" cy="58.18" r="3"></circle>
         <circle fill="#aaa" cx="237.41" cy="83.08" r="3"></circle>

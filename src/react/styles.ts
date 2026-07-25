@@ -1,3 +1,4 @@
+import {offset} from "../style.js";
 import {isColor} from "../core/index.js";
 import type {Dimensions} from "./PlotContext.js";
 
@@ -95,8 +96,8 @@ export function groupChannelStyleProps(group: number[], values: Record<string, a
 export function computeTransform(
   mark: {dx?: number; dy?: number},
   scales: Record<string, any>,
-  tx: number = 0,
-  ty: number = 0
+  tx: number = offset,
+  ty: number = offset
 ): string | undefined {
   tx += mark.dx || 0;
   ty += mark.dy || 0;
@@ -232,8 +233,8 @@ export function resolveStyles(options: Record<string, any>, defaults: Record<str
 export function transformProp(
   mark: {dx?: number; dy?: number},
   scales: Record<string, any> = {},
-  tx: number = 0,
-  ty: number = 0
+  tx: number = offset,
+  ty: number = offset
 ): Record<string, string> {
   const t = computeTransform(mark, scales, tx, ty);
   return t ? {transform: t} : {};
@@ -241,4 +242,4 @@ export function transformProp(
 
 // Re-export the imperative offset value so renderJSX call sites can use the
 // same default translate offset (0 or 0.5 depending on devicePixelRatio).
-export {offset} from "../style.js";
+export {offset};

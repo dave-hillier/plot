@@ -1,4 +1,4 @@
-<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
     :where(.plot) {
       --plot-background: white;
@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="text">
+  <g aria-label="text" transform="translate(0.5,0.5)">
     <text transform="translate(179.575,128.435)" font-size="210" y="0.32em">E</text>
     <text transform="translate(346.486,87.945)" font-size="152.592" y="0.32em">T</text>
     <text transform="translate(518.473,97.401)" font-size="138.594" y="0.32em">A</text>

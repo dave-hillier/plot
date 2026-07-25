@@ -1,4 +1,4 @@
-<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="900" height="265" viewBox="0 0 900 265" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="900" height="265" viewBox="0 0 900 265" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
     :where(.plot) {
       --plot-background: white;
@@ -15,27 +15,27 @@
   </style>
   <g>
     <g transform="translate(1,0)">
-      <g aria-label="fx-axis tick label" transform="translate(0,-9)">
+      <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
         <text transform="translate(170,30)">2001</text>
       </g>
     </g>
     <g transform="translate(290,0)">
-      <g aria-label="fx-axis tick label" transform="translate(0,-9)">
+      <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
         <text transform="translate(170,30)">2011</text>
       </g>
     </g>
     <g transform="translate(579,0)">
-      <g aria-label="fx-axis tick label" transform="translate(0,-9)">
+      <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
         <text transform="translate(170,30)">2021</text>
       </g>
     </g>
   </g>
-  <g aria-label="fx-axis label" transform="translate(0,-27)">
+  <g aria-label="fx-axis label" transform="translate(0.5,-26.5)">
     <text transform="translate(460,30)" y="0.71em">year</text>
   </g>
   <g>
     <g transform="translate(1,0)">
-      <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(-0.5,0)">
+      <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
         <path transform="translate(40,228.299)" d="M0,0L-6,0"></path>
         <path transform="translate(40,202.992)" d="M0,0L-6,0"></path>
         <path transform="translate(40,177.686)" d="M0,0L-6,0"></path>
@@ -49,7 +49,7 @@
   </g>
   <g>
     <g transform="translate(1,0)">
-      <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
+      <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
         <text transform="translate(40,228.299)" y="0.32em">51.30</text>
         <text transform="translate(40,202.992)" y="0.32em">51.35</text>
         <text transform="translate(40,177.686)" y="0.32em">51.40</text>
@@ -63,7 +63,7 @@
   </g>
   <g>
     <g transform="translate(1,0)">
-      <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,-0.5)">
+      <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
         <path transform="translate(73.963,235)" d="M0,0L0,6"></path>
         <path transform="translate(135.552,235)" d="M0,0L0,6"></path>
         <path transform="translate(197.142,235)" d="M0,0L0,6"></path>
@@ -71,7 +71,7 @@
       </g>
     </g>
     <g transform="translate(290,0)">
-      <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,-0.5)">
+      <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
         <path transform="translate(73.963,235)" d="M0,0L0,6"></path>
         <path transform="translate(135.552,235)" d="M0,0L0,6"></path>
         <path transform="translate(197.142,235)" d="M0,0L0,6"></path>
@@ -79,7 +79,7 @@
       </g>
     </g>
     <g transform="translate(579,0)">
-      <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,-0.5)">
+      <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
         <path transform="translate(73.963,235)" d="M0,0L0,6"></path>
         <path transform="translate(135.552,235)" d="M0,0L0,6"></path>
         <path transform="translate(197.142,235)" d="M0,0L0,6"></path>
@@ -89,7 +89,7 @@
   </g>
   <g>
     <g transform="translate(1,0)">
-      <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
+      <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
         <text transform="translate(73.963,235)" y="0.71em">−0.4</text>
         <text transform="translate(135.552,235)" y="0.71em">−0.2</text>
         <text transform="translate(197.142,235)" y="0.71em">0.0</text>
@@ -97,7 +97,7 @@
       </g>
     </g>
     <g transform="translate(290,0)">
-      <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
+      <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
         <text transform="translate(73.963,235)" y="0.71em">−0.4</text>
         <text transform="translate(135.552,235)" y="0.71em">−0.2</text>
         <text transform="translate(197.142,235)" y="0.71em">0.0</text>
@@ -105,7 +105,7 @@
       </g>
     </g>
     <g transform="translate(579,0)">
-      <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
+      <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
         <text transform="translate(73.963,235)" y="0.71em">−0.4</text>
         <text transform="translate(135.552,235)" y="0.71em">−0.2</text>
         <text transform="translate(197.142,235)" y="0.71em">0.0</text>
@@ -115,7 +115,7 @@
   </g>
   <g>
     <g transform="translate(1,0)">
-      <g aria-label="geo" stroke="var(--plot-background)" stroke-width="0.75" stroke-linejoin="round" stroke-linecap="round">
+      <g aria-label="geo" stroke="var(--plot-background)" stroke-width="0.75" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
         <path fill="rgb(251, 165, 96)" d="M162.771,121.621L162.771,119.304L162.094,117.828L164.695,117.684L167.061,116.577L166.983,115.49L170.91,116.782L172.965,116.187L172.679,117.541L174.369,119.755L174.733,121.868L172.887,122.606L172.887,122.606L172.705,123.098L166.437,121.621Z"></path>
         <path fill="rgb(164, 210, 229)" d="M219.67,112.209L217.824,107.165L218.188,104.601L218.5,104.745L218.266,106.447L220.398,111.984L220.372,111.963ZM218.604,104.765L221.23,104.663L225.547,102.469L225.937,103.863L231.346,100.5L233.219,98.285L233.791,95.148L236.963,93.426L237.666,90.719L236.911,88.443L237.952,85.92L236.495,85.756L236.053,83.172L237.483,82.783L237.041,81.491L242.268,76.754L242.763,76.98L243.673,78.764L243.621,84.69L242.555,86.187L243.257,91.806L247.001,95.886L250.538,94.123L253.633,94.369L253.919,97.896L255.713,100.418L254.361,103.166L252.593,104.929L252.332,106.673L251.032,107.595L249.732,110.569L248.094,112.681L246.013,120.904L244.089,120.699L241.358,119.407L239.018,117.684L236.287,117.233L233.843,117.889L229.994,120.022L227.732,119.571L226.561,118.484L226.535,116.68L225.391,113.542L223.493,113.87L220.71,111.984L218.37,105.832Z"></path>
         <path fill="rgb(71, 111, 177)" d="M141.056,41.73L139.886,44.662L149.482,48.353L150.418,53.5L151.588,55.161L152.446,54.874L153.591,56.986L157.361,60.124L155.437,65.476L152.629,68.613L154.397,71.299L152.967,71.976L153.383,74.785L152.655,76.405L150.522,77.759L149.924,75.114L148.858,73.965L147.349,77.636L148.65,83.254L146.101,84.956L144.385,90.411L143.423,92.031L142.304,91.416L138.664,94.205L138.404,95.784L136.011,97.342L135.491,98.634L133.749,99.085L132.474,98.347L131.382,99.147L128.782,95.21L125.245,90.637L122.775,90.268L121.162,90.903L121.084,92.339L119.186,90.37L119.732,90.042L118.796,85.818L120.694,84.382L114.869,76.262L103.531,60.534L103.375,58.073L105.949,58.524L112.711,56.761L113.101,55.161L116.065,53.767L117.886,55.284L119.836,51.429L120.2,48.825L123.763,46.979L126.649,46.097L127.403,47.533L129.302,45.851L133.125,44.641L132.11,42.57L133.099,42.755L134.503,40.971L137.129,41.894L136.583,43.308L138.3,44.129L139.314,42.099Z"></path>
@@ -152,7 +152,7 @@
       </g>
     </g>
     <g transform="translate(290,0)">
-      <g aria-label="geo" stroke="var(--plot-background)" stroke-width="0.75" stroke-linejoin="round" stroke-linecap="round">
+      <g aria-label="geo" stroke="var(--plot-background)" stroke-width="0.75" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
         <path fill="rgb(231, 85, 56)" d="M162.771,121.621L162.771,119.304L162.094,117.828L164.695,117.684L167.061,116.577L166.983,115.49L170.91,116.782L172.965,116.187L172.679,117.541L174.369,119.755L174.733,121.868L172.887,122.606L172.887,122.606L172.705,123.098L166.437,121.621Z"></path>
         <path fill="rgb(180, 220, 235)" d="M219.67,112.209L217.824,107.165L218.188,104.601L218.5,104.745L218.266,106.447L220.398,111.984L220.372,111.963ZM218.604,104.765L221.23,104.663L225.547,102.469L225.937,103.863L231.346,100.5L233.219,98.285L233.791,95.148L236.963,93.426L237.666,90.719L236.911,88.443L237.952,85.92L236.495,85.756L236.053,83.172L237.483,82.783L237.041,81.491L242.268,76.754L242.763,76.98L243.673,78.764L243.621,84.69L242.555,86.187L243.257,91.806L247.001,95.886L250.538,94.123L253.633,94.369L253.919,97.896L255.713,100.418L254.361,103.166L252.593,104.929L252.332,106.673L251.032,107.595L249.732,110.569L248.094,112.681L246.013,120.904L244.089,120.699L241.358,119.407L239.018,117.684L236.287,117.233L233.843,117.889L229.994,120.022L227.732,119.571L226.561,118.484L226.535,116.68L225.391,113.542L223.493,113.87L220.71,111.984L218.37,105.832Z"></path>
         <path fill="rgb(83, 131, 187)" d="M141.056,41.73L139.886,44.662L149.482,48.353L150.418,53.5L151.588,55.161L152.446,54.874L153.591,56.986L157.361,60.124L155.437,65.476L152.629,68.613L154.397,71.299L152.967,71.976L153.383,74.785L152.655,76.405L150.522,77.759L149.924,75.114L148.858,73.965L147.349,77.636L148.65,83.254L146.101,84.956L144.385,90.411L143.423,92.031L142.304,91.416L138.664,94.205L138.404,95.784L136.011,97.342L135.491,98.634L133.749,99.085L132.474,98.347L131.382,99.147L128.782,95.21L125.245,90.637L122.775,90.268L121.162,90.903L121.084,92.339L119.186,90.37L119.732,90.042L118.796,85.818L120.694,84.382L114.869,76.262L103.531,60.534L103.375,58.073L105.949,58.524L112.711,56.761L113.101,55.161L116.065,53.767L117.886,55.284L119.836,51.429L120.2,48.825L123.763,46.979L126.649,46.097L127.403,47.533L129.302,45.851L133.125,44.641L132.11,42.57L133.099,42.755L134.503,40.971L137.129,41.894L136.583,43.308L138.3,44.129L139.314,42.099Z"></path>
@@ -189,7 +189,7 @@
       </g>
     </g>
     <g transform="translate(579,0)">
-      <g aria-label="geo" stroke="var(--plot-background)" stroke-width="0.75" stroke-linejoin="round" stroke-linecap="round">
+      <g aria-label="geo" stroke="var(--plot-background)" stroke-width="0.75" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
         <path fill="rgb(176, 11, 38)" d="M162.771,121.621L162.771,119.304L162.094,117.828L164.695,117.684L167.061,116.577L166.983,115.49L170.91,116.782L172.965,116.187L172.679,117.541L174.369,119.755L174.733,121.868L172.887,122.606L172.887,122.606L172.705,123.098L166.437,121.621Z"></path>
         <path fill="rgb(135, 187, 217)" d="M219.67,112.209L217.824,107.165L218.188,104.601L218.5,104.745L218.266,106.447L220.398,111.984L220.372,111.963ZM218.604,104.765L221.23,104.663L225.547,102.469L225.937,103.863L231.346,100.5L233.219,98.285L233.791,95.148L236.963,93.426L237.666,90.719L236.911,88.443L237.952,85.92L236.495,85.756L236.053,83.172L237.483,82.783L237.041,81.491L242.268,76.754L242.763,76.98L243.673,78.764L243.621,84.69L242.555,86.187L243.257,91.806L247.001,95.886L250.538,94.123L253.633,94.369L253.919,97.896L255.713,100.418L254.361,103.166L252.593,104.929L252.332,106.673L251.032,107.595L249.732,110.569L248.094,112.681L246.013,120.904L244.089,120.699L241.358,119.407L239.018,117.684L236.287,117.233L233.843,117.889L229.994,120.022L227.732,119.571L226.561,118.484L226.535,116.68L225.391,113.542L223.493,113.87L220.71,111.984L218.37,105.832Z"></path>
         <path fill="rgb(92, 143, 194)" d="M141.056,41.73L139.886,44.662L149.482,48.353L150.418,53.5L151.588,55.161L152.446,54.874L153.591,56.986L157.361,60.124L155.437,65.476L152.629,68.613L154.397,71.299L152.967,71.976L153.383,74.785L152.655,76.405L150.522,77.759L149.924,75.114L148.858,73.965L147.349,77.636L148.65,83.254L146.101,84.956L144.385,90.411L143.423,92.031L142.304,91.416L138.664,94.205L138.404,95.784L136.011,97.342L135.491,98.634L133.749,99.085L132.474,98.347L131.382,99.147L128.782,95.21L125.245,90.637L122.775,90.268L121.162,90.903L121.084,92.339L119.186,90.37L119.732,90.042L118.796,85.818L120.694,84.382L114.869,76.262L103.531,60.534L103.375,58.073L105.949,58.524L112.711,56.761L113.101,55.161L116.065,53.767L117.886,55.284L119.836,51.429L120.2,48.825L123.763,46.979L126.649,46.097L127.403,47.533L129.302,45.851L133.125,44.641L132.11,42.57L133.099,42.755L134.503,40.971L137.129,41.894L136.583,43.308L138.3,44.129L139.314,42.099Z"></path>
@@ -228,13 +228,13 @@
   </g>
   <g>
     <g transform="translate(1,0)">
-      <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start"></g>
+      <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)"></g>
     </g>
     <g transform="translate(290,0)">
-      <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start"></g>
+      <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)"></g>
     </g>
     <g transform="translate(579,0)">
-      <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start"></g>
+      <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)"></g>
     </g>
   </g>
 </svg>

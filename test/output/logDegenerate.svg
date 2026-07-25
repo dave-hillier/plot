@@ -1,4 +1,4 @@
-<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
     :where(.plot) {
       --plot-background: white;
@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,-0.5)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(20,30)" d="M0,0L0,6"></path>
     <path transform="translate(110.309,30)" d="M0,0L0,6"></path>
     <path transform="translate(163.136,30)" d="M0,0L0,6"></path>
@@ -34,7 +34,7 @@
     <path transform="translate(606.273,30)" d="M0,0L0,6"></path>
     <path transform="translate(620,30)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
     <text transform="translate(20,30)" y="0.71em">100m</text>
     <text transform="translate(110.309,30)" y="0.71em">200m</text>
     <text transform="translate(163.136,30)" y="0.71em">300m</text>
@@ -55,7 +55,7 @@
     <text transform="translate(606.273,30)" y="0.71em"></text>
     <text transform="translate(620,30)" y="0.71em">10</text>
   </g>
-  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5">
+  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
     <circle cx="20" cy="15" r="3"></circle>
     <circle cx="320" cy="15" r="3"></circle>
     <circle cx="410.309" cy="15" r="3"></circle>

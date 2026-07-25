@@ -1,4 +1,4 @@
-<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="800" height="830" viewBox="0 0 800 830" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="800" height="830" viewBox="0 0 800 830" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
     :where(.plot) {
       --plot-background: white;
@@ -15,39 +15,39 @@
   </style>
   <g>
     <g transform="translate(2,0)">
-      <g aria-label="fx-axis tick label" transform="translate(0,-9)">
+      <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
         <text transform="translate(225.5,30)">clip-start</text>
       </g>
     </g>
     <g transform="translate(103,0)">
-      <g aria-label="fx-axis tick label" transform="translate(0,-9)">
+      <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
         <text transform="translate(225.5,30)">clip-end</text>
       </g>
     </g>
     <g transform="translate(204,0)">
-      <g aria-label="fx-axis tick label" transform="translate(0,-9)">
+      <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
         <text transform="translate(225.5,30)">ellipsis-start</text>
       </g>
     </g>
     <g transform="translate(305,0)">
-      <g aria-label="fx-axis tick label" transform="translate(0,-9)">
+      <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
         <text transform="translate(225.5,30)">ellipsis-middle</text>
       </g>
     </g>
     <g transform="translate(406,0)">
-      <g aria-label="fx-axis tick label" transform="translate(0,-9)">
+      <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
         <text transform="translate(225.5,30)">ellipsis-end</text>
       </g>
     </g>
     <g transform="translate(507,0)">
-      <g aria-label="fx-axis tick label" transform="translate(0,-9)">
+      <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
         <text transform="translate(225.5,30)">monospace</text>
       </g>
     </g>
   </g>
   <g>
     <g transform="translate(2,0)">
-      <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(-0.5,0)">
+      <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
         <path transform="translate(180,42)" d="M0,0L-6,0"></path>
         <path transform="translate(180,63)" d="M0,0L-6,0"></path>
         <path transform="translate(180,84)" d="M0,0L-6,0"></path>
@@ -90,7 +90,7 @@
   </g>
   <g>
     <g transform="translate(2,0)">
-      <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-9,0)">
+      <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
         <text transform="translate(180,42)" y="0.32em">The Best Years of Our Lives</text>
         <text transform="translate(180,63)" y="0.32em">The Ballad of Gregorio Cortez</text>
         <text transform="translate(180,84)" y="0.32em">My Big Fat Independent Movie</text>
@@ -133,7 +133,7 @@
   </g>
   <g>
     <g transform="translate(2,0)">
-      <g aria-label="text" text-anchor="start" transform="translate(4,0)">
+      <g aria-label="text" text-anchor="start" transform="translate(4.5,0.5)">
         <text transform="translate(180,42)" y="0.32em">ars of Our Lives<title>The Best Years of Our Lives</title></text>
         <text transform="translate(180,63)" y="0.32em">Gregorio Cortez<title>The Ballad of Gregorio Cortez</title></text>
         <text transform="translate(180,84)" y="0.32em">ependent Movie<title>My Big Fat Independent Movie</title></text>
@@ -177,7 +177,7 @@
   </g>
   <g>
     <g transform="translate(103,0)">
-      <g aria-label="text" text-anchor="end" transform="translate(-4,0)">
+      <g aria-label="text" text-anchor="end" transform="translate(-3.5,0.5)">
         <text transform="translate(271,42)" y="0.32em">The Best Years<title>The Best Years of Our Lives</title></text>
         <text transform="translate(271,63)" y="0.32em">The Ballad of Gr<title>The Ballad of Gregorio Cortez</title></text>
         <text transform="translate(271,84)" y="0.32em">My Big Fat Inde<title>My Big Fat Independent Movie</title></text>
@@ -221,7 +221,7 @@
   </g>
   <g>
     <g transform="translate(204,0)">
-      <g aria-label="text" text-anchor="start" transform="translate(4,0)">
+      <g aria-label="text" text-anchor="start" transform="translate(4.5,0.5)">
         <text transform="translate(180,42)" y="0.32em">…rs of Our Lives<title>The Best Years of Our Lives</title></text>
         <text transform="translate(180,63)" y="0.32em">…regorio Cortez<title>The Ballad of Gregorio Cortez</title></text>
         <text transform="translate(180,84)" y="0.32em">…pendent Movie<title>My Big Fat Independent Movie</title></text>
@@ -265,7 +265,7 @@
   </g>
   <g>
     <g transform="translate(305,0)">
-      <g aria-label="text">
+      <g aria-label="text" transform="translate(0.5,0.5)">
         <text transform="translate(225.5,42)" y="0.32em">The Be…ur Lives<title>The Best Years of Our Lives</title></text>
         <text transform="translate(225.5,63)" y="0.32em">The Ba…Cortez<title>The Ballad of Gregorio Cortez</title></text>
         <text transform="translate(225.5,84)" y="0.32em">My Big…t Movie<title>My Big Fat Independent Movie</title></text>
@@ -309,7 +309,7 @@
   </g>
   <g>
     <g transform="translate(406,0)">
-      <g aria-label="text" text-anchor="end" transform="translate(-4,0)">
+      <g aria-label="text" text-anchor="end" transform="translate(-3.5,0.5)">
         <text transform="translate(271,42)" y="0.32em">The Best Year…<title>The Best Years of Our Lives</title></text>
         <text transform="translate(271,63)" y="0.32em">The Ballad of…<title>The Ballad of Gregorio Cortez</title></text>
         <text transform="translate(271,84)" y="0.32em">My Big Fat Ind…<title>My Big Fat Independent Movie</title></text>
@@ -353,7 +353,7 @@
   </g>
   <g>
     <g transform="translate(507,0)">
-      <g aria-label="text" text-anchor="end" font-family="ui-monospace, monospace" transform="translate(-4,0)">
+      <g aria-label="text" text-anchor="end" font-family="ui-monospace, monospace" transform="translate(-3.5,0.5)">
         <text transform="translate(271,42)" y="0.32em">The Best Ye…<title>The Best Years of Our Lives</title></text>
         <text transform="translate(271,63)" y="0.32em">The Ballad…<title>The Ballad of Gregorio Cortez</title></text>
         <text transform="translate(271,84)" y="0.32em">My Big Fat…<title>My Big Fat Independent Movie</title></text>
@@ -397,22 +397,22 @@
   </g>
   <g>
     <g transform="translate(2,0)">
-      <rect aria-label="frame" fill="none" stroke="currentColor" x="180" y="30" width="91" height="780"></rect>
+      <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="180" y="30" width="91" height="780"></rect>
     </g>
     <g transform="translate(103,0)">
-      <rect aria-label="frame" fill="none" stroke="currentColor" x="180" y="30" width="91" height="780"></rect>
+      <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="180" y="30" width="91" height="780"></rect>
     </g>
     <g transform="translate(204,0)">
-      <rect aria-label="frame" fill="none" stroke="currentColor" x="180" y="30" width="91" height="780"></rect>
+      <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="180" y="30" width="91" height="780"></rect>
     </g>
     <g transform="translate(305,0)">
-      <rect aria-label="frame" fill="none" stroke="currentColor" x="180" y="30" width="91" height="780"></rect>
+      <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="180" y="30" width="91" height="780"></rect>
     </g>
     <g transform="translate(406,0)">
-      <rect aria-label="frame" fill="none" stroke="currentColor" x="180" y="30" width="91" height="780"></rect>
+      <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="180" y="30" width="91" height="780"></rect>
     </g>
     <g transform="translate(507,0)">
-      <rect aria-label="frame" fill="none" stroke="currentColor" x="180" y="30" width="91" height="780"></rect>
+      <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="180" y="30" width="91" height="780"></rect>
     </g>
   </g>
 </svg>

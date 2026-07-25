@@ -1,4 +1,4 @@
-<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="800" viewBox="0 0 640 800" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="800" viewBox="0 0 640 800" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
     :where(.plot) {
       --plot-background: white;
@@ -21,7 +21,7 @@
     <line x1="470.72" x2="470.72" y1="30" y2="780"></line>
     <line x1="559.414" x2="559.414" y1="30" y2="780"></line>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,1)">
     <path transform="translate(115.946,30)" d="M0,0L0,-6"></path>
     <path transform="translate(204.64,30)" d="M0,0L0,-6"></path>
     <path transform="translate(293.333,30)" d="M0,0L0,-6"></path>
@@ -29,7 +29,7 @@
     <path transform="translate(470.72,30)" d="M0,0L0,-6"></path>
     <path transform="translate(559.414,30)" d="M0,0L0,-6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,-9)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,-8.5)">
     <text transform="translate(115.946,30)">−10</text>
     <text transform="translate(204.64,30)">−5</text>
     <text transform="translate(293.333,30)">+0</text>
@@ -37,7 +37,7 @@
     <text transform="translate(470.72,30)">+10</text>
     <text transform="translate(559.414,30)">+15</text>
   </g>
-  <g aria-label="x-axis label" transform="translate(0,-27)">
+  <g aria-label="x-axis label" transform="translate(0.5,-26.5)">
     <text transform="translate(320,30)" y="0.71em">← decrease · Change in population, 2010–2019 (%) · increase →</text>
   </g>
   <g aria-label="bar">
@@ -94,7 +94,7 @@
     <rect fill="#e9a3c9" x="288.367" y="84" width="4.967" height="13"></rect>
     <rect fill="#a1d76a" x="293.333" y="308" width="47.627" height="13"></rect>
   </g>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(-0.5,6.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,7)">
     <path transform="translate(293.333,112)" d="M0,0L-6,0"></path>
     <path transform="translate(293.333,126)" d="M0,0L-6,0"></path>
     <path transform="translate(293.333,140)" d="M0,0L-6,0"></path>
@@ -143,7 +143,7 @@
     <path transform="translate(293.333,742)" d="M0,0L-6,0"></path>
     <path transform="translate(293.333,756)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-9,6.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,7)">
     <text transform="translate(293.333,112)" y="0.32em">Mississippi</text>
     <text transform="translate(293.333,126)" y="0.32em">New York</text>
     <text transform="translate(293.333,140)" y="0.32em">Rhode Island</text>
@@ -192,14 +192,14 @@
     <text transform="translate(293.333,742)" y="0.32em">Utah</text>
     <text transform="translate(293.333,756)" y="0.32em">District of Columbia</text>
   </g>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,6.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(1,7)">
     <path transform="translate(293.333,42)" d="M0,0L6,0"></path>
     <path transform="translate(293.333,56)" d="M0,0L6,0"></path>
     <path transform="translate(293.333,70)" d="M0,0L6,0"></path>
     <path transform="translate(293.333,84)" d="M0,0L6,0"></path>
     <path transform="translate(293.333,98)" d="M0,0L6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="start" transform="translate(9,6.5)">
+  <g aria-label="y-axis tick label" text-anchor="start" transform="translate(9.5,7)">
     <text transform="translate(293.333,42)" y="0.32em">Puerto Rico</text>
     <text transform="translate(293.333,56)" y="0.32em">West Virginia</text>
     <text transform="translate(293.333,70)" y="0.32em">Illinois</text>

@@ -1,4 +1,4 @@
-<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="520" height="520" viewBox="0 0 520 520" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="520" height="520" viewBox="0 0 520 520" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
     :where(.plot) {
       --plot-background: white;
@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="image">
+  <g aria-label="image" transform="translate(0.5,0.5)">
     <image x="399" y="398" width="120" height="120" href="https://placekitten.com/148/148" clip-path="circle(60px)"></image>
     <image x="300.303" y="332.44" width="117.895" height="117.895" href="https://placekitten.com/146/146" clip-path="circle(58.947px)"></image>
     <image x="201.629" y="402.257" width="115.743" height="115.743" href="https://placekitten.com/144/144" clip-path="circle(57.871px)"></image>

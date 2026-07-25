@@ -1,4 +1,4 @@
-<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
     :where(.plot) {
       --plot-background: white;
@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="link" fill="none" stroke="#555" stroke-width="1.5" stroke-opacity="0.5" stroke-miterlimit="1">
+  <g aria-label="link" fill="none" stroke="#555" stroke-width="1.5" stroke-opacity="0.5" stroke-miterlimit="1" transform="translate(0.5,0.5)">
     <path d="M35,154.625C156,154.625,156,20,277,20"></path>
     <path d="M35,154.625C156,154.625,156,109.75,277,109.75"></path>
     <path d="M35,154.625C156,154.625,156,199.5,277,199.5"></path>
@@ -22,7 +22,7 @@
     <path d="M277,289.25C398,289.25,398,289.25,519,289.25"></path>
     <path d="M277,289.25C398,289.25,398,379,519,379"></path>
   </g>
-  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5">
+  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
     <circle cx="35" cy="154.625" r="3"></circle>
     <circle cx="277" cy="20" r="3"></circle>
     <circle cx="277" cy="109.75" r="3"></circle>
@@ -32,7 +32,7 @@
     <circle cx="519" cy="289.25" r="3"></circle>
     <circle cx="519" cy="379" r="3"></circle>
   </g>
-  <g aria-label="text" text-anchor="start">
+  <g aria-label="text" text-anchor="start" transform="translate(0.5,0.5)">
     <text transform="translate(277,20)" y="0.32em">Chaos/Eros</text>
     <text transform="translate(277,109.75)" y="0.32em">Chaos/Erebus</text>
     <text transform="translate(277,199.5)" y="0.32em">Chaos/Tartarus</text>

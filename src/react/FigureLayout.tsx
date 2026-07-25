@@ -28,23 +28,13 @@ export function FigureLayout({
   isJsx
 }: FigureLayoutProps) {
   return (
-    <figure style={{maxWidth: 640, margin: "0 auto"}}>
-      {title != null && (
-        <SlotHeader as="h2" content={title} style={{fontSize: "16px", fontWeight: "bold", margin: "0 0 4px"}} />
-      )}
-      {subtitle != null && (
-        <SlotHeader
-          as="h3"
-          content={subtitle}
-          style={{fontSize: "12px", fontWeight: "normal", color: "#666", margin: "0 0 8px"}}
-        />
-      )}
+    <figure style={{maxWidth: "initial"}}>
+      {title != null && <SlotHeader as="h2" content={title} />}
+      {subtitle != null && <SlotHeader as="h3" content={subtitle} />}
       {autoLegends}
       {explicitLegends}
       {isJsx ? <div className="plot-host">{plotElement}</div> : plotElement}
-      {caption != null && (
-        <SlotHeader as="figcaption" content={caption} style={{fontSize: "12px", color: "#666", marginTop: "4px"}} />
-      )}
+      {caption != null && <SlotHeader as="figcaption" content={caption} />}
       {/* The figure's trailing hidden div is part of its established DOM
           shape (asserted by the rendering snapshots). The registration
           children themselves live OUTSIDE the figure, at a stable position

@@ -1,4 +1,4 @@
-<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="160" viewBox="0 0 640 160" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow: visible;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="160" viewBox="0 0 640 160" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow: visible;">
   <style>
     :where(.plot) {
       --plot-background: white;
@@ -13,11 +13,11 @@
       white-space: pre;
     }
   </style>
-  <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.2" x="0" y="0" width="639" height="159"></rect>
-  <g aria-label="dot" fill="blue">
+  <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.2" transform="translate(0.5,0.5)" x="0" y="0" width="639" height="159"></rect>
+  <g aria-label="dot" fill="blue" transform="translate(0.5,0.5)">
     <circle cx="319.5" cy="0" r="3"></circle>
   </g>
-  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start">
+  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)">
     <g>
       <g transform="translate(320,0)">
         <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M0,0l6,6h13v26h-38v-26h13z"></path>
@@ -25,10 +25,10 @@
       </g><title>top</title>
     </g>
   </g>
-  <g aria-label="dot" fill="blue">
+  <g aria-label="dot" fill="blue" transform="translate(0.5,0.5)">
     <circle cx="639" cy="79.5" r="3"></circle>
   </g>
-  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start">
+  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)">
     <g>
       <g transform="translate(639,80)">
         <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M0,0l-6,-6v-7h-44v26h44v-7z"></path>
@@ -36,10 +36,10 @@
       </g><title>right</title>
     </g>
   </g>
-  <g aria-label="dot" fill="blue">
+  <g aria-label="dot" fill="blue" transform="translate(0.5,0.5)">
     <circle cx="319.5" cy="159" r="3"></circle>
   </g>
-  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start">
+  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)">
     <g>
       <g transform="translate(320,159)">
         <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M0,0l6,-6h22.5v-26h-57v26h22.5z"></path>
@@ -47,10 +47,10 @@
       </g><title>bottom</title>
     </g>
   </g>
-  <g aria-label="dot" fill="blue">
+  <g aria-label="dot" fill="blue" transform="translate(0.5,0.5)">
     <circle cx="0" cy="79.5" r="3"></circle>
   </g>
-  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start">
+  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)">
     <g>
       <g transform="translate(0,80)">
         <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M0,0l6,-6v-7h38v26h-38v-7z"></path>
@@ -58,10 +58,10 @@
       </g><title>left</title>
     </g>
   </g>
-  <g aria-label="dot" fill="blue">
+  <g aria-label="dot" fill="blue" transform="translate(0.5,0.5)">
     <circle cx="0" cy="0" r="3"></circle>
   </g>
-  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start">
+  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)">
     <g>
       <g transform="translate(0,0)">
         <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M0,0l12,12h47v26h-59z"></path>
@@ -69,10 +69,10 @@
       </g><title>top-left</title>
     </g>
   </g>
-  <g aria-label="dot" fill="blue">
+  <g aria-label="dot" fill="blue" transform="translate(0.5,0.5)">
     <circle cx="639" cy="0" r="3"></circle>
   </g>
-  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start">
+  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)">
     <g>
       <g transform="translate(639,0)">
         <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M0,0l-12,12h-53v26h65z"></path>
@@ -80,10 +80,10 @@
       </g><title>top-right</title>
     </g>
   </g>
-  <g aria-label="dot" fill="blue">
+  <g aria-label="dot" fill="blue" transform="translate(0.5,0.5)">
     <circle cx="639" cy="159" r="3"></circle>
   </g>
-  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start">
+  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)">
     <g>
       <g transform="translate(639,159)">
         <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M0,0l-12,-12h-72v-26h84z"></path>
@@ -91,10 +91,10 @@
       </g><title>bottom-right</title>
     </g>
   </g>
-  <g aria-label="dot" fill="blue">
+  <g aria-label="dot" fill="blue" transform="translate(0.5,0.5)">
     <circle cx="0" cy="159" r="3"></circle>
   </g>
-  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start">
+  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)">
     <g>
       <g transform="translate(0,159)">
         <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M0,0l12,-12h65v-26h-77z"></path>
@@ -102,10 +102,10 @@
       </g><title>bottom-left</title>
     </g>
   </g>
-  <g aria-label="dot" fill="blue">
+  <g aria-label="dot" fill="blue" transform="translate(0.5,0.5)">
     <circle cx="319.5" cy="79.5" r="3"></circle>
   </g>
-  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start">
+  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)">
     <g>
       <g transform="translate(320,80)">
         <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))" d="M-27,-13h54v26h-54z"></path>

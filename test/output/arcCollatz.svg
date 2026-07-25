@@ -1,4 +1,4 @@
-<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="520" viewBox="0 0 640 520" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="520" viewBox="0 0 640 520" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
     :where(.plot) {
       --plot-background: white;
@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="text" font-variant="tabular-nums">
+  <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,0.5)">
     <text transform="translate(463.933,259.5)" y="0.32em">12</text>
     <text transform="translate(216.333,259.5)" y="0.32em">6</text>
     <text transform="translate(92.533,259.5)" y="0.32em">3</text>
@@ -25,7 +25,7 @@
     <text transform="translate(51.267,259.5)" y="0.32em">2</text>
     <text transform="translate(10,259.5)" y="0.32em">1</text>
   </g>
-  <g aria-label="arrow" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="1">
+  <g aria-label="arrow" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="1" transform="translate(0.5,0.5)">
     <path d="M463.142,273.478A123.8,123.8 0,0,1 217.642,277.452M216.165,281.17L217.642,277.452L220.123,280.59"></path>
     <path d="M214.75,273.41A61.9,61.9 0,0,1 95.15,277.309M94.232,281.202L95.15,277.309L98.063,280.051"></path>
     <path d="M93.212,245.516A144.433,144.433 0,0,1 380.278,241.535M381.832,237.849L380.278,241.535L377.863,238.347"></path>
@@ -36,7 +36,7 @@
     <path d="M131.425,273.297A41.267,41.267 0,0,1 55.192,277.067M54.857,281.053L55.192,277.067L58.477,279.35"></path>
     <path d="M46.517,272.67A20.633,20.633 0,0,1 17.851,275.697M19.332,279.413L17.851,275.697L21.81,276.273"></path>
   </g>
-  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5">
+  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
     <circle cx="463.933" cy="259.5" r="10"></circle>
     <circle cx="216.333" cy="259.5" r="10"></circle>
     <circle cx="92.533" cy="259.5" r="10"></circle>

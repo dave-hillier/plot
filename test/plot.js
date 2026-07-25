@@ -57,8 +57,15 @@ for (const [name, plot] of Object.entries(plots)) {
     });
     const ext = root.tagName === "svg" ? "svg" : "html";
     for (const svg of root.tagName === "svg" ? [root] : root.querySelectorAll("svg")) {
-      svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns", "http://www.w3.org/2000/svg");
-      svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xlink", "http://www.w3.org/1999/xlink");
+      // React-rendered svgs already carry these as plain attributes; setting
+      // them again via setAttributeNS would serialize duplicates, producing
+      // invalid XML.
+      if (!svg.hasAttribute("xmlns")) {
+        svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns", "http://www.w3.org/2000/svg");
+      }
+      if (!svg.hasAttribute("xmlns:xlink")) {
+        svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xlink", "http://www.w3.org/1999/xlink");
+      }
     }
     reindexStyle(root);
     reindexMarker(root);

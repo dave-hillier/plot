@@ -1,4 +1,4 @@
-<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="500" height="1100" viewBox="0 0 500 1100" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="500" height="1100" viewBox="0 0 500 1100" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
     :where(.plot) {
       --plot-background: white;
@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,-0.5)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(95,1070)" d="M0,0L0,6"></path>
     <path transform="translate(165.2,1070)" d="M0,0L0,6"></path>
     <path transform="translate(235.4,1070)" d="M0,0L0,6"></path>
@@ -21,7 +21,7 @@
     <path transform="translate(375.8,1070)" d="M0,0L0,6"></path>
     <path transform="translate(446,1070)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
     <text transform="translate(95,1070)" y="0.71em">0</text>
     <text transform="translate(165.2,1070)" y="0.71em">20</text>
     <text transform="translate(235.4,1070)" y="0.71em">40</text>
@@ -29,10 +29,10 @@
     <text transform="translate(375.8,1070)" y="0.71em">80</text>
     <text transform="translate(446,1070)" y="0.71em">100</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(51,27)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(51.5,27.5)">
     <text transform="translate(446,1070)">opinion (%) →</text>
   </g>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(-0.5,10.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,11)">
     <path transform="translate(95,29)" d="M0,0L-6,0"></path>
     <path transform="translate(95,52)" d="M0,0L-6,0"></path>
     <path transform="translate(95,75)" d="M0,0L-6,0"></path>
@@ -79,7 +79,7 @@
     <path transform="translate(95,1018)" d="M0,0L-6,0"></path>
     <path transform="translate(95,1041)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-9,10.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,11)">
     <text transform="translate(95,29)"><tspan x="0" y="-0.18em">George</tspan><tspan x="0" dy="1em">Washington</tspan></text>
     <text transform="translate(95,52)" y="0.32em">John Adams</text>
     <text transform="translate(95,75)"><tspan x="0" y="-0.18em">Thomas</tspan><tspan x="0" dy="1em">Jefferson</tspan></text>
@@ -126,10 +126,10 @@
     <text transform="translate(95,1018)"><tspan x="0" y="-0.18em">Donald</tspan><tspan x="0" dy="1em">Trump</tspan></text>
     <text transform="translate(95,1041)" y="0.32em">Joe Biden</text>
   </g>
-  <g aria-label="y-axis label" transform="translate(-92,0)">
+  <g aria-label="y-axis label" transform="translate(-91.5,0.5)">
     <text transform="translate(95,545) rotate(-90)" y="0.71em">President</text>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="start" transform="translate(9,10.5)">
+  <g aria-label="y-axis tick label" text-anchor="start" transform="translate(9.5,11)">
     <text transform="translate(446,29)" y="0.32em">1789</text>
     <text transform="translate(446,52)" y="0.32em">1797</text>
     <text transform="translate(446,75)" y="0.32em">1801</text>
@@ -176,7 +176,7 @@
     <text transform="translate(446,1018)" y="0.32em">2017</text>
     <text transform="translate(446,1041)" y="0.32em">2021</text>
   </g>
-  <g aria-label="y-axis label" transform="translate(51,0)">
+  <g aria-label="y-axis label" transform="translate(51.5,0.5)">
     <text transform="translate(446,545) rotate(-90)">First inauguration date</text>
   </g>
   <g aria-label="bar">

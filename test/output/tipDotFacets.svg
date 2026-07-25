@@ -1,4 +1,4 @@
-<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="930" viewBox="0 0 640 930" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="930" viewBox="0 0 640 930" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
     :where(.plot) {
       --plot-background: white;
@@ -15,52 +15,52 @@
   </style>
   <g>
     <g transform="translate(295,1)">
-      <g aria-label="fy-axis tick label" text-anchor="start" font-variant="tabular-nums" transform="translate(9,0)">
+      <g aria-label="fy-axis tick label" text-anchor="start" font-variant="tabular-nums" transform="translate(9.5,0.5)">
         <text transform="translate(305,96)" y="0.32em">1950</text>
       </g>
     </g>
     <g transform="translate(295,148)">
-      <g aria-label="fy-axis tick label" text-anchor="start" font-variant="tabular-nums" transform="translate(9,0)">
+      <g aria-label="fy-axis tick label" text-anchor="start" font-variant="tabular-nums" transform="translate(9.5,0.5)">
         <text transform="translate(305,96)" y="0.32em">1960</text>
       </g>
     </g>
     <g transform="translate(295,295)">
-      <g aria-label="fy-axis tick label" text-anchor="start" font-variant="tabular-nums" transform="translate(9,0)">
+      <g aria-label="fy-axis tick label" text-anchor="start" font-variant="tabular-nums" transform="translate(9.5,0.5)">
         <text transform="translate(305,96)" y="0.32em">1970</text>
       </g>
     </g>
     <g transform="translate(295,442)">
-      <g aria-label="fy-axis tick label" text-anchor="start" font-variant="tabular-nums" transform="translate(9,0)">
+      <g aria-label="fy-axis tick label" text-anchor="start" font-variant="tabular-nums" transform="translate(9.5,0.5)">
         <text transform="translate(305,96)" y="0.32em">1980</text>
       </g>
     </g>
     <g transform="translate(295,589)">
-      <g aria-label="fy-axis tick label" text-anchor="start" font-variant="tabular-nums" transform="translate(9,0)">
+      <g aria-label="fy-axis tick label" text-anchor="start" font-variant="tabular-nums" transform="translate(9.5,0.5)">
         <text transform="translate(305,96)" y="0.32em">1990</text>
       </g>
     </g>
     <g transform="translate(295,736)">
-      <g aria-label="fy-axis tick label" text-anchor="start" font-variant="tabular-nums" transform="translate(9,0)">
+      <g aria-label="fy-axis tick label" text-anchor="start" font-variant="tabular-nums" transform="translate(9.5,0.5)">
         <text transform="translate(305,96)" y="0.32em">2000</text>
       </g>
     </g>
   </g>
-  <g aria-label="fy-axis label" transform="translate(37,0)">
+  <g aria-label="fy-axis label" transform="translate(37.5,0.5)">
     <text transform="translate(600,464.5) rotate(-90)">← decade of birth</text>
   </g>
   <g>
     <g transform="translate(1,1)">
-      <g aria-label="fx-axis tick label" transform="translate(0,-9)">
+      <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
         <text transform="translate(172.5,30)">female</text>
       </g>
     </g>
     <g transform="translate(295,1)">
-      <g aria-label="fx-axis tick label" transform="translate(0,-9)">
+      <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
         <text transform="translate(172.5,30)">male</text>
       </g>
     </g>
   </g>
-  <g aria-label="fx-axis label" transform="translate(0,-28)">
+  <g aria-label="fx-axis label" transform="translate(0.5,-27.5)">
     <text transform="translate(320.5,31)" y="0.71em">sex</text>
   </g>
   <g>
@@ -175,7 +175,7 @@
   </g>
   <g>
     <g transform="translate(1,1)">
-      <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(-0.5,0)">
+      <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
         <path transform="translate(40,136.92)" d="M0,0L-6,0"></path>
         <path transform="translate(40,110.52)" d="M0,0L-6,0"></path>
         <path transform="translate(40,84.12)" d="M0,0L-6,0"></path>
@@ -184,7 +184,7 @@
       </g>
     </g>
     <g transform="translate(1,148)">
-      <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(-0.5,0)">
+      <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
         <path transform="translate(40,136.92)" d="M0,0L-6,0"></path>
         <path transform="translate(40,110.52)" d="M0,0L-6,0"></path>
         <path transform="translate(40,84.12)" d="M0,0L-6,0"></path>
@@ -193,7 +193,7 @@
       </g>
     </g>
     <g transform="translate(1,295)">
-      <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(-0.5,0)">
+      <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
         <path transform="translate(40,136.92)" d="M0,0L-6,0"></path>
         <path transform="translate(40,110.52)" d="M0,0L-6,0"></path>
         <path transform="translate(40,84.12)" d="M0,0L-6,0"></path>
@@ -202,7 +202,7 @@
       </g>
     </g>
     <g transform="translate(1,442)">
-      <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(-0.5,0)">
+      <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
         <path transform="translate(40,136.92)" d="M0,0L-6,0"></path>
         <path transform="translate(40,110.52)" d="M0,0L-6,0"></path>
         <path transform="translate(40,84.12)" d="M0,0L-6,0"></path>
@@ -211,7 +211,7 @@
       </g>
     </g>
     <g transform="translate(1,589)">
-      <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(-0.5,0)">
+      <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
         <path transform="translate(40,136.92)" d="M0,0L-6,0"></path>
         <path transform="translate(40,110.52)" d="M0,0L-6,0"></path>
         <path transform="translate(40,84.12)" d="M0,0L-6,0"></path>
@@ -220,7 +220,7 @@
       </g>
     </g>
     <g transform="translate(1,736)">
-      <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(-0.5,0)">
+      <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
         <path transform="translate(40,136.92)" d="M0,0L-6,0"></path>
         <path transform="translate(40,110.52)" d="M0,0L-6,0"></path>
         <path transform="translate(40,84.12)" d="M0,0L-6,0"></path>
@@ -231,7 +231,7 @@
   </g>
   <g>
     <g transform="translate(1,1)">
-      <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
+      <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
         <text transform="translate(40,136.92)" y="0.32em">1.4</text>
         <text transform="translate(40,110.52)" y="0.32em">1.6</text>
         <text transform="translate(40,84.12)" y="0.32em">1.8</text>
@@ -240,7 +240,7 @@
       </g>
     </g>
     <g transform="translate(1,148)">
-      <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
+      <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
         <text transform="translate(40,136.92)" y="0.32em">1.4</text>
         <text transform="translate(40,110.52)" y="0.32em">1.6</text>
         <text transform="translate(40,84.12)" y="0.32em">1.8</text>
@@ -249,7 +249,7 @@
       </g>
     </g>
     <g transform="translate(1,295)">
-      <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
+      <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
         <text transform="translate(40,136.92)" y="0.32em">1.4</text>
         <text transform="translate(40,110.52)" y="0.32em">1.6</text>
         <text transform="translate(40,84.12)" y="0.32em">1.8</text>
@@ -258,7 +258,7 @@
       </g>
     </g>
     <g transform="translate(1,442)">
-      <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
+      <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
         <text transform="translate(40,136.92)" y="0.32em">1.4</text>
         <text transform="translate(40,110.52)" y="0.32em">1.6</text>
         <text transform="translate(40,84.12)" y="0.32em">1.8</text>
@@ -267,7 +267,7 @@
       </g>
     </g>
     <g transform="translate(1,589)">
-      <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
+      <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
         <text transform="translate(40,136.92)" y="0.32em">1.4</text>
         <text transform="translate(40,110.52)" y="0.32em">1.6</text>
         <text transform="translate(40,84.12)" y="0.32em">1.8</text>
@@ -276,7 +276,7 @@
       </g>
     </g>
     <g transform="translate(1,736)">
-      <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
+      <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
         <text transform="translate(40,136.92)" y="0.32em">1.4</text>
         <text transform="translate(40,110.52)" y="0.32em">1.6</text>
         <text transform="translate(40,84.12)" y="0.32em">1.8</text>
@@ -285,7 +285,7 @@
       </g>
     </g>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-37,-27)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-26.5)">
     <text transform="translate(41,31)" y="0.71em">↑ height</text>
   </g>
   <g>
@@ -376,14 +376,14 @@
   </g>
   <g>
     <g transform="translate(1,736)">
-      <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,-0.5)">
+      <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
         <path transform="translate(76.223,162)" d="M0,0L0,6"></path>
         <path transform="translate(171.547,162)" d="M0,0L0,6"></path>
         <path transform="translate(266.871,162)" d="M0,0L0,6"></path>
       </g>
     </g>
     <g transform="translate(295,736)">
-      <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,-0.5)">
+      <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
         <path transform="translate(76.223,162)" d="M0,0L0,6"></path>
         <path transform="translate(171.547,162)" d="M0,0L0,6"></path>
         <path transform="translate(266.871,162)" d="M0,0L0,6"></path>
@@ -392,26 +392,26 @@
   </g>
   <g>
     <g transform="translate(1,736)">
-      <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
+      <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
         <text transform="translate(76.223,162)" y="0.71em">50</text>
         <text transform="translate(171.547,162)" y="0.71em">100</text>
         <text transform="translate(266.871,162)" y="0.71em">150</text>
       </g>
     </g>
     <g transform="translate(295,736)">
-      <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
+      <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
         <text transform="translate(76.223,162)" y="0.71em">50</text>
         <text transform="translate(171.547,162)" y="0.71em">100</text>
         <text transform="translate(266.871,162)" y="0.71em">150</text>
       </g>
     </g>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(37,27)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(37.5,27.5)">
     <text transform="translate(600,898)">weight →</text>
   </g>
   <g>
     <g transform="translate(1,1)">
-      <g aria-label="dot" fill="none" stroke="#aaa" stroke-width="1.5">
+      <g aria-label="dot" fill="none" stroke="#aaa" stroke-width="1.5" transform="translate(0.5,0.5)">
         <circle cx="72.41" cy="114.48" r="3"></circle>
         <circle cx="76.223" cy="110.52" r="3"></circle>
         <circle cx="101.007" cy="93.36" r="3"></circle>
@@ -419,7 +419,7 @@
       </g>
     </g>
     <g transform="translate(1,148)">
-      <g aria-label="dot" fill="none" stroke="#aaa" stroke-width="1.5">
+      <g aria-label="dot" fill="none" stroke="#aaa" stroke-width="1.5" transform="translate(0.5,0.5)">
         <circle cx="91.475" cy="89.4" r="3"></circle>
         <circle cx="85.755" cy="113.16" r="3"></circle>
         <circle cx="95.288" cy="106.56" r="3"></circle>
@@ -445,7 +445,7 @@
       </g>
     </g>
     <g transform="translate(1,295)">
-      <g aria-label="dot" fill="none" stroke="#aaa" stroke-width="1.5">
+      <g aria-label="dot" fill="none" stroke="#aaa" stroke-width="1.5" transform="translate(0.5,0.5)">
         <circle cx="104.82" cy="97.32" r="3"></circle>
         <circle cx="91.475" cy="107.88" r="3"></circle>
         <circle cx="72.41" cy="110.52" r="3"></circle>
@@ -581,7 +581,7 @@
       </g>
     </g>
     <g transform="translate(1,442)">
-      <g aria-label="dot" fill="none" stroke="#aaa" stroke-width="1.5">
+      <g aria-label="dot" fill="none" stroke="#aaa" stroke-width="1.5" transform="translate(0.5,0.5)">
         <circle cx="87.662" cy="99.96" r="3"></circle>
         <circle cx="99.101" cy="84.12" r="3"></circle>
         <circle cx="110.54" cy="90.72" r="3"></circle>
@@ -2576,7 +2576,7 @@
       </g>
     </g>
     <g transform="translate(1,589)">
-      <g aria-label="dot" fill="none" stroke="#aaa" stroke-width="1.5">
+      <g aria-label="dot" fill="none" stroke="#aaa" stroke-width="1.5" transform="translate(0.5,0.5)">
         <circle cx="83.849" cy="103.92" r="3"></circle>
         <circle cx="74.317" cy="109.2" r="3"></circle>
         <circle cx="110.54" cy="86.76" r="3"></circle>
@@ -5316,7 +5316,7 @@
       </g>
     </g>
     <g transform="translate(1,736)">
-      <g aria-label="dot" fill="none" stroke="#aaa" stroke-width="1.5">
+      <g aria-label="dot" fill="none" stroke="#aaa" stroke-width="1.5" transform="translate(0.5,0.5)">
         <circle cx="76.223" cy="110.52" r="3"></circle>
         <circle cx="78.129" cy="114.48" r="3"></circle>
         <circle cx="83.849" cy="103.92" r="3"></circle>
@@ -5369,7 +5369,7 @@
       </g>
     </g>
     <g transform="translate(295,1)">
-      <g aria-label="dot" fill="none" stroke="#aaa" stroke-width="1.5">
+      <g aria-label="dot" fill="none" stroke="#aaa" stroke-width="1.5" transform="translate(0.5,0.5)">
         <circle cx="133.417" cy="80.16" r="3"></circle>
         <circle cx="114.353" cy="109.2" r="3"></circle>
         <circle cx="129.604" cy="70.92" r="3"></circle>
@@ -5377,7 +5377,7 @@
       </g>
     </g>
     <g transform="translate(295,148)">
-      <g aria-label="dot" fill="none" stroke="#aaa" stroke-width="1.5">
+      <g aria-label="dot" fill="none" stroke="#aaa" stroke-width="1.5" transform="translate(0.5,0.5)">
         <circle cx="102.914" cy="94.68" r="3"></circle>
         <circle cx="108.633" cy="92.04" r="3"></circle>
         <circle cx="141.043" cy="80.16" r="3"></circle>
@@ -5431,7 +5431,7 @@
       </g>
     </g>
     <g transform="translate(295,295)">
-      <g aria-label="dot" fill="none" stroke="#aaa" stroke-width="1.5">
+      <g aria-label="dot" fill="none" stroke="#aaa" stroke-width="1.5" transform="translate(0.5,0.5)">
         <circle cx="116.259" cy="90.72" r="3"></circle>
         <circle cx="156.295" cy="86.76" r="3"></circle>
         <circle cx="131.511" cy="97.32" r="3"></circle>
@@ -5679,7 +5679,7 @@
       </g>
     </g>
     <g transform="translate(295,442)">
-      <g aria-label="dot" fill="none" stroke="#aaa" stroke-width="1.5">
+      <g aria-label="dot" fill="none" stroke="#aaa" stroke-width="1.5" transform="translate(0.5,0.5)">
         <circle cx="148.669" cy="44.52" r="3"></circle>
         <circle cx="89.568" cy="93.36" r="3"></circle>
         <circle cx="133.417" cy="89.4" r="3"></circle>
@@ -8290,7 +8290,7 @@
       </g>
     </g>
     <g transform="translate(295,589)">
-      <g aria-label="dot" fill="none" stroke="#aaa" stroke-width="1.5">
+      <g aria-label="dot" fill="none" stroke="#aaa" stroke-width="1.5" transform="translate(0.5,0.5)">
         <circle cx="131.511" cy="60.36" r="3"></circle>
         <circle cx="133.417" cy="80.16" r="3"></circle>
         <circle cx="116.259" cy="82.8" r="3"></circle>
@@ -11185,7 +11185,7 @@
       </g>
     </g>
     <g transform="translate(295,736)">
-      <g aria-label="dot" fill="none" stroke="#aaa" stroke-width="1.5">
+      <g aria-label="dot" fill="none" stroke="#aaa" stroke-width="1.5" transform="translate(0.5,0.5)">
         <circle cx="101.007" cy="96" r="3"></circle>
         <circle cx="78.129" cy="102.6" r="3"></circle>
         <circle cx="99.101" cy="94.68" r="3"></circle>
@@ -11195,7 +11195,7 @@
   </g>
   <g>
     <g transform="translate(1,295)">
-      <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5">
+      <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
         <g>
           <circle cx="85.755" cy="99.96" r="3"></circle><title>Adelinde Cornelissen
             At London 2012, Adelinde Cornelissen won two medals: silver in the individual dressage and bronze in the team event. This Dutch athlete has also won two World Cup titles with her horse Jerich Parzival.</title>
@@ -11215,7 +11215,7 @@
       </g>
     </g>
     <g transform="translate(1,442)">
-      <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5">
+      <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
         <g>
           <circle cx="93.381" cy="93.36" r="3"></circle><title>Agnieszka Radwanska
             Agnieszka Radwanska's career high to date was finishing runner-up at Wimbledon, in 2012, when she lost to Serena Williams in the final. Despite the defeat, the result was celebrated in her country. This athlete appears near the top of the world rankings.</title>
@@ -11379,7 +11379,7 @@
       </g>
     </g>
     <g transform="translate(1,589)">
-      <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5">
+      <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
         <g>
           <circle cx="104.82" cy="94.68" r="3"></circle><title>Carolina Marin
             At 23, Spain's Carolina Marin is a two-time world and European singles champion and one of the highest placed players in the world rankings. Her feats on the Badminton court led to Marin receiving her country's athlete of the year award in 2014.</title>
@@ -11455,7 +11455,7 @@
       </g>
     </g>
     <g transform="translate(295,148)">
-      <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5">
+      <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
         <g>
           <circle cx="133.417" cy="63" r="3"></circle><title>William Fox-Pitt
             A collector of medals for Great Britain in equestrian eventing, William Fox-Pit won the silver at Athens 2004 and London 2012, and a bronze at Beijing 2008. He was his country's first athlete to achieve the world number one ranking.</title>
@@ -11463,7 +11463,7 @@
       </g>
     </g>
     <g transform="translate(295,295)">
-      <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5">
+      <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
         <g>
           <circle cx="129.604" cy="90.72" r="3"></circle><title>Jongoh Jin
             A specialist in the 50m pistol and 10m air pistol, the Republic of Korea's Jin Jongoh has won five medals over the past three Olympic Games: a silver at Athens 2004, a gold and a silver at Beijing 2008 and two golds at London 2012.</title>
@@ -11491,7 +11491,7 @@
       </g>
     </g>
     <g transform="translate(295,442)">
-      <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5">
+      <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
         <g>
           <circle cx="114.353" cy="78.84" r="3"></circle><title>Alistair Brownlee
             The current Olympic and European champion, Great Britain’s Alistair Brownlee also won two world championships, in 2009 and 2011. Introduced to the sport by his uncle Simon, at London 2012 he made the podium alongside his brother Jonathan, who took bronze.</title>
@@ -11667,7 +11667,7 @@
       </g>
     </g>
     <g transform="translate(295,589)">
-      <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5">
+      <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
         <g>
           <circle cx="102.914" cy="115.8" r="3"></circle><title>Arthur Zanetti
             Brazil’s biggest feat in the men's artistic gymnastics was set by Arthur Zanetti, with the country's first gold medal, won at London 2012, in the rings event. Zanetti also has three world championship medals: a gold (2013) and two silvers (2011 and 2014).</title>
@@ -11721,25 +11721,25 @@
   </g>
   <g>
     <g transform="translate(1,295)">
-      <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start"></g>
+      <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)"></g>
     </g>
     <g transform="translate(1,442)">
-      <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start"></g>
+      <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)"></g>
     </g>
     <g transform="translate(1,589)">
-      <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start"></g>
+      <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)"></g>
     </g>
     <g transform="translate(295,148)">
-      <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start"></g>
+      <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)"></g>
     </g>
     <g transform="translate(295,295)">
-      <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start"></g>
+      <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)"></g>
     </g>
     <g transform="translate(295,442)">
-      <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start"></g>
+      <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)"></g>
     </g>
     <g transform="translate(295,589)">
-      <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start"></g>
+      <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)"></g>
     </g>
   </g>
 </svg>

@@ -1,4 +1,4 @@
-<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="640" viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="640" viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
     :where(.plot) {
       --plot-background: white;
@@ -43,7 +43,7 @@
     <line x1="40" x2="620" y1="578" y2="578"></line>
     <line x1="40" x2="620" y1="599" y2="599"></line>
   </g>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(-0.5,10)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,10.5)">
     <path transform="translate(40,32)" d="M0,0L-6,0"></path>
     <path transform="translate(40,74)" d="M0,0L-6,0"></path>
     <path transform="translate(40,116)" d="M0,0L-6,0"></path>
@@ -59,7 +59,7 @@
     <path transform="translate(40,536)" d="M0,0L-6,0"></path>
     <path transform="translate(40,578)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,10)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,10.5)">
     <text transform="translate(40,32)" y="0.32em">1</text>
     <text transform="translate(40,74)" y="0.32em">3</text>
     <text transform="translate(40,116)" y="0.32em">5</text>
@@ -75,7 +75,7 @@
     <text transform="translate(40,536)" y="0.32em">25</text>
     <text transform="translate(40,578)" y="0.32em">27</text>
   </g>
-  <g aria-label="y-axis label" transform="translate(-37,0)">
+  <g aria-label="y-axis label" transform="translate(-36.5,0.5)">
     <text transform="translate(40,325) rotate(-90)" y="0.71em">← Season</text>
   </g>
   <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(13,0)">
@@ -102,7 +102,7 @@
     <line x1="565" x2="565" y1="30" y2="620"></line>
     <line x1="591" x2="591" y1="30" y2="620"></line>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(12.5,0.5)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(13,1)">
     <path transform="translate(45,30)" d="M0,0L0,-6"></path>
     <path transform="translate(123,30)" d="M0,0L0,-6"></path>
     <path transform="translate(201,30)" d="M0,0L0,-6"></path>
@@ -112,7 +112,7 @@
     <path transform="translate(513,30)" d="M0,0L0,-6"></path>
     <path transform="translate(591,30)" d="M0,0L0,-6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(12.5,-9)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(13,-8.5)">
     <text transform="translate(45,30)">1</text>
     <text transform="translate(123,30)">4</text>
     <text transform="translate(201,30)">7</text>
@@ -122,7 +122,7 @@
     <text transform="translate(513,30)">19</text>
     <text transform="translate(591,30)">22</text>
   </g>
-  <g aria-label="x-axis label" transform="translate(0,-27)">
+  <g aria-label="x-axis label" transform="translate(0.5,-26.5)">
     <text transform="translate(330,30)" y="0.71em">Episode →</text>
   </g>
   <g aria-label="cell">
@@ -163,7 +163,7 @@
     <rect fill="#ddd" x="97" y="599" width="25" height="20"></rect>
     <rect fill="#ddd" x="123" y="599" width="25" height="20"></rect>
   </g>
-  <g aria-label="text" transform="translate(12.5,10)">
+  <g aria-label="text" transform="translate(13,10.5)">
     <text transform="translate(45,32)" y="0.32em">8.2<title>Simpsons Roasting on an Open Fire</title></text>
     <text transform="translate(71,32)" y="0.32em">7.8<title>Bart the Genius</title></text>
     <text transform="translate(97,32)" y="0.32em">7.5<title>Homer's Odyssey</title></text>

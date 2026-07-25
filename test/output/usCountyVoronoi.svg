@@ -1,4 +1,4 @@
-<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="401" viewBox="0 0 640 401" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="401" viewBox="0 0 640 401" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
     :where(.plot) {
       --plot-background: white;
@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="voronoi" fill="none" stroke="red" stroke-miterlimit="1">
+  <g aria-label="voronoi" fill="none" stroke="red" stroke-miterlimit="1" transform="translate(0.5,0.5)">
     <path d="M398.481,315.304L401.846,319.368L399.94,323.307L397.85,323.193L395.118,319.588L397.927,315.336Z"></path>
     <path d="M134.961,115.09L131.833,119.882L126.752,117.26L127.347,112.606L128.441,111.836Z"></path>
     <path d="M318.924,66.965L316.88,63.586L317.778,59.402L321.651,59.559L322.591,60.363L325.689,66.976L325.092,67.512Z"></path>
@@ -3122,7 +3122,7 @@
     <path d="M485.533,184.987L488.233,184.593L489.708,188.124L486.184,189.943L485.072,189.606Z"></path>
     <path d="M140.937,244.748L132.826,254.825L117.491,252.743L108.134,233.861L117.961,225.627L140.305,242.3Z"></path>
   </g>
-  <g aria-label="voronoi" fill="none" stroke="blue" stroke-miterlimit="1">
+  <g aria-label="voronoi" fill="none" stroke="blue" stroke-miterlimit="1" transform="translate(0.5,0.5)">
     <path style="mix-blend-mode: multiply;" d="M398.481,315.303L401.847,319.367L399.94,323.307L397.851,323.192L395.118,319.588L397.927,315.336Z"></path>
     <path style="mix-blend-mode: multiply;" d="M134.961,115.091L131.833,119.883L126.752,117.26L127.347,112.607L128.438,111.838Z"></path>
     <path style="mix-blend-mode: multiply;" d="M318.924,66.968L316.88,63.588L317.778,59.405L321.65,59.563L322.588,60.364L325.69,66.977L325.092,67.514Z"></path>

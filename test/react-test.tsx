@@ -187,17 +187,21 @@ describe("Style utilities", () => {
   });
 
   describe("computeTransform", () => {
-    it("returns undefined when no offset needed", () => {
-      assert.strictEqual(computeTransform({}, {}), undefined);
+    it("defaults to the crisp-edge offset, matching applyTransform", () => {
+      assert.strictEqual(computeTransform({}, {}), "translate(0.5,0.5)");
+    });
+
+    it("returns undefined when explicitly not offset", () => {
+      assert.strictEqual(computeTransform({}, {}, 0, 0), undefined);
     });
 
     it("returns translate for dx/dy", () => {
-      assert.strictEqual(computeTransform({dx: 5, dy: 10}, {}), "translate(5,10)");
+      assert.strictEqual(computeTransform({dx: 5, dy: 10}, {}, 0, 0), "translate(5,10)");
     });
 
     it("includes bandwidth offset for band scales", () => {
       const scales = {x: Object.assign((v: any) => v, {bandwidth: () => 20})};
-      const result = computeTransform({dx: 0, dy: 0}, scales);
+      const result = computeTransform({dx: 0, dy: 0}, scales, 0, 0);
       assert.strictEqual(result, "translate(10,0)");
     });
   });
@@ -945,17 +949,18 @@ import {renderToStaticMarkup} from "react-dom/server";
 
 describe("transformProp", () => {
   it("returns an empty object when there is nothing to translate", () => {
-    assert.deepStrictEqual(transformProp({}, {}), {});
-    assert.deepStrictEqual(transformProp({dx: 0, dy: 0}, {}), {});
+    assert.deepStrictEqual(transformProp({}, {}), {transform: "translate(0.5,0.5)"});
+    assert.deepStrictEqual(transformProp({}, {}, 0, 0), {});
+    assert.deepStrictEqual(transformProp({dx: 0, dy: 0}, {}, 0, 0), {});
   });
   it("returns a translate string when dx or dy is set", () => {
-    assert.deepStrictEqual(transformProp({dx: 5, dy: 0}, {}), {transform: "translate(5,0)"});
-    assert.deepStrictEqual(transformProp({dx: 0, dy: -3}, {}), {transform: "translate(0,-3)"});
+    assert.deepStrictEqual(transformProp({dx: 5, dy: 0}, {}, 0, 0), {transform: "translate(5,0)"});
+    assert.deepStrictEqual(transformProp({dx: 0, dy: -3}, {}, 0, 0), {transform: "translate(0,-3)"});
   });
   it("adds half-bandwidth from band scales", () => {
     const x = {bandwidth: () => 20};
     const y = {bandwidth: () => 10};
-    assert.deepStrictEqual(transformProp({}, {x, y}), {transform: "translate(10,5)"});
+    assert.deepStrictEqual(transformProp({}, {x, y}, 0, 0), {transform: "translate(10,5)"});
   });
 });
 

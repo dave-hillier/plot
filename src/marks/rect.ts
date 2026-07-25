@@ -276,7 +276,7 @@ export class Rect extends Mark {
     const by = y?.bandwidth ? y.bandwidth() : 0;
     const indirect = indirectStyleProps(this);
     const direct = directStyleProps(this);
-    const transform = transformProp(this, {});
+    const transform = transformProp(this, {}, 0, 0);
     const rounded = !!(rx1y1 || rx1y2 || rx2y1 || rx2y2);
     const elementOf = rounded
       ? (() => {

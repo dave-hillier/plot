@@ -1,4 +1,4 @@
-<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
     :where(.plot) {
       --plot-background: white;
@@ -25,7 +25,7 @@
     <line x1="40" x2="620" y1="75.325" y2="75.325"></line>
     <line x1="40" x2="620" y1="38.491" y2="38.491"></line>
   </g>
-  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(-0.5,0)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,370)" d="M0,0L-6,0"></path>
     <path transform="translate(40,333.166)" d="M0,0L-6,0"></path>
     <path transform="translate(40,296.331)" d="M0,0L-6,0"></path>
@@ -37,7 +37,7 @@
     <path transform="translate(40,75.325)" d="M0,0L-6,0"></path>
     <path transform="translate(40,38.491)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
     <text transform="translate(40,370)" y="0.32em">0</text>
     <text transform="translate(40,333.166)" y="0.32em">20</text>
     <text transform="translate(40,296.331)" y="0.32em">40</text>
@@ -49,17 +49,17 @@
     <text transform="translate(40,75.325)" y="0.32em">160</text>
     <text transform="translate(40,38.491)" y="0.32em">180</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-37,-17)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
     <text transform="translate(40,20)" y="0.71em">↑ Close</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,-0.5)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(114.09,370)" d="M0,0L0,6"></path>
     <path transform="translate(230.154,370)" d="M0,0L0,6"></path>
     <path transform="translate(346.217,370)" d="M0,0L0,6"></path>
     <path transform="translate(462.599,370)" d="M0,0L0,6"></path>
     <path transform="translate(578.662,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
     <text transform="translate(114.09,370)" y="0.71em">2014</text>
     <text transform="translate(230.154,370)" y="0.71em">2015</text>
     <text transform="translate(346.217,370)" y="0.71em">2016</text>
@@ -1269,7 +1269,7 @@
     <path fill="rgb(146, 12, 0)" d="M619.364,24.936L619.682,20L619.682,370L619.364,370Z"></path>
     <path fill="rgb(144, 12, 0)" d="M619.682,20L620,22.67L620,370L619.682,370Z"></path>
   </g>
-  <g aria-label="line" fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round">
+  <g aria-label="line" fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
     <path stroke="rgb(74, 64, 179)" d="M40,250.357L40.318,253.219"></path>
     <path stroke="rgb(71, 56, 159)" d="M40.318,253.219L40.636,257.168"></path>
     <path stroke="rgb(65, 46, 127)" d="M40.636,257.168L40.954,255.661"></path>
