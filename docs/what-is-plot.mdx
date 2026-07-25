@@ -6,7 +6,7 @@ import {useOlympians} from "./data/olympians.ts";
 
 **Replot** is a free, open-source, JavaScript library for visualizing tabular data, focused on accelerating exploratory data analysis. It has a concise, memorable, yet expressive interface, featuring [scales](./features/scales.md) and [layered marks](./features/marks.md) in the *grammar of graphics* style popularized by [Leland Wilkinson](https://en.wikipedia.org/wiki/Leland_Wilkinson) and [Hadley Wickham](https://en.wikipedia.org/wiki/Hadley_Wickham) and inspired by the earlier ideas of [Jacques Bertin](https://en.wikipedia.org/wiki/Jacques_Bertin). And there are [plenty of examples](https://observablehq.com/@observablehq/plot-gallery) to learn from and copy-paste.
 
-Replot offers two APIs: a concise **imperative API** for vanilla JavaScript environments and a **declarative React component API** for building charts with JSX. Both APIs share the same powerful core — D3 scales, transforms, projections, and mark types — so you get the same expressive visualizations regardless of which API you choose. See the [getting started guide](./getting-started.md) for details on both approaches.
+Replot is a **declarative React component API** for building charts with JSX, on top of a powerful shared core — D3 scales, transforms, projections, and mark types. See the [getting started guide](./getting-started.md) to begin.
 
 In the spirit of *show don’t tell*, here’s a scatterplot of body measurements of athletes from the [2016 Summer Olympics](https://flother.is/2017/olympic-games-data/).
 
@@ -57,7 +57,7 @@ Because marks are composable, and because you can extend Replot with custom mark
 
 Replot is a fork of [Observable Plot](https://observablehq.com/plot/) that keeps its grammar — marks, scales, transforms, projections — but restructures how plots are expressed and rendered for React. The differences run deeper than a wrapper:
 
-**The renderer is React itself.** Observable Plot builds SVG imperatively with D3 selections and returns a detached element you insert into the page. In Replot, every mark renders to JSX, and the `<Replot>` component renders a plot as an ordinary React subtree. There are no refs, effects, or manual DOM insertion; plots participate in reconciliation, Suspense, and server-side rendering like any other component. (Replot's Observable Plot-compatible core still exists, and it renders through the same JSX path via React's static markup renderer, so both routes produce identical output.)
+**The renderer is React itself.** Observable Plot builds SVG imperatively with D3 selections and returns a detached element you insert into the page. In Replot, every mark renders to JSX, and the `<Replot>` component renders a plot as an ordinary React subtree. There are no refs, effects, or manual DOM insertion; plots participate in reconciliation, Suspense, and server-side rendering like any other component.
 
 **Marks are components; a plot is composition.** Where Plot takes a `marks: [...]` array of mark objects, Replot layers sibling components inside `<Replot>`. Under the hood this uses a two-phase render: mark components register their configuration with the enclosing `<Replot>` through context, the plot computes scales and layout from everything registered — the same whole-plot inference Plot performs — and then each mark renders its SVG. Adding, removing, or reconfiguring a mark through React state recomputes the plot automatically.
 

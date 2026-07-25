@@ -57,7 +57,7 @@ export default function App() {
   );
 }
 ```
-The `<Replot>` component handles scale inference, axis generation, and layout automatically. Pass scale options as props on `<Replot>`, and channel mappings as props on mark components. Every mark available in the imperative API has a corresponding React component: `<Dot>`, `<Line>`, `<BarX>`, `<BarY>`, `<Area>`, `<Rect>`, `<Text>`, `<Rule>`, `<Tick>`, and [many more](./api.md).
+The `<Replot>` component handles scale inference, axis generation, and layout automatically. Pass scale options as props on `<Replot>`, and channel mappings as props on mark components. Every mark in the grammar is a React component: `<Dot>`, `<Line>`, `<BarX>`, `<BarY>`, `<Area>`, `<Rect>`, `<Text>`, `<Rule>`, `<Tick>`, and [many more](./api.md).
 
 ### With transforms
 
@@ -182,4 +182,4 @@ export default function AsyncChart() {
 }
 ```
 
-Replot is built on an [Observable Plot](https://observablehq.com/plot/)-compatible core; if you need to render charts outside React, refer to the Observable Plot documentation for the underlying imperative concepts.
+Replot shares its computational core with [Observable Plot](https://observablehq.com/plot/), whose documentation remains a good companion for the underlying grammar of marks, scales, and transforms.
