@@ -13,7 +13,6 @@ import {negative, positive} from "../defined.js";
 import type {Interval} from "../interval.js";
 import type {Data, FrameAnchor, MarkOptions, RenderableMark} from "../mark.js";
 import {Mark} from "../mark.js";
-// @ts-expect-error not yet exported in options.d.ts
 import {identity, maybeFrameAnchor, maybeNumberChannel, maybeTuple} from "../options.js";
 import type {SymbolType} from "../symbol.js";
 // @ts-expect-error not yet exported in symbol.d.ts

@@ -21,3 +21,6 @@ export function getPatternId(): string;
 
 export function impliedString(value: any, impliedValue: string): string | undefined;
 export function impliedNumber(value: any, impliedValue: number): number | undefined;
+
+/** Returns the [cx, cy] frame anchor position for the given mark and dimensions. */
+export function applyFrameAnchor(mark: any, dimensions: any): [number, number];

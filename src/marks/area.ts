@@ -1,23 +1,20 @@
 import {area as shapeArea} from "d3";
 import {createElement as h, type ReactNode} from "react";
 import type {ChannelValue, ChannelValueDenseBinSpec, ChannelValueSpec} from "../channel.js";
-// @ts-ignore — runtime helper not exposed in companion .d.ts
 import {maybeCurve} from "../curve.js";
 import type {CurveOptions} from "../curve.js";
 import {Mark} from "../mark.js";
 import type {Data, MarkOptions} from "../mark.js";
-// @ts-ignore — runtime helpers not exposed in companion .d.ts
+// @ts-expect-error — runtime helpers not exposed in companion .d.ts
 import {first, indexOf, maybeZ, second} from "../options.js";
-// @ts-ignore — runtime helpers not exposed in companion .d.ts
+// @ts-expect-error — runtime helpers not exposed in companion .d.ts
 import {groupIndex} from "../style.js";
 import {groupChannelStyleProps, indirectStyleProps, directStyleProps, transformProp} from "../react/styles.js";
 import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
-// @ts-ignore — runtime helpers not exposed in companion .d.ts
+// @ts-expect-error — runtime helpers not exposed in companion .d.ts
 import {maybeDenseIntervalX, maybeDenseIntervalY} from "../transforms/bin.js";
 import type {BinOptions, BinReducer} from "../transforms/bin.js";
-// @ts-ignore — runtime helpers not exposed in companion .d.ts
 import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
-// @ts-ignore — runtime helpers not exposed in companion .d.ts
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
 import type {StackOptions} from "../transforms/stack.js";
 
@@ -162,7 +159,6 @@ export class Area extends Mark {
       y2: {value: y2, scale: "y", optional: true},
       z: {value: maybeZ(options), optional: true}
     };
-    // @ts-ignore — Mark's companion .d.ts omits its constructor signature.
     super(data, channels, options, defaults);
     this.z = z;
     this.curve = maybeCurve(curve, tension);

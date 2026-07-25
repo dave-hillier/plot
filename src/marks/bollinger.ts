@@ -8,7 +8,6 @@
 import {deviation, mean} from "d3";
 import type {CompoundMark, Data, MarkOptions} from "../mark.js";
 import {marks} from "../mark.js";
-// @ts-ignore — isNoneish is exported by options.js but not declared in options.d.ts
 import {identity, isNoneish} from "../options.js";
 import type {Map} from "../transforms/map.js";
 import {map} from "../transforms/map.js";

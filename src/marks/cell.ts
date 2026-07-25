@@ -2,13 +2,10 @@ import {createElement as h, type ReactNode} from "react";
 import type {ChannelValueSpec} from "../channel.js";
 import type {InsetOptions} from "../inset.js";
 import type {Data, MarkOptions, RenderableMark} from "../mark.js";
-// @ts-ignore -- maybeColorChannel and maybeTuple are declared only in options.js, not options.d.ts
 import {identity, indexOf, maybeColorChannel, maybeTuple} from "../options.js";
-// @ts-ignore -- applyTransform is declared only in style.js, not style.d.ts
 import {applyTransform} from "../style.js";
 import {channelStyleProps, directStyleProps, indirectStyleProps, transformProp} from "../react/styles.js";
 import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
-// @ts-ignore -- AbstractBar is declared only in bar.js, not bar.d.ts
 import {AbstractBar} from "./bar.js";
 import type {RectCornerOptions} from "./rect.js";
 import {roundedRectPath} from "./rect.js";

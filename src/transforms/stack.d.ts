@@ -164,3 +164,9 @@ export function stackY1<T>(stackOptions?: StackOptions, options?: T): Transforme
  */
 export function stackY2<T>(options?: T & StackOptions): Transformed<T>;
 export function stackY2<T>(stackOptions?: StackOptions, options?: T): Transformed<T>;
+
+/** Applies the implicit stackX transform when x is not already specified. */
+export function maybeStackX(options?: any): any;
+
+/** Applies the implicit stackY transform when y is not already specified. */
+export function maybeStackY(options?: any): any;

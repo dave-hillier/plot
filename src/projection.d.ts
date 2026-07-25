@@ -129,3 +129,6 @@ export function project(cx: string, cy: string, values: any, projection: any): v
 
 /** Returns a projection that applies the given x and y scale functions. */
 export function xyProjection(scales: any): any;
+
+/** Applies the projection, if any, otherwise the x and y scales, to the position channels. */
+export function applyPosition(channels: any, scales: any, context: any): any;

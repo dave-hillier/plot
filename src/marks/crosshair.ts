@@ -7,7 +7,7 @@
 // dedicated implementation here.
 
 import type {ChannelValueSpec} from "../channel.js";
-// @ts-ignore -- getSource is declared only in channel.js, not channel.d.ts
+// @ts-expect-error -- getSource is declared only in channel.js, not channel.d.ts
 import {getSource} from "../channel.js";
 import {pointer, pointerX, pointerY} from "../interactions/pointer.js";
 import type {CompoundMark, Data, MarkOptions} from "../mark.js";

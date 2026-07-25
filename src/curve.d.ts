@@ -117,3 +117,6 @@ export interface CurveAutoOptions {
 
 /** Resolves a curve specification (name, function, or "auto") to a D3 curve factory. */
 export function maybeCurveAuto(curve?: Curve | "auto", tension?: number): CurveFunction;
+
+/** Resolves a curve specification (name or function) to a D3 curve factory. */
+export function maybeCurve(curve?: Curve, tension?: number): CurveFunction;

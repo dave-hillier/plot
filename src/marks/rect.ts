@@ -4,9 +4,7 @@ import type {InsetOptions} from "../inset.js";
 import type {Interval} from "../interval.js";
 import type {Data, MarkOptions} from "../mark.js";
 import {Mark} from "../mark.js";
-// @ts-ignore — runtime exports not present in hand-written .d.ts
 import {constant, hasXY, identity, indexOf, number} from "../options.js";
-// @ts-ignore — runtime export not present in hand-written .d.ts
 import {isCollapsed} from "../scales.js";
 import {impliedString} from "../style.js";
 import {channelStyleProps, directStyleProps, indirectStyleProps, transformProp} from "../react/styles.js";
@@ -14,7 +12,6 @@ import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
 import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
 import {maybeTrivialIntervalX, maybeTrivialIntervalY} from "../transforms/interval.js";
 import type {StackOptions} from "../transforms/stack.js";
-// @ts-ignore — runtime exports not present in hand-written .d.ts
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
 
 /** Options for marks that render rectangles, including bar, cell, and rect. */
@@ -251,7 +248,6 @@ export class Rect extends Mark {
   constructor(data: Data, options: RectOptions = {}) {
     const {x1, y1, x2, y2} = options;
     super(
-      // @ts-ignore — Mark constructor signature not declared in .d.ts
       data,
       {
         x1: {value: x1, scale: "x", type: x1 != null && x2 == null ? "band" : undefined, optional: true},

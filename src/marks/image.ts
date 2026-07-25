@@ -3,16 +3,10 @@ import type {ChannelValue, ChannelValueSpec} from "../channel.js";
 import type {Data, FrameAnchor, MarkOptions} from "../mark.js";
 import {positive} from "../defined.js";
 import {Mark} from "../mark.js";
-// @ts-ignore
 import {maybeFrameAnchor, maybeNumberChannel, maybeTuple, string} from "../options.js";
 import {channelStyleProps, directStyleProps, indirectStyleProps, transformProp} from "../react/styles.js";
 import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
-import {
-  // @ts-ignore
-  applyFrameAnchor,
-  impliedString
-} from "../style.js";
-// @ts-ignore
+import {applyFrameAnchor, impliedString} from "../style.js";
 import {withDefaultSort} from "./dot.js";
 
 /** Options for the image mark. */
@@ -150,7 +144,6 @@ export class Image extends Mark {
     const [vh, ch] = maybeNumberChannel(height, cr !== undefined ? cr * 2 : undefined);
     const [va, ca] = maybeNumberChannel(rotate, 0);
     super(
-      // @ts-ignore
       data,
       {
         x: {value: x, scale: "x", optional: true},

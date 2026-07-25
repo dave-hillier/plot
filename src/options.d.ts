@@ -121,3 +121,24 @@ export function isNoneish(value: any): boolean;
 
 /** Returns the length of the data, if known. */
 export function lengthof(data: any): number | undefined;
+
+/** Returns [x, y]; falls back to the tuple accessors when both are undefined. */
+export function maybeTuple(x: any, y: any): [any, any];
+
+/** Returns the z (series) channel implied by the z, fill, or stroke options. */
+export function maybeZ(options?: {z?: any; fill?: any; stroke?: any}): any;
+
+/** Validates a frame anchor specification, defaulting to middle. */
+export function maybeFrameAnchor(value?: any): any;
+
+/** Coerces the value to a string, passing through null and undefined. */
+export const string: (x: any) => string | null | undefined;
+
+/** Returns true if the options specify an x or y channel. */
+export function hasXY(options: any): boolean;
+
+/** Returns true if the option is a plain options object. */
+export function isObject(option: any): boolean;
+
+/** Merges the given options with defaults from the rest, preserving getters. */
+export function inherit(options?: any, ...rest: any[]): any;

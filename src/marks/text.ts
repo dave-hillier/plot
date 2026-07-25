@@ -10,10 +10,8 @@ import {Mark} from "../mark.js";
 import {
   indexOf,
   identity,
-  // @ts-expect-error — runtime export not present in hand-written .d.ts
   string,
   maybeNumberChannel,
-  // @ts-expect-error — runtime export not present in hand-written .d.ts
   maybeTuple,
   // @ts-expect-error — runtime export not present in hand-written .d.ts
   numberChannel,
@@ -21,7 +19,6 @@ import {
   isNumeric,
   isTemporal,
   keyword,
-  // @ts-expect-error — runtime export not present in hand-written .d.ts
   maybeFrameAnchor,
   // @ts-expect-error — runtime export not present in hand-written .d.ts
   isTextual,
@@ -31,7 +28,6 @@ import {
   // @ts-expect-error — runtime export not present in hand-written .d.ts
   applyAttr,
   impliedString,
-  // @ts-expect-error — runtime export not present in hand-written .d.ts
   applyFrameAnchor
 } from "../style.js";
 import {maybeIntervalMidX, maybeIntervalMidY} from "../transforms/interval.js";

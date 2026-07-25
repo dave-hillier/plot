@@ -1,19 +1,12 @@
 import type {Data} from "../mark.js";
 import type {BarXOptions, BarYOptions} from "./bar.js";
 import {extent} from "d3";
-// @ts-ignore
 import {valueObject} from "../channel.js";
-// @ts-ignore
 import {hasXY, identity, indexOf, isObject} from "../options.js";
-// @ts-ignore
 import {getPatternId} from "../style.js";
-// @ts-ignore
 import {initializer} from "../transforms/basic.js";
-// @ts-ignore
 import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
-// @ts-ignore
 import {maybeIntervalX, maybeIntervalY} from "../transforms/interval.js";
-// @ts-ignore
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
 import {BarX, BarY} from "./bar.js";
 import {createElement as h, type ReactNode} from "react";
@@ -49,7 +42,6 @@ export class WaffleX extends BarX {
   round: (value: number) => number;
   multiple: number | undefined;
   constructor(data?: Data, {unit = 1, gap = 1, round, multiple, ...options}: WaffleXOptions = {} as any) {
-    // @ts-ignore
     super(data, wafflePolygon("x", options), waffleDefaults);
     this.unit = Math.max(0, unit);
     this.gap = +gap;
@@ -68,7 +60,6 @@ export class WaffleY extends BarY {
   round: (value: number) => number;
   multiple: number | undefined;
   constructor(data?: Data, {unit = 1, gap = 1, round, multiple, ...options}: WaffleYOptions = {} as any) {
-    // @ts-ignore
     super(data, wafflePolygon("y", options), waffleDefaults);
     this.unit = Math.max(0, unit);
     this.gap = +gap;

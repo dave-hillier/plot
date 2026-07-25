@@ -1,6 +1,5 @@
 import {blurImage, Delaunay, randomLcg, rgb} from "d3";
 import type {ChannelValueSpec} from "../channel.js";
-// @ts-expect-error — runtime export missing from channel.d.ts
 import {valueObject} from "../channel.js";
 import type {Data, MarkOptions} from "../mark.js";
 import {Mark} from "../mark.js";

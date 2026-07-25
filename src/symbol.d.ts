@@ -44,3 +44,6 @@ export type SymbolName =
 
 /** How to draw a symbol: either a named symbol or a custom implementation. */
 export type SymbolType = SymbolName | SymbolImplementation;
+
+/** The height-to-width ratio of a unit hexagon, 2 / sqrt(3). */
+export const sqrt4_3: number;

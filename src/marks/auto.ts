@@ -2,7 +2,7 @@ import {ascending, InternSet} from "d3";
 import type {ChannelValue} from "../channel.js";
 import type {CompoundMark, Data} from "../mark.js";
 import {marks} from "../mark.js";
-// @ts-ignore -- some symbols are declared only in options.js, not options.d.ts
+// @ts-expect-error -- some symbols are declared only in options.js, not options.d.ts
 import {isColor, isNumeric, isObject, isOptions, isOrdinal, labelof, valueof} from "../options.js";
 import type {Reducer} from "../reducer.js";
 import type {BinOptions} from "../transforms/bin.js";

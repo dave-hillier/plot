@@ -1,19 +1,15 @@
 import {Children, cloneElement, createElement as h, isValidElement, type ReactElement, type ReactNode} from "react";
 import type {ChannelValue, ChannelValueSpec} from "../channel.js";
-// @ts-ignore - internal helper not in .d.ts
 import {indirectStyleProps, directStyleProps, transformProp, groupChannelStyleProps} from "../react/styles.js";
 import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
 import type {CurveOptions} from "../curve.js";
 import type {CompoundMark, Data, MarkOptions} from "../mark.js";
 import {marks} from "../mark.js";
-// @ts-ignore - internal helpers not in .d.ts
 import {withTip} from "../mark.js";
 import {identity, indexOf} from "../options.js";
-// @ts-ignore - internal helpers not in .d.ts
+// @ts-expect-error - internal helpers not in .d.ts
 import {isNoneish, labelof, maybeColorChannel, maybeValue, valueof} from "../options.js";
-// @ts-ignore - internal helper not in .d.ts
 import {inferScaleOrder} from "../scales.js";
-// @ts-ignore - internal helper not in .d.ts
 import {getClipId} from "../style.js";
 import {area} from "./area.js";
 import {line} from "./line.js";

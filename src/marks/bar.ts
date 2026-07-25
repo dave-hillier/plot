@@ -3,16 +3,12 @@ import type {InsetOptions} from "../inset.js";
 import type {Interval} from "../interval.js";
 import type {Data, MarkOptions} from "../mark.js";
 import {Mark} from "../mark.js";
-// @ts-ignore — runtime export not present in hand-written .d.ts
 import {hasXY, identity, indexOf} from "../options.js";
-// @ts-ignore — runtime export not present in hand-written .d.ts
 import {isCollapsed} from "../scales.js";
-// @ts-ignore — runtime exports not present in hand-written .d.ts
 import {applyTransform} from "../style.js";
 import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
 import {maybeIntervalX, maybeIntervalY} from "../transforms/interval.js";
 import type {StackOptions} from "../transforms/stack.js";
-// @ts-ignore — runtime exports not present in hand-written .d.ts
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
 import type {RectCornerOptions} from "./rect.js";
 import {rectInsets, rectRadii, roundedRectPath} from "./rect.js";
@@ -151,7 +147,6 @@ export class AbstractBar extends Mark {
   rx2y1: any;
   rx2y2: any;
   constructor(data: Data, channels: any, options: any = {}, defaults: any = barDefaults) {
-    // @ts-ignore — Mark constructor signature not declared in .d.ts
     super(data, channels, options, defaults);
     rectInsets(this, options);
     rectRadii(this, options);

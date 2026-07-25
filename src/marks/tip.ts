@@ -1,26 +1,22 @@
 import {format as numberFormat, utcFormat} from "d3";
 import {createElement as h, type ReactNode} from "react";
 import type {ChannelName, ChannelValueSpec} from "../channel.js";
-// @ts-ignore -- getSource is declared only in channel.js, not channel.d.ts
+// @ts-expect-error -- getSource is declared only in channel.js, not channel.d.ts
 import {getSource} from "../channel.js";
 import {defined} from "../defined.js";
 import {formatDefault} from "../format.js";
-// @ts-ignore -- anchorX/anchorY are declared only in pointer.js, not pointer.d.ts
+// @ts-expect-error -- anchorX/anchorY are declared only in pointer.js, not pointer.d.ts
 import {anchorX, anchorY} from "../interactions/pointer.js";
 import type {Data, FrameAnchor, MarkOptions} from "../mark.js";
 import {Mark} from "../mark.js";
-// @ts-ignore -- these helpers are declared only in options.js, not options.d.ts
+// @ts-expect-error -- these helpers are declared only in options.js, not options.d.ts
 import {maybeAnchor, maybeFrameAnchor, maybeTuple, number, string} from "../options.js";
-// @ts-ignore -- these helpers are declared only in style.js, not style.d.ts
 import {applyFrameAnchor, impliedString} from "../style.js";
-// @ts-ignore -- these helpers are declared only in options.js, not options.d.ts
+// @ts-expect-error -- these helpers are declared only in options.js, not options.d.ts
 import {identity, isIterable, isTemporal, isTextual} from "../options.js";
-// @ts-ignore -- inferTickFormat is declared only in axis.js, not axis.d.ts
 import {inferTickFormat} from "./axis.js";
-// @ts-ignore -- these helpers are declared only in text.js, not text.d.ts
 import {defaultWidth, ellipsis, monospaceWidth} from "./text.js";
 import type {TextStyles} from "./text.js";
-// @ts-ignore -- these helpers are declared only in text.js, not text.d.ts
 import {cut, clipper, splitter, maybeTextOverflow} from "./text.js";
 import {channelStyleProps, directStyleProps, indirectStyleProps, transformProp} from "../react/styles.js";
 import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";

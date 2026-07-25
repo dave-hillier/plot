@@ -45,3 +45,9 @@ export interface HexbinOptions {
  * To draw empty hexagons, see the hexgrid mark.
  */
 export function hexbin<T>(outputs?: ChannelReducers<GroupReducer>, options?: T & HexbinOptions): Initialized<T>;
+
+/** The hexbin x-offset applied to hexagon centers. */
+export const ox: number;
+
+/** The hexbin y-offset applied to hexagon centers. */
+export const oy: number;

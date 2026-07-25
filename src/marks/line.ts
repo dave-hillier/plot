@@ -4,24 +4,22 @@ import {markerToJSX} from "../react/Markers.js";
 import type {ChannelValue, ChannelValueDenseBinSpec, ChannelValueSpec} from "../channel.js";
 import {directStyleProps, groupChannelStyleProps, indirectStyleProps, transformProp} from "../react/styles.js";
 import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
-// @ts-ignore — runtime exports from ../curve.js not declared in its .d.ts
+// @ts-expect-error — runtime exports from ../curve.js not declared in its .d.ts
 import {curveAuto, maybeCurveAuto} from "../curve.js";
 import type {CurveAutoOptions} from "../curve.js";
 import {Mark} from "../mark.js";
 import type {Data, MarkOptions} from "../mark.js";
-// @ts-ignore — runtime exports from ../marker.js not declared in its .d.ts
 import {markers} from "../marker.js";
 import type {MarkerOptions} from "../marker.js";
-// @ts-ignore — runtime exports from ../options.js not declared in its .d.ts
+// @ts-expect-error — runtime exports from ../options.js not declared in its .d.ts
 import {coerceNumbers, indexOf, identity, keyof, maybeTuple, maybeZ} from "../options.js";
 import {
-  // @ts-ignore — runtime exports from ../style.js not declared in its .d.ts
+  // @ts-expect-error — runtime exports from ../style.js not declared in its .d.ts
   groupIndex
 } from "../style.js";
-// @ts-ignore — runtime exports from ../transforms/bin.js not declared in its .d.ts
+// @ts-expect-error — runtime exports from ../transforms/bin.js not declared in its .d.ts
 import {maybeDenseIntervalX, maybeDenseIntervalY} from "../transforms/bin.js";
 import type {BinOptions, BinReducer} from "../transforms/bin.js";
-// @ts-ignore — runtime helpers not exposed in companion .d.ts
 import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
 
 /** Options for the line mark. */
@@ -119,7 +117,6 @@ export class Line extends Mark {
   constructor(data?: Data, options: LineOptions = {}) {
     const {x, y, z, curve, tension} = options;
     super(
-      // @ts-ignore — Mark constructor signature in .d.ts elides runtime args
       data,
       {
         x: {value: x, scale: "x"},
@@ -139,7 +136,7 @@ export class Line extends Mark {
   project(channels: any, values: any, context: any) {
     // For the auto curve, projection is handled at render.
     if (this.curve !== curveAuto) {
-      // @ts-ignore — Mark.project not declared in .d.ts surface
+      // @ts-expect-error — Mark.project not declared in .d.ts surface
       super.project(channels, values, context);
     }
   }

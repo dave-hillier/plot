@@ -3,14 +3,12 @@ import {createElement as h, type ReactNode} from "react";
 import type {ChannelValue, ChannelValueSpec} from "../channel.js";
 import type {Data, MarkOptions} from "../mark.js";
 import {Mark as MarkBase} from "../mark.js";
-// @ts-ignore - internal helpers not in .d.ts
+// @ts-expect-error - internal helpers not in .d.ts
 import {TypedArray, coerceNumbers, maybeTuple, maybeZ} from "../options.js";
-// @ts-ignore - internal helper not in .d.ts
 import {applyPosition} from "../projection.js";
-// @ts-ignore - internal helpers not in .d.ts
+// @ts-expect-error - internal helpers not in .d.ts
 // prettier-ignore
 import {applyFrameAnchor, groupZ} from "../style.js";
-// @ts-ignore - internal helper not in .d.ts
 import {initializer} from "../transforms/basic.js";
 import {channelStyleProps, directStyleProps, indirectStyleProps, transformProp} from "../react/styles.js";
 import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";

@@ -4,9 +4,7 @@ import type {ChannelValue, ChannelValueSpec} from "../channel.js";
 import type {Data, FrameAnchor, MarkOptions} from "../mark.js";
 import {Mark} from "../mark.js";
 import {identity} from "../options.js";
-// @ts-expect-error — runtime exports missing from options.d.ts
 import {maybeFrameAnchor, maybeNumberChannel, maybeTuple, keyword} from "../options.js";
-// @ts-expect-error — runtime exports missing from style.d.ts
 import {applyFrameAnchor} from "../style.js";
 import {channelStyleProps, directStyleProps, indirectStyleProps, transformProp} from "../react/styles.js";
 import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";

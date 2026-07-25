@@ -1,13 +1,9 @@
 import {createElement as h, type ReactNode} from "react";
 import type {MarkOptions} from "../mark.js";
 import {Mark} from "../mark.js";
-// @ts-ignore
 import {number, singleton} from "../options.js";
-// @ts-ignore
 import {offset} from "../style.js";
-// @ts-ignore
 import {sqrt4_3} from "../symbol.js";
-// @ts-ignore
 import {ox, oy} from "../transforms/hexbin.js";
 import {indirectStyleProps, directStyleProps, transformProp} from "../react/styles.js";
 
@@ -54,7 +50,6 @@ export function hexgrid(options?: HexgridOptions): Hexgrid {
 export class Hexgrid extends Mark {
   binWidth: number;
   constructor({binWidth = 20, clip = true, ...options}: any = {}) {
-    // @ts-ignore - Mark base constructor is not typed in mark.d.ts
     super(singleton, undefined, {clip, ...options}, defaults);
     this.binWidth = number(binWidth);
   }

@@ -9,7 +9,6 @@ import type {RangeInterval} from "../interval.js";
 import type {Data} from "../mark.js";
 // @ts-expect-error — runtime exports missing from options.d.ts
 import {labelof, identity, arrayify, map} from "../options.js";
-// @ts-expect-error — runtime export missing from projection.d.ts
 import {applyPosition} from "../projection.js";
 // @ts-expect-error — runtime exports missing from style.d.ts
 import {styles} from "../style.js";

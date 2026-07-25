@@ -185,3 +185,6 @@ export function group<T>(outputs?: GroupOutputs, options?: T): Transformed<T>;
  * the first channel value for which the *test* function returns a truthy value.
  */
 export function find<T = any>(test: (d: T, index: number, data: T[]) => unknown): ReducerImplementation;
+
+/** Groups the index I by the values X, if any; used by grouping marks and transforms. */
+export function maybeGroup(I: any, X: any): any;

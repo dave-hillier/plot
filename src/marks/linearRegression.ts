@@ -3,15 +3,14 @@ import {createElement as h, type ReactNode} from "react";
 import type {ChannelValue, ChannelValueDenseBinSpec, ChannelValueSpec} from "../channel.js";
 import type {Data, MarkOptions, RenderableMark} from "../mark.js";
 import {Mark} from "../mark.js";
-// @ts-ignore — these helpers are exported by options.js but not declared in options.d.ts
 import {identity, indexOf, isNone, isNoneish, maybeZ} from "../options.js";
 import {directStyleProps, groupChannelStyleProps, indirectStyleProps, transformProp} from "../react/styles.js";
 import {withHrefWrap, withTitleChild} from "../react/styles-jsx.js";
 import {qt} from "../stats.js";
-// @ts-ignore — these helpers are exported by style.js but not declared in style.d.ts
+// @ts-expect-error — these helpers are exported by style.js but not declared in style.d.ts
 import {groupZ} from "../style.js";
 import type {BinOptions, BinReducer} from "../transforms/bin.js";
-// @ts-ignore — maybeDenseIntervalX/Y are exported by bin.js but not declared in bin.d.ts
+// @ts-expect-error — maybeDenseIntervalX/Y are exported by bin.js but not declared in bin.d.ts
 import {maybeDenseIntervalX, maybeDenseIntervalY} from "../transforms/bin.js";
 
 /** Options for the linearRegressionX and linearRegressionY marks. */
@@ -107,7 +106,6 @@ class LinearRegression extends Mark {
   precision: number;
   constructor(data: any, options: any = {}) {
     const {x, y, z, ci = 0.95, precision = 4} = options;
-    // @ts-ignore — Mark constructor signature is not declared in mark.d.ts
     super(
       data,
       {

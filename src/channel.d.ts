@@ -262,3 +262,6 @@ export function createChannel(data: any, spec: any): any;
 
 /** Infers the appropriate scale for a channel based on its name and definition. */
 export function inferChannelScale(name: string, channel: any): any;
+
+/** Materializes the values of the given channels, applying scales. */
+export function valueObject(channels: any, scales: any): any;

@@ -1,26 +1,17 @@
 import {group, pathRound as path, Delaunay} from "d3";
 import type {ChannelValue, ChannelValueSpec} from "../channel.js";
 import type {CurveOptions} from "../curve.js";
-// @ts-ignore
 import {maybeCurve} from "../curve.js";
-// @ts-ignore
 import {defined} from "../defined.js";
 import type {Data, MarkOptions, RenderableMark} from "../mark.js";
 import {Mark} from "../mark.js";
 import type {MarkerOptions} from "../marker.js";
-// @ts-ignore
 import {markers} from "../marker.js";
-// @ts-ignore
 import {constant, maybeTuple, maybeZ} from "../options.js";
-// @ts-ignore
 import {applyPosition} from "../projection.js";
-// @ts-ignore
 import {applyFrameAnchor} from "../style.js";
-// @ts-ignore
 import {basic, initializer} from "../transforms/basic.js";
-// @ts-ignore
 import {exclusiveFacets} from "../transforms/exclusiveFacets.js";
-// @ts-ignore
 import {maybeGroup} from "../transforms/group.js";
 import {createElement as h, Fragment, type ReactNode} from "react";
 import {markerToJSX} from "../react/Markers.js";
