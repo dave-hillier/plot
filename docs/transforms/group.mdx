@@ -65,7 +65,7 @@ You can partition groups using **z**. If **z** is undefined, it defaults to **fi
 </Replot>
 
 
-You can invoke the stack transform explicitly as `Plot.stackY(Plot.groupX({y: "count"}, {x: "sport", fill: "sex"}))`, producing an identical chart.
+You can invoke the stack transform explicitly by adding a `<StackY>` wrapper, as in `<StackY><GroupX y="count"><BarY data={olympians} x="sport" fill="sex" /></GroupX></StackY>`, producing an identical chart.
 You can opt-out of the implicit stackY transform by having groupX generate **y1** or **y2** instead of **y** (and similarly **x1** or **x2** for stackX and groupY). When overlapping marks, use either opacity or blending to make the overlap visible.
 
 <Replot marginBottom={100} x={{label: null, tickRotate: 90}} y={{grid: true}} color={{legend: true}}>
@@ -199,8 +199,10 @@ The **x** output channel is only computed by the groupX and group transform; sim
 
 You can declare additional output channels by specifying the channel name and desired reducer in the *outputs* object which is the first argument to the transform. For example, to use groupX to generate a **y** channel of group counts as in a frequency histogram:
 
-```js
-Plot.groupX({y: "count"}, {x: "species"})
+```jsx
+<GroupX y="count">
+  <BarY data={penguins} x="species" />
+</GroupX>
 ```
 
 The following named reducers are supported:
@@ -237,26 +239,34 @@ If the reducer object’s **scope** is *data*, then the **reduceIndex** method i
 
 Most reducers require binding the output channel to an input channel; for example, if you want the **y** output channel to be a *sum* (not merely a count), there should be a corresponding **y** input channel specifying which values to sum. If there is not, *sum* will be equivalent to *count*.
 
-```js
-Plot.groupX({y: "sum"}, {x: "species", y: "body_mass_g"})
+```jsx
+<GroupX y="sum">
+  <BarY data={penguins} x="species" y="body_mass_g" />
+</GroupX>
 ```
 
 You can control whether a channel is computed before or after grouping. If a channel is declared only in *options* (and it is not a special group-eligible channel such as **x**, **y**, **z**, **fill**, or **stroke**), it will be computed after grouping and be passed the grouped data: each datum is the array of input data corresponding to the current group.
 
-```js
-Plot.groupX({y: "count"}, {x: "species", title: (group) => group.map((d) => d.body_mass_g).join("\n")})
+```jsx
+<GroupX y="count">
+  <BarY data={penguins} x="species" title={(group) => group.map((d) => d.body_mass_g).join("\n")} />
+</GroupX>
 ```
 
 This is equivalent to declaring the channel only in *outputs*.
 
-```js
-Plot.groupX({y: "count", title: (group) => group.map((d) => d.body_mass_g).join("\n")}, {x: "species"})
+```jsx
+<GroupX y="count" title={(group) => group.map((d) => d.body_mass_g).join("\n")}>
+  <BarY data={penguins} x="species" />
+</GroupX>
 ```
 
 However, if a channel is declared in both *outputs* and *options*, then the channel in *options* is computed before grouping and can be aggregated using any built-in reducer (or a custom reducer function) during the group transform.
 
-```js
-Plot.groupX({y: "count", title: (masses) => masses.join("\n")}, {x: "species", title: "body_mass_g"})
+```jsx
+<GroupX y="count" title={(masses) => masses.join("\n")}>
+  <BarY data={penguins} x="species" title="body_mass_g" />
+</GroupX>
 ```
 
 If any of **z**, **fill**, or **stroke** is a channel, the first of these channels is considered the *z* dimension and will be used to subdivide groups.
@@ -264,39 +274,46 @@ If any of **z**, **fill**, or **stroke** is a channel, the first of these channe
 The default reducer for the **title** channel returns a summary list of the top 5 values with the corresponding number of occurrences.
 
 ## group(*outputs*, *options*) {/* {#group} */}
-```js
-Plot.group({fill: "count"}, {x: "island", y: "species"})
+```jsx
+<Group fill="count">
+  <Cell data={penguins} x="island" y="species" />
+</Group>
 ```
 
 Groups on **x**, **y**, and the first channel of **z**, **fill**, or **stroke**, if any.
 
 ## groupX(*outputs*, *options*) {/* {#groupX} */}
-```js
-Plot.groupX({y: "sum"}, {x: "species", y: "body_mass_g"})
+```jsx
+<GroupX y="sum">
+  <BarY data={penguins} x="species" y="body_mass_g" />
+</GroupX>
 ```
 
 Groups on **x** and the first channel of **z**, **fill**, or **stroke**, if any.
 
 ## groupY(*outputs*, *options*) {/* {#groupY} */}
-```js
-Plot.groupY({x: "sum"}, {y: "species", x: "body_mass_g"})
+```jsx
+<GroupY x="sum">
+  <BarX data={penguins} y="species" x="body_mass_g" />
+</GroupY>
 ```
 
 Groups on **y** and the first channel of **z**, **fill**, or **stroke**, if any.
 
 ## groupZ(*outputs*, *options*) {/* {#groupZ} */}
-```js
-Plot.groupZ({x: "proportion"}, {fill: "species"})
+```jsx
+<GroupZ x="proportion">
+  <BarX data={penguins} fill="species" />
+</GroupZ>
 ```
 
 Groups on the first channel of **z**, **fill**, or **stroke**, if any. If none of **z**, **fill**, or **stroke** are channels, then all data (within each facet) is placed into a single group.
 
 ## find(*test*) <VersionBadge version="0.6.12" pr="1914" /> {/* {#find} */}
-```js
-Plot.groupX(
-  {y1: Plot.find((d) => d.sex === "F"), y2: Plot.find((d) => d.sex === "M")},
-  {x: "date", y: "value"}
-)
+```jsx
+<GroupX y1={find((d) => d.sex === "F")} y2={find((d) => d.sex === "M")}>
+  <AreaY data={observations} x="date" y="value" />
+</GroupX>
 ```
 
 Returns a reducer that finds the first datum for which the given *test* function returns a truthy value, and returns the corresponding channel value. This may be used with the group or bin transform to implement a “pivot wider” transform; for example, a “tall” dataset with separate rows for male and female observations may be transformed into a “wide” dataset with separate columns for male and female values.

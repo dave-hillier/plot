@@ -634,7 +634,7 @@ The following sequential scale schemes are supported for both quantitative and o
     ].flatMap(([name, i]) => d3.ticks(0, 1, 20).map((t) => [t, name, String(i(t))]))} fill="2" insetTop={0.5} insetBottom={0.5} />
 </Replot>
 
-The default color scheme, *turbo*, was chosen primarily to ensure high-contrast visibility. Color schemes such as *blues* make low-value marks difficult to see against a white background, for better or for worse. To use a subset of a continuous color scheme (or any single-argument *interpolate* function), set the *scale*.range property to the corresponding subset of [0, 1]; for example, to use the first half of the *rainbow* color scheme, use a range of [0, 0.5]. By default, the full range [0, 1] is used. If you wish to encode a quantitative value without hue, consider using *opacity* rather than *color* (e.g., use Plot.dot’s *strokeOpacity* instead of *stroke*).
+The default color scheme, *turbo*, was chosen primarily to ensure high-contrast visibility. Color schemes such as *blues* make low-value marks difficult to see against a white background, for better or for worse. To use a subset of a continuous color scheme (or any single-argument *interpolate* function), set the *scale*.range property to the corresponding subset of [0, 1]; for example, to use the first half of the *rainbow* color scheme, use a range of [0, 0.5]. By default, the full range [0, 1] is used. If you wish to encode a quantitative value without hue, consider using *opacity* rather than *color* (e.g., use Replot.dot’s *strokeOpacity* instead of *stroke*).
 
 The following diverging scale schemes are supported:
 
@@ -707,7 +707,7 @@ Similarly, the *y* and *fy* scales support asymmetric insets with:
 * **insetTop** - insets the top of the default range by the specified number of pixels
 * **insetBottom** - insets the bottom of the default range by the specified number of pixels
 
-The inset scale options can provide “breathing room” to separate marks from axes or the plot’s edge. For example, in a scatterplot with a Plot.dot with the default 3-pixel radius and 1.5-pixel stroke width, an inset of 5 pixels prevents dots from overlapping with the axes. The *scale*.round option is useful for crisp edges by rounding to the nearest pixel boundary.
+The inset scale options can provide “breathing room” to separate marks from axes or the plot’s edge. For example, in a scatterplot with a Replot.dot with the default 3-pixel radius and 1.5-pixel stroke width, an inset of 5 pixels prevents dots from overlapping with the axes. The *scale*.round option is useful for crisp edges by rounding to the nearest pixel boundary.
 
 In addition to the generic *ordinal* scale type, which requires an explicit output range value for each input domain value, Replot supports special *point* and *band* scale types for encoding ordinal data as position. These scale types accept a [*min*, *max*] range similar to quantitative scales, and divide this continuous interval into discrete points or bands based on the number of distinct values in the domain (*i.e.*, the domain’s cardinality). If the associated marks have no effective width along the ordinal dimension — such as a dot, rule, or tick — then use a *point* scale; otherwise, say for a bar, use a *band* scale.
 
@@ -751,64 +751,64 @@ Top-level options are also supported as shorthand: **grid** (for *x* and *y* onl
 
 If an ordinal scale’s domain is not set, it defaults to natural ascending order; to order the domain by associated values in another dimension, either compute the domain manually (consider [d3.groupSort](https://d3js.org/d3-array/group#groupSort)) or use an associated mark’s **sort** option. For example, to sort bars by ascending frequency rather than alphabetically by letter:
 
-```js
-Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y"}})
+```jsx
+<BarY data={alphabet} x="letter" y="frequency" sort={{x: "y"}} />
 ```
 
 The sort option is an object whose keys are ordinal scale names, such as *x* or *fx*, and whose values are mark channel names, such as **y**, **y1**, or **y2**. By specifying an existing channel rather than a new value, you avoid repeating the order definition and can refer to channels derived by [transforms](./transforms.md) (such as [stack](../transforms/stack.md) or [bin](../transforms/bin.md)). When sorting the *x* domain, if no **x** channel is defined, **x2** will be used instead if available, and similarly for *y* and **y2**; this is useful for marks that implicitly stack such as [area](../marks/area.md), [bar](../marks/bar.md), and [rect](../marks/rect.md). A sort value may also be specified as *width* or *height* <VersionBadge version="0.4.2" />, representing derived channels |*x2* - *x1*| and |*y2* - *y1*| respectively.
 
 Note that there may be multiple associated values in the secondary dimension for a given value in the primary ordinal dimension. The secondary values are therefore grouped for each associated primary value, and each group is then aggregated by applying a reducer. The default reducer is *max*, but may be changed by specifying the **reduce** option. Lastly the primary values are by default sorted based on the associated reduced value in natural ascending order to produce the domain. The above code is shorthand for:
 
-```js
-Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y", reduce: "max", order: "ascending"}})
+```jsx
+<BarY data={alphabet} x="letter" y="frequency" sort={{x: "y", reduce: "max", order: "ascending"}} />
 ```
 
 Generally speaking, a reducer only needs to be specified when there are multiple secondary values for a given primary value. See the [group transform](../transforms/group.md) for the list of supported reducers.
 
 For descending rather than ascending order, set the **order** option to *descending*:
 
-```js
-Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y", order: "descending"}})
+```jsx
+<BarY data={alphabet} x="letter" y="frequency" sort={{x: "y", order: "descending"}} />
 ```
 
 Alternatively, the *-channel* shorthand option, which changes the default **order** to *descending*:
 
-```js
-Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "-y"}})
+```jsx
+<BarY data={alphabet} x="letter" y="frequency" sort={{x: "-y"}} />
 ```
 
 Setting **order** to null will disable sorting, preserving the order of the data. (When an aggregating transform is used, such as [group](../transforms/group.md) or [bin](../transforms/bin.md), note that the data may already have been sorted and thus the order may differ from the input data.)
 
 Alternatively, set the **reverse** option to true. This produces a different result than descending order for null or unorderable values: descending order puts nulls last, whereas reversed ascending order puts nulls first.
 
-```js
-Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y", reverse: true}})
+```jsx
+<BarY data={alphabet} x="letter" y="frequency" sort={{x: "y", reverse: true}} />
 ```
 
 An additional **limit** option truncates the domain to the first *n* values after ordering. If **limit** is negative, the last *n* values are used instead. Hence, a positive **limit** with **reverse** = true will return the top *n* values in descending order. If **limit** is an array [*lo*, *hi*], the *i*th values with *lo* ≤ *i* < *hi* will be selected. (Note that like the [basic filter transform](../transforms/filter.md), limiting the *x* domain here does not affect the computation of the *y* domain, which is computed independently without respect to filtering.)
 
-```js
-Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y", limit: 5}})
+```jsx
+<BarY data={alphabet} x="letter" y="frequency" sort={{x: "y", limit: 5}} />
 ```
 
 If different sort options are needed for different ordinal scales, the channel name can be replaced with a *value* object with additional per-scale options.
 
-```js
-Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: {value: "y", order: "descending"}}})
+```jsx
+<BarY data={alphabet} x="letter" y="frequency" sort={{x: {value: "y", order: "descending"}}} />
 ```
 
 If the input channel is *data*, then the reducer is passed groups of the mark’s data; this is typically used in conjunction with a custom reducer function, as when the built-in single-channel reducers are insufficient.
 
-Note: when the value of the sort option is a string or a function, it is interpreted as a mark [sort transform](../transforms/sort.md). To use both sort options and a mark sort transform, use [Plot.sort](../transforms/sort.md#sort).
+Note: when the value of the sort option is a string or a function, it is interpreted as a mark [sort transform](../transforms/sort.md). To use both sort options and a mark sort transform, use [Replot.sort](../transforms/sort.md#sort).
 
 ## scale(*options*) <VersionBadge version="0.4.0" /> {/* {#scale} */}
-You can also create a standalone scale with Plot.**scale**(*options*). The *options* object must define at least one scale; see [Scale options](#scale-options) for how to define a scale. For example, here is a categorical color scale with the *Tableau10* color scheme and a domain of fruits:
+You can also create a standalone scale with Replot.**scale**(*options*), also available as the `scale` export of `replot/react`. The *options* object must define at least one scale; see [Scale options](#scale-options) for how to define a scale. For example, here is a categorical color scale with the *Tableau10* color scheme and a domain of fruits:
 
 ```js
 const color = scale({color: {scheme: "Tableau10", domain: ["apple", "orange", "pear"]}});
 ```
 
-Both [*plot*.scale](./plots.md#plot_scale) and [Plot.scale](#scale) return scale objects. These objects represent the actual (or “materialized”) scale options used by Replot, including the domain, range, interpolate function, *etc.* The scale’s label, if any, is also returned; however, note that other axis properties are not currently exposed. Point and band scales also expose their materialized bandwidth and step.
+Both [*plot*.scale](./plots.md#plot_scale) and [Replot.scale](#scale) return scale objects. These objects represent the actual (or “materialized”) scale options used by Replot, including the domain, range, interpolate function, *etc.* The scale’s label, if any, is also returned; however, note that other axis properties are not currently exposed. Point and band scales also expose their materialized bandwidth and step.
 
 ```js
 color.domain // ["apple", "orange", "pear"]
@@ -820,15 +820,15 @@ For convenience, scale objects expose a *scale*.**apply**(*input*) method which 
 color.apply("apple") // "#4e79a7"
 ```
 
-To apply a standalone scale object to a plot, pass it to Plot.plot as the corresponding scale options, such as **color**:
+To apply a standalone scale object to a plot, pass it to the `<Replot>` component as the corresponding scale prop, such as **color**:
 
 <Replot color={color}>
   <CellX data={["apple", "apple", "orange", "pear", "orange"]} />
 </Replot>
 
-As another example, below are two plots with different options where the second plot uses the *color* scale from the first plot:
+As another example, with the imperative API, [*plot*.scale](./plots.md#plot_scale) lets a second plot reuse the *color* scale from a first, already-rendered plot:
 
 ```js
-const plot1 = Plot.plot({...options1});
-const plot2 = Plot.plot({...options2, color: plot1.scale("color")});
+const plot1 = Replot.plot({...options1});
+const plot2 = Replot.plot({...options2, color: plot1.scale("color")});
 ```

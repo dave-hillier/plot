@@ -52,7 +52,7 @@ As you can see from that **reduce** property, the auto mark has some special syn
 That’s equivalent to this:
 
 ```js
-Plot.rect(olympians, Plot.bin({fill: "count"}, {x: "weight", y: "height"})).plot()
+Replot.rect(olympians, Replot.bin({fill: "count"}, {x: "weight", y: "height"})).plot()
 ```
 
 Notice that the code above makes you think about nested functions and two different options objects, which the auto mark flattens. The auto mark infers that it should use a [rect](./rect.md); that it should [bin](../transforms/bin.md) on **x** and **y**; that the kind of color should be a **fill**; and that **fill** is an “output” of the reducer, whereas **x** and **y** are “inputs”.
@@ -126,32 +126,32 @@ And you may specify the standard mark-level facet channels:
 
 In addition to channel values, the **x**, **y**, **color**, and **size** options may specify reducers. Setting a reducer on **x** implicitly groups or bins on **y**, and likewise setTing a reducer on **y** implicitly groups or bins on **x**. Setting a reducer on **color** or **size** groups or bins in both **x** and **y**. Setting a reducer on both **x** and **y** throws an error. To specify a reducer, simply pass the reducer name to the corresponding option. For example:
 
-```js
-Plot.auto(penguins, {x: "body_mass_g", y: "count"})
+```jsx
+<Auto data={penguins} x="body_mass_g" y="count" />
 ```
 
 To pass both a value and a reducer, or to disambiguate whether the given string represents a field name or a reducer name, the **x**, **y**, **color**, and **size** options can also be specified as an object with separate **value** and **reduce** properties. For example, to compute the total weight of the penguins in each bin:
 
-```js
-Plot.auto(penguins, {x: "body_mass_g", y: {value: "body_mass_g", reduce: "sum"}})
+```jsx
+<Auto data={penguins} x="body_mass_g" y={{value: "body_mass_g", reduce: "sum"}} />
 ```
 
 If the **color** channel is specified as a string that is also a valid CSS color, it is interpreted as a constant color. For example, for red bars:
 
-```js
-Plot.auto(penguins, {x: "body_mass_g", color: "red"})
+```jsx
+<Auto data={penguins} x="body_mass_g" color="red" />
 ```
 
 This is shorthand for:
 
-```js
-Plot.auto(penguins, {x: "body_mass_g", color: {color: "red"}})
+```jsx
+<Auto data={penguins} x="body_mass_g" color={{color: "red"}} />
 ```
 
 To reference a field name instead as a variable color encoding, specify the **color** option as an object with a **value** property:
 
-```js
-Plot.auto(penguins, {x: "body_mass_g", color: {value: "red"}})
+```jsx
+<Auto data={penguins} x="body_mass_g" color={{value: "red"}} />
 ```
 
 Alternatively, you can specify a function of data or an array of values, as with a standard mark channel.
@@ -167,15 +167,15 @@ The auto mark chooses the mark type automatically based on several simple heuris
 The chosen mark type depends both on the options you provide (*e.g.*, whether you specified **x** or **y** or both) and the inferred type of the corresponding data values (whether the associated dimension of data is quantitative, categorical, monotonic, *etc.*).
 
 ## auto(*data*, *options*) {/* {#auto} */}
-```js
-Plot.auto(olympians, {x: "weight", y: "height", color: "count"}) // equivalent to rect + bin, say
+```jsx
+<Auto data={olympians} x="weight" y="height" color="count" /> // equivalent to rect + bin, say
 ```
 
 Returns an automatically-chosen mark with the given *data* and *options*, suitable for a quick view of the data.
 
 ## autoSpec(*data*, *options*) <VersionBadge version="0.6.4" /> {/* {#autoSpec} */}
 ```js
-Plot.autoSpec(olympians, {x: "weight", y: "height", color: "count"})
+Replot.autoSpec(olympians, {x: "weight", y: "height", color: "count"})
 ```
 
 Returns an auto mark *options* object with no option undefined; the mark type, reducers, and other options are all populated.

@@ -73,8 +73,8 @@ If you want to drop values completely, you can filter the data with [*array*.fil
 </Replot>
 ```
 ## filter(*test*, *options*) {/* {#filter} */}
-```js
-Plot.filter((d) => /[aeiouy]/i.test(d.letter), {x: "letter", y: "frequency"})
+```jsx
+<BarY data={alphabet} filter={(d) => /[aeiouy]/i.test(d.letter)} x="letter" y="frequency" />
 ```
 
 Filters the data given the specified *test*. The test can be given as an accessor function (which receives the datum and index), or as a channel value definition such as a field name; truthy values are retained.

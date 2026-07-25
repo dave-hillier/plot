@@ -33,10 +33,10 @@ To demonstrate, below the pointer transform filters a filled <span style={{borde
 <div>
 
 ```js-vue
-Plot.plot({
+Replot.plot({
   marks: [
-    Plot.dot(penguins, Plot.pointer({x: "culmen_length_mm", y: "culmen_depth_mm", fill: "red", r: 8})),
-    Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm"})
+    Replot.dot(penguins, Replot.pointer({x: "culmen_length_mm", y: "culmen_depth_mm", fill: "red", r: 8})),
+    Replot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm"})
   ]
 })
 ```
@@ -110,10 +110,18 @@ As the above chart shows, a plot can have multiple pointer transforms. Each poin
 
 The pointer transform supports “click-to-stick”: clicking on the chart locks the currently-focused point until you click again. By locking the pointer, you can select text from the tip for copy and paste. If a plot has multiple pointer transforms, clicking will lock all pointer transforms.
 
-The pointer transform emits an [*input* event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event) whenever the focused points changes, and setS the value of the plot element to the focused data. This allows you to use a plot as an [Observable view](https://observablehq.com/@observablehq/views) (viewof), or to register an *input* event listener to react to pointing.
+The pointer transform emits an [*input* event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event) whenever the focused point changes, and sets the value of the plot element to the focused data. In React, pass an **onValue** callback to the root component to react to pointing:
+
+```jsx
+<Replot onValue={(value) => console.log(value)}>
+  <Dot data={penguins} x="culmen_length_mm" y="culmen_depth_mm" tip />
+</Replot>
+```
+
+With the imperative API, the same event is available on the rendered plot element, which also allows using a plot as an [Observable view](https://observablehq.com/@observablehq/views) (viewof):
 
 ```js
-const plot = Plot.plot(options);
+const plot = Replot.plot(options);
 
 plot.addEventListener("input", (event) => {
   console.log(plot.value);
@@ -146,22 +154,22 @@ To resolve the horizontal target position, the pointer transform applies the fol
 The same precedence applies to the **py**, **y**, **y1**, and **y2** channels.
 
 ## pointer(*options*) {/* {#pointer} */}
-```js
-Plot.tip(penguins, Plot.pointer({x: "culmen_length_mm", y: "culmen_depth_mm"}))
+```jsx
+<Tip data={penguins} {...pointer({x: "culmen_length_mm", y: "culmen_depth_mm"})} />
 ```
 
 Applies the pointer render transform to the specified *options* to filter the mark index such that only the point closest to the pointer is rendered; the mark will re-render interactively in response to pointer events.
 
 ## pointerX(*options*) {/* {#pointerX} */}
-```js
-Plot.tip(aapl, pointerX({x: "Date", y: "Close"}))
+```jsx
+<Tip data={aapl} {...pointerX({x: "Date", y: "Close"})} />
 ```
 
 Like [pointer](#pointer), except the determination of the closest point considers mostly the *x* (horizontal↔︎) position; this should be used for plots where *x* is the dominant dimension, such as time in a time-series chart, the binned quantitative dimension in a histogram, or the categorical dimension of a bar chart.
 
 ## pointerY(*options*) {/* {#pointerY} */}
-```js
-Plot.tip(alphabet, Plot.pointerY({x: "frequency", y: "letter"}))
+```jsx
+<Tip data={alphabet} {...pointerY({x: "frequency", y: "letter"})} />
 ```
 
 Like [pointer](#pointer), except the determination of the closest point considers mostly the *y* (vertical↕︎) position; this should be used for plots where *y* is the dominant dimension, such as time in a time-series chart, the binned quantitative dimension in a histogram, or the categorical dimension of a bar chart.

@@ -44,7 +44,7 @@ While options are often specified in literal values, such as <span style={{borde
 </Replot>
 
 
-This is equivalent to a [rect](./rect.md): `Plot.rect({length: 1}, {fill: 0})`.
+This is equivalent to a [rect](./rect.md): `<Rect data={{length: 1}} fill={0} />`.
 You can also place a frame on a specific facet using the **fx** or **fy** option. Below, a frame emphasizes the *Gentoo* facet, say to draw attention to how much bigger they are. 🐧
 
 <Replot marginLeft={80} inset={10}>
@@ -53,7 +53,7 @@ You can also place a frame on a specific facet using the **fx** or **fy** option
 </Replot>
 
 
-Or: `Plot.rect({length: 1}, {fy: ["Gentoo"], stroke: "currentColor"})`.
+Or: `<Rect data={{length: 1}} fy={["Gentoo"]} stroke="currentColor" />`.
 The **anchor** option <VersionBadge version="0.6.3" />, if specified to a value of *left*, *right*, *top* or *bottom*, draws only that side of the frame. In that case, the **fill** and **rx**, **ry** options are ignored.
 
 <Replot x={{
@@ -70,8 +70,8 @@ The frame mark supports the [standard mark options](../features/marks.md#mark-op
 If the **anchor** option is specified as one of *left*, *right*, *top*, or *bottom*, that side is rendered as a single line (and the **fill**, **fillOpacity**, **rx**, and **ry** options are ignored).
 
 ## frame(*options*) {/* {#frame} */}
-```js
-Plot.frame({stroke: "red"})
+```jsx
+<Frame stroke="red" />
 ```
 
 Returns a new frame mark with the specified *options*.

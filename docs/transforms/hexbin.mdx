@@ -163,8 +163,10 @@ In the last case, the **reduceIndex** method is repeatedly passed three argument
 Most reducers require binding the output channel to an input channel; for example, if you want the **y** output channel to be a *sum* (not merely a count), there should be a corresponding **y** input channel specifying which values to sum. If there is not, *sum* will be equivalent to *count*.
 
 ## hexbin(*outputs*, *options*) {/* {#hexbin} */}
-```js
-Plot.dot(olympians, Plot.hexbin({fill: "count"}, {x: "weight", y: "height"}))
+```jsx
+<Hexbin fill="count">
+  <Dot data={olympians} x="weight" y="height" />
+</Hexbin>
 ```
 
 Bins hexagonally on **x** and **y**. Also groups on the first channel of **z**, **fill**, or **stroke**, if any.

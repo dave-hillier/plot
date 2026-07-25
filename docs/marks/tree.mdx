@@ -104,15 +104,15 @@ The **textLayout** option <VersionBadge version="0.6.9" /> controls how text lab
 If the **treeLayout** is d3.tree or d3.cluster, the **textLayout** defaults to *mirrored*; otherwise it defaults to *normal*.
 
 ## tree(*data*, *options*) {/* {#tree} */}
-```js
-Plot.tree(flare, {path: "name", delimiter: "."})
+```jsx
+<TreeMark data={flare} path="name" delimiter="." />
 ```
 
 Returns a new tree mark with the given *data* and *options*.
 
 ## cluster(*data*, *options*) {/* {#cluster} */}
-```js
-Plot.cluster(flare, {path: "name", delimiter: "."})
+```jsx
+<ClusterMark data={flare} path="name" delimiter="." />
 ```
 
 Like [tree](#tree), except setS the **treeLayout** option to [d3.cluster](https://d3js.org/d3-hierarchy/cluster), aligning leaf nodes, and defaults the **textLayout** option to *mirrored*.

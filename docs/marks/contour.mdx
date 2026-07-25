@@ -122,14 +122,14 @@ When faceting, the sample function *f*(*x*,*y*) is passed a third argument of th
 
 If *data* is provided, it represents discrete samples in abstract coordinates **x** and **y**; the **value** channel specifies further abstract quantitative values (_e.g._, height in a topographic map) to be [spatially interpolated](./raster.md#spatial-interpolators) to produce the underlying raster grid.
 
-```js
-Plot.contour(volcano.values, {width: volcano.width, height: volcano.height, value: Plot.identity})
+```jsx
+<Contour data={volcano.values} width={volcano.width} height={volcano.height} value={identity} />
 ```
 
 The **value** channel may alternatively be specified as a continuous function *f*(*x*,*y*) to be evaluated at each pixel centroid of the raster grid (without interpolation).
 
-```js
-Plot.contour({x1: 0, y1: 0, x2: 4, y2: 4, value: (x, y) => Math.sin(x) * Math.cos(y)})
+```jsx
+<Contour x1={0} y1={0} x2={4} y2={4} value={(x, y) => Math.sin(x) * Math.cos(y)} />
 ```
 
 The resolution of the raster grid may be specified with the following options:
@@ -151,19 +151,19 @@ The contour mark shares many options with the [raster mark](./raster.md). The **
 
 With the exception of the **x**, **y**, **x1**, **y1**, **x2**, **y2**, and **value** channels, the contour mark’s channels are not evaluated on the initial *data* but rather on the contour multipolygons generated in the initializer. For example, to generate filled contours where the color corresponds to the contour threshold value:
 
-```js
-Plot.contour(volcano.values, {width: volcano.width, height: volcano.height, value: Plot.identity, fill: "value"})
+```jsx
+<Contour data={volcano.values} width={volcano.width} height={volcano.height} value={identity} fill="value" />
 ```
 
 As shorthand, a single channel may be specified, in which case it is promoted to the *value* channel.
 
-```js
-Plot.contour(volcano.values, {width: volcano.width, height: volcano.height, fill: Plot.identity})
+```jsx
+<Contour data={volcano.values} width={volcano.width} height={volcano.height} fill={identity} />
 ```
 
 ## contour(*data*, *options*) {/* {#contour} */}
-```js
-Plot.contour(volcano.values, {width: volcano.width, height: volcano.height, fill: Plot.identity})
+```jsx
+<Contour data={volcano.values} width={volcano.width} height={volcano.height} fill={identity} />
 ```
 
 Returns a new contour mark with the given (optional) *data* and *options*.

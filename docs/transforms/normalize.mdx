@@ -55,11 +55,11 @@ As another example, the normalize transform can be used to compute proportional 
 </Replot>
 
 ```js
-xy = Plot.normalizeX("sum", {z: "state", x: "population", y: "state"})
+const xy = normalizeX("sum", {z: "state", x: "population", y: "state"})
 ```
 
 
-To reduce code duplication, pull shared options out into an object (here `xy`) and then merge them into each mark’s options using the spread operator (`...`).
+To reduce code duplication, pull shared options out into an object (here `xy`) and then merge them into each mark’s options using the spread operator (`...`). This uses the plain `normalizeX` function (the functional spread form), which is equivalent to the `<NormalizeX>` wrapper component.
 ## Normalize options
 
 The **basis** option specifies how to normalize the series values; it is one of:
@@ -78,34 +78,32 @@ The **basis** option specifies how to normalize the series values; it is one of:
 * a function to be passed an index and channel value array, returning the desired basis
 
 ## normalize(*basis*) <VersionBadge version="0.2.3" /> {/* {#normalize} */}
-```js
-Plot.map({y: Plot.normalize("first")}, {x: "Date", y: "Close", stroke: "Symbol"})
+```jsx
+<MapY map={normalize("first")}>
+  <Line data={stocks} x="Date" y="Close" stroke="Symbol" />
+</MapY>
 ```
 
 Returns a normalize map method for the given *basis*, suitable for use with the [map transform](./map.md).
 
 ## normalizeX(*basis*, *options*) {/* {#normalizeX} */}
-```js
-Plot.normalizeX("first", {y: "Date", x: "Close", stroke: "Symbol"})
+```jsx
+<NormalizeX basis="first">
+  <Line data={stocks} y="Date" x="Close" stroke="Symbol" />
+</NormalizeX>
 ```
 
-Like [mapX](./map.md#mapX), but applies the normalize map method with the given *basis*. The **basis** option can also be mixed into the specified *options* like so:
-
-```js
-Plot.normalizeX({basis: "first", y: "Date", x: "Close", stroke: "Symbol"})
-```
+Like [mapX](./map.md#mapX), but applies the normalize map method with the given *basis*. When using the functional form, the **basis** option can also be mixed into the specified *options*, as in `normalizeX({basis: "first", y: "Date", x: "Close", stroke: "Symbol"})`.
 
 If not specified, the *basis* defaults to *first*.
 
 ## normalizeY(*basis*, *options*) {/* {#normalizeY} */}
-```js
-Plot.normalizeY("first", {x: "Date", y: "Close", stroke: "Symbol"})
+```jsx
+<NormalizeY basis="first">
+  <Line data={stocks} x="Date" y="Close" stroke="Symbol" />
+</NormalizeY>
 ```
 
-Like [mapY](./map.md#mapY), but applies the normalize map method with the given *basis*. The **basis** option can also be mixed into the specified *options* like so:
-
-```js
-Plot.normalizeY({basis: "first", x: "Date", y: "Close", stroke: "Symbol"})
-```
+Like [mapY](./map.md#mapY), but applies the normalize map method with the given *basis*. When using the functional form, the **basis** option can also be mixed into the specified *options*, as in `normalizeY({basis: "first", x: "Date", y: "Close", stroke: "Symbol"})`.
 
 If not specified, the *basis* defaults to *first*.

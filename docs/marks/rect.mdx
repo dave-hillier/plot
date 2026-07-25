@@ -121,10 +121,10 @@ To round corners, use the **r** option. If the combined corner radii exceed the 
 </Replot>
 
 ```js-vue
-Plot.plot({
+Replot.plot({
   marks: [
-    Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight", r: {r}, thresholds: 10})),
-    Plot.ruleY([0])
+    Replot.rectY(olympians, Replot.binX({y: "count"}, {x: "weight", r: {r}, thresholds: 10})),
+    Replot.ruleY([0])
   ]
 })
 ```
@@ -163,22 +163,28 @@ If an **interval** is specified, such as d3.utcDay, **x1** and **x2** can be der
 The rect mark supports the [standard mark options](../features/marks.md#mark-options), including [insets](../features/marks.md#insets) and [rounded corners](../features/marks.md#rounded-corners). The **stroke** defaults to *none*. The **fill** defaults to *currentColor* if the stroke is *none*, and to *none* otherwise.
 
 ## rect(*data*, *options*) {/* {#rect} */}
-```js
-Plot.rect(olympians, Plot.bin({fill: "count"}, {x: "weight", y: "height"}))
+```jsx
+<Bin fill="count">
+  <Rect data={olympians} x="weight" y="height" />
+</Bin>
 ```
 
 Returns a new rect with the given *data* and *options*.
 
 ## rectX(*data*, *options*) {/* {#rectX} */}
-```js
-Plot.rectX(olympians, Plot.binY({x: "count"}, {y: "weight"}))
+```jsx
+<BinY x="count">
+  <RectX data={olympians} y="weight" />
+</BinY>
 ```
 
 Equivalent to [rect](#rect), except that if neither the **x1** nor **x2** option is specified, the **x** option may be specified as shorthand to apply an implicit [stackX transform](../transforms/stack.md); this is the typical configuration for a histogram with horizontal→ rects aligned at *x* = 0. If the **x** option is not specified, it defaults to the identity function.
 
 ## rectY(*data*, *options*) {/* {#rectY} */}
-```js
-Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight"}))
+```jsx
+<BinX y="count">
+  <RectY data={olympians} x="weight" />
+</BinX>
 ```
 
 Equivalent to [rect](#rect), except that if neither the **y1** nor **y2** option is specified, the **y** option may be specified as shorthand to apply an implicit [stackY transform](../transforms/stack.md); this is the typical configuration for a histogram with vertical↑ rects aligned at *y* = 0. If the **y** option is not specified, it defaults to the identity function.

@@ -68,15 +68,19 @@ Combined with the [pointer transform](../interactions/pointer.md), the centroid 
 </Replot>
 
 ## centroid(*options*) {/* {#centroid} */}
-```js
-Plot.centroid({geometry: Plot.identity})
+```jsx
+<Centroid geometry={identity}>
+  <Dot data={states} />
+</Centroid>
 ```
 
 The centroid initializer derives **x** and **y** channels representing the planar (projected) centroids for the given GeoJSON geometry. If the **geometry** option is not specified, the mark’s data is assumed to be GeoJSON objects.
 
 ## geoCentroid(*options*) {/* {#geoCentroid} */}
-```js
-Plot.geoCentroid({geometry: Plot.identity})
+```jsx
+<GeoCentroid geometry={identity}>
+  <Dot data={states} />
+</GeoCentroid>
 ```
 
 The geoCentroid transform derives **x** and **y** channels representing the spherical centroids for the given GeoJSON geometry. If the **geometry** option is not specified, the mark’s data is assumed to be GeoJSON objects.

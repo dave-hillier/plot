@@ -55,8 +55,8 @@ Ticks are also used by the [box mark](./box.md) to denote the median value for e
 For the required channels, see [tickX](#tickX) and [tickY](#tickY). The tick mark supports the [standard mark options](../features/marks.md#mark-options), including insets, and [marker options](../features/markers.md) to add a marker (such as a dot or an arrowhead) to the start or end of the rule. The **stroke** defaults to *currentColor*.
 
 ## tickX(*data*, *options*) {/* {#tickX} */}
-```js
-Plot.tickX(stateage, {x: "population", y: "age"})
+```jsx
+<TickX data={stateage} x="population" y="age" />
 ```
 
 Returns a new vertical↕︎ tick with the given *data* and *options*. The following channels are required:
@@ -70,8 +70,8 @@ The following optional channels are supported:
 If the **y** channel is not specified, the tick will span the full vertical extent of the frame.
 
 ## tickY(*data*, *options*) {/* {#tickY} */}
-```js
-Plot.tickY(stateage, {y: "population", x: "age"})
+```jsx
+<TickY data={stateage} y="population" x="age" />
 ```
 
 Returns a new horizontal↔︎ tick with the given *data* and *options*. The following channels are required:

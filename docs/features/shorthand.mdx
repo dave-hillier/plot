@@ -85,7 +85,7 @@ numbers = [
 ]
 ```
 
-These numbers represent the daily opening price of Apple stock starting on January 1, 2018. For a simple line chart, we can pass the data to [Plot.lineY](../marks/line.md) to construct a line mark, and then call *line*.plot.
+These numbers represent the daily opening price of Apple stock starting on January 1, 2018. For a simple line chart, we can pass the data to [Replot.lineY](../marks/line.md) to construct a line mark, and then call *line*.plot.
 
 <Replot>
   <LineY data={numbers} />
@@ -93,37 +93,37 @@ These numbers represent the daily opening price of Apple stock starting on Janua
 
 The *y*-axis above represents price in U.S. dollars. The *x*-axis represents the index of the data: the first value {numbers[0]} is shown at *x* = 0, the second value {numbers[1]} at *x* = 1, and so on. In other words, *x* represents the number of (trading) days since January 1, 2018. It’d be nicer to have an *x*-axis that shows dates here, but it’s still convenient to see the trend in stock price quickly.
 
-If we pass the numbers to [Plot.areaY](../marks/area.md) instead, we’ll get a simple area chart with a baseline implicitly at *y* = 0.
+If we pass the numbers to [Replot.areaY](../marks/area.md) instead, we’ll get a simple area chart with a baseline implicitly at *y* = 0.
 
 <Replot>
   <AreaY data={numbers} />
 </Replot>
 
-Similarly if we use [Plot.rectY](../marks/rect.md), we’ll get a series of vertical bars. This implicitly uses the [interval transform](../transforms/interval.md) such that the first rect spans from *x* = 0 to *x* = 1, the second from *x* = 1 to *x* = 2, and so on, with a horizontal inset to separate adjacent rects.
+Similarly if we use [Replot.rectY](../marks/rect.md), we’ll get a series of vertical bars. This implicitly uses the [interval transform](../transforms/interval.md) such that the first rect spans from *x* = 0 to *x* = 1, the second from *x* = 1 to *x* = 2, and so on, with a horizontal inset to separate adjacent rects.
 
 <Replot>
   <RectY data={numbers} />
 </Replot>
 
-[Plot.barY](../marks/bar.md) produces a visually similar result but with different semantics: *x* is now ordinal (a *band* scale) rather than quantitative (*linear*). An ordinal axis labels every tick, which appear at the middle of each bar rather than between rects.
+[Replot.barY](../marks/bar.md) produces a visually similar result but with different semantics: *x* is now ordinal (a *band* scale) rather than quantitative (*linear*). An ordinal axis labels every tick, which appear at the middle of each bar rather than between rects.
 
 <Replot>
   <BarY data={numbers} />
 </Replot>
 
-Like Plot.barY, [Plot.cellX](../marks/cell.md) implies that *x* is ordinal. But now instead of a *y* channel the numeric value is encoded as the *fill* color. The default quantitative color scheme is *turbo*; higher values are reddish, and lower values blueish.
+Like Replot.barY, [Replot.cellX](../marks/cell.md) implies that *x* is ordinal. But now instead of a *y* channel the numeric value is encoded as the *fill* color. The default quantitative color scheme is *turbo*; higher values are reddish, and lower values blueish.
 
 <Replot>
   <CellX data={numbers} />
 </Replot>
 
-If we don’t care about the order of our data and we instead just want to look at the one-dimensional distribution of values, we can use [Plot.dotX](../marks/dot.md).
+If we don’t care about the order of our data and we instead just want to look at the one-dimensional distribution of values, we can use [Replot.dotX](../marks/dot.md).
 
 <Replot>
   <DotX data={numbers} />
 </Replot>
 
-Alternatively, we can use [Plot.ruleX](../marks/rule.md) to draw a vertical rule at each value. In this case, Plot.ruleX behaves identically to [Plot.tickX](../marks/tick.md). (If there *were* a *y* channel, then Plot.tickX would imply that *y* is ordinal whereas Plot.ruleX would imply that *y* is quantitative.) It is common to use the rule shorthand to annotate special *x* or *y* values in plots, such as *y* = 0, in conjunction with other marks.
+Alternatively, we can use [Replot.ruleX](../marks/rule.md) to draw a vertical rule at each value. In this case, Replot.ruleX behaves identically to [Replot.tickX](../marks/tick.md). (If there *were* a *y* channel, then Replot.tickX would imply that *y* is ordinal whereas Replot.ruleX would imply that *y* is quantitative.) It is common to use the rule shorthand to annotate special *x* or *y* values in plots, such as *y* = 0, in conjunction with other marks.
 
 <Replot>
   <RuleX data={numbers} />
@@ -133,19 +133,19 @@ Alternatively, we can use [Plot.ruleX](../marks/rule.md) to draw a vertical rule
   <TickX data={numbers} />
 </Replot>
 
-We could even use [Plot.vectorX](../marks/vector.md) here to draw little up-pointing arrows. (Typically the vector mark is used in conjunction with the **rotate** and **length** options to control the direction and magnitude of each vector.)
+We could even use [Replot.vectorX](../marks/vector.md) here to draw little up-pointing arrows. (Typically the vector mark is used in conjunction with the **rotate** and **length** options to control the direction and magnitude of each vector.)
 
 <Replot>
   <VectorX data={numbers} />
 </Replot>
 
-While not particularly readable due to occlusion, we can use [Plot.textX](../marks/text.md) to draw a label at each value, too.
+While not particularly readable due to occlusion, we can use [Replot.textX](../marks/text.md) to draw a label at each value, too.
 
 <Replot>
   <TextX data={numbers} />
 </Replot>
 
-For a more formal method of summarizing a one-dimensional distribution, we can use [Plot.boxX](../marks/box.md) to create a horizontal boxplot. The gray band represents the interquartile range; the black whiskers show the extrema (not including outliers); and the thick black stroke represents the median; any outliers (none in this dataset) are drawn as dots.
+For a more formal method of summarizing a one-dimensional distribution, we can use [Replot.boxX](../marks/box.md) to create a horizontal boxplot. The gray band represents the interquartile range; the black whiskers show the extrema (not including outliers); and the thick black stroke represents the median; any outliers (none in this dataset) are drawn as dots.
 
 <Replot>
   <BoxX data={numbers} />
@@ -228,13 +228,13 @@ timeSeries = [
 ]
 ```
 
-If we pass this to Plot.line (*not* Plot.lineY as before), we’ll get another line chart, but now the *x*-axis shows the date rather than the zero-based index. Also, the *x*-values are no longer uniformly spaced, as there are gaps on the weekends and holidays when the markets are closed.
+If we pass this to Replot.line (*not* Replot.lineY as before), we’ll get another line chart, but now the *x*-axis shows the date rather than the zero-based index. Also, the *x*-values are no longer uniformly spaced, as there are gaps on the weekends and holidays when the markets are closed.
 
 <Replot>
   <Line data={timeSeries} />
 </Replot>
 
-Similarly Plot.area will produce the equivalent area chart, again with an implicit baseline at *y* = 0.
+Similarly Replot.area will produce the equivalent area chart, again with an implicit baseline at *y* = 0.
 
 <Replot>
   <Area data={timeSeries} />
@@ -242,25 +242,25 @@ Similarly Plot.area will produce the equivalent area chart, again with an implic
 
 There’s currently no two-dimensional shorthand for rect or bar, though you can use these marks to display time series data with options.
 
-Plot.dot will produce a scatterplot…
+Replot.dot will produce a scatterplot…
 
 <Replot>
   <Dot data={timeSeries} />
 </Replot>
 
-As will Plot.vector…
+As will Replot.vector…
 
 <Replot>
   <Vector data={timeSeries} />
 </Replot>
 
-Plot.text also produces a scatterplot with labels showing the zero-based index of the data. Perhaps not very useful, but it at least shows the data’s order.
+Replot.text also produces a scatterplot with labels showing the zero-based index of the data. Perhaps not very useful, but it at least shows the data’s order.
 
 <Replot>
   <Text data={timeSeries} />
 </Replot>
 
-Plot.cell also supports two-dimensional shorthand. As we saw above, Plot.cell implies that *x* and *y* are ordinal, so we shouldn’t pass temporal (dates) and quantitative (numbers) data; here’s a matrix diagram that shows which pairs exist in the dataset. You might use this, for example, to visualize who reviewed whose code.
+Replot.cell also supports two-dimensional shorthand. As we saw above, Replot.cell implies that *x* and *y* are ordinal, so we shouldn’t pass temporal (dates) and quantitative (numbers) data; here’s a matrix diagram that shows which pairs exist in the dataset. You might use this, for example, to visualize who reviewed whose code.
 
 ```js
 matrix = [

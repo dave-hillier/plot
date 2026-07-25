@@ -50,7 +50,7 @@ If you aren't yet up and running with Replot, please read our [getting started g
 Replot doesn't have chart types; instead, you construct charts by layering **marks**.
 
 
-Every mark is available both as an imperative function (e.g., `Plot.dot(data, options)`) and as a [React component](../getting-started.md#plot-in-react) (e.g., `<Dot data={data} x="x" y="y" />`). The examples on this page use the imperative API, but all the same options and behaviors apply to the React components.
+Every mark is available both as a [React component](../getting-started.md#plot-in-react) (e.g., `<Dot data={data} x="x" y="y" />`) and as an imperative function (e.g., `Replot.dot(data, options)`). The examples on this page use the React components, but all the same options and behaviors apply to the imperative API.
 ## Marks are geometric shapes
 
 Replot provides a variety of mark types. Think of marks as the "visual vocabulary" — the painter's palette, but of shapes instead of colors — that you pull from when composing a chart. Each mark type produces a certain type of geometric shape.
@@ -102,7 +102,7 @@ Marks may also be a function which returns an [SVG element](https://developer.mo
 The imperative API also supports inserting arbitrary SVG elements (such as gradients) as functions in the marks array. Here is the equivalent gradient example using the imperative API:
 
 ```js
-Plot.plot({
+Replot.plot({
   marks: [
     () => htl.svg`<defs>
       <linearGradient id="gradient" gradientTransform="rotate(90)">
@@ -111,8 +111,8 @@ Plot.plot({
         <stop offset="100%" stop-color="gold" />
       </linearGradient>
     </defs>`,
-    Plot.barY(alphabet, {x: "letter", y: "frequency", fill: "url(#gradient)"}),
-    Plot.ruleY([0])
+    Replot.barY(alphabet, {x: "letter", y: "frequency", fill: "url(#gradient)"}),
+    Replot.ruleY([0])
   ]
 })
 ```
@@ -192,12 +192,15 @@ Another common way to extract a column from tabular data is an accessor function
 
 For greater efficiency, Replot also supports columnar data: you can use an [Apache Arrow](https://arrow.apache.org/docs/js/) table as data instead of an array of objects. <VersionBadge version="0.6.16" pr="2115" /> You can even pass parallel arrays of values, or Apache Arrow vectors, to each channel.
 
-```js
-Plot.lineY({length: linedata.length}, {
-  x: linedata.map((d) => d.hour),
-  y: linedata.map((d) => d.value),
-  stroke: linedata.map((d) => d.sensor)
-}).plot()
+```jsx
+<Replot>
+  <LineY
+    data={{length: linedata.length}}
+    x={linedata.map((d) => d.hour)}
+    y={linedata.map((d) => d.value)}
+    stroke={linedata.map((d) => d.sensor)}
+  />
+</Replot>
 ```
 
 
@@ -244,16 +247,18 @@ timeseries = [
 
 The data is missing the population for the year 2018! Because the barY mark implies an ordinal *x* scale, the gap is hidden. Switching to the rectY mark (with the **interval** option to indicate that these are annual observations) reveals the missing data.
 
-The rectY mark with interval requires the transform-based interval support which is not yet available in the React API. Here is the imperative equivalent:
-
-```js
-Plot.rectY(timeseries, {x: "year", y: "population", interval: 1}).plot({x: {tickFormat: ""}})
+```jsx
+<Replot x={{tickFormat: ""}}>
+  <RectY data={timeseries} x="year" y="population" interval={1} />
+</Replot>
 ```
 
 Alternatively, you can keep the barY mark and apply the **interval** option to the *x* scale.
 
-```js
-Plot.barY(timeseries, {x: "year", y: "population"}).plot({x: {tickFormat: "", interval: 1}})
+```jsx
+<Replot x={{tickFormat: "", interval: 1}}>
+  <BarY data={timeseries} x="year" y="population" />
+</Replot>
 ```
 
 ## Marks have options
@@ -334,14 +339,14 @@ sales = [
   {units: 30, fruit: "plum"}
 ]
 ```
-```js
-Plot.dot(sales, {x: "units", y: "fruit"})
+```jsx
+<Dot data={sales} x="units" y="fruit" />
 ```
 
 While a column name such as `"units"` is the most concise way of specifying channel values, values can also be specified as functions for greater flexibility, say to transform data or derive a new column on the fly. Channel functions are invoked for each datum (*d*) in the data and return the corresponding channel value. (This is similar to how D3's [*selection*.attr](https://d3js.org/d3-selection/modifying#selection_attr) accepts functions, though note that Replot channel functions should return abstract values, not visual values.)
 
-```js
-Plot.dot(sales, {x: (d) => d.units * 1000, y: (d) => d.fruit})
+```jsx
+<Dot data={sales} x={(d) => d.units * 1000} y={(d) => d.fruit} />
 ```
 
 Replot also supports columnar data for greater efficiency with bigger datasets; for example, data can be specified as any array of the appropriate length (or any iterable or value compatible with [Array.from](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from)), and then separate arrays of values can be passed as *options*.
@@ -355,17 +360,17 @@ units = [10, 20, 40, 30]
 ```js
 fruits = ["peach", "pear", "plum", "plum"]
 ```
-```js
-Plot.dot(index, {x: units, y: fruits})
+```jsx
+<Dot data={index} x={units} y={fruits} />
 ```
 
 Channel values can also be specified as numbers for constant values, say for a fixed baseline with an [area](../marks/area.md).
 
-```js
-Plot.area(aapl, {x1: "Date", y1: 0, y2: "Close"})
+```jsx
+<Area data={aapl} x1="Date" y1={0} y2="Close" />
 ```
 
-Missing and invalid data are handled specifically for each mark type and channel. In most cases, if the provided channel value for a given datum is null, undefined, or (strictly) NaN, the mark will implicitly filter the datum and not generate a corresponding output. In some cases, such as the radius (*r*) of a dot, the channel value must additionally be positive. Plot.line and Plot.area will stop the path before any invalid point and start again at the next valid point, thus creating interruptions rather than interpolating between valid points. Titles will only be added if they are non-empty.
+Missing and invalid data are handled specifically for each mark type and channel. In most cases, if the provided channel value for a given datum is null, undefined, or (strictly) NaN, the mark will implicitly filter the datum and not generate a corresponding output. In some cases, such as the radius (*r*) of a dot, the channel value must additionally be positive. Replot.line and Replot.area will stop the path before any invalid point and start again at the next valid point, thus creating interruptions rather than interpolating between valid points. Titles will only be added if they are non-empty.
 
 All marks support the following style options:
 
@@ -416,22 +421,22 @@ The **fill**, **fillOpacity**, **stroke**, **strokeWidth**, **strokeOpacity**, a
 
 The scale associated with any channel can be overridden by specifying the channel as an object with a *value* property specifying the channel values and a *scale* property specifying the desired scale name or null for an unscaled channel. For example, to force the **stroke** channel to be unscaled, interpreting the associated values as literal color strings:
 
-```js
-Plot.dot(data, {stroke: {value: "fieldName", scale: null}})
+```jsx
+<Dot data={data} stroke={{value: "fieldName", scale: null}} />
 ```
 
 To instead force the **stroke** channel to be bound to the *color* scale regardless of the provided values, say:
 
-```js
-Plot.dot(data, {stroke: {value: "fieldName", scale: "color"}})
+```jsx
+<Dot data={data} stroke={{value: "fieldName", scale: "color"}} />
 ```
 
 The color channels (**fill** and **stroke**) are bound to the *color* scale by default, unless the provided values are all valid CSS color strings or nullish, in which case the values are interpreted literally and unscaled.
 
-In addition to functions of data, arrays, and column names, channel values can be specified as an object with a *transform* method; this transform method is passed the mark's array of data and must return the corresponding array of channel values. (Whereas a channel value specified as a function is invoked repeatedly for each element in the mark's data, similar to *array*.map, the transform method is invoked only once being passed the entire array of data.) For example, to pass the mark's data directly to the **x** channel, equivalent to [Plot.identity](./transforms.md#identity):
+In addition to functions of data, arrays, and column names, channel values can be specified as an object with a *transform* method; this transform method is passed the mark's array of data and must return the corresponding array of channel values. (Whereas a channel value specified as a function is invoked repeatedly for each element in the mark's data, similar to *array*.map, the transform method is invoked only once being passed the entire array of data.) For example, to pass the mark's data directly to the **x** channel, equivalent to [Replot.identity](./transforms.md#identity):
 
-```js
-Plot.dot(numbers, {x: {transform: (data) => data}})
+```jsx
+<Dot data={numbers} x={{transform: (data) => data}} />
 ```
 
 The **title**, **href**, and **ariaLabel** options can *only* be specified as channels. When these options are specified as a string, the string refers to the name of a column in the mark's associated data. If you'd like every instance of a particular mark to have the same value, specify the option as a function that returns the desired value, *e.g.* `() => "Hello, world!"`.
@@ -479,11 +484,14 @@ Rect-like marks support rounded corners. Each corner (or side) is individually a
 Corner radii are specified in either pixels or, for **rx** and **ry**, as percentages (strings) or the keyword *auto*. If the corner radii are too big, they are reduced proportionally.
 
 ## marks(...*marks*) <VersionBadge version="0.2.0" /> {/* {#marks} */}
+
+This helper is part of the imperative API; in React, compose marks by nesting components inside `<Replot>` instead.
+
 ```js
-Plot.marks(
-  Plot.ruleY([0]),
-  Plot.areaY(data, {fill: color, fillOpacity, ...options}),
-  Plot.lineY(data, {stroke: color, ...options})
+Replot.marks(
+  Replot.ruleY([0]),
+  Replot.areaY(data, {fill: color, fillOpacity, ...options}),
+  Replot.lineY(data, {stroke: color, ...options})
 )
 ```
 

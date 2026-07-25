@@ -67,12 +67,11 @@ Each wrapper corresponds to an underlying transform *function* that typically ta
 
 Breaking down the functional form:
 
-```js
+```jsx
 const options = {x: "weight", fill: "sex"}; // initial mark options
 const binOptions = {y: "count"}; // bin transform options
-const binned = Plot.binX(binOptions, options); // transformed mark options
-const rect = Plot.rectY(olympians, binned); // rect mark
-const plot = rect.plot({color: {legend: true}}); // plot!
+const binned = binX(binOptions, options); // transformed mark options
+// <RectY data={olympians} {...binned} /> renders the transformed mark
 ```
 
 
@@ -143,7 +142,7 @@ If an initializer desires a channel that is not supported by the downstream mark
 
 ## transform(*options*, *transform*) <VersionBadge version="0.4.3" /> {/* {#transform} */}
 ```js
-Plot.transform(options, (data, facets) => {
+transform(options, (data, facets) => {
   return {
     data,
     facets: facets.map((I) => I.filter(() => Math.random() > 0.5))
@@ -157,7 +156,7 @@ This helper composes the *initializer* function with any other transforms presen
 
 ## valueof(*data*, *value*, *type*) {/* {#valueof} */}
 ```js
-Plot.valueof(aapl, "Close")
+valueof(aapl, "Close")
 ```
 
 Given an iterable *data* and some *value* accessor, returns an array (a column) of the specified *type* with the corresponding value of each element of the data. The *value* accessor may be one of the following types:
@@ -175,7 +174,7 @@ valueof is not guaranteed to return a new array. When a transform method is used
 
 ## column(*source*) <VersionBadge version="0.4.3" /> {/* {#column} */}
 ```js
-const [X, setX] = Plot.column();
+const [X, setX] = column();
 ```
 
 This helper for constructing derived columns returns a [*column*, *setColumn*] array. The *column* object implements *column*.transform, returning whatever value was most recently passed to *setColumn*. If *setColumn* is not called, then *column*.transform returns undefined. If a *source* is specified, then *column*.label exposes the given *source*’s label, if any: if *source* is a string as when representing a named field of data, then *column*.label is *source*; otherwise *column*.label propagates *source*.label. This allows derived columns to propagate a human-readable axis or legend label.
@@ -183,15 +182,15 @@ This helper for constructing derived columns returns a [*column*, *setColumn*] a
 This method is used by Replot’s transforms to derive channels; the associated columns are populated (derived) when the **transform** option function is invoked.
 
 ## identity <VersionBadge version="0.6.2" /> {/* {#identity} */}
-```js
-Plot.contour(data, {width: w, height: h, fill: Plot.identity})
+```jsx
+<Contour data={data} width={w} height={h} fill={identity} />
 ```
 
 This channel helper returns a source array as-is, avoiding an extra copy when defining a channel as being equal to the data.
 
 ## indexOf <VersionBadge version="0.6.6" /> {/* {#indexOf} */}
-```js
-Plot.lineY(numbers, {x: Plot.indexOf, y: Plot.identity})
+```jsx
+<LineY data={numbers} x={indexOf} y={identity} />
 ```
 
 This channel helper returns an array of numbers [0, 1, 2, 3, …]. It is used internally by marks with zero-based index defaults for channels.

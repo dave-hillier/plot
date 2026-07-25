@@ -148,22 +148,28 @@ The following named reducers are supported:
 A reducer may also be specified as a function to be passed an index of size **k** and the corresponding input channel array; or if the function only takes one argument, an array of **k** values.
 
 ## window(*k*) <VersionBadge version="0.2.3" /> {/* {#window} */}
-```js
-Plot.map({y: Plot.window(24)}, {x: "Date", y: "Close", stroke: "Symbol"})
+```jsx
+<MapY map={windowMap(24)}>
+  <Line data={stocks} x="Date" y="Close" stroke="Symbol" />
+</MapY>
 ```
 
-Returns a window map method for the given window size *k*, suitable for use with Plot.map. For additional options to the window transform, replace the number *k* with an object with properties **k**, **anchor**, **reduce**, or **strict**.
+Returns a window map method for the given window size *k*, suitable for use with the [map transform](./map.md). (The function is exported as both `window` and the alias `windowMap`, which avoids shadowing the global `window`.) For additional options to the window transform, replace the number *k* with an object with properties **k**, **anchor**, **reduce**, or **strict**.
 
 ## windowX(*k*, *options*) {/* {#windowX} */}
-```js
-Plot.windowX(24, {y: "Date", x: "Anomaly"})
+```jsx
+<WindowX k={24}>
+  <LineX data={gistemp} y="Date" x="Anomaly" />
+</WindowX>
 ```
 
-Like [mapX](./map.md#mapX), but applies the window map method with the given window size *k*. For additional options to the window transform, replace the number *k* with an object with properties **k**, **anchor**, or **reduce**.
+Like [mapX](./map.md#mapX), but applies the window map method with the given window size *k*. Additional options to the window transform may be given as wrapper props: **anchor**, **reduce**, or **strict**.
 
 ## windowY(*k*, *options*) {/* {#windowY} */}
-```js
-Plot.windowY(24, {x: "Date", y: "Anomaly"})
+```jsx
+<WindowY k={24}>
+  <LineY data={gistemp} x="Date" y="Anomaly" />
+</WindowY>
 ```
 
-Like [mapY](./map.md#mapY), but applies the window map method with the given window size *k*. For additional options to the window transform, replace the number *k* with an object with properties **k**, **anchor**, or **reduce**.
+Like [mapY](./map.md#mapY), but applies the window map method with the given window size *k*. Additional options to the window transform may be given as wrapper props: **anchor**, **reduce**, or **strict**.

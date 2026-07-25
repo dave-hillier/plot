@@ -58,7 +58,7 @@ For example, below is a stacked area chart of [deaths in the Crimean War](https:
 </Replot>
 
 
-The [areaY mark](../marks/area.md) applies the stackY transform implicitly if you do not specify either **y1** or **y2**. The same applies to [barY](../marks/bar.md) and [rectY](../marks/rect.md). You can invoke the stack transform explicitly as `Plot.stackY({x: "date", y: "deaths", fill: "cause"})` to produce an identical chart.
+The [areaY mark](../marks/area.md) applies the stackY transform implicitly if you do not specify either **y1** or **y2**. The same applies to [barY](../marks/bar.md) and [rectY](../marks/rect.md). You can invoke the stack transform explicitly by adding a `<StackY>` wrapper, as in `<StackY><AreaY data={crimea} x="date" y="deaths" fill="cause" /></StackY>`, to produce an identical chart.
 The stack transform works with any mark that consumes **y1** & **y2** or **x1** & **x2**, so you can stack rects, too.
 
 <Replot y={{grid: true}}>
@@ -294,43 +294,55 @@ In addition to the **y1** and **y2** output channels, stackY computes a **y** ou
 If two arguments are passed to the stack transform functions below, the stack-specific options (**offset**, **order**, and **reverse**) are pulled exclusively from the first *options* argument, while any channels (*e.g.*, **x**, **y**, and **z**) are pulled from second *options* argument. Options from the second argument that are not consumed by the stack transform will be passed through. Using two arguments is sometimes necessary is disambiguate the option recipient when chaining transforms.
 
 ## stackY(*stack*, *options*) {/* {#stackY} */}
-```js
-Plot.stackY({x: "year", y: "revenue", z: "format", fill: "group"})
+```jsx
+<StackY>
+  <AreaY data={riaa} x="year" y="revenue" z="format" fill="group" />
+</StackY>
 ```
 
 Creates new channels **y1** and **y2**, obtained by stacking the original **y** channel for data points that share a common **x** (and possibly **z**) value. A new **y** channel is also returned, which lazily computes the middle value of **y1** and **y2**. The input **y** channel defaults to a constant 1, resulting in a count of the data points. The stack options (**offset**, **order**, and **reverse**) may be specified as part of the *options* object, if the only argument, or as a separate *stack* options argument.
 
 ## stackY1(*stack*, *options*) {/* {#stackY1} */}
-```js
-Plot.stackY1({x: "year", y: "revenue", z: "format", fill: "group"})
+```jsx
+<StackY1>
+  <LineY data={riaa} x="year" y="revenue" z="format" stroke="group" />
+</StackY1>
 ```
 
 Like [stackY](#stackY), except that the **y1** channel is returned as the **y** channel. This can be used, for example, to draw a line at the bottom of each stacked area.
 
 ## stackY2(*stack*, *options*) {/* {#stackY2} */}
-```js
-Plot.stackY2({x: "year", y: "revenue", z: "format", fill: "group"})
+```jsx
+<StackY2>
+  <LineY data={riaa} x="year" y="revenue" z="format" stroke="group" />
+</StackY2>
 ```
 
 Like [stackY](#stackY), except that the **y2** channel is returned as the **y** channel. This can be used, for example, to draw a line at the top of each stacked area.
 
 ## stackX(*stack*, *options*) {/* {#stackX} */}
-```js
-Plot.stackX({y: "year", x: "revenue", z: "format", fill: "group"})
+```jsx
+<StackX>
+  <AreaX data={riaa} y="year" x="revenue" z="format" fill="group" />
+</StackX>
 ```
 
 Like [stackY](#stackY), but with *x* as the input value channel, *y* as the stack index, *x1*, *x2* and *x* as the output channels.
 
 ## stackX1(*stack*, *options*) {/* {#stackX1} */}
-```js
-Plot.stackX1({y: "year", x: "revenue", z: "format", fill: "group"})
+```jsx
+<StackX1>
+  <LineX data={riaa} y="year" x="revenue" z="format" stroke="group" />
+</StackX1>
 ```
 
 Like [stackX](#stackX), except that the **x1** channel is returned as the **x** channel. This can be used, for example, to draw a line at the left edge of each stacked area.
 
 ## stackX2(*stack*, *options*) {/* {#stackX2} */}
-```js
-Plot.stackX2({y: "year", x: "revenue", z: "format", fill: "group"})
+```jsx
+<StackX2>
+  <LineX data={riaa} y="year" x="revenue" z="format" stroke="group" />
+</StackX2>
 ```
 
 Like [stackX](#stackX), except that the **x2** channel is returned as the **x** channel. This can be used, for example, to draw a line at the right edge of each stacked area.

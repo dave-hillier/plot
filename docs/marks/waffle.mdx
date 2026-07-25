@@ -106,8 +106,10 @@ The waffle mark supports a few additional options to control the rendering of ce
 If **multiple** is undefined (the default), the waffle mark will use as many cells per row (or column) that fits within the available bandwidth while ensuring that the cells are square, or one cell per row if square cells are not possible. You can change the rounding behavior by specifying **round** as a function, such as Math.floor or Math.ceil; true is equivalent to Math.round.
 
 ## waffleX(*data*, *options*) {/* {#waffleX} */}
-```js
-Plot.waffleX(olympians, Plot.groupY({x: "count"}, {y: "sport"}))
+```jsx
+<GroupY x="count">
+  <WaffleX data={olympians} y="sport" />
+</GroupY>
 ```
 
 Returns a new horizontal→ waffle with the given *data* and *options*. The following channels are required:
@@ -124,8 +126,10 @@ If neither the **x1** nor **x2** option is specified, the **x** option may be sp
 If an **interval** is specified, such as d3.utcDay, **x1** and **x2** can be derived from **x**: *interval*.floor(*x*) is invoked for each *x* to produce *x1*, and *interval*.offset(*x1*) is invoked for each *x1* to produce *x2*. If the interval is specified as a number *n*, *x1* and *x2* are taken as the two consecutive multiples of *n* that bracket *x*. Named UTC intervals such as *day* are also supported; see [scale options](../features/scales.md#scale-options).
 
 ## waffleY(*data*, *options*) {/* {#waffleY} */}
-```js
-Plot.waffleY(olympians, Plot.groupX({y: "count"}, {x: "sport"}))
+```jsx
+<GroupX y="count">
+  <WaffleY data={olympians} x="sport" />
+</GroupX>
 ```
 
 Returns a new vertical↑ waffle with the given *data* and *options*. The following channels are required:

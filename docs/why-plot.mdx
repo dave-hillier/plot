@@ -79,10 +79,10 @@ With the imperative API, you can similarly define custom composite marks:
 
 ```js
 function arealineY(data, {color, fillOpacity = 0.1, ...options} = {}) {
-  return Plot.marks(
-    Plot.ruleY([0]),
-    Plot.areaY(data, {fill: color, fillOpacity, ...options}),
-    Plot.lineY(data, {stroke: color, ...options})
+  return Replot.marks(
+    Replot.ruleY([0]),
+    Replot.areaY(data, {fill: color, fillOpacity, ...options}),
+    Replot.lineY(data, {stroke: color, ...options})
   );
 }
 ```
