@@ -52,3 +52,29 @@ Or if we’d prefer to show the two distributions separately as small multiples,
 Because marks are composable, and because you can extend Replot with custom marks, you can make almost anything with it — much more than the charts above! The following [tree diagram](./marks/tree.md) of the documentation gives a sense of what’s ”in the box” with Replot. Peruse our [gallery of examples](https://observablehq.com/@observablehq/plot-gallery) for more inspiration.
 
 {/* The tree diagram of the documentation sidebar is rendered at build time from the site configuration. */}
+
+## How Replot differs from Observable Plot
+
+Replot is a fork of [Observable Plot](https://observablehq.com/plot/) that keeps its grammar — marks, scales, transforms, projections — but restructures how plots are expressed and rendered for React. The differences run deeper than a wrapper:
+
+**The renderer is React itself.** Observable Plot builds SVG imperatively with D3 selections and returns a detached element you insert into the page. In Replot, every mark renders to JSX, and the `<Replot>` component renders a plot as an ordinary React subtree. There are no refs, effects, or manual DOM insertion; plots participate in reconciliation, Suspense, and server-side rendering like any other component. (Replot's Observable Plot-compatible core still exists, and it renders through the same JSX path via React's static markup renderer, so both routes produce identical output.)
+
+**Marks are components; a plot is composition.** Where Plot takes a `marks: [...]` array of mark objects, Replot layers sibling components inside `<Replot>`. Under the hood this uses a two-phase render: mark components register their configuration with the enclosing `<Replot>` through context, the plot computes scales and layout from everything registered — the same whole-plot inference Plot performs — and then each mark renders its SVG. Adding, removing, or reconfiguring a mark through React state recomputes the plot automatically.
+
+**Transforms nest instead of wrapping options.** Plot's transforms compose functionally — `Plot.binX(outputs, Plot.stackY(options))` — with one mark's options split across nested calls. Replot expresses the same composition as component nesting, so the JSX structure mirrors the grammar:
+
+```jsx
+<Replot>
+  <BinX y="count">
+    <StackY>
+      <RectY data={athletes} x="weight" fill="sex" />
+    </StackY>
+  </BinX>
+</Replot>
+```
+
+Input channels stay on the mark; outputs and transform configuration go on the wrapper. The functional form remains supported — both run the identical transform functions.
+
+**Everything else follows the same principle.** Scales can be declared as components (`<ScaleY grid type="log" />`) as well as props; legends are components that register with the plot rather than DOM appended after the fact; marks accept per-datum event handlers (`onClick`, `onPointerEnter`) that receive the underlying datum; and pointer interactions like [tips](./marks/tip.md) and [crosshairs](./interactions/crosshair.md) are driven by React state rather than D3 event listeners.
+
+**What is deliberately unchanged.** The computational core is shared with Observable Plot: D3 scales and shape generators, channel and scale inference, the data transforms, geo projections, and the default styles. A chart specified in Replot renders the same pixels as its Observable Plot equivalent — the difference is how you express it, not what you get.
