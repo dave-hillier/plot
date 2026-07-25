@@ -4,6 +4,7 @@ import {MDXProvider} from "@mdx-js/react";
 import {Layout} from "./layout/Layout";
 import {lazy, Suspense, type ComponentType} from "react";
 import {VersionBadge} from "./components/VersionBadge";
+import {PlotExample} from "./components/PlotExample";
 
 // Dynamically import all MDX pages using Vite glob
 const pages = import.meta.glob<{default: ComponentType}>("./**/*.mdx");
@@ -30,7 +31,7 @@ for (const [filePath, importFn] of Object.entries(pages)) {
 // Sort so more specific routes come first
 routes.sort((a, b) => b.path.length - a.path.length);
 
-const mdxComponents = {VersionBadge};
+const mdxComponents = {VersionBadge, PlotExample};
 
 function App() {
   return (

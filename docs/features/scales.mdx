@@ -434,31 +434,30 @@ All position scales (*x*, *y*, *fx*, and *fy*) have implicit automatic ranges ba
 The **transform** scale option allows you to apply a function to all values before they are passed through the scale. This is convenient for transforming a scale’s data, say to convert to thousands or between temperature units.
 
 
-```js{5}
-Plot.plot({
-  y: {
+```jsx{5}
+<Plot
+  y={{
     grid: true,
     label: "Temperature (°C)",
     transform: (f) => (f - 32) * (5 / 9) // convert Fahrenheit to Celsius
-  },
-  marks: [
-    Plot.ruleY([32]), // 32°F
-    Plot.lineY(sftemp, Plot.windowY(7, {x: "date", y: "high"}))
-  ]
-})
+  }}
+>
+  <RuleY data={[32]} /> {/* 32°F */}
+  <WindowY k={7}>
+    <LineY data={sftemp} x="date" y="high" />
+  </WindowY>
+</Plot>
 ```
 The **percent** scale option is shorthand for a **transform** that multiplies values by 100; it also adds a percent symbol (%) to the default label.
 
 
-```js{2}
-Plot.plot({
-  y: {percent: true},
-  color: {scheme: "BuRd"},
-  marks: [
-    Plot.rectY(gistemp, Plot.binX({y: "proportion", fill: "x"}, {x: "Anomaly", fill: "Anomaly"})),
-    Plot.ruleY([0])
-  ]
-})
+```jsx{1}
+<Plot y={{percent: true}} color={{scheme: "BuRd"}}>
+  <BinX y="proportion" fill="x">
+    <RectY data={gistemp} x="Anomaly" fill="Anomaly" />
+  </BinX>
+  <RuleY data={[0]} />
+</Plot>
 ```
 
 [Mark transforms](./transforms.md) typically consume values *before* they are passed through scales (_e.g._, when binning). In this case the mark transforms will see the values prior to the scale transform as input, and the scale transform will apply to the *output* of the mark transform.
@@ -563,14 +562,15 @@ Clamping is typically used in conjunction with setTing an explicit domain since 
 
 The **transform** option allows you to apply a function to all values before they are passed through the scale. This is convenient for transforming a scale’s data, say to convert to thousands or between temperature units.
 
-```js
-Plot.plot({
-  y: {
+```jsx
+<Plot
+  y={{
     label: "Temperature (°F)",
     transform: (f) => f * 9 / 5 + 32 // convert Celsius to Fahrenheit
-  },
-  marks: …
-})
+  }}
+>
+  {/* marks… */}
+</Plot>
 ```
 
 ### Color scale options

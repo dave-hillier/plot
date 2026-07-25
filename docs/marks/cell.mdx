@@ -61,21 +61,18 @@ One-dimensional cells can be a compact alternative to a bar chart, where the *fi
 When ordinal data is regular, such as the yearly observations of the warming stripes below, use the **interval** scale option to enforce uniformity and show gaps for missing data. It can be set to a named interval such as *hour* or *day*, a number for numeric intervals, a [d3-time interval](https://d3js.org/d3-time#_interval), or a custom implementation.
 
 
-```js{5}
-Plot.plot({
-  x: {
+```jsx{5}
+<Plot
+  x={{
     ticks: d3.ticks(...d3.extent(hadcrut, (d) => d.year), 10),
     tickFormat: "d",
     interval: 1, // recommended in case of missing data
     label: null
-  },
-  color: {
-    scheme: "BuRd"
-  },
-  marks: [
-    Plot.cell(hadcrut, {x: "year", fill: "anomaly"})
-  ]
-})
+  }}
+  color={{scheme: "BuRd"}}
+>
+  <Cell data={hadcrut} x="year" fill="anomaly" />
+</Plot>
 ```
 
 When an ordinal scale domain has high cardinality, the **ticks** scale option can be used to specify which ticks to label. Alternatively, consider using a quantitative or temporal scale instead, as by switching to a [bar mark](./bar.md).

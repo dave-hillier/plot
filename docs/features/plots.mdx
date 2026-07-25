@@ -156,18 +156,11 @@ Experiment with the margins by adjusting the sliders below. Note that because th
 
 <MarginDemo />
 
-```js
-Plot.plot({
-  marginTop: 20,
-  marginRight: 20,
-  marginBottom: 30,
-  marginLeft: 40,
-  grid: true,
-  marks: [
-    Plot.barY(alphabet, {x: "letter", y: "frequency", fill: "green"}),
-    Plot.frame()
-  ]
-})
+```jsx
+<Plot marginTop={20} marginRight={20} marginBottom={30} marginLeft={40} grid>
+  <BarY data={alphabet} x="letter" y="frequency" fill="green" />
+  <Frame />
+</Plot>
 ```
 
 

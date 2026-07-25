@@ -19,25 +19,19 @@ The **filter transform** filters a mark’s index to show a subset of the data. 
 </p>
 
 
-```js{10}
-Plot.plot({
-  grid: true,
-  x: {type: "log"},
-  marks: [
-    Plot.dot(metros, {
-      x: "POP_2015",
-      y: "R90_10_2015"
-    }),
-    Plot.text(metros, {
-      filter: filtered ? "highlight" : null,
-      x: "POP_2015",
-      y: "R90_10_2015",
-      text: "nyt_display",
-      frameAnchor: "bottom",
-      dy: -6
-    })
-  ]
-})
+```jsx{5}
+<Plot grid x={{type: "log"}}>
+  <Dot data={metros} x="POP_2015" y="R90_10_2015" />
+  <Text
+    data={metros}
+    filter={filtered ? "highlight" : null}
+    x="POP_2015"
+    y="R90_10_2015"
+    text="nyt_display"
+    frameAnchor="bottom"
+    dy={-6}
+  />
+</Plot>
 ```
 
 As an alternative to the filter transform here, you could set the **text** channel value to null using a function: `text: (d) => d.highlight ? d.nyt_display : null`.
@@ -46,23 +40,19 @@ The filter transform can be applied either via the **filter** [mark option](../f
 To highlight the vowels in a bar chart of English letter frequency, you can use a filtered bar with a <span style={{borderBottom: "solid 2px var(--vp-c-red)"}}>red</span> stroke. A filtered mark allows you to set options on a subset of the data, even if those options — such as mark insets — are not expressible as a channels.
 
 
-```js{8}
-Plot.plot({
-  marks: [
-    Plot.barY(alphabet, {
-      x: "letter",
-      y: "frequency"
-    }),
-    Plot.barY(alphabet, {
-      filter: (d) => /[aeiouy]/i.test(d.letter),
-      x: "letter",
-      y: "frequency",
-      stroke: "red",
-      strokeWidth: 3,
-      inset: -3 // expand the bars
-    })
-  ]
-})
+```jsx{5}
+<Plot>
+  <BarY data={alphabet} x="letter" y="frequency" />
+  <BarY
+    data={alphabet}
+    filter={(d) => /[aeiouy]/i.test(d.letter)}
+    x="letter"
+    y="frequency"
+    stroke="red"
+    strokeWidth={3}
+    inset={-3} // expand the bars
+  />
+</Plot>
 ```
 Since the filter transform only affects the mark’s index and not the channel values, it does not affect the default scale domains. Below, the *x* scale contains every English letter, even though the only the bars for the vowels are shown.
 
@@ -73,15 +63,14 @@ Since the filter transform only affects the mark’s index and not the channel v
 If you want to drop values completely, you can filter the data with [*array*.filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter).
 
 
-```js{4}
-Plot.plot({
-  marks: [
-    Plot.barY(
-      alphabet.filter((d) => /[aeiouy]/i.test(d.letter)),
-      {x: "letter", y: "frequency"}
-    )
-  ]
-})
+```jsx{3}
+<Plot>
+  <BarY
+    data={alphabet.filter((d) => /[aeiouy]/i.test(d.letter))}
+    x="letter"
+    y="frequency"
+  />
+</Plot>
 ```
 ## filter(*test*, *options*) {/* {#filter} */}
 ```js

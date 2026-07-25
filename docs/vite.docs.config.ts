@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react";
 import mdx from "@mdx-js/rollup";
 import remarkGfm from "remark-gfm";
 import remarkFrontmatter from "remark-frontmatter";
+import remarkPlotSource from "./plugins/remark-plot-source.js";
 import path from "node:path";
 
 export default defineConfig({
@@ -13,7 +14,7 @@ export default defineConfig({
       enforce: "pre",
       ...mdx({
         providerImportSource: "@mdx-js/react",
-        remarkPlugins: [remarkGfm, remarkFrontmatter]
+        remarkPlugins: [remarkGfm, remarkFrontmatter, remarkPlotSource]
       })
     },
     react({include: /\.(mdx|js|jsx|ts|tsx)$/})

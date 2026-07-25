@@ -128,17 +128,16 @@ Marks are (typically) not positioned in literal pixels, or colored in literal co
 Data is passed through scales automatically during rendering; the mark controls which scales are used. The **x** and **y** options are typically bound to the *x* and *y* scales, respectively, while the **fill** and **stroke** options are typically bound to the *color* scale. Changing a scale's definition, say by overriding its **domain** (the extent of abstract input values) or **type**, affects the appearance of all marks that use the scale.
 
 
-```js {2-6}
-Plot.plot({
-  y: {
+```jsx {2-6}
+<Plot
+  y={{
     type: "log",
     domain: [30, 300],
     grid: true
-  },
-  marks: [
-    Plot.lineY(aapl, {x: "Date", y: "Close"})
-  ]
-})
+  }}
+>
+  <LineY data={aapl} x="Date" y="Close" />
+</Plot>
 ```
 ## Marks have tidy data
 

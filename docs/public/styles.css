@@ -212,3 +212,24 @@ a:hover {
   max-width: 100%;
   height: auto;
 }
+
+/* Live example source, injected by remark-plot-source */
+.plot-example-code {
+  margin: 0.5rem 0 1.5rem;
+}
+.plot-example-code summary {
+  cursor: pointer;
+  color: #888;
+  font-size: 0.85em;
+}
+.plot-example-code pre {
+  overflow-x: auto;
+  padding: 0.75rem 1rem;
+  background: #f6f6f6;
+  border-radius: 4px;
+}
+@media (prefers-color-scheme: dark) {
+  .plot-example-code pre {
+    background: #1e1e1e;
+  }
+}

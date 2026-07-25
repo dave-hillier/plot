@@ -19,14 +19,11 @@ The **tip mark** displays text, or several name-value pairs, in a floating box a
 
 The above code uses the **tip** [mark option](../features/marks.md#mark-options); the code can be written more explicitly with a tip mark and a pointer transform.
 
-```js
-Plot.plot({
-  y: {grid: true},
-  marks: [
-    Plot.lineY(aapl, {x: "Date", y: "Close"}),
-    Plot.tip(aapl, Plot.pointerX({x: "Date", y: "Close"}))
-  ]
-})
+```jsx
+<Plot y={{grid: true}}>
+  <LineY data={aapl} x="Date" y="Close" />
+  <Tip data={aapl} {...pointerX({x: "Date", y: "Close"})} />
+</Plot>
 ```
 
 The tip mark can also be used for static annotations, say to draw attention to elements of interest or to add context. The tip text is supplied via the **title** channel. If the tip mark‘s data is an array of strings, the **title** channel defaults to [identity](../features/transforms.md#identity).
