@@ -41,7 +41,7 @@ While the groupX transform is often used to generate **y**, it can output to any
 
 The **fill** channel meanwhile will produce a one-dimensional heatmap. Since there is no **y** channel below, we use a [cell](../marks/cell.md) instead of a bar.
 
-<Replot marginBottom={80} x={{tickRotate: 90}} color={{scheme: "turbo"}}>
+<Replot marginBottom={80} x={{tickRotate: 90}} color={{scheme: "YlGnBu"}}>
   <GroupX fill="count">
     <Cell data={useOlympians()} x="sport" />
   </GroupX>
@@ -126,7 +126,7 @@ As you might guess, the groupY transform with the barX mark produces a horizonta
 
 You can produce a two-dimensional heatmap with group transform and a cell mark by generating a **fill** output channel. For example, we could show the median weight of athletes by sport (**x**) and sex (**y**).
 
-<Replot marginBottom={80} x={{label: null, tickRotate: 90}} y={{label: null}} color={{label: "Median weight (kg)", legend: true, scheme: "turbo"}}>
+<Replot marginBottom={80} x={{label: null, tickRotate: 90}} y={{label: null}} color={{label: "Median weight (kg)", legend: true, scheme: "YlGnBu"}}>
   <Group fill="median">
     <Cell data={useOlympians()} fill="weight" x="sport" y="sex" />
   </Group>
@@ -134,7 +134,7 @@ You can produce a two-dimensional heatmap with group transform and a cell mark b
 
 Or, we could group athletes by sport and the number of gold medals 🥇 won. ([Michael Phelps](https://en.wikipedia.org/wiki/Michael_Phelps), the most decorated Olympian of all time, won five gold medals in the 2016 Summer Olympics. [Simone Biles](https://en.wikipedia.org/wiki/Simone_Biles) and [Katie Ledecky](https://en.wikipedia.org/wiki/Katie_Ledecky) each won four.)
 
-<Replot marginBottom={100} x={{label: null, tickRotate: 90}} y={{label: "gold", labelAnchor: "top", labelArrow: true, reverse: true}} color={{type: "sqrt", scheme: "turbo"}}>
+<Replot marginBottom={100} x={{label: null, tickRotate: 90}} y={{label: "gold", labelAnchor: "top", labelArrow: true, reverse: true}} color={{type: "sqrt", scheme: "YlGnBu"}}>
   <Group fill="count">
     <Cell data={useOlympians()} x="sport" y="gold" />
   </Group>

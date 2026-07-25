@@ -23,7 +23,7 @@ For example, given a [dataset of highway traffic](https://gist.github.com/chrtze
 
 As you might expect, traffic varies significantly throughout the day, so perhaps it would be better to look at the median by hour by location? Instead of grouping only by **y**, we can group by both **x** and **y** to produce a heatmap.
 
-<Replot marginLeft={120} padding={0} y={{label: null}} color={{scheme: "turbo", legend: true, zero: true}}>
+<Replot marginLeft={120} padding={0} y={{label: null}} color={{scheme: "YlGnBu", legend: true, zero: true}}>
   <Group fill="median">
     <Cell data={useTraffic()} x={(d) => d.date.getUTCHours()} y="location" fill="vehicles" inset={0.5} sort={{y: "fill"}} />
   </Group>

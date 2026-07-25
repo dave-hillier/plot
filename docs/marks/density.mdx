@@ -109,7 +109,7 @@ The density mark also works with one-dimensional values:
 
 The density mark supports Replot’s [projection system](../features/projections.md), as in this heatmap showing the density of Walmart stores across the contiguous United States (which is a decent proxy for population density).
 
-<Replot projection="albers" color={{scheme: "turbo"}}>
+<Replot projection="albers" color={{scheme: "YlGnBu"}}>
   <Density data={walmarts} x="longitude" y="latitude" bandwidth={10} fill="density" />
   <Geo data={useStatemesh()} strokeOpacity={0.3} />
   <Geo data={useNation()} />

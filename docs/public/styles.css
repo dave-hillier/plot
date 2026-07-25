@@ -233,3 +233,27 @@ a:hover {
     background: #1e1e1e;
   }
 }
+
+/* VitePress theme variables referenced by the docs prose and chart options
+   (colored underlines, text halos via var(--vp-c-bg), figure borders). The
+   values follow the VitePress default palette. */
+:root {
+  --vp-c-bg: #ffffff;
+  --vp-c-bg-alt: #f6f6f7;
+  --vp-c-red: #b8272c;
+  --vp-c-green: #18794e;
+  --vp-c-blue: #3451b2;
+  --vp-c-text-2: rgba(60, 60, 67, 0.78);
+  --vp-c-text-3: rgba(60, 60, 67, 0.56);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --vp-c-bg: #1b1b1f;
+    --vp-c-bg-alt: #161618;
+    --vp-c-red: #f66f81;
+    --vp-c-green: #3dd68c;
+    --vp-c-blue: #a8b1ff;
+    --vp-c-text-2: rgba(235, 235, 245, 0.6);
+    --vp-c-text-3: rgba(235, 235, 245, 0.38);
+  }
+}

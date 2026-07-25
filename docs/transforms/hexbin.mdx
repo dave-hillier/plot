@@ -31,7 +31,7 @@ The **hexbin transform** groups two-dimensional quantitative or temporal data �
 
 For example, the heatmap below shows the weights and heights of Olympic athletes. The color of each hexagon represents the number (*count*) of athletes with similar weight and height.
 
-<Replot color={{scheme: "turbo"}}>
+<Replot color={{scheme: "YlGnBu"}}>
   <Hexbin fill="count">
     <Dot data={useOlympians()} x="weight" y="height" />
   </Hexbin>
@@ -53,7 +53,7 @@ To produce an areal encoding as in a bubble map, output **r**. In this case, the
 
 If desired, you can output both **fill** and **r** for a redundant encoding.
 
-<Replot color={{scheme: "turbo"}}>
+<Replot color={{scheme: "YlGnBu"}}>
   <Hexbin fill="count" r="count">
     <Dot data={useOlympians()} x="weight" y="height" stroke="currentColor" />
   </Hexbin>
@@ -116,7 +116,7 @@ The hexbin transform defaults the **symbol** option to *hexagon*, but you can ov
 
 Hexbins work best when there is an interesting density of dots in the center of the chart, but sometimes hexagons “escape” the edge of the frame and cover the axes. To prevent this, you can use the **inset** [scale option](../features/scales.md) to reserve space on the edges of the frame.
 
-<Replot inset={10} color={{scheme: "turbo"}}>
+<Replot inset={10} color={{scheme: "YlGnBu"}}>
   <Hexbin fill="count">
     <Dot data={useOlympians()} x="weight" y="height" />
   </Hexbin>
@@ -126,7 +126,7 @@ Hexbins work best when there is an interesting density of dots in the center of 
 You can also set the dot’s **clip** option to true to prevent the hexagons from escaping.
 Alternatively, use the [axis mark](../marks/axis.md) to draw axes on top of the hexagons.
 
-<Replot color={{scheme: "turbo"}}>
+<Replot color={{scheme: "YlGnBu"}}>
   <Hexbin fill="count">
     <Dot data={useOlympians()} x="weight" y="height" />
   </Hexbin>

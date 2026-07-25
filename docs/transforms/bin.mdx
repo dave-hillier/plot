@@ -44,7 +44,7 @@ The BinX transform takes the mark’s **x** channel as input and outputs **x1** 
 
 While the binX transform is often used to generate **y**, it can output any channel. Below, the **fill** channel represents count per bin, resulting in a one-dimensional heatmap.
 
-<Replot color={{scheme: "turbo"}}>
+<Replot color={{scheme: "YlGnBu"}}>
   <BinX fill="count">
     <Rect data={useOlympians()} x="weight" />
   </BinX>
@@ -89,7 +89,7 @@ As you might guess, the binY transform with the rectX mark produces a histogram 
 
 You can produce a two-dimensional heatmap with bin transform and a rect mark by generating a **fill** output channel. Below, color encodes the number of athletes in each bin (of similar height and weight).
 
-<Replot color={{scheme: "turbo"}}>
+<Replot color={{scheme: "YlGnBu"}}>
   <Bin fill="count">
     <Rect data={useOlympians()} x="weight" y="height" />
   </Bin>
@@ -144,7 +144,7 @@ The **cumulative** option produces a cumulative distribution. Below, each bin re
 
 The bin transform works with Replot’s [faceting system](../features/facets.md), partitioning bins by facet. Below, we compare the weight distributions of athletes within each sport using the *proportion-facet* reducer. Sports are sorted by median weight: gymnasts tend to be the lightest, and basketball players the heaviest.
 
-<Replot marginLeft={100} padding={0} x={{grid: true}} fy={{domain: d3.groupSort(useOlympians().filter((d) => d.weight), (g) => d3.median(g, (d) => d.weight), (d) => d.sport)}} color={{scheme: "turbo"}}>
+<Replot marginLeft={100} padding={0} x={{grid: true}} fy={{domain: d3.groupSort(useOlympians().filter((d) => d.weight), (g) => d3.median(g, (d) => d.weight), (d) => d.sport)}} color={{scheme: "YlGnBu"}}>
   <BinX fill="proportion-facet">
     <Rect data={useOlympians()} x="weight" fy="sport" inset={0.5} />
   </BinX>
