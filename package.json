@@ -25,7 +25,7 @@
   "types": "src/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dave-hillier/plot.git"
+    "url": "https://github.com/dave-hillier/replot.git"
   },
   "files": [
     "dist/**/*.js",

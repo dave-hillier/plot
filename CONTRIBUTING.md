@@ -1,6 +1,6 @@
 # Replot - Contributing
 
-Replot is open source and released under the [ISC license](./LICENSE). You are welcome to [send us pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests) to contribute bug fixes or new features. We also invite you to participate in [issues](https://github.com/dave-hillier/plot/issues) and [discussions](https://github.com/dave-hillier/plot/discussions). We use issues to track and diagnose bugs, as well as to debate and design enhancements to Replot. Discussions are intended for you to ask for help using Replot, or to share something cool you’ve built with it. For questions about the underlying grammar shared with [Observable Plot](https://observablehq.com/plot/), the [Observable Forum](https://talk.observablehq.com) is also a good resource.
+Replot is open source and released under the [ISC license](./LICENSE). You are welcome to [send us pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests) to contribute bug fixes or new features. We also invite you to participate in [issues](https://github.com/dave-hillier/replot/issues) and [discussions](https://github.com/dave-hillier/replot/discussions). We use issues to track and diagnose bugs, as well as to debate and design enhancements to Replot. Discussions are intended for you to ask for help using Replot, or to share something cool you’ve built with it. For questions about the underlying grammar shared with [Observable Plot](https://observablehq.com/plot/), the [Observable Forum](https://talk.observablehq.com) is also a good resource.
 
 We request that you abide by our [code of conduct](https://observablehq.com/@observablehq/code-of-conduct) when contributing and participating in discussions.
 
@@ -116,7 +116,7 @@ yarn test
 
 ## Documentation
 
-When submitting a pull request, please remember to update Replot’s documentation to reflect changes to the public API. You are also welcome to edit Replot’s [CHANGELOG.md](./CHANGELOG.md) to assist with writing future release notes. In addition, please reference any related [issues](https://github.com/dave-hillier/plot/issues) (or discussions) in your pull request description.
+When submitting a pull request, please remember to update Replot’s documentation to reflect changes to the public API. You are also welcome to edit Replot’s [CHANGELOG.md](./CHANGELOG.md) to assist with writing future release notes. In addition, please reference any related [issues](https://github.com/dave-hillier/replot/issues) (or discussions) in your pull request description.
 
 If you’d like to share a live demonstration or motivating example of your change to Replot, you can regenerate the release bundle using Yarn:
 
