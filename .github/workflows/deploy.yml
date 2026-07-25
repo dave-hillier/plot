@@ -21,12 +21,13 @@ jobs:
           node-version: 22
           cache: yarn
       - run: yarn --frozen-lockfile
-      - run: yarn prepublishOnly
       - run: yarn docs:build
+        env:
+          DOCS_BASE: /replot/
       - uses: actions/configure-pages@v4
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: docs/.vitepress/dist
+          path: dist-docs
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4

@@ -1,10 +1,11 @@
 import {createRoot} from "react-dom/client";
-import {Switch, Route} from "wouter";
+import {Switch, Route, Router, useLocation} from "wouter";
 import {MDXProvider} from "@mdx-js/react";
 import {Layout} from "./layout/Layout";
-import {lazy, Suspense, type ComponentType} from "react";
+import {lazy, Suspense, useEffect, type ComponentType} from "react";
 import {VersionBadge} from "./components/VersionBadge";
 import {PlotExample} from "./components/PlotExample";
+import {DocLink} from "./components/DocLink";
 
 // Dynamically import all MDX pages using Vite glob
 const pages = import.meta.glob<{default: ComponentType}>("./**/*.mdx");
@@ -31,11 +32,39 @@ for (const [filePath, importFn] of Object.entries(pages)) {
 // Sort so more specific routes come first
 routes.sort((a, b) => b.path.length - a.path.length);
 
-const mdxComponents = {VersionBadge, PlotExample};
+const mdxComponents = {VersionBadge, PlotExample, a: DocLink};
+
+// The site is served under a subpath on GitHub Pages; Vite injects the base.
+const routerBase = import.meta.env.BASE_URL.replace(/\/$/, "");
+
+// Lazy routes mount after navigation, so scroll to the hash target once it
+// exists (bounded retries), or to the top for hash-less navigations.
+function ScrollManager() {
+  const [location] = useLocation();
+  useEffect(() => {
+    const hash = window.location.hash.slice(1);
+    if (!hash) {
+      window.scrollTo(0, 0);
+      return;
+    }
+    let tries = 0;
+    let raf = 0;
+    const attempt = () => {
+      const el = document.getElementById(decodeURIComponent(hash));
+      if (el) el.scrollIntoView();
+      else if (tries++ < 40) raf = requestAnimationFrame(attempt);
+    };
+    attempt();
+    return () => cancelAnimationFrame(raf);
+  }, [location]);
+  return null;
+}
 
 function App() {
   return (
-    <MDXProvider components={mdxComponents}>
+    <Router base={routerBase}>
+      <ScrollManager />
+      <MDXProvider components={mdxComponents}>
       <Layout>
         <Suspense fallback={<p>Loading...</p>}>
           <Switch>
@@ -50,7 +79,8 @@ function App() {
           </Switch>
         </Suspense>
       </Layout>
-    </MDXProvider>
+      </MDXProvider>
+    </Router>
   );
 }
 

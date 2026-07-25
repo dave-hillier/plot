@@ -1,4 +1,5 @@
 import data from "./data/api-index.json";
+import {Link} from "wouter";
 
 # API index
 
@@ -8,7 +9,7 @@ import data from "./data/api-index.json";
   {data.methods.map(({name, comment, href}) => (
     <li key={`${href}#${name}`}>
       <span>
-        <a href={`/${href}#${name}`}>{name}</a> - {comment}
+        <Link href={`/${href}#${name}`}>{name}</Link> - {comment}
       </span>
     </li>
   ))}
@@ -22,7 +23,7 @@ import data from "./data/api-index.json";
       <b>{name}</b> -{" "}
       {contexts.map(({name: contextName, href}, i) => (
         <span key={href + contextName}>
-          <a href={`/${href}`}>{contextName}</a>
+          <Link href={`/${href}`}>{contextName}</Link>
           {i < contexts.length - 1 ? ", " : ""}
         </span>
       ))}

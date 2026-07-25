@@ -1,23 +1,46 @@
-import {defineConfig} from "vite";
+import {defineConfig, type Plugin} from "vite";
 import react from "@vitejs/plugin-react";
 import mdx from "@mdx-js/rollup";
 import remarkGfm from "remark-gfm";
 import remarkFrontmatter from "remark-frontmatter";
 import remarkPlotSource from "./plugins/remark-plot-source.js";
+import remarkHeadingIds from "./plugins/remark-heading-ids.js";
 import path from "node:path";
+import fs from "node:fs";
+
+// GitHub Pages serves the site under /replot/; the deploy workflow sets
+// DOCS_BASE accordingly. Local dev and preview use the root.
+const base = process.env.DOCS_BASE ?? "/";
+
+// GitHub Pages has no history fallback, so deep links (e.g. /replot/marks/dot)
+// 404 server-side. Serving the SPA shell as the 404 page lets the router take
+// over; asset URLs are absolute under the base, so they resolve regardless of
+// the requested path.
+function spa404Fallback(): Plugin {
+  return {
+    name: "spa-404-fallback",
+    closeBundle() {
+      const out = path.resolve(__dirname, "../dist-docs");
+      const index = path.join(out, "index.html");
+      if (fs.existsSync(index)) fs.copyFileSync(index, path.join(out, "404.html"));
+    }
+  };
+}
 
 export default defineConfig({
   root: path.resolve(__dirname),
+  base,
   publicDir: path.resolve(__dirname, "public"),
   plugins: [
     {
       enforce: "pre",
       ...mdx({
         providerImportSource: "@mdx-js/react",
-        remarkPlugins: [remarkGfm, remarkFrontmatter, remarkPlotSource]
+        remarkPlugins: [remarkGfm, remarkFrontmatter, remarkPlotSource, remarkHeadingIds]
       })
     },
-    react({include: /\.(mdx|js|jsx|ts|tsx)$/})
+    react({include: /\.(mdx|js|jsx|ts|tsx)$/}),
+    spa404Fallback()
   ],
   resolve: {
     alias: {
