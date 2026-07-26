@@ -39,5 +39,9 @@ export function withHrefWrap(
   if (h == null) return node;
   const anchorProps: any = {href: h, fill: "inherit"};
   if (target != null) anchorProps.target = target;
-  return <a {...anchorProps}>{node}</a>;
+  return (
+    <a key={i} {...anchorProps}>
+      {node}
+    </a>
+  );
 }
