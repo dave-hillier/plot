@@ -1,10 +1,10 @@
-// Wraps every top-level <Plot> example in a <PlotExample source="…"> element,
-// where source is the example's own JSX text sliced from the page source. The
-// PlotExample component (provided app-wide via MDXProvider) renders the live
-// chart with its source in a collapsible code block, so every example shows
-// the React syntax without hand-maintained duplicate fences. Only top-level
-// JSX flow elements are wrapped; <Plot> inside expressions (IIFEs, layouts)
-// renders chart-only as before.
+// Wraps every top-level <Plot> example in a <PlotExample> element whose
+// children are the live chart followed by a jsx code fence holding the
+// example's own JSX text, sliced from the page source. The fence goes through
+// the normal code pipeline (syntax highlighting, copy button), so every
+// example shows the React syntax without hand-maintained duplicate fences.
+// Only top-level JSX flow elements are wrapped; <Plot> inside expressions
+// (IIFEs, layouts) renders chart-only as before.
 export default function remarkPlotSource() {
   return (tree, file) => {
     const source = String(file.value);
@@ -16,8 +16,8 @@ export default function remarkPlotSource() {
       return {
         type: "mdxJsxFlowElement",
         name: "PlotExample",
-        attributes: [{type: "mdxJsxAttribute", name: "source", value: text}],
-        children: [node]
+        attributes: [],
+        children: [node, {type: "code", lang: "jsx", value: text}]
       };
     });
   };

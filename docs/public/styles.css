@@ -8,6 +8,7 @@
   --color-border: #e2e2e3;
   --color-link: #3451b2;
   --color-active: #5672cd;
+  --color-code-bg: #f6f8fa;
   --sidebar-width: 272px;
 }
 
@@ -20,6 +21,7 @@
     --color-border: #2e3a59;
     --color-link: #8da2fb;
     --color-active: #a8bbff;
+    --color-code-bg: #161618;
   }
 }
 
@@ -39,7 +41,8 @@ html {
   -webkit-font-smoothing: antialiased;
 }
 
-code, pre {
+code,
+pre {
   font-family: var(--font-mono);
   font-size: 0.875rem;
 }
@@ -127,7 +130,9 @@ a:hover {
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
   color: var(--color-text-muted);
-  transition: color 0.15s, background 0.15s;
+  transition:
+    color 0.15s,
+    background 0.15s;
 }
 
 .sidebar-link:hover {
@@ -175,7 +180,8 @@ a:hover {
   margin-bottom: 1rem;
 }
 
-.doc-content ul, .doc-content ol {
+.doc-content ul,
+.doc-content ol {
   margin-bottom: 1rem;
   padding-left: 1.5rem;
 }
@@ -190,7 +196,8 @@ a:hover {
   margin-bottom: 1rem;
 }
 
-.doc-content th, .doc-content td {
+.doc-content th,
+.doc-content td {
   padding: 0.5rem 0.75rem;
   border: 1px solid var(--color-border);
   text-align: left;
@@ -213,28 +220,66 @@ a:hover {
   height: auto;
 }
 
-/* Copy button on code blocks, matching the upstream docs */
+/* Code blocks, styled after the upstream VitePress docs: shiki-highlighted
+   text on a soft background, a language label in the corner, and a copy
+   button revealed on hover. */
 .code-block {
   position: relative;
+  margin: 1rem 0;
+}
+.code-block pre {
+  margin: 0;
+  padding: 1.25rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  line-height: 1.7;
+  background: var(--color-code-bg) !important;
+}
+.code-lang {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.85rem;
+  z-index: 1;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  transition: opacity 0.25s;
 }
 .code-block .code-copy {
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
-  padding: 0.25rem 0.6rem;
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  color: var(--color-text);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--color-text-muted);
   background: var(--color-bg);
   border: 1px solid var(--color-border);
   border-radius: 4px;
   cursor: pointer;
   opacity: 0;
-  transition: opacity 0.15s;
+  transition: opacity 0.25s;
 }
 .code-block:hover .code-copy,
-.code-block .code-copy:focus-visible {
+.code-block .code-copy:focus-visible,
+.code-block.copied .code-copy {
   opacity: 1;
+}
+.code-block:hover .code-lang,
+.code-block.copied .code-lang {
+  opacity: 0;
+}
+
+/* Shiki emits both palettes; switch to the dark one via its CSS variables. */
+@media (prefers-color-scheme: dark) {
+  .code-block .shiki,
+  .code-block .shiki span {
+    color: var(--shiki-dark) !important;
+  }
 }
 
 /* Live example source, injected by remark-plot-source */
@@ -246,16 +291,8 @@ a:hover {
   color: #888;
   font-size: 0.85em;
 }
-.plot-example-code pre {
-  overflow-x: auto;
-  padding: 0.75rem 1rem;
-  background: #f6f6f6;
-  border-radius: 4px;
-}
-@media (prefers-color-scheme: dark) {
-  .plot-example-code pre {
-    background: #1e1e1e;
-  }
+.plot-example-code .code-block {
+  margin: 0.5rem 0 0;
 }
 
 /* VitePress theme variables referenced by the docs prose and chart options
