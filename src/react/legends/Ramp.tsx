@@ -97,7 +97,7 @@ export function Ramp(props: RampProps) {
         width={width - marginLeft - marginRight}
         height={height - marginTop - marginBottom}
         preserveAspectRatio="none"
-        xlinkHref={href}
+        href={href}
       />
     );
   } else if (type === "threshold") {
@@ -151,7 +151,7 @@ export function Ramp(props: RampProps) {
   // band scales we don't shift the tick line up to span the ramp.
   const isBand = !interpolate && type !== "threshold";
   const tickAxisY = height - marginBottom;
-  const tickLineY1 = isBand ? 0 : marginTop + marginBottom - height;
+  const tickLineY1 = isBand ? undefined : marginTop + marginBottom - height;
   const tickElements = renderTicks(x, ticks, tickFormat, tickSize, tickLineY1);
 
   // The imperative API accepts either a CSSStyleDeclaration-like object (which
@@ -177,7 +177,12 @@ export function Ramp(props: RampProps) {
         </filter>
       ) : null}
       {filterId ? <g filter={`url(#${filterId})`}>{body}</g> : body}
-      <g transform={`translate(0,${tickAxisY})`} fontVariant={impliedString(fontVariant, "normal") as any}>
+      <g
+        transform={`translate(0,${tickAxisY})`}
+        fill="none"
+        textAnchor="middle"
+        fontVariant={impliedString(fontVariant, "normal") as any}
+      >
         {tickElements}
       </g>
       {label != null ? (
@@ -219,7 +224,15 @@ function canvasDataURL(interpolator: (t: number) => string, context: any): strin
 // Replicates the tick markup that d3-axis (axisBottom) emits, minus the
 // .domain path (which the imperative ramp removes). Each tick is a
 // <g class="tick" transform="translate(x,0)"> with a <line> and <text>.
-function renderTicks(x: any, ticks: any, tickFormat: any, tickSize: number, tickLineY1: number): React.ReactNode {
+// Band scales are centered like d3-axis's center(): the tick sits in the
+// middle of the band, rounded when the scale rounds its range.
+function renderTicks(
+  x: any,
+  ticks: any,
+  tickFormat: any,
+  tickSize: number,
+  tickLineY1: number | undefined
+): React.ReactNode {
   const values: any[] = Array.isArray(ticks) ? ticks : typeof x.ticks === "function" ? x.ticks(ticks) : x.domain();
   const fmt: (d: any, i: number) => any =
     typeof tickFormat === "function"
@@ -229,15 +242,20 @@ function renderTicks(x: any, ticks: any, tickFormat: any, tickSize: number, tick
       : typeof x.tickFormat === "function"
       ? x.tickFormat(Array.isArray(ticks) ? null : ticks)
       : (d: any) => `${d}`;
+  let bandOffset = 0;
+  if (typeof x.bandwidth === "function") {
+    bandOffset = Math.max(0, x.bandwidth() - 1) / 2;
+    if (x.round()) bandOffset = Math.round(bandOffset);
+  }
   return (
     <Fragment>
       {values.map((d, i) => {
-        const tx = x(d) ?? 0;
+        const tx = (x(d) ?? 0) + bandOffset;
         const text = fmt(d, i);
         return (
           <g key={i} className="tick" opacity={1} transform={`translate(${tx + 0.5},0)`}>
-            <line stroke="currentColor" y1={tickLineY1} y2={tickSize} />
-            <text fill="currentColor" y={tickSize + 3} dy="0.71em" textAnchor="middle">
+            <line stroke="currentColor" y2={tickSize} y1={tickLineY1} />
+            <text fill="currentColor" y={tickSize + 3} dy="0.71em">
               {text == null ? "" : `${text}`}
             </text>
           </g>

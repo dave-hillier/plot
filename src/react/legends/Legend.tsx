@@ -178,8 +178,9 @@ function opacityRampJSX(props: Record<string, any>): React.ReactElement | null {
   if (normalized.domain === undefined) return null;
   // Mirror legendOpacity: continuous opacity becomes a color scale with an
   // rgba interpolator; banded opacity is drawn black-on-white under a flood
-  // filter (rampWithFilter()).
-  const color = (opacityOpts as any).color ?? rgb(0, 0, 0);
+  // filter (rampWithFilter()). The ramp color is the top-level `color` option
+  // (a plain color, not a scale spec), as in the imperative legendOpacity.
+  const color = props.color ?? rgb(0, 0, 0);
   if (isBanded) {
     return rampElement(props, normalized, opacityOpts, {filterColor: `${rgb(color)}`});
   }
@@ -200,7 +201,10 @@ function rampElement(
     {className, ...ctxRest},
     {label: opts.label, ticks: opts.ticks, tickFormat: opts.tickFormat}
   ) as any;
-  const {legend: _legend, color: _color, opacity: _opacity, ...options} = merged;
+  // Keep `opacity` in the options: a numeric top-level opacity mutes the ramp
+  // (Ramp reads it via maybeNumberChannel, which ignores scale-spec objects),
+  // matching the imperative legendRamp which receives the whole options bag.
+  const {legend: _legend, color: _color, ...options} = merged;
   return <Ramp scale={normalized} {...options} filterColor={extra.filterColor} />;
 }
 
