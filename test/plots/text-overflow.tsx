@@ -100,7 +100,7 @@ async function textOverflowPlot(textOverflow, {monospace = false} = {}) {
   const opinions = [
     "Very Unfavorable %",
     "Somewhat Unfavorable %",
-    "Don't know %",
+    "Don’t know %",
     "Have not heard of them %",
     "Somewhat Favorable %",
     "Very Favorable %"
