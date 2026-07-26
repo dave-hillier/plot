@@ -4,6 +4,32 @@
 
 ---
 
+## Motivation
+
+D3's style and React's are actually convergent, even though the libraries are
+incompatible. The data join — enter, update, exit — was declarative UI before
+React existed: the DOM as a function of your data. React generalised the same
+idea. They can't share a page because both want to own the DOM, so the usual
+approach is to hide the chart behind a ref and a `useEffect` and rebuild it on
+every data change. It works, but the chart is never really part of the React
+app, and server-side rendering gives you an empty container.
+
+Libraries like Recharts render natively in React, but they are built around
+chart types. They're great for getting started and then inevitably
+over-constrained: at some point the chart you want isn't one of the options.
+Plot doesn't have that problem because it's a grammar — marks, scales, and
+transforms that compose.
+
+Plot gets described as a simplified D3, and it's incredible how good the
+visualisations are despite that. The simplification is mostly good defaults —
+scale inference, ticks, margins, legends — decisions D3 makes you take
+yourself. That's why Replot ports Plot rather than just the DOM parts of D3:
+porting the rendering alone would leave all those decisions to you again.
+
+Replot keeps D3's math and Plot's scale and transform engine as they are, and
+hands the rendering to React. Every mark is real JSX in the component tree, so
+there is only one reconciler.
+
 ## React Component API
 
 Use declarative JSX components to build charts natively in React applications:
