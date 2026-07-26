@@ -365,7 +365,15 @@ export class Tip extends (Mark as {new (...args: any[]): Mark}) {
       return withHrefWrap(values, this.target, i, node);
     });
 
-    return h("g", {...indirect, ...indirectText, ...transform}, items);
+    // Upstream hides a non-empty tip until postrender measures the text and
+    // reveals it; the reveal is scheduled via requestAnimationFrame (or a
+    // microtask when already connected). Without an animation frame (SSR,
+    // JSDOM) the tip therefore stays hidden. Our layout is computed
+    // synchronously, so when a frame is available we render the revealed
+    // state directly; otherwise we match upstream's hidden output.
+    const visibility =
+      index.length > 0 && typeof requestAnimationFrame === "undefined" ? "hidden" : undefined;
+    return h("g", {...indirect, ...indirectText, ...transform, visibility}, items);
   }
 }
 
