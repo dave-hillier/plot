@@ -1,6 +1,27 @@
-import {Bin, BinX, Density, Dot, Replot, Rect, RectY, RuleY} from "replot/react";
+import {Bin, BinX, Density, Dot, Replot, Rect, RectY, RuleY, TreeMark} from "replot/react";
 import * as d3 from "d3";
 import {useOlympians} from "./data/olympians.ts";
+import {sidebar} from "./sidebar.ts";
+
+export const docPaths = (() => {
+  const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+  const paths = [];
+  (function visit(node, path) {
+    paths.push({path, href: node.link && (node.link.startsWith("http") ? node.link : base + node.link)});
+    if (node.items) {
+      for (const item of node.items) {
+        visit(item, (path === "/" ? path : path + "/") + item.text);
+      }
+    }
+  })({items: sidebar}, "/Replot");
+  return paths;
+})();
+
+export function computeTreeWidth(paths) {
+  const root = d3.tree().nodeSize([1, 1])(d3.stratify().path((d) => d.path)(paths));
+  const [x1, x2] = d3.extent(root, (d) => d.x);
+  return x2 - x1;
+}
 
 # What is Replot?
 
@@ -51,7 +72,26 @@ Or if we’d prefer to show the two distributions separately as small multiples,
 
 Because marks are composable, and because you can extend Replot with custom marks, you can make almost anything with it — much more than the charts above! The following [tree diagram](./marks/tree.md) of the documentation gives a sense of what’s ”in the box” with Replot. Peruse our [gallery of examples](https://observablehq.com/@observablehq/plot-gallery) for more inspiration.
 
-{/* The tree diagram of the documentation sidebar is rendered at build time from the site configuration. */}
+{/* Inside an expression so remark-plot-source doesn't attach a code block;
+    the diagram is site navigation, not an example to copy. */}
+{
+  <Replot
+    axis={null}
+    height={computeTreeWidth(docPaths) * 12}
+    marginTop={4}
+    marginRight={120}
+    marginBottom={4}
+    marginLeft={40}
+  >
+    <TreeMark
+      data={docPaths}
+      path="path"
+      textStroke="var(--vp-c-bg)"
+      channels={{href: {value: "href", filter: null}}}
+      treeSort={null}
+    />
+  </Replot>
+}
 
 ## How Replot differs from Observable Plot
 

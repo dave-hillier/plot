@@ -1,4 +1,5 @@
 import type {ReactNode} from "react";
+import {CodeBlock} from "./CodeBlock";
 
 // Renders a live chart together with its own JSX source in a collapsible
 // block. Instances are injected at build time by the remark-plot-source
@@ -9,9 +10,9 @@ export function PlotExample({source, children}: {source: string; children?: Reac
       {children}
       <details className="plot-example-code" open>
         <summary>Code</summary>
-        <pre>
+        <CodeBlock>
           <code className="language-jsx">{source}</code>
-        </pre>
+        </CodeBlock>
       </details>
     </div>
   );

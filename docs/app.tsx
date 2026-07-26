@@ -6,6 +6,7 @@ import {lazy, Suspense, useEffect, type ComponentType} from "react";
 import {VersionBadge} from "./components/VersionBadge";
 import {PlotExample} from "./components/PlotExample";
 import {DocLink} from "./components/DocLink";
+import {CodeBlock} from "./components/CodeBlock";
 
 // Dynamically import all MDX pages using Vite glob
 const pages = import.meta.glob<{default: ComponentType}>("./**/*.mdx");
@@ -32,7 +33,7 @@ for (const [filePath, importFn] of Object.entries(pages)) {
 // Sort so more specific routes come first
 routes.sort((a, b) => b.path.length - a.path.length);
 
-const mdxComponents = {VersionBadge, PlotExample, a: DocLink};
+const mdxComponents = {VersionBadge, PlotExample, a: DocLink, pre: CodeBlock};
 
 // The site is served under a subpath on GitHub Pages; Vite injects the base.
 const routerBase = import.meta.env.BASE_URL.replace(/\/$/, "");
@@ -65,20 +66,20 @@ function App() {
     <Router base={routerBase}>
       <ScrollManager />
       <MDXProvider components={mdxComponents}>
-      <Layout>
-        <Suspense fallback={<p>Loading...</p>}>
-          <Switch>
-            {routes.map(({path, Component}) => (
-              <Route key={path} path={path}>
-                <Component />
+        <Layout>
+          <Suspense fallback={<p>Loading...</p>}>
+            <Switch>
+              {routes.map(({path, Component}) => (
+                <Route key={path} path={path}>
+                  <Component />
+                </Route>
+              ))}
+              <Route>
+                <p>Page not found.</p>
               </Route>
-            ))}
-            <Route>
-              <p>Page not found.</p>
-            </Route>
-          </Switch>
-        </Suspense>
-      </Layout>
+            </Switch>
+          </Suspense>
+        </Layout>
       </MDXProvider>
     </Router>
   );

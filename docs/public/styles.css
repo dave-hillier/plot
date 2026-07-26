@@ -213,6 +213,30 @@ a:hover {
   height: auto;
 }
 
+/* Copy button on code blocks, matching the upstream docs */
+.code-block {
+  position: relative;
+}
+.code-block .code-copy {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.25rem 0.6rem;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: var(--color-text);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.code-block:hover .code-copy,
+.code-block .code-copy:focus-visible {
+  opacity: 1;
+}
+
 /* Live example source, injected by remark-plot-source */
 .plot-example-code {
   margin: 0.5rem 0 1.5rem;
