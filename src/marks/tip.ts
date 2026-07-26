@@ -371,8 +371,7 @@ export class Tip extends (Mark as {new (...args: any[]): Mark}) {
     // JSDOM) the tip therefore stays hidden. Our layout is computed
     // synchronously, so when a frame is available we render the revealed
     // state directly; otherwise we match upstream's hidden output.
-    const visibility =
-      index.length > 0 && typeof requestAnimationFrame === "undefined" ? "hidden" : undefined;
+    const visibility = index.length > 0 && typeof requestAnimationFrame === "undefined" ? "hidden" : undefined;
     return h("g", {...indirect, ...indirectText, ...transform, visibility}, items);
   }
 }
