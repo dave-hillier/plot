@@ -1,4 +1,5 @@
 import {Replot, Dot, BinX, RectY, RuleY, StackY, AreaY} from "replot/react";
+import {useOlympians} from "./data/olympians.ts";
 
 # Replot
 
@@ -26,14 +27,12 @@ export const sales = [
 
 Marks are components, layered as siblings. Transforms are components too — they nest, mirroring the grammar's functional composition:
 
-```jsx
 <Replot>
   <BinX y="count">
-    <RectY data={athletes} x="weight" fill="sex" />
+    <RectY data={useOlympians()} x="weight" fill="sex" />
   </BinX>
   <RuleY data={[0]} />
 </Replot>
-```
 
 Everything participates in the React tree: state, context, Suspense, and server-side rendering work as you'd expect, with no refs, effects, or manual DOM management.
 
