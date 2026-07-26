@@ -84,7 +84,11 @@ function waffleRenderJSX(mark: any, index: any, scales: any, values: any, dimens
   const transform = transformProp(mark, mark._transformScales(scales), 0, 0);
   const patternId = getPatternId();
   const indexes = index as number[];
+  // Either reference position may be per-index (a band-scale position): for
+  // waffleY x0 is the function, for waffleX it's y0 (the channels swap roles).
+  // The imperative path evaluates both via template`translate(${x0},${y0})`.
   const x0i = typeof x0 === "function" ? x0 : () => x0;
+  const y0i = typeof y0 === "function" ? y0 : () => y0;
   // The pattern <rect> mirrors the imperative applyChannelStyles(visualValues)
   // call, which omits ariaLabel/href/title — those decorate the visible <path>.
   const defs = h(
@@ -115,7 +119,7 @@ function waffleRenderJSX(mark: any, index: any, scales: any, values: any, dimens
       {
         key: i,
         d: `M${polygon[i].join("L")}Z`,
-        transform: `translate(${x0i(i)},${y0})`,
+        transform: `translate(${x0i(i)},${y0i(i)})`,
         fill: `url(#${patternId}-${i})`,
         stroke: mark.stroke == null ? undefined : "none",
         "aria-label": ariaLabel
