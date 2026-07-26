@@ -66,11 +66,11 @@
         <rect x="0.5" y="0.5" width="4.382" height="4.382" fill="rgb(175, 240, 91)"></rect>
       </pattern>
     </defs>
-    <path d="M0,0L0,0L0,0L0,0L0,0L0,16.147L290.651,16.147L290.651,16.147L294.257,16.147L294.257,10.765L296.033,10.765L296.033,0Z" transform="translate(80,i=>barx(i)+tx)" fill="url(#plot-pattern-1)"></path>
-    <path d="M0,0L0,0L0,0L0,0L0,0L0,16.147L538.242,16.147L538.242,5.382L543.517,5.382L543.517,0Z" transform="translate(80,i=>barx(i)+tx)" fill="url(#plot-pattern-2)"></path>
-    <path d="M0,0L0,0L0,0L0,0L0,0L0,16.147L360.622,16.147L360.622,16.147L363.528,16.147L363.528,10.765L366.004,10.765L366.004,0Z" transform="translate(80,i=>barx(i)+tx)" fill="url(#plot-pattern-3)"></path>
-    <path d="M0,0L0,0L0,0L0,0L0,0L0,16.147L220.679,16.147L220.679,10.765L223.693,10.765L223.693,5.382L226.062,5.382L226.062,0Z" transform="translate(80,i=>barx(i)+tx)" fill="url(#plot-pattern-4)"></path>
-    <path d="M0,0L0,0L0,0L0,0L0,0L0,16.147L220.679,16.147L220.679,10.765L223.693,10.765L223.693,5.382L226.062,5.382L226.062,0Z" transform="translate(80,i=>barx(i)+tx)" fill="url(#plot-pattern-5)"></path>
+    <path d="M0,0L0,0L0,0L0,0L0,0L0,16.147L290.651,16.147L290.651,16.147L294.257,16.147L294.257,10.765L296.033,10.765L296.033,0Z" transform="translate(80,25.426)" fill="url(#plot-pattern-1)"></path>
+    <path d="M0,0L0,0L0,0L0,0L0,0L0,16.147L538.242,16.147L538.242,5.382L543.517,5.382L543.517,0Z" transform="translate(80,46.426)" fill="url(#plot-pattern-2)"></path>
+    <path d="M0,0L0,0L0,0L0,0L0,0L0,16.147L360.622,16.147L360.622,16.147L363.528,16.147L363.528,10.765L366.004,10.765L366.004,0Z" transform="translate(80,67.426)" fill="url(#plot-pattern-3)"></path>
+    <path d="M0,0L0,0L0,0L0,0L0,0L0,16.147L220.679,16.147L220.679,10.765L223.693,10.765L223.693,5.382L226.062,5.382L226.062,0Z" transform="translate(80,88.426)" fill="url(#plot-pattern-4)"></path>
+    <path d="M0,0L0,0L0,0L0,0L0,0L0,16.147L220.679,16.147L220.679,10.765L223.693,10.765L223.693,5.382L226.062,5.382L226.062,0Z" transform="translate(80,109.426)" fill="url(#plot-pattern-5)"></path>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
     <line x1="80" x2="80" y1="20" y2="130"></line>

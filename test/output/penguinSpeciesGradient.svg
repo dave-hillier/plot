@@ -49,6 +49,13 @@
   <g aria-label="x-axis label" transform="translate(0.5,27.5)">
     <text transform="translate(330,370)">species</text>
   </g>
+  <defs>
+    <linearGradient id="gradient" gradientTransform="rotate(90)">
+      <stop offset="5%" stop-color="purple"></stop>
+      <stop offset="75%" stop-color="red"></stop>
+      <stop offset="100%" stop-color="gold"></stop>
+    </linearGradient>
+  </defs>
   <g aria-label="bar" fill="url(#gradient)">
     <rect x="59" y="20" width="168" height="350"></rect>
     <rect x="246" y="213.421" width="168" height="156.579"></rect>

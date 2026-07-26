@@ -368,7 +368,8 @@ function markify(mark) {
 }
 
 // Wraps a bare function-as-mark. Such marks supply a renderJSX returning a
-// React element (the imperative render() path has been removed).
+// React element or a detached DOM node (converted via domToJsx); the
+// imperative render() path has been removed.
 class Render extends Mark {
   constructor(renderJSX) {
     if (typeof renderJSX !== "function") throw new TypeError("invalid mark; missing renderJSX function");

@@ -51,6 +51,6 @@
         <rect x="0.5" y="0.5" width="57" height="23"></rect>
       </pattern>
     </defs>
-    <path d="M0,0L0,0L0,0L0,0L0,0L0,24L580,24L580,0L580,0L580,0Z" transform="translate(40,i=>barx(i)+tx)" fill="url(#plot-pattern-1)"></path>
+    <path d="M0,0L0,0L0,0L0,0L0,0L0,24L580,24L580,0L580,0L580,0Z" transform="translate(40,23)" fill="url(#plot-pattern-1)"></path>
   </g>
 </svg>

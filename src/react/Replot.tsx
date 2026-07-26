@@ -1,6 +1,7 @@
 import {
   Children,
   cloneElement,
+  Fragment,
   isValidElement,
   useContext,
   useEffect,
@@ -14,10 +15,11 @@ import {computePlot} from "../plot.js";
 import type {MarkOptions} from "../mark.js";
 import {consumeWarnings} from "../warnings.js";
 import {PlotContext} from "./PlotContext.js";
-import {markEventNames, type MarkEventHandlers, type MarkFactory} from "./useMark.js";
+import {markEventNames, useMark, type MarkEventHandlers, type MarkFactory} from "./useMark.js";
 import {PointerRoot, PointerContext} from "./interactions/PointerContext.js";
 import {buildAutoLegends, LegendDisplay} from "./legends/Legend.js";
 import {createClipRegistry, registerClips, type ClipRegistry} from "./clip.js";
+import {domToJsx, isDomNode} from "./domToJsx.js";
 import {FigureLayout} from "./FigureLayout.js";
 
 // <Plot> renders a JSX <svg> populated entirely by each mark's renderJSX();
@@ -459,9 +461,41 @@ export function Replot({
           {plotElement}
         </>
       )}
-      <div style={{display: "none"}}>{children}</div>
+      <div style={{display: "none"}}>{wrapFunctionChildren(children)}</div>
     </PlotContext.Provider>
   );
+}
+
+// A bare function child of <Plot> is a function mark (Observable Plot's
+// mark-as-a-render-function): plot.ts's markify wraps it in a Render mark
+// whose output — possibly a detached DOM node, e.g. htl svg`<defs>…` — is
+// inlined into the <svg>.
+function FunctionMark({render}: {render: (...args: unknown[]) => unknown}) {
+  useMark({name: "render", options: {}, create: () => [render as any]});
+  return null;
+}
+
+// React drops (or warns on) function children, so replace each with a
+// <FunctionMark> registration. Untouched trees pass through unchanged; a
+// transformed array gets index keys (the children are positional anyway).
+function wrapFunctionChildren(node: unknown): ReactNode {
+  if (typeof node === "function") return <FunctionMark render={node as (...args: unknown[]) => unknown} />;
+  if (!Array.isArray(node) || !node.some(containsFunctionChild)) return node as ReactNode;
+  return node.map((child, i) =>
+    typeof child === "function" ? (
+      <FunctionMark key={i} render={child} />
+    ) : Array.isArray(child) ? (
+      <Fragment key={i}>{wrapFunctionChildren(child)}</Fragment>
+    ) : isValidElement(child) && child.key == null ? (
+      cloneElement(child, {key: i})
+    ) : (
+      (child as ReactNode)
+    )
+  );
+}
+
+function containsFunctionChild(node: unknown): boolean {
+  return typeof node === "function" || (Array.isArray(node) && node.some(containsFunctionChild));
 }
 
 // Renders the whole plot as a JSX <svg> tree.
@@ -693,6 +727,9 @@ function MarkSlot({mark, index, scales, values, dims, context, clipReg, getHandl
   // keep the DOM structure identical to the imperative output. Clip wrapping
   // (frame/geo) is applied via the clip registry.
   let jsx = mark.renderJSX(arrayIndex, scales, values, dims, context) as ReactElement;
+  // Function marks (wrapped by plot.ts's Render) may return a detached DOM
+  // node (htl's svg`…`); convert it so React can render it.
+  if (isDomNode(jsx)) jsx = domToJsx(jsx) as ReactElement;
   // Per-mark event handlers attach as React event props (no DOM-structure
   // change): per element when the mark renders one element per datum,
   // mark-level otherwise. Presence changes rebuild the plot (stamped), so
