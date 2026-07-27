@@ -76,7 +76,9 @@ export function createClipRegistry(): ClipRegistry {
   }
 
   function clipOf(mark: any, context: any): any {
-    return mark.clip ?? context?.clip;
+    // maybeClip(false) stores null; only an undefined clip (never specified)
+    // falls back to the plot-level default, matching upstream style.js.
+    return mark.clip === undefined ? context?.clip : mark.clip;
   }
 
   return {
