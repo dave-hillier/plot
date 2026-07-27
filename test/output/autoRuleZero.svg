@@ -121,5 +121,5 @@
     <line x1="607.925" x2="607.925" y1="370" y2="65.746"></line>
     <line x1="620" x2="620" y1="370" y2="60.263"></line>
   </g>
-  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)"></g>
+  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)" pointer-events="none"></g>
 </svg>

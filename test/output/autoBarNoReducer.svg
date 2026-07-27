@@ -732,5 +732,5 @@
     <rect fill="rgb(79, 249, 129)" x="531" y="246" width="18" height="18"></rect>
     <rect fill="rgb(174, 245, 69)" x="531" y="366" width="18" height="18"></rect>
   </g>
-  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(9.5,9.5)"></g>
+  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(9.5,9.5)" pointer-events="none"></g>
 </svg>

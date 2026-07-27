@@ -753,5 +753,5 @@
     <path stroke="#ff725c" d="M168.688,217.285L167.771,218.456L149.984,204.67L151.18,198.182L152.939,195L157.314,195L163.446,198.326Z"></path>
     <path stroke="#ff725c" d="M250.595,146L244.042,146L240.53,139.649L240.59,139L246.249,128.767L253.344,135.182L253.925,141.484Z"></path>
   </g>
-  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)"></g>
+  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)" pointer-events="none"></g>
 </svg>

@@ -397,5 +397,5 @@
     <circle cx="130.691" cy="203.333" r="2.688"></circle>
     <circle cx="352.145" cy="224.167" r="2.616"></circle>
   </g>
-  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)"></g>
+  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)" pointer-events="none"></g>
 </svg>

@@ -60,5 +60,5 @@
     <rect x="390" y="20" width="51" height="30"></rect>
     <rect x="276" y="20" width="51" height="30"></rect>
   </g>
-  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(26,0.5)"></g>
+  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(26,0.5)" pointer-events="none"></g>
 </svg>

@@ -855,5 +855,5 @@
     <circle cx="185" cy="332.729" r="1.723"></circle>
     <circle cx="475" cy="332.729" r="1.723"></circle>
   </g>
-  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)"></g>
+  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)" pointer-events="none"></g>
 </svg>

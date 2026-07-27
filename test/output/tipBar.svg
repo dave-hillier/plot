@@ -123,5 +123,5 @@
     <rect x="100" y="166" width="43.132" height="18"></rect>
     <rect x="100" y="306" width="71.299" height="18"></rect>
   </g>
-  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,9.5)"></g>
+  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,9.5)" pointer-events="none"></g>
 </svg>

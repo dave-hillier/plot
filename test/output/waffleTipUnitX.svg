@@ -445,5 +445,5 @@
     <path d="M597.059,26L511.765,26L511.765,26L511.765,26L511.765,39L511.765,39L511.765,39L597.059,39Z" transform="translate(40,185)" fill="url(#plot-pattern-99)"></path>
     <path d="M597.059,39L511.765,39L511.765,39L511.765,39L511.765,52L511.765,52L511.765,52L597.059,52Z" transform="translate(40,41)" fill="url(#plot-pattern-100)"></path>
   </g>
-  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,33)"></g>
+  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,33)" pointer-events="none"></g>
 </svg>
