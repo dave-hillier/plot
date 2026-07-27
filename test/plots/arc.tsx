@@ -1,5 +1,7 @@
+import type {ReactNode} from "react";
 import {Replot, Text, Arrow, Dot, identity, initializer, valueof} from "../../src/react/index.js";
 import * as d3 from "d3";
+import {svg} from "htl";
 
 function* collatz(n) {
   yield n;
@@ -34,18 +36,18 @@ export async function arcCollatzUp() {
         sweep="-x"
         stroke={([a, b]) => `url(#gradient${+(a > b)})`}
       />
-      {/* TODO: Arrow function mark using svg tagged template literal
-       * () =>
-       *   svg`<defs>
-       *   <linearGradient id="gradient0" x1="0%" y1="0%" x2="100%" y2="0%">
-       *     <stop offset="5%" stop-opacity="0.3"></stop>
-       *     <stop offset="95%" stop-opacity="1"></stop>
-       *   </linearGradient>
-       *   <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
-       *     <stop offset="5%" stop-opacity="1"></stop>
-       *     <stop offset="95%" stop-opacity="0.3"></stop>
-       *   </linearGradient>`
-       */}
+      {
+        (() =>
+          svg`<defs>
+        <linearGradient id="gradient0" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="5%" stop-opacity="0.3"></stop>
+          <stop offset="95%" stop-opacity="1"></stop>
+        </linearGradient>
+        <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="5%" stop-opacity="1"></stop>
+          <stop offset="95%" stop-opacity="0.3"></stop>
+        </linearGradient>`) as unknown as ReactNode
+      }
     </Replot>
   );
 }
