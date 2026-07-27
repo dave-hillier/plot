@@ -54,7 +54,9 @@ export function Swatches(props: LegendScales): React.ReactElement | null {
   // Symbol scales are always rendered as swatches.
   if (isScaleOptions((props as any).symbol)) {
     const {symbol, color, fill, stroke, ...rest} = props as any;
-    const computedStroke = stroke === undefined && isScaleOptions(color) ? "color" : stroke;
+    // Only default the stroke hint to the color scale when the fill is not
+    // specified; a fill (e.g. "color") suppresses the stroke upstream.
+    const computedStroke = stroke === undefined && fill === undefined && isScaleOptions(color) ? "color" : stroke;
     const hint = {fill, stroke: computedStroke};
     const scale = normalizeScale("symbol", symbol, hint);
     const resolve = (key: string) =>
