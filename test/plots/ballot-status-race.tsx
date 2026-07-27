@@ -13,7 +13,7 @@ export async function ballotStatusRace() {
   // votes = votes.filter(d => races.includes(d.race));
 
   // Normalize the ballot status (accepted/pending/rejected). This is a fairly
-  // long list because we don't want to misinterpret an unknown status.
+  // long list because we don’t want to misinterpret an unknown status.
   const statuses = new Map([
     ["ACCEPTED - CURED", "ACCEPTED"],
     ["PENDING CURE", "PENDING"],

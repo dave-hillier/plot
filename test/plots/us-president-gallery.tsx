@@ -31,12 +31,12 @@ export async function usPresidentGalleryAlt() {
             ...dodgeY({
               x: "First Inauguration Date",
               r: 22,
-              dy: -10, // these aren't circles, so don't overlap the x-axis
+              dy: -10, // these aren’t circles, so don’t overlap the x-axis
               src: "Portrait URL",
               title: "Name",
               width: 60
             }),
-            r: null // don't clip the images
+            r: null // don’t clip the images
           }
         )}
       />

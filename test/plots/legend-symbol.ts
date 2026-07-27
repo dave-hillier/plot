@@ -18,7 +18,7 @@ export function symbolLegendFill() {
 }
 
 // Note: The symbol hint requires reference equality for channel definitions,
-// and so doesn't consider the fill and symbol channels to be using the same
+// and so doesn’t consider the fill and symbol channels to be using the same
 // encoding here.
 export function symbolLegendDifferentColor() {
   return imperativePlot({
@@ -27,7 +27,7 @@ export function symbolLegendDifferentColor() {
 }
 
 // Note: The symbol hint requires reference equality for channel definitions,
-// and so doesn't consider the fill and symbol channels to be using the same
+// and so doesn’t consider the fill and symbol channels to be using the same
 // encoding here.
 export function symbolLegendExplicitColor() {
   return imperativePlot({

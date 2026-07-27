@@ -23,7 +23,7 @@ export async function projectionFitAntarctica() {
       <Graticule />
       <Geo data={domain} fill="currentColor" />
       <Frame />
-      {/* Since we're using the default clip: "frame" for the projection, these
+      {/* Since we’re using the default clip: "frame" for the projection, these
       marks should not be rendered; the projected point is outside the frame. */}
       <Dot data={{length: 1}} x={-90} y={-63} />
       <Text data={{length: 1}} x={-90} y={-63} text={["Do not render"]} />

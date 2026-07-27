@@ -16,27 +16,27 @@
   <g>
     <g transform="translate(0,0)">
       <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
-        <text transform="translate(96,120)" y="0.71em">1960's</text>
+        <text transform="translate(96,120)" y="0.71em">1960’s</text>
       </g>
     </g>
     <g transform="translate(192,0)">
       <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
-        <text transform="translate(96,120)" y="0.71em">1970's</text>
+        <text transform="translate(96,120)" y="0.71em">1970’s</text>
       </g>
     </g>
     <g transform="translate(384,0)">
       <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
-        <text transform="translate(96,120)" y="0.71em">1980's</text>
+        <text transform="translate(96,120)" y="0.71em">1980’s</text>
       </g>
     </g>
     <g transform="translate(576,0)">
       <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
-        <text transform="translate(96,120)" y="0.71em">1990's</text>
+        <text transform="translate(96,120)" y="0.71em">1990’s</text>
       </g>
     </g>
     <g transform="translate(768,0)">
       <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
-        <text transform="translate(96,120)" y="0.71em">2000's</text>
+        <text transform="translate(96,120)" y="0.71em">2000’s</text>
       </g>
     </g>
   </g>

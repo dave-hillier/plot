@@ -22,7 +22,7 @@ export async function walmartsDecades() {
       marginLeft={0}
       marginRight={0}
       projection="albers-usa"
-      fx={{tickFormat: (d) => `${d}'s`, padding: 0}}
+      fx={{tickFormat: (d) => `${d}’s`, padding: 0}}
       facet={{data: decades, x: decades}}
     >
       <Geo data={statemesh} strokeOpacity={0.25} />

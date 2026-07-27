@@ -356,7 +356,7 @@ export async function tipHexbin() {
 }
 
 // Normally you would slap a tip: true on the hexagon, as above, but here we
-// want to test that the hexbin transform isn't applying an erroneous stroke:
+// want to test that the hexbin transform isn’t applying an erroneous stroke:
 // none to the tip options (which would change the tip appearance).
 export async function tipHexbinExplicit() {
   const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);

@@ -15,42 +15,42 @@
   </style>
   <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="370" y2="370"></line>
-    <line x1="40" x2="620" y1="336" y2="336"></line>
-    <line x1="40" x2="620" y1="302" y2="302"></line>
-    <line x1="40" x2="620" y1="268" y2="268"></line>
-    <line x1="40" x2="620" y1="234" y2="234"></line>
-    <line x1="40" x2="620" y1="200" y2="200"></line>
-    <line x1="40" x2="620" y1="166" y2="166"></line>
-    <line x1="40" x2="620" y1="132" y2="132"></line>
-    <line x1="40" x2="620" y1="98" y2="98"></line>
-    <line x1="40" x2="620" y1="64" y2="64"></line>
-    <line x1="40" x2="620" y1="30" y2="30"></line>
+    <line x1="40" x2="620" y1="335.885" y2="335.885"></line>
+    <line x1="40" x2="620" y1="301.769" y2="301.769"></line>
+    <line x1="40" x2="620" y1="267.654" y2="267.654"></line>
+    <line x1="40" x2="620" y1="233.538" y2="233.538"></line>
+    <line x1="40" x2="620" y1="199.423" y2="199.423"></line>
+    <line x1="40" x2="620" y1="165.307" y2="165.307"></line>
+    <line x1="40" x2="620" y1="131.192" y2="131.192"></line>
+    <line x1="40" x2="620" y1="97.076" y2="97.076"></line>
+    <line x1="40" x2="620" y1="62.961" y2="62.961"></line>
+    <line x1="40" x2="620" y1="28.845" y2="28.845"></line>
   </g>
   <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,370)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,336)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,302)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,268)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,234)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,200)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,166)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,132)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,98)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,64)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,30)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,335.885)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,301.769)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,267.654)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,233.538)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,199.423)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,165.307)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,131.192)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,97.076)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,62.961)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,28.845)" d="M0,0L-6,0"></path>
   </g>
   <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
     <text transform="translate(40,370)" y="0.32em">0</text>
-    <text transform="translate(40,336)" y="0.32em">2</text>
-    <text transform="translate(40,302)" y="0.32em">4</text>
-    <text transform="translate(40,268)" y="0.32em">6</text>
-    <text transform="translate(40,234)" y="0.32em">8</text>
-    <text transform="translate(40,200)" y="0.32em">10</text>
-    <text transform="translate(40,166)" y="0.32em">12</text>
-    <text transform="translate(40,132)" y="0.32em">14</text>
-    <text transform="translate(40,98)" y="0.32em">16</text>
-    <text transform="translate(40,64)" y="0.32em">18</text>
-    <text transform="translate(40,30)" y="0.32em">20</text>
+    <text transform="translate(40,335.885)" y="0.32em">2</text>
+    <text transform="translate(40,301.769)" y="0.32em">4</text>
+    <text transform="translate(40,267.654)" y="0.32em">6</text>
+    <text transform="translate(40,233.538)" y="0.32em">8</text>
+    <text transform="translate(40,199.423)" y="0.32em">10</text>
+    <text transform="translate(40,165.307)" y="0.32em">12</text>
+    <text transform="translate(40,131.192)" y="0.32em">14</text>
+    <text transform="translate(40,97.076)" y="0.32em">16</text>
+    <text transform="translate(40,62.961)" y="0.32em">18</text>
+    <text transform="translate(40,28.845)" y="0.32em">20</text>
   </g>
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
     <text transform="translate(40,20)" y="0.71em">↑ Frequency (%)</text>
@@ -91,19 +91,19 @@
     <text transform="translate(620,370)">Word length →</text>
   </g>
   <g aria-label="bar">
-    <rect x="168" y="46.515" width="37" height="323.485"><title>that</title></rect>
-    <rect x="86" y="48.788" width="37" height="321.212"><title>of</title></rect>
-    <rect x="291" y="260.152" width="37" height="109.848"><title>because</title></rect>
-    <rect x="209" y="181.364" width="37" height="188.636"><title>there</title></rect>
+    <rect x="168" y="42.113" width="37" height="327.887"><title>that</title></rect>
+    <rect x="86" y="46.688" width="37" height="323.312"><title>of</title></rect>
+    <rect x="291" y="258.671" width="37" height="111.329"><title>because</title></rect>
+    <rect x="209" y="180.893" width="37" height="189.107"><title>there</title></rect>
     <rect x="127" y="20" width="37" height="350"><title>the</title></rect>
-    <rect x="373" y="317.727" width="37" height="52.273"><title>passenger</title></rect>
-    <rect x="250" y="232.879" width="37" height="137.121"><title>though</title></rect>
-    <rect x="414" y="338.939" width="37" height="31.061"><title>passengers</title></rect>
-    <rect x="332" y="306.364" width="37" height="63.636"><title>whenever</title></rect>
-    <rect x="45" y="279.848" width="37" height="90.152"><title>a</title></rect>
-    <rect x="455" y="357.879" width="37" height="12.121"><title>circulation</title></rect>
-    <rect x="537" y="363.939" width="37" height="6.061"><title>involuntarily</title></rect>
-    <rect x="496" y="357.121" width="37" height="12.879"><title>metaphysical</title></rect>
-    <rect x="578" y="368.485" width="37" height="1.515"><title>Circumambulate</title></rect>
+    <rect x="373" y="315.861" width="37" height="54.139"><title>passenger</title></rect>
+    <rect x="250" y="231.983" width="37" height="138.017"><title>though</title></rect>
+    <rect x="414" y="338.736" width="37" height="31.264"><title>passengers</title></rect>
+    <rect x="332" y="307.473" width="37" height="62.527"><title>whenever</title></rect>
+    <rect x="45" y="284.597" width="37" height="85.403"><title>a</title></rect>
+    <rect x="455" y="357.8" width="37" height="12.2"><title>circulation</title></rect>
+    <rect x="537" y="363.9" width="37" height="6.1"><title>involuntarily</title></rect>
+    <rect x="496" y="357.037" width="37" height="12.963"><title>metaphysical</title></rect>
+    <rect x="578" y="368.475" width="37" height="1.525"><title>Circumambulate</title></rect>
   </g>
 </svg>
