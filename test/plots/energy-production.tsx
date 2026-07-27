@@ -17,7 +17,7 @@ import * as d3 from "d3";
 //     ├ Solar Energy Production
 //     └ Wind Energy Production
 //
-// We don't want to double-count by stacking a series that is already
+// We don’t want to double-count by stacking a series that is already
 // represented by another series!
 const types = new Map([
   ["Total Fossil Fuels Production", "Fossil fuels"],
@@ -28,7 +28,7 @@ const types = new Map([
 export async function energyProduction() {
   const energy = (await d3.csv<any>("data/energy-production.csv"))
     .filter((d) => d.YYYYMM.slice(-2) === "13") // only take annual data
-    .filter((d) => types.has(d.Description)) // don't double-count categories
+    .filter((d) => types.has(d.Description)) // don’t double-count categories
     .map((d) => ({...d, Year: +d.YYYYMM.slice(0, 4), Value: +d.Value}));
   return (
     <Replot

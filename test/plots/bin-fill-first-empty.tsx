@@ -14,7 +14,7 @@ export async function binFillFirstEmpty() {
           },
           {
             x: "body_mass_g",
-            z: null, // don't group and stack
+            z: null, // don’t group and stack
             fill: "sex", // use the first sex value to color each bin
             interval: 50, // force empty bins
             insetTop: -0.5, // make empty bins visible

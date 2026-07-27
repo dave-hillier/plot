@@ -5,7 +5,7 @@ import {feature} from "topojson-client";
 export async function beagle() {
   const world = await d3.json<any>("data/countries-50m.json");
   // note: this returns strings; we should clean it up to make a better example,
-  // but we keep it to help test the projection's robustness
+  // but we keep it to help test the projection’s robustness
   const beagle = await d3.text("data/beagle.csv").then(d3.csvParseRows);
   const land = feature(world, world.objects.land);
   return (
