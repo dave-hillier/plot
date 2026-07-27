@@ -54,4 +54,14 @@
     <path stroke="url(#gradient1)" d="M135.099,226.316A39.404,39.404 0,0,0 64.158,226.316M70.776,221.821L64.158,226.316L63.575,218.337"></path>
     <path stroke="url(#gradient1)" d="M55.285,226.4A19.702,19.702 0,0,0 21.743,226.4M28.783,222.601L21.743,226.4L21.973,218.403"></path>
   </g>
+  <defs>
+    <linearGradient id="gradient0" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="5%" stop-opacity="0.3"></stop>
+      <stop offset="95%" stop-opacity="1"></stop>
+    </linearGradient>
+    <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="5%" stop-opacity="1"></stop>
+      <stop offset="95%" stop-opacity="0.3"></stop>
+    </linearGradient>
+  </defs>
 </svg>
