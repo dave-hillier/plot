@@ -65,5 +65,5 @@
     <path d="M0,-205.452L136.968,-205.452L136.968,-171.21L136.968,-171.21L136.968,-171.21L547.873,-171.21L547.873,-308.178L205.452,-308.178L205.452,-308.178L205.452,-308.178L205.452,-342.42L0,-342.42Z" transform="translate(65.564,368)" fill="url(#plot-pattern-6)"></path>
     <path d="M205.452,-342.42L205.452,-308.178L205.452,-308.178L205.452,-308.178L445.146,-308.178L445.146,-308.178L445.146,-308.178L445.146,-342.42Z" transform="translate(65.564,368)" fill="url(#plot-pattern-7)"></path>
   </g>
-  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)"></g>
+  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)" pointer-events="none"></g>
 </svg>

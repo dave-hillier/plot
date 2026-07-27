@@ -526,46 +526,46 @@
   </g>
   <g>
     <g transform="translate(0,0)">
-      <g aria-label="crosshair rule" stroke="currentColor" stroke-opacity="0.2" transform="translate(0.5,0)"></g>
+      <g aria-label="crosshair rule" stroke="currentColor" stroke-opacity="0.2" transform="translate(0.5,0)" pointer-events="none"></g>
     </g>
     <g transform="translate(0,148)">
-      <g aria-label="crosshair rule" stroke="currentColor" stroke-opacity="0.2" transform="translate(0.5,0)"></g>
+      <g aria-label="crosshair rule" stroke="currentColor" stroke-opacity="0.2" transform="translate(0.5,0)" pointer-events="none"></g>
     </g>
     <g transform="translate(0,296)">
-      <g aria-label="crosshair rule" stroke="currentColor" stroke-opacity="0.2" transform="translate(0.5,0)"></g>
+      <g aria-label="crosshair rule" stroke="currentColor" stroke-opacity="0.2" transform="translate(0.5,0)" pointer-events="none"></g>
     </g>
   </g>
   <g>
     <g transform="translate(0,0)">
-      <g aria-label="crosshair rule" stroke="currentColor" stroke-opacity="0.2" transform="translate(0,0.5)"></g>
+      <g aria-label="crosshair rule" stroke="currentColor" stroke-opacity="0.2" transform="translate(0,0.5)" pointer-events="none"></g>
     </g>
     <g transform="translate(0,148)">
-      <g aria-label="crosshair rule" stroke="currentColor" stroke-opacity="0.2" transform="translate(0,0.5)"></g>
+      <g aria-label="crosshair rule" stroke="currentColor" stroke-opacity="0.2" transform="translate(0,0.5)" pointer-events="none"></g>
     </g>
     <g transform="translate(0,296)">
-      <g aria-label="crosshair rule" stroke="currentColor" stroke-opacity="0.2" transform="translate(0,0.5)"></g>
+      <g aria-label="crosshair rule" stroke="currentColor" stroke-opacity="0.2" transform="translate(0,0.5)" pointer-events="none"></g>
     </g>
   </g>
   <g>
     <g transform="translate(0,0)">
-      <g aria-label="crosshair text" stroke="var(--plot-background)" stroke-width="5" stroke-linejoin="round" paint-order="stroke" font-variant="tabular-nums" transform="translate(0.5,9.5)"></g>
+      <g aria-label="crosshair text" stroke="var(--plot-background)" stroke-width="5" stroke-linejoin="round" paint-order="stroke" font-variant="tabular-nums" transform="translate(0.5,9.5)" pointer-events="none"></g>
     </g>
     <g transform="translate(0,148)">
-      <g aria-label="crosshair text" stroke="var(--plot-background)" stroke-width="5" stroke-linejoin="round" paint-order="stroke" font-variant="tabular-nums" transform="translate(0.5,9.5)"></g>
+      <g aria-label="crosshair text" stroke="var(--plot-background)" stroke-width="5" stroke-linejoin="round" paint-order="stroke" font-variant="tabular-nums" transform="translate(0.5,9.5)" pointer-events="none"></g>
     </g>
     <g transform="translate(0,296)">
-      <g aria-label="crosshair text" stroke="var(--plot-background)" stroke-width="5" stroke-linejoin="round" paint-order="stroke" font-variant="tabular-nums" transform="translate(0.5,9.5)"></g>
+      <g aria-label="crosshair text" stroke="var(--plot-background)" stroke-width="5" stroke-linejoin="round" paint-order="stroke" font-variant="tabular-nums" transform="translate(0.5,9.5)" pointer-events="none"></g>
     </g>
   </g>
   <g>
     <g transform="translate(0,0)">
-      <g aria-label="crosshair text" stroke="var(--plot-background)" stroke-width="5" stroke-linejoin="round" paint-order="stroke" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"></g>
+      <g aria-label="crosshair text" stroke="var(--plot-background)" stroke-width="5" stroke-linejoin="round" paint-order="stroke" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)" pointer-events="none"></g>
     </g>
     <g transform="translate(0,148)">
-      <g aria-label="crosshair text" stroke="var(--plot-background)" stroke-width="5" stroke-linejoin="round" paint-order="stroke" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"></g>
+      <g aria-label="crosshair text" stroke="var(--plot-background)" stroke-width="5" stroke-linejoin="round" paint-order="stroke" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)" pointer-events="none"></g>
     </g>
     <g transform="translate(0,296)">
-      <g aria-label="crosshair text" stroke="var(--plot-background)" stroke-width="5" stroke-linejoin="round" paint-order="stroke" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"></g>
+      <g aria-label="crosshair text" stroke="var(--plot-background)" stroke-width="5" stroke-linejoin="round" paint-order="stroke" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)" pointer-events="none"></g>
     </g>
   </g>
 </svg>

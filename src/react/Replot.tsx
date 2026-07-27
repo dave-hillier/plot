@@ -20,6 +20,7 @@ import {PointerRoot, PointerContext} from "./interactions/PointerContext.js";
 import {buildAutoLegends, LegendDisplay} from "./legends/Legend.js";
 import {createClipRegistry, registerClips, type ClipRegistry} from "./clip.js";
 import {domToJsx, isDomNode} from "./domToJsx.js";
+import {hasRenderTransform, renderTransformJSX} from "./renderTransform.js";
 import {FigureLayout} from "./FigureLayout.js";
 
 // <Plot> renders a JSX <svg> populated entirely by each mark's renderJSX();
@@ -694,9 +695,9 @@ function MarkSlot({mark, index, scales, values, dims, context, clipReg, getHandl
     return pointerCtx.register({id: regId, index, values, fi, kx: 1, ky: 1, maxRadius: 40});
   }, [pointerCtx, pointerConsumer, regId, index, values, fi]);
 
+  const sel = pointerConsumer && pointerCtx && regId ? pointerCtx.selectionFor(regId) : null;
   let renderIndex = index;
   if (pointerConsumer && index != null) {
-    const sel = pointerCtx && regId ? pointerCtx.selectionFor(regId) : null;
     const empty: any = [];
     if ((index as any).fx !== undefined)
       (empty.fx = (index as any).fx), (empty.fy = (index as any).fy), (empty.fi = (index as any).fi);
@@ -725,11 +726,23 @@ function MarkSlot({mark, index, scales, values, dims, context, clipReg, getHandl
         });
   // renderJSX usually returns its own <g> wrapper; we don't add another, to
   // keep the DOM structure identical to the imperative output. Clip wrapping
-  // (frame/geo) is applied via the clip registry.
-  let jsx = mark.renderJSX(arrayIndex, scales, values, dims, context) as ReactElement;
-  // Function marks (wrapped by plot.ts's Render) may return a detached DOM
-  // node (htl's svg`…`); convert it so React can render it.
-  if (isDomNode(jsx)) jsx = domToJsx(jsx) as ReactElement;
+  // (frame/geo) is applied via the clip registry. A user render option (a
+  // render transform) executes against the imperative contract instead, with
+  // the default renderJSX output supplied as `next`.
+  let jsx: ReactElement;
+  if (hasRenderTransform(mark)) {
+    jsx = renderTransformJSX(mark, arrayIndex, scales, values, dims, context) as ReactElement;
+  } else {
+    jsx = mark.renderJSX(arrayIndex, scales, values, dims, context) as ReactElement;
+    // Function marks (wrapped by plot.ts's Render) may return a detached DOM
+    // node (htl's svg`…`); convert it so React can render it.
+    if (isDomNode(jsx)) jsx = domToJsx(jsx) as ReactElement;
+  }
+  if (jsx == null) return null;
+  // While the pointer is not sticky, pointer-driven marks must not intercept
+  // the pointer events that drive them (upstream defaults pointer-events to
+  // "none" when context.pointerSticky === false).
+  if (pointerConsumer && sel?.sticky !== true) jsx = defaultPointerEventsNone(jsx) as ReactElement;
   // Per-mark event handlers attach as React event props (no DOM-structure
   // change): per element when the mark renders one element per datum,
   // mark-level otherwise. Presence changes rebuild the plot (stamped), so
@@ -797,6 +810,18 @@ function handlerProps(
 // to disambiguate Tip from crosshair sub-marks within a single Plot.
 function pointerRegistrationId(mark: any, fi: number | null): string {
   return `${mark.ariaLabel ?? mark.constructor?.name ?? "?"}#${fi ?? "-"}`;
+}
+
+// Mirrors applyIndirectStyles' pointer-events default (upstream style.js):
+// when the pointer context is not sticky, a pointer-driven mark's root group
+// gets pointer-events="none" so it never intercepts the pointer events that
+// drive it. An explicit mark-level pointerEvents (already emitted onto the
+// root by renderJSX) wins.
+export function defaultPointerEventsNone(jsx: ReactNode): ReactNode {
+  if (!isValidElement(jsx)) return jsx;
+  const props = jsx.props as Record<string, unknown>;
+  if (props.pointerEvents != null || props["pointer-events"] != null) return jsx;
+  return cloneElement(jsx as ReactElement<any>, {pointerEvents: "none"});
 }
 
 export function isPointerConsumer(mark: any): boolean {

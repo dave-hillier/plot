@@ -30,7 +30,16 @@ export function domToJsx(node: Node, key?: string | number): ReactNode {
 }
 
 function reactAttributeName(name: string): string {
-  return name === "class" ? "className" : name === "for" ? "htmlFor" : name;
+  if (name === "class") return "className";
+  if (name === "for") return "htmlFor";
+  // Hyphenated presentation attributes (stroke-width, paint-order, …) map to
+  // React's camelCase props — React serializes them back to the hyphenated
+  // form but warns on the hyphenated spelling. aria-*/data-* and namespaced
+  // attributes pass through verbatim.
+  if (/^[a-z]+(-[a-z]+)+$/.test(name) && !name.startsWith("aria-") && !name.startsWith("data-")) {
+    return camelCase(name);
+  }
+  return name;
 }
 
 // React requires the style prop to be an object; other attributes pass

@@ -68,5 +68,5 @@
     <path d="M321.019,0L321.019,0L321.019,0L321.019,0L321.019,0L321.019,15.287L573.248,15.287L573.248,0L573.248,0L573.248,0Z" transform="translate(20,7.357)" fill="url(#plot-pattern-6)"></path>
     <path d="M573.248,0L573.248,0L573.248,0L573.248,0L573.248,0L573.248,15.287L596.178,15.287L596.178,7.643L596.178,7.643L596.178,7.643L603.822,7.643L603.822,0Z" transform="translate(20,7.357)" fill="url(#plot-pattern-7)"></path>
   </g>
-  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)"></g>
+  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)" pointer-events="none"></g>
 </svg>

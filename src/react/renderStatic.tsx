@@ -1,7 +1,8 @@
-import {createElement as h, Fragment, type ReactNode} from "react";
-import {renderMarksWith, isPointerConsumer} from "./Replot.js";
+import {createElement as h, Fragment, type ReactElement, type ReactNode} from "react";
+import {renderMarksWith, isPointerConsumer, defaultPointerEventsNone} from "./Replot.js";
 import {createClipRegistry, registerClips, type ClipRegistry} from "./clip.js";
 import {domToJsx, isDomNode} from "./domToJsx.js";
+import {hasRenderTransform, renderTransformJSX} from "./renderTransform.js";
 
 // Builds the <svg> React element for a computed plot without any hooks, so it
 // can be serialized via renderToStaticMarkup for the imperative plot() entry
@@ -88,9 +89,21 @@ function staticRenderOne(
           fy: (renderIndex as any).fy,
           fi: (renderIndex as any).fi
         });
-  let jsx = mark.renderJSX(arrayIndex, scales, values, dims, context);
-  // Function marks (wrapped by plot.ts's Render) may return a detached DOM
-  // node (htl's svg`…`); convert it so React can render it.
-  if (isDomNode(jsx)) jsx = domToJsx(jsx);
-  return h(Fragment, {key}, clipReg ? clipReg.wrap(jsx, mark, dims, context) : jsx);
+  // A user render option (a render transform) executes against the
+  // imperative contract, with the default renderJSX output supplied as
+  // `next`.
+  let jsx: ReactNode;
+  if (hasRenderTransform(mark)) {
+    jsx = renderTransformJSX(mark, arrayIndex, scales, values, dims, context);
+  } else {
+    jsx = mark.renderJSX(arrayIndex, scales, values, dims, context);
+    // Function marks (wrapped by plot.ts's Render) may return a detached DOM
+    // node (htl's svg`…`); convert it so React can render it.
+    if (isDomNode(jsx)) jsx = domToJsx(jsx);
+  }
+  if (jsx == null) return null;
+  // Static renders are never sticky, so pointer-driven marks always default
+  // to pointer-events="none" (upstream's context.pointerSticky === false).
+  if (isPointerConsumer(mark)) jsx = defaultPointerEventsNone(jsx);
+  return h(Fragment, {key}, clipReg ? clipReg.wrap(jsx as ReactElement, mark, dims, context) : jsx);
 }

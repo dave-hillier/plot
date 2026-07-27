@@ -374,5 +374,5 @@
     <line x1="305.818" x2="305.818" y1="0" y2="30"></line>
     <line x1="408.364" x2="408.364" y1="0" y2="30"></line>
   </g>
-  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)"></g>
+  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)" pointer-events="none"></g>
 </svg>
