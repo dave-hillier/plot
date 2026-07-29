@@ -1,47 +1,69 @@
 {
-  "name": "replot",
-  "description": "A React component library for exploratory data visualization, based on Observable Plot.",
-  "version": "0.1.0",
+  "name": "@dave-hillier/replot",
+  "description": "A React port of Observable Plot: grammar-of-graphics charts as JSX components, rendered natively in the React tree.",
+  "version": "0.1.0-alpha.0",
   "author": {
-    "name": "Observable, Inc.",
-    "url": "https://observablehq.com"
+    "name": "Dave Hillier"
   },
   "license": "ISC",
   "type": "module",
-  "main": "src/index.js",
-  "module": "src/index.js",
-  "jsdelivr": "dist/plot.umd.min.js",
-  "unpkg": "dist/plot.umd.min.js",
+  "main": "src/index.ts",
+  "module": "src/index.ts",
+  "jsdelivr": "dist/replot.umd.min.js",
+  "unpkg": "dist/replot.umd.min.js",
   "exports": {
     ".": {
-      "umd": "./dist/plot.umd.min.js",
-      "default": "./src/index.js"
+      "types": "./dist/types/index.d.ts",
+      "umd": "./dist/replot.umd.min.js",
+      "default": "./src/index.ts"
     },
     "./react": {
-      "types": "./src/react/index.d.ts",
+      "types": "./dist/types/react/index.d.ts",
       "default": "./src/react/index.tsx"
-    }
+    },
+    "./package.json": "./package.json"
   },
-  "types": "src/index.d.ts",
+  "types": "dist/types/index.d.ts",
+  "keywords": [
+    "react",
+    "charts",
+    "visualization",
+    "dataviz",
+    "d3",
+    "plot",
+    "observable-plot",
+    "grammar-of-graphics",
+    "svg",
+    "jsx"
+  ],
+  "homepage": "https://dave-hillier.github.io/replot/",
+  "bugs": {
+    "url": "https://github.com/dave-hillier/replot/issues"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/dave-hillier/replot.git"
+    "url": "git+https://github.com/dave-hillier/replot.git"
   },
   "files": [
     "dist/**/*.js",
+    "dist/types/**/*.d.ts",
     "src/**/*.d.ts",
     "src/**/*.js",
     "src/**/*.ts",
     "src/**/*.tsx"
   ],
   "scripts": {
-    "test": "yarn test:mocha && yarn test:tsc && yarn test:lint && yarn test:prettier",
+    "test": "yarn test:mocha && yarn test:tsc && yarn test:lint && yarn test:prettier && yarn test:package",
+    "test:package": "yarn bundle && yarn test:publint && yarn test:attw",
+    "test:publint": "npx --yes publint@^0.3.14 --strict --pack npm",
+    "test:attw": "npx --yes @arethetypeswrong/cli@^0.18.2 --pack --profile esm-only",
     "test:coverage": "c8 yarn test:mocha",
     "test:mocha": "mkdir -p test/output && TZ=America/Los_Angeles tsx node_modules/.bin/mocha 'test/**/*-test.*' 'test/plot.*'",
     "test:lint": "eslint src test",
     "test:prettier": "prettier --check src test",
     "test:tsc": "tsc",
-    "bundle": "vite build --config vite.bundle.config.ts && MINIFY=1 vite build --config vite.bundle.config.ts",
+    "build:types": "tsc -p tsconfig.build.json && node scripts/copy-declarations.mjs",
+    "bundle": "vite build --config vite.bundle.config.ts && MINIFY=1 vite build --config vite.bundle.config.ts && yarn build:types",
     "prepublishOnly": "rm -rf dist && yarn bundle",
     "dev": "vite",
     "docs:dev": "tsx docs/scripts/ensure-bundle.ts && tsx docs/scripts/build-api-data.ts && vite --config docs/vite.docs.config.ts",
@@ -53,6 +75,7 @@
     "./src/index.ts"
   ],
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.2",
     "@eslint/eslintrc": "^3.2.0",
     "@eslint/js": "^9.20.0",
     "@mdx-js/react": "^3.1.1",
@@ -86,6 +109,7 @@
     "markdown-it-container": "^4.0.0",
     "mocha": "^11.1.0",
     "prettier": "~3.0.0",
+    "publint": "^0.3.14",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "remark-frontmatter": "^5.0.0",
@@ -127,9 +151,10 @@
     }
   },
   "engines": {
-    "node": ">=12"
+    "node": ">=18"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "tag": "next"
   }
 }

@@ -1,7 +1,7 @@
 // replot/react — React component API for Replot
 //
 // Usage:
-//   import { Replot, Dot, Line, BarY, AxisX, AxisY } from "replot/react";
+//   import { Replot, Dot, Line, BarY, AxisX, AxisY } from "@dave-hillier/replot/react";
 //
 //   function Chart({ data }) {
 //     return (
