@@ -1,4 +1,4 @@
-import * as Plot from "replot";
+import * as Plot from "@dave-hillier/replot";
 import {h, withDirectives} from "vue";
 
 class Event {}

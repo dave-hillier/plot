@@ -1,6 +1,6 @@
 <script setup>
 
-import * as Plot from "replot";
+import * as Plot from "@dave-hillier/replot";
 import * as d3 from "d3";
 import aapl from "./data/aapl.ts";
 import penguins from "./data/penguins.ts";
@@ -111,7 +111,7 @@ Plot’s transforms can do powerful things, including [normalizing series](./tra
 Simple components gain power through composition, such as layering multiple [marks](./features/marks.md) into a single plot. In React, this composability is especially natural — each mark is a JSX component that you nest inside `<Plot>`:
 
 ```jsx
-import {Plot, RuleY, AreaY, LineY} from "replot/react";
+import {Plot, RuleY, AreaY, LineY} from "@dave-hillier/replot/react";
 
 <Plot>
   <RuleY data={[0]} />

@@ -32,7 +32,7 @@ visualization system. It renders SVG imperatively via D3 selections.
 ### 2.1 Basic Usage
 
 ```jsx
-import { Plot, Dot, Line, BarY, AxisX, AxisY } from "replot";
+import { Plot, Dot, Line, BarY, AxisX, AxisY } from "@dave-hillier/replot";
 
 function Chart({ data }) {
   return (
@@ -51,7 +51,7 @@ Transforms compose by nesting wrapper components, mirroring Observable Plot's
 functional composition (`binX(outputs, stackY(options))` ≡ nested JSX):
 
 ```jsx
-import { Plot, BarY, BinX } from "replot";
+import { Plot, BarY, BinX } from "@dave-hillier/replot";
 
 function Histogram({ data }) {
   return (
@@ -709,11 +709,11 @@ The React version will be a **separate export** so both APIs coexist:
 
 ```js
 // Existing imperative API (unchanged)
-import * as Plot from "replot";
+import * as Plot from "@dave-hillier/replot";
 const svg = Plot.plot({ marks: [Plot.dot(data, { x: "a", y: "b" })] });
 
 // New React API
-import { Plot, Dot } from "replot/react";
+import { Plot, Dot } from "@dave-hillier/replot/react";
 <Plot><Dot data={data} x="a" y="b" /></Plot>
 ```
 

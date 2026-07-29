@@ -6,7 +6,7 @@ next:
 
 <script setup>
 
-import * as Plot from "replot";
+import * as Plot from "@dave-hillier/replot";
 import * as d3 from "d3";
 
 </script>
@@ -46,7 +46,7 @@ In vanilla HTML, you can load Plot from a CDN such as jsDelivr or you can downlo
 <div id="myplot"></div>
 <script type="module">
 
-import * as Plot from "https://cdn.jsdelivr.net/npm/replot@0.6/+esm";
+import * as Plot from "https://cdn.jsdelivr.net/npm/@dave-hillier/replot/+esm";
 
 const plot = Plot.rectY({length: 10000}, Plot.binX({y: "count"}, {x: Math.random})).plot();
 const div = document.querySelector("#myplot");
@@ -59,7 +59,7 @@ div.append(plot);
 <!DOCTYPE html>
 <div id="myplot"></div>
 <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
-<script src="https://cdn.jsdelivr.net/npm/replot@0.6"></script>
+<script src="https://cdn.jsdelivr.net/npm/@dave-hillier/replot"></script>
 <script type="module">
 
 const plot = Plot.rectY({length: 10000}, Plot.binX({y: "count"}, {x: Math.random})).plot();
@@ -97,40 +97,40 @@ A note on size: because the imperative `plot()` API renders through React (via `
 
 ## Installing from npm
 
-If you’re developing a web application using Node, you can install Plot via yarn, npm, pnpm, or your preferred package manager.
+If you’re developing a web application using Node, you can install Plot via yarn, npm, pnpm, or your preferred package manager. Replot is published under the scoped name `@dave-hillier/replot`, because the bare name `replot` belongs to an unrelated package on npm. While the API is still settling, releases are prereleases published under the `next` dist-tag, so add `@next` to the install commands below until 0.1.0 is out.
 
 :::code-group
 
 ```bash [yarn]
-yarn add replot
+yarn add @dave-hillier/replot
 ```
 
 ```bash [npm]
-npm install replot
+npm install @dave-hillier/replot
 ```
 
 ```bash [pnpm]
-pnpm add replot
+pnpm add @dave-hillier/replot
 ```
 
 :::
 
-You can then load Plot into your app. For **React**, import from `replot/react`:
+You can then load Plot into your app. For **React**, import from `@dave-hillier/replot/react`:
 
 ```js
-import {Plot, Dot, Line, BarY, AxisX, AxisY} from "replot/react";
+import {Plot, Dot, Line, BarY, AxisX, AxisY} from "@dave-hillier/replot/react";
 ```
 
 For the **imperative API** (vanilla JS or non-React frameworks), import from the main entry point:
 
 ```js
-import * as Plot from "replot";
+import * as Plot from "@dave-hillier/replot";
 ```
 
 You can instead import specific symbols if you prefer:
 
 ```js
-import {barY, groupX} from "replot";
+import {barY, groupX} from "@dave-hillier/replot";
 ```
 
 Plot includes TypeScript declarations with extensive documentation. We highly recommend using an editor with enhanced code completion such as Visual Studio Code or Observable.
@@ -142,7 +142,7 @@ Plot includes TypeScript declarations with extensive documentation. We highly re
 
 ## Plot in React
 
-Plot provides a first-class React component API via `replot/react`. Instead of imperatively building SVG with D3 selections, you define charts declaratively with JSX that integrates natively with React's rendering model, state management, and component lifecycle.
+Plot provides a first-class React component API via `@dave-hillier/replot/react`. Instead of imperatively building SVG with D3 selections, you define charts declaratively with JSX that integrates natively with React's rendering model, state management, and component lifecycle.
 
 ### Basic usage
 
@@ -150,7 +150,7 @@ Import the `Plot` root component and mark components, then compose them as JSX:
 
 :::code-group
 ```jsx [App.jsx]
-import {Plot, Dot, AxisX, AxisY} from "replot/react";
+import {Plot, Dot, AxisX, AxisY} from "@dave-hillier/replot/react";
 import penguins from "./penguins.json";
 
 export default function App() {
@@ -176,7 +176,7 @@ Transforms such as binning, grouping, and stacking are available as wrapper comp
 
 :::code-group
 ```jsx [Histogram.jsx]
-import {Plot, BarY, RuleY, BinX} from "replot/react";
+import {Plot, BarY, RuleY, BinX} from "@dave-hillier/replot/react";
 
 export default function Histogram({data}) {
   return (
@@ -199,7 +199,7 @@ Configure scales by passing options directly to `<Plot>`:
 
 :::code-group
 ```jsx [TemperatureChart.jsx]
-import {Plot, Dot, RuleY} from "replot/react";
+import {Plot, Dot, RuleY} from "@dave-hillier/replot/react";
 
 export default function TemperatureChart({data}) {
   return (
@@ -218,7 +218,7 @@ Use the `fx` or `fy` props on mark components to create small multiples:
 
 :::code-group
 ```jsx [FacetedChart.jsx]
-import {Plot, Dot} from "replot/react";
+import {Plot, Dot} from "@dave-hillier/replot/react";
 
 export default function FacetedChart({data}) {
   return (
@@ -236,7 +236,7 @@ Add interactive tooltips with the `tip` prop on any mark, or use the `<Tip>` com
 
 :::code-group
 ```jsx [InteractiveChart.jsx]
-import {Plot, Dot} from "replot/react";
+import {Plot, Dot} from "@dave-hillier/replot/react";
 
 export default function InteractiveChart({data}) {
   return (
@@ -254,7 +254,7 @@ Use the `<Legend>` component to add a legend for any scale:
 
 :::code-group
 ```jsx [LegendChart.jsx]
-import {Plot, Dot, Legend} from "replot/react";
+import {Plot, Dot, Legend} from "@dave-hillier/replot/react";
 
 export default function LegendChart({data}) {
   return (
@@ -272,7 +272,7 @@ Use the `title`, `subtitle`, and `caption` props on `<Plot>` to wrap the chart i
 
 :::code-group
 ```jsx [FigureChart.jsx]
-import {Plot, Line} from "replot/react";
+import {Plot, Line} from "@dave-hillier/replot/react";
 
 export default function FigureChart({data}) {
   return (
@@ -290,7 +290,7 @@ Combine React's `useState` and `useEffect` with Plot components:
 
 :::code-group
 ```jsx [AsyncChart.jsx]
-import {Plot, Dot, RuleY} from "replot/react";
+import {Plot, Dot, RuleY} from "@dave-hillier/replot/react";
 import * as d3 from "d3";
 import {useEffect, useState} from "react";
 
@@ -319,7 +319,7 @@ If you prefer the imperative API, you can still use `Plot.plot()` with `useRef` 
 
 :::code-group
 ```jsx [LegacyApp.jsx]
-import * as Plot from "replot";
+import * as Plot from "@dave-hillier/replot";
 import {useEffect, useRef} from "react";
 
 export default function LegacyApp({data}) {
@@ -351,7 +351,7 @@ For server-side rendering (SSR), use the [**document** plot option](./features/p
 
 :::code-group
 ```js [PlotFigure.js]
-import * as Plot from "replot";
+import * as Plot from "@dave-hillier/replot";
 import {h} from "vue";
 
 export default {
@@ -377,7 +377,7 @@ Then, to use:
 :::code-group
 ```vue [App.vue]
 <script setup>
-import * as Plot from "replot";
+import * as Plot from "@dave-hillier/replot";
 import PlotFigure from "./components/PlotFigure.js";
 import penguins from "./assets/penguins.json";
 </script>
@@ -400,7 +400,7 @@ See our [Plot + Vue CodeSandbox](https://codesandbox.io/p/sandbox/plot-vue-jlgg2
 For client-side rendering, use a [render function](https://vuejs.org/guide/extras/render-function.html) with a [mounted](https://vuejs.org/api/options-lifecycle.html#mounted) lifecycle directive. After the component mounts, render the plot and then insert it into the page.
 
 ```js
-import * as Plot from "replot";
+import * as Plot from "@dave-hillier/replot";
 import {h, withDirectives} from "vue";
 
 export default {
@@ -429,7 +429,7 @@ Here’s an example of client-side rendering in Svelte. For server-side renderin
 :::code-group
 ```svelte [App.svelte]
 <script lang="ts">
-  import * as Plot from 'replot';
+  import * as Plot from '@dave-hillier/replot';
   import * as d3 from 'd3';
 
   let div: HTMLElement | undefined = $state();
@@ -458,7 +458,7 @@ You can use Plot to server-side render SVG or PNG in Node.js. Use [JSDOM](https:
 
 ```js
 import {readFile} from "node:fs/promises";
-import * as Plot from "replot";
+import * as Plot from "@dave-hillier/replot";
 import * as d3 from "d3";
 import {JSDOM} from "jsdom";
 

@@ -149,7 +149,7 @@ function parseScriptSetup(block: string): ScriptSetupParsed {
 
     // Skip Vue imports
     if (/^import\s+.*from\s+["']vue["']/.test(trimmed)) continue;
-    if (/^import\s+\*\s+as\s+Plot\s+from\s+["']replot["']/.test(trimmed)) continue;
+    if (/^import\s+\*\s+as\s+Plot\s+from\s+["']@dave-hillier\/replot["']/.test(trimmed)) continue;
 
     // Keep d3 and other imports
     if (/^import\s/.test(trimmed)) {
@@ -686,10 +686,10 @@ function convertFile(mdContent: string, filePath: string): ConversionResult {
   // 8. Build import section
   const importLines: string[] = [];
 
-  // React components from replot/react
+  // React components from @dave-hillier/replot/react
   if (allReactImports.size > 0) {
     const sorted = [...allReactImports].sort();
-    importLines.push(`import {${sorted.join(", ")}} from "replot/react";`);
+    importLines.push(`import {${sorted.join(", ")}} from "@dave-hillier/replot/react";`);
   }
 
   // d3 if used
