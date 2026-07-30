@@ -41,6 +41,7 @@ export * from "./marks/vector.js";
 export * from "./marks/waffle.js";
 export {valueof, column, identity, indexOf} from "./options.js";
 export * from "./plot.js";
+export * from "./plotDom.js";
 export * from "./projection.js";
 export * from "./reducer.js";
 export * from "./scales.js";

@@ -4,7 +4,6 @@ import {createContext} from "./context.js";
 import {createDimensions} from "./dimensions.js";
 import {createFacets, recreateFacets, facetExclude, facetGroups, facetTranslator, facetFilter} from "./facet.js";
 import {pointer, pointerX, pointerY} from "./interactions/pointer.js";
-import {buildAutoLegends, renderLegendElement} from "./react/legends/Legend.js";
 import {Mark} from "./mark.js";
 import {axisFx, axisFy, axisX, axisY, gridFx, gridFy, gridX, gridY} from "./marks/axis.js";
 import {frame} from "./marks/frame.js";
@@ -12,14 +11,12 @@ import {tip} from "./marks/tip.js";
 import {isColor, isIterable, isNone, isScaleOptions} from "./options.js";
 import {dataify, lengthof, map, yes, maybeIntervalTransform} from "./options.js";
 import {createProjection, getGeometryChannels, hasProjection, xyProjection} from "./projection.js";
-import {createScales, createScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
+import {createScales, createScaleFunctions, autoScaleRange} from "./scales.js";
 import {innerDimensions, outerDimensions} from "./scales.js";
 import {isPosition, registry as scaleRegistry} from "./scales/index.js";
 import {maybeClassName} from "./style.js";
 import {initializer} from "./transforms/basic.js";
-import {consumeWarnings, warn} from "./warnings.js";
-import {renderToStaticMarkup} from "react-dom/server";
-import {buildStaticPlotSvg} from "./react/renderStatic.js";
+import {warn} from "./warnings.js";
 
 // Returns the pre-render state needed by both the imperative DOM build path
 // (used by `plot()` below) and the React JSX path (used by `<Plot>` in
@@ -274,86 +271,6 @@ export function computePlot(options: any = {}): any {
     facetDomains,
     facetTranslate
   };
-}
-
-export function plot(options: any = {}) {
-  const computed: any = computePlot(options);
-  const {className, scales, scaleDescriptors, context} = computed;
-  const {style, title, subtitle, caption} = options;
-  const document = context.document;
-  const figureHolder: {current: any} = context.figureHolder;
-
-  // Drain warnings emitted during computePlot so the ⚠️ indicator renders and
-  // the warn() dedupe state is reset (matching the React <Plot> path).
-  const warnings = consumeWarnings();
-
-  // Render the marks to a detached <svg> via React's renderJSX — no
-  // d3-selection. The same renderMarksWith/renderJSX code powers <Plot>, so
-  // the imperative and JSX outputs stay in lockstep. We serialize to markup
-  // and reparse into the target document (which may be a custom jsdom doc).
-  const markup = renderToStaticMarkup(buildStaticPlotSvg(computed, warnings, options.className));
-  const holder = document.createElement("div");
-  holder.innerHTML = markup;
-  const svg: any = holder.firstElementChild;
-
-  // Apply the plot-level style option (string or object), mirroring
-  // applyInlineStyles on the former imperative path.
-  if (typeof style === "string") svg.setAttribute("style", style);
-  else if (style != null) Object.assign(svg.style, style);
-
-  figureHolder.current = svg;
-
-  // Wrap the plot in a figure, if needed. Auto-legends render via the React
-  // legend components (no d3-selection); serialize each to a DOM node in the
-  // target document, matching the former createLegends output.
-  const legends = buildAutoLegends(scaleDescriptors, context, options).map((el) => {
-    const h = document.createElement("div");
-    h.innerHTML = renderToStaticMarkup(el);
-    return h.firstElementChild;
-  });
-  const {figure: figured = title != null || subtitle != null || caption != null || legends.length > 0} = options;
-  if (figured) {
-    const fig: any = document.createElement("figure");
-    fig.className = `${className}-figure`;
-    fig.style.maxWidth = "initial"; // avoid Observable default style
-    if (title != null) fig.append(createTitleElement(document, title, "h2"));
-    if (subtitle != null) fig.append(createTitleElement(document, subtitle, "h3"));
-    fig.append(...legends, svg);
-    if (caption != null) fig.append(createFigcaption(document, caption));
-    if ("value" in svg) (fig.value = svg.value), delete svg.value;
-    figureHolder.current = fig;
-  }
-
-  figureHolder.current.scale = exposeScales(scales.scales);
-  // The .legend(key, options) method renders via the React legend components
-  // (no d3-selection); serialize to a DOM node in the target document.
-  figureHolder.current.legend = (key: string, legendOptions: any = {}) => {
-    if (key !== "color" && key !== "opacity" && key !== "symbol") throw new Error(`unknown legend type: ${key}`);
-    if (!(key in scaleDescriptors)) return;
-    const el = renderLegendElement(key, legendOptions, scaleDescriptors, context, options);
-    if (el == null) return;
-    // Render into the per-call document option if given (e.g. a separate jsdom
-    // window), else the plot's document.
-    const targetDoc = legendOptions?.document ?? document;
-    const h = targetDoc.createElement("div");
-    h.innerHTML = renderToStaticMarkup(el);
-    return h.firstElementChild;
-  };
-
-  return figureHolder.current;
-}
-
-function createTitleElement(document, contents, tag) {
-  if (contents.ownerDocument) return contents;
-  const e = document.createElement(tag);
-  e.append(contents);
-  return e;
-}
-
-function createFigcaption(document, caption) {
-  const e = document.createElement("figcaption");
-  e.append(caption);
-  return e;
 }
 
 function flatMarks(marks) {
