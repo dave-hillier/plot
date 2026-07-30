@@ -7,19 +7,19 @@
   },
   "license": "ISC",
   "type": "module",
-  "main": "src/index.ts",
-  "module": "src/index.ts",
+  "main": "dist/esm/index.js",
+  "module": "dist/esm/index.js",
   "jsdelivr": "dist/replot.umd.min.js",
   "unpkg": "dist/replot.umd.min.js",
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
       "umd": "./dist/replot.umd.min.js",
-      "default": "./src/index.ts"
+      "default": "./dist/esm/index.js"
     },
     "./react": {
       "types": "./dist/types/react/index.d.ts",
-      "default": "./src/react/index.tsx"
+      "default": "./dist/esm/react/index.js"
     },
     "./package.json": "./package.json"
   },
@@ -46,11 +46,7 @@
   },
   "files": [
     "dist/**/*.js",
-    "dist/types/**/*.d.ts",
-    "src/**/*.d.ts",
-    "src/**/*.js",
-    "src/**/*.ts",
-    "src/**/*.tsx"
+    "dist/types/**/*.d.ts"
   ],
   "scripts": {
     "test": "yarn test:mocha && yarn test:tsc && yarn test:lint && yarn test:prettier && yarn test:package",
@@ -63,7 +59,8 @@
     "test:prettier": "prettier --check src test",
     "test:tsc": "tsc",
     "build:types": "tsc -p tsconfig.build.json && node scripts/copy-declarations.mjs",
-    "bundle": "vite build --config vite.bundle.config.ts && MINIFY=1 vite build --config vite.bundle.config.ts && yarn build:types",
+    "build:esm": "tsc -p tsconfig.esm.json && node scripts/copy-sources.mjs",
+    "bundle": "vite build --config vite.bundle.config.ts && MINIFY=1 vite build --config vite.bundle.config.ts && yarn build:esm && yarn build:types",
     "prepublishOnly": "rm -rf dist && yarn bundle",
     "dev": "vite",
     "docs:dev": "tsx docs/scripts/ensure-bundle.ts && tsx docs/scripts/build-api-data.ts && vite --config docs/vite.docs.config.ts",
@@ -71,8 +68,7 @@
     "docs:preview": "vite preview --config docs/vite.docs.config.ts"
   },
   "sideEffects": [
-    "./src/index.js",
-    "./src/index.ts"
+    "./dist/esm/index.js"
   ],
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.2",
